@@ -1,0 +1,84 @@
+# Temporary Email Service
+
+## Overview
+
+This is a temporary email service application that allows users to generate disposable email addresses and receive emails without registration. The application provides a simple, privacy-focused interface where users can instantly create temporary email addresses, view incoming messages, and read email content. Built with a modern tech stack, it follows Apple HIG-inspired design principles emphasizing simplicity, clarity, and accessibility.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+
+**Framework**: React with TypeScript using Vite as the build tool and development server.
+
+**UI Component System**: shadcn/ui component library built on Radix UI primitives with Tailwind CSS for styling. The design system follows the "new-york" style variant with a neutral base color scheme and CSS variables for theming.
+
+**State Management**: TanStack Query (React Query) for server state management with custom query functions. The application uses React hooks for local state management.
+
+**Routing**: Wouter for lightweight client-side routing. The application is primarily a single-page application with minimal routing needs.
+
+**Design Philosophy**: Apple HIG-inspired design with emphasis on:
+- Single-purpose screens with clear hierarchy
+- Immediate functionality without learning curve
+- Generous spacing using Tailwind's spacing units (2, 4, 6, 8)
+- Maximum content width of `max-w-4xl` for readability
+- Typography using Inter for UI and JetBrains Mono for email addresses
+
+**Key Frontend Components**:
+- `EmailGenerator`: Displays current temporary email and provides copy functionality with domain selection
+- `InboxList`: Shows list of received emails with refresh and delete capabilities
+- `EmailDetailModal`: Modal dialog for viewing full email content with HTML/text tabs
+- `Header`: Application branding and navigation
+
+### Backend Architecture
+
+**Server Framework**: Express.js running on Node.js with TypeScript.
+
+**API Design**: RESTful API acting as a proxy layer to the external temp mail service (api.barid.site). The backend provides three main endpoints:
+- `GET /api/domains` - Fetches available email domains
+- `GET /api/inbox/:email` - Retrieves emails for a specific temporary address
+- `GET /api/inbox/:email/:id` - Fetches details of a specific email message
+
+**Request Handling**: Custom middleware for request logging, JSON parsing with raw body capture, and error handling. The server validates incoming requests using Zod schemas before forwarding to the external API.
+
+**Validation**: Zod schemas defined in shared code for runtime type validation of email addresses, email IDs, and API responses.
+
+**Development vs Production**: Vite middleware integration in development mode for HMR and asset serving. In production, static assets are served from the built `dist/public` directory.
+
+### Data Models
+
+The application uses Zod schemas for data validation without a traditional database:
+
+**EmailSummary**: List view representation with id, from/to addresses, subject, timestamp, and attachment flags.
+
+**Email**: Full email object including HTML and text content in addition to summary fields.
+
+**Domain**: String representing available email domains for temporary address generation.
+
+**User Schema**: Defined but not actively used - includes id, username, and password fields for potential future authentication.
+
+### External Dependencies
+
+**Third-Party API**: The application relies entirely on the external temp mail API at `https://api.barid.site` for:
+- Retrieving available email domains
+- Fetching inbox contents for temporary email addresses
+- Getting detailed email content
+
+**No Database**: The application does not use a persistent database. Email data is fetched on-demand from the external API. A minimal in-memory storage class exists for potential user management but is not currently utilized.
+
+**Key Libraries**:
+- **axios**: HTTP client for making requests to the external temp mail API
+- **date-fns**: Date formatting and manipulation for email timestamps
+- **Radix UI**: Headless UI component primitives for accessibility
+- **Tailwind CSS**: Utility-first CSS framework
+- **TanStack Query**: Asynchronous state management with caching and auto-refresh (15-second interval for inbox)
+
+**Development Tools**:
+- **Drizzle ORM**: Configured for PostgreSQL but not actively used in current implementation
+- **Vite plugins**: Runtime error modal, cartographer, and dev banner for Replit environment
+- **TypeScript**: End-to-end type safety across client and server
+
+**Build Process**: Vite builds the frontend, esbuild bundles the backend server code, with separate output directories for production deployment.
