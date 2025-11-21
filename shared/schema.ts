@@ -36,7 +36,24 @@ export const emailSchema = z.object({
 // Domain Schema
 export const domainSchema = z.string();
 
+// Referral Schema
+export const referralSchema = z.object({
+  id: z.string(),
+  referralCode: z.string(),
+  createdAt: z.number(),
+  referrals: z.number().default(0),
+  bonusEmails: z.number().default(0),
+});
+
+export const referralStatsSchema = z.object({
+  totalReferrals: z.number(),
+  bonusEmails: z.number(),
+  referralCode: z.string(),
+});
+
 export type EmailSummary = z.infer<typeof emailSummarySchema>;
 export type Email = z.infer<typeof emailSchema>;
 export type Domain = z.infer<typeof domainSchema>;
 export type Attachment = z.infer<typeof attachmentSchema>;
+export type Referral = z.infer<typeof referralSchema>;
+export type ReferralStats = z.infer<typeof referralStatsSchema>;

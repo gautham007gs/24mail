@@ -1,7 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import axios, { AxiosError } from "axios";
-import { emailSummarySchema, emailSchema, domainSchema } from "@shared/schema";
+import { emailSummarySchema, emailSchema, domainSchema, referralStatsSchema } from "@shared/schema";
+import { storage } from "@shared/storage.ts";
 import { z } from "zod";
 
 const TEMP_MAIL_API = "https://api.barid.site";
@@ -206,6 +207,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         res.status(500).json({ error: "Failed to download attachment" });
       }
+    }
+  });
+
+  // Referral endpoints
+  app.get("/api/referral/create", async (req, res) => {
+    try {
+      const sessionId = req.sessionID || "anonymous";
+      let referral = await storage.getReferral(sessionId);
+      if (!referral) {
+        referral = await storage.createReferral(sessionId);
+      }
+      res.json({
+        referralCode: referral.referralCode,
+        referrals: referral.referrals,
+        bonusEmails: referral.bonusEmails,
+      });
+    } catch (error) {
+      console.error("Error creating referral:", error);
+      res.status(500).json({ error: "Failed to create referral" });
+    }
+  });
+
+  app.get("/api/referral/stats", async (req, res) => {
+    try {
+      const sessionId = req.sessionID || "anonymous";
+      let referral = await storage.getReferral(sessionId);
+      if (!referral) {
+        referral = await storage.createReferral(sessionId);
+      }
+      res.json({
+        totalReferrals: referral.referrals,
+        bonusEmails: referral.bonusEmails,
+        referralCode: referral.referralCode,
+      });
+    } catch (error) {
+      console.error("Error getting referral stats:", error);
+      res.status(500).json({ error: "Failed to get referral stats" });
+    }
+  });
+
+  app.post("/api/referral/claim/:code", async (req, res) => {
+    try {
+      const { code } = req.params;
+      const referrer = await storage.getReferralByCode(code);
+      if (!referrer) {
+        res.status(404).json({ error: "Referral code not found" });
+        return;
+      }
+      
+      const newReferrals = referrer.referrals + 1;
+      const newBonusEmails = referrer.bonusEmails + 50;
+      await storage.updateReferral(referrer.id, newReferrals, newBonusEmails);
+      
+      res.json({ success: true, bonusEmails: 50 });
+    } catch (error) {
+      console.error("Error claiming referral:", error);
+      res.status(500).json({ error: "Failed to claim referral" });
     }
   });
 
