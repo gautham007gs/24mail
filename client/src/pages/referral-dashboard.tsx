@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,20 +6,28 @@ import { Copy, Share2, Users, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { getReferralData, getReferralShareUrl } from "@/lib/referral-tracking";
 
 export default function ReferralDashboard() {
   const { toast } = useToast();
+  const [stats, setStats] = useState<any>(null);
 
-  const { data: stats, isLoading } = useQuery({
-    queryKey: ["/api/referral/stats"],
-    queryFn: () => fetch("/api/referral/stats").then((res) => res.json()),
-    staleTime: 30000,
-  });
+  useEffect(() => {
+    const currentEmail = localStorage.getItem("tempmail_current_email");
+    if (currentEmail) {
+      const data = getReferralData(currentEmail);
+      setStats({
+        referralCode: data.referralCode,
+        totalReferrals: data.referralsUsed,
+        bonusEmails: data.bonusEmails,
+        shareUrl: getReferralShareUrl(data.referralCode),
+      });
+    }
+  }, []);
 
   const handleCopyCode = () => {
-    if (stats?.referralCode) {
-      const url = `${window.location.origin}?ref=${stats.referralCode}`;
-      navigator.clipboard.writeText(url);
+    if (stats?.shareUrl) {
+      navigator.clipboard.writeText(stats.shareUrl);
       toast({
         title: "Copied!",
         description: "Referral link copied to clipboard",
@@ -28,12 +36,11 @@ export default function ReferralDashboard() {
   };
 
   const handleShare = () => {
-    if (stats?.referralCode && navigator.share) {
-      const url = `${window.location.origin}?ref=${stats.referralCode}`;
+    if (stats?.shareUrl && navigator.share) {
       navigator.share({
-        title: "TempMail Referral",
-        text: "Get 50 free emails per referral on TempMail!",
-        url,
+        title: "Join TempMail - Get 50 Free Emails!",
+        text: "Get an instant temporary email with 50 bonus emails using my referral code!",
+        url: stats.shareUrl,
       });
     }
   };
@@ -61,12 +68,12 @@ export default function ReferralDashboard() {
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  Total Referrals
+                  People Referred
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold" data-testid="stat-total-referrals">
-                  {isLoading ? "..." : stats?.totalReferrals || 0}
+                  {stats?.totalReferrals ?? 0}
                 </div>
               </CardContent>
             </Card>
@@ -75,24 +82,26 @@ export default function ReferralDashboard() {
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Gift className="w-4 h-4" />
-                  Bonus Emails
+                  Bonus Emails Earned
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold" data-testid="stat-bonus-emails">
-                  {isLoading ? "..." : stats?.bonusEmails || 0}
+                  {stats?.bonusEmails ?? 0}
                 </div>
+                <p className="text-xs text-muted-foreground mt-2">50 per referral</p>
               </CardContent>
             </Card>
 
             <Card className="bg-primary text-primary-foreground">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium opacity-90">Your Code</CardTitle>
+                <CardTitle className="text-sm font-medium opacity-90">Your Referral Code</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-mono font-bold" data-testid="referral-code">
-                  {isLoading ? "..." : stats?.referralCode || "N/A"}
+                  {stats?.referralCode || "N/A"}
                 </div>
+                <p className="text-xs opacity-75 mt-2">Share your code with friends</p>
               </CardContent>
             </Card>
           </div>
@@ -113,9 +122,9 @@ export default function ReferralDashboard() {
                   data-testid="button-copy-referral"
                 >
                   <Copy className="w-4 h-4" />
-                  Copy Link
+                  Copy Referral Link
                 </Button>
-                {navigator.share && (
+                {typeof navigator !== "undefined" && navigator.share && (
                   <Button
                     onClick={handleShare}
                     variant="outline"
@@ -123,13 +132,16 @@ export default function ReferralDashboard() {
                     data-testid="button-share-referral"
                   >
                     <Share2 className="w-4 h-4" />
-                    Share
+                    Share on Apps
                   </Button>
                 )}
               </div>
-              <p className="text-sm text-muted-foreground">
-                {stats?.referralCode ? `Your referral link: ${window.location.origin}?ref=${stats.referralCode}` : "Loading..."}
-              </p>
+              {stats?.shareUrl && (
+                <div className="bg-secondary/50 p-3 rounded-md break-all">
+                  <p className="text-xs text-muted-foreground mb-1">Your referral link:</p>
+                  <p className="text-sm font-mono">{stats.shareUrl}</p>
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -144,8 +156,8 @@ export default function ReferralDashboard() {
                     1
                   </div>
                   <div>
-                    <p className="font-medium">Share Your Code</p>
-                    <p className="text-sm text-muted-foreground">Copy and share your referral link with friends</p>
+                    <p className="font-medium">Share Your Referral Link</p>
+                    <p className="text-sm text-muted-foreground">Copy the link above and share it with friends via WhatsApp, Email, SMS, etc.</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
@@ -153,8 +165,8 @@ export default function ReferralDashboard() {
                     2
                   </div>
                   <div>
-                    <p className="font-medium">Friend Signs Up</p>
-                    <p className="text-sm text-muted-foreground">They click your link and create an account</p>
+                    <p className="font-medium">They Click Your Link</p>
+                    <p className="text-sm text-muted-foreground">They click your referral link and get a temporary email with 50 bonus emails</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
@@ -163,7 +175,7 @@ export default function ReferralDashboard() {
                   </div>
                   <div>
                     <p className="font-medium">You Earn 50 Emails</p>
-                    <p className="text-sm text-muted-foreground">Get 50 bonus free emails per successful referral</p>
+                    <p className="text-sm text-muted-foreground">Get 50 bonus free emails instantly credited to your account for each referral</p>
                   </div>
                 </div>
               </div>
