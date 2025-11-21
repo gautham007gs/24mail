@@ -91,16 +91,7 @@ export function InboxList({
     <div className="mt-8 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          {currentEmail && (
-            <div 
-              className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/5 to-primary/10 smooth-transition" 
-              data-testid="refresh-countdown-indicator"
-              aria-label={`Auto-refresh in ${countdown} seconds`}
-            >
-              <span data-testid="countdown-timer" className="font-semibold">{countdown}s</span>
-            </div>
-          )}
+        <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
             ({searchQuery ? filteredEmails.length : emails.length})
@@ -119,6 +110,15 @@ export function InboxList({
               <Trash2 className="h-4 w-4 mr-1.5" />
               <span className="hidden sm:inline">Clear Inbox</span>
             </Button>
+          )}
+          {currentEmail && (
+            <div 
+              className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/5 to-primary/10 smooth-transition" 
+              data-testid="refresh-countdown-indicator"
+              aria-label={`Auto-refresh in ${countdown} seconds`}
+            >
+              <span data-testid="countdown-timer" className="font-semibold">{countdown}s</span>
+            </div>
           )}
           <Button
             variant="ghost"
@@ -251,7 +251,7 @@ function EmptyState() {
       </div>
       <h3 className="mt-4 text-lg font-medium text-foreground text-xl" data-testid="text-empty-title">{emptyMessage}</h3>
       <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-empty-message">
-        Go ahead, give this email to someone. They won't even know it's temporary 👀
+        Go ahead, give this email to someone. They won't even know it's temporary
       </p>
     </div>
   );
