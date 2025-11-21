@@ -25,10 +25,13 @@ app.use((req, res, next) => {
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
-  res.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com");
   
-  // Prevent MIME sniffing
-  res.set("X-Content-Type-Options", "nosniff");
+  // CSP: More permissive in development for Vite HMR
+  const isDev = process.env.NODE_ENV === "development";
+  const cspHeader = isDev 
+    ? "default-src 'self' http: https: ws: wss:; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com http: https: ws: wss:"
+    : "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com";
+  res.set("Content-Security-Policy", cspHeader);
   
   // Set cache headers for blog and static content - SEO friendly
   if (req.path.startsWith("/blog") || req.path === "/" || req.path.startsWith("/success") || req.path.startsWith("/terms") || req.path.startsWith("/privacy") || req.path.startsWith("/browser") || req.path.startsWith("/referral")) {
