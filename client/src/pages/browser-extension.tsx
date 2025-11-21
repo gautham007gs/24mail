@@ -41,18 +41,22 @@ export default function BrowserExtension() {
               Generate temporary email addresses instantly from any website. One-click email generation. Auto-fill forms. Never miss an email. Available for Chrome and Firefox.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="w-full md:w-auto">
-                  <Download className="h-5 w-5 mr-2" />
-                  Install for Chrome
-                </Button>
-              </a>
-              <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="w-full md:w-auto">
-                  <Download className="h-5 w-5 mr-2" />
-                  Install for Firefox
-                </Button>
-              </a>
+              <Link href="#install-chrome">
+                <a className="w-full md:w-auto">
+                  <Button size="lg" className="w-full">
+                    <Download className="h-5 w-5 mr-2" />
+                    Install for Chrome
+                  </Button>
+                </a>
+              </Link>
+              <Link href="#install-firefox">
+                <a className="w-full md:w-auto">
+                  <Button size="lg" variant="outline" className="w-full">
+                    <Download className="h-5 w-5 mr-2" />
+                    Install for Firefox
+                  </Button>
+                </a>
+              </Link>
             </div>
           </div>
 
@@ -168,35 +172,41 @@ export default function BrowserExtension() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {/* Chrome Instructions */}
-              <Card className="p-8">
+              <Card className="p-8" id="install-chrome">
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <Globe className="h-6 w-6" />
-                  Chrome Installation
+                  Chrome Installation (Developer Mode)
                 </h3>
                 <ol className="space-y-4 list-decimal list-inside text-foreground/80">
-                  <li>Click the link: <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" className="text-primary underline">TempMail on Chrome Web Store</a></li>
-                  <li>Click the blue "Add to Chrome" button</li>
-                  <li>Confirm the permissions popup</li>
-                  <li>Extension appears in your toolbar (top-right)</li>
-                  <li>Click the TempMail icon to generate an email</li>
-                  <li>Start using instantly - no setup needed!</li>
+                  <li>Download the extension from our <a href="https://github.com/tempmail/extension" className="text-primary underline font-semibold">GitHub repository</a></li>
+                  <li>Open Chrome and type <code className="bg-muted px-2 py-1 rounded text-foreground">chrome://extensions/</code> in the address bar</li>
+                  <li>Enable "Developer mode" toggle (top-right corner)</li>
+                  <li>Click "Load unpacked"</li>
+                  <li>Select the downloaded extension folder</li>
+                  <li>Extension appears in your toolbar - ready to use!</li>
                 </ol>
+                <div className="mt-4 p-3 bg-muted rounded text-sm text-muted-foreground">
+                  <strong>Coming Soon:</strong> Official Chrome Web Store release in Q1 2025
+                </div>
               </Card>
 
               {/* Firefox Instructions */}
-              <Card className="p-8">
+              <Card className="p-8" id="install-firefox">
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <Globe className="h-6 w-6" />
                   Firefox Installation
                 </h3>
                 <ol className="space-y-4 list-decimal list-inside text-foreground/80">
-                  <li>Click the link: <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" className="text-primary underline">TempMail on Firefox Add-ons</a></li>
-                  <li>Click the blue "Add to Firefox" button</li>
-                  <li>Confirm the permissions and installation</li>
-                  <li>Extension appears in your toolbar (top-right)</li>
-                  <li>Click the TempMail icon to generate an email</li>
-                  <li>Start using instantly - no setup needed!</li>
+                  <li>Download the extension from our <a href="https://github.com/tempmail/extension" className="text-primary underline font-semibold">GitHub repository</a></li>
+                  <li>Open Firefox and type <code className="bg-muted px-2 py-1 rounded text-foreground">about:debugging#/runtime/this-firefox</code></li>
+                  <li>Click "Load Temporary Add-on"</li>
+                  <li>Select the manifest.json file from the extension folder</li>
+                  <li>Extension appears in your toolbar</li>
+                  <li>For permanent installation, Firefox must sign the extension</li>
                 </ol>
+                <div className="mt-4 p-3 bg-muted rounded text-sm text-muted-foreground">
+                  <strong>Coming Soon:</strong> Official Firefox Add-ons release in Q1 2025
+                </div>
               </Card>
             </div>
           </section>
@@ -239,23 +249,35 @@ export default function BrowserExtension() {
             </div>
           </section>
 
+          {/* Development Version Notice */}
+          <Card className="p-8 mb-16 border-2 border-primary/50">
+            <h3 className="text-xl font-bold text-foreground mb-4">Development Version Available Now</h3>
+            <p className="text-foreground/80 mb-4">
+              We're currently working on official Chrome Web Store and Firefox Add-ons releases. In the meantime, you can install the development version using the instructions above:
+            </p>
+            <ul className="space-y-2 text-foreground/80 list-disc list-inside">
+              <li><strong>Chrome:</strong> Load unpacked extension via Developer Mode</li>
+              <li><strong>Firefox:</strong> Load temporary add-on for development</li>
+              <li><strong>Both:</strong> Full feature parity with final releases</li>
+            </ul>
+          </Card>
+
           {/* CTA Section */}
           <div className="text-center py-12 bg-muted/30 rounded-lg p-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Protect Your Privacy?</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">Get Started Today</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Install the TempMail browser extension now and never expose your real email address again.
+              Download from GitHub and install the development version now. Official store releases coming Q1 2025.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/tempmail/extension" target="_blank" rel="noopener noreferrer">
                 <Button size="lg">
                   <Download className="h-5 w-5 mr-2" />
-                  Get for Chrome
+                  Download from GitHub
                 </Button>
               </a>
-              <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/tempmail/extension/wiki/Installation-Guide" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline">
-                  <Download className="h-5 w-5 mr-2" />
-                  Get for Firefox
+                  View Installation Guide
                 </Button>
               </a>
             </div>
