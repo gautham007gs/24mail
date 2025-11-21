@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw } from "lucide-react";
+import { Copy, Check, RefreshCw, Bell, BellOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useNotifications } from "@/contexts/notification-context";
 import { type Domain } from "@shared/schema";
 
 interface EmailGeneratorProps {
@@ -22,6 +23,25 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
   const [selectedDomain, setSelectedDomain] = useState<string>(domains[0] || "");
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+  const { permission, isSupported, requestPermission } = useNotifications();
+  const [showNotificationBanner, setShowNotificationBanner] = useState(true);
+
+  const handleEnableNotifications = async () => {
+    const granted = await requestPermission();
+    if (granted) {
+      toast({
+        title: "Notifications enabled",
+        description: "You'll be notified when new emails arrive",
+      });
+      setShowNotificationBanner(false);
+    } else {
+      toast({
+        title: "Notifications blocked",
+        description: "Please enable notifications in your browser settings",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleCopy = async () => {
     if (!currentEmail) return;
@@ -62,6 +82,52 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
   return (
     <Card className="p-8">
       <div className="space-y-8">
+        {/* Notification Permission Banner */}
+        {isSupported && permission === "default" && showNotificationBanner && (
+          <div className="flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4">
+            <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="flex-1 space-y-2">
+              <p className="text-sm font-medium text-foreground">
+                Get notified of new emails
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Enable desktop notifications to know instantly when emails arrive
+              </p>
+            </div>
+            <div className="flex gap-2 shrink-0">
+              <Button
+                size="sm"
+                onClick={handleEnableNotifications}
+                data-testid="button-enable-notifications"
+              >
+                Enable
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => setShowNotificationBanner(false)}
+                data-testid="button-dismiss-notifications"
+              >
+                Dismiss
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {permission === "granted" && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Bell className="h-4 w-4 text-primary" />
+            <span>Notifications enabled</span>
+          </div>
+        )}
+
+        {permission === "denied" && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <BellOff className="h-4 w-4" />
+            <span>Notifications blocked - enable them in browser settings</span>
+          </div>
+        )}
+
         {/* Email Display */}
         <div className="space-y-3">
           <label className="text-sm font-medium text-foreground">

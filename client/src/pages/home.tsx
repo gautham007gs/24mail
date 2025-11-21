@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type EmailSummary, type Email, type Domain } from "@shared/schema";
@@ -7,11 +7,14 @@ import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
+import { useNotifications } from "@/contexts/notification-context";
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>("");
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const { toast } = useToast();
+  const { showNotification } = useNotifications();
+  const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
 
   // Fetch available domains
   const { data: domains = [] } = useQuery<Domain[]>({
@@ -111,6 +114,43 @@ export default function Home() {
       setCurrentEmail(`${randomUsername}@${domains[0]}`);
     }
   }, [domains, currentEmail]);
+
+  // Track email count and notify on new emails
+  useEffect(() => {
+    // Initialize on first load - don't notify for existing emails
+    if (previousEmailCount.current === -1) {
+      previousEmailCount.current = emails.length;
+      return;
+    }
+
+    // Detect new emails
+    if (emails.length > previousEmailCount.current) {
+      const newEmailCount = emails.length - previousEmailCount.current;
+      const latestEmail = emails[0]; // Newest email is first
+      
+      // Show browser notification
+      showNotification(
+        newEmailCount === 1 ? "New email received" : `${newEmailCount} new emails received`,
+        {
+          body: newEmailCount === 1
+            ? `From: ${latestEmail.from_address}\nSubject: ${latestEmail.subject || "(No subject)"}`
+            : `You have ${newEmailCount} new emails`,
+          tag: "new-email",
+          requireInteraction: false,
+        }
+      );
+
+      // Show in-app toast notification
+      toast({
+        title: newEmailCount === 1 ? "New email" : `${newEmailCount} new emails`,
+        description: newEmailCount === 1
+          ? `From ${latestEmail.from_address}`
+          : `You have ${newEmailCount} new emails`,
+      });
+    }
+
+    previousEmailCount.current = emails.length;
+  }, [emails, showNotification, toast]);
 
   const handleGenerateEmail = (email: string) => {
     setCurrentEmail(email);

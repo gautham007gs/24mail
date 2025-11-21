@@ -1,9 +1,11 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
 import { type EmailSummary } from "@shared/schema";
+import { useState, useMemo } from "react";
 
 interface InboxListProps {
   emails: EmailSummary[];
@@ -24,9 +26,33 @@ export function InboxList({
   onDeleteAll,
   isDeleting,
 }: InboxListProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter emails based on search query
+  const filteredEmails = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return emails;
+    }
+
+    const query = searchQuery.toLowerCase();
+    return emails.filter((email) => {
+      const from = email.from_address.toLowerCase();
+      const subject = (email.subject || "").toLowerCase();
+      const to = email.to_address.toLowerCase();
+      
+      return (
+        from.includes(query) ||
+        subject.includes(query) ||
+        to.includes(query)
+      );
+    });
+  }, [emails, searchQuery]);
+
   if (!currentEmail) {
     return null;
   }
+
+  const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
 
   return (
     <div className="mt-8 space-y-4">
@@ -35,7 +61,7 @@ export function InboxList({
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
-            ({emails.length})
+            ({searchQuery ? filteredEmails.length : emails.length})
           </span>
         </div>
         <div className="flex gap-2">
@@ -63,14 +89,42 @@ export function InboxList({
         </div>
       </div>
 
+      {/* Search Bar */}
+      {emails.length > 0 && (
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Search by sender or subject..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 pr-9"
+            data-testid="input-search-emails"
+          />
+          {searchQuery && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSearchQuery("")}
+              className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+              data-testid="button-clear-search"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      )}
+
       {/* Email List */}
       <div className="space-y-2">
         {isLoading ? (
           <LoadingState />
-        ) : emails.length === 0 ? (
+        ) : hasSearchResults ? (
+          <NoSearchResults query={searchQuery} />
+        ) : filteredEmails.length === 0 ? (
           <EmptyState />
         ) : (
-          emails.map((email) => (
+          filteredEmails.map((email) => (
             <EmailCard
               key={email.id}
               email={email}
@@ -127,6 +181,22 @@ function EmptyState() {
       <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-empty-title">No emails yet</h3>
       <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-empty-message">
         Your temporary address is ready to receive emails. Share it and check back in a few moments.
+      </p>
+    </div>
+  );
+}
+
+function NoSearchResults({ query }: { query: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50">
+        <Search className="h-8 w-8 text-muted-foreground" />
+      </div>
+      <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-no-results-title">
+        No emails found
+      </h3>
+      <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-no-results-message">
+        No emails match "{query}". Try a different search term.
       </p>
     </div>
   );
