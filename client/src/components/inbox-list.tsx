@@ -91,35 +91,22 @@ export function InboxList({
     <div className="mt-8 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          {currentEmail && (
+            <div 
+              className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/5 to-primary/10 smooth-transition" 
+              data-testid="refresh-countdown-indicator"
+              aria-label={`Auto-refresh in ${countdown} seconds`}
+            >
+              <span data-testid="countdown-timer" className="font-semibold">{countdown}s</span>
+            </div>
+          )}
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
             ({searchQuery ? filteredEmails.length : emails.length})
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onRefresh}
-            disabled={isLoading}
-            data-testid="button-refresh"
-          >
-            <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
-          </Button>
-          {currentEmail && (
-            <div 
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground bg-muted/50 px-2 py-1 rounded-full" 
-              data-testid="refresh-countdown-indicator"
-              aria-label={`Auto-refresh in ${countdown} seconds`}
-            >
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </div>
-              <span data-testid="countdown-timer">{countdown}</span>
-            </div>
-          )}
           {emails.length > 0 && (
             <Button
               variant="outline"
@@ -133,6 +120,15 @@ export function InboxList({
               <span className="hidden sm:inline">Clear Inbox</span>
             </Button>
           )}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onRefresh}
+            disabled={isLoading}
+            data-testid="button-refresh"
+          >
+            <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+          </Button>
         </div>
       </div>
 

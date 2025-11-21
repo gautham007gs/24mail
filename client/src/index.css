@@ -261,6 +261,15 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
+
+  /* Smooth timer styling */
+  [data-testid="refresh-countdown-indicator"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-testid="refresh-countdown-indicator"]:hover {
+    background: linear-gradient(to right, var(--primary) / 0.1, var(--primary) / 0.15);
+  }
 }
 
 /**

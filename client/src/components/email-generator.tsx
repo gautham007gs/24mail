@@ -127,8 +127,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
 
         {/* Email Display */}
         <div className="space-y-3">
+          <div className="text-lg font-semibold text-foreground">
+            Broooo here is ur temporary mail... 🔥
+          </div>
           <label className="text-sm font-medium text-foreground">
-            Your Temporary Email
+            Your Email Address
           </label>
           <div className="flex gap-2">
             <div className="flex flex-1 items-center gap-4 rounded-lg border border-border bg-muted/30 px-5 py-4">

@@ -9,14 +9,7 @@ export const funMessages = {
   ],
   
   emptyInbox: [
-    "No mails yet… send yourself one maybe? 😭📭",
-    "Inbox empty like my motivation 💀✨",
-    "Zero emails. Zero stress. Zero problems 😌📭",
-    "No tea spilled yet 👀☕",
-    "Inbox dry… just like your DM's 😭🔥",
     "Nobody emailed you bro 😭💀",
-    "Crickets in here 🦗🦗🦗",
-    "Inbox more empty than my bank account 💸😭",
   ],
   
   loading: [
