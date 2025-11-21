@@ -16,15 +16,26 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-// Performance: Add compression headers and cache control
+// Performance & Security: Add compression headers, cache control, and security headers
 app.use((req, res, next) => {
+  // Security headers
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("X-Frame-Options", "SAMEORIGIN");
+  res.set("X-XSS-Protection", "1; mode=block");
+  res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.set("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+  
   // Set cache headers for blog and static content - SEO friendly
-  if (req.path.startsWith("/blog")) {
+  if (req.path.startsWith("/blog") || req.path === "/" || req.path.startsWith("/success") || req.path.startsWith("/terms") || req.path.startsWith("/privacy") || req.path.startsWith("/browser")) {
     res.set("Cache-Control", "public, max-age=3600, s-maxage=86400");
   }
   // API responses cached briefly for consistency
   else if (req.path.startsWith("/api")) {
     res.set("Cache-Control", "public, max-age=10, s-maxage=10");
+  }
+  // Static assets cached longer
+  else if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2)$/i)) {
+    res.set("Cache-Control", "public, max-age=31536000, immutable");
   }
   next();
 });
