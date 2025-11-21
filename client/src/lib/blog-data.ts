@@ -993,16 +993,16 @@ Developers testing how websites behave on mobile vs desktop:
 When you click TempMail's QR code button:
 
 **Server-side**:
-```
+\`\`\`
 1. Generate unique session identifier
 2. Encode: {email: "xyz123@tempmail.com", session: "abc456"}
 3. Create QR code from encoded data
 4. Generate image
 5. Display on screen
-```
+\`\`\`
 
 **When scanning with phone**:
-```
+\`\`\`
 1. Phone camera reads QR code
 2. Decodes data within microseconds
 3. Extracts email and session ID
@@ -1010,15 +1010,15 @@ When you click TempMail's QR code button:
 5. TempMail establishes WebSocket connection
 6. Phone's TempMail app connects to same email inbox
 7. Both devices synchronized via shared session
-```
+\`\`\`
 
 **Real-time updates**:
-```
+\`\`\`
 1. Email arrives in your inbox
 2. Server broadcasts update to all connected devices via WebSocket
 3. Your phone and desktop update simultaneously
 4. No manual refresh needed
-```
+\`\`\`
 
 ## Why Competitors Haven't Implemented This
 
@@ -1540,26 +1540,26 @@ The timing is strategic:
 
 Traditional web uses HTTP, which works like this:
 
-```
+\`\`\`
 Browser: "Any new emails?"
 Server: "No"
 [Browser waits 5 seconds]
 Browser: "Any new emails?"
 Server: "No"
 [This repeats constantly]
-```
+\`\`\`
 
 This is wasteful. The browser keeps asking; the server keeps saying "no."
 
 TempMail uses WebSocket, which works like this:
 
-```
+\`\`\`
 Browser connects to server (persistent connection)
 Email arrives
 Server: "You have a new email!"
 Browser: Updates instantly
 [No polling, no waiting]
-```
+\`\`\`
 
 The difference: traditional approach = "client keeps asking" vs WebSocket = "server notifies immediately."
 
