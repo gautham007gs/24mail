@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/lib/blog-data";
 import { useState, useMemo } from "react";
+import { Helmet } from "react-helmet";
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,64 +22,54 @@ export default function Blog() {
   }, [searchQuery]);
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
-        <div className="mx-auto max-w-6xl px-4 md:px-6 py-8">
-          <Link href="/">
-            {({ navigate }) => (
-              <button 
-                onClick={navigate}
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4"
-              >
+    <>
+      <Helmet>
+        <title>TempMail Blog - Guides on Temporary Email & Privacy Protection</title>
+        <meta name="description" content="Read expert guides on temporary email addresses, privacy protection, spam prevention, and email security. Learn best practices for online privacy." />
+        <meta name="keywords" content="temporary email blog, disposable email guide, privacy tips, email security, spam prevention" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        {/* Header */}
+        <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
+          <div className="mx-auto max-w-6xl px-4 md:px-6 py-8">
+            <Link href="/">
+              <a className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Home
-              </button>
-            )}
-          </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-            Blog & Guides
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Learn everything about temporary email, privacy protection, and email security
-          </p>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <main className="mx-auto max-w-6xl px-4 md:px-6 py-12">
-        {/* Search Bar */}
-        <div className="mb-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-12"
-              data-testid="input-blog-search"
-            />
+              </a>
+            </Link>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
+              Blog & Guides
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Expert guides on temporary email, privacy protection, and email security best practices
+            </p>
           </div>
         </div>
 
-        {/* Articles Grid */}
-        {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`}>
-                {({ navigate }) => (
-                  <div 
-                    className="group h-full cursor-pointer"
-                    onClick={navigate}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        navigate();
-                      }
-                    }}
-                  >
+        {/* Main Content */}
+        <main className="mx-auto max-w-6xl px-4 md:px-6 py-12">
+          {/* Search Bar */}
+          <div className="mb-8">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search articles by topic, keyword..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 h-12"
+                data-testid="input-blog-search"
+              />
+            </div>
+          </div>
+
+          {/* Articles Grid */}
+          {filteredPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post) => (
+                <Link key={post.id} href={`/blog/${post.slug}`}>
+                  <a className="group h-full no-underline">
                     <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all">
                       {/* Image */}
                       <div className="relative h-48 overflow-hidden bg-muted">
@@ -97,7 +88,7 @@ export default function Blog() {
                           <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
                             {post.category}
                           </span>
-                          <span className="text-xs text-muted-foreground">{post.readTime} min</span>
+                          <span className="text-xs text-muted-foreground">{post.readTime} min read</span>
                         </div>
 
                         {/* Title */}
@@ -117,19 +108,19 @@ export default function Blog() {
                         </div>
                       </div>
                     </Card>
-                  </div>
-                )}
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-lg text-muted-foreground">
-              No articles found matching your search.
-            </p>
-          </div>
-        )}
-      </main>
-    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">
+                No articles found matching your search. Try different keywords.
+              </p>
+            </div>
+          )}
+        </main>
+      </div>
+    </>
   );
 }
