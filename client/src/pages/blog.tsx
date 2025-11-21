@@ -53,7 +53,7 @@ export default function Blog() {
         </div>
 
         {/* Main Content */}
-        <main className="mx-auto max-w-6xl px-4 md:px-6 py-12">
+        <main className="mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
           {/* Search Bar */}
           <div className="mb-8">
             <div className="relative">
@@ -66,6 +66,21 @@ export default function Blog() {
                 className="pl-10 h-12"
                 data-testid="input-blog-search"
               />
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="mb-12 p-6 md:p-8 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 border border-emerald-200/50 dark:border-emerald-800/50 rounded-lg">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex-1">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">Ready to protect your privacy?</h2>
+                <p className="text-sm md:text-base text-muted-foreground">Get your free temporary email address instantly. No signup required.</p>
+              </div>
+              <Link href="/" className="flex-shrink-0">
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-get-email-cta">
+                  Get Free Email
+                </Button>
+              </Link>
             </div>
           </div>
 

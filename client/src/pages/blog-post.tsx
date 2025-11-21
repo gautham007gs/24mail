@@ -83,8 +83,25 @@ export default function BlogPost() {
           </div>
         </div>
 
-        <article className="mx-auto max-w-4xl px-4 md:px-6 py-12">
-          <div className="rounded-lg overflow-hidden mb-8 h-96">
+        {/* CTA Banner */}
+        <div className="border-b border-border/50 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10">
+          <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="text-sm md:text-base font-semibold text-foreground">Try TempMail Now</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Get your free temporary email instantly</p>
+              </div>
+              <Link href="/" className="flex-shrink-0 w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-email-banner-cta">
+                  Generate Email
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <article className="mx-auto max-w-4xl px-4 md:px-6 py-8 md:py-12">
+          <div className="rounded-lg overflow-hidden mb-8 h-64 md:h-96">
             <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
           </div>
 
