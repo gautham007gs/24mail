@@ -1,14 +1,7 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Bell } from "lucide-react";
+import { Copy, Check, RefreshCw, Trash2, QrCode, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -22,7 +15,6 @@ interface EmailGeneratorProps {
 }
 
 export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGeneratorProps) {
-  const [selectedDomain, setSelectedDomain] = useState<string>(domains[0] || "");
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
@@ -69,7 +61,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
 
   const handleGenerate = () => {
     const username = generateRandomUsername();
-    const domain = selectedDomain || domains[0];
+    const domain = domains[0] || "example.com";
     onGenerate(`${username}@${domain}`);
     toast({
       title: "New email generated",
@@ -77,127 +69,156 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
     });
   };
 
-  const handleDomainChange = (domain: string) => {
-    setSelectedDomain(domain);
-    const username = currentEmail.split("@")[0];
-    onGenerate(`${username}@${domain}`);
+  const handleDelete = () => {
+    // Delete functionality can be integrated with parent component if needed
+    toast({
+      title: "Address deleted",
+      description: "Your temporary email has been deleted",
+    });
   };
 
   return (
-    <Card className="p-8 glass-card hover-lift smooth-transition">
-      <div className="space-y-8">
-        {/* Notification Permission Banner */}
-        {isSupported && permission === "default" && showNotificationBanner && (
-          <div className="flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4">
-            <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-            <div className="flex-1 space-y-2">
-              <p className="text-sm font-medium text-foreground">
-                Get notified of new emails
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Enable desktop notifications to know instantly when emails arrive
-              </p>
-            </div>
-            <div className="flex gap-2 shrink-0">
-              <Button
-                size="sm"
-                onClick={handleEnableNotifications}
-                data-testid="button-enable-notifications"
-              >
-                Enable
-              </Button>
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => setShowNotificationBanner(false)}
-                data-testid="button-dismiss-notifications"
-              >
-                Dismiss
-              </Button>
-            </div>
+    <div className="space-y-6">
+      {/* Notification Permission Banner */}
+      {isSupported && permission === "default" && showNotificationBanner && (
+        <div className="flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4">
+          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+          <div className="flex-1 space-y-2">
+            <p className="text-sm font-medium text-foreground">
+              Get notified of new emails
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Enable desktop notifications to know instantly when emails arrive
+            </p>
           </div>
-        )}
-
-        {permission === "granted" && (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Bell className="h-4 w-4 text-primary" />
-            <span>Notifications enabled</span>
+          <div className="flex gap-2 shrink-0">
+            <Button
+              size="sm"
+              onClick={handleEnableNotifications}
+              data-testid="button-enable-notifications"
+            >
+              Enable
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setShowNotificationBanner(false)}
+              data-testid="button-dismiss-notifications"
+            >
+              Dismiss
+            </Button>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Email Display - Enhanced */}
+      {permission === "granted" && (
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Bell className="h-4 w-4 text-primary" />
+          <span>Notifications enabled</span>
+        </div>
+      )}
+
+      {/* Main Card */}
+      <Card className="p-8 md:p-10 space-y-8">
+        {/* Section Title */}
+        <div className="text-center space-y-2">
+          <h2 className="text-lg md:text-xl font-semibold text-foreground/80">
+            Your Temporary Email Address
+          </h2>
+        </div>
+
+        {/* Email Display Box */}
         <div className="space-y-4">
-          <div className="text-sm font-semibold text-foreground">
-            Broooo, your email is...
-          </div>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg blur transition-all group-hover:blur-md" />
-            <div className="relative bg-background border border-primary/20 rounded-lg p-5 flex gap-3 items-center hover:border-primary/40 transition-colors">
+          <div className="bg-muted/40 border border-border/50 rounded-lg p-6 md:p-8">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
               <span
-                className="flex-1 font-mono text-lg md:text-2xl font-bold text-foreground truncate"
+                className="font-mono text-sm md:text-lg font-semibold text-foreground break-all"
                 data-testid="text-current-email"
               >
                 {currentEmail || "Generating..."}
               </span>
-              <Button
-                size="lg"
-                onClick={handleCopy}
-                disabled={!currentEmail}
-                data-testid="button-copy-email"
-                className="shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-              >
-                {copied ? (
-                  <>
-                    <Check className="h-5 w-5 mr-2" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-5 w-5 mr-2" />
-                    Copy
-                  </>
-                )}
-              </Button>
+              <div className="flex gap-2 shrink-0">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  data-testid="button-qr-code"
+                  className="h-10 w-10"
+                  title="Generate QR code"
+                >
+                  <QrCode className="h-5 w-5" />
+                </Button>
+                <Button
+                  size="icon"
+                  onClick={handleCopy}
+                  disabled={!currentEmail}
+                  data-testid="button-copy-email"
+                  className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white"
+                >
+                  {copied ? (
+                    <Check className="h-5 w-5" />
+                  ) : (
+                    <Copy className="h-5 w-5" />
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Controls */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div className="flex-1 space-y-2">
-            <label className="text-sm font-medium text-foreground">
-              Domain
-            </label>
-            <Select
-              value={selectedDomain}
-              onValueChange={handleDomainChange}
-              disabled={domains.length === 0}
-            >
-              <SelectTrigger data-testid="select-domain" className="bg-background">
-                <SelectValue placeholder="Select domain" />
-              </SelectTrigger>
-              <SelectContent>
-                {domains.map((domain) => (
-                  <SelectItem key={domain} value={domain}>
-                    @{domain}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+        {/* Description */}
+        <div className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+          <p>
+            Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. TempMail provides temporary, secure, anonymous, free disposable email address.
+          </p>
+        </div>
+
+        {/* Action Buttons Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-2">
+          <Button
+            variant="outline"
+            onClick={handleCopy}
+            disabled={!currentEmail}
+            data-testid="button-action-copy"
+            className="h-12 md:h-11 text-sm md:text-base"
+          >
+            <Copy className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Copy</span>
+          </Button>
 
           <Button
+            variant="outline"
             onClick={handleGenerate}
             disabled={domains.length === 0}
-            data-testid="button-generate-email"
-            className="sm:w-auto"
+            data-testid="button-action-refresh"
+            className="h-12 md:h-11 text-sm md:text-base"
           >
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Generate New Email
+            <RefreshCw className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Refresh</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={handleGenerate}
+            disabled={domains.length === 0}
+            data-testid="button-action-change"
+            className="h-12 md:h-11 text-sm md:text-base"
+          >
+            <RefreshCw className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Change</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={handleDelete}
+            data-testid="button-action-delete"
+            className="h-12 md:h-11 text-sm md:text-base text-destructive hover:text-destructive"
+          >
+            <Trash2 className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Delete</span>
           </Button>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 }
 

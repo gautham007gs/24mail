@@ -1,36 +1,56 @@
-import { Mail, Lock, Zap, Eye } from "lucide-react";
+import { Mail, Download, Award } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
   return (
-    <header className="border-b border-border/50 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto px-4 py-6 md:px-6">
-        <div className="flex items-center justify-between gap-4 mb-3">
+    <header className="border-b border-border/30 bg-background/80 backdrop-blur-sm">
+      <div className="mx-auto px-4 py-4 md:px-6 md:py-5">
+        <div className="flex items-center justify-between gap-4">
+          {/* Left - App Links */}
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-lg">
-              <Mail className="h-6 w-6 text-primary-foreground" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-xs md:text-sm font-medium gap-2"
+              data-testid="button-app-store"
+            >
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">App Store</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-xs md:text-sm font-medium gap-2"
+              data-testid="button-play-store"
+            >
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">Google Play</span>
+            </Button>
+          </div>
+
+          {/* Center - Logo */}
+          <div className="flex items-center gap-2.5 flex-1 justify-center md:flex-none">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600">
+              <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent" data-testid="text-app-title">TempMail</h1>
-              <p className="text-xs text-muted-foreground" data-testid="text-app-subtitle">Anonymous Email in Seconds</p>
-            </div>
+            <h1 className="text-xl md:text-2xl font-black tracking-tight" data-testid="text-app-title">
+              TEMPMAIL
+            </h1>
           </div>
-          <ThemeToggle />
-        </div>
-        
-        {/* Trust Badges */}
-        <div className="flex flex-wrap gap-3 text-xs">
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <Eye className="h-3.5 w-3.5 text-primary" />
-            <span>No Registration</span>
-          </div>
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <Lock className="h-3.5 w-3.5 text-primary" />
-            <span>HTTPS Encrypted</span>
-          </div>
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <Zap className="h-3.5 w-3.5 text-primary" />
-            <span>Instant Setup</span>
+
+          {/* Right - Premium & Theme */}
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold text-xs md:text-sm"
+              data-testid="button-premium"
+            >
+              Premium
+            </Button>
+            <ThemeToggle />
           </div>
         </div>
       </div>
