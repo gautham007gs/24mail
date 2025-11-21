@@ -4,8 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { type EmailSummary } from "@shared/schema";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 interface InboxListProps {
   emails: EmailSummary[];
@@ -27,6 +37,24 @@ export function InboxList({
   isDeleting,
 }: InboxListProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [countdown, setCountdown] = useState(5);
+  const [showClearDialog, setShowClearDialog] = useState(false);
+
+  // Countdown timer for auto-refresh (5 seconds)
+  useEffect(() => {
+    if (!currentEmail) return;
+    
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          return 5; // Reset to 5 seconds
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentEmail, emails]); // Reset countdown when emails change
 
   // Filter emails based on search query
   const filteredEmails = useMemo(() => {
@@ -58,11 +86,20 @@ export function InboxList({
     <div className="mt-8 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
             ({searchQuery ? filteredEmails.length : emails.length})
           </span>
+          {currentEmail && (
+            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-full" data-testid="refresh-countdown-indicator">
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </div>
+              <span data-testid="countdown-timer">Refreshing in {countdown}s</span>
+            </div>
+          )}
         </div>
         <div className="flex gap-2">
           <Button
@@ -78,12 +115,13 @@ export function InboxList({
             <Button
               variant="outline"
               size="sm"
-              onClick={onDeleteAll}
+              onClick={() => setShowClearDialog(true)}
               disabled={isDeleting}
               data-testid="button-delete-all"
               className="text-destructive border-destructive/30 hover:bg-destructive/10"
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-4 w-4 mr-1.5" />
+              <span className="hidden sm:inline">Clear Inbox</span>
             </Button>
           )}
         </div>
@@ -133,6 +171,32 @@ export function InboxList({
           ))
         )}
       </div>
+
+      {/* Clear Inbox Confirmation Dialog */}
+      <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
+        <AlertDialogContent data-testid="dialog-clear-inbox">
+          <AlertDialogHeader>
+            <AlertDialogTitle data-testid="dialog-clear-inbox-title">Clear entire inbox?</AlertDialogTitle>
+            <AlertDialogDescription data-testid="dialog-clear-inbox-description">
+              This will permanently delete all {emails.length} email{emails.length !== 1 ? 's' : ''} from your inbox. 
+              This action cannot be undone. Use this to remove sensitive emails and attachments.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel data-testid="button-cancel-clear-inbox">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                onDeleteAll();
+                setShowClearDialog(false);
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              data-testid="button-confirm-clear-inbox"
+            >
+              Clear Inbox
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
@@ -140,7 +204,7 @@ export function InboxList({
 function EmailCard({ email, onClick }: { email: EmailSummary; onClick: () => void }) {
   return (
     <Card
-      className="p-4 hover-elevate active-elevate-2 cursor-pointer transition-all"
+      className="p-4 hover-elevate active-elevate-2 cursor-pointer hover-lift smooth-transition"
       onClick={onClick}
       data-testid={`card-email-${email.id}`}
     >

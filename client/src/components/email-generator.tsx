@@ -80,7 +80,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
   };
 
   return (
-    <Card className="p-8">
+    <Card className="p-8 glass-card hover-lift smooth-transition">
       <div className="space-y-8">
         {/* Notification Permission Banner */}
         {isSupported && permission === "default" && showNotificationBanner && (
