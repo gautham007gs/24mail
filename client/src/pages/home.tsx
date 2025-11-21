@@ -13,8 +13,20 @@ import { useNotifications } from "@/contexts/notification-context";
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
-    // Load email from localStorage on initial mount
     if (typeof window !== "undefined") {
+      // Check for email in URL query params first (from QR code share)
+      const params = new URLSearchParams(window.location.search);
+      const emailFromUrl = params.get("email");
+      
+      if (emailFromUrl) {
+        // Save to localStorage and update URL
+        localStorage.setItem("tempmail_current_email", emailFromUrl);
+        // Clean up URL by removing query params
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return emailFromUrl;
+      }
+      
+      // Otherwise load from localStorage
       return localStorage.getItem("tempmail_current_email") || "";
     }
     return "";

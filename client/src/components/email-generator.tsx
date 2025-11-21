@@ -125,6 +125,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
     }
   };
 
+  // Generate shareable URL with email parameter
+  const shareUrl = typeof window !== "undefined" 
+    ? `${window.location.origin}?email=${encodeURIComponent(currentEmail)}`
+    : currentEmail;
+
   return (
     <div className="space-y-6">
       {/* Notification Permission Banner - Only show if not granted */}
@@ -264,26 +269,41 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Email QR Code</DialogTitle>
+            <DialogTitle>Share Your Email</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center gap-4 py-4 bg-white p-4 rounded-lg">
             <QRCode
-              value={currentEmail}
+              value={shareUrl}
               size={256}
               level="H"
               includeMargin={true}
               data-testid="qr-code-svg"
             />
             <p className="text-sm text-muted-foreground text-center">
-              Scan this QR code to share your email address
+              Scan this QR code to share your email. Anyone scanning will get your email on their device.
             </p>
-            <Button
-              onClick={handleDownloadQR}
-              className="w-full"
-              data-testid="button-download-qr"
-            >
-              Download QR Code
-            </Button>
+            <div className="w-full space-y-2">
+              <Button
+                onClick={handleDownloadQR}
+                className="w-full"
+                data-testid="button-download-qr"
+              >
+                Download QR Code
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  navigator.clipboard.writeText(shareUrl);
+                  toast({
+                    title: "Link copied",
+                    description: "Share link copied to clipboard",
+                  });
+                }}
+                className="w-full"
+              >
+                Copy Link
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
