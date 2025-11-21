@@ -125,6 +125,7 @@ export function InboxList({
             onClick={onRefresh}
             disabled={isLoading}
             data-testid="button-refresh"
+            aria-label="Refresh inbox manually"
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
           </Button>
@@ -150,6 +151,7 @@ export function InboxList({
               onClick={() => setSearchQuery("")}
               className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
               data-testid="button-clear-search"
+              aria-label="Clear search query"
             >
               <X className="h-4 w-4" />
             </Button>

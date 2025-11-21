@@ -190,7 +190,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
                   onClick={() => setShowQRCode(true)}
                   data-testid="button-qr-code"
                   className="h-10 w-10"
-                  title="Generate QR code"
+                  aria-label="Generate QR code to share email"
                 >
                   <QrCode className="h-5 w-5" />
                 </Button>
@@ -200,6 +200,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
                   disabled={!currentEmail}
                   data-testid="button-copy-email"
                   className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white shrink-0"
+                  aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                 >
                   {copied ? (
                     <Check className="h-5 w-5" />
@@ -227,6 +228,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             disabled={!currentEmail}
             data-testid="button-action-copy"
             className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            aria-label="Copy email address to clipboard"
           >
             <Copy className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Copy</span>
@@ -237,6 +239,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             onClick={handleRefresh}
             data-testid="button-action-refresh"
             className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Refresh</span>
@@ -248,6 +251,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             disabled={domains.length === 0}
             data-testid="button-action-change"
             className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            aria-label="Change email domain"
           >
             <RotateCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Change</span>
@@ -258,6 +262,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             onClick={handleDelete}
             data-testid="button-action-delete"
             className="h-10 md:h-11 text-xs md:text-sm lg:text-base text-destructive hover:text-destructive"
+            aria-label="Delete current email address"
           >
             <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Delete</span>

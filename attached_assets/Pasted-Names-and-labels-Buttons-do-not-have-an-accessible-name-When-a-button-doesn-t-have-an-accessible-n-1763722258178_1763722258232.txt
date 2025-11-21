@@ -1,0 +1,31 @@
+Names and labels
+Buttons do not have an accessible name
+When a button doesn't have an accessible name, screen readers announce it as "button", making it unusable for users who rely on screen readers. Learn how to make buttons more accessible.
+Failing Elements
+div > ol.fixed > li.group > button.absolute
+<button type="button" data-replit-metadata="client/src/components/ui/toaster.tsx:26:12" data-component-name="ToastClose" class="absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transit…" toast-close="" data-radix-toast-announce-exclude="">
+div.bg-muted/40 > div.flex > div.flex > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:197:16" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md…" data-testid="button-copy-email">
+div.space-y-6 > div.shadcn-card > div.grid > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:224:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md…" data-testid="button-action-copy">
+div.space-y-6 > div.shadcn-card > div.grid > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:235:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md…" data-testid="button-action-refresh">
+div.space-y-6 > div.shadcn-card > div.grid > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:245:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md…" data-testid="button-action-change">
+div.space-y-6 > div.shadcn-card > div.grid > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:256:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md…" data-testid="button-action-delete">
+div.mt-12 > div.flex > div.flex > button.inline-flex
+<button data-replit-metadata="client/src/components/inbox-list.tsx:122:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-mediu…" data-testid="button-refresh">
+These are opportunities to improve the semantics of the controls in your application. This may enhance the experience for users of assistive technology, like a screen reader.
+Best practices
+[user-scalable="no"] is used in the <meta name="viewport"> element or the [maximum-scale] attribute is less than 5.
+Disabling zooming is problematic for users with low vision who rely on screen magnification to properly see the contents of a web page. Learn more about the viewport meta tag.
+Failing Elements
+head > meta
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+Uses ARIA roles only on compatible elements
+Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. Learn more about ARIA roles.Unscored
+Failing Elements
+Broooo your temp mail is ready Share this email and start receiving!
+<li role="status" aria-live="off" aria-atomic="true" tabindex="0" data-state="open" data-swipe-direction="right" data-replit-metadata="client/src/components/ui/toaster.tsx:18:10" data-component-name="Toast" class="group pointer-events-auto relative flex w-full items-center justify-betwee…" data-radix-collection-item="" style="user-select: none; touch-action: none;">
+These items highlight common accessibility best practices.
