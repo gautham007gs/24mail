@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Trash2, Bell } from "lucide-react";
+import { Copy, Check, RefreshCw, Trash2, QrCode, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import QRCode from "react-qr-code";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -17,6 +19,7 @@ interface EmailGeneratorProps {
 
 export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
   const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
@@ -96,6 +99,32 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
     }
   };
 
+  const handleDownloadQR = () => {
+    const svg = document.querySelector('[data-testid="qr-code-svg"]') as SVGElement;
+    if (svg) {
+      const svgData = new XMLSerializer().serializeToString(svg);
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx?.drawImage(img, 0, 0);
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = `tempmail-qr-${currentEmail.split('@')[0]}.png`;
+        link.click();
+        toast({
+          title: "QR Code downloaded",
+          description: "Check your downloads folder",
+        });
+      };
+      
+      img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Notification Permission Banner - Only show if not granted */}
@@ -149,19 +178,31 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
               >
                 {currentEmail || "Generating..."}
               </span>
-              <Button
-                size="icon"
-                onClick={handleCopy}
-                disabled={!currentEmail}
-                data-testid="button-copy-email"
-                className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white shrink-0"
-              >
-                {copied ? (
-                  <Check className="h-5 w-5" />
-                ) : (
-                  <Copy className="h-5 w-5" />
-                )}
-              </Button>
+              <div className="flex gap-2 shrink-0">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setShowQRCode(true)}
+                  data-testid="button-qr-code"
+                  className="h-10 w-10"
+                  title="Generate QR code"
+                >
+                  <QrCode className="h-5 w-5" />
+                </Button>
+                <Button
+                  size="icon"
+                  onClick={handleCopy}
+                  disabled={!currentEmail}
+                  data-testid="button-copy-email"
+                  className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white shrink-0"
+                >
+                  {copied ? (
+                    <Check className="h-5 w-5" />
+                  ) : (
+                    <Copy className="h-5 w-5" />
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -218,6 +259,34 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
           </Button>
         </div>
       </Card>
+
+      {/* QR Code Modal */}
+      <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Email QR Code</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center justify-center gap-4 py-4 bg-white p-4 rounded-lg">
+            <QRCode
+              value={currentEmail}
+              size={256}
+              level="H"
+              includeMargin={true}
+              data-testid="qr-code-svg"
+            />
+            <p className="text-sm text-muted-foreground text-center">
+              Scan this QR code to share your email address
+            </p>
+            <Button
+              onClick={handleDownloadQR}
+              className="w-full"
+              data-testid="button-download-qr"
+            >
+              Download QR Code
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
