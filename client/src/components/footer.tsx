@@ -26,24 +26,18 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Product</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Temporary Email
-                  </a>
+                <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Temporary Email
                 </Link>
               </li>
               <li>
-                <Link href="/browser-extension">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Browser Extension
-                  </a>
+                <Link href="/browser-extension" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Browser Extension
                 </Link>
               </li>
               <li>
-                <Link href="/blog">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Blog & Guides
-                  </a>
+                <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Blog & Guides
                 </Link>
               </li>
             </ul>
@@ -54,24 +48,18 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/success-stories">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Success Stories
-                  </a>
+                <Link href="/success-stories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/terms">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Terms & Conditions
-                  </a>
+                <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy">
-                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Privacy Policy
-                  </a>
+                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
                 </Link>
               </li>
             </ul>

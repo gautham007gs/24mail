@@ -281,7 +281,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
               value={shareUrl}
               size={256}
               level="H"
-              includeMargin={true}
               data-testid="qr-code-svg"
             />
             <p className="text-sm text-muted-foreground text-center">
