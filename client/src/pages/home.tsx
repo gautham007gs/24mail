@@ -8,7 +8,6 @@ import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
-import { PopularArticles } from "@/components/popular-articles";
 import { Footer } from "@/components/footer";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
@@ -262,9 +261,6 @@ export default function Home() {
         onDelete={handleDeleteEmail}
         isDeleting={deleteEmailMutation.isPending}
       />
-
-      {/* Popular Articles Section */}
-      <PopularArticles />
 
       {/* Footer */}
       <Footer />
