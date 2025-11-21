@@ -12,24 +12,18 @@ import { PopularArticles } from "@/components/popular-articles";
 import { Footer } from "@/components/footer";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
-import { checkAndApplyReferral, getReferralData } from "@/lib/referral-tracking";
 import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
     if (typeof window !== "undefined") {
-      // Check for email in URL query params first (from QR code share or referral)
+      // Check for email in URL query params first (from QR code share)
       const params = new URLSearchParams(window.location.search);
       const emailFromUrl = params.get("email");
       
       if (emailFromUrl) {
         // Save to localStorage and update URL
         localStorage.setItem("tempmail_current_email", emailFromUrl);
-        // Check for referral code and apply bonus
-        const referralCode = params.get("ref");
-        if (referralCode) {
-          checkAndApplyReferral(referralCode, emailFromUrl);
-        }
         // Clean up URL by removing query params
         window.history.replaceState({}, document.title, window.location.pathname);
         return emailFromUrl;

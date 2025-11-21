@@ -17,7 +17,6 @@ const TermsConditions = lazy(() => import("@/pages/terms-conditions"));
 const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const SuccessStories = lazy(() => import("@/pages/success-stories"));
 const BrowserExtension = lazy(() => import("@/pages/browser-extension"));
-const ReferralDashboard = lazy(() => import("@/pages/referral-dashboard"));
 
 // Fallback component for lazy-loaded pages
 function PageLoader() {
@@ -71,13 +70,6 @@ function Router() {
         {() => (
           <Suspense fallback={<PageLoader />}>
             <BrowserExtension />
-          </Suspense>
-        )}
-      </Route>
-      <Route path="/referral">
-        {() => (
-          <Suspense fallback={<PageLoader />}>
-            <ReferralDashboard />
           </Suspense>
         )}
       </Route>
