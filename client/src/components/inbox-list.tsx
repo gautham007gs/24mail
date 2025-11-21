@@ -1,7 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import {
@@ -51,15 +50,15 @@ export function InboxList({
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
-          audioEffects.playWhip(); // Play whip sound on refresh
-          return 5; // Reset to 5 seconds
+          audioEffects.playWhip();
+          return 5;
         }
         return prev - 1;
       });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [currentEmail, emails]); // Reset countdown when emails change
+  }, [currentEmail, emails]);
 
   // Filter emails based on search query
   const filteredEmails = useMemo(() => {
@@ -88,8 +87,8 @@ export function InboxList({
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
 
   return (
-    <div className="mt-8 space-y-4">
-      {/* Header */}
+    <div className="mt-12 space-y-4">
+      {/* Controls */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
@@ -158,33 +157,45 @@ export function InboxList({
         </div>
       )}
 
-      {/* Email List */}
-      <div className="space-y-2">
-        {isLoading ? (
-          <LoadingState />
-        ) : hasSearchResults ? (
-          <NoSearchResults query={searchQuery} />
-        ) : filteredEmails.length === 0 ? (
-          <EmptyState />
-        ) : (
-          filteredEmails.map((email) => (
-            <EmailCard
-              key={email.id}
-              email={email}
-              onClick={() => onEmailClick(email.id)}
-            />
-          ))
+      {/* Table Layout */}
+      <div className="border border-border/50 rounded-lg overflow-hidden bg-background">
+        {/* Table Header */}
+        {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
+          <div className="bg-foreground/10 grid grid-cols-12 gap-4 px-6 py-3 border-b border-border/50">
+            <div className="col-span-4 text-sm font-semibold text-foreground">SENDER</div>
+            <div className="col-span-6 text-sm font-semibold text-foreground">SUBJECT</div>
+            <div className="col-span-2 text-sm font-semibold text-foreground text-right">VIEW</div>
+          </div>
         )}
+
+        {/* Table Body */}
+        <div className="divide-y divide-border/50">
+          {isLoading ? (
+            <LoadingState />
+          ) : hasSearchResults ? (
+            <NoSearchResults query={searchQuery} />
+          ) : filteredEmails.length === 0 ? (
+            <EmptyState emptyMessage={emptyMessage} />
+          ) : (
+            filteredEmails.map((email) => (
+              <EmailTableRow
+                key={email.id}
+                email={email}
+                onClick={() => onEmailClick(email.id)}
+              />
+            ))
+          )}
+        </div>
       </div>
 
-      {/* Clear Inbox Confirmation Dialog */}
+      {/* Clear Inbox Dialog */}
       <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
         <AlertDialogContent data-testid="dialog-clear-inbox">
           <AlertDialogHeader>
             <AlertDialogTitle data-testid="dialog-clear-inbox-title">Clear entire inbox?</AlertDialogTitle>
             <AlertDialogDescription data-testid="dialog-clear-inbox-description">
               This will permanently delete all {emails.length} email{emails.length !== 1 ? 's' : ''} from your inbox. 
-              This action cannot be undone. Use this to remove sensitive emails and attachments.
+              This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -206,60 +217,52 @@ export function InboxList({
   );
 }
 
-function EmailCard({ email, onClick }: { email: EmailSummary; onClick: () => void }) {
+function EmailTableRow({ email, onClick }: { email: EmailSummary; onClick: () => void }) {
   return (
-    <Card
-      className="email-preview-card p-4 hover-elevate active-elevate-2 cursor-pointer hover-lift smooth-transition relative group overflow-hidden"
+    <div
+      className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/30 cursor-pointer transition-colors items-center"
       onClick={onClick}
-      data-testid={`card-email-${email.id}`}
+      data-testid={`row-email-${email.id}`}
     >
-      {/* Animated background on hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
-      <div className="flex gap-3 relative z-10">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/10">
-          <Mail className="h-5 w-5 text-primary" />
-        </div>
-        <div className="min-w-0 flex-1 space-y-1">
-          <div className="flex items-start justify-between gap-2">
-            <p className="font-semibold text-foreground truncate" data-testid={`text-from-${email.id}`}>
-              {email.from_address}
-            </p>
-            <span className="shrink-0 text-xs text-muted-foreground font-medium" data-testid={`text-time-${email.id}`}>
-              {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
-            </span>
-          </div>
-          <p className="text-sm text-foreground/80 truncate line-clamp-2" data-testid={`text-subject-${email.id}`}>
-            {email.subject || "(No subject)"}
-          </p>
-          <div className="flex items-center justify-between gap-2 pt-1">
-            {email.has_attachments && (
-              <div className="flex items-center gap-1 text-xs text-primary font-medium">
-                <Paperclip className="h-3 w-3" />
-                <span>{email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}</span>
-              </div>
-            )}
-            <span className="text-xs text-primary/70 font-medium group-hover:text-primary transition-colors">
-              Click to view →
-            </span>
-          </div>
-        </div>
+      {/* Sender */}
+      <div className="col-span-4 text-sm truncate" data-testid={`text-from-${email.id}`}>
+        {email.from_address}
       </div>
-    </Card>
+
+      {/* Subject */}
+      <div className="col-span-6 text-sm truncate text-foreground/80" data-testid={`text-subject-${email.id}`}>
+        {email.subject || "(No subject)"}
+      </div>
+
+      {/* View Button */}
+      <div className="col-span-2 flex justify-end">
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+          }}
+          data-testid={`button-view-email-${email.id}`}
+        >
+          View
+        </Button>
+      </div>
+    </div>
   );
 }
 
-function EmptyState() {
-  const emptyMessage = getRandomMessage("emptyInbox");
-  
+function EmptyState({ emptyMessage }: { emptyMessage: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50 hover-lift">
+    <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50">
         <Inbox className="h-8 w-8 text-muted-foreground" />
       </div>
-      <h3 className="mt-4 text-lg font-medium text-foreground text-xl" data-testid="text-empty-title">{emptyMessage}</h3>
-      <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-empty-message">
-        Go ahead, give this email to someone. They won't even know it's temporary
+      <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-empty-title">
+        {emptyMessage}
+      </h3>
+      <p className="mt-2 text-sm text-muted-foreground" data-testid="text-empty-message">
+        Waiting for incoming emails
       </p>
     </div>
   );
@@ -285,28 +288,12 @@ function LoadingState() {
   const loadingMessage = getRandomMessage("loading");
   
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col items-center justify-center py-8 text-center">
+    <div className="space-y-0">
+      <div className="flex flex-col items-center justify-center py-12 text-center">
         <div className="relative">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
         <p className="mt-4 text-sm text-muted-foreground font-medium">{loadingMessage}</p>
-      </div>
-      <div className="space-y-2">
-        {[1, 2, 3].map((i) => (
-          <Card key={i} className="p-4">
-            <div className="flex gap-3">
-              <Skeleton className="h-10 w-10 rounded-lg" />
-              <div className="flex-1 space-y-2">
-                <div className="flex items-start justify-between gap-2">
-                  <Skeleton className="h-5 w-48" />
-                  <Skeleton className="h-4 w-16" />
-                </div>
-                <Skeleton className="h-4 w-full" />
-              </div>
-            </div>
-          </Card>
-        ))}
       </div>
     </div>
   );
