@@ -11,6 +11,8 @@ import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import TermsConditions from "@/pages/terms-conditions";
 import PrivacyPolicy from "@/pages/privacy-policy";
+import SuccessStories from "@/pages/success-stories";
+import BrowserExtension from "@/pages/browser-extension";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +23,8 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/terms" component={TermsConditions} />
       <Route path="/privacy" component={PrivacyPolicy} />
+      <Route path="/success-stories" component={SuccessStories} />
+      <Route path="/browser-extension" component={BrowserExtension} />
       <Route component={NotFound} />
     </Switch>
   );

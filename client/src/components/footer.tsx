@@ -33,16 +33,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/browser-extension">
+                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    Browser Extension
+                  </a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/blog">
                   <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Blog & Guides
                   </a>
                 </Link>
-              </li>
-              <li>
-                <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Features
-                </a>
               </li>
             </ul>
           </div>
@@ -51,6 +53,13 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Legal</h4>
             <ul className="space-y-2">
+              <li>
+                <Link href="/success-stories">
+                  <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    Success Stories
+                  </a>
+                </Link>
+              </li>
               <li>
                 <Link href="/terms">
                   <a className="text-sm text-muted-foreground hover:text-foreground transition-colors">
