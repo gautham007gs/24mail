@@ -30,6 +30,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Optimize build for better performance with esbuild (default)
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separate large libraries into chunks for better caching
+          lucide: ["lucide-react"],
+          radix: ["@radix-ui/react-dialog", "@radix-ui/react-tabs"],
+        },
+      },
+    },
   },
   server: {
     fs: {

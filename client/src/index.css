@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font optimization: Use system fonts as fallback immediately */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);

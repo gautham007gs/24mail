@@ -74,8 +74,8 @@ function DesktopArticleCard({ post }: { post: BlogPost }) {
           className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
           role="article"
         >
-          {/* Image */}
-          <div className="relative h-40 overflow-hidden bg-muted">
+          {/* Image - Fixed aspect ratio to prevent layout shift */}
+          <div className="relative aspect-video overflow-hidden bg-muted">
             <img
               src={post.image}
               alt={post.title}
@@ -83,7 +83,8 @@ function DesktopArticleCard({ post }: { post: BlogPost }) {
               loading="lazy"
               decoding="async"
               width="300"
-              height="160"
+              height="169"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           </div>
 
@@ -131,8 +132,8 @@ function MobileArticleCard({ post }: { post: BlogPost }) {
           className="overflow-hidden hover-elevate active-elevate-2 transition-all p-3 flex gap-3"
           role="article"
         >
-          {/* Image Thumbnail */}
-          <div className="relative w-24 h-20 flex-shrink-0 rounded overflow-hidden bg-muted">
+          {/* Image Thumbnail - Fixed dimensions to prevent layout shift */}
+          <div className="relative w-24 h-20 flex-shrink-0 rounded overflow-hidden bg-muted flex-shrink-0">
             <img
               src={post.image}
               alt=""
@@ -141,6 +142,7 @@ function MobileArticleCard({ post }: { post: BlogPost }) {
               decoding="async"
               width="96"
               height="80"
+              sizes="96px"
             />
           </div>
 

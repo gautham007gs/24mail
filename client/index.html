@@ -6,9 +6,15 @@
     <title>TempMail - Simple Temporary Email Service</title>
     <meta name="description" content="Generate temporary email addresses instantly. Receive emails without registration. Simple, fast, and private temporary email service for everyone." />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Font optimization: preconnect and DNS prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <!-- Load fonts with swap to prevent FOUT/FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Prefetch critical resources -->
+    <link rel="prefetch" href="/src/pages/home.tsx" as="fetch" crossorigin>
   </head>
   <body>
     <div id="root"></div>
