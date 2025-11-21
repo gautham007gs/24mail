@@ -125,32 +125,40 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
           </div>
         )}
 
-        {/* Email Display */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-foreground">
+        {/* Email Display - Enhanced */}
+        <div className="space-y-4">
+          <div className="text-sm font-semibold text-foreground">
             Broooo, your email is...
-          </label>
-          <div className="flex gap-2 items-center">
-            <span
-              className="flex-1 font-mono text-base md:text-lg font-medium text-foreground truncate"
-              data-testid="text-current-email"
-            >
-              {currentEmail || "Generating..."}
-            </span>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={handleCopy}
-              disabled={!currentEmail}
-              data-testid="button-copy-email"
-              className="shrink-0"
-            >
-              {copied ? (
-                <Check className="h-5 w-5 text-primary" />
-              ) : (
-                <Copy className="h-5 w-5" />
-              )}
-            </Button>
+          </div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg blur transition-all group-hover:blur-md" />
+            <div className="relative bg-background border border-primary/20 rounded-lg p-5 flex gap-3 items-center hover:border-primary/40 transition-colors">
+              <span
+                className="flex-1 font-mono text-lg md:text-2xl font-bold text-foreground truncate"
+                data-testid="text-current-email"
+              >
+                {currentEmail || "Generating..."}
+              </span>
+              <Button
+                size="lg"
+                onClick={handleCopy}
+                disabled={!currentEmail}
+                data-testid="button-copy-email"
+                className="shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              >
+                {copied ? (
+                  <>
+                    <Check className="h-5 w-5 mr-2" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-5 w-5 mr-2" />
+                    Copy
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
 

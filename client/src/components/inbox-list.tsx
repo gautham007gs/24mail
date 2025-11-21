@@ -209,32 +209,40 @@ export function InboxList({
 function EmailCard({ email, onClick }: { email: EmailSummary; onClick: () => void }) {
   return (
     <Card
-      className="p-4 hover-elevate active-elevate-2 cursor-pointer hover-lift smooth-transition"
+      className="email-preview-card p-4 hover-elevate active-elevate-2 cursor-pointer hover-lift smooth-transition relative group overflow-hidden"
       onClick={onClick}
       data-testid={`card-email-${email.id}`}
     >
-      <div className="flex gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+      {/* Animated background on hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      <div className="flex gap-3 relative z-10">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/10">
           <Mail className="h-5 w-5 text-primary" />
         </div>
         <div className="min-w-0 flex-1 space-y-1">
           <div className="flex items-start justify-between gap-2">
-            <p className="font-medium text-foreground truncate" data-testid={`text-from-${email.id}`}>
+            <p className="font-semibold text-foreground truncate" data-testid={`text-from-${email.id}`}>
               {email.from_address}
             </p>
-            <span className="shrink-0 text-xs text-muted-foreground" data-testid={`text-time-${email.id}`}>
+            <span className="shrink-0 text-xs text-muted-foreground font-medium" data-testid={`text-time-${email.id}`}>
               {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
             </span>
           </div>
-          <p className="text-sm font-medium text-foreground/90 truncate" data-testid={`text-subject-${email.id}`}>
+          <p className="text-sm text-foreground/80 truncate line-clamp-2" data-testid={`text-subject-${email.id}`}>
             {email.subject || "(No subject)"}
           </p>
-          {email.has_attachments && (
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Paperclip className="h-3 w-3" />
-              <span>{email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}</span>
-            </div>
-          )}
+          <div className="flex items-center justify-between gap-2 pt-1">
+            {email.has_attachments && (
+              <div className="flex items-center gap-1 text-xs text-primary font-medium">
+                <Paperclip className="h-3 w-3" />
+                <span>{email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}</span>
+              </div>
+            )}
+            <span className="text-xs text-primary/70 font-medium group-hover:text-primary transition-colors">
+              Click to view →
+            </span>
+          </div>
         </div>
       </div>
     </Card>
