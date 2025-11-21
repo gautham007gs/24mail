@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Trash2, QrCode, Bell } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -249,7 +249,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             data-testid="button-action-change"
             className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
           >
-            <RefreshCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+            <RotateCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Change</span>
           </Button>
 
