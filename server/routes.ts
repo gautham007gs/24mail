@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import axios, { AxiosError } from "axios";
 import { emailSummarySchema, emailSchema, domainSchema, referralStatsSchema } from "@shared/schema";
-import { storage } from "@shared/storage.ts";
+import { storage } from "./storage";
 import { z } from "zod";
 
 const TEMP_MAIL_API = "https://api.barid.site";
@@ -12,6 +12,25 @@ const emailParamSchema = z.string().email();
 const emailIdParamSchema = z.string().min(1);
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Rate limiting middleware for API calls
+  const apiLimits = new Map<string, { count: number; resetTime: number }>();
+  app.use("/api/", (req, res, next) => {
+    const ip = req.ip || "unknown";
+    const now = Date.now();
+    const limit = apiLimits.get(ip) || { count: 0, resetTime: now + 60000 };
+    
+    if (now > limit.resetTime) {
+      apiLimits.set(ip, { count: 1, resetTime: now + 60000 });
+      next();
+    } else if (limit.count < 100) {
+      limit.count++;
+      apiLimits.set(ip, limit);
+      next();
+    } else {
+      res.status(429).json({ error: "Too many requests. Please try again later." });
+    }
+  });
+
   // Get available domains
   app.get("/api/domains", async (req, res) => {
     try {

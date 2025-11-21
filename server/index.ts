@@ -18,15 +18,20 @@ app.use(express.urlencoded({ extended: false }));
 
 // Performance & Security: Add compression headers, cache control, and security headers
 app.use((req, res, next) => {
-  // Security headers
+  // Strict Security Headers
   res.set("X-Content-Type-Options", "nosniff");
   res.set("X-Frame-Options", "SAMEORIGIN");
   res.set("X-XSS-Protection", "1; mode=block");
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.set("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+  res.set("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
+  res.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com");
+  
+  // Prevent MIME sniffing
+  res.set("X-Content-Type-Options", "nosniff");
   
   // Set cache headers for blog and static content - SEO friendly
-  if (req.path.startsWith("/blog") || req.path === "/" || req.path.startsWith("/success") || req.path.startsWith("/terms") || req.path.startsWith("/privacy") || req.path.startsWith("/browser")) {
+  if (req.path.startsWith("/blog") || req.path === "/" || req.path.startsWith("/success") || req.path.startsWith("/terms") || req.path.startsWith("/privacy") || req.path.startsWith("/browser") || req.path.startsWith("/referral")) {
     res.set("Cache-Control", "public, max-age=3600, s-maxage=86400");
   }
   // API responses cached briefly for consistency
@@ -34,7 +39,7 @@ app.use((req, res, next) => {
     res.set("Cache-Control", "public, max-age=10, s-maxage=10");
   }
   // Static assets cached longer
-  else if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2)$/i)) {
+  else if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|json)$/i)) {
     res.set("Cache-Control", "public, max-age=31536000, immutable");
   }
   next();
