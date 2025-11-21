@@ -265,6 +265,9 @@ export default function Home() {
 
       {/* Popular Articles Section */}
       <PopularArticles />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
 
@@ -125,6 +126,8 @@ export default function TermsConditions() {
             </section>
           </div>
         </article>
+
+        <Footer />
       </div>
     </>
   );

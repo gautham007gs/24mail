@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/lib/blog-data";
+import { Footer } from "@/components/footer";
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
@@ -124,6 +125,8 @@ export default function Blog() {
             </div>
           )}
         </main>
+
+        <Footer />
       </div>
     </>
   );

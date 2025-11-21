@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
 
@@ -196,6 +197,8 @@ export default function PrivacyPolicy() {
             </section>
           </div>
         </article>
+
+        <Footer />
       </div>
     </>
   );

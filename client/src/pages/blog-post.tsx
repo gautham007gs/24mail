@@ -2,6 +2,7 @@ import { useRoute, Link } from "wouter";
 import { ArrowLeft, Calendar, Clock, User, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Footer } from "@/components/footer";
 import { getPostBySlug, getRelatedPosts, faqItems } from "@/lib/blog-data";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
@@ -181,6 +182,8 @@ export default function BlogPost() {
             </div>
           )}
         </article>
+
+        <Footer />
       </div>
     </>
   );
