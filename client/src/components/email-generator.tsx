@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Trash2, QrCode, Bell, X } from "lucide-react";
+import { Copy, Check, RefreshCw, Trash2, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { QRCode } from "qrcode.react";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -19,7 +17,6 @@ interface EmailGeneratorProps {
 
 export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
-  const [showQRCode, setShowQRCode] = useState(false);
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
   const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
@@ -152,31 +149,19 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
               >
                 {currentEmail || "Generating..."}
               </span>
-              <div className="flex gap-2 shrink-0">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setShowQRCode(true)}
-                  data-testid="button-qr-code"
-                  className="h-10 w-10"
-                  title="Generate QR code"
-                >
-                  <QrCode className="h-5 w-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  onClick={handleCopy}
-                  disabled={!currentEmail}
-                  data-testid="button-copy-email"
-                  className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white"
-                >
-                  {copied ? (
-                    <Check className="h-5 w-5" />
-                  ) : (
-                    <Copy className="h-5 w-5" />
-                  )}
-                </Button>
-              </div>
+              <Button
+                size="icon"
+                onClick={handleCopy}
+                disabled={!currentEmail}
+                data-testid="button-copy-email"
+                className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white shrink-0"
+              >
+                {copied ? (
+                  <Check className="h-5 w-5" />
+                ) : (
+                  <Copy className="h-5 w-5" />
+                )}
+              </Button>
             </div>
           </div>
         </div>
@@ -233,44 +218,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
           </Button>
         </div>
       </Card>
-
-      {/* QR Code Modal */}
-      <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle>Email QR Code</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center justify-center gap-4 py-4">
-            <div className="p-4 bg-white rounded-lg">
-              <QRCode
-                value={currentEmail}
-                size={256}
-                level="H"
-                includeMargin={true}
-                data-testid="qrcode-generated"
-              />
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              Scan this QR code to share your email address
-            </p>
-            <Button
-              onClick={() => {
-                const canvas = document.querySelector('canvas');
-                if (canvas) {
-                  const link = document.createElement('a');
-                  link.href = canvas.toDataURL('image/png');
-                  link.download = `tempmail-${currentEmail.split('@')[0]}.png`;
-                  link.click();
-                }
-              }}
-              className="w-full"
-              data-testid="button-download-qr"
-            >
-              Download QR Code
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
