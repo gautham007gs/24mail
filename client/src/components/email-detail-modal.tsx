@@ -1,11 +1,12 @@
 import { formatDistanceToNow } from "date-fns";
-import { X, Trash2, Paperclip } from "lucide-react";
+import { X, Trash2, Paperclip, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 import { type Email } from "@shared/schema";
 
 interface EmailDetailModalProps {
@@ -25,6 +26,44 @@ export function EmailDetailModal({
   onDelete,
   isDeleting,
 }: EmailDetailModalProps) {
+  const { toast } = useToast();
+
+  const handleDownloadAttachment = async (attachmentId: string, filename: string) => {
+    try {
+      const response = await fetch(`/api/attachment/${email?.id}/${attachmentId}`);
+      
+      if (!response.ok) {
+        toast({
+          title: "Download failed",
+          description: "Could not download attachment. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast({
+        title: "Downloaded",
+        description: `${filename} downloaded successfully`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download failed",
+        description: "Could not download attachment",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[90vh] p-0" data-testid="modal-email-detail">
@@ -58,11 +97,29 @@ export function EmailDetailModal({
                     </span>
                   </div>
                   {email.has_attachments && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <Paperclip className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-muted-foreground">
-                        {email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}
-                      </span>
+                    <div className="flex flex-col gap-2 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Paperclip className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">
+                          {email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      {email.attachments && email.attachments.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {email.attachments.map((attachment: any) => (
+                            <Button
+                              key={attachment.id}
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDownloadAttachment(attachment.id, attachment.filename)}
+                              className="text-xs"
+                            >
+                              <Download className="h-3 w-3 mr-1" />
+                              {attachment.filename}
+                            </Button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

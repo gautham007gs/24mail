@@ -173,6 +173,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Download attachment
+  app.get("/api/attachment/:emailId/:attachmentId", async (req, res) => {
+    try {
+      const { emailId, attachmentId } = req.params;
+      
+      // Validate email ID and attachment ID
+      const emailValidation = emailIdParamSchema.safeParse(emailId);
+      const attachmentValidation = emailIdParamSchema.safeParse(attachmentId);
+      
+      if (!emailValidation.success || !attachmentValidation.success) {
+        res.status(400).json({ error: "Invalid email or attachment ID" });
+        return;
+      }
+
+      const response = await axios.get(
+        `${TEMP_MAIL_API}/inbox/${emailId}/attachment/${attachmentId}`,
+        { responseType: "stream" }
+      );
+
+      res.setHeader("Content-Type", response.headers["content-type"] || "application/octet-stream");
+      res.setHeader("Content-Disposition", response.headers["content-disposition"] || `attachment; filename="attachment"`);
+      response.data.pipe(res);
+    } catch (error) {
+      console.error("Error downloading attachment:", error);
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 404) {
+          res.status(404).json({ error: "Attachment not found" });
+        } else {
+          res.status(error.response.status).json({ error: "Failed to download attachment" });
+        }
+      } else {
+        res.status(500).json({ error: "Failed to download attachment" });
+      }
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

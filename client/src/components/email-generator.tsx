@@ -127,37 +127,30 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
 
         {/* Email Display */}
         <div className="space-y-3">
-          <div className="flex gap-2">
-            <div className="flex-1 items-center gap-4 rounded-lg border border-border bg-muted/30 px-5 py-4 flex flex-col md:flex-row">
-              <div className="flex-1 space-y-2 md:space-y-0">
-                <div className="text-sm font-semibold text-foreground md:hidden mb-2">
-                  Broooo here is ur temporary mail...
-                </div>
-                <span
-                  className="flex-1 font-mono text-base md:text-lg font-medium text-foreground break-all whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal"
-                  data-testid="text-current-email"
-                >
-                  {currentEmail || "Generating..."}
-                </span>
-              </div>
-              <div className="hidden md:block text-xs font-semibold text-foreground/60 mr-4 min-w-max">
-                Broooo here is ur temporary mail...
-              </div>
-              <Button
-                size="icon"
-                variant="ghost"
-                onClick={handleCopy}
-                disabled={!currentEmail}
-                data-testid="button-copy-email"
-                className="shrink-0"
-              >
-                {copied ? (
-                  <Check className="h-5 w-5 text-primary" />
-                ) : (
-                  <Copy className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
+          <label className="text-sm font-semibold text-foreground">
+            Broooo, your email is...
+          </label>
+          <div className="flex gap-2 items-center">
+            <span
+              className="flex-1 font-mono text-base md:text-lg font-medium text-foreground truncate"
+              data-testid="text-current-email"
+            >
+              {currentEmail || "Generating..."}
+            </span>
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={handleCopy}
+              disabled={!currentEmail}
+              data-testid="button-copy-email"
+              className="shrink-0"
+            >
+              {copied ? (
+                <Check className="h-5 w-5 text-primary" />
+              ) : (
+                <Copy className="h-5 w-5" />
+              )}
+            </Button>
           </div>
         </div>
 
