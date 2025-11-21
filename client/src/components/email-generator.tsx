@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Trash2, QrCode, Bell } from "lucide-react";
+import { Copy, Check, RefreshCw, Trash2, QrCode, Bell, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import QRCode from "qrcode.react";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -12,13 +14,15 @@ interface EmailGeneratorProps {
   currentEmail: string;
   domains: Domain[];
   onGenerate: (email: string) => void;
+  onDelete?: () => void;
 }
 
-export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGeneratorProps) {
+export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
-  const [showNotificationBanner, setShowNotificationBanner] = useState(true);
+  const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
 
   const handleEnableNotifications = async () => {
     const granted = await requestPermission();
@@ -59,10 +63,21 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
     }
   };
 
-  const handleGenerate = () => {
+  const handleRefresh = () => {
+    // Just refresh the inbox - don't change the email
+    audioEffects.playWhip();
+    toast({
+      title: "Inbox refreshed",
+      description: "Checking for new emails...",
+    });
+  };
+
+  const handleChange = () => {
+    // Generate a completely new email address
     const username = generateRandomUsername();
     const domain = domains[0] || "example.com";
     onGenerate(`${username}@${domain}`);
+    audioEffects.playPop();
     toast({
       title: "New email generated",
       description: "Your new temporary email is ready",
@@ -70,16 +85,23 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
   };
 
   const handleDelete = () => {
-    // Delete functionality can be integrated with parent component if needed
+    // Delete the current email and generate a new one
+    audioEffects.playWhip();
+    const username = generateRandomUsername();
+    const domain = domains[0] || "example.com";
+    onGenerate(`${username}@${domain}`);
     toast({
       title: "Address deleted",
-      description: "Your temporary email has been deleted",
+      description: "New temporary email has been generated",
     });
+    if (onDelete) {
+      onDelete();
+    }
   };
 
   return (
     <div className="space-y-6">
-      {/* Notification Permission Banner */}
+      {/* Notification Permission Banner - Only show if not granted */}
       {isSupported && permission === "default" && showNotificationBanner && (
         <div className="flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4">
           <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" />
@@ -111,13 +133,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
         </div>
       )}
 
-      {permission === "granted" && (
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Bell className="h-4 w-4 text-primary" />
-          <span>Notifications enabled</span>
-        </div>
-      )}
-
       {/* Main Card */}
       <Card className="p-8 md:p-10 space-y-8">
         {/* Section Title */}
@@ -141,6 +156,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
                 <Button
                   size="icon"
                   variant="ghost"
+                  onClick={() => setShowQRCode(true)}
                   data-testid="button-qr-code"
                   className="h-10 w-10"
                   title="Generate QR code"
@@ -187,8 +203,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
 
           <Button
             variant="outline"
-            onClick={handleGenerate}
-            disabled={domains.length === 0}
+            onClick={handleRefresh}
             data-testid="button-action-refresh"
             className="h-12 md:h-11 text-sm md:text-base"
           >
@@ -198,7 +213,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
 
           <Button
             variant="outline"
-            onClick={handleGenerate}
+            onClick={handleChange}
             disabled={domains.length === 0}
             data-testid="button-action-change"
             className="h-12 md:h-11 text-sm md:text-base"
@@ -218,6 +233,44 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
           </Button>
         </div>
       </Card>
+
+      {/* QR Code Modal */}
+      <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Email QR Code</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center justify-center gap-4 py-4">
+            <div className="p-4 bg-white rounded-lg">
+              <QRCode
+                value={currentEmail}
+                size={256}
+                level="H"
+                includeMargin={true}
+                data-testid="qrcode-generated"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground text-center">
+              Scan this QR code to share your email address
+            </p>
+            <Button
+              onClick={() => {
+                const canvas = document.querySelector('canvas');
+                if (canvas) {
+                  const link = document.createElement('a');
+                  link.href = canvas.toDataURL('image/png');
+                  link.download = `tempmail-${currentEmail.split('@')[0]}.png`;
+                  link.click();
+                }
+              }}
+              className="w-full"
+              data-testid="button-download-qr"
+            >
+              Download QR Code
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
