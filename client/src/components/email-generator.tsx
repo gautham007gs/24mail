@@ -3,7 +3,7 @@ import { Copy, Check, RefreshCw, Trash2, QrCode, Bell, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import QRCode from "qrcode.react";
+import { QRCode } from "qrcode.react";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
