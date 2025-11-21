@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
+import { getRandomMessage } from "@/lib/fun-messages";
+import { audioEffects } from "@/lib/audio-effects";
 import { type EmailSummary, type Email, type Domain } from "@shared/schema";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
@@ -123,8 +125,14 @@ export default function Home() {
       if (typeof window !== "undefined") {
         localStorage.setItem("tempmail_current_email", newEmail);
       }
+      // Show welcome message
+      const welcomeMessage = getRandomMessage("welcome");
+      toast({
+        title: welcomeMessage,
+        description: "Share this email and start receiving!",
+      });
     }
-  }, [domains, currentEmail]);
+  }, [domains, currentEmail, toast]);
 
   // Track email count and notify on new emails
   useEffect(() => {
@@ -139,9 +147,13 @@ export default function Home() {
       const newEmailCount = emails.length - previousEmailCount.current;
       const latestEmail = emails[0]; // Newest email is first
       
+      // Play celebration sound
+      audioEffects.playDing();
+      
       // Show browser notification
+      const arrivedMessage = getRandomMessage("emailArrived");
       showNotification(
-        newEmailCount === 1 ? "New email received" : `${newEmailCount} new emails received`,
+        arrivedMessage,
         {
           body: newEmailCount === 1
             ? `From: ${latestEmail.from_address}\nSubject: ${latestEmail.subject || "(No subject)"}`
@@ -153,7 +165,7 @@ export default function Home() {
 
       // Show in-app toast notification
       toast({
-        title: newEmailCount === 1 ? "New email" : `${newEmailCount} new emails`,
+        title: arrivedMessage,
         description: newEmailCount === 1
           ? `From ${latestEmail.from_address}`
           : `You have ${newEmailCount} new emails`,

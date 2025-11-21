@@ -14,6 +14,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { getRandomMessage } from "@/lib/fun-messages";
+import { audioEffects } from "@/lib/audio-effects";
 import { type EmailSummary } from "@shared/schema";
 import { useState, useMemo, useEffect } from "react";
 
@@ -39,6 +41,8 @@ export function InboxList({
   const [searchQuery, setSearchQuery] = useState("");
   const [countdown, setCountdown] = useState(5);
   const [showClearDialog, setShowClearDialog] = useState(false);
+  const [emptyMessage] = useState(() => getRandomMessage("emptyInbox"));
+  const [loadingMessage] = useState(() => getRandomMessage("loading"));
 
   // Countdown timer for auto-refresh (5 seconds)
   useEffect(() => {
@@ -47,6 +51,7 @@ export function InboxList({
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
+          audioEffects.playWhip(); // Play whip sound on refresh
           return 5; // Reset to 5 seconds
         }
         return prev - 1;
@@ -241,14 +246,16 @@ function EmailCard({ email, onClick }: { email: EmailSummary; onClick: () => voi
 }
 
 function EmptyState() {
+  const emptyMessage = getRandomMessage("emptyInbox");
+  
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50">
+    <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50 hover-lift">
         <Inbox className="h-8 w-8 text-muted-foreground" />
       </div>
-      <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-empty-title">No emails yet</h3>
+      <h3 className="mt-4 text-lg font-medium text-foreground text-xl" data-testid="text-empty-title">{emptyMessage}</h3>
       <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-empty-message">
-        Your temporary address is ready to receive emails. Share it and check back in a few moments.
+        Go ahead, give this email to someone. They won't even know it's temporary 👀
       </p>
     </div>
   );
@@ -271,22 +278,32 @@ function NoSearchResults({ query }: { query: string }) {
 }
 
 function LoadingState() {
+  const loadingMessage = getRandomMessage("loading");
+  
   return (
-    <div className="space-y-2">
-      {[1, 2, 3].map((i) => (
-        <Card key={i} className="p-4">
-          <div className="flex gap-3">
-            <Skeleton className="h-10 w-10 rounded-lg" />
-            <div className="flex-1 space-y-2">
-              <div className="flex items-start justify-between gap-2">
-                <Skeleton className="h-5 w-48" />
-                <Skeleton className="h-4 w-16" />
+    <div className="space-y-4">
+      <div className="flex flex-col items-center justify-center py-8 text-center">
+        <div className="relative">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+        <p className="mt-4 text-sm text-muted-foreground font-medium">{loadingMessage}</p>
+      </div>
+      <div className="space-y-2">
+        {[1, 2, 3].map((i) => (
+          <Card key={i} className="p-4">
+            <div className="flex gap-3">
+              <Skeleton className="h-10 w-10 rounded-lg" />
+              <div className="flex-1 space-y-2">
+                <div className="flex items-start justify-between gap-2">
+                  <Skeleton className="h-5 w-48" />
+                  <Skeleton className="h-4 w-16" />
+                </div>
+                <Skeleton className="h-4 w-full" />
               </div>
-              <Skeleton className="h-4 w-full" />
             </div>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, RefreshCw, Bell, BellOff } from "lucide-react";
+import { Copy, Check, RefreshCw, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
+import { getRandomMessage } from "@/lib/fun-messages";
+import { audioEffects } from "@/lib/audio-effects";
 import { type Domain } from "@shared/schema";
 
 interface EmailGeneratorProps {
@@ -49,8 +51,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
     try {
       await navigator.clipboard.writeText(currentEmail);
       setCopied(true);
+      audioEffects.playPop();
+      const copiedMessage = getRandomMessage("copied");
       toast({
-        title: "Copied!",
+        title: copiedMessage,
         description: "Email address copied to clipboard",
       });
       setTimeout(() => setCopied(false), 2000);
