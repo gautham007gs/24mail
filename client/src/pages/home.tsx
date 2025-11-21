@@ -207,26 +207,83 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="mx-auto max-w-4xl px-4 py-8 md:px-6 md:py-12">
-        <EmailGenerator
-          currentEmail={currentEmail}
-          domains={domains}
-          onGenerate={handleGenerateEmail}
-        />
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 md:gap-6">
+        {/* Left Ad Space - Desktop Only */}
+        <aside className="hidden lg:flex lg:w-48 px-4 pt-8">
+          <div 
+            className="w-full bg-gradient-to-b from-muted/30 to-muted/10 rounded-lg border border-border/50 p-4 flex items-center justify-center text-xs text-muted-foreground min-h-96"
+            data-testid="ad-space-left"
+          >
+            {/* Ad space placeholder */}
+            <div className="text-center space-y-2">
+              <div className="text-lg font-semibold">Ad Space</div>
+              <div>Sidebar (Left)</div>
+              <div className="text-xs">300x400</div>
+            </div>
+          </div>
+        </aside>
 
-        <InboxList
-          emails={emails}
-          isLoading={isLoadingInbox}
-          currentEmail={currentEmail}
-          onEmailClick={handleEmailClick}
-          onRefresh={handleRefresh}
-          onDeleteAll={handleDeleteAllEmails}
-          isDeleting={deleteAllEmailsMutation.isPending}
-        />
-      </main>
+        {/* Main Content */}
+        <main className="flex-1 mx-auto px-4 py-8 md:px-6 md:py-12 w-full">
+          <EmailGenerator
+            currentEmail={currentEmail}
+            domains={domains}
+            onGenerate={handleGenerateEmail}
+          />
+
+          <InboxList
+            emails={emails}
+            isLoading={isLoadingInbox}
+            currentEmail={currentEmail}
+            onEmailClick={handleEmailClick}
+            onRefresh={handleRefresh}
+            onDeleteAll={handleDeleteAllEmails}
+            isDeleting={deleteAllEmailsMutation.isPending}
+          />
+
+          {/* Banner Ad - Below Content - Mobile & Desktop */}
+          <div 
+            className="mt-8 bg-gradient-to-r from-muted/30 to-muted/10 rounded-lg border border-border/50 p-6 flex items-center justify-center text-xs text-muted-foreground"
+            data-testid="ad-space-banner"
+          >
+            {/* Ad space placeholder */}
+            <div className="text-center space-y-1">
+              <div className="text-lg font-semibold">Banner Ad</div>
+              <div className="text-xs">Responsive (728x90, 468x60, 320x50)</div>
+            </div>
+          </div>
+        </main>
+
+        {/* Right Ad Space - Desktop Only */}
+        <aside className="hidden lg:flex lg:w-48 px-4 pt-8">
+          <div 
+            className="w-full bg-gradient-to-b from-muted/30 to-muted/10 rounded-lg border border-border/50 p-4 flex items-center justify-center text-xs text-muted-foreground min-h-96"
+            data-testid="ad-space-right"
+          >
+            {/* Ad space placeholder */}
+            <div className="text-center space-y-2">
+              <div className="text-lg font-semibold">Ad Space</div>
+              <div>Sidebar (Right)</div>
+              <div className="text-xs">300x400</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* Mobile Bottom Banner Ad */}
+      <div 
+        className="lg:hidden bg-gradient-to-r from-muted/30 to-muted/10 border-t border-border/50 p-4 flex items-center justify-center text-xs text-muted-foreground"
+        data-testid="ad-space-mobile-bottom"
+      >
+        {/* Ad space placeholder */}
+        <div className="text-center space-y-1">
+          <div className="text-base font-semibold">Mobile Ad</div>
+          <div className="text-xs">320x50</div>
+        </div>
+      </div>
 
       <EmailDetailModal
         email={selectedEmail || null}

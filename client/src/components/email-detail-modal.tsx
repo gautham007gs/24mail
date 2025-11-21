@@ -101,25 +101,9 @@ export function EmailDetailModal({
                       <div className="flex items-center gap-2">
                         <Paperclip className="h-4 w-4 text-muted-foreground" />
                         <span className="text-muted-foreground">
-                          {email.attachment_count} attachment{email.attachment_count > 1 ? "s" : ""}
+                          {email.attachment_count || 0} attachment{email.attachment_count !== 1 ? "s" : ""}
                         </span>
                       </div>
-                      {email.attachments && email.attachments.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {email.attachments.map((attachment: any) => (
-                            <Button
-                              key={attachment.id}
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleDownloadAttachment(attachment.id, attachment.filename)}
-                              className="text-xs"
-                            >
-                              <Download className="h-3 w-3 mr-1" />
-                              {attachment.filename}
-                            </Button>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   )}
                 </div>
