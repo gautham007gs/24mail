@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { X, Trash2, Paperclip } from "lucide-react";
+import { X, Trash2, Paperclip, Share2, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { shareEmail, shareToWhatsApp, shareToTwitter, shareToTelegram, copyToClipboard } from "@/lib/email-share";
 import { type Email } from "@shared/schema";
 
 interface EmailDetailModalProps {
@@ -27,6 +28,65 @@ export function EmailDetailModal({
   isDeleting,
 }: EmailDetailModalProps) {
   const { toast } = useToast();
+
+  const handleShare = async () => {
+    if (!email) return;
+    const result = await shareEmail({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+    if (result?.success) {
+      toast({ title: "Shared", description: result.message });
+    }
+  };
+
+  const handleShareWhatsApp = () => {
+    if (!email) return;
+    shareToWhatsApp({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
+
+  const handleShareTwitter = () => {
+    if (!email) return;
+    shareToTwitter({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
+
+  const handleShareTelegram = () => {
+    if (!email) return;
+    shareToTelegram({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
+
+  const handleCopyEmail = async () => {
+    if (!email) return;
+    const result = await copyToClipboard({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+    toast({ title: result?.success ? "Copied" : "Failed", description: result?.message });
+  };
 
   const handleDownloadAttachment = async (attachmentId: string, filename: string) => {
     try {
@@ -109,6 +169,33 @@ export function EmailDetailModal({
                 </div>
               </div>
               <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleShare}
+                  data-testid="button-share-email"
+                  title="Share email"
+                >
+                  <Share2 className="h-5 w-5" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleShareWhatsApp}
+                  data-testid="button-share-whatsapp"
+                  title="Share to WhatsApp"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleCopyEmail}
+                  data-testid="button-copy-email"
+                  title="Copy to clipboard"
+                >
+                  <Mail className="h-5 w-5" />
+                </Button>
                 <Button
                   variant="outline"
                   size="icon"
