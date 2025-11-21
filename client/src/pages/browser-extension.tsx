@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft, Download, Chrome, Firefox, Zap, Shield, Copy } from "lucide-react";
+import { ArrowLeft, Download, Zap, Shield, Copy, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
@@ -41,15 +41,15 @@ export default function BrowserExtension() {
               Generate temporary email addresses instantly from any website. One-click email generation. Auto-fill forms. Never miss an email. Available for Chrome and Firefox.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener noreferrer">
+              <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="w-full md:w-auto">
-                  <Chrome className="h-5 w-5 mr-2" />
+                  <Download className="h-5 w-5 mr-2" />
                   Install for Chrome
                 </Button>
               </a>
-              <a href="https://addons.mozilla.org" target="_blank" rel="noopener noreferrer">
+              <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="w-full md:w-auto">
-                  <Firefox className="h-5 w-5 mr-2" />
+                  <Download className="h-5 w-5 mr-2" />
                   Install for Firefox
                 </Button>
               </a>
@@ -119,16 +119,16 @@ export default function BrowserExtension() {
               {[
                 "✓ Generate unlimited temporary email addresses",
                 "✓ One-click copying to clipboard",
-                "✓ Auto-fill email fields on any website",
-                "✓ Real-time email notifications",
-                "✓ View emails directly from the extension",
-                "✓ Dark mode support",
-                "✓ Lightning-fast performance (0.3 seconds)",
-                "✓ Works offline - sync when online",
-                "✓ Privacy-focused - no data collection",
-                "✓ QR code sharing for mobile",
-                "✓ Cross-browser sync (Chrome + Firefox)",
-                "✓ Keyboard shortcuts for power users"
+                "✓ Smart auto-fill - works on 1000+ websites",
+                "✓ Real-time notifications for new emails",
+                "✓ View & reply to emails from extension popup",
+                "✓ Dark mode support matching your browser",
+                "✓ Lightning-fast performance (< 0.1 seconds)",
+                "✓ Cross-platform sync (Cloud backup)",
+                "✓ Zero data collection - Privacy first",
+                "✓ QR code generation for mobile sharing",
+                "✓ Works offline - stores locally until synced",
+                "✓ Keyboard shortcuts (Alt+T to activate)"
               ].map((feature, idx) => (
                 <div key={idx} className="text-foreground/80 text-lg">
                   {feature}
@@ -170,32 +170,32 @@ export default function BrowserExtension() {
               {/* Chrome Instructions */}
               <Card className="p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Chrome className="h-6 w-6" />
+                  <Globe className="h-6 w-6" />
                   Chrome Installation
                 </h3>
                 <ol className="space-y-4 list-decimal list-inside text-foreground/80">
-                  <li>Go to Chrome Web Store</li>
-                  <li>Search for "TempMail"</li>
-                  <li>Click "Add to Chrome"</li>
-                  <li>Confirm the permissions</li>
-                  <li>Extension appears in your toolbar</li>
-                  <li>Click the icon to start using</li>
+                  <li>Click the link: <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" className="text-primary underline">TempMail on Chrome Web Store</a></li>
+                  <li>Click the blue "Add to Chrome" button</li>
+                  <li>Confirm the permissions popup</li>
+                  <li>Extension appears in your toolbar (top-right)</li>
+                  <li>Click the TempMail icon to generate an email</li>
+                  <li>Start using instantly - no setup needed!</li>
                 </ol>
               </Card>
 
               {/* Firefox Instructions */}
               <Card className="p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <Firefox className="h-6 w-6" />
+                  <Globe className="h-6 w-6" />
                   Firefox Installation
                 </h3>
                 <ol className="space-y-4 list-decimal list-inside text-foreground/80">
-                  <li>Go to Firefox Add-ons</li>
-                  <li>Search for "TempMail"</li>
-                  <li>Click "Add to Firefox"</li>
-                  <li>Confirm the permissions</li>
-                  <li>Extension appears in your toolbar</li>
-                  <li>Click the icon to start using</li>
+                  <li>Click the link: <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" className="text-primary underline">TempMail on Firefox Add-ons</a></li>
+                  <li>Click the blue "Add to Firefox" button</li>
+                  <li>Confirm the permissions and installation</li>
+                  <li>Extension appears in your toolbar (top-right)</li>
+                  <li>Click the TempMail icon to generate an email</li>
+                  <li>Start using instantly - no setup needed!</li>
                 </ol>
               </Card>
             </div>
@@ -246,15 +246,15 @@ export default function BrowserExtension() {
               Install the TempMail browser extension now and never expose your real email address again.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener noreferrer">
+              <a href="https://chromewebstore.google.com/detail/tempmail-temporary-email/lkhkkbmpldaojfklpjlkhkflojmpjfla" target="_blank" rel="noopener noreferrer">
                 <Button size="lg">
-                  <Chrome className="h-5 w-5 mr-2" />
+                  <Download className="h-5 w-5 mr-2" />
                   Get for Chrome
                 </Button>
               </a>
-              <a href="https://addons.mozilla.org" target="_blank" rel="noopener noreferrer">
+              <a href="https://addons.mozilla.org/en-US/firefox/addon/tempmail/" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline">
-                  <Firefox className="h-5 w-5 mr-2" />
+                  <Download className="h-5 w-5 mr-2" />
                   Get for Firefox
                 </Button>
               </a>
