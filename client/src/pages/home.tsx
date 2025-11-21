@@ -8,8 +8,10 @@ import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
+import { PopularArticles } from "@/components/popular-articles";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
@@ -220,6 +222,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Helmet>
+        <title>TempMail - Free Temporary Email Address | Disposable Email Service</title>
+        <meta name="description" content="Get instant free temporary email addresses. Protect your privacy with disposable email. No registration required. Anonymous email service." />
+        <meta name="keywords" content="temporary email, disposable email, temp mail, free email, anonymous email, throwaway email, burner email, privacy protection" />
+      </Helmet>
       <Header />
       
       <main className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
@@ -254,6 +261,9 @@ export default function Home() {
         onDelete={handleDeleteEmail}
         isDeleting={deleteEmailMutation.isPending}
       />
+
+      {/* Popular Articles Section */}
+      <PopularArticles />
     </div>
   );
 }
