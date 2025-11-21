@@ -121,13 +121,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate }: EmailGener
           </div>
         )}
 
-        {permission === "denied" && (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <BellOff className="h-4 w-4" />
-            <span>Notifications blocked - enable them in browser settings</span>
-          </div>
-        )}
-
         {/* Email Display */}
         <div className="space-y-3">
           <label className="text-sm font-medium text-foreground">

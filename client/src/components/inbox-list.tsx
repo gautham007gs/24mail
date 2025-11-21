@@ -86,22 +86,13 @@ export function InboxList({
     <div className="mt-8 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
             ({searchQuery ? filteredEmails.length : emails.length})
           </span>
-          {currentEmail && (
-            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-full" data-testid="refresh-countdown-indicator">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </div>
-              <span data-testid="countdown-timer">Refreshing in {countdown}s</span>
-            </div>
-          )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="sm"
@@ -111,6 +102,19 @@ export function InboxList({
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
           </Button>
+          {currentEmail && (
+            <div 
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground bg-muted/50 px-2 py-1 rounded-full" 
+              data-testid="refresh-countdown-indicator"
+              aria-label={`Auto-refresh in ${countdown} seconds`}
+            >
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </div>
+              <span data-testid="countdown-timer">{countdown}</span>
+            </div>
+          )}
           {emails.length > 0 && (
             <Button
               variant="outline"
