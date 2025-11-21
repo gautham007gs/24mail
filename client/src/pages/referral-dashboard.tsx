@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Copy, Share2, Users, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 export default function ReferralDashboard() {
   const { toast } = useToast();
@@ -42,6 +44,8 @@ export default function ReferralDashboard() {
         <title>Referral Program - TempMail</title>
         <meta name="description" content="Earn 50 free emails per referral. Share your referral code and grow with TempMail." />
       </Helmet>
+      
+      <Header />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 py-12 px-4">
         <div className="max-w-4xl mx-auto">
@@ -167,6 +171,8 @@ export default function ReferralDashboard() {
           </Card>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
