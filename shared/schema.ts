@@ -11,6 +11,14 @@ export const emailSummarySchema = z.object({
   attachment_count: z.number().default(0),
 });
 
+// Attachment Schema
+export const attachmentSchema = z.object({
+  id: z.string(),
+  filename: z.string(),
+  content_type: z.string(),
+  size: z.number(),
+});
+
 // Full Email Schema (for detail view)
 export const emailSchema = z.object({
   id: z.string(),
@@ -22,6 +30,7 @@ export const emailSchema = z.object({
   text_content: z.string().nullable(),
   has_attachments: z.boolean().default(false),
   attachment_count: z.number().default(0),
+  attachments: z.array(attachmentSchema).optional().default([]),
 });
 
 // Domain Schema
@@ -30,3 +39,4 @@ export const domainSchema = z.string();
 export type EmailSummary = z.infer<typeof emailSummarySchema>;
 export type Email = z.infer<typeof emailSchema>;
 export type Domain = z.infer<typeof domainSchema>;
+export type Attachment = z.infer<typeof attachmentSchema>;
