@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/lib/blog-data";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filteredPosts = useMemo(() => {
     if (!searchQuery.trim()) return blogPosts;
@@ -88,7 +92,7 @@ export default function Blog() {
                           <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
                             {post.category}
                           </span>
-                          <span className="text-xs text-muted-foreground">{post.readTime} min read</span>
+                          <span className="text-xs text-muted-foreground">{post.readTime} min</span>
                         </div>
 
                         {/* Title */}
