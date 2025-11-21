@@ -10,7 +10,13 @@ import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 
 export default function Home() {
-  const [currentEmail, setCurrentEmail] = useState<string>("");
+  const [currentEmail, setCurrentEmail] = useState<string>(() => {
+    // Load email from localStorage on initial mount
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("tempmail_current_email") || "";
+    }
+    return "";
+  });
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const { toast } = useToast();
   const { showNotification } = useNotifications();
@@ -43,7 +49,7 @@ export default function Home() {
       
       return await response.json();
     },
-    refetchInterval: currentEmail ? 15000 : false, // Auto-refresh every 15 seconds
+    refetchInterval: currentEmail ? 5000 : false, // Auto-refresh every 5 seconds
     staleTime: 0, // Always fetch fresh data
   });
 
@@ -111,7 +117,12 @@ export default function Home() {
   useEffect(() => {
     if (domains.length > 0 && !currentEmail) {
       const randomUsername = generateRandomUsername();
-      setCurrentEmail(`${randomUsername}@${domains[0]}`);
+      const newEmail = `${randomUsername}@${domains[0]}`;
+      setCurrentEmail(newEmail);
+      // Persist to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem("tempmail_current_email", newEmail);
+      }
     }
   }, [domains, currentEmail]);
 
@@ -154,6 +165,10 @@ export default function Home() {
 
   const handleGenerateEmail = (email: string) => {
     setCurrentEmail(email);
+    // Persist email to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("tempmail_current_email", email);
+    }
     setSelectedEmailId(null);
   };
 
