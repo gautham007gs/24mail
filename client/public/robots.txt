@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /blog
+Allow: /blog/*
+Allow: /success-stories
+Allow: /privacy
+Allow: /terms
+Allow: /browser-extension
+
+# Disallow admin and private paths
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Sitemaps
+Sitemap: https://tempmail.org/sitemap.xml
+
+# Crawl delay (optional - remove or adjust based on server capacity)
+Crawl-delay: 1

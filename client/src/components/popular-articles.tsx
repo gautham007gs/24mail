@@ -48,13 +48,11 @@ export function PopularArticles() {
 
         {/* View All Button */}
         <div className="flex justify-center mt-10 md:mt-12">
-          <Link href="/blog">
-            <a data-testid="link-view-more-articles" aria-label="Read all articles on blog page">
-              <Button size="lg" variant="outline">
-                Read More Articles
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </Button>
-            </a>
+          <Link href="/blog" data-testid="link-view-more-articles">
+            <Button size="lg" variant="outline" aria-label="Read all articles on blog page">
+              Read More Articles
+              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </Button>
           </Link>
         </div>
       </div>
@@ -64,74 +62,73 @@ export function PopularArticles() {
 
 function DesktopArticleCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <a 
-        className="group h-full no-underline"
-        data-testid={`card-article-${post.id}`}
+    <Link 
+      href={`/blog/${post.slug}`}
+      className="group h-full no-underline block"
+      data-testid={`card-article-${post.id}`}
+    >
+      <Card 
+        className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
+        role="article"
         aria-label={`Read article: ${post.title}`}
       >
-        <Card 
-          className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all duration-300"
-          role="article"
-        >
-          {/* Image - Fixed aspect ratio to prevent layout shift */}
-          <div className="relative aspect-video overflow-hidden bg-muted">
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-              decoding="async"
-              width="300"
-              height="169"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            />
+        {/* Image - Fixed aspect ratio to prevent layout shift */}
+        <div className="relative aspect-video overflow-hidden bg-muted">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            decoding="async"
+            width="300"
+            height="169"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="p-4 flex flex-col flex-1">
+          {/* Category Badge */}
+          <span 
+            className="inline-block w-fit text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-2"
+            aria-label={`Article category: ${post.category}`}
+          >
+            {post.category}
+          </span>
+
+          {/* Title */}
+          <h3 className="font-bold text-sm leading-snug text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {post.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-4 flex-1">
+            {post.description}
+          </p>
+
+          {/* Meta */}
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span aria-label={`${post.readTime} minute read`}>{post.readTime}m</span>
+            <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </div>
-
-          {/* Content */}
-          <div className="p-4 flex flex-col flex-1">
-            {/* Category Badge */}
-            <span 
-              className="inline-block w-fit text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-2"
-              aria-label={`Article category: ${post.category}`}
-            >
-              {post.category}
-            </span>
-
-            {/* Title */}
-            <h3 className="font-bold text-sm leading-snug text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-              {post.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-xs text-muted-foreground line-clamp-2 mb-4 flex-1">
-              {post.description}
-            </p>
-
-            {/* Meta */}
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span aria-label={`${post.readTime} minute read`}>{post.readTime}m</span>
-              <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-            </div>
-          </div>
-        </Card>
-      </a>
+        </div>
+      </Card>
     </Link>
   );
 }
 
 function MobileArticleCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <a 
-        className="group no-underline block"
-        data-testid={`card-mobile-article-${post.id}`}
+    <Link 
+      href={`/blog/${post.slug}`}
+      className="group no-underline block"
+      data-testid={`card-mobile-article-${post.id}`}
+    >
+      <Card 
+        className="overflow-hidden hover-elevate active-elevate-2 transition-all p-3 flex gap-3"
+        role="article"
         aria-label={`Read article: ${post.title}`}
       >
-        <Card 
-          className="overflow-hidden hover-elevate active-elevate-2 transition-all p-3 flex gap-3"
-          role="article"
-        >
           {/* Image Thumbnail - Fixed dimensions to prevent layout shift */}
           <div className="relative w-24 h-20 flex-shrink-0 rounded overflow-hidden bg-muted flex-shrink-0">
             <img
@@ -167,7 +164,6 @@ function MobileArticleCard({ post }: { post: BlogPost }) {
             </div>
           </div>
         </Card>
-      </a>
     </Link>
   );
 }
