@@ -26,7 +26,7 @@ export default function BlogPost() {
           <h1 className="text-3xl font-bold text-foreground mb-2">Article not found</h1>
           <p className="text-muted-foreground mb-4">The article you're looking for doesn't exist.</p>
           <Link href="/blog">
-            <a><Button>Back to Blog</Button></a>
+            <Button>Back to Blog</Button>
           </Link>
         </div>
       </div>
@@ -76,11 +76,9 @@ export default function BlogPost() {
       <div className="min-h-screen bg-background">
         <div className="border-b border-border/50">
           <div className="mx-auto max-w-4xl px-4 md:px-6 py-8">
-            <Link href="/blog">
-              <a className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Blog
-              </a>
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Blog
             </Link>
           </div>
         </div>
@@ -112,9 +110,22 @@ export default function BlogPost() {
             {post.title}
           </h1>
 
-          <div className="prose prose-invert max-w-none mb-12 space-y-6 text-foreground/80 leading-relaxed">
-            <p className="text-lg">{post.description}</p>
-            <p>This comprehensive article covers everything you need to know about {post.title.toLowerCase()}. Whether you're new to temporary email services or looking for advanced strategies, we provide detailed insights, practical tips, and actionable advice to help you succeed.</p>
+          <div className="prose prose-invert max-w-none mb-12 space-y-6 text-foreground/80 leading-relaxed whitespace-pre-wrap">
+            {post.content.split('\n\n').map((paragraph, idx) => {
+              if (paragraph.startsWith('## ')) {
+                return <h2 key={idx} className="text-2xl md:text-3xl font-bold text-foreground mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+              }
+              if (paragraph.startsWith('**') && paragraph.includes(':')) {
+                return <p key={idx} className="text-base md:text-lg"><strong>{paragraph.split(':')[0].replace(/\*\*/g, '')}:</strong> {paragraph.split(':').slice(1).join(':').replace(/\*\*/g, '')}</p>;
+              }
+              if (paragraph.match(/^\d+\./)) {
+                return <p key={idx} className="text-base md:text-lg ml-4 mb-2">{paragraph}</p>;
+              }
+              if (paragraph.startsWith('-')) {
+                return <li key={idx} className="text-base md:text-lg ml-6 mb-2">{paragraph.replace('- ', '')}</li>;
+              }
+              return <p key={idx} className="text-base md:text-lg">{paragraph}</p>;
+            })}
           </div>
 
           {/* FAQ Section */}
@@ -126,9 +137,12 @@ export default function BlogPost() {
                   <button
                     onClick={() => setExpandedFAQ(expandedFAQ === idx ? null : idx)}
                     className="w-full px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors text-left"
+                    aria-expanded={expandedFAQ === idx}
+                    aria-label={`${item.question} - ${expandedFAQ === idx ? 'collapse' : 'expand'} FAQ item`}
+                    data-testid={`button-faq-${idx}`}
                   >
                     <span className="font-semibold text-foreground">{item.question}</span>
-                    <ChevronRight className={`h-5 w-5 text-primary transition-transform ${expandedFAQ === idx ? 'rotate-90' : ''}`} />
+                    <ChevronRight className={`h-5 w-5 text-primary transition-transform ${expandedFAQ === idx ? 'rotate-90' : ''}`} aria-hidden="true" />
                   </button>
                   {expandedFAQ === idx && (
                     <div className="px-6 py-4 bg-muted/30 border-t border-border/50">
@@ -155,27 +169,30 @@ export default function BlogPost() {
               <h3 className="text-2xl font-bold text-foreground mb-6">Read Next</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost) => (
-                  <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
-                    <a className="group no-underline">
-                      <Card className="overflow-hidden hover-elevate active-elevate-2 transition-all h-full">
-                        <div className="relative h-40 overflow-hidden bg-muted">
-                          <img
-                            src={relatedPost.image}
-                            alt={relatedPost.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
-                            {relatedPost.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground line-clamp-2">
-                            {relatedPost.description}
-                          </p>
-                        </div>
-                      </Card>
-                    </a>
+                  <Link 
+                    key={relatedPost.id} 
+                    href={`/blog/${relatedPost.slug}`}
+                    className="group no-underline block"
+                    data-testid={`card-related-post-${relatedPost.id}`}
+                  >
+                    <Card className="overflow-hidden hover-elevate active-elevate-2 transition-all h-full">
+                      <div className="relative h-40 overflow-hidden bg-muted">
+                        <img
+                          src={relatedPost.image}
+                          alt={relatedPost.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                          {relatedPost.title}
+                        </h4>
+                        <p className="text-xs text-muted-foreground line-clamp-2">
+                          {relatedPost.description}
+                        </p>
+                      </div>
+                    </Card>
                   </Link>
                 ))}
               </div>

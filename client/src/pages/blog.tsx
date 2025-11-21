@@ -73,47 +73,50 @@ export default function Blog() {
           {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPosts.map((post) => (
-                <Link key={post.id} href={`/blog/${post.slug}`}>
-                  <a className="group h-full no-underline">
-                    <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all">
-                      {/* Image */}
-                      <div className="relative h-48 overflow-hidden bg-muted">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
+                <Link 
+                  key={post.id} 
+                  href={`/blog/${post.slug}`}
+                  className="group h-full no-underline block"
+                  data-testid={`card-blog-post-${post.id}`}
+                >
+                  <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all">
+                    {/* Image */}
+                    <div className="relative h-48 overflow-hidden bg-muted">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-5 flex flex-col h-[calc(100%-192px)]">
+                      {/* Meta */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-muted-foreground">{post.readTime} min</span>
                       </div>
 
-                      {/* Content */}
-                      <div className="p-5 flex flex-col h-[calc(100%-192px)]">
-                        {/* Meta */}
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                            {post.category}
-                          </span>
-                          <span className="text-xs text-muted-foreground">{post.readTime} min</span>
-                        </div>
+                      {/* Title */}
+                      <h3 className="font-bold text-foreground mb-2 line-clamp-3 group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
 
-                        {/* Title */}
-                        <h3 className="font-bold text-foreground mb-2 line-clamp-3 group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h3>
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
+                        {post.description}
+                      </p>
 
-                        {/* Description */}
-                        <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
-                          {post.description}
-                        </p>
-
-                        {/* Footer */}
-                        <div className="flex items-center justify-between text-xs text-muted-foreground">
-                          <span>{post.date}</span>
-                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
+                      {/* Footer */}
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span>{post.date}</span>
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
-                    </Card>
-                  </a>
+                    </div>
+                  </Card>
                 </Link>
               ))}
             </div>
