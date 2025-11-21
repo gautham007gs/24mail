@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { X, Trash2, Paperclip, Download } from "lucide-react";
+import { X, Trash2, Paperclip } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
