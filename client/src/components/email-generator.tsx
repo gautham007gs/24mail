@@ -165,20 +165,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
       )}
 
       {/* Main Card */}
-      <Card className="p-8 md:p-10 space-y-8">
+      <Card className="p-4 md:p-8 lg:p-10 space-y-6 md:space-y-8">
         {/* Section Title */}
         <div className="text-center space-y-2">
-          <h2 className="text-lg md:text-xl font-semibold text-foreground/80">
+          <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
             Your Temporary Email Address
           </h2>
         </div>
 
         {/* Email Display Box */}
         <div className="space-y-4">
-          <div className="bg-muted/40 border border-border/50 rounded-lg p-6 md:p-8">
-            <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="bg-muted/40 border border-border/50 rounded-lg p-3 md:p-6 lg:p-8">
+            <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
               <span
-                className="font-mono text-sm md:text-lg font-semibold text-foreground break-all"
+                className="font-mono text-xs md:text-base lg:text-lg font-semibold text-foreground break-all"
                 data-testid="text-current-email"
               >
                 {currentEmail || "Generating..."}
@@ -213,22 +213,22 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
         </div>
 
         {/* Description */}
-        <div className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+        <div className="text-center text-xs md:text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <p>
-            Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. TempMail provides temporary, secure, anonymous, free disposable email address.
+            Keep your real mailbox clean and secure. TempMail provides temporary, anonymous, free disposable email addresses.
           </p>
         </div>
 
         {/* Action Buttons Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
           <Button
             variant="outline"
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-12 md:h-11 text-sm md:text-base"
+            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
           >
-            <Copy className="h-4 w-4 mr-2" />
+            <Copy className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Copy</span>
           </Button>
 
@@ -236,9 +236,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             variant="outline"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="h-12 md:h-11 text-sm md:text-base"
+            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
           >
-            <RefreshCw className="h-4 w-4 mr-2" />
+            <RefreshCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Refresh</span>
           </Button>
 
@@ -247,9 +247,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             onClick={handleChange}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="h-12 md:h-11 text-sm md:text-base"
+            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
           >
-            <RefreshCw className="h-4 w-4 mr-2" />
+            <RefreshCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Change</span>
           </Button>
 
@@ -257,9 +257,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             variant="outline"
             onClick={handleDelete}
             data-testid="button-action-delete"
-            className="h-12 md:h-11 text-sm md:text-base text-destructive hover:text-destructive"
+            className="h-10 md:h-11 text-xs md:text-sm lg:text-base text-destructive hover:text-destructive"
           >
-            <Trash2 className="h-4 w-4 mr-2" />
+            <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
             <span className="hidden sm:inline">Delete</span>
           </Button>
         </div>

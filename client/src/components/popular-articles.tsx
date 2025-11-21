@@ -21,13 +21,13 @@ export function PopularArticles() {
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {featured.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}`}>
               <a className="group h-full no-underline">
                 <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all duration-300">
                   {/* Image */}
-                  <div className="relative h-40 overflow-hidden bg-muted">
+                  <div className="relative h-32 sm:h-40 overflow-hidden bg-muted">
                     <img
                       src={post.image}
                       alt={post.title}
@@ -37,25 +37,25 @@ export function PopularArticles() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-4 flex flex-col h-[calc(100%-160px)]">
+                  <div className="p-3 md:p-4 flex flex-col flex-1">
                     {/* Category Badge */}
-                    <span className="inline-block w-fit text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full mb-2">
+                    <span className="inline-block w-fit text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-1 md:mb-2">
                       {post.category}
                     </span>
 
                     {/* Title */}
-                    <h3 className="font-bold text-sm leading-snug text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground mb-1 md:mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                       {post.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs text-muted-foreground line-clamp-2 mb-4 flex-1">
+                    <p className="text-xs text-muted-foreground line-clamp-1 sm:line-clamp-2 mb-2 md:mb-4 flex-1">
                       {post.description}
                     </p>
 
                     {/* Meta */}
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
-                      <span>{post.readTime} min read</span>
+                      <span>{post.readTime}m</span>
                       <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
