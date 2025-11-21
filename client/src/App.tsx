@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 import Home from "@/pages/home";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
+import TermsConditions from "@/pages/terms-conditions";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +19,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/terms" component={TermsConditions} />
+      <Route path="/privacy" component={PrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>
   );

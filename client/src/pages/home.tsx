@@ -9,6 +9,7 @@ import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
 import { PopularArticles } from "@/components/popular-articles";
+import { Footer } from "@/components/footer";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { Helmet } from "react-helmet";
