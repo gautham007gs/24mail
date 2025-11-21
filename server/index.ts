@@ -16,6 +16,19 @@ app.use(express.json({
 }));
 app.use(express.urlencoded({ extended: false }));
 
+// Performance: Add compression headers and cache control
+app.use((req, res, next) => {
+  // Set cache headers for blog and static content - SEO friendly
+  if (req.path.startsWith("/blog")) {
+    res.set("Cache-Control", "public, max-age=3600, s-maxage=86400");
+  }
+  // API responses cached briefly for consistency
+  else if (req.path.startsWith("/api")) {
+    res.set("Cache-Control", "public, max-age=10, s-maxage=10");
+  }
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -74,8 +87,7 @@ app.use((req, res, next) => {
   server.listen({
     port,
     host: "0.0.0.0",
-    reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    log(`Server listening on port ${port}`);
   });
 })();

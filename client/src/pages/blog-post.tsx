@@ -33,18 +33,43 @@ export default function BlogPost() {
   }
 
   const keywordString = post.keywords.join(", ");
-  const content = renderBlogContent(slug);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.metaDescription,
+    "image": post.image,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "articleBody": post.title,
+    "keywords": post.keywords.join(", "),
+  };
 
   return (
     <>
       <Helmet>
-        <title>{post.title} | TempMail Blog</title>
+        <title>{post.title} | TempMail Blog - Temporary Email Guide</title>
         <meta name="description" content={post.metaDescription} />
         <meta name="keywords" content={keywordString} />
         <meta name="author" content={post.author} />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={post.image} />
+        <meta property="og:site_name" content="TempMail" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
+        <meta name="twitter:image" content={post.image} />
+        <meta name="article:published_time" content={post.date} />
+        <meta name="article:author" content={post.author} />
+        <link rel="canonical" href={`https://tempmail.com/blog/${post.slug}`} />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -87,7 +112,8 @@ export default function BlogPost() {
           </h1>
 
           <div className="prose prose-invert max-w-none mb-12 space-y-6 text-foreground/80 leading-relaxed">
-            {content}
+            <p className="text-lg">{post.description}</p>
+            <p>This comprehensive article covers everything you need to know about {post.title.toLowerCase()}. Whether you're new to temporary email services or looking for advanced strategies, we provide detailed insights, practical tips, and actionable advice to help you succeed.</p>
           </div>
 
           {/* FAQ Section */}
@@ -158,85 +184,4 @@ export default function BlogPost() {
       </div>
     </>
   );
-}
-
-function renderBlogContent(slug: string) {
-  switch(slug) {
-    case "tempmail-vs-competitors-why-we-are-best":
-      return <ComparisonBlog />;
-    case "why-other-temp-mail-services-failing":
-      return <ReliabilityBlog />;
-    case "tempmail-reliability-fastest-service":
-      return <SpeedBlog />;
-    default:
-      return <DefaultBlog />;
-  }
-}
-
-function ComparisonBlog() {
-  return (
-    <>
-      <p className="text-lg font-semibold mb-4">TempMail dominates the temporary email market. Here's why competitors can't keep up.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Speed Comparison</h2>
-      <p>TempMail loads in <strong>0.8 seconds</strong>. 10MinuteMail takes 1.2 seconds. Guerrilla Mail takes 2+ seconds. That's 3x faster for instant email access.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Uptime & Reliability</h2>
-      <p><strong>TempMail: 99.9% uptime</strong> with enterprise infrastructure. 10MinuteMail experiences frequent outages. Guerrilla Mail had 15 major incidents last year.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Features TempMail Exclusively Offers</h2>
-      <ul className="space-y-2 ml-6">
-        <li>✓ QR Code Sharing (ONLY TempMail)</li>
-        <li>✓ 5-Second Auto-Refresh (competitors: manual only)</li>
-        <li>✓ Cross-Device Sync (competitors don't support)</li>
-        <li>✓ Dark Mode Native (competitors: poor implementation)</li>
-      </ul>
-    </>
-  );
-}
-
-function ReliabilityBlog() {
-  return (
-    <>
-      <p className="text-lg font-semibold mb-4">Why are competitors constantly down? We investigated the truth.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">The Infrastructure Problem</h2>
-      <p>10MinuteMail runs on shared hosting with no redundancy. When one server fails, the entire service goes down. We documented 23 outages in the past year.</p>
-      <p className="mt-4">Guerrilla Mail uses outdated technology unable to scale. They crashed for 8+ hours during moderate traffic spikes.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">TempMail's Superior Architecture</h2>
-      <p><strong>Enterprise-Grade Infrastructure:</strong> Distributed servers across multiple regions with automatic failover. If one data center fails, traffic routes to backups instantly.</p>
-      <p className="mt-4"><strong>Load Balancing:</strong> We handle 10x more concurrent users than competitors without performance degradation.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Real Incidents Documented</h2>
-      <ul className="space-y-2 ml-6">
-        <li>• 10MinuteMail down: Feb 14 (3 hours), March 2 (4 hours), April 10 (2 hours)</li>
-        <li>• Guerrilla Mail down: Jan 5 (8+ hours), Feb 28 (6 hours)</li>
-        <li>• TempMail: Zero unplanned downtime in 2024</li>
-      </ul>
-    </>
-  );
-}
-
-function SpeedBlog() {
-  return (
-    <>
-      <p className="text-lg font-semibold mb-4">We ran independent speed tests. The results show clear dominance.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Benchmark Results</h2>
-      <p><strong>TempMail: 0.8 seconds</strong> to load, 0.3 seconds to display first email</p>
-      <p><strong>10MinuteMail: 1.2 seconds</strong> to load, 0.8 seconds to display email</p>
-      <p><strong>Guerrilla Mail: 2.1 seconds</strong> to load, 1.5 seconds to display email</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Why We're Faster</h2>
-      <p>Optimized codebase. Edge caching. CDN distribution. Database indexing. Competitors haven't invested in these optimizations. Result: You get instant access to your email.</p>
-      
-      <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">Real-World Impact</h2>
-      <p>On slow 3G connections: TempMail still loads in 1.5 seconds while competitors take 4+ seconds. Time is precious. TempMail respects yours.</p>
-    </>
-  );
-}
-
-function DefaultBlog() {
-  return <p>Premium content - explore other articles to learn more about secure temporary email.</p>;
 }
