@@ -40,6 +40,11 @@ export function Footer() {
                   Blog & Guides
                 </Link>
               </li>
+              <li>
+                <Link href="/referral" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium text-emerald-600 dark:text-emerald-400">
+                  Refer & Earn
+                </Link>
+              </li>
             </ul>
           </div>
 
