@@ -5,15 +5,21 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/lib/blog-data";
 import { Footer } from "@/components/footer";
+import { BlogImageSkeleton } from "@/lib/loading-skeletons";
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleImageLoad = (postId: string) => {
+    setLoadedImages(prev => new Set([...prev, postId]));
+  };
 
   const filteredPosts = useMemo(() => {
     if (!searchQuery.trim()) return blogPosts;
@@ -33,7 +39,7 @@ export default function Blog() {
         <meta name="description" content="Read expert guides on temporary email addresses, privacy protection, spam prevention, and email security. Learn best practices for online privacy." />
         <meta name="keywords" content="temporary email blog, disposable email guide, privacy tips, email security, spam prevention" />
       </Helmet>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background fade-in">
         {/* Header */}
         <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
           <div className="mx-auto max-w-6xl px-4 md:px-6 py-8">
@@ -95,13 +101,17 @@ export default function Blog() {
                   data-testid={`card-blog-post-${post.id}`}
                 >
                   <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all">
-                    {/* Image */}
+                    {/* Image with Skeleton */}
                     <div className="relative h-48 overflow-hidden bg-muted">
+                      {!loadedImages.has(post.id) && <BlogImageSkeleton />}
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${
+                          loadedImages.has(post.id) ? 'opacity-100' : 'opacity-0'
+                        }`}
                         loading="lazy"
+                        onLoad={() => handleImageLoad(post.id)}
                       />
                     </div>
 

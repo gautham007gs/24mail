@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/tooltip";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
+import { InboxLoadingSkeleton } from "@/lib/loading-skeletons";
 import { type EmailSummary } from "@shared/schema";
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 
@@ -477,16 +478,5 @@ function NoSearchResults({ query }: { query: string }) {
 }
 
 function LoadingState() {
-  const loadingMessage = getRandomMessage("loading");
-  
-  return (
-    <div className="space-y-0">
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <div className="relative">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        </div>
-        <p className="mt-4 text-sm text-muted-foreground font-medium">{loadingMessage}</p>
-      </div>
-    </div>
-  );
+  return <InboxLoadingSkeleton count={5} />;
 }

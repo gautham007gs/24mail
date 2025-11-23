@@ -34,6 +34,7 @@ export default function Home() {
     return "";
   });
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
+  const [displayedEmails, setDisplayedEmails] = useState<EmailSummary[]>([]);
   const { toast } = useToast();
   const { showNotification } = useNotifications();
   const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
@@ -68,6 +69,29 @@ export default function Home() {
     refetchInterval: currentEmail ? 5000 : false, // Auto-refresh every 5 seconds
     staleTime: 0, // Always fetch fresh data
   });
+
+  // Progressive email loading - add new emails gradually
+  useEffect(() => {
+    if (emails.length > displayedEmails.length) {
+      // New emails arrived - add them one by one with a small delay
+      const newEmails = emails.slice(displayedEmails.length);
+      let index = 0;
+      
+      const interval = setInterval(() => {
+        if (index < newEmails.length) {
+          setDisplayedEmails(prev => [newEmails[index], ...prev]);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 100);
+      
+      return () => clearInterval(interval);
+    } else if (emails.length < displayedEmails.length) {
+      // Emails were deleted - update immediately
+      setDisplayedEmails(emails);
+    }
+  }, [emails]);
 
   // Show error toast if inbox fetch fails
   useEffect(() => {
@@ -261,9 +285,9 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-12">
+          <div className="mt-12 fade-in">
             <InboxList
-              emails={emails}
+              emails={displayedEmails}
               isLoading={isLoadingInbox}
               currentEmail={currentEmail}
               onEmailClick={handleEmailClick}

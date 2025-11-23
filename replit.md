@@ -11,7 +11,15 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.2):
+### Latest Features (v2.3):
+- **Loading Skeletons** - Email row skeletons while fetching inbox (smooth UX)
+- **Blog Image Skeletons** - Placeholder skeletons before blog images load
+- **Smooth Page Transitions** - Fade-in effects for all pages (0.4s ease-out)
+- **Progressive Email Loading** - Emails appear one-by-one (100ms stagger) as they arrive
+- **Lazy Load Images** - Already implemented, preserved in blog cards
+- **Email Loading State** - 5 skeleton rows during inbox fetch
+
+### Previous Features (v2.2):
 - **QR Modal Share Buttons** - WhatsApp, Telegram, Twitter direct sharing from QR screen
 - **Auto-Generated TOC** - Table of contents sidebar for long articles (desktop view)
 - **Article Share Buttons** - Share on Twitter, WhatsApp, Telegram, or copy link
