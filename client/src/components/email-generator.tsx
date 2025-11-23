@@ -286,7 +286,22 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
             <p className="text-sm text-muted-foreground text-center">
               Scan this QR code to share your email. Anyone scanning will get your email on their device.
             </p>
+            
+            {/* Email Display in Modal */}
+            <div className="w-full p-3 bg-muted/40 border border-border/50 rounded-lg">
+              <p className="text-xs text-muted-foreground mb-2">Your Email:</p>
+              <p className="font-mono text-sm font-semibold text-foreground break-all">{currentEmail}</p>
+            </div>
+            
             <div className="w-full space-y-2">
+              <Button
+                onClick={handleCopy}
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                data-testid="button-copy-email-qr"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                Copy Email
+              </Button>
               <Button
                 onClick={handleDownloadQR}
                 className="w-full"
@@ -304,8 +319,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete }: 
                   });
                 }}
                 className="w-full"
+                data-testid="button-copy-link-qr"
               >
-                Copy Link
+                Copy Share Link
               </Button>
             </div>
           </div>
