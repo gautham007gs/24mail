@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -100,7 +100,7 @@ export default function Blog() {
                   className="group h-full no-underline block"
                   data-testid={`card-blog-post-${post.id}`}
                 >
-                  <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all">
+                  <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all neomorphic">
                     {/* Image with Skeleton */}
                     <div className="relative h-48 overflow-hidden bg-muted">
                       {!loadedImages.has(post.id) && <BlogImageSkeleton />}

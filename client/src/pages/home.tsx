@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
+import { Mail as MailIcon } from "lucide-react";
 import { type EmailSummary, type Email, type Domain } from "@shared/schema";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";

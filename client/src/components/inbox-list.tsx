@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, Checkbox } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, Checkbox, AlertCircle, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";

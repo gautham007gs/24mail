@@ -135,6 +135,87 @@
   .dark pre code {
     @apply bg-transparent border-0;
   }
+
+  /* Neumorphism - Subtle 3D effect for cards */
+  .neomorphic {
+    @apply relative;
+    background: linear-gradient(145deg, hsl(var(--background)), hsl(var(--background)));
+    box-shadow: 
+      0.5px 0.5px 1px rgba(0, 0, 0, 0.05),
+      inset -0.5px -0.5px 1px rgba(0, 0, 0, 0.03);
+  }
+
+  .dark .neomorphic {
+    box-shadow: 
+      0.5px 0.5px 1px rgba(255, 255, 255, 0.03),
+      inset -0.5px -0.5px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .neomorphic:hover {
+    box-shadow: 
+      1px 1px 2px rgba(0, 0, 0, 0.08),
+      inset -0.5px -0.5px 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .neomorphic:hover {
+    box-shadow: 
+      1px 1px 2px rgba(255, 255, 255, 0.05),
+      inset -0.5px -0.5px 1px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Glassmorphism - Frosted glass effect */
+  .glassmorphism {
+    @apply backdrop-blur-lg bg-white/50 dark:bg-slate-900/30 border border-white/20 dark:border-slate-700/30;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+  }
+
+  .dark .glassmorphism {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.3));
+  }
+
+  /* Button press animation - Subtle scale */
+  .button-press {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  .button-press:active {
+    transform: scale(0.98);
+  }
+
+  /* Smooth micro-interaction transitions */
+  .smooth-transition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Consistent spacing utility (4px grid) */
+  .space-xs { @apply gap-1; } /* 4px */
+  .space-sm { @apply gap-2; } /* 8px */
+  .space-md { @apply gap-3; } /* 12px */
+  .space-lg { @apply gap-4; } /* 16px */
+  .space-xl { @apply gap-6; } /* 24px */
+  .space-2xl { @apply gap-8; } /* 32px */
+
+  .px-xs { @apply px-1; } /* 4px */
+  .px-sm { @apply px-2; } /* 8px */
+  .px-md { @apply px-3; } /* 12px */
+  .px-lg { @apply px-4; } /* 16px */
+  .px-xl { @apply px-6; } /* 24px */
+
+  .py-xs { @apply py-1; } /* 4px */
+  .py-sm { @apply py-2; } /* 8px */
+  .py-md { @apply py-3; } /* 12px */
+  .py-lg { @apply py-4; } /* 16px */
+  .py-xl { @apply py-6; } /* 24px */
+
+  /* Icon enhancements - Smooth transitions */
+  svg[class*="lucide"] {
+    @apply transition-transform duration-300;
+  }
+
+  /* Button text brightness enhancement */
+  button svg {
+    @apply transition-colors duration-200;
+  }
 }
 
 /* LIGHT MODE */

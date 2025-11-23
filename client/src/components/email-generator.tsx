@@ -212,7 +212,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Animated Background */}
-      <Card className="p-4 md:p-8 lg:p-10 space-y-6 md:space-y-8 animate-gradient-bg">
+      <Card className="p-4 md:p-8 lg:p-10 space-y-6 md:space-y-8 animate-gradient-bg neomorphic">
         {/* Section Title */}
         <div className="text-center space-y-2">
           <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
@@ -354,7 +354,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="sm:max-w-sm">
+        <DialogContent className="sm:max-w-sm glassmorphism">
           <DialogHeader>
             <DialogTitle>Share Your Email</DialogTitle>
           </DialogHeader>
@@ -379,7 +379,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             <div className="w-full space-y-2">
               <Button
                 onClick={handleCopy}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white button-press smooth-transition"
                 data-testid="button-copy-email-qr"
               >
                 <Copy className="h-4 w-4 mr-2" />
@@ -387,7 +387,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </Button>
               <Button
                 onClick={handleDownloadQR}
-                className="w-full"
+                className="w-full button-press smooth-transition"
                 data-testid="button-download-qr"
               >
                 Download QR Code

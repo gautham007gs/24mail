@@ -11,7 +11,15 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.3):
+### Latest Features (v2.4 - Visual Polish):
+- **Glassmorphism Effects** - Frosted glass modals with backdrop blur (email detail, QR share)
+- **Neumorphism Accents** - Subtle 3D shadow effects on cards (email card, blog cards)
+- **Micro-interactions** - Button press animations (scale 0.98), smooth transitions
+- **Consistent Spacing** - 4px grid spacing utilities (xs, sm, md, lg, xl, 2xl)
+- **Icon Enhancements** - More lucide icons throughout, smooth icon transitions
+- **Button Polish** - Smooth transitions on all buttons with button-press class
+
+### Previous Features (v2.3):
 - **Loading Skeletons** - Email row skeletons while fetching inbox (smooth UX)
 - **Blog Image Skeletons** - Placeholder skeletons before blog images load
 - **Smooth Page Transitions** - Fade-in effects for all pages (0.4s ease-out)
