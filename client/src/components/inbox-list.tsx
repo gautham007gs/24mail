@@ -22,7 +22,7 @@ import {
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
 import { type EmailSummary } from "@shared/schema";
-import { useState, useMemo, useEffect, useRef, useCallback, useTransition } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 
 interface InboxListProps {
   emails: EmailSummary[];
