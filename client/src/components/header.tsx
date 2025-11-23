@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X, ChevronDown } from "lucide-react";
+import { Mail, Menu, X, ChevronDown, Home, BookOpen, Zap, Award, AtSign } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -19,10 +19,10 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const { toast } = useToast();
 
   const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
-    { label: "Extension", href: "/browser-extension" },
-    { label: "Stories", href: "/success-stories" },
+    { label: "Home", href: "/", icon: Home },
+    { label: "Blog", href: "/blog", icon: BookOpen },
+    { label: "Extension", href: "/browser-extension", icon: Zap },
+    { label: "Stories", href: "/success-stories", icon: Award },
   ];
 
   const isActive = (href: string) => location === href;
@@ -103,100 +103,123 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
         {/* Mobile Navigation - Full Screen Menu */}
         {isOpen && (
-          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full">
-            <div className="py-4 px-3 space-y-2">
-              {/* Navigation Links */}
-              {navItems.map((item) => (
-                <div key={item.href}>
-                  {item.href === "/browser-extension" ? (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsOpen(false);
-                        toast({
-                          title: "Coming Soon! 🎉",
-                          description: "Browser extension is launching very soon. Stay tuned!",
-                        });
-                      }}
-                      className={`w-full block px-4 py-3 rounded-lg font-semibold transition-colors text-base text-left cursor-pointer ${
-                        isActive(item.href)
-                          ? "bg-primary text-primary-foreground"
-                          : "text-foreground hover:bg-secondary/50"
-                      }`}
-                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                    >
-                      {item.label}
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 rounded-lg font-semibold transition-colors no-underline text-base ${
-                        isActive(item.href)
-                          ? "bg-primary text-primary-foreground"
-                          : "text-foreground hover:bg-secondary/50"
-                      }`}
-                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe">
+            <div className="py-2 px-3 space-y-1">
+              {/* Main Navigation Section */}
+              <div className="space-y-1">
+                {navItems.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.href}>
+                      {item.href === "/browser-extension" ? (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsOpen(false);
+                            toast({
+                              title: "Coming Soon! 🎉",
+                              description: "Browser extension is launching very soon. Stay tuned!",
+                            });
+                          }}
+                          className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all text-base text-left cursor-pointer active-elevate-2 ${
+                            isActive(item.href)
+                              ? "bg-primary text-primary-foreground"
+                              : "text-foreground hover:bg-secondary/50"
+                          }`}
+                          data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                          style={{ animationDelay: `${idx * 50}ms` }}
+                        >
+                          <Icon className="h-5 w-5 flex-shrink-0" />
+                          <span>{item.label}</span>
+                        </button>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
+                            isActive(item.href)
+                              ? "bg-primary text-primary-foreground"
+                              : "text-foreground hover:bg-secondary/50"
+                          }`}
+                          data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                          style={{ animationDelay: `${idx * 50}ms` }}
+                        >
+                          <Icon className="h-5 w-5 flex-shrink-0" />
+                          <span>{item.label}</span>
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* Domain Selector - Collapsible */}
               {domains.length > 0 && (
                 <>
-                  <div className="h-px bg-border/30 my-4" />
-                  <button
-                    onClick={() => setShowDomainMenu(!showDomainMenu)}
-                    className="w-full px-4 py-3 rounded-lg font-semibold text-foreground hover:bg-secondary/50 transition-colors flex items-center justify-between"
-                    data-testid="button-domain-menu"
-                  >
-                    <span>Email Domain</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${showDomainMenu ? "rotate-180" : ""}`} />
-                  </button>
-                  {showDomainMenu && (
-                    <div className="bg-secondary/30 rounded-lg p-2 space-y-1 mx-2">
-                      {domains.map((domain) => (
-                        <button
-                          key={domain}
-                          onClick={() => {
-                            onDomainChange?.(domain);
-                            setShowDomainMenu(false);
-                          }}
-                          className={`w-full px-4 py-2 rounded text-sm font-medium transition-colors text-left ${
-                            selectedDomain === domain
-                              ? "bg-primary text-primary-foreground"
-                              : "text-foreground hover:bg-secondary/50"
-                          }`}
-                          data-testid={`mobile-domain-${domain}`}
-                        >
-                          @{domain}
-                        </button>
-                      ))}
-                    </div>
-                  )}
+                  <div className="h-px bg-border/30 my-3 mx-2" />
+                  <div className="space-y-2 px-2">
+                    <button
+                      onClick={() => setShowDomainMenu(!showDomainMenu)}
+                      className={`w-full flex items-center justify-between px-3 py-4 rounded-lg font-semibold transition-all cursor-pointer ${
+                        showDomainMenu
+                          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50"
+                          : "text-foreground hover:bg-secondary/50"
+                      }`}
+                      data-testid="button-domain-menu"
+                    >
+                      <span className="flex items-center gap-3">
+                        <AtSign className="h-5 w-5 text-emerald-500 flex-shrink-0" />
+                        <span>Email Domain</span>
+                      </span>
+                      <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
+                    </button>
+                    {showDomainMenu && (
+                      <div className="bg-emerald-50/30 dark:bg-emerald-950/10 rounded-lg p-2 space-y-1 border border-emerald-200/30 dark:border-emerald-800/30 animate-in fade-in duration-200">
+                        {domains.map((domain, idx) => (
+                          <button
+                            key={domain}
+                            onClick={() => {
+                              onDomainChange?.(domain);
+                              setShowDomainMenu(false);
+                            }}
+                            className={`w-full flex items-center gap-2 px-3 py-3 rounded text-sm font-medium transition-all text-left active-elevate-2 ${
+                              selectedDomain === domain
+                                ? "bg-emerald-600 text-white"
+                                : "text-foreground hover:bg-secondary/50"
+                            }`}
+                            data-testid={`mobile-domain-${domain}`}
+                            style={{ animationDelay: `${idx * 30}ms` }}
+                          >
+                            <AtSign className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                            <span>{domain}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </>
               )}
 
-              <div className="h-px bg-border/30 my-4" />
-              <Link
-                href="/terms"
-                onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 rounded-lg font-semibold text-foreground hover:bg-secondary/50 transition-colors no-underline text-base"
-                data-testid="mobile-nav-link-terms"
-              >
-                Terms & Conditions
-              </Link>
-              <Link
-                href="/privacy"
-                onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 rounded-lg font-semibold text-foreground hover:bg-secondary/50 transition-colors no-underline text-base"
-                data-testid="mobile-nav-link-privacy"
-              >
-                Privacy Policy
-              </Link>
+              {/* Footer Links Section */}
+              <div className="h-px bg-border/30 my-3 mx-2" />
+              <div className="space-y-1 px-2">
+                <Link
+                  href="/terms"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-3 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
+                  data-testid="mobile-nav-link-terms"
+                >
+                  Terms & Conditions
+                </Link>
+                <Link
+                  href="/privacy"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-3 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
+                  data-testid="mobile-nav-link-privacy"
+                >
+                  Privacy Policy
+                </Link>
+              </div>
             </div>
           </nav>
         )}

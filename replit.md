@@ -11,22 +11,28 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### v3.3 - Security Hardening & Attack Prevention (Nov 23, 2025)
+### v3.4 - Visual Polish & Mobile Navbar Excellence (Nov 23, 2025)
 
 **✅ Completed:**
+- **Email card depth:** Added shadow-sm with hover elevation for visual depth
+- **Whitespace optimization:** Increased spacing from space-y-6/8 → space-y-8/10/12 for breathable layout
+- **Subtle gradient background:** Added emerald gradient overlay (from-emerald-50/30 to-transparent) behind email generator
+- **Button hierarchy (desktop):** Copy button now prominent (emerald-600), Generate button subtle (emerald-100)
+- **Mobile navbar redesign:** Added icons to all nav items (Home, BookOpen, Zap, Award)
+- **Mobile touch targets:** Increased from py-3 → py-4 for thumb-friendly interaction
+- **Domain selector prominence:** Emerald accent, @ icon, visual separation in mobile menu
+- **Visual hierarchy:** Three clear sections (Main nav, Domain, Footer links) with better styling
+- **Staggered animations:** Menu items cascade smoothly on open (50ms per item)
+- **Safe area padding:** Added pb-safe for notch devices (iPhones)
+- **Enhanced tap feedback:** active-elevate-2 applied to all mobile menu items
+
+### v3.3 - Security Hardening & Attack Prevention
 - Attack detection: SQL injection, XSS, code injection patterns blocked
 - Progressive IP blocking: 1 min → 5 min → 30 min automatic escalation
 - Rate limiting: 100 req/min per IP with attack logging
 - Funny error messages: 9 random humorous responses for attackers (Hindi/English mix)
 - Enhanced security headers: HSTS preload, strict CSP, X-Frame-Options
 - CORS hardening: Same-origin only (localhost, tempmail.org, replit.dev)
-- Security documentation: SECURITY.md and ENCRYPTION_AND_SECURITY.md created
-
-**📋 Important Notes on Encryption:**
-- Emails transported via HTTPS/TLS (encrypted in transit) ✅
-- Emails NOT encrypted at rest (external storage) ⚠️
-- Auto-delete after 15 minutes (privacy through deletion) ✅
-- If you need encryption: use PGP/GPG for sensitive data
 
 ### Previous Updates
 - v3.0: Mobile-first UI redesign, domain selector moved to hamburger menu
