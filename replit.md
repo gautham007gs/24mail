@@ -13,8 +13,12 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ### Latest Features (v2.9 - Critical Bug Fixes & UX Polish):
 - **FIXED: Email Expiry Timer** - Timer now properly counts down from 15m 0s instead of staying at 15m
-  - Root cause: Expiry date was recalculated every second in interval instead of being stored once
-  - Solution: Used useRef to store initial expiry timestamp, only calculate difference on each update
+  - Root cause: Expiry date was recalculated every second instead of being stored once
+  - Solution: Used useRef to store initial expiry timestamp, only calculate difference each update
+- **FIXED: QR Modal Sizing** - Modal no longer takes entire screen, properly responsive
+  - Changed to w-11/12 max-w-xs sm:max-w-sm for perfect mobile-to-desktop scaling
+  - QR code reduced from 256px to 180px for better mobile fit
+  - Text and buttons now responsive with proper spacing
 - **Mobile Nav Menu Animation** - Smooth slide-in animation (300ms) instead of instant appearance
 - **Improved Tap Targets** - Email rows now min-h-14 for better mobile touch target size
 - **FAQ Smooth Transitions** - Enhanced accordion with slide-in animations when opening

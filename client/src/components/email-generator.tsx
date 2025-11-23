@@ -362,64 +362,54 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="sm:max-w-sm glassmorphism">
+        <DialogContent className="w-11/12 max-w-xs sm:max-w-sm mx-auto glassmorphism">
           <DialogHeader>
-            <DialogTitle>Share Your Email</DialogTitle>
+            <DialogTitle className="text-lg">Share Your Email</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center justify-center gap-4 py-4 bg-white p-4 rounded-lg">
+          <div className="flex flex-col items-center justify-center gap-3 py-2 bg-white p-3 sm:p-4 rounded-lg">
             <QRCode
               value={shareUrl}
-              size={256}
+              size={180}
               level="H"
               data-testid="qr-code-svg"
             />
-            <p className="text-sm text-muted-foreground text-center">
-              Scan this QR code to share your email. Anyone scanning will get your email on their device.
+            <p className="text-xs sm:text-sm text-muted-foreground text-center leading-tight">
+              Scan to share your email
             </p>
             
             {/* Email Display in Modal */}
-            <div className="w-full p-3 bg-muted/40 border border-border/50 rounded-lg">
-              <p className="text-xs text-muted-foreground mb-2">Your Email:</p>
-              <p className="font-mono text-sm font-semibold text-foreground break-all">{currentEmail}</p>
+            <div className="w-full p-2 sm:p-3 bg-muted/40 border border-border/50 rounded-lg">
+              <p className="text-xs text-muted-foreground mb-1">Your Email:</p>
+              <p className="font-mono text-xs sm:text-sm font-semibold text-foreground break-all">{currentEmail}</p>
             </div>
             
             {/* Share Buttons */}
-            <div className="w-full space-y-2">
+            <div className="w-full space-y-1.5">
               <Button
                 onClick={handleCopy}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white button-press smooth-transition"
+                size="sm"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white button-press smooth-transition text-xs sm:text-sm"
                 data-testid="button-copy-email-qr"
               >
-                <Copy className="h-4 w-4 mr-2" />
-                Copy Email
+                <Copy className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Copy Email</span>
+                <span className="sm:hidden">Copy</span>
               </Button>
               <Button
                 onClick={handleDownloadQR}
-                className="w-full button-press smooth-transition"
+                size="sm"
+                className="w-full button-press smooth-transition text-xs sm:text-sm"
                 data-testid="button-download-qr"
               >
-                Download QR Code
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  navigator.clipboard.writeText(shareUrl);
-                  toast({
-                    title: "Link copied",
-                    description: "Share link copied to clipboard",
-                  });
-                }}
-                className="w-full"
-                data-testid="button-copy-link-qr"
-              >
-                <Share2 className="h-4 w-4 mr-2" />
-                Copy Share Link
+                <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Download QR</span>
+                <span className="sm:hidden">Download</span>
               </Button>
             </div>
 
             {/* Social Share Buttons */}
-            <div className="w-full space-y-1.5">
-              <p className="text-xs text-muted-foreground text-center">Share on social media:</p>
+            <div className="w-full space-y-1">
+              <p className="text-xs text-muted-foreground text-center">Share:</p>
               <div className="grid grid-cols-3 gap-2">
                 <Button
                   variant="outline"
