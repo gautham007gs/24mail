@@ -1,11 +1,19 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X } from "lucide-react";
+import { Mail, Menu, X, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { type Domain } from "@shared/schema";
 
-export function Header() {
+interface HeaderProps {
+  domains?: Domain[];
+  selectedDomain?: string;
+  onDomainChange?: (domain: string) => void;
+}
+
+export function Header({ domains = [], selectedDomain = "", onDomainChange }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showDomainMenu, setShowDomainMenu] = useState(false);
   const [location] = useLocation();
 
   const navItems = [
@@ -72,8 +80,9 @@ export function Header() {
 
         {/* Mobile Navigation - Full Screen Menu */}
         {isOpen && (
-          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm fixed left-0 right-0 top-14 bottom-0 overflow-y-auto z-40 animate-in slide-in-from-top duration-300">
+          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full">
             <div className="py-4 px-3 space-y-2">
+              {/* Navigation Links */}
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -89,6 +98,43 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+
+              {/* Domain Selector - Collapsible */}
+              {domains.length > 0 && (
+                <>
+                  <div className="h-px bg-border/30 my-4" />
+                  <button
+                    onClick={() => setShowDomainMenu(!showDomainMenu)}
+                    className="w-full px-4 py-3 rounded-lg font-semibold text-foreground hover:bg-secondary/50 transition-colors flex items-center justify-between"
+                    data-testid="button-domain-menu"
+                  >
+                    <span>Email Domain</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${showDomainMenu ? "rotate-180" : ""}`} />
+                  </button>
+                  {showDomainMenu && (
+                    <div className="bg-secondary/30 rounded-lg p-2 space-y-1 mx-2">
+                      {domains.map((domain) => (
+                        <button
+                          key={domain}
+                          onClick={() => {
+                            onDomainChange?.(domain);
+                            setShowDomainMenu(false);
+                          }}
+                          className={`w-full px-4 py-2 rounded text-sm font-medium transition-colors text-left ${
+                            selectedDomain === domain
+                              ? "bg-primary text-primary-foreground"
+                              : "text-foreground hover:bg-secondary/50"
+                          }`}
+                          data-testid={`mobile-domain-${domain}`}
+                        >
+                          @{domain}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+
               <div className="h-px bg-border/30 my-4" />
               <Link
                 href="/terms"

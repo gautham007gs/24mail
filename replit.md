@@ -26,11 +26,14 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Loading State Pulsing** - All skeletons now pulse with smooth 2-second animation
 
 **✅ MOBILE-FIRST UX REDESIGN (v3.2):**
-- **Mobile Layout Optimization** - Domain selector hidden on mobile (desktop only), focus on core workflow
+- **Mobile Layout Optimization** - Domain selector hidden from main view, moved to hamburger menu
 - **2-Button Primary Actions** - Mobile shows "Copy" and "New" buttons prominently (h-12 for larger tap targets)
 - **Icon-Only Quick Actions** - Refresh, QR, Delete shown as icon buttons for mobile compactness
 - **Prioritized Workflow** - Copy → Check Inbox is now the primary mobile flow
 - **Desktop Full Controls** - 4-column button grid on desktop with all options visible
+- **Fixed Hamburger Menu** - Menu now fully functional with proper z-index (z-50) and absolute positioning
+- **Domain Selector in Menu** - Collapsible "Email Domain" section in hamburger menu with all available domains
+- **Smooth Menu Animations** - ChevronDown icon rotates when domain menu is open, slide-in animation on menu open
 
 **✅ EXPIRY TIMER FIXES (v3.1):**
 - **Persistent Expiry Timer** - Email expiry time now saved to localStorage, survives browser refresh

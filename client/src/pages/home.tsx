@@ -286,7 +286,14 @@ export default function Home() {
         <meta name="twitter:title" content="TempMail - Free Temporary Email" />
         <meta name="twitter:description" content="Get instant temporary email addresses - no signup needed. Privacy protection made simple." />
       </Helmet>
-      <Header />
+      <Header 
+        domains={domains}
+        selectedDomain={currentEmail.split('@')[1] || ''}
+        onDomainChange={(domain) => {
+          const username = currentEmail.split('@')[0];
+          handleGenerateEmail(`${username}@${domain}`);
+        }}
+      />
       
       <main className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
         <div className="mx-auto max-w-3xl">
