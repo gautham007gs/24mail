@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
 
 interface HeaderProps {
   domains?: Domain[];
@@ -15,6 +16,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const [isOpen, setIsOpen] = useState(false);
   const [showDomainMenu, setShowDomainMenu] = useState(false);
   const [location] = useLocation();
+  const { toast } = useToast();
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -44,18 +46,39 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-0.5">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-3 py-2 text-xs lg:text-sm font-semibold rounded-md transition-colors no-underline ${
-                  isActive(item.href)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-              </Link>
+              <div key={item.href}>
+                {item.href === "/browser-extension" ? (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toast({
+                        title: "Coming Soon! 🎉",
+                        description: "Browser extension is launching very soon. Stay tuned!",
+                      });
+                    }}
+                    className={`px-3 py-2 text-xs lg:text-sm font-semibold rounded-md transition-colors cursor-pointer ${
+                      isActive(item.href)
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                    data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`px-3 py-2 text-xs lg:text-sm font-semibold rounded-md transition-colors no-underline block ${
+                      isActive(item.href)
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                    data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -84,19 +107,41 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             <div className="py-4 px-3 space-y-2">
               {/* Navigation Links */}
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-lg font-semibold transition-colors no-underline text-base ${
-                    isActive(item.href)
-                      ? "bg-primary text-primary-foreground"
-                      : "text-foreground hover:bg-secondary/50"
-                  }`}
-                  data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                >
-                  {item.label}
-                </Link>
+                <div key={item.href}>
+                  {item.href === "/browser-extension" ? (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(false);
+                        toast({
+                          title: "Coming Soon! 🎉",
+                          description: "Browser extension is launching very soon. Stay tuned!",
+                        });
+                      }}
+                      className={`w-full block px-4 py-3 rounded-lg font-semibold transition-colors text-base text-left cursor-pointer ${
+                        isActive(item.href)
+                          ? "bg-primary text-primary-foreground"
+                          : "text-foreground hover:bg-secondary/50"
+                      }`}
+                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`block px-4 py-3 rounded-lg font-semibold transition-colors no-underline text-base ${
+                        isActive(item.href)
+                          ? "bg-primary text-primary-foreground"
+                          : "text-foreground hover:bg-secondary/50"
+                      }`}
+                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
               ))}
 
               {/* Domain Selector - Collapsible */}

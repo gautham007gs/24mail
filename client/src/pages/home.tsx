@@ -306,7 +306,7 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-12 fade-in">
+          <div className="mt-12 pt-8 md:pt-12 border-t border-border/30 fade-in">
             <InboxList
               emails={displayedEmails}
               isLoading={isLoadingInbox}

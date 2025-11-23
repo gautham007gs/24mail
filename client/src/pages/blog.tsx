@@ -11,14 +11,14 @@ import { Helmet } from "react-helmet";
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleImageLoad = (postId: string) => {
-    setLoadedImages(prev => new Set([...prev, postId]));
+    setLoadedImages(prev => [...prev, postId]);
   };
 
   const filteredPosts = useMemo(() => {
@@ -110,12 +110,12 @@ export default function Blog() {
                   <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all neomorphic">
                     {/* Image with Skeleton */}
                     <div className="relative h-48 overflow-hidden bg-muted">
-                      {!loadedImages.has(post.id) && <BlogImageSkeleton />}
+                      {!loadedImages.includes(post.id) && <BlogImageSkeleton />}
                       <img
                         src={post.image}
                         alt={post.title}
                         className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${
-                          loadedImages.has(post.id) ? 'opacity-100' : 'opacity-0'
+                          loadedImages.includes(post.id) ? 'opacity-100' : 'opacity-0'
                         }`}
                         loading="lazy"
                         onLoad={() => handleImageLoad(post.id)}
