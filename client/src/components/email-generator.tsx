@@ -296,8 +296,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </p>
         </div>
 
-        {/* Domain Selector */}
-        <div className="space-y-2">
+        {/* Domain Selector - Desktop Only */}
+        <div className="hidden md:block space-y-2">
           <label htmlFor="domain-select" className="text-sm font-medium text-foreground/70">
             Choose Domain
           </label>
@@ -325,29 +325,91 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Action Buttons Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+        {/* Action Buttons - Mobile Optimized */}
+        {/* Mobile: 2 large buttons (Copy primary, New secondary) */}
+        <div className="md:hidden grid grid-cols-2 gap-3">
+          <Button
+            onClick={handleCopy}
+            disabled={!currentEmail}
+            data-testid="button-action-copy"
+            className="h-12 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold"
+            aria-label="Copy email address to clipboard"
+          >
+            <Copy className="h-4 w-4 mr-2" />
+            Copy
+          </Button>
+
+          <Button
+            onClick={handleGenerateWithDomain}
+            disabled={domains.length === 0}
+            data-testid="button-action-change"
+            className="h-12 text-sm font-semibold"
+            aria-label="Generate new email address"
+          >
+            <RotateCw className="h-4 w-4 mr-2" />
+            New
+          </Button>
+        </div>
+
+        {/* Mobile: Icon-only quick actions (Refresh, QR, Delete) */}
+        <div className="md:hidden flex gap-2 justify-center">
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={handleRefresh}
+            data-testid="button-action-refresh"
+            className="h-10 w-10"
+            aria-label="Refresh inbox to check for new emails"
+          >
+            <RefreshCw className="h-5 w-5" />
+          </Button>
+
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => setShowQRCode(true)}
+            data-testid="button-qr-quick"
+            className="h-10 w-10"
+            aria-label="Show QR code to share email"
+          >
+            <QrCode className="h-5 w-5" />
+          </Button>
+
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={handleDelete}
+            data-testid="button-action-delete"
+            className="h-10 w-10 text-destructive hover:text-destructive"
+            aria-label="Delete current email address"
+          >
+            <Trash2 className="h-5 w-5" />
+          </Button>
+        </div>
+
+        {/* Desktop: 4-column button grid */}
+        <div className="hidden md:grid grid-cols-4 gap-3">
           <Button
             variant="outline"
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            className="h-10 md:h-11"
             aria-label="Copy email address to clipboard"
           >
-            <Copy className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-            <span className="hidden sm:inline">Copy</span>
+            <Copy className="h-4 w-4 mr-2" />
+            <span>Copy</span>
           </Button>
 
           <Button
             variant="outline"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            className="h-10 md:h-11"
             aria-label="Refresh inbox to check for new emails"
           >
-            <RefreshCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-            <span className="hidden sm:inline">Refresh</span>
+            <RefreshCw className="h-4 w-4 mr-2" />
+            <span>Refresh</span>
           </Button>
 
           <Button
@@ -355,22 +417,22 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="h-10 md:h-11 text-xs md:text-sm lg:text-base"
+            className="h-10 md:h-11"
             aria-label="Generate new email address"
           >
-            <RotateCw className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-            <span className="hidden sm:inline">New</span>
+            <RotateCw className="h-4 w-4 mr-2" />
+            <span>New</span>
           </Button>
 
           <Button
             variant="outline"
             onClick={handleDelete}
             data-testid="button-action-delete"
-            className="h-10 md:h-11 text-xs md:text-sm lg:text-base text-destructive hover:text-destructive"
+            className="h-10 md:h-11 text-destructive hover:text-destructive"
             aria-label="Delete current email address"
           >
-            <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-            <span className="hidden sm:inline">Delete</span>
+            <Trash2 className="h-4 w-4 mr-2" />
+            <span>Delete</span>
           </Button>
         </div>
       </Card>

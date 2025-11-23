@@ -25,6 +25,13 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Icon Badges for Unread** - Small dot indicators already present in email rows
 - **Loading State Pulsing** - All skeletons now pulse with smooth 2-second animation
 
+**✅ MOBILE-FIRST UX REDESIGN (v3.2):**
+- **Mobile Layout Optimization** - Domain selector hidden on mobile (desktop only), focus on core workflow
+- **2-Button Primary Actions** - Mobile shows "Copy" and "New" buttons prominently (h-12 for larger tap targets)
+- **Icon-Only Quick Actions** - Refresh, QR, Delete shown as icon buttons for mobile compactness
+- **Prioritized Workflow** - Copy → Check Inbox is now the primary mobile flow
+- **Desktop Full Controls** - 4-column button grid on desktop with all options visible
+
 **✅ EXPIRY TIMER FIXES (v3.1):**
 - **Persistent Expiry Timer** - Email expiry time now saved to localStorage, survives browser refresh
 - **Auto-Generate on Expiry** - New email automatically generated when current one expires (15 min)
