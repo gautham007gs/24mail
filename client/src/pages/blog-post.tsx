@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
@@ -222,6 +222,20 @@ export default function BlogPost() {
                 #{keyword}
               </span>
             ))}
+          </div>
+
+          {/* Back to Top Button */}
+          <div className="flex justify-end mb-8">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              data-testid="button-back-to-top"
+              title="Back to top of page"
+            >
+              <ArrowUp className="h-4 w-4 mr-2" />
+              Back to Top
+            </Button>
           </div>
 
           {/* Share Article Section */}

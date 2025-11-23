@@ -11,7 +11,17 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.8 - Enhanced Dark Mode):
+### Latest Features (v2.9 - Critical Bug Fixes & UX Polish):
+- **FIXED: Email Expiry Timer** - Timer now properly counts down from 15m 0s instead of staying at 15m
+  - Root cause: Expiry date was recalculated every second in interval instead of being stored once
+  - Solution: Used useRef to store initial expiry timestamp, only calculate difference on each update
+- **Mobile Nav Menu Animation** - Smooth slide-in animation (300ms) instead of instant appearance
+- **Improved Tap Targets** - Email rows now min-h-14 for better mobile touch target size
+- **FAQ Smooth Transitions** - Enhanced accordion with slide-in animations when opening
+- **Back-to-Top Button** - Added to all blog articles with smooth scroll to top
+- **Dynamic Copyright Year** - Already implemented and working correctly
+
+### Previous Features (v2.8 - Enhanced Dark Mode):
 - **Dark Mode Email Rendering** - Better contrast with glassmorphic containers, optimized prose styles
 - **Dark Mode Toggle Animations** - Smooth 360° spin rotation (0.5s), color transitions (300ms)
 - **Smooth Theme Transitions** - 300ms ease-out color transitions across entire app

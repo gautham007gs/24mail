@@ -38,7 +38,7 @@ export function FAQAccordion() {
           {expanded === idx && (
             <div
               id={`faq-answer-${idx}`}
-              className="px-6 py-4 bg-background/50 text-muted-foreground border-t border-border/30 animate-in fade-in-50 duration-300"
+              className="px-6 py-4 bg-background/50 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
               data-testid={`faq-answer-${idx}`}
               role="region"
             >

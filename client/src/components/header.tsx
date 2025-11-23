@@ -72,7 +72,7 @@ export function Header() {
 
         {/* Mobile Navigation - Full Screen Menu */}
         {isOpen && (
-          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm fixed left-0 right-0 top-14 bottom-0 overflow-y-auto z-40">
+          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm fixed left-0 right-0 top-14 bottom-0 overflow-y-auto z-40 animate-in slide-in-from-top duration-300">
             <div className="py-4 px-3 space-y-2">
               {navItems.map((item) => (
                 <Link

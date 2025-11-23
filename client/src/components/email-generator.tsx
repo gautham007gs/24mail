@@ -28,6 +28,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const [sessionEmailCount, setSessionEmailCount] = useState(0);
   const [expiryTime, setExpiryTime] = useState<string>("");
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const expiryDateRef = useRef<Date | null>(null);
 
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
@@ -42,12 +43,16 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
   // Calculate and update expiry time (15 minutes from generation)
   useEffect(() => {
-    const calculateExpiry = () => {
-      const expiryDate = new Date();
-      expiryDate.setMinutes(expiryDate.getMinutes() + 15);
+    // Set expiry date only once when email is generated
+    const expiryDate = new Date();
+    expiryDate.setMinutes(expiryDate.getMinutes() + 15);
+    expiryDateRef.current = expiryDate;
+
+    const updateExpiry = () => {
+      if (!expiryDateRef.current) return;
       
       const now = new Date();
-      const diff = expiryDate.getTime() - now.getTime();
+      const diff = expiryDateRef.current.getTime() - now.getTime();
       const minutes = Math.floor(diff / 60000);
       const seconds = Math.floor((diff % 60000) / 1000);
       
@@ -55,11 +60,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         setExpiryTime(`${minutes}m ${seconds}s`);
       } else {
         setExpiryTime("Expired");
+        if (expiryTimerRef.current) {
+          clearInterval(expiryTimerRef.current);
+        }
       }
     };
 
-    calculateExpiry();
-    expiryTimerRef.current = setInterval(calculateExpiry, 1000);
+    updateExpiry();
+    expiryTimerRef.current = setInterval(updateExpiry, 1000);
 
     return () => {
       if (expiryTimerRef.current) {

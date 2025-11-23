@@ -383,7 +383,7 @@ function EmailTableRow({
 
   return (
     <div
-      className={`grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+      className={`grid grid-cols-12 gap-4 px-6 py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
         isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/50" : "border-transparent"
       }`}
       onClick={handleRowClick}
