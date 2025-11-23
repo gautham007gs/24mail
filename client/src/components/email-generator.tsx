@@ -43,17 +43,18 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
   // Calculate and update expiry time (15 minutes from generation)
   useEffect(() => {
+    // Always reset ref when email changes to ensure fresh timer
+    expiryDateRef.current = null;
+    
     const storageKey = `tempmail_expiry_${currentEmail}`;
-    let expiryTimestamp = expiryDateRef.current;
-
-    // Load or create expiry timestamp
-    if (!expiryTimestamp) {
-      const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
-      expiryTimestamp = stored ? parseInt(stored, 10) : Date.now() + 15 * 60 * 1000;
-      expiryDateRef.current = expiryTimestamp;
-      if (typeof window !== "undefined") {
-        localStorage.setItem(storageKey, expiryTimestamp.toString());
-      }
+    const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+    
+    // Create new timestamp - either load existing or create fresh one
+    const expiryTimestamp = stored ? parseInt(stored, 10) : Date.now() + 15 * 60 * 1000;
+    expiryDateRef.current = expiryTimestamp;
+    
+    if (typeof window !== "undefined") {
+      localStorage.setItem(storageKey, expiryTimestamp.toString());
     }
 
     const updateExpiry = () => {
@@ -138,9 +139,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     const username = generateRandomUsername();
     const domain = selectedDomain || domains[0] || "example.com";
     const newEmail = `${username}@${domain}`;
-    
-    // Reset expiry timer for new email
-    expiryDateRef.current = null;
     
     onGenerate(newEmail);
     setSessionEmailCount(prev => prev + 1);
