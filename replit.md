@@ -11,7 +11,15 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.4 - Visual Polish):
+### Latest Features (v2.5 - Trust & Social Proof):
+- **Stats Counter** - Animated counters (1M+ emails, 500K+ users, 99.9% uptime, 0.3s response time)
+- **Trust Badges** - HTTPS Secure, Privacy Protected, Uptime SLA, Instant Delivery cards
+- **Testimonials Carousel** - Auto-rotating testimonials from 5 users (Sarah Chen, Marcus Johnson, Priya Sharma, James Wilson, Lisa Rodriguez)
+- **FAQ Accordion** - 6 expandable FAQ items covering legality, safety, duration, uptime, speed, QR code features
+- **Section Headings** - Clear category headings with subtext for each trust section
+- **Animated Counter** - GPU-optimized animations for stats that update on page load
+
+### Previous Features (v2.4 - Visual Polish):
 - **Glassmorphism Effects** - Frosted glass modals with backdrop blur (email detail, QR share)
 - **Neumorphism Accents** - Subtle 3D shadow effects on cards (email card, blog cards)
 - **Micro-interactions** - Button press animations (scale 0.98), smooth transitions

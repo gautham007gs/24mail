@@ -10,6 +10,10 @@ import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { StatsCounter } from "@/components/stats-counter";
+import { TrustBadges } from "@/components/trust-badges";
+import { TestimonialsCarousel } from "@/components/testimonials-carousel";
+import { FAQAccordion } from "@/components/faq-accordion";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { Helmet } from "react-helmet";
@@ -297,6 +301,45 @@ export default function Home() {
               isDeleting={deleteAllEmailsMutation.isPending}
               onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
             />
+          </div>
+
+          {/* Trust & Social Proof Section */}
+          <div className="mt-20 space-y-16 fade-in">
+            {/* Stats Counter */}
+            <section className="space-y-6">
+              <div className="text-center space-y-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Trusted by Thousands</h2>
+                <p className="text-muted-foreground">Enterprise-grade reliability trusted by developers, QA teams, and security researchers</p>
+              </div>
+              <StatsCounter />
+            </section>
+
+            {/* Trust Badges */}
+            <section className="space-y-6">
+              <div className="text-center space-y-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Security & Trust</h2>
+                <p className="text-muted-foreground">Your privacy is our priority. Enterprise security standards you can rely on.</p>
+              </div>
+              <TrustBadges />
+            </section>
+
+            {/* Testimonials */}
+            <section className="space-y-6">
+              <div className="text-center space-y-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
+                <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
+              </div>
+              <TestimonialsCarousel />
+            </section>
+
+            {/* FAQ Section */}
+            <section className="space-y-6">
+              <div className="text-center space-y-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
+                <p className="text-muted-foreground">Everything you need to know about TempMail</p>
+              </div>
+              <FAQAccordion />
+            </section>
           </div>
         </div>
       </main>
