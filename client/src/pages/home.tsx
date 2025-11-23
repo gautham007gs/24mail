@@ -274,8 +274,17 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
         <title>TempMail - Free Temporary Email Address | Disposable Email Service</title>
-        <meta name="description" content="Get instant free temporary email addresses. Protect your privacy with disposable email. No registration required. Anonymous email service." />
-        <meta name="keywords" content="temporary email, disposable email, temp mail, free email, anonymous email, throwaway email, burner email, privacy protection" />
+        <meta name="description" content="Get instant free temporary email addresses. Protect your privacy with disposable email. No registration required. Anonymous email service with 99.9% uptime." />
+        <meta name="keywords" content="temporary email, disposable email, temp mail, free email, anonymous email, throwaway email, burner email, privacy protection, instant email" />
+        <link rel="canonical" href="https://tempmail.org/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tempmail.org/" />
+        <meta property="og:title" content="TempMail - Free Temporary Email Address | Get Instant Disposable Email" />
+        <meta property="og:description" content="Instant temporary email for privacy. No signup needed. 99.9% uptime, 5-second auto-refresh, QR code sharing." />
+        <meta property="og:image" content="https://tempmail.org/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TempMail - Free Temporary Email" />
+        <meta name="twitter:description" content="Get instant temporary email addresses - no signup needed. Privacy protection made simple." />
       </Helmet>
       <Header />
       

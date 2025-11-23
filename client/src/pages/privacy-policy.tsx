@@ -12,9 +12,14 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy - TempMail</title>
-        <meta name="description" content="TempMail Privacy Policy. Learn how we collect, use, and protect your personal information." />
-        <meta name="robots" content="index, follow" />
+        <title>Privacy Policy - TempMail | Your Privacy Rights</title>
+        <meta name="description" content="TempMail Privacy Policy. Learn how we collect, use, and protect your personal information. GDPR and CCPA compliant." />
+        <meta name="robots" content="index, follow, noarchive" />
+        <link rel="canonical" href="https://tempmail.org/privacy" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tempmail.org/privacy" />
+        <meta property="og:title" content="Privacy Policy - TempMail" />
+        <meta property="og:description" content="TempMail Privacy Policy - GDPR and CCPA compliant data protection." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

@@ -11,7 +11,17 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.6 - Accessibility & WCAG AAA):
+### Latest Features (v2.7 - Enterprise SEO & Metadata):
+- **JSON-LD Schema Markup** - Organization, Product, LocalBusiness, FAQ, BlogPosting schemas
+- **XML Sitemap** - 17 URLs with priority/changefreq for search engine crawling
+- **robots.txt** - Crawl-delay rules, bot filtering, sitemap reference
+- **Canonical Tags** - All pages have canonical URLs to prevent duplicate content
+- **Open Graph Tags** - Social media previews on Facebook, LinkedIn, Discord
+- **Twitter Cards** - Optimized for X/Twitter sharing with summary_large_image
+- **Meta Keywords** - Primary + long-tail keywords targeting "tempmail" and "disposable mail"
+- **Search Engine Optimization** - Robots meta tag, revisit-after, language meta
+
+### Previous Features (v2.6 - Accessibility & WCAG AAA):
 - **Clear Focus Indicators** - 3px solid outline on all interactive elements (keyboard navigation)
 - **Enhanced ARIA Labels** - Comprehensive labels, live regions, roles for screen readers
 - **Semantic HTML** - Proper roles (region, article, group) for accessibility tree

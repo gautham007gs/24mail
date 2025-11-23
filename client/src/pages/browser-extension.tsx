@@ -14,9 +14,18 @@ export default function BrowserExtension() {
   return (
     <>
       <Helmet>
-        <title>Browser Extension - TempMail</title>
-        <meta name="description" content="Install TempMail browser extension for Chrome and Firefox. Generate temporary emails instantly from any website." />
+        <title>TempMail Browser Extension - Instant Temporary Email | Chrome & Firefox</title>
+        <meta name="description" content="Install TempMail browser extension for Chrome and Firefox. Generate temporary emails instantly from any website. One-click email generation, auto-fill forms." />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://tempmail.org/browser-extension" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tempmail.org/browser-extension" />
+        <meta property="og:title" content="TempMail Browser Extension - Instant Email Generator" />
+        <meta property="og:description" content="Generate temporary emails instantly from any website. Available for Chrome and Firefox. One-click email generation." />
+        <meta property="og:image" content="https://tempmail.org/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TempMail Browser Extension" />
+        <meta name="twitter:description" content="Generate temporary emails instantly from any website with our browser extension." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

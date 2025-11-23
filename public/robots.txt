@@ -1,0 +1,30 @@
+# TempMail SEO Rules for Search Engines
+# Allow all search engine bots
+
+User-agent: *
+Allow: /
+
+# Specific rules for popular search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Disallow bad bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location for search engines
+Sitemap: https://tempmail.org/sitemap.xml
+
+# Main policy applies to all others
+Allow: /

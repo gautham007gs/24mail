@@ -13,9 +13,14 @@ export default function TermsConditions() {
   return (
     <>
       <Helmet>
-        <title>Terms & Conditions - TempMail</title>
+        <title>Terms & Conditions - TempMail | Legal Agreement</title>
         <meta name="description" content="Read TempMail's Terms and Conditions. Legal agreement governing the use of our temporary email service." />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, noarchive" />
+        <link rel="canonical" href="https://tempmail.org/terms" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tempmail.org/terms" />
+        <meta property="og:title" content="Terms & Conditions - TempMail" />
+        <meta property="og:description" content="TempMail Terms and Conditions - Legal agreement for service use." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

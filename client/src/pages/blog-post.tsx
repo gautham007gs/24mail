@@ -69,10 +69,18 @@ export default function BlogPost() {
         <meta name="keywords" content={keywordString} />
         <meta name="author" content={post.author} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+        <link rel="canonical" href={`https://tempmail.org/blog/${slug}`} />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://tempmail.org/blog/${slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={post.image} />
+        <meta property="article:author" content={post.author} />
+        <meta property="article:published_time" content={post.date} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
+        <meta name="twitter:image" content={post.image} />
         <meta property="og:site_name" content="TempMail" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
