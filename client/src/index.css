@@ -86,6 +86,10 @@
   .slide-in {
     animation: slideIn 0.4s ease-out;
   }
+
+  .swipe-row {
+    transition: transform 0.2s ease-out;
+  }
 }
 
 /* LIGHT MODE */

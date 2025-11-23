@@ -1,8 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, Checkbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import { Checkbox as CheckboxComponent } from "@/components/ui/checkbox";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,10 +14,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
 import { type EmailSummary } from "@shared/schema";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback, useTransition } from "react";
 
 interface InboxListProps {
   emails: EmailSummary[];
@@ -26,6 +32,8 @@ interface InboxListProps {
   onRefresh: () => void;
   onDeleteAll: () => void;
   isDeleting: boolean;
+  onDeleteEmail?: (emailId: string) => void;
+  onDeleteSelected?: (emailIds: string[]) => void;
 }
 
 export function InboxList({
@@ -36,12 +44,23 @@ export function InboxList({
   onRefresh,
   onDeleteAll,
   isDeleting,
+  onDeleteEmail,
+  onDeleteSelected,
 }: InboxListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [countdown, setCountdown] = useState(5);
   const [showClearDialog, setShowClearDialog] = useState(false);
   const [emptyMessage] = useState(() => getRandomMessage("emptyInbox"));
   const [loadingMessage] = useState(() => getRandomMessage("loading"));
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showBulkDialog, setShowBulkDialog] = useState(false);
+  const [unreadIds, setUnreadIds] = useState<Set<string>>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`unread_${currentEmail}`);
+      return new Set(stored ? JSON.parse(stored) : []);
+    }
+    return new Set();
+  });
 
   // Countdown timer for auto-refresh (5 seconds)
   useEffect(() => {
@@ -80,11 +99,68 @@ export function InboxList({
     });
   }, [emails, searchQuery]);
 
+  // Mark email as read when clicked
+  const markAsRead = useCallback((emailId: string) => {
+    setUnreadIds(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(emailId);
+      if (typeof window !== "undefined") {
+        localStorage.setItem(`unread_${currentEmail}`, JSON.stringify([...newSet]));
+      }
+      return newSet;
+    });
+  }, [currentEmail]);
+
+  // Toggle email selection
+  const toggleSelect = useCallback((emailId: string) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(emailId)) {
+        newSet.delete(emailId);
+      } else {
+        newSet.add(emailId);
+      }
+      return newSet;
+    });
+  }, []);
+
+  // Select all visible emails
+  const toggleSelectAll = useCallback(() => {
+    if (selectedIds.size === filteredEmails.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(filteredEmails.map(e => e.id)));
+    }
+  }, [filteredEmails, selectedIds]);
+
+  // Handle bulk delete
+  const handleBulkDelete = () => {
+    if (onDeleteSelected && selectedIds.size > 0) {
+      onDeleteSelected(Array.from(selectedIds));
+      setSelectedIds(new Set());
+      setShowBulkDialog(false);
+    }
+  };
+
+  // Group emails by sender (threading)
+  const groupedEmails = useMemo(() => {
+    const groups = new Map<string, EmailSummary[]>();
+    filteredEmails.forEach(email => {
+      const sender = email.from_address;
+      if (!groups.has(sender)) {
+        groups.set(sender, []);
+      }
+      groups.get(sender)!.push(email);
+    });
+    return Array.from(groups.entries());
+  }, [filteredEmails]);
+
   if (!currentEmail) {
     return null;
   }
 
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
+  const hasSelected = selectedIds.size > 0;
 
   return (
     <div className="mt-12 space-y-4">
@@ -95,8 +171,26 @@ export function InboxList({
           <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
             ({searchQuery ? filteredEmails.length : emails.length})
           </span>
+          {hasSelected && (
+            <span className="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+              {selectedIds.size} selected
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-2">
+          {hasSelected && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowBulkDialog(true)}
+              disabled={isDeleting}
+              data-testid="button-delete-selected"
+              className="text-destructive border-destructive/30 hover:bg-destructive/10"
+            >
+              <Trash2 className="h-4 w-4 mr-1.5" />
+              Delete {selectedIds.size}
+            </Button>
+          )}
           {emails.length > 0 && (
             <Button
               variant="outline"
@@ -184,11 +278,38 @@ export function InboxList({
                 key={email.id}
                 email={email}
                 onClick={() => onEmailClick(email.id)}
+                isSelected={selectedIds.has(email.id)}
+                onSelect={toggleSelect}
+                isUnread={unreadIds.has(email.id)}
+                onMarkRead={markAsRead}
               />
             ))
           )}
         </div>
       </div>
+
+      {/* Bulk Delete Dialog */}
+      <AlertDialog open={showBulkDialog} onOpenChange={setShowBulkDialog}>
+        <AlertDialogContent data-testid="dialog-bulk-delete">
+          <AlertDialogHeader>
+            <AlertDialogTitle data-testid="dialog-bulk-delete-title">Delete {selectedIds.size} email{selectedIds.size !== 1 ? 's' : ''}?</AlertDialogTitle>
+            <AlertDialogDescription data-testid="dialog-bulk-delete-description">
+              This will permanently delete the selected email{selectedIds.size !== 1 ? 's' : ''}. 
+              This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel data-testid="button-cancel-bulk-delete">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleBulkDelete}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              data-testid="button-confirm-bulk-delete"
+            >
+              Delete Selected
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Clear Inbox Dialog */}
       <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
@@ -219,31 +340,100 @@ export function InboxList({
   );
 }
 
-function EmailTableRow({ email, onClick }: { email: EmailSummary; onClick: () => void }) {
+function EmailTableRow({
+  email,
+  onClick,
+  isSelected,
+  onSelect,
+  isUnread,
+  onMarkRead,
+}: {
+  email: EmailSummary;
+  onClick: () => void;
+  isSelected: boolean;
+  onSelect: (id: string) => void;
+  isUnread: boolean;
+  onMarkRead: (id: string) => void;
+}) {
+  const touchStartRef = useRef<number>(0);
+  const [swipeDistance, setSwipeDistance] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const currentX = e.touches[0].clientX;
+    const distance = touchStartRef.current - currentX;
+    setSwipeDistance(Math.min(Math.max(distance, 0), 100));
+  };
+
+  const handleTouchEnd = () => {
+    if (swipeDistance > 60) {
+      onSelect(email.id);
+    }
+    setSwipeDistance(0);
+  };
+
+  const handleRowClick = () => {
+    onMarkRead(email.id);
+    onClick();
+  };
+
   return (
     <div
-      className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/30 cursor-pointer transition-colors items-center"
-      onClick={onClick}
+      className={`grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+        isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/50" : "border-transparent"
+      }`}
+      onClick={handleRowClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       data-testid={`row-email-${email.id}`}
+      style={{ transform: `translateX(-${swipeDistance}px)` }}
     >
-      {/* Sender */}
-      <div className="col-span-4 text-sm truncate" data-testid={`text-from-${email.id}`}>
-        {email.from_address}
+      {/* Checkbox */}
+      <div
+        className="col-span-1 flex items-center"
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect(email.id);
+        }}
+      >
+        <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
       </div>
 
-      {/* Subject */}
-      <div className="col-span-6 text-sm truncate text-foreground/80" data-testid={`text-subject-${email.id}`}>
-        {email.subject || "(No subject)"}
+      {/* Sender with Unread Badge */}
+      <div className="col-span-3 text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
+        {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
+        <span className={isUnread ? "font-semibold" : ""}>{email.from_address}</span>
+      </div>
+
+      {/* Subject with Preview Tooltip */}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="col-span-5 text-sm truncate text-foreground/80 cursor-help" data-testid={`text-subject-${email.id}`}>
+            {email.subject || "(No subject)"}
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-xs dark:bg-slate-900 dark:text-white">
+          <p className="text-xs">{(email.subject || "No subject").substring(0, 100)}</p>
+        </TooltipContent>
+      </Tooltip>
+
+      {/* Timestamp */}
+      <div className="col-span-2 text-xs text-muted-foreground text-right" data-testid={`text-date-${email.id}`}>
+        {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
       </div>
 
       {/* View Button */}
-      <div className="col-span-2 flex justify-end">
+      <div className="col-span-1 flex justify-end">
         <Button
           size="sm"
           variant="ghost"
           onClick={(e) => {
             e.stopPropagation();
-            onClick();
+            handleRowClick();
           }}
           data-testid={`button-view-email-${email.id}`}
         >

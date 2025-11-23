@@ -129,6 +129,27 @@ export default function Home() {
     },
   });
 
+  // Delete selected emails mutation
+  const deleteSelectedMutation = useMutation({
+    mutationFn: async (emailIds: string[]) => {
+      await Promise.all(emailIds.map(id => apiRequest("DELETE", `/api/email/${id}`, {})));
+    },
+    onSuccess: (_, emailIds) => {
+      toast({
+        title: "Emails deleted",
+        description: `${emailIds.length} email${emailIds.length !== 1 ? 's' : ''} have been deleted.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/inbox", currentEmail] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete selected emails. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Generate initial email on mount if domains are available
   useEffect(() => {
     if (domains.length > 0 && !currentEmail) {
@@ -249,6 +270,7 @@ export default function Home() {
               onRefresh={handleRefresh}
               onDeleteAll={handleDeleteAllEmails}
               isDeleting={deleteAllEmailsMutation.isPending}
+              onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
             />
           </div>
         </div>
