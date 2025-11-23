@@ -233,7 +233,7 @@ export function EmailDetailModal({
                   {email.html_content && (
                     <TabsContent value="html" className="m-0 p-6">
                       <div
-                        className="prose prose-sm max-w-none dark:prose-invert"
+                        className="prose prose-sm max-w-none dark:prose-invert rounded-lg dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-6 dark:p-8 dark:shadow-lg"
                         dangerouslySetInnerHTML={{ __html: email.html_content }}
                         data-testid="content-html"
                       />
@@ -241,7 +241,7 @@ export function EmailDetailModal({
                   )}
                   
                   <TabsContent value="text" className="m-0 p-6">
-                    <pre className="whitespace-pre-wrap font-sans text-sm text-foreground" data-testid="content-text">
+                    <pre className="whitespace-pre-wrap font-mono text-sm text-foreground dark:text-slate-100 dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-4 rounded-lg dark:p-6 dark:shadow-md overflow-auto" data-testid="content-text">
                       {email.text_content || "No content"}
                     </pre>
                   </TabsContent>

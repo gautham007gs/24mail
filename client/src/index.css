@@ -110,13 +110,15 @@
     transition: opacity 0.3s ease-in-out;
   }
 
-  /* Dark mode optimized code blocks */
+  /* Dark mode optimized code blocks with syntax highlighting */
   .prose code {
-    @apply dark:bg-slate-900 dark:border-slate-700 dark:text-slate-200;
+    @apply dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100;
+    transition: all 0.3s ease;
   }
 
   .prose pre {
     @apply dark:bg-slate-950 dark:border-slate-800;
+    transition: background-color 0.3s ease;
   }
 
   .dark .prose code::before,
@@ -126,14 +128,84 @@
 
   .dark code {
     @apply bg-slate-900 text-slate-100 border border-slate-700;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
   }
 
   .dark pre {
     @apply bg-slate-950 border border-slate-800;
+    background: linear-gradient(135deg, rgb(5, 15, 23) 0%, rgb(15, 25, 35) 100%);
   }
 
   .dark pre code {
     @apply bg-transparent border-0;
+  }
+
+  /* Syntax highlighting colors for dark mode */
+  .dark .hljs {
+    @apply bg-slate-950;
+    color: #e2e8f0;
+  }
+
+  .dark .hljs-string { @apply text-emerald-400; }
+  .dark .hljs-number { @apply text-orange-400; }
+  .dark .hljs-literal { @apply text-pink-400; }
+  .dark .hljs-attr { @apply text-blue-400; }
+  .dark .hljs-keyword { @apply text-purple-400; }
+  .dark .hljs-title { @apply text-cyan-300; }
+  .dark .hljs-function { @apply text-blue-300; }
+  .dark .hljs-params { @apply text-slate-300; }
+
+  /* Enhanced dark mode email rendering */
+  .dark .prose {
+    @apply text-slate-100;
+  }
+
+  .dark .prose p {
+    @apply text-slate-200;
+  }
+
+  .dark .prose a {
+    @apply text-blue-400 hover:text-blue-300;
+  }
+
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5,
+  .dark .prose h6 {
+    @apply text-slate-100;
+  }
+
+  .dark .prose strong {
+    @apply text-slate-50;
+  }
+
+  .dark .prose blockquote {
+    @apply border-slate-600 text-slate-200;
+  }
+
+  .dark .prose table {
+    @apply border-slate-700;
+  }
+
+  .dark .prose th,
+  .dark .prose td {
+    @apply border-slate-700 text-slate-200;
+  }
+
+  .dark .prose thead {
+    @apply bg-slate-800/50;
+  }
+
+  /* Email HTML content dark mode optimization */
+  .dark [dangerouslySetInnerHTML] {
+    color-scheme: dark;
+  }
+
+  .dark [dangerouslySetInnerHTML] * {
+    @apply dark:text-slate-100 dark:bg-transparent;
   }
 
   /* Neumorphism - Subtle 3D effect for cards */
@@ -216,6 +288,45 @@
   /* Smooth micro-interaction transitions */
   .smooth-transition {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Dark mode theme toggle animations */
+  @keyframes themeToggleSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .theme-toggle-animating {
+    animation: themeToggleSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Smooth color transitions on theme change */
+  * {
+    @apply transition-colors duration-300 ease-out;
+  }
+
+  /* Override for elements that shouldn't animate colors */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  button:active,
+  a:active {
+    @apply transition-none;
+  }
+
+  /* Smooth background transition for page theme change */
+  html,
+  body {
+    @apply transition-colors duration-300 ease-out;
+  }
+
+  /* Email content containers with dark mode enhancement */
+  [class*="prose"] [dangerouslySetInnerHTML] {
+    @apply dark:bg-slate-900/20 dark:rounded-lg dark:p-4 dark:border dark:border-slate-700/30;
   }
 
   /* Consistent spacing utility (4px grid) */
