@@ -25,6 +25,11 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Icon Badges for Unread** - Small dot indicators already present in email rows
 - **Loading State Pulsing** - All skeletons now pulse with smooth 2-second animation
 
+**✅ EXPIRY TIMER FIXES (v3.1):**
+- **Persistent Expiry Timer** - Email expiry time now saved to localStorage, survives browser refresh
+- **Auto-Generate on Expiry** - New email automatically generated when current one expires (15 min)
+- **Fixed Timestamp Logic** - Uses stored millisecond timestamp instead of recalculating on each render
+
 **✅ PREVIOUS FIXES (v2.9):**
 - Email Expiry Timer now counts down correctly (using useRef pattern)
 - QR Modal properly responsive on all screen sizes (256px → 180px, w-11/12 max-w-xs sm:max-w-sm)

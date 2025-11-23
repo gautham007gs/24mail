@@ -28,7 +28,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const [sessionEmailCount, setSessionEmailCount] = useState(0);
   const [expiryTime, setExpiryTime] = useState<string>("");
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const expiryDateRef = useRef<Date | null>(null);
+  const expiryDateRef = useRef<number | null>(null);
 
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
@@ -43,26 +43,36 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
   // Calculate and update expiry time (15 minutes from generation)
   useEffect(() => {
-    // Set expiry date only once when email is generated
-    const expiryDate = new Date();
-    expiryDate.setMinutes(expiryDate.getMinutes() + 15);
-    expiryDateRef.current = expiryDate;
+    const storageKey = `tempmail_expiry_${currentEmail}`;
+    let expiryTimestamp = expiryDateRef.current;
+
+    // Load or create expiry timestamp
+    if (!expiryTimestamp) {
+      const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+      expiryTimestamp = stored ? parseInt(stored, 10) : Date.now() + 15 * 60 * 1000;
+      expiryDateRef.current = expiryTimestamp;
+      if (typeof window !== "undefined") {
+        localStorage.setItem(storageKey, expiryTimestamp.toString());
+      }
+    }
 
     const updateExpiry = () => {
       if (!expiryDateRef.current) return;
       
-      const now = new Date();
-      const diff = expiryDateRef.current.getTime() - now.getTime();
+      const now = Date.now();
+      const diff = expiryDateRef.current - now;
       const minutes = Math.floor(diff / 60000);
       const seconds = Math.floor((diff % 60000) / 1000);
       
-      if (minutes > 0 || seconds > 0) {
+      if (diff > 0) {
         setExpiryTime(`${minutes}m ${seconds}s`);
       } else {
         setExpiryTime("Expired");
         if (expiryTimerRef.current) {
           clearInterval(expiryTimerRef.current);
         }
+        // Auto-generate new email when current one expires
+        handleGenerateWithDomain();
       }
     };
 
@@ -127,7 +137,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const handleGenerateWithDomain = () => {
     const username = generateRandomUsername();
     const domain = selectedDomain || domains[0] || "example.com";
-    onGenerate(`${username}@${domain}`);
+    const newEmail = `${username}@${domain}`;
+    
+    // Reset expiry timer for new email
+    expiryDateRef.current = null;
+    
+    onGenerate(newEmail);
     setSessionEmailCount(prev => prev + 1);
     audioEffects.playPop();
     toast({
