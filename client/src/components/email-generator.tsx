@@ -233,7 +233,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Animated Background */}
-      <Card className="p-4 md:p-8 lg:p-10 space-y-6 md:space-y-8 animate-gradient-bg neomorphic">
+      <Card className="p-4 md:p-8 lg:p-10 space-y-8 md:space-y-10 lg:space-y-12 animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent">
         {/* Section Title */}
         <div className="text-center space-y-2">
           <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
@@ -243,7 +243,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Email Display Box with Timer */}
         <div className="space-y-4">
-          <div className="bg-muted/40 border border-border/50 rounded-lg p-3 md:p-6 lg:p-8">
+          <div className="bg-muted/40 border border-border/50 rounded-lg p-3 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
               <div className="flex-1 min-w-0">
                 <span
@@ -319,7 +319,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               data-testid="button-generate-selected-domain"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="bg-emerald-100 hover:bg-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 dark:text-emerald-300 active-elevate-2"
             >
               Generate
             </Button>
@@ -391,11 +391,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         {/* Desktop: 4-column button grid */}
         <div className="hidden md:grid grid-cols-4 gap-3">
           <Button
-            variant="outline"
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-9 active-elevate-2"
+            className="min-h-9 bg-emerald-600 hover:bg-emerald-700 text-white active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
