@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2 } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -257,13 +257,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   Expires in: <span className="font-semibold">{expiryTime}</span>
                 </p>
               </div>
-              <div className="flex gap-2 shrink-0">
+              <div className="flex gap-2 shrink-0 items-center">
                 <Button
                   size="icon"
                   variant="ghost"
                   onClick={() => setShowQRCode(true)}
                   data-testid="button-qr-code"
-                  className="h-10 w-10"
                   aria-label="Generate QR code to share email"
                 >
                   <QrCode className="h-5 w-5" />
@@ -273,7 +272,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   onClick={handleCopy}
                   disabled={!currentEmail}
                   data-testid="button-copy-email"
-                  className="h-10 w-10 bg-emerald-500 hover:bg-emerald-600 text-white shrink-0 transition-all"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white shrink-0 transition-all"
                   aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                 >
                   {copied ? (
@@ -295,19 +294,23 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Domain Selector - Desktop Only */}
-        <div className="hidden md:block space-y-2">
-          <label htmlFor="domain-select" className="text-sm font-medium text-foreground/70">
-            Choose Domain
+        <div className="hidden md:block space-y-3">
+          <label htmlFor="domain-select" className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <AtSign className="h-4 w-4 text-emerald-500" />
+            Email Domain
           </label>
           <div className="flex gap-2">
             <Select value={selectedDomain} onValueChange={setSelectedDomain}>
-              <SelectTrigger id="domain-select" className="flex-1" data-testid="select-domain">
+              <SelectTrigger id="domain-select" className="flex-1 border-emerald-200/50 dark:border-emerald-800/50" data-testid="select-domain">
                 <SelectValue placeholder="Select a domain" />
               </SelectTrigger>
               <SelectContent>
                 {domains.map((domain) => (
                   <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>
-                    @{domain}
+                    <span className="flex items-center gap-2">
+                      <AtSign className="h-3 w-3 text-emerald-500" />
+                      {domain}
+                    </span>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -316,7 +319,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               data-testid="button-generate-selected-domain"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white min-h-9"
             >
               Generate
             </Button>
@@ -392,7 +395,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-10 md:h-11"
+            className="min-h-9"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
@@ -403,7 +406,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="outline"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="h-10 md:h-11"
+            className="min-h-9"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
@@ -415,7 +418,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="h-10 md:h-11"
+            className="min-h-9"
             aria-label="Generate new email address"
           >
             <RotateCw className="h-4 w-4 mr-2" />
@@ -426,7 +429,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="outline"
             onClick={handleDelete}
             data-testid="button-action-delete"
-            className="h-10 md:h-11 text-destructive hover:text-destructive"
+            className="min-h-9 text-destructive hover:text-destructive"
             aria-label="Delete current email address"
           >
             <Trash2 className="h-4 w-4 mr-2" />

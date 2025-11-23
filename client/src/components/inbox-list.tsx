@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, Checkbox, AlertCircle, Zap } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -53,14 +53,14 @@ export function InboxList({
   const [showClearDialog, setShowClearDialog] = useState(false);
   const [emptyMessage] = useState(() => getRandomMessage("emptyInbox"));
   const [loadingMessage] = useState(() => getRandomMessage("loading"));
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showBulkDialog, setShowBulkDialog] = useState(false);
-  const [unreadIds, setUnreadIds] = useState<Set<string>>(() => {
+  const [unreadIds, setUnreadIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`unread_${currentEmail}`);
-      return new Set(stored ? JSON.parse(stored) : []);
+      return stored ? JSON.parse(stored) : [];
     }
-    return new Set();
+    return [];
   });
 
   // Countdown timer for auto-refresh (5 seconds)
@@ -103,42 +103,39 @@ export function InboxList({
   // Mark email as read when clicked
   const markAsRead = useCallback((emailId: string) => {
     setUnreadIds(prev => {
-      const newSet = new Set(prev);
-      newSet.delete(emailId);
+      const updated = prev.filter(id => id !== emailId);
       if (typeof window !== "undefined") {
-        localStorage.setItem(`unread_${currentEmail}`, JSON.stringify([...newSet]));
+        localStorage.setItem(`unread_${currentEmail}`, JSON.stringify(updated));
       }
-      return newSet;
+      return updated;
     });
   }, [currentEmail]);
 
   // Toggle email selection
   const toggleSelect = useCallback((emailId: string) => {
     setSelectedIds(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(emailId)) {
-        newSet.delete(emailId);
+      if (prev.includes(emailId)) {
+        return prev.filter(id => id !== emailId);
       } else {
-        newSet.add(emailId);
+        return [...prev, emailId];
       }
-      return newSet;
     });
   }, []);
 
   // Select all visible emails
   const toggleSelectAll = useCallback(() => {
-    if (selectedIds.size === filteredEmails.length) {
-      setSelectedIds(new Set());
+    if (selectedIds.length === filteredEmails.length) {
+      setSelectedIds([]);
     } else {
-      setSelectedIds(new Set(filteredEmails.map(e => e.id)));
+      setSelectedIds(filteredEmails.map(e => e.id));
     }
   }, [filteredEmails, selectedIds]);
 
   // Handle bulk delete
   const handleBulkDelete = () => {
-    if (onDeleteSelected && selectedIds.size > 0) {
-      onDeleteSelected(Array.from(selectedIds));
-      setSelectedIds(new Set());
+    if (onDeleteSelected && selectedIds.length > 0) {
+      onDeleteSelected(selectedIds);
+      setSelectedIds([]);
       setShowBulkDialog(false);
     }
   };
@@ -161,7 +158,7 @@ export function InboxList({
   }
 
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
-  const hasSelected = selectedIds.size > 0;
+  const hasSelected = selectedIds.length > 0;
 
   return (
     <div className="mt-12 space-y-4">
@@ -174,7 +171,7 @@ export function InboxList({
           </span>
           {hasSelected && (
             <span className="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-              {selectedIds.size} selected
+              {selectedIds.length} selected
             </span>
           )}
         </div>
@@ -189,7 +186,7 @@ export function InboxList({
               className="text-destructive border-destructive/30 hover:bg-destructive/10"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
-              Delete {selectedIds.size}
+              Delete {selectedIds.length}
             </Button>
           )}
           {emails.length > 0 && (
@@ -279,9 +276,9 @@ export function InboxList({
                 key={email.id}
                 email={email}
                 onClick={() => onEmailClick(email.id)}
-                isSelected={selectedIds.has(email.id)}
+                isSelected={selectedIds.includes(email.id)}
                 onSelect={toggleSelect}
-                isUnread={unreadIds.has(email.id)}
+                isUnread={unreadIds.includes(email.id)}
                 onMarkRead={markAsRead}
               />
             ))
@@ -293,9 +290,9 @@ export function InboxList({
       <AlertDialog open={showBulkDialog} onOpenChange={setShowBulkDialog}>
         <AlertDialogContent data-testid="dialog-bulk-delete">
           <AlertDialogHeader>
-            <AlertDialogTitle data-testid="dialog-bulk-delete-title">Delete {selectedIds.size} email{selectedIds.size !== 1 ? 's' : ''}?</AlertDialogTitle>
+            <AlertDialogTitle data-testid="dialog-bulk-delete-title">Delete {selectedIds.length} email{selectedIds.length !== 1 ? 's' : ''}?</AlertDialogTitle>
             <AlertDialogDescription data-testid="dialog-bulk-delete-description">
-              This will permanently delete the selected email{selectedIds.size !== 1 ? 's' : ''}. 
+              This will permanently delete the selected email{selectedIds.length !== 1 ? 's' : ''}. 
               This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
