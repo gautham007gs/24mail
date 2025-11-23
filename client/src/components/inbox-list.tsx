@@ -166,8 +166,8 @@ export function InboxList({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
-          <span className="text-sm text-muted-foreground" data-testid="text-inbox-count">
-            ({searchQuery ? filteredEmails.length : emails.length})
+          <span className="text-base font-semibold text-foreground bg-primary/10 px-2.5 py-1 rounded-full" data-testid="text-inbox-count">
+            {searchQuery ? filteredEmails.length : emails.length}
           </span>
           {hasSelected && (
             <span className="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
@@ -183,7 +183,7 @@ export function InboxList({
               onClick={() => setShowBulkDialog(true)}
               disabled={isDeleting}
               data-testid="button-delete-selected"
-              className="text-destructive border-destructive/30 hover:bg-destructive/10"
+              className="text-destructive border-destructive/30 hover:bg-destructive/10 active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
               Delete {selectedIds.length}
@@ -196,7 +196,7 @@ export function InboxList({
               onClick={() => setShowClearDialog(true)}
               disabled={isDeleting}
               data-testid="button-delete-all"
-              className="text-destructive border-destructive/30 hover:bg-destructive/10"
+              className="text-destructive border-destructive/30 hover:bg-destructive/10 active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
               <span className="hidden sm:inline">Clear Inbox</span>
