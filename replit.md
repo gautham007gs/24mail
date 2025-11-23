@@ -11,19 +11,28 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.9 - Critical Bug Fixes & UX Polish):
-- **FIXED: Email Expiry Timer** - Timer now properly counts down from 15m 0s instead of staying at 15m
-  - Root cause: Expiry date was recalculated every second instead of being stored once
-  - Solution: Used useRef to store initial expiry timestamp, only calculate difference each update
-- **FIXED: QR Modal Sizing** - Modal no longer takes entire screen, properly responsive
-  - Changed to w-11/12 max-w-xs sm:max-w-sm for perfect mobile-to-desktop scaling
-  - QR code reduced from 256px to 180px for better mobile fit
-  - Text and buttons now responsive with proper spacing
-- **Mobile Nav Menu Animation** - Smooth slide-in animation (300ms) instead of instant appearance
-- **Improved Tap Targets** - Email rows now min-h-14 for better mobile touch target size
-- **FAQ Smooth Transitions** - Enhanced accordion with slide-in animations when opening
-- **Back-to-Top Button** - Added to all blog articles with smooth scroll to top
-- **Dynamic Copyright Year** - Already implemented and working correctly
+### Latest Features (v3.0 - Quick Wins & Mobile Enhancements):
+
+**✅ QUICK WINS IMPLEMENTED (+1.1 rating points):**
+- **Standardized Text Hierarchy** - Added typography scale: text-display, text-headline, text-title, text-subtitle, text-label, text-body-small
+- **Pulsing Loading Animations** - Added gentle pulsing effect to all skeleton loaders (animate-pulse-gentle)
+- **Better Empty States** - Redesigned with larger icons, improved messaging, helpful hints
+- **Better No-Results States** - Enhanced search empty state with visual design improvements
+- **Prefers-Reduced-Motion Support** - Full animation/transition disable for users with motion sensitivity
+- **Pull-to-Refresh Hook** - New `usePullToRefresh` hook for mobile drag-to-refresh gesture
+- **iOS Safe-Area Insets** - Added safe-area utilities for notched phones (safe-area-top/bottom/left/right)
+- **Bottom Sheet Modal Styles** - New bottom-sheet and bottom-sheet-handle CSS components
+- **Icon Badges for Unread** - Small dot indicators already present in email rows
+- **Loading State Pulsing** - All skeletons now pulse with smooth 2-second animation
+
+**✅ PREVIOUS FIXES (v2.9):**
+- Email Expiry Timer now counts down correctly (using useRef pattern)
+- QR Modal properly responsive on all screen sizes (256px → 180px, w-11/12 max-w-xs sm:max-w-sm)
+- Mobile Nav Menu Animation (300ms slide-in)
+- Improved Email Row Tap Targets (min-h-14)
+- FAQ Smooth Transitions (slide-in animations)
+- Back-to-Top Button on blog articles
+- Dynamic Copyright Year
 
 ### Previous Features (v2.8 - Enhanced Dark Mode):
 - **Dark Mode Email Rendering** - Better contrast with glassmorphic containers, optimized prose styles

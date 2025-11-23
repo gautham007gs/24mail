@@ -7,19 +7,19 @@ export function EmailRowSkeleton() {
   return (
     <div className="grid grid-cols-12 gap-4 px-6 py-4 items-center border-l-4 border-transparent">
       <div className="col-span-1">
-        <Skeleton className="h-4 w-4 rounded" />
+        <Skeleton className="h-4 w-4 rounded animate-pulse-gentle" />
       </div>
       <div className="col-span-3 space-y-1">
-        <Skeleton className="h-3 w-24" />
+        <Skeleton className="h-3 w-24 animate-pulse-gentle" />
       </div>
       <div className="col-span-5">
-        <Skeleton className="h-3 w-full" />
+        <Skeleton className="h-3 w-full animate-pulse-gentle" />
       </div>
       <div className="col-span-2">
-        <Skeleton className="h-3 w-16" />
+        <Skeleton className="h-3 w-16 animate-pulse-gentle" />
       </div>
       <div className="col-span-1">
-        <Skeleton className="h-8 w-12" />
+        <Skeleton className="h-8 w-12 animate-pulse-gentle" />
       </div>
     </div>
   );
@@ -32,7 +32,9 @@ export function InboxLoadingSkeleton({ count = 5 }: { count?: number }) {
   return (
     <div className="space-y-2">
       {Array.from({ length: count }).map((_, idx) => (
-        <EmailRowSkeleton key={idx} />
+        <div key={idx} className="animate-pulse-gentle">
+          <EmailRowSkeleton />
+        </div>
       ))}
     </div>
   );

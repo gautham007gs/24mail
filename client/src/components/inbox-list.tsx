@@ -447,31 +447,34 @@ function EmailTableRow({
 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50">
-        <Inbox className="h-8 w-8 text-muted-foreground" />
+    <div className="flex flex-col items-center justify-center py-24 text-center px-4">
+      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted/40 mb-2 animate-pulse-gentle">
+        <Inbox className="h-10 w-10 text-muted-foreground" />
       </div>
-      <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-empty-title">
+      <h3 className="text-title font-semibold text-foreground mt-6" data-testid="text-empty-title">
         {emptyMessage}
       </h3>
-      <p className="mt-2 text-sm text-muted-foreground" data-testid="text-empty-message">
-        Waiting for incoming emails
+      <p className="text-body-small text-muted-foreground mt-3 max-w-xs" data-testid="text-empty-message">
+        Share your email address to start receiving messages
       </p>
+      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground/70">
+        <span>Email will refresh automatically every 5 seconds</span>
+      </div>
     </div>
   );
 }
 
 function NoSearchResults({ query }: { query: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/50">
+    <div className="flex flex-col items-center justify-center py-16 text-center px-4">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/40">
         <Search className="h-8 w-8 text-muted-foreground" />
       </div>
-      <h3 className="mt-4 text-lg font-medium text-foreground" data-testid="text-no-results-title">
+      <h3 className="text-title font-semibold text-foreground mt-4" data-testid="text-no-results-title">
         No emails found
       </h3>
-      <p className="mt-2 text-sm text-muted-foreground max-w-sm" data-testid="text-no-results-message">
-        No emails match "{query}". Try a different search term.
+      <p className="text-body-small text-muted-foreground max-w-sm mt-2" data-testid="text-no-results-message">
+        No emails match <span className="font-mono font-semibold text-foreground/70">"{query}"</span>
       </p>
     </div>
   );
