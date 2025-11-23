@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, Inbox, Share2, Sparkles } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -204,8 +204,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         <div className="fixed top-20 right-4 md:right-6 z-40 slide-in">
           <Card className="px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 border border-emerald-200/50 dark:border-emerald-800/50">
             <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-emerald-500" />
-              Generated: {sessionEmailCount}
+              📧 Generated: {sessionEmailCount}
             </p>
           </Card>
         </div>
@@ -351,77 +350,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
         </div>
       </Card>
-
-      {/* Quick Action Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Inbox Card */}
-        <Card className="p-4 hover-elevate active-elevate-2 transition-all cursor-pointer" data-testid="card-quick-inbox">
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-lg">
-              <Inbox className="h-5 w-5 text-blue-500" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground">Inbox</p>
-              <p className="text-2xl font-bold text-foreground">{emailCount}</p>
-              <p className="text-xs text-muted-foreground mt-1">email{emailCount !== 1 ? "s" : ""}</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* QR Code Card */}
-        <Card 
-          className="p-4 hover-elevate active-elevate-2 transition-all cursor-pointer" 
-          onClick={() => setShowQRCode(true)}
-          data-testid="card-quick-qr"
-        >
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-purple-500/10 rounded-lg">
-              <QrCode className="h-5 w-5 text-purple-500" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground">Share</p>
-              <p className="text-sm font-bold text-foreground">QR Code</p>
-              <p className="text-xs text-muted-foreground mt-1">Easy share</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* Share Card */}
-        <Card 
-          className="p-4 hover-elevate active-elevate-2 transition-all cursor-pointer" 
-          onClick={handleCopy}
-          data-testid="card-quick-share"
-        >
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-pink-500/10 rounded-lg">
-              <Share2 className="h-5 w-5 text-pink-500" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground">Share</p>
-              <p className="text-sm font-bold text-foreground">Email</p>
-              <p className="text-xs text-muted-foreground mt-1">Copy link</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* Generate New Card */}
-        <Card 
-          className="p-4 hover-elevate active-elevate-2 transition-all cursor-pointer" 
-          onClick={handleGenerateWithDomain}
-          data-testid="card-quick-generate"
-        >
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-emerald-500/10 rounded-lg">
-              <Sparkles className="h-5 w-5 text-emerald-500" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground">Create</p>
-              <p className="text-sm font-bold text-foreground">New Email</p>
-              <p className="text-xs text-muted-foreground mt-1">Fresh address</p>
-            </div>
-          </div>
-        </Card>
-      </div>
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
