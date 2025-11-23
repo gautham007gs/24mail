@@ -22,18 +22,27 @@ app.use((req, res, next) => {
   res.set("X-Content-Type-Options", "nosniff");
   res.set("X-Frame-Options", "SAMEORIGIN");
   res.set("X-XSS-Protection", "1; mode=block");
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
+  res.set("X-Powered-By", "TempMail-Shield-Secure");
+  
+  // CORS - Only allow same origin requests
+  const origin = req.headers.origin;
+  if (origin && (origin.includes("localhost") || origin.includes("tempmail.org") || origin.includes("replit.dev"))) {
+    res.set("Access-Control-Allow-Origin", origin);
+  }
+  res.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.set("Access-Control-Max-Age", "3600");
   
   // CSP: Development mode allows inline scripts for React and Vite HMR
   const isDev = process.env.NODE_ENV === "development";
   if (!isDev) {
     // Production CSP is strict
-    const prodCSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com";
+    const prodCSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none';";
     res.set("Content-Security-Policy", prodCSP);
   }
-  // In development, no CSP restrictions to allow Vite HMR and inline scripts
   
   // Set cache headers for blog and static content - SEO friendly
   if (req.path.startsWith("/blog") || req.path === "/" || req.path.startsWith("/success") || req.path.startsWith("/terms") || req.path.startsWith("/privacy") || req.path.startsWith("/browser") || req.path.startsWith("/referral")) {
@@ -47,6 +56,12 @@ app.use((req, res, next) => {
   else if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|json)$/i)) {
     res.set("Cache-Control", "public, max-age=31536000, immutable");
   }
+  
+  // Handle OPTIONS for CORS preflight
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  
   next();
 });
 

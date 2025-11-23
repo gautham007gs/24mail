@@ -12,11 +12,69 @@ const emailParamSchema = z.string().email();
 const emailIdParamSchema = z.string().min(1);
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Rate limiting middleware for API calls
+  // Funny messages for attackers
+  const funnyMessages = [
+    "Bete tera se na hopayega! 🛡️ This server is protected by TEMPMAIL SHIELD",
+    "teri himmat! Rate limited harder than your WiFi password 😄",
+    "Hacker detected! But only amateurs try this. You're banned from cool club 🚫",
+    "SQL injection? More like SQL rejection! 😂",
+    "Brute force attack? Brute force REJECTED! Go touch grass 🌱",
+    "DDoS? More like DoNotAttack-oS! 🤖",
+    "Your IP: flagged, logged, and laughed at 😅",
+    "Keep trying... we're watching! 👀 (jk, we're not, but IP is blocked)",
+    "UNAUTHORIZED ACCESS DETECTED - Sending thoughts and prayers to your keyboard 💀",
+  ];
+
+  const getRandomFunnyMessage = () => funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+
+  // Attack detection tracking
+  const suspiciousActivity = new Map<string, { strikes: number; blockedUntil: number }>();
+  
+  // Rate limiting middleware for API calls with progressive penalties
   const apiLimits = new Map<string, { count: number; resetTime: number }>();
   app.use("/api/", (req, res, next) => {
     const ip = req.ip || "unknown";
     const now = Date.now();
+    
+    // Check if IP is temporarily blocked
+    const blocked = suspiciousActivity.get(ip);
+    if (blocked && now < blocked.blockedUntil) {
+      return res.status(429).json({ 
+        error: getRandomFunnyMessage(),
+        blockedUntil: Math.ceil((blocked.blockedUntil - now) / 1000) + "s"
+      });
+    }
+    
+    // Attack detection: suspicious patterns
+    const suspiciousPatterns = [
+      /union.*select/i,
+      /drop.*table/i,
+      /insert.*into/i,
+      /delete.*from/i,
+      /\/\/|--|\*\//,
+      /<script|javascript:/i,
+      /eval\(|exec\(/i,
+    ];
+    
+    const queryString = JSON.stringify([req.query, req.body, req.params]);
+    const isAttack = suspiciousPatterns.some(pattern => pattern.test(queryString));
+    
+    if (isAttack) {
+      let activity = suspiciousActivity.get(ip) || { strikes: 0, blockedUntil: 0 };
+      activity.strikes++;
+      
+      // Progressive blocking: 1 min, then 5 min, then 30 min
+      const blockDurations = [60000, 300000, 1800000];
+      const blockDuration = blockDurations[Math.min(activity.strikes - 1, blockDurations.length - 1)];
+      activity.blockedUntil = now + blockDuration;
+      
+      suspiciousActivity.set(ip, activity);
+      
+      console.warn(`[SECURITY] Attack detected from ${ip} (strike ${activity.strikes}): ${queryString.substring(0, 100)}`);
+      return res.status(403).json({ error: getRandomFunnyMessage() });
+    }
+    
+    // Regular rate limiting: 100 requests per minute
     const limit = apiLimits.get(ip) || { count: 0, resetTime: now + 60000 };
     
     if (now > limit.resetTime) {
@@ -27,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       apiLimits.set(ip, limit);
       next();
     } else {
-      res.status(429).json({ error: "Too many requests. Please try again later." });
+      return res.status(429).json({ error: getRandomFunnyMessage() });
     }
   });
 
