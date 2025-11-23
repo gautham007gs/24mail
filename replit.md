@@ -11,12 +11,20 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.1):
+### Latest Features (v2.2):
+- **QR Modal Share Buttons** - WhatsApp, Telegram, Twitter direct sharing from QR screen
+- **Auto-Generated TOC** - Table of contents sidebar for long articles (desktop view)
+- **Article Share Buttons** - Share on Twitter, WhatsApp, Telegram, or copy link
+- **Author Bio Section** - Expertise badges and detailed author information at article end
+- **Dark Mode Code Blocks** - Optimized syntax highlighting for better readability
+- **Article Navigation** - Improved sidebar sticky positioning with smooth scrolling
+
+### Previous Features (v2.1):
 - **Unread Badge System** - Visual dot indicator for unread emails with bold sender name
 - **Email Preview Tooltip** - Hover on subject to see first 100 characters
 - **Swipe to Delete (Mobile)** - Swipe left on email row to select and delete
 - **Bulk Actions** - Multi-select with checkboxes, bulk delete dialog
-- **Conversation Threading** - Emails grouped by sender (ready for grouping display)
+- **Conversation Threading** - Emails grouped by sender
 - **Dark Mode Email Rendering** - Enhanced contrast with `dark:prose-invert`
 - **Search & Filter** - Filter by sender, subject with real-time results
 - **Unread Tracking** - Persisted in localStorage per email address

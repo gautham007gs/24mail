@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -10,6 +10,7 @@ import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
 import { triggerConfetti } from "@/lib/confetti";
+import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
 import { type Domain } from "@shared/schema";
 
 interface EmailGeneratorProps {
@@ -374,6 +375,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <p className="font-mono text-sm font-semibold text-foreground break-all">{currentEmail}</p>
             </div>
             
+            {/* Share Buttons */}
             <div className="w-full space-y-2">
               <Button
                 onClick={handleCopy}
@@ -402,8 +404,55 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 className="w-full"
                 data-testid="button-copy-link-qr"
               >
+                <Share2 className="h-4 w-4 mr-2" />
                 Copy Share Link
               </Button>
+            </div>
+
+            {/* Social Share Buttons */}
+            <div className="w-full space-y-1.5">
+              <p className="text-xs text-muted-foreground text-center">Share on social media:</p>
+              <div className="grid grid-cols-3 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => shareArticleOn('whatsapp', {
+                    title: 'Check out TempMail',
+                    url: shareUrl,
+                    summary: 'Get your free temporary email for instant privacy protection',
+                  })}
+                  data-testid="button-share-whatsapp-qr"
+                  className="text-xs"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => shareArticleOn('telegram', {
+                    title: 'Check out TempMail',
+                    url: shareUrl,
+                    summary: 'Get your free temporary email for instant privacy protection',
+                  })}
+                  data-testid="button-share-telegram-qr"
+                  className="text-xs"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => shareArticleOn('twitter', {
+                    title: 'Check out TempMail',
+                    url: shareUrl,
+                    summary: 'Free temporary email for instant privacy protection',
+                  })}
+                  data-testid="button-share-twitter-qr"
+                  className="text-xs"
+                >
+                  <Share2 className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
         </DialogContent>

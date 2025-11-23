@@ -1,23 +1,34 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, Calendar, Clock, User, ChevronRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
 import { getPostBySlug, getRelatedPosts, faqItems } from "@/lib/blog-data";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
+import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios } from "@/lib/article-utils";
+import { useToast } from "@/hooks/use-toast";
 
 export default function BlogPost() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug as string;
+  const { toast } = useToast();
   
   const post = getPostBySlug(slug);
   const relatedPosts = post ? getRelatedPosts(slug) : [];
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+  const [toc, setToc] = useState<ReturnType<typeof generateTableOfContents>>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  useEffect(() => {
+    if (post) {
+      const tableOfContents = generateTableOfContents(post.content);
+      setToc(tableOfContents);
+    }
+  }, [post]);
 
   if (!post) {
     return (
@@ -73,15 +84,40 @@ export default function BlogPost() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <div className="min-h-screen bg-background">
-        <div className="border-b border-border/50">
-          <div className="mx-auto max-w-4xl px-4 md:px-6 py-8">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Blog
-            </Link>
+      <div className="min-h-screen bg-background flex flex-col lg:flex-row">
+        {/* TOC Sidebar */}
+        {toc.length > 0 && (
+          <aside className="hidden lg:block lg:w-64 border-r border-border/50 bg-background/50 sticky top-0 h-screen overflow-y-auto">
+            <div className="p-6 space-y-4">
+              <h3 className="font-bold text-foreground text-sm">Table of Contents</h3>
+              <nav className="space-y-2">
+                {toc.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={`block text-sm transition-colors no-underline ${
+                      item.level === 2
+                        ? 'text-foreground hover:text-primary'
+                        : 'text-muted-foreground hover:text-foreground ml-4'
+                    }`}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        )}
+
+        <div className="flex-1">
+          <div className="border-b border-border/50">
+            <div className="mx-auto max-w-4xl px-4 md:px-6 py-8">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Blog
+              </Link>
+            </div>
           </div>
-        </div>
 
         {/* CTA Banner */}
         <div className="border-b border-border/50 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10">
@@ -172,13 +208,107 @@ export default function BlogPost() {
           </section>
 
           {/* Keywords */}
-          <div className="flex flex-wrap gap-2 mb-12">
+          <div className="flex flex-wrap gap-2 mb-8">
             {post.keywords.map((keyword) => (
               <span key={keyword} className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full">
                 #{keyword}
               </span>
             ))}
           </div>
+
+          {/* Share Article Section */}
+          <div className="py-8 border-y border-border/50 mb-12">
+            <h3 className="text-lg font-bold text-foreground mb-4">Share This Article</h3>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  shareArticleOn('twitter', {
+                    title: post.title,
+                    url,
+                    summary: post.metaDescription,
+                  });
+                }}
+                data-testid="button-share-twitter-article"
+              >
+                <Share2 className="h-4 w-4 mr-2" />
+                Share on Twitter
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  shareArticleOn('whatsapp', {
+                    title: post.title,
+                    url,
+                    summary: post.metaDescription,
+                  });
+                }}
+                data-testid="button-share-whatsapp-article"
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Share on WhatsApp
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  shareArticleOn('telegram', {
+                    title: post.title,
+                    url,
+                    summary: post.metaDescription,
+                  });
+                }}
+                data-testid="button-share-telegram-article"
+              >
+                <Send className="h-4 w-4 mr-2" />
+                Share on Telegram
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  const success = await copyArticleLink(url);
+                  toast({
+                    title: success ? "Copied!" : "Failed to copy",
+                    description: success ? "Article link copied to clipboard" : "Could not copy link",
+                  });
+                }}
+                data-testid="button-copy-article-link"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                Copy Link
+              </Button>
+            </div>
+          </div>
+
+          {/* Author Bio */}
+          {authorBios[post.author] && (
+            <div className="mb-12 p-6 bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg">
+              <div className="flex gap-4 items-start">
+                <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center shrink-0 flex-shrink-0">
+                  <User className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-foreground text-lg mb-1">About the Author</h3>
+                  <p className="font-semibold text-foreground mb-2">{authorBios[post.author].name}</p>
+                  <p className="text-sm text-foreground/80 mb-3">{authorBios[post.author].bio}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {authorBios[post.author].expertise.map((skill) => (
+                      <span key={skill} className="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
@@ -218,6 +348,7 @@ export default function BlogPost() {
         </article>
 
         <Footer />
+        </div>
       </div>
     </>
   );

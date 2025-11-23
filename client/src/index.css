@@ -90,6 +90,32 @@
   .swipe-row {
     transition: transform 0.2s ease-out;
   }
+
+  /* Dark mode optimized code blocks */
+  .prose code {
+    @apply dark:bg-slate-900 dark:border-slate-700 dark:text-slate-200;
+  }
+
+  .prose pre {
+    @apply dark:bg-slate-950 dark:border-slate-800;
+  }
+
+  .dark .prose code::before,
+  .dark .prose code::after {
+    content: '';
+  }
+
+  .dark code {
+    @apply bg-slate-900 text-slate-100 border border-slate-700;
+  }
+
+  .dark pre {
+    @apply bg-slate-950 border border-slate-800;
+  }
+
+  .dark pre code {
+    @apply bg-transparent border-0;
+  }
 }
 
 /* LIGHT MODE */
