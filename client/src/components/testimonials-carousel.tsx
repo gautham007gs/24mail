@@ -18,6 +18,10 @@ export function TestimonialsCarousel() {
     return () => clearInterval(interval);
   }, [autoPlay]);
 
+  // Announce slide changes to screen readers
+  const slideAnnouncementId = `testimonial-slide-${current}`;
+  const testimonial = testimonials[current];
+
   const next = () => {
     setCurrent((prev) => (prev + 1) % testimonials.length);
     setAutoPlay(false);
@@ -28,11 +32,15 @@ export function TestimonialsCarousel() {
     setAutoPlay(false);
   };
 
-  const testimonial = testimonials[current];
-
   return (
     <div className="w-full">
-      <Card className="p-8 md:p-12 neomorphic relative overflow-hidden">
+      <Card 
+        className="p-8 md:p-12 neomorphic relative overflow-hidden"
+        role="region"
+        aria-label="User testimonials carousel"
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {/* Quote Icon Background */}
         <div className="absolute top-0 right-0 opacity-5">
           <Quote className="h-32 w-32" />
@@ -75,18 +83,20 @@ export function TestimonialsCarousel() {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-8">
+        <div className="flex items-center justify-between mt-8" role="group" aria-label="Testimonial carousel controls">
           <Button
             variant="outline"
             size="icon"
             onClick={prev}
             data-testid="button-prev-testimonial"
             className="button-press"
+            aria-label="Previous testimonial"
+            aria-controls={slideAnnouncementId}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2" role="group" aria-label="Testimonial selector">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
@@ -98,7 +108,8 @@ export function TestimonialsCarousel() {
                   idx === current ? 'bg-primary w-6' : 'bg-primary/30 w-2'
                 }`}
                 data-testid={`dot-${idx}`}
-                aria-label={`Go to testimonial ${idx + 1}`}
+                aria-label={`Go to testimonial ${idx + 1} of ${testimonials.length}`}
+                aria-current={idx === current ? "true" : "false"}
               />
             ))}
           </div>
@@ -109,15 +120,17 @@ export function TestimonialsCarousel() {
             onClick={next}
             data-testid="button-next-testimonial"
             className="button-press"
+            aria-label="Next testimonial"
+            aria-controls={slideAnnouncementId}
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
 
-        {/* Auto-play indicator */}
+        {/* Auto-play indicator and screen reader announcement */}
         <div className="text-center mt-4">
-          <p className="text-xs text-muted-foreground">
-            {current + 1} / {testimonials.length}
+          <p className="text-xs text-muted-foreground" id={slideAnnouncementId}>
+            Testimonial {current + 1} of {testimonials.length}: {testimonial.name} from {testimonial.company}
           </p>
         </div>
       </Card>

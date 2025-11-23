@@ -108,16 +108,24 @@ function AnimatedCounter({ target }: { target: string }) {
 
 export function StatsCounter() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div 
+      className="grid grid-cols-2 md:grid-cols-4 gap-4"
+      role="region"
+      aria-label="TempMail statistics and metrics"
+    >
       {stats.map((stat) => (
         <Card
           key={stat.label}
           className="p-6 text-center hover-elevate transition-all neomorphic"
           data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
+          role="article"
+          aria-label={`${stat.label}: ${stat.value} (${stat.suffix})`}
         >
           <div
             className="text-3xl md:text-4xl font-bold text-primary mb-2"
             data-testid={`stat-value-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
+            aria-live="polite"
+            aria-label={`Animated counter: ${stat.value}`}
           >
             <AnimatedCounter target={stat.value} />
           </div>

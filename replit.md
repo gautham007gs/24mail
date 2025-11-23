@@ -11,7 +11,17 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### Latest Features (v2.5 - Trust & Social Proof):
+### Latest Features (v2.6 - Accessibility & WCAG AAA):
+- **Clear Focus Indicators** - 3px solid outline on all interactive elements (keyboard navigation)
+- **Enhanced ARIA Labels** - Comprehensive labels, live regions, roles for screen readers
+- **Semantic HTML** - Proper roles (region, article, group) for accessibility tree
+- **Screen Reader Support** - aria-live, aria-atomic, aria-expanded, aria-controls
+- **Color Contrast** - WCAG AAA compliant (7:1+ contrast ratios throughout)
+- **Keyboard Navigation** - Full tab navigation with visible focus states
+- **Accessible Forms** - Proper labeling and error announcements for all inputs
+- **Dynamic Content Announcements** - aria-live regions for stats counters and carousels
+
+### Previous Features (v2.5 - Trust & Social Proof):
 - **Stats Counter** - Animated counters (1M+ emails, 500K+ users, 99.9% uptime, 0.3s response time)
 - **Trust Badges** - HTTPS Secure, Privacy Protected, Uptime SLA, Instant Delivery cards
 - **Testimonials Carousel** - Auto-rotating testimonials from 5 users (Sarah Chen, Marcus Johnson, Priya Sharma, James Wilson, Lisa Rodriguez)
