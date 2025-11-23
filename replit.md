@@ -2,11 +2,12 @@
 
 ## Overview
 
-This is a temporary email service application that allows users to generate disposable email addresses and receive emails without registration. The application provides a simple, privacy-focused interface where users can instantly create temporary email addresses, view incoming messages, and read email content. Built with a modern tech stack, it follows Apple HIG-inspired design principles emphasizing simplicity, clarity, and accessibility.
+This is a temporary email service application that allows users to generate disposable email addresses and receive emails without registration. The application provides a simple, privacy-focused interface where users can instantly create temporary email addresses, view incoming messages, and read email content. Built with a modern tech stack, it follows Apple HIG-inspired design principles emphasizing simplicity, clarity, and accessibility with engaging animations and smooth interactions.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Preferred features: Email sharing, animations, mobile-first design, Gen-Z friendly UI.
 
 ## System Architecture
 
@@ -26,12 +27,16 @@ Preferred communication style: Simple, everyday language.
 - Generous spacing using Tailwind's spacing units (2, 4, 6, 8)
 - Maximum content width of `max-w-4xl` for readability
 - Typography using Inter for UI and JetBrains Mono for email addresses
+- Smooth animations: animated gradient backgrounds, confetti on copy, fade-in-up effects, pulse animations
+- Mobile-first responsive design with optimized touch targets
+- Gen-Z friendly aesthetics with vibrant color scheme (emerald, blue, purple, pink)
 
 **Key Frontend Components**:
-- `EmailGenerator`: Displays current temporary email and provides copy functionality with domain selection
+- `EmailGenerator`: Displays current temporary email with animated background gradient, copy functionality, domain selector dropdown, expiry timer (15 minutes), session email counter, quick action cards (Inbox count, QR Code, Share, Generate New), and confetti animation on copy
 - `InboxList`: Shows list of received emails with refresh and delete capabilities
-- `EmailDetailModal`: Modal dialog for viewing full email content with HTML/text tabs
-- `Header`: Application branding and navigation
+- `EmailDetailModal`: Modal dialog for viewing full email content with HTML/text tabs, and email sharing options
+- `Header`: Responsive mobile-first navigation with sticky positioning, hamburger menu for mobile, theme toggle
+- `confetti.ts`: Utility for triggering colorful confetti animation on copy action
 
 ### Backend Architecture
 

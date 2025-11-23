@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animated Background Gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Font optimization: Use system fonts as fallback immediately */
 @layer base {
   body {
@@ -9,6 +53,38 @@
   }
   code, pre {
     font-family: var(--font-mono);
+  }
+}
+
+/* Animated Gradient Utility */
+@layer components {
+  .animate-gradient-bg {
+    @apply relative overflow-hidden;
+  }
+
+  .animate-gradient-bg::before {
+    content: '';
+    @apply absolute inset-0 -z-10;
+    background: linear-gradient(-45deg, 
+      rgb(16, 185, 129, 0.1), 
+      rgb(59, 130, 246, 0.1),
+      rgb(139, 92, 246, 0.1),
+      rgb(16, 185, 129, 0.1)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .slide-in {
+    animation: slideIn 0.4s ease-out;
   }
 }
 

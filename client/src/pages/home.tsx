@@ -236,6 +236,7 @@ export default function Home() {
             currentEmail={currentEmail}
             domains={domains}
             onGenerate={handleGenerateEmail}
+            emailCount={emails.length}
           />
 
           {/* Inbox Section */}
