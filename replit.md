@@ -4,6 +4,14 @@
 
 This project is a temporary email service application providing disposable email addresses. It enables instant email creation, message viewing, and content reading without registration, prioritizing privacy and a simple user experience. The application's design adheres to Apple HIG principles, focusing on accessibility, animations, smooth interactions, and a Gen-Z friendly aesthetic. The business vision is to offer a reliable, user-friendly disposable email solution with a premium feel, aiming for broad market adoption due to its privacy features and intuitive design.
 
+## Recent Updates (v3.32)
+
+**✅ Premium Features Added:**
+- **Home Page SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, JSON-LD structured data
+- **Share Email Links**: Generate unique shareable URLs with email + subject
+- **Download Emails**: Export emails as formatted HTML files
+- **Improved UI**: New share link and download buttons in email toolbar
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

@@ -1,10 +1,10 @@
 import { formatDistanceToNow } from "date-fns";
-import { Trash2, Paperclip, ChevronUp, Copy, Share2, MessageCircle } from "lucide-react";
+import { Trash2, Paperclip, ChevronUp, Copy, Share2, MessageCircle, Link as LinkIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { shareToWhatsApp, shareToTwitter, shareToTelegram, copyToClipboard } from "@/lib/email-share";
+import { shareToWhatsApp, shareToTwitter, shareToTelegram, copyToClipboard, copyEmailShareLink, downloadEmailAsPDF } from "@/lib/email-share";
 import { type Email } from "@shared/schema";
 import { useState } from "react";
 
@@ -90,6 +90,30 @@ export function InlineEmailReader({
     });
   };
 
+  const handleShareEmailLink = async () => {
+    if (!email) return;
+    const result = await copyEmailShareLink(email.to_address, email.subject || "(No subject)");
+    toast({ 
+      title: result.success ? "Link Copied" : "Failed", 
+      description: result.message 
+    });
+  };
+
+  const handleDownloadPDF = () => {
+    if (!email) return;
+    const result = downloadEmailAsPDF({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+    toast({ 
+      title: result.success ? "Downloaded" : "Failed", 
+      description: result.message 
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="col-span-full bg-background border-t border-border/50 px-3 sm:px-4 py-1 space-y-1">
@@ -131,7 +155,7 @@ export function InlineEmailReader({
         </div>
         
         {/* Action buttons - copy, share, delete, close */}
-        <div className="flex gap-0.5 flex-shrink-0">
+        <div className="flex gap-0.5 flex-shrink-0 flex-wrap">
           <Button
             size="sm"
             variant="ghost"
@@ -141,6 +165,26 @@ export function InlineEmailReader({
             title="Copy email"
           >
             <Copy className="h-2.5 w-2.5" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={handleShareEmailLink}
+            data-testid="button-inline-share-link"
+            className="text-xs h-5 px-1.5"
+            title="Copy share link"
+          >
+            <LinkIcon className="h-2.5 w-2.5" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={handleDownloadPDF}
+            data-testid="button-inline-download"
+            className="text-xs h-5 px-1.5"
+            title="Download email"
+          >
+            <Download className="h-2.5 w-2.5" />
           </Button>
           <Button
             size="sm"
