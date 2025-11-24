@@ -495,7 +495,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 {/* QR Code Box - Responsive Sizing */}
-                <div className="relative bg-white dark:bg-white/95 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
+                <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
                   <div className="animate-in fade-in duration-300">
                     <QRCode
                       value={shareUrl}
@@ -540,7 +540,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
-                className="w-full h-10 sm:h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
+                className="w-full h-10 sm:h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 hover:from-emerald-700 hover:to-emerald-800 dark:hover:from-emerald-600 dark:hover:to-emerald-700 text-white dark:text-emerald-50 font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
                 data-testid="button-copy-email-qr"
               >
                 <Copy className="h-4 w-4 mr-2" />

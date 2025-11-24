@@ -141,7 +141,7 @@ export default function Blog() {
                 <p className="text-sm md:text-base text-muted-foreground">Get your free temporary email address instantly. No signup required.</p>
               </div>
               <Link href="/" className="flex-shrink-0">
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-get-email-cta">
+                <Button className="bg-emerald-600 dark:bg-emerald-700 hover:bg-emerald-700 dark:hover:bg-emerald-800 text-white dark:text-emerald-50 font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-get-email-cta">
                   Get Free Email
                 </Button>
               </Link>

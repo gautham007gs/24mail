@@ -132,7 +132,7 @@ export default function SuccessStories() {
                 {/* Avatar & Name */}
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`h-12 w-12 rounded-full bg-gradient-to-br ${story.bgColor} flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-white font-bold text-sm">{story.avatar}</span>
+                    <span className="text-white dark:text-slate-100 font-bold text-sm">{story.avatar}</span>
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground">{story.name}</h3>
