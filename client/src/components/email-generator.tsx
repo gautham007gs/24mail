@@ -3,7 +3,7 @@ import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, 
 import { SiWhatsapp, SiTelegram, SiX } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import QRCode from "react-qr-code";
 import { useToast } from "@/hooks/use-toast";
@@ -484,9 +484,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
                 Share Your Email
               </DialogTitle>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <DialogDescription className="text-xs sm:text-sm text-muted-foreground">
                 Let others reach you instantly
-              </p>
+              </DialogDescription>
             </DialogHeader>
           </div>
 

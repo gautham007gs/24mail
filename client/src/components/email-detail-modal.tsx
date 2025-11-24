@@ -1,7 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { X, Trash2, Paperclip, Share2, MessageCircle, Mail, Copy, ExternalLink, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -127,6 +127,7 @@ export function EmailDetailModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[90vh] p-0 glassmorphism" data-testid="modal-email-detail">
+        <DialogDescription className="sr-only">Email details and content</DialogDescription>
         {isLoading ? (
           <LoadingState />
         ) : email ? (

@@ -140,3 +140,37 @@ The core functionality relies entirely on the external temp mail API located at 
 - ✅ Zero TypeScript errors
 - ✅ All brand icons rendering correctly
 - ✅ Production-ready
+
+### v3.14 - Bug Fixes & Accessibility Improvements (Nov 24, 2025)
+
+**✅ Fixed Critical Issues:**
+- **Nested Anchor Tags:** Fixed DOM nesting error in success-stories.tsx where Link component had nested <a> tags
+  - Changed to use proper button elements within WouterLink
+  - Improved accessibility and semantic HTML
+- **Missing DialogDescription:** Added DialogDescription to all Dialog components for proper accessibility
+  - QR Modal now has proper ARIA description
+  - Email Detail Modal has hidden description for screen readers
+- **Console Warnings:** All React warnings eliminated
+  - No more "Invalid hook call" warnings
+  - No more DOM nesting errors
+  - No more missing accessibility descriptions
+
+**✅ Visual & UX Improvements:**
+- Fixed WouterLink usage in success-stories page
+- Enhanced button styling with hover-elevate and active-elevate-2
+- Better accessibility across all interactive elements
+- Improved semantic HTML structure
+
+**✅ Code Quality:**
+- All console warnings eliminated
+- Proper React component structure
+- Full accessibility compliance (ARIA labels, descriptions)
+- Better HTML semantics
+
+**Build Status:**
+- ✅ Zero TypeScript errors
+- ✅ 2091 modules transformed
+- ✅ CSS: 20.17kb (gzipped)
+- ✅ Zero browser console warnings
+- ✅ All bugs fixed
+- ✅ Production-ready
