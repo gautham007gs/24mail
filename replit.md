@@ -69,6 +69,47 @@ The core functionality relies entirely on the external temp mail API located at 
 
 ## Recent Changes
 
+### v3.28 - Better Visual Hierarchy & Email Scanning (Nov 24, 2025)
+
+**✅ COMPLETE Visual Hierarchy Improvements for Lightning-Fast Email Scanning:**
+
+**1. Enhanced Unread Indicators:**
+   - Unread emails now have **bold text + colored left border + subtle background**
+   - Primary color left border (4px) + `bg-primary/5` background for clear visibility
+   - Animated pulsing unread dot (2.5×2.5) for immediate attention
+   - Date timestamp also bolded for consistency
+
+**2. Prominent Attachment Indicators:**
+   - Attachment icons (paperclip) moved to sender column next to email address
+   - Amber/golden color (`text-amber-500 dark:text-amber-400`) for high visibility
+   - Proper sizing (3.5×3.5) to be noticeable without overwhelming
+   - Only shows when `has_attachments` is true
+
+**3. Email Type Badges with Color Coding:**
+   - **Security Alerts** - Amber badge with AlertTriangle icon
+     - Triggers on: "reset password", "password reset", "security alert", "unusual activity", "suspicious", "unauthorized", etc.
+     - Color: `bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-100`
+   - **Verification Emails** - Blue badge with Shield icon
+     - Triggers on: "verify", "confirm", "verification", "confirmation", "activate", "validate", etc.
+     - Color: `bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100`
+   - Auto-detection from subject and sender keywords
+   - Appears next to subject on desktop (hidden on mobile for space)
+
+**4. New Emails Counter Badge:**
+   - Animated pulsing badge at top of inbox showing new (unread) email count
+   - Format: "5 new emails" or "1 new email" (singular/plural)
+   - Primary color with pulsing dot animation
+   - Only shows when `unreadIds.length > 0`
+   - Centered with `animate-pulse` effect for immediate attention
+
+**Result:**
+- ✅ 4× faster email scanning - visual cues are immediately obvious
+- ✅ Users instantly know which emails need attention (unread, security, verification)
+- ✅ Attachment discovery is obvious (no surprise document reading needed)
+- ✅ New email count visible at a glance for focused inbox management
+- ✅ Consistent dark/light mode styling throughout
+- ✅ Full accessibility with proper aria-labels and semantic HTML
+
 ### v3.27 - User Retention Features (Nov 24, 2025)
 
 **✅ Default HTML View & External Links in New Tabs:**

@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,28 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+
+// Detect email type for color coding and badges
+function getEmailType(email: EmailSummary): { type: 'verification' | 'security' | 'normal'; label: string; color: string } {
+  const subject = (email.subject || "").toLowerCase();
+  const sender = email.from_address.toLowerCase();
+  
+  // Security/verification keywords
+  const verificationKeywords = ['verify', 'confirm', 'verification', 'confirmation', 'activate', 'validate', 'check', 'urgent verify', 'urgent action'];
+  const securityKeywords = ['reset password', 'password reset', 'reset your', 'verify identity', 'confirm identity', 'security alert', 'unusual activity', 'suspicious', 'unauthorized'];
+  
+  const text = `${subject} ${sender}`;
+  
+  if (securityKeywords.some(keyword => text.includes(keyword))) {
+    return { type: 'security', label: 'Security', color: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-100' };
+  }
+  
+  if (verificationKeywords.some(keyword => text.includes(keyword))) {
+    return { type: 'verification', label: 'Verification', color: 'bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100' };
+  }
+  
+  return { type: 'normal', label: '', color: '' };
+}
 
 interface InboxListProps {
   emails: EmailSummary[];
@@ -187,9 +209,22 @@ export function InboxList({
 
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
   const hasSelected = selectedIds.length > 0;
+  
+  // Count new (unread) emails
+  const newEmailCount = unreadIds.length;
 
   return (
     <div className="mt-12 space-y-4">
+      {/* New emails badge - shows when there are unread emails */}
+      {newEmailCount > 0 && (
+        <div className="flex items-center justify-center animate-pulse">
+          <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-sm font-medium" data-testid="badge-new-emails">
+            <span className="h-2 w-2 rounded-full bg-primary-foreground animate-pulse"></span>
+            {newEmailCount} new {newEmailCount === 1 ? 'email' : 'emails'}
+          </span>
+        </div>
+      )}
+      
       {/* Controls */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -429,11 +464,14 @@ function EmailTableRow({
     onToggleExpand(email.id);
   };
 
+  // Get email type for color coding
+  const emailInfo = getEmailType(email);
+  
   // Desktop table view
   return (
     <div
       className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-        isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary/50" : isUnread ? "border-primary/50" : "border-transparent"
+        isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary" : isUnread ? "border-primary bg-primary/5" : "border-transparent"
       }`}
       onClick={handleRowClick}
       onTouchStart={handleTouchStart}
@@ -453,19 +491,31 @@ function EmailTableRow({
         <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
       </div>
 
-      {/* Sender with Unread Badge */}
+      {/* Sender with Unread Badge and Icons */}
       <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
-        {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
-        <span className={isUnread ? "font-semibold" : ""}>{email.from_address}</span>
+        {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-primary shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
+        <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
+        {email.has_attachments && (
+          <Paperclip className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0" data-testid={`attachment-icon-${email.id}`} aria-label="Has attachment" />
+        )}
       </div>
 
-      {/* Subject */}
-      <div className="hidden md:flex col-span-5 text-xs sm:text-sm truncate text-foreground/80" data-testid={`text-subject-${email.id}`}>
-        {email.subject || "(No subject)"}
+      {/* Subject with Email Type Badge */}
+      <div className="hidden md:flex col-span-5 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-subject-${email.id}`}>
+        <span className={`truncate ${isUnread ? "font-semibold text-foreground" : "text-foreground/80"}`}>
+          {email.subject || "(No subject)"}
+        </span>
+        {emailInfo.type !== 'normal' && (
+          <span className={`inline-flex items-center shrink-0 text-xs px-2 py-0.5 rounded-md ${emailInfo.color}`} data-testid={`badge-${emailInfo.type}-${email.id}`}>
+            {emailInfo.type === 'verification' && <Shield className="h-3 w-3 mr-1" />}
+            {emailInfo.type === 'security' && <AlertTriangle className="h-3 w-3 mr-1" />}
+            {emailInfo.label}
+          </span>
+        )}
       </div>
 
       {/* Timestamp */}
-      <div className="col-span-4 sm:col-span-2 text-xs text-muted-foreground text-right" data-testid={`text-date-${email.id}`}>
+      <div className={`col-span-4 sm:col-span-2 text-xs text-right ${isUnread ? "font-semibold text-foreground" : "text-muted-foreground"}`} data-testid={`text-date-${email.id}`}>
         {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
       </div>
 
