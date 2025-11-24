@@ -228,12 +228,12 @@
     @apply bg-slate-800/50;
   }
 
-  /* Email HTML content dark mode optimization */
-  .dark [dangerouslySetInnerHTML] {
+  /* Email HTML content dark mode optimization - Scoped to prevent cascading */
+  .dark .inline-email-html {
     color-scheme: dark;
   }
 
-  .dark [dangerouslySetInnerHTML] * {
+  .dark .inline-email-html * {
     @apply dark:text-slate-100 dark:bg-transparent;
   }
 

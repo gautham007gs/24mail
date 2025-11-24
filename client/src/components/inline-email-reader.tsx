@@ -186,13 +186,15 @@ export function InlineEmailReader({
           {email.html_content && (
             <TabsContent value="html" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
               <div
-                className="max-w-full text-xs leading-tight text-foreground/90 [&>*]:my-0 [&>p]:my-0.5 [&>h1]:text-sm [&>h2]:text-sm [&>h3]:text-xs [&>h4]:text-xs [&>a]:text-primary [&>a]:underline [&>code]:bg-muted [&>code]:px-1 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-muted [&>pre]:p-2 [&>pre]:overflow-x-auto"
+                className="inline-email-html max-w-full text-xs leading-tight text-foreground dark:text-foreground [&>*]:my-0 [&>p]:my-0.5 [&>p]:text-foreground dark:[&>p]:text-foreground [&>h1]:text-sm [&>h1]:text-foreground dark:[&>h1]:text-foreground [&>h2]:text-sm [&>h2]:text-foreground dark:[&>h2]:text-foreground [&>h3]:text-xs [&>h3]:text-foreground dark:[&>h3]:text-foreground [&>h4]:text-xs [&>h4]:text-foreground dark:[&>h4]:text-foreground [&>a]:text-primary [&>a]:underline [&>code]:bg-muted [&>code]:text-foreground dark:[&>code]:text-foreground [&>code]:px-1 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-muted [&>pre]:text-foreground dark:[&>pre]:text-foreground [&>pre]:p-2 [&>pre]:overflow-x-auto [&>strong]:text-foreground dark:[&>strong]:text-foreground"
                 dangerouslySetInnerHTML={{ __html: email.html_content }}
                 data-testid="content-inline-html"
                 style={{
                   wordWrap: 'break-word',
                   overflowWrap: 'break-word',
-                  wordBreak: 'break-word'
+                  wordBreak: 'break-word',
+                  color: 'hsl(var(--foreground))',
+                  backgroundColor: 'hsl(var(--background))'
                 }}
               />
             </TabsContent>
@@ -201,8 +203,12 @@ export function InlineEmailReader({
           {email.text_content && (
             <TabsContent value="text" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
               <pre
-                className="font-sans text-xs leading-tight text-foreground/90 whitespace-pre-wrap break-words m-0"
+                className="font-sans text-xs leading-tight text-foreground whitespace-pre-wrap break-words m-0"
                 data-testid="content-inline-text"
+                style={{
+                  color: 'hsl(var(--foreground))',
+                  backgroundColor: 'hsl(var(--background))'
+                }}
               >
                 {email.text_content || "No content"}
               </pre>
