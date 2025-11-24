@@ -20,6 +20,20 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+// Helper function to apply theme to DOM
+const applyTheme = (theme: Theme) => {
+  const root = window.document.documentElement;
+  root.classList.remove("light", "dark");
+
+  if (theme === "system") {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const systemTheme = mediaQuery.matches ? "dark" : "light";
+    root.classList.add(systemTheme);
+  } else {
+    root.classList.add(theme);
+  }
+};
+
 export function ThemeProvider({
   children,
   defaultTheme = "system",
@@ -30,40 +44,34 @@ export function ThemeProvider({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   );
 
+  // Apply theme immediately on initial load
   useEffect(() => {
-    const root = window.document.documentElement;
+    applyTheme(theme);
+  }, [theme]);
 
-    root.classList.remove("light", "dark");
+  // Listen for system theme changes only when in system mode
+  useEffect(() => {
+    if (theme !== "system") return;
 
-    if (theme === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      
-      const updateSystemTheme = () => {
-        root.classList.remove("light", "dark");
-        const systemTheme = mediaQuery.matches ? "dark" : "light";
-        root.classList.add(systemTheme);
-      };
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-      // Apply initial system theme
-      updateSystemTheme();
+    const handleChange = () => {
+      applyTheme("system");
+    };
 
-      // Listen for system theme changes
-      mediaQuery.addEventListener("change", updateSystemTheme);
-
-      // Cleanup listener on unmount or theme change
-      return () => {
-        mediaQuery.removeEventListener("change", updateSystemTheme);
-      };
-    }
-
-    root.classList.add(theme);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setThemeValue(theme);
+    setTheme: (newTheme: Theme) => {
+      // Apply theme immediately (don't wait for state update)
+      applyTheme(newTheme);
+      // Update state
+      setThemeValue(newTheme);
+      // Save to localStorage
+      localStorage.setItem(storageKey, newTheme);
     },
   };
 
