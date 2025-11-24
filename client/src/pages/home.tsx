@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, memo } from "react";
+import { useState, useEffect, useRef, useMemo, memo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
@@ -9,12 +9,14 @@ import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
 import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { UnifiedSocialProof } from "@/components/unified-social-proof";
-import { TestimonialsCarousel } from "@/components/testimonials-carousel";
-import { FAQAccordion } from "@/components/faq-accordion";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
+
+// Lazy load below-the-fold components for faster initial load
+const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
+const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
+const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
+const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
@@ -42,10 +44,11 @@ export default function Home() {
   const { showNotification } = useNotifications();
   const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
 
-  // Fetch available domains with caching (24 hour TTL)
+  // Fetch available domains with caching (24 hour TTL) - defer until needed
   const { data: domainsData = [] } = useQuery<Domain[]>({
     queryKey: ["/api/domains"],
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    gcTime: 24 * 60 * 60 * 1000, // Keep in cache for 24 hours
   });
 
   // Cache domains and memoize
@@ -321,30 +324,36 @@ export default function Home() {
             />
           </div>
 
-          {/* Social Proof & Trust Section */}
+          {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
           <div className="mt-20 space-y-20 fade-in">
             {/* Unified Social Proof */}
-            <section>
-              <UnifiedSocialProof />
-            </section>
+            <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section>
+                <UnifiedSocialProof />
+              </section>
+            </Suspense>
 
             {/* Testimonials */}
-            <section className="space-y-6">
-              <div className="text-center space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
-                <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
-              </div>
-              <TestimonialsCarousel />
-            </section>
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section className="space-y-6">
+                <div className="text-center space-y-2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
+                  <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
+                </div>
+                <TestimonialsCarousel />
+              </section>
+            </Suspense>
 
             {/* FAQ Section */}
-            <section className="space-y-6">
-              <div className="text-center space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
-                <p className="text-muted-foreground">Everything you need to know about TempMail</p>
-              </div>
-              <FAQAccordion />
-            </section>
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section className="space-y-6">
+                <div className="text-center space-y-2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
+                  <p className="text-muted-foreground">Everything you need to know about TempMail</p>
+                </div>
+                <FAQAccordion />
+              </section>
+            </Suspense>
           </div>
         </div>
       </main>
@@ -358,8 +367,10 @@ export default function Home() {
         isDeleting={deleteEmailMutation.isPending}
       />
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer - Lazy loaded */}
+      <Suspense fallback={<div className="h-40 bg-muted/20" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
