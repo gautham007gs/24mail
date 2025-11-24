@@ -11,6 +11,7 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 Performance Priority: Lightning-fast initial load times (target <3 seconds)
 UX Design: Inline accordion-style email expansion (no modal popups, ultra-compact, no scrolling)
 Theme Support: Full dark mode support with consistent styling across all components
+Email Viewing: Default to HTML view, all links open in new tabs for user retention
 
 ## System Architecture
 
@@ -25,6 +26,12 @@ The frontend is built with React and TypeScript, utilizing Vite for development.
 - Smooth theme transitions with 300ms easing
 - Proper color contrast maintained in both modes
 - All hardcoded colors replaced with semantic theme variables
+
+**Email Viewing Features:**
+- Default HTML view for rich email formatting
+- All email links open in new tabs/windows (`target="_blank"`)
+- Users stay on TempMail site for maximum retention
+- Smooth tab switching between HTML and Text views
 
 ### Backend Architecture
 
@@ -62,90 +69,48 @@ The core functionality relies entirely on the external temp mail API located at 
 
 ## Recent Changes
 
-### v3.26 - COMPLETE Dark Mode Theme Cascade Fix - All Elements Protected (Nov 24, 2025)
+### v3.27 - User Retention Features (Nov 24, 2025)
 
-**✅ PERMANENTLY FIXED - Navbar, Inbox, and ALL Elements Now Protected:**
+**✅ Default HTML View & External Links in New Tabs:**
 
-**Problem:** Navbar and inbox list were still affected by email HTML/Text view when toggling tabs
+**Features Added:**
+1. **Default HTML View**
+   - Emails now open directly in HTML view (richest formatting)
+   - Falls back to text view if HTML not available
+   - Users see formatted, styled content immediately
+   - Better user experience with professional email rendering
 
-**Root Cause:** Styles from email content were cascading UP to parent elements (navbar, inbox) through inheritance
+2. **Links Open in New Tabs**
+   - All `<a>` tags in email content get `target="_blank"`
+   - Added `rel="noopener noreferrer"` for security
+   - Users click email links without leaving TempMail site
+   - **Maximum retention** - users stay in mind for TempMail brand
+   - Smooth workflow: read email → click link → return to inbox
 
-**Complete Solution - Multi-Layer Isolation:**
-
-1. **Layer 1: Email Reader Container Isolation**
-   ```css
-   .inline-email-reader-container {
-     contain: layout style paint;
-     isolation: isolate;
-   }
-   ```
-   - Prevents entire email viewer from affecting parent elements
-
-2. **Layer 2: Email HTML Content - Aggressive Reset**
-   ```css
-   .inline-email-html {
-     all: initial;              /* Reset ALL inherited properties */
-     contain: layout style paint;
-     isolation: isolate;
-     color: hsl(var(--foreground)) !important;
-     background-color: hsl(var(--background)) !important;
-   }
-   ```
-   - `all: initial` completely resets all CSS properties
-   - Prevents any style from email HTML leaking up
-
-3. **Layer 3: Email Content Children - Full Reset**
-   ```css
-   .inline-email-html * {
-     all: unset;              /* Unset all styles on children */
-     display: revert;         /* But keep display working */
-     color: hsl(var(--foreground)) !important;
-   }
-   ```
-   - Ensures no child element styles affect parent elements
-
-4. **Layer 4: Tabs Component Isolation**
-   ```css
-   .inline-email-reader-tabs {
-     contain: layout style paint;
-     isolation: isolate;
-   }
-   ```
-   - Tabs themselves are isolated to prevent state from affecting theme
-
-**Applied to Both Modes:**
-- Light mode: All rules applied
-- Dark mode: Identical rules with `color-scheme: dark`
-
-**Changes Made:**
-1. **index.css** - 62 lines of aggressive CSS isolation rules
-2. **inline-email-reader.tsx** - Added `inline-email-reader-container` and `inline-email-reader-tabs` classes
+**Implementation:**
+- Created `transformEmailHtml()` function that:
+  - Parses email HTML content
+  - Finds all anchor tags
+  - Adds `target="_blank"` and `rel="noopener noreferrer"`
+  - Returns modified HTML safe for rendering
+- Changed default tab state from conditional to always "html"
+- Applied transformation before rendering with `dangerouslySetInnerHTML`
 
 **Result:**
-- ✅ **Navbar stays perfect** - no theme changes when viewing emails
-- ✅ **Inbox list stays perfect** - no color/background changes
-- ✅ **HTML/Text tabs** - Perfect switching without affecting site
-- ✅ **Delete/Copy/Share buttons** - No interference with theme
-- ✅ **Email expand/collapse** - Site theme never changes
-- ✅ **Light and dark mode** - Both work perfectly
-- ✅ **Theme toggle** - Works flawlessly anytime
-- ✅ **All parent elements safe** - Complete isolation guaranteed
+- ✅ Professional HTML-formatted emails by default
+- ✅ All links open in new tabs/windows
+- ✅ Users stay on TempMail while browsing email links
+- ✅ Better user retention and brand visibility
+- ✅ Secure link opening (noopener prevents window.opener access)
+- ✅ Seamless UX - return to email after clicking links
 
-**CSS Isolation Strategy:**
-- `all: initial` - Resets all inherited and cascade properties
-- `all: unset` - Removes all styles from child elements  
-- `contain: layout style paint` - Prevents layout leakage
-- `isolation: isolate` - Creates new stacking context
-- `!important` on color/background - Ensures override priority
+### v3.26 - COMPLETE Dark Mode Theme Cascade Fix (Nov 24, 2025)
 
-**Technical Verification:**
-- ✅ Zero TypeScript errors
-- ✅ Zero LSP diagnostics
-- ✅ Server running smoothly
-- ✅ All workflows passing
-- ✅ Production-ready
-
-**This is the FINAL and COMPLETE fix** - No further theme cascade issues possible. The email viewer is now completely isolated from the rest of the application.
+**✅ PERMANENTLY FIXED - Navbar, Inbox, and ALL Elements Protected:**
+- Applied 4-layer CSS isolation to prevent style cascade
+- Used `all: initial`, `all: unset`, and `contain: layout style paint`
+- Navbar, inbox, and buttons stay perfect in all theme modes
+- HTML/Text tabs switch flawlessly without affecting site theme
 
 ### v3.25 - Dark Mode Theme Cascade Initial Fix (Nov 24, 2025)
 

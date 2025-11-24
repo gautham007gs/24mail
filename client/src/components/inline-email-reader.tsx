@@ -16,6 +16,21 @@ interface InlineEmailReaderProps {
   isDeleting: boolean;
 }
 
+// Transform HTML to make all links open in new tabs
+function transformEmailHtml(html: string): string {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  
+  // Find all anchor tags and add target="_blank" and rel="noopener noreferrer"
+  const links = div.querySelectorAll('a');
+  links.forEach(link => {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+  
+  return div.innerHTML;
+}
+
 export function InlineEmailReader({
   email,
   isLoading,
@@ -23,8 +38,12 @@ export function InlineEmailReader({
   onDelete,
   isDeleting,
 }: InlineEmailReaderProps) {
-  const [tabValue, setTabValue] = useState(email?.html_content ? "html" : "text");
+  // Default to HTML view if available
+  const [tabValue, setTabValue] = useState("html");
   const { toast } = useToast();
+  
+  // Transform email HTML to open links in new tabs
+  const processedHtmlContent = email?.html_content ? transformEmailHtml(email.html_content) : null;
 
   const handleCopyEmail = async () => {
     if (!email) return;
@@ -187,7 +206,7 @@ export function InlineEmailReader({
             <TabsContent value="html" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
               <div
                 className="inline-email-html max-w-full text-xs leading-tight"
-                dangerouslySetInnerHTML={{ __html: email.html_content }}
+                dangerouslySetInnerHTML={{ __html: processedHtmlContent || email.html_content }}
                 data-testid="content-inline-html"
                 style={{
                   wordWrap: 'break-word',
