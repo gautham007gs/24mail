@@ -11,9 +11,11 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
-### v3.5 - Social Proof Overhaul & Trust Signal Enhancement (Nov 24, 2025)
+### v3.5 - Social Proof Overhaul, Trust Signals & Testimonials UX (Nov 24, 2025)
 
 **✅ Completed:**
+
+**Social Proof Consolidation:**
 - **Unified Social Proof Component:** Consolidated Stats + Trust Badges into one compelling section (unified-social-proof.tsx)
 - **Visual Icons on All Stats:** Mail, Users, CheckCircle, Zap icons for instant recognition
 - **Growth Indicators:** Added percentage growth ("↑ 50% growth", "↑ 35% this month", "No downtime in 18mo")
@@ -22,17 +24,30 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Hover Effects:** Gradient overlays on card hover, icon scale animation on hover
 - **Better Section Organization:** Split into 2 clear subsections: "Impact & Growth" (4 stats) + "Security & Trust" (4 badges)
 - **Live Activity Badge:** Added pulsing activity indicator ("👥 847 emails checked today • 🔒 0 security breaches ever")
-- **Eliminated Redundancy:** Removed 3 separate section headers (Trusted by Thousands, Security & Trust) - now unified at top
+- **Eliminated Redundancy:** Removed 3 separate section headers - now unified at top
 - **Improved Typography:** Better visual hierarchy with uppercase section labels ("IMPACT & GROWTH", "SECURITY & TRUST")
 - **Dark Mode Optimized:** All colors work perfectly in both light and dark modes
-- **FOMO/Trust Signals:** Added emotional triggers for conversion (growth metrics, live activity, security metrics)
+
+**Testimonials Carousel Improvements:**
+- **Extended Auto-play:** Increased from 6s to 9s (better reading time: 5-8s required)
+- **Pause on Hover:** Stops auto-play when user hovers (reduces friction)
+- **Enhanced Quote Background:** Increased opacity from 5% to 15% (better visibility)
+- **Prominent Navigation:** Larger buttons (size="lg"), better hover effects, active-elevate-2
+- **Better Dot Indicators:** Emerald-themed, larger active state (w-8 h-3), smooth transitions
+- **Slide Counter:** Shows "1 of 5" + slide number with visual hierarchy
+- **Dual-View Desktop:** Shows 2 testimonials side-by-side on large screens (current + next preview)
+- **Interactive Next Preview:** Next testimonial slightly faded, clickable on desktop, shows "Click to view"
+- **Improved Accessibility:** ARIA labels, keyboard navigation, screen reader friendly
+- **Pause Indicator:** Shows auto-play status ("Hover to pause • Auto-play: On/Off")
 
 **Psychology Improvements:**
-- Stats now create urgency with growth indicators
-- Trust section emphasizes security without being redundant
+- Stats create urgency with growth indicators
+- Trust section emphasizes security without redundancy
 - Live activity creates FOMO ("847 emails checked today")
 - Emerald accent creates visual cohesion and brand confidence
-- Better visual rhythm eliminates "social proof clutter" feeling
+- Testimonials have better reading time (9s vs 6s)
+- Dual-view design increases social proof visibility
+- Pause-on-hover removes perceived urgency friction
 
 ### v3.4 - Visual Polish & Mobile Navbar Excellence (Nov 23, 2025)
 
