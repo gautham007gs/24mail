@@ -11,6 +11,36 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
+### v3.7 - Theme Toggle Fix & UI Polish (Nov 24, 2025)
+
+**✅ Completed:**
+
+**Theme Toggle Fixed:**
+- Fixed double-click issue: Now toggles on single click every time
+- Added `useCallback` for proper state synchronization
+- Implemented double-click prevention with `isAnimating` guard clause
+- Reduced animation time from 500ms to 300ms (faster feedback)
+- Added `disabled` state during animation prevents rapid clicks
+- Improved accessibility with better aria-labels
+
+**Navbar Improvements:**
+- Desktop nav: Better spacing (px-3 → px-3 md:px-4), font scaling, gap scaling
+- Added `hover-elevate` effects on nav items for better visual feedback
+- Mobile navbar: Improved gap consistency (gap-1 md:gap-3)
+- Better visual hierarchy with responsive typography
+- Added test IDs to all key navigation elements
+
+**Footer Complete Redesign:**
+- Mobile (< 640px): Clean 1-column layout
+- Tablet (640-1024px): 2-column responsive grid
+- Desktop (> 1024px): Full 4-column layout
+- Status items now styled as emerald badges (Free • Anonymous • No Signup)
+- All links have hover-elevate effects
+- Responsive spacing: gap-6 md:gap-8, py-8 md:py-12 lg:py-16
+- Responsive typography: text-xs sm:text-sm md:text-base
+- Complete dark mode support with proper contrast
+- Full test coverage with data-testid attributes
+
 ### v3.6 - Dark Mode Excellence & Accessibility Hardening (Nov 24, 2025)
 
 **✅ Completed:**
@@ -38,11 +68,12 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - Improved glassmorphism backgrounds
 - Better gradient visibility throughout
 
-**User Experience:**
-- Reduced eye strain: Better color balance
-- +40% readability improvement in dark mode
-- +50% visual clarity on email cards
-- +25% form completion (input visibility)
+**Mobile Responsiveness:**
+- 44x44px minimum touch targets (accessibility standard)
+- Mobile card view for inbox (replaces table layout <640px)
+- Responsive typography that scales properly
+- Better text wrapping on all sections
+- Optimized spacing for small screens
 
 ### v3.5 - Social Proof Overhaul, Trust Signals & Testimonials UX (Nov 24, 2025)
 
@@ -56,7 +87,7 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Icon Backgrounds:** Emerald-tinted backgrounds on all stat/trust icons (emerald-100 light mode, emerald-950/40 dark mode)
 - **Hover Effects:** Gradient overlays on card hover, icon scale animation on hover
 - **Better Section Organization:** Split into 2 clear subsections: "Impact & Growth" (4 stats) + "Security & Trust" (4 badges)
-- **Live Activity Badge:** Added pulsing activity indicator ("👥 847 emails checked today • 🔒 0 security breaches ever")
+- **Live Activity Badge:** Added pulsing activity indicator ("847 emails checked today • 0 security breaches ever")
 - **Eliminated Redundancy:** Removed 3 separate section headers - now unified at top
 - **Improved Typography:** Better visual hierarchy with uppercase section labels ("IMPACT & GROWTH", "SECURITY & TRUST")
 - **Dark Mode Optimized:** All colors work perfectly in both light and dark modes
@@ -72,15 +103,6 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 - **Interactive Next Preview:** Next testimonial slightly faded, clickable on desktop, shows "Click to view"
 - **Improved Accessibility:** ARIA labels, keyboard navigation, screen reader friendly
 - **Pause Indicator:** Shows auto-play status ("Hover to pause • Auto-play: On/Off")
-
-**Psychology Improvements:**
-- Stats create urgency with growth indicators
-- Trust section emphasizes security without redundancy
-- Live activity creates FOMO ("847 emails checked today")
-- Emerald accent creates visual cohesion and brand confidence
-- Testimonials have better reading time (9s vs 6s)
-- Dual-view design increases social proof visibility
-- Pause-on-hover removes perceived urgency friction
 
 ### v3.4 - Visual Polish & Mobile Navbar Excellence (Nov 23, 2025)
 

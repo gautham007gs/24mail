@@ -29,10 +29,10 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
   return (
     <header className="border-b border-border/30 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="mx-auto max-w-7xl px-3 md:px-6">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6">
         <div className="flex items-center justify-between min-h-14 md:h-16">
           {/* Logo - Compact on mobile */}
-          <Link href="/" className="flex items-center gap-1.5 md:gap-2.5 hover:opacity-80 transition-opacity no-underline flex-shrink-0">
+          <Link href="/" className="flex items-center gap-1.5 md:gap-2.5 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
             <div className="flex h-7 md:h-8 w-7 md:w-8 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600 flex-shrink-0">
               <svg className="h-4 md:h-5 w-4 md:w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -43,8 +43,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-0.5">
+          {/* Desktop Navigation - Improved spacing */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {navItems.map((item) => (
               <div key={item.href}>
                 {item.href === "/browser-extension" ? (
@@ -52,14 +52,14 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     onClick={(e) => {
                       e.preventDefault();
                       toast({
-                        title: "Coming Soon! 🎉",
+                        title: "Coming Soon!",
                         description: "Browser extension is launching very soon. Stay tuned!",
                       });
                     }}
-                    className={`px-3 py-2 text-xs lg:text-sm font-semibold rounded-md transition-colors cursor-pointer ${
+                    className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 cursor-pointer hover-elevate ${
                       isActive(item.href)
                         ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                   >
@@ -68,10 +68,10 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 ) : (
                   <Link
                     href={item.href}
-                    className={`px-3 py-2 text-xs lg:text-sm font-semibold rounded-md transition-colors no-underline block ${
+                    className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
                       isActive(item.href)
                         ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                   >
@@ -83,7 +83,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           </nav>
 
           {/* Right Side - Theme Toggle + Mobile Menu Button */}
-          <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1 md:gap-3 flex-shrink-0">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
