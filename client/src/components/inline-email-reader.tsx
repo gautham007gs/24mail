@@ -1,8 +1,10 @@
 import { formatDistanceToNow } from "date-fns";
-import { Trash2, Paperclip, ChevronUp } from "lucide-react";
+import { Trash2, Paperclip, ChevronUp, Copy, Share2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
+import { shareToWhatsApp, shareToTwitter, shareToTelegram, copyToClipboard } from "@/lib/email-share";
 import { type Email } from "@shared/schema";
 import { useState } from "react";
 
@@ -22,6 +24,52 @@ export function InlineEmailReader({
   isDeleting,
 }: InlineEmailReaderProps) {
   const [tabValue, setTabValue] = useState(email?.html_content ? "html" : "text");
+  const { toast } = useToast();
+
+  const handleCopyEmail = async () => {
+    if (!email) return;
+    const result = await copyToClipboard({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+    toast({ title: result?.success ? "Copied" : "Failed", description: result?.message });
+  };
+
+  const handleShareWhatsApp = () => {
+    if (!email) return;
+    shareToWhatsApp({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
+
+  const handleShareTwitter = () => {
+    if (!email) return;
+    shareToTwitter({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
+
+  const handleShareTelegram = () => {
+    if (!email) return;
+    shareToTelegram({
+      from: email.from_address,
+      to: email.to_address,
+      subject: email.subject || "(No subject)",
+      content: email.text_content || email.html_content || "No content",
+      receivedAt: email.received_at * 1000,
+    });
+  };
 
   if (isLoading) {
     return (
@@ -63,8 +111,38 @@ export function InlineEmailReader({
           </div>
         </div>
         
-        {/* Action buttons - delete and close only */}
+        {/* Action buttons - copy, share, delete, close */}
         <div className="flex gap-0.5 flex-shrink-0">
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={handleCopyEmail}
+            data-testid="button-inline-copy"
+            className="text-xs h-5 px-1.5"
+            title="Copy email"
+          >
+            <Copy className="h-2.5 w-2.5" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={handleShareWhatsApp}
+            data-testid="button-inline-share-whatsapp"
+            className="text-xs h-5 px-1.5"
+            title="Share on WhatsApp"
+          >
+            <MessageCircle className="h-2.5 w-2.5" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={handleShareTwitter}
+            data-testid="button-inline-share-twitter"
+            className="text-xs h-5 px-1.5"
+            title="Share on Twitter"
+          >
+            <Share2 className="h-2.5 w-2.5" />
+          </Button>
           <Button
             size="sm"
             variant="outline"
