@@ -255,10 +255,12 @@ export function InboxList({
       <div className="border border-border/50 rounded-lg overflow-hidden bg-background">
         {/* Table Header */}
         {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
-          <div className="bg-foreground/10 grid grid-cols-12 gap-4 px-6 py-3 border-b border-border/50">
-            <div className="col-span-4 text-sm font-semibold text-foreground">SENDER</div>
-            <div className="col-span-6 text-sm font-semibold text-foreground">SUBJECT</div>
-            <div className="col-span-2 text-sm font-semibold text-foreground text-right">VIEW</div>
+          <div className="bg-foreground/10 grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 border-b border-border/50">
+            <div className="hidden sm:block col-span-1 text-xs font-semibold text-foreground"></div>
+            <div className="col-span-5 sm:col-span-3 text-xs font-semibold text-foreground">SENDER</div>
+            <div className="hidden md:block col-span-5 text-xs font-semibold text-foreground">SUBJECT</div>
+            <div className="col-span-4 sm:col-span-2 text-xs font-semibold text-foreground text-right">DATE</div>
+            <div className="col-span-3 sm:col-span-1 text-xs font-semibold text-foreground text-right"></div>
           </div>
         )}
 
@@ -378,9 +380,10 @@ function EmailTableRow({
     onClick();
   };
 
+  // Desktop table view
   return (
     <div
-      className={`hidden sm:grid grid-cols-12 gap-4 px-3 sm:px-6 py-3 sm:py-4 min-h-12 sm:min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+      className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
         isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/50" : "border-transparent"
       }`}
       onClick={handleRowClick}
@@ -392,7 +395,7 @@ function EmailTableRow({
     >
       {/* Checkbox */}
       <div
-        className="col-span-1 flex items-center"
+        className="hidden sm:flex col-span-1 items-center"
         onClick={(e) => {
           e.stopPropagation();
           onSelect(email.id);
@@ -402,30 +405,23 @@ function EmailTableRow({
       </div>
 
       {/* Sender with Unread Badge */}
-      <div className="col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
+      <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
         {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
         <span className={isUnread ? "font-semibold" : ""}>{email.from_address}</span>
       </div>
 
-      {/* Subject with Preview Tooltip */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="col-span-5 text-xs sm:text-sm truncate text-foreground/80 cursor-help" data-testid={`text-subject-${email.id}`}>
-            {email.subject || "(No subject)"}
-          </div>
-        </TooltipTrigger>
-        <TooltipContent side="top" className="max-w-xs dark:bg-slate-900 dark:text-white">
-          <p className="text-xs">{(email.subject || "No subject").substring(0, 100)}</p>
-        </TooltipContent>
-      </Tooltip>
+      {/* Subject */}
+      <div className="hidden md:flex col-span-5 text-xs sm:text-sm truncate text-foreground/80" data-testid={`text-subject-${email.id}`}>
+        {email.subject || "(No subject)"}
+      </div>
 
       {/* Timestamp */}
-      <div className="col-span-2 text-xs text-muted-foreground text-right" data-testid={`text-date-${email.id}`}>
+      <div className="col-span-4 sm:col-span-2 text-xs text-muted-foreground text-right" data-testid={`text-date-${email.id}`}>
         {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
       </div>
 
       {/* View Button */}
-      <div className="col-span-1 flex justify-end">
+      <div className="col-span-3 sm:col-span-1 flex justify-end">
         <Button
           size="sm"
           variant="ghost"
@@ -435,70 +431,12 @@ function EmailTableRow({
           }}
           data-testid={`button-view-email-${email.id}`}
         >
-          View
+          <span className="hidden sm:inline">View</span>
+          <Mail className="sm:hidden h-4 w-4" />
         </Button>
       </div>
     </div>
   );
-  
-  // Mobile card view for small screens
-  if (typeof window !== 'undefined' && window.innerWidth < 640) {
-    return (
-      <div
-        className={`p-3 rounded-lg border transition-all cursor-pointer hover:bg-muted/20 ${
-          isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/30 bg-primary/2" : "border-border/30"
-        }`}
-        onClick={handleRowClick}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        data-testid={`row-email-${email.id}`}
-        style={{ transform: `translateX(-${swipeDistance}px)` }}
-      >
-        <div className="flex items-start gap-3">
-          <div
-            className="mt-1"
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(email.id);
-            }}
-          >
-            <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
-              <p className={`text-xs truncate ${isUnread ? "font-semibold" : "font-medium"}`} data-testid={`text-from-${email.id}`}>
-                {email.from_address}
-              </p>
-            </div>
-            <p className="text-xs text-foreground/70 truncate mb-2" data-testid={`text-subject-${email.id}`}>
-              {email.subject || "(No subject)"}
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground" data-testid={`text-date-${email.id}`}>
-                {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
-              </span>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-8 px-2 text-xs"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleRowClick();
-                }}
-                data-testid={`button-view-email-${email.id}`}
-              >
-                View
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
-  return null;
 }
 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {

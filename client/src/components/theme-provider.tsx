@@ -53,18 +53,20 @@ export function ThemeProvider({
   storageKey = "tempmail-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setThemeValue] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setThemeValue] = useState<Theme>(() => {
+    if (typeof window === "undefined") return defaultTheme;
+    return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+  });
 
   // Apply theme immediately on initial load
   useEffect(() => {
+    if (typeof window === "undefined") return;
     applyTheme(theme);
   }, [theme]);
 
   // Listen for system theme changes only when in system mode
   useEffect(() => {
-    if (theme !== "system") return;
+    if (typeof window === "undefined" || theme !== "system") return;
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 

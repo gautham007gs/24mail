@@ -10,11 +10,18 @@ type NotificationContextType = {
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
 export function NotificationProvider({ children }: { children: ReactNode }) {
-  const [permission, setPermission] = useState<NotificationPermission>("default");
-  const [isSupported, setIsSupported] = useState(false);
+  const [permission, setPermission] = useState<NotificationPermission>(() => {
+    if (typeof window === "undefined") return "default";
+    return "Notification" in window ? Notification.permission : "default";
+  });
+  const [isSupported, setIsSupported] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return "Notification" in window;
+  });
 
   useEffect(() => {
     // Check if notifications are supported
+    if (typeof window === "undefined") return;
     if ("Notification" in window) {
       setIsSupported(true);
       setPermission(Notification.permission);
