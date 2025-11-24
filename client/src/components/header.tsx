@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X, ChevronDown, Home, BookOpen, Zap, Award, AtSign } from "lucide-react";
+import { Mail, Menu, X, ChevronDown, Home, BookOpen, Zap, Award, AtSign, Crown } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,13 @@ interface HeaderProps {
   selectedDomain?: string;
   onDomainChange?: (domain: string) => void;
 }
+
+// Premium domains marked with crown icon
+const PREMIUM_DOMAINS = new Set(["gmx.com", "mail.com", "protonmail.com", "tutanota.com", "privatemail.com", "zoho.com"]);
+
+const isPremiumDomain = (domain: string): boolean => {
+  return PREMIUM_DOMAINS.has(domain.toLowerCase());
+};
 
 export function Header({ domains = [], selectedDomain = "", onDomainChange }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -175,25 +182,33 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     </button>
                     {showDomainMenu && (
                       <div className="bg-emerald-50/30 dark:bg-emerald-950/10 rounded-lg p-2 space-y-1 border border-emerald-200/30 dark:border-emerald-800/30 animate-in fade-in duration-200">
-                        {domains.map((domain, idx) => (
-                          <button
-                            key={domain}
-                            onClick={() => {
-                              onDomainChange?.(domain);
-                              setShowDomainMenu(false);
-                            }}
-                            className={`w-full flex items-center gap-2 px-3 py-3 rounded text-sm font-medium transition-all text-left active-elevate-2 ${
-                              selectedDomain === domain
-                                ? "bg-emerald-600 text-white"
-                                : "text-foreground hover:bg-secondary/50"
-                            }`}
-                            data-testid={`mobile-domain-${domain}`}
-                            style={{ animationDelay: `${idx * 30}ms` }}
-                          >
-                            <AtSign className="h-4 w-4 text-emerald-500 flex-shrink-0" />
-                            <span>{domain}</span>
-                          </button>
-                        ))}
+                        {domains.map((domain, idx) => {
+                          const isPremium = isPremiumDomain(domain);
+                          return (
+                            <button
+                              key={domain}
+                              onClick={() => {
+                                onDomainChange?.(domain);
+                                setShowDomainMenu(false);
+                              }}
+                              className={`w-full flex items-center justify-between px-3 py-3 rounded text-sm font-medium transition-all text-left active-elevate-2 ${
+                                selectedDomain === domain
+                                  ? "bg-emerald-600 text-white"
+                                  : "text-foreground hover:bg-secondary/50"
+                              }`}
+                              data-testid={`mobile-domain-${domain}`}
+                              style={{ animationDelay: `${idx * 30}ms` }}
+                            >
+                              <span className="flex items-center gap-2">
+                                <AtSign className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                                <span>{domain}</span>
+                              </span>
+                              {isPremium && (
+                                <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400 flex-shrink-0" data-testid={`premium-badge-mobile-${domain}`} />
+                              )}
+                            </button>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

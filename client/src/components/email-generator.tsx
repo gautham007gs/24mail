@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -20,6 +20,13 @@ interface EmailGeneratorProps {
   onDelete?: () => void;
   emailCount?: number;
 }
+
+// Premium domains marked with crown icon
+const PREMIUM_DOMAINS = new Set(["gmx.com", "mail.com", "protonmail.com", "tutanota.com", "privatemail.com", "zoho.com"]);
+
+const isPremiumDomain = (domain: string): boolean => {
+  return PREMIUM_DOMAINS.has(domain.toLowerCase());
+};
 
 export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, emailCount = 0 }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
@@ -305,14 +312,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 <SelectValue placeholder="Select a domain" />
               </SelectTrigger>
               <SelectContent>
-                {domains.map((domain) => (
-                  <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>
-                    <span className="flex items-center gap-2">
-                      <AtSign className="h-3 w-3 text-emerald-500" />
-                      {domain}
-                    </span>
-                  </SelectItem>
-                ))}
+                {domains.map((domain) => {
+                  const isPremium = isPremiumDomain(domain);
+                  return (
+                    <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>
+                      <span className="flex items-center gap-2">
+                        <AtSign className="h-3 w-3 text-emerald-500" />
+                        {domain}
+                        {isPremium && (
+                          <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" data-testid={`premium-badge-${domain}`} />
+                        )}
+                      </span>
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
             <Button

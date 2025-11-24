@@ -66,13 +66,30 @@
     content: '';
     @apply absolute inset-0 -z-10;
     background: linear-gradient(-45deg, 
-      rgb(16, 185, 129, 0.1), 
-      rgb(59, 130, 246, 0.1),
-      rgb(139, 92, 246, 0.1),
-      rgb(16, 185, 129, 0.1)
+      rgb(16, 185, 129, 0.08), 
+      rgb(59, 130, 246, 0.08),
+      rgb(139, 92, 246, 0.08),
+      rgb(16, 185, 129, 0.08)
     );
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
+  }
+
+  /* Premium gradient for enhanced visual appeal */
+  .premium-gradient {
+    background: linear-gradient(135deg, 
+      rgba(16, 185, 129, 0.1) 0%, 
+      rgba(59, 130, 246, 0.08) 50%, 
+      rgba(139, 92, 246, 0.1) 100%
+    );
+  }
+
+  .dark .premium-gradient {
+    background: linear-gradient(135deg, 
+      rgba(16, 185, 129, 0.05) 0%, 
+      rgba(59, 130, 246, 0.05) 50%, 
+      rgba(139, 92, 246, 0.05) 100%
+    );
   }
 
   .fade-in-up {

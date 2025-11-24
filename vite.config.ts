@@ -30,16 +30,43 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    // Optimize build for better performance with esbuild (default)
+    // Aggressive bundle optimization
     rollupOptions: {
-      output: {
-        manualChunks: {
-          // Separate large libraries into chunks for better caching
-          lucide: ["lucide-react"],
-          radix: ["@radix-ui/react-dialog", "@radix-ui/react-tabs"],
+      output: [
+        {
+          dir: path.resolve(import.meta.dirname, "dist/public/assets"),
+          format: "es",
+          manualChunks: (id) => {
+            // Vendor chunks
+            if (id.includes("node_modules")) {
+              if (id.includes("lucide-react")) return "lucide";
+              if (id.includes("@radix-ui")) return "radix";
+              if (id.includes("date-fns")) return "date-fns";
+              if (id.includes("recharts")) return "recharts";
+              if (id.includes("react-hook-form")) return "form";
+              // Default vendor chunk
+              return "vendor";
+            }
+          },
+          entryFileNames: "chunks/[name]-[hash].js",
+          chunkFileNames: "chunks/[name]-[hash].js",
+          assetFileNames: "assets/[name]-[hash][extname]",
         },
+      ],
+      external: [],
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
       },
     },
+    // Optimize CSS
+    cssCodeSplit: true,
+    // Source maps only in dev
+    sourcemap: process.env.NODE_ENV === "development",
+    // Target modern browsers
+    target: "esnext",
+    // Inline small imports
+    assetsInlineLimit: 4096,
   },
   server: {
     fs: {
