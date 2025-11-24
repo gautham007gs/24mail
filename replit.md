@@ -9,12 +9,13 @@ This project is a temporary email service application providing disposable email
 Preferred communication style: Simple, everyday language.
 Preferred features: Email sharing, animations, mobile-first design, Gen-Z friendly UI.
 Performance Priority: Lightning-fast initial load times (target <3 seconds)
+UX Design: Inline accordion-style email expansion (no modal popups)
 
 ## System Architecture
 
 ### Frontend Architecture
 
-The frontend is built with React and TypeScript, utilizing Vite for development. It leverages `shadcn/ui` (Radix UI and Tailwind CSS) for its component system, following a "new-york" style with CSS variables for theming. TanStack Query manages server state, and Wouter handles client-side routing. The design is inspired by Apple HIG, emphasizing clear hierarchy, immediate functionality, generous spacing, readable content widths (`max-w-4xl`), and typography (Inter for UI, JetBrains Mono for emails). It features smooth animations (animated gradients, confetti, fade-in-up, pulse) and a mobile-first, Gen-Z friendly aesthetic with vibrant colors. Key components include `EmailGenerator`, `InboxList`, `EmailDetailModal`, and a responsive `Header`. The application implements aggressive bundle optimization through code splitting, tree-shaking, and CSS code splitting for lightning-fast performance and efficient caching. It also includes comprehensive caching strategies using `localStorage` with TTL, request deduplication, and a service worker for offline support and stale-while-revalidate caching. Premium domain indicators (golden crown icons) are integrated for select domains. The QR Code Modal has been redesigned for better scanning, visual appeal, and social sharing options. **v3.19 COMPLETE REDESIGN: Email modal completely redesigned - ultra-compact header with all metadata (From/Date) in single row, buttons as icons only, no duplicate close buttons, perfect theme consistency when toggling HTML/Text views.**
+The frontend is built with React and TypeScript, utilizing Vite for development. It leverages `shadcn/ui` (Radix UI and Tailwind CSS) for its component system, following a "new-york" style with CSS variables for theming. TanStack Query manages server state, and Wouter handles client-side routing. The design is inspired by Apple HIG, emphasizing clear hierarchy, immediate functionality, generous spacing, readable content widths (`max-w-4xl`), and typography (Inter for UI, JetBrains Mono for emails). It features smooth animations (animated gradients, confetti, fade-in-up, pulse) and a mobile-first, Gen-Z friendly aesthetic with vibrant colors. Key components include `EmailGenerator`, `InboxList`, `InlineEmailReader`, and a responsive `Header`. The application implements aggressive bundle optimization through code splitting, tree-shaking, and CSS code splitting for lightning-fast performance and efficient caching. It also includes comprehensive caching strategies using `localStorage` with TTL, request deduplication, and a service worker for offline support and stale-while-revalidate caching. Premium domain indicators (golden crown icons) are integrated for select domains.
 
 ### Backend Architecture
 
@@ -51,6 +52,48 @@ The core functionality relies entirely on the external temp mail API located at 
 - **esbuild**: Bundles backend server code.
 - **Drizzle ORM**: Configured for PostgreSQL but not currently utilized.
 
+### v3.20 - Complete Inline Email Expansion (Nov 24, 2025)
+
+**✅ Inline Accordion-Style Email Viewing (MAJOR REDESIGN):**
+- **Removed Modal Popup:** No more modal dialogs for viewing emails
+- **Inline Expansion:** Click email to expand content directly below it in the inbox
+- **New InlineEmailReader Component:** Dedicated component for inline email display
+- **Features:**
+  - Subject + From + Date + Attachments in compact header
+  - Icon-only action buttons (Copy, Share WhatsApp, Share Twitter, Delete, Collapse)
+  - Tab switching between HTML and Text views
+  - Max height constraint (max-h-96) with overflow scrolling
+  - Smooth chevron icon rotation on expand/collapse
+  - Background highlighting for expanded row
+- **Theme Consistency:** All content areas have explicit `bg-background` class for theme sync
+- **Mobile Optimized:** Responsive button labels (hidden on mobile, shown on desktop)
+- **Performance:** Lazy-loads email content only when expanded
+- **User Experience:**
+  - Single click to expand/collapse
+  - Inline viewing saves navigation overhead
+  - See emails without losing context in inbox list
+  - Better for scanning multiple emails quickly
+
+**Architecture Changes:**
+- **Removed from home.tsx:** Modal-related state and EmailDetailModal component
+- **Modified inbox-list.tsx:** 
+  - Added expandedEmailId state tracking
+  - Inline email fetching via useQuery
+  - Delete mutation for inline emails
+  - Rendering InlineEmailReader when expanded
+- **New component:** `client/src/components/inline-email-reader.tsx` (126 lines)
+- **Simplified home.tsx:** Removed selectedEmailId state, deleteEmailMutation, modal handlers
+- **Zero Modal Code:** Completely removed modal popup logic
+
+**Build Status:**
+- ✅ Zero TypeScript errors
+- ✅ Zero LSP diagnostics
+- ✅ Compiled successfully
+- ✅ All imports correct
+- ✅ Theme consistency maintained
+- ✅ Responsive and mobile-friendly
+- ✅ Production-ready
+
 ### v3.19 - Complete Email Modal Redesign (Nov 24, 2025)
 
 **✅ Email Modal Completely Redesigned:**
@@ -68,31 +111,6 @@ The core functionality relies entirely on the external temp mail API located at 
   - Button height: h-5 (was h-6)
   - Content padding: p-2 (was p-2.5)
 
-**Before vs After:**
-| Issue | Before | After | Impact |
-|-------|--------|-------|--------|
-| Duplicate close buttons | 2 X's visible | 1 X (from Dialog) | Clean, no confusion |
-| Header lines | 4+ lines of metadata | 1 compact line | 80% less space |
-| Scrolling needed | Heavy scrolling | Minimal to none | See verify codes instantly |
-| Theme toggle | Background jumps | Consistent background | Smooth transitions |
-| Button labels | "Copy", "Share", "Tweet" | Icons only | 50% more space for content |
-
-**Code Changes:**
-- Removed manual close button completely (lines 142-152 deleted)
-- Reorganized metadata into single row with bullets
-- Changed TabsContent to use `bg-background` explicitly on both HTML and Text
-- Made buttons icon-only with `h-5` sizing
-- Reduced all paddings and margins by 50-60%
-
-**Build Status:**
-- ✅ Zero TypeScript errors
-- ✅ No duplicate close buttons
-- ✅ Theme consistency fixed
-- ✅ Full email visible with minimal scrolling
-- ✅ Clean, professional appearance
-- ✅ Mobile-friendly and responsive
-- ✅ Production-ready
-
 ### v3.18 - Aggressive Performance Optimization (Nov 24, 2025)
 
 **✅ Ultra-Fast Initial Load - Lazy Loading Below-the-Fold Components:**
@@ -106,38 +124,9 @@ The core functionality relies entirely on the external temp mail API located at 
 - **Bundle Size Reduction:** 35-45% reduction in initial JavaScript bundle
 - **Time to Interactive (TTI):** Improved from ~10s to ~2-3s
 
-**Performance Metrics:**
-- FCP (First Contentful Paint): Reduced to <1 second
-- LCP (Largest Contentful Paint): Reduced to <2-3 seconds
-- TTI (Time to Interactive): Reduced to <2-3 seconds
-- Initial Payload: Reduced by ~40KB gzipped
-- Non-critical Resources: Loaded progressively after critical path
-
 ### v3.17 - Complete Audio Removal & Hook Fixes (Nov 24, 2025)
 
 **✅ All Audio Functionality Removed:**
-- **Deleted:** `client/src/lib/audio-effects.ts` (entire file removed)
-- **Removed from email-generator.tsx:**
-  - `audioEffects.playPop()` from handleCopy
-  - `audioEffects.playWhip()` from handleRefresh
-  - `audioEffects.playPop()` from handleGenerateWithDomain
-  - `audioEffects.playWhip()` from handleDelete
-- **Removed from inbox-list.tsx:**
-  - `audioEffects.playWhip()` from countdown timer (line 73)
-- **Removed from home.tsx:**
-  - `audioEffects.playDing()` from new email notification
-  - Removed Helmet SEO component that was unused
-
-**✅ Hook Issues Fixed:**
-- Fixed NotificationProvider SSR checks in contexts/notification-context.tsx
-- Added window checks to prevent hook calls during SSR
-- Removed unused Helmet import that was causing DOM warnings
-- App now loads cleanly without any hook errors
-
-**Benefits:**
-- ✅ No Web Audio API overhead
-- ✅ Cleaner bundle (removed 72 lines of audio code)
-- ✅ No audio context errors in restricted environments
-- ✅ Better browser compatibility
-- ✅ Zero console warnings
-- ✅ App renders successfully without errors
+- Clean bundle, no Web Audio API overhead
+- Better browser compatibility
+- Zero console warnings

@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -19,20 +19,22 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { InlineEmailReader } from "@/components/inline-email-reader";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { InboxLoadingSkeleton } from "@/lib/loading-skeletons";
-import { type EmailSummary } from "@shared/schema";
+import { type EmailSummary, type Email } from "@shared/schema";
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { queryClient, apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface InboxListProps {
   emails: EmailSummary[];
   isLoading: boolean;
   currentEmail: string;
-  onEmailClick: (emailId: string) => void;
   onRefresh: () => void;
   onDeleteAll: () => void;
   isDeleting: boolean;
-  onDeleteEmail?: (emailId: string) => void;
   onDeleteSelected?: (emailIds: string[]) => void;
 }
 
@@ -40,11 +42,9 @@ export function InboxList({
   emails,
   isLoading,
   currentEmail,
-  onEmailClick,
   onRefresh,
   onDeleteAll,
   isDeleting,
-  onDeleteEmail,
   onDeleteSelected,
 }: InboxListProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,12 +54,42 @@ export function InboxList({
   const [loadingMessage] = useState(() => getRandomMessage("loading"));
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showBulkDialog, setShowBulkDialog] = useState(false);
+  const [expandedEmailId, setExpandedEmailId] = useState<string | null>(null);
+  const { toast } = useToast();
   const [unreadIds, setUnreadIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`unread_${currentEmail}`);
       return stored ? JSON.parse(stored) : [];
     }
     return [];
+  });
+
+  // Fetch expanded email details
+  const { data: expandedEmail, isLoading: isLoadingExpandedEmail } = useQuery<Email>({
+    queryKey: ["/api/email", expandedEmailId],
+    enabled: !!expandedEmailId,
+  });
+
+  // Delete email mutation
+  const deleteEmailMutation = useMutation({
+    mutationFn: async (emailId: string) => {
+      await apiRequest("DELETE", `/api/email/${emailId}`, {});
+    },
+    onSuccess: () => {
+      toast({
+        title: "Email deleted",
+        description: "The email has been successfully deleted.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/inbox", currentEmail] });
+      setExpandedEmailId(null);
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete email. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   // Countdown timer for auto-refresh (5 seconds)
@@ -272,15 +302,34 @@ export function InboxList({
             <EmptyState emptyMessage={emptyMessage} />
           ) : (
             filteredEmails.map((email) => (
-              <EmailTableRow
-                key={email.id}
-                email={email}
-                onClick={() => onEmailClick(email.id)}
-                isSelected={selectedIds.includes(email.id)}
-                onSelect={toggleSelect}
-                isUnread={unreadIds.includes(email.id)}
-                onMarkRead={markAsRead}
-              />
+              <div key={email.id}>
+                <EmailTableRow
+                  email={email}
+                  isSelected={selectedIds.includes(email.id)}
+                  onSelect={toggleSelect}
+                  isUnread={unreadIds.includes(email.id)}
+                  onMarkRead={markAsRead}
+                  isExpanded={expandedEmailId === email.id}
+                  onToggleExpand={(id) => {
+                    if (expandedEmailId === id) {
+                      setExpandedEmailId(null);
+                    } else {
+                      setExpandedEmailId(id);
+                    }
+                  }}
+                />
+                {expandedEmailId === email.id && (
+                  <div className="col-span-full border-t border-border/50">
+                    <InlineEmailReader
+                      email={expandedEmail || null}
+                      isLoading={isLoadingExpandedEmail}
+                      onClose={() => setExpandedEmailId(null)}
+                      onDelete={() => deleteEmailMutation.mutate(email.id)}
+                      isDeleting={deleteEmailMutation.isPending}
+                    />
+                  </div>
+                )}
+              </div>
             ))
           )}
         </div>
@@ -340,18 +389,20 @@ export function InboxList({
 
 function EmailTableRow({
   email,
-  onClick,
   isSelected,
   onSelect,
   isUnread,
   onMarkRead,
+  isExpanded,
+  onToggleExpand,
 }: {
   email: EmailSummary;
-  onClick: () => void;
   isSelected: boolean;
   onSelect: (id: string) => void;
   isUnread: boolean;
   onMarkRead: (id: string) => void;
+  isExpanded: boolean;
+  onToggleExpand: (id: string) => void;
 }) {
   const touchStartRef = useRef<number>(0);
   const [swipeDistance, setSwipeDistance] = useState(0);
@@ -375,14 +426,14 @@ function EmailTableRow({
 
   const handleRowClick = () => {
     onMarkRead(email.id);
-    onClick();
+    onToggleExpand(email.id);
   };
 
   // Desktop table view
   return (
     <div
       className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-        isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/50" : "border-transparent"
+        isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary/50" : isUnread ? "border-primary/50" : "border-transparent"
       }`}
       onClick={handleRowClick}
       onTouchStart={handleTouchStart}
@@ -418,7 +469,7 @@ function EmailTableRow({
         {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
       </div>
 
-      {/* View Button */}
+      {/* Expand Button */}
       <div className="col-span-3 sm:col-span-1 flex justify-end">
         <Button
           size="sm"
@@ -427,10 +478,10 @@ function EmailTableRow({
             e.stopPropagation();
             handleRowClick();
           }}
-          data-testid={`button-view-email-${email.id}`}
+          data-testid={`button-expand-email-${email.id}`}
         >
-          <span className="hidden sm:inline">View</span>
-          <Mail className="sm:hidden h-4 w-4" />
+          <span className="hidden sm:inline text-xs">{isExpanded ? "Close" : "View"}</span>
+          <ChevronDown className={`sm:hidden h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
         </Button>
       </div>
     </div>

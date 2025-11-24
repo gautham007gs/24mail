@@ -1,13 +1,11 @@
-import { useState, useEffect, useRef, useMemo, memo, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
-import { Mail as MailIcon } from "lucide-react";
-import { type EmailSummary, type Email, type Domain } from "@shared/schema";
+import { type EmailSummary, type Domain } from "@shared/schema";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
-import { EmailDetailModal } from "@/components/email-detail-modal";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
@@ -38,7 +36,6 @@ export default function Home() {
     }
     return "";
   });
-  const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const [displayedEmails, setDisplayedEmails] = useState<EmailSummary[]>([]);
   const { toast } = useToast();
   const { showNotification } = useNotifications();
@@ -131,33 +128,6 @@ export default function Home() {
     }
   }, [inboxError, toast]);
 
-  // Fetch selected email details
-  const { data: selectedEmail, isLoading: isLoadingEmail } = useQuery<Email>({
-    queryKey: ["/api/email", selectedEmailId],
-    enabled: !!selectedEmailId,
-  });
-
-  // Delete email mutation
-  const deleteEmailMutation = useMutation({
-    mutationFn: async (emailId: string) => {
-      await apiRequest("DELETE", `/api/email/${emailId}`, {});
-    },
-    onSuccess: () => {
-      toast({
-        title: "Email deleted",
-        description: "The email has been successfully deleted.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/api/inbox", currentEmail] });
-      setSelectedEmailId(null);
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to delete email. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
 
   // Delete all emails mutation
   const deleteAllEmailsMutation = useMutation({
@@ -264,21 +234,6 @@ export default function Home() {
     if (typeof window !== "undefined") {
       localStorage.setItem("tempmail_current_email", email);
     }
-    setSelectedEmailId(null);
-  };
-
-  const handleEmailClick = (emailId: string) => {
-    setSelectedEmailId(emailId);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedEmailId(null);
-  };
-
-  const handleDeleteEmail = () => {
-    if (selectedEmailId) {
-      deleteEmailMutation.mutate(selectedEmailId);
-    }
   };
 
   const handleDeleteAllEmails = () => {
@@ -316,7 +271,6 @@ export default function Home() {
               emails={displayedEmails}
               isLoading={isLoadingInbox}
               currentEmail={currentEmail}
-              onEmailClick={handleEmailClick}
               onRefresh={handleRefresh}
               onDeleteAll={handleDeleteAllEmails}
               isDeleting={deleteAllEmailsMutation.isPending}
@@ -357,15 +311,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <EmailDetailModal
-        email={selectedEmail || null}
-        isOpen={!!selectedEmailId}
-        isLoading={isLoadingEmail}
-        onClose={handleCloseModal}
-        onDelete={handleDeleteEmail}
-        isDeleting={deleteEmailMutation.isPending}
-      />
 
       {/* Footer - Lazy loaded */}
       <Suspense fallback={<div className="h-40 bg-muted/20" />}>
