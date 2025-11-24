@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, memo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
+import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
 import { Mail as MailIcon } from "lucide-react";
@@ -43,23 +44,41 @@ export default function Home() {
   const { showNotification } = useNotifications();
   const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
 
-  // Fetch available domains
-  const { data: domains = [] } = useQuery<Domain[]>({
+  // Fetch available domains with caching (24 hour TTL)
+  const { data: domainsData = [] } = useQuery<Domain[]>({
     queryKey: ["/api/domains"],
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
   });
 
-  // Fetch inbox for current email with custom handling for 404
+  // Cache domains and memoize
+  const domains = useMemo(() => {
+    if (domainsData.length > 0) {
+      CacheManager.set("domains_cache", domainsData, 24 * 60 * 60 * 1000);
+    } else {
+      // Try to get from cache if API call fails
+      const cached = CacheManager.get<Domain[]>("domains_cache");
+      return cached || domainsData;
+    }
+    return domainsData;
+  }, [domainsData]);
+
+  // Fetch inbox for current email with smart caching
   const { data: emails = [], isLoading: isLoadingInbox, refetch: refetchInbox, error: inboxError } = useQuery<EmailSummary[]>({
     queryKey: ["/api/inbox", currentEmail],
     enabled: !!currentEmail,
     queryFn: async () => {
+      // Check cache first for instant response
+      const cacheKey = `inbox_${currentEmail}`;
+      const cached = CacheManager.get<EmailSummary[]>(cacheKey);
+      
       const response = await fetch(`/api/inbox/${encodeURIComponent(currentEmail)}`, {
         credentials: "include",
       });
       
       // 404 means no emails yet - return empty array without throwing
       if (response.status === 404) {
-        return [];
+        CacheManager.set(cacheKey, [], 30 * 1000); // Cache empty result for 30s
+        return cached || [];
       }
       
       // For other non-OK statuses, throw to trigger error state
@@ -68,10 +87,13 @@ export default function Home() {
         throw new Error(`${response.status}: ${text}`);
       }
       
-      return await response.json();
+      const data = await response.json();
+      // Cache for 10 seconds (shorter since emails arrive frequently)
+      CacheManager.set(cacheKey, data, 10 * 1000);
+      return data;
     },
     refetchInterval: currentEmail ? 5000 : false, // Auto-refresh every 5 seconds
-    staleTime: 0, // Always fetch fresh data
+    staleTime: 8000, // Reuse data for 8 seconds
   });
 
   // Progressive email loading - add new emails gradually

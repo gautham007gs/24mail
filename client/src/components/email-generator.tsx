@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, memo } from "react";
 import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import { getRandomMessage } from "@/lib/fun-messages";
 import { audioEffects } from "@/lib/audio-effects";
 import { triggerConfetti } from "@/lib/confetti";
 import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
+import CacheManager from "@/lib/cache";
 import { type Domain } from "@shared/schema";
 
 interface EmailGeneratorProps {
@@ -31,7 +32,11 @@ const isPremiumDomain = (domain: string): boolean => {
 export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, emailCount = 0 }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
-  const [selectedDomain, setSelectedDomain] = useState<string>("");
+  const [selectedDomain, setSelectedDomain] = useState<string>(() => {
+    // Load from cache first
+    const cached = CacheManager.get<string>("selected_domain");
+    return cached || "";
+  });
   const [sessionEmailCount, setSessionEmailCount] = useState(0);
   const [expiryTime, setExpiryTime] = useState<string>("");
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -41,12 +46,22 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const { permission, isSupported, requestPermission } = useNotifications();
   const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
 
-  // Set initial domain
-  useEffect(() => {
-    if (domains.length > 0 && !selectedDomain) {
-      setSelectedDomain(domains[0]);
+  // Cache domains list (never changes during session)
+  const cachedDomains = useMemo(() => {
+    if (domains.length > 0) {
+      CacheManager.set("domains_list", domains, 24 * 60 * 60 * 1000); // 24 hour TTL
     }
-  }, [domains, selectedDomain]);
+    return domains;
+  }, [domains]);
+
+  // Set initial domain and cache it
+  useEffect(() => {
+    if (cachedDomains.length > 0 && !selectedDomain) {
+      const domain = cachedDomains[0];
+      setSelectedDomain(domain);
+      CacheManager.set("selected_domain", domain);
+    }
+  }, [cachedDomains, selectedDomain]);
 
   // Calculate and update expiry time (15 minutes from generation)
   useEffect(() => {
@@ -144,8 +159,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
   const handleGenerateWithDomain = () => {
     const username = generateRandomUsername();
-    const domain = selectedDomain || domains[0] || "example.com";
+    const domain = selectedDomain || cachedDomains[0] || "example.com";
     const newEmail = `${username}@${domain}`;
+    
+    // Cache the selected domain for next time
+    CacheManager.set("selected_domain", domain);
     
     onGenerate(newEmail);
     setSessionEmailCount(prev => prev + 1);
@@ -307,12 +325,18 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             Email Domain
           </label>
           <div className="flex gap-2">
-            <Select value={selectedDomain} onValueChange={setSelectedDomain}>
+            <Select 
+              value={selectedDomain} 
+              onValueChange={(domain) => {
+                setSelectedDomain(domain);
+                CacheManager.set("selected_domain", domain); // Cache on change
+              }}
+            >
               <SelectTrigger id="domain-select" className="flex-1 border-emerald-200/50 dark:border-emerald-800/50" data-testid="select-domain">
                 <SelectValue placeholder="Select a domain" />
               </SelectTrigger>
               <SelectContent>
-                {domains.map((domain) => {
+                {cachedDomains.map((domain) => {
                   const isPremium = isPremiumDomain(domain);
                   return (
                     <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>

@@ -1,4 +1,5 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import RequestDeduplicator from "./request-dedup";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
@@ -29,16 +30,19 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
-      credentials: "include",
-    });
-
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
+    const url = queryKey.join("/") as string;
+    
+    // Use request deduplication to prevent concurrent duplicate requests
+    try {
+      return await RequestDeduplicator.dedupFetch<T>(url, {
+        credentials: "include",
+      }, url);
+    } catch (err: any) {
+      if (unauthorizedBehavior === "returnNull" && err.message?.includes("401")) {
+        return null;
+      }
+      throw err;
     }
-
-    await throwIfResNotOk(res);
-    return await res.json();
   };
 
 export const queryClient = new QueryClient({
