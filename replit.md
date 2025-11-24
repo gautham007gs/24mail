@@ -24,8 +24,9 @@ The frontend is built with React and TypeScript, utilizing Vite for development.
 - Aggressive CSS isolation on email viewer to prevent all style cascade
 - Consistent dark variants (`dark:`) applied to all UI elements
 - Smooth theme transitions with 300ms easing
-- Proper color contrast maintained in both modes
+- Proper color contrast maintained in both modes (including avatar placeholders)
 - All hardcoded colors replaced with semantic theme variables
+- Avatar text: Dark text in light mode, white text in dark mode for maximum visibility
 
 **Email Viewing Features:**
 - Default HTML view for rich email formatting

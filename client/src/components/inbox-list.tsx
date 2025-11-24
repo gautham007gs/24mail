@@ -43,14 +43,14 @@ function getAvatarData(email: string): { initials: string; bgColor: string; text
   }
   
   const colors = [
-    { bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300' },
-    { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300' },
-    { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300' },
-    { bg: 'bg-green-100 dark:bg-green-900/40', text: 'text-green-700 dark:text-green-300' },
-    { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300' },
-    { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
-    { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
-    { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+    { bg: 'bg-blue-100 dark:bg-blue-900', text: 'text-blue-900 dark:text-white' },
+    { bg: 'bg-purple-100 dark:bg-purple-900', text: 'text-purple-900 dark:text-white' },
+    { bg: 'bg-pink-100 dark:bg-pink-900', text: 'text-pink-900 dark:text-white' },
+    { bg: 'bg-green-100 dark:bg-green-900', text: 'text-green-900 dark:text-white' },
+    { bg: 'bg-orange-100 dark:bg-orange-900', text: 'text-orange-900 dark:text-white' },
+    { bg: 'bg-red-100 dark:bg-red-900', text: 'text-red-900 dark:text-white' },
+    { bg: 'bg-indigo-100 dark:bg-indigo-900', text: 'text-indigo-900 dark:text-white' },
+    { bg: 'bg-cyan-100 dark:bg-cyan-900', text: 'text-cyan-900 dark:text-white' },
   ];
   
   const selectedColor = colors[Math.abs(hash) % colors.length];
