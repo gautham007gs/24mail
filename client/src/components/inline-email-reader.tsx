@@ -186,7 +186,7 @@ export function InlineEmailReader({
           {email.html_content && (
             <TabsContent value="html" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
               <div
-                className="prose prose-xs max-w-full dark:prose-invert text-xs leading-tight text-foreground/90 [&>*]:my-0 [&>p]:my-0.5"
+                className="max-w-full text-xs leading-tight text-foreground/90 [&>*]:my-0 [&>p]:my-0.5 [&>h1]:text-sm [&>h2]:text-sm [&>h3]:text-xs [&>h4]:text-xs [&>a]:text-primary [&>a]:underline [&>code]:bg-muted [&>code]:px-1 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-muted [&>pre]:p-2 [&>pre]:overflow-x-auto"
                 dangerouslySetInnerHTML={{ __html: email.html_content }}
                 data-testid="content-inline-html"
                 style={{
