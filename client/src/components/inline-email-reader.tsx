@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { type Email } from "@shared/schema";
+import { useState } from "react";
 
 interface InlineEmailReaderProps {
   email: Email | null;
@@ -20,6 +21,8 @@ export function InlineEmailReader({
   onDelete,
   isDeleting,
 }: InlineEmailReaderProps) {
+  const [tabValue, setTabValue] = useState(email?.html_content ? "html" : "text");
+
   if (isLoading) {
     return (
       <div className="col-span-full bg-background border-t border-border/50 px-3 sm:px-4 py-1 space-y-1">
@@ -88,7 +91,7 @@ export function InlineEmailReader({
 
       {/* Content - ultra-compact, no scrolling */}
       <div className="overflow-visible">
-        <Tabs defaultValue={email.html_content ? "html" : "text"} className="flex flex-col">
+        <Tabs value={tabValue} onValueChange={setTabValue} className="flex flex-col">
           {email.html_content && email.text_content && (
             <div className="border-b border-border/50 px-3 sm:px-4 py-0 bg-background">
               <TabsList className="h-4 bg-transparent gap-0">
