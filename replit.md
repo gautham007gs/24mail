@@ -11,6 +11,29 @@ Preferred features: Email sharing, animations, mobile-first design, Gen-Z friend
 
 ## Recent Updates
 
+### v3.5 - Social Proof Overhaul & Trust Signal Enhancement (Nov 24, 2025)
+
+**✅ Completed:**
+- **Unified Social Proof Component:** Consolidated Stats + Trust Badges into one compelling section (unified-social-proof.tsx)
+- **Visual Icons on All Stats:** Mail, Users, CheckCircle, Zap icons for instant recognition
+- **Growth Indicators:** Added percentage growth ("↑ 50% growth", "↑ 35% this month", "No downtime in 18mo")
+- **Emerald Accent System:** All stats use emerald gradient (from-emerald-600 to-emerald-700) for visual hierarchy
+- **Icon Backgrounds:** Emerald-tinted backgrounds on all stat/trust icons (emerald-100 light mode, emerald-950/40 dark mode)
+- **Hover Effects:** Gradient overlays on card hover, icon scale animation on hover
+- **Better Section Organization:** Split into 2 clear subsections: "Impact & Growth" (4 stats) + "Security & Trust" (4 badges)
+- **Live Activity Badge:** Added pulsing activity indicator ("👥 847 emails checked today • 🔒 0 security breaches ever")
+- **Eliminated Redundancy:** Removed 3 separate section headers (Trusted by Thousands, Security & Trust) - now unified at top
+- **Improved Typography:** Better visual hierarchy with uppercase section labels ("IMPACT & GROWTH", "SECURITY & TRUST")
+- **Dark Mode Optimized:** All colors work perfectly in both light and dark modes
+- **FOMO/Trust Signals:** Added emotional triggers for conversion (growth metrics, live activity, security metrics)
+
+**Psychology Improvements:**
+- Stats now create urgency with growth indicators
+- Trust section emphasizes security without being redundant
+- Live activity creates FOMO ("847 emails checked today")
+- Emerald accent creates visual cohesion and brand confidence
+- Better visual rhythm eliminates "social proof clutter" feeling
+
 ### v3.4 - Visual Polish & Mobile Navbar Excellence (Nov 23, 2025)
 
 **✅ Completed:**
