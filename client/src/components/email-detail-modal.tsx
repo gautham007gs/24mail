@@ -230,37 +230,53 @@ export function EmailDetailModal({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden min-h-0">
+            <div className="flex-1 overflow-hidden min-h-0 bg-muted/30">
               <Tabs defaultValue={email.html_content ? "html" : "text"} className="h-full flex flex-col">
                 {email.html_content && email.text_content && (
-                  <div className="border-b border-border px-3 sm:px-6 py-2 flex-shrink-0">
-                    <TabsList className="h-8">
-                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs">HTML</TabsTrigger>
-                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs">Text</TabsTrigger>
+                  <div className="border-b border-border px-3 sm:px-6 py-3 flex-shrink-0 bg-background">
+                    <TabsList className="h-9">
+                      <TabsTrigger value="html" data-testid="tab-html" className="text-sm">HTML View</TabsTrigger>
+                      <TabsTrigger value="text" data-testid="tab-text" className="text-sm">Text View</TabsTrigger>
                     </TabsList>
                   </div>
                 )}
                 
-                <ScrollArea className="flex-1 overflow-hidden">
+                <ScrollArea className="flex-1 min-h-0">
                   {email.html_content && (
-                    <TabsContent value="html" className="m-0 p-3 sm:p-6 max-w-full">
-                      <div
-                        className="prose prose-sm max-w-full dark:prose-invert rounded-lg dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 dark:shadow-lg text-xs sm:text-sm overflow-x-auto"
-                        dangerouslySetInnerHTML={{ __html: email.html_content }}
-                        data-testid="content-html"
-                        style={{
-                          wordWrap: 'break-word',
-                          overflowWrap: 'break-word'
-                        }}
-                      />
+                    <TabsContent value="html" className="m-0 h-full">
+                      <div className="h-full p-4 sm:p-6 overflow-auto">
+                        <div
+                          className="prose prose-base max-w-full dark:prose-invert text-base leading-relaxed text-foreground/90"
+                          dangerouslySetInnerHTML={{ __html: email.html_content }}
+                          data-testid="content-html"
+                          style={{
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            wordBreak: 'break-word'
+                          }}
+                        />
+                      </div>
                     </TabsContent>
                   )}
                   
-                  <TabsContent value="text" className="m-0 p-3 sm:p-6 max-w-full">
-                    <pre className="whitespace-pre-wrap font-mono text-xs sm:text-sm text-foreground dark:text-slate-100 dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 rounded-lg dark:shadow-md max-w-full overflow-auto break-words" data-testid="content-text">
-                      {email.text_content || "No content"}
-                    </pre>
-                  </TabsContent>
+                  {email.text_content && (
+                    <TabsContent value="text" className="m-0 h-full">
+                      <div className="h-full p-4 sm:p-6 overflow-auto">
+                        <pre 
+                          className="font-sans text-base leading-relaxed text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
+                          data-testid="content-text"
+                        >
+                          {email.text_content || "No content"}
+                        </pre>
+                      </div>
+                    </TabsContent>
+                  )}
+                  
+                  {!email.html_content && !email.text_content && (
+                    <div className="h-full flex items-center justify-center p-6">
+                      <p className="text-muted-foreground text-center">No email content available</p>
+                    </div>
+                  )}
                 </ScrollArea>
               </Tabs>
             </div>
