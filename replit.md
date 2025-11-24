@@ -69,6 +69,52 @@ The core functionality relies entirely on the external temp mail API located at 
 
 ## Recent Changes
 
+### v3.29 - Mobile Swipe Actions & Long Press (Nov 24, 2025)
+
+**✅ COMPLETE Intuitive Mobile Touch Gestures (Gmail/Inbox Zero Style):**
+
+**1. Swipe Left → Delete Email:**
+   - Swipe left 60px or more to delete
+   - Red background with trash icon appears during swipe
+   - Smooth animation when released
+   - Instant deletion with toast confirmation
+
+**2. Swipe Right → Star/Favorite Email:**
+   - Swipe right 60px or more to star
+   - Golden/amber background with star icon appears during swipe
+   - Starred emails show filled star icon next to sender
+   - Persisted in localStorage with email address key
+   - Can swipe again to unstar
+
+**3. Long Press (500ms) → Multi-Select:**
+   - Hold on email for 500ms to enter multi-select mode
+   - Cancels if user starts swiping horizontally
+   - Cancels if user scrolls vertically
+   - Checkbox automatically checks when long press detected
+   - Visual feedback with checkbox and selection highlight
+
+**4. Smart Touch Detection:**
+   - Differentiates between left/right swipes by calculating deltaX
+   - Cancels long press on any horizontal movement (>10px)
+   - Cancels long press on vertical scroll (deltaY > deltaX)
+   - Swipe distance capped at 100px for smooth UX
+   - Auto-snap back animation when swipe < 60px threshold
+
+**5. Visual Feedback:**
+   - Real-time swipe distance visualization (email slides left/right)
+   - Color-coded action backgrounds (red for delete, amber for star)
+   - Icons appear during swipe to show action intent
+   - Smooth 200ms ease-out animation on release
+   - Starred emails show filled star icon in sender row
+
+**Result:**
+- ✅ Gmail-style swipe gestures mobile users love
+- ✅ Inbox Zero workflow support (star important, delete rest)
+- ✅ No accidental actions (60px threshold + smooth UX)
+- ✅ Accessibility-first (proper aria-labels, semantic HTML)
+- ✅ Works perfectly with existing multi-select (checkbox)
+- ✅ Persistent starred list per email address
+
 ### v3.28 - Better Visual Hierarchy & Email Scanning (Nov 24, 2025)
 
 **✅ COMPLETE Visual Hierarchy Improvements for Lightning-Fast Email Scanning:**

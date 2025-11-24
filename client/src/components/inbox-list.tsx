@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle, Star, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -81,6 +81,13 @@ export function InboxList({
   const [unreadIds, setUnreadIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`unread_${currentEmail}`);
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
+  const [starredIds, setStarredIds] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`starred_${currentEmail}`);
       return stored ? JSON.parse(stored) : [];
     }
     return [];
@@ -352,6 +359,19 @@ export function InboxList({
                       setExpandedEmailId(id);
                     }
                   }}
+                  isStarred={starredIds.includes(email.id)}
+                  onToggleStar={(id) => {
+                    setStarredIds(prev => {
+                      const updated = prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id];
+                      if (typeof window !== "undefined") {
+                        localStorage.setItem(`starred_${currentEmail}`, JSON.stringify(updated));
+                      }
+                      return updated;
+                    });
+                  }}
+                  onDelete={(id) => {
+                    deleteEmailMutation.mutate(id);
+                  }}
                 />
                 {expandedEmailId === email.id && (
                   <div className="col-span-full border-t border-border/50">
@@ -430,6 +450,9 @@ function EmailTableRow({
   onMarkRead,
   isExpanded,
   onToggleExpand,
+  isStarred,
+  onToggleStar,
+  onDelete,
 }: {
   email: EmailSummary;
   isSelected: boolean;
@@ -438,25 +461,86 @@ function EmailTableRow({
   onMarkRead: (id: string) => void;
   isExpanded: boolean;
   onToggleExpand: (id: string) => void;
+  isStarred: boolean;
+  onToggleStar: (id: string) => void;
+  onDelete: (id: string) => void;
 }) {
-  const touchStartRef = useRef<number>(0);
+  const touchStartRef = useRef<{ x: number; y: number; time: number }>({ x: 0, y: 0, time: 0 });
   const [swipeDistance, setSwipeDistance] = useState(0);
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+  const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartRef.current = e.touches[0].clientX;
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+      time: Date.now(),
+    };
+    
+    // Start long press timer (500ms)
+    longPressTimerRef.current = setTimeout(() => {
+      onSelect(email.id);
+      if (longPressTimerRef.current) {
+        clearTimeout(longPressTimerRef.current);
+        longPressTimerRef.current = null;
+      }
+    }, 500);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if (!longPressTimerRef.current) return; // Long press already triggered
+    
     const currentX = e.touches[0].clientX;
-    const distance = touchStartRef.current - currentX;
-    setSwipeDistance(Math.min(Math.max(distance, 0), 100));
+    const currentY = e.touches[0].clientY;
+    const deltaX = touchStartRef.current.x - currentX;
+    const deltaY = touchStartRef.current.y - currentY;
+
+    // If vertical scroll is more than horizontal, cancel
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      if (longPressTimerRef.current) {
+        clearTimeout(longPressTimerRef.current);
+        longPressTimerRef.current = null;
+      }
+      return;
+    }
+
+    // Cancel long press on horizontal movement
+    if (longPressTimerRef.current && (Math.abs(deltaX) > 10)) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+
+    // Detect swipe direction
+    if (Math.abs(deltaX) > 5) {
+      if (deltaX > 0) {
+        setSwipeDirection('left');
+      } else {
+        setSwipeDirection('right');
+      }
+    }
+
+    const distance = Math.abs(deltaX);
+    setSwipeDistance(Math.min(distance, 100));
   };
 
   const handleTouchEnd = () => {
-    if (swipeDistance > 60) {
-      onSelect(email.id);
+    // Cancel long press timer if still active
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
     }
+
+    // Handle swipe actions
+    if (swipeDistance > 60) {
+      if (swipeDirection === 'left') {
+        onDelete(email.id);
+      } else if (swipeDirection === 'right') {
+        onToggleStar(email.id);
+      }
+    }
+
     setSwipeDistance(0);
+    setSwipeDirection(null);
   };
 
   const handleRowClick = () => {
@@ -469,17 +553,34 @@ function EmailTableRow({
   
   // Desktop table view
   return (
-    <div
-      className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-        isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary" : isUnread ? "border-primary bg-primary/5" : "border-transparent"
-      }`}
-      onClick={handleRowClick}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      data-testid={`row-email-${email.id}`}
-      style={{ transform: `translateX(-${swipeDistance}px)` }}
-    >
+    <div className="relative">
+      {/* Swipe action backgrounds */}
+      {swipeDirection === 'left' && swipeDistance > 0 && (
+        <div className="absolute inset-0 bg-destructive/90 flex items-center justify-end pr-6 rounded-lg pointer-events-none">
+          <Trash className="h-5 w-5 text-destructive-foreground" />
+        </div>
+      )}
+      {swipeDirection === 'right' && swipeDistance > 0 && (
+        <div className="absolute inset-0 bg-amber-500 dark:bg-amber-600 flex items-center justify-start pl-6 rounded-lg pointer-events-none">
+          <Star className="h-5 w-5 text-white" />
+        </div>
+      )}
+      
+      {/* Email row */}
+      <div
+        className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+          isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary" : isUnread ? "border-primary bg-primary/5" : "border-transparent"
+        }`}
+        onClick={handleRowClick}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        data-testid={`row-email-${email.id}`}
+        style={{ 
+          transform: `translateX(${swipeDirection === 'left' ? -swipeDistance : swipeDistance}px)`,
+          transition: swipeDistance === 0 ? 'transform 0.2s ease-out' : 'none',
+        }}
+      >
       {/* Checkbox */}
       <div
         className="hidden sm:flex col-span-1 items-center"
@@ -497,6 +598,9 @@ function EmailTableRow({
         <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
         {email.has_attachments && (
           <Paperclip className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0" data-testid={`attachment-icon-${email.id}`} aria-label="Has attachment" />
+        )}
+        {isStarred && (
+          <Star className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0 fill-current" data-testid={`star-icon-${email.id}`} aria-label="Starred email" />
         )}
       </div>
 
@@ -533,6 +637,7 @@ function EmailTableRow({
           <span className="hidden sm:inline text-xs">{isExpanded ? "Close" : "View"}</span>
           <ChevronDown className={`sm:hidden h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
         </Button>
+      </div>
       </div>
     </div>
   );
