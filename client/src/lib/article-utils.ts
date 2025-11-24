@@ -6,6 +6,13 @@ export interface TableOfContentsItem {
   title: string;
 }
 
+export interface ContentBlock {
+  type: 'h2' | 'h3' | 'p' | 'list' | 'emphasis' | 'strong';
+  content: string;
+  id?: string;
+  items?: string[];
+}
+
 /**
  * Generate table of contents from markdown content
  */
@@ -26,6 +33,47 @@ export const generateTableOfContents = (content: string): TableOfContentsItem[] 
   }
 
   return toc;
+};
+
+/**
+ * Parse and render content blocks professionally
+ */
+export const parseContentBlocks = (content: string): ContentBlock[] => {
+  const blocks: ContentBlock[] = [];
+  const paragraphs = content.split('\n\n').filter(p => p.trim());
+
+  for (const paragraph of paragraphs) {
+    const trimmed = paragraph.trim();
+
+    // Heading 2
+    if (trimmed.startsWith('## ')) {
+      const title = trimmed.replace('## ', '').trim();
+      const id = title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+      blocks.push({ type: 'h2', content: title, id });
+    }
+    // Heading 3
+    else if (trimmed.startsWith('### ')) {
+      const title = trimmed.replace('### ', '').trim();
+      const id = title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+      blocks.push({ type: 'h3', content: title, id });
+    }
+    // Numbered list
+    else if (trimmed.match(/^\d+\./)) {
+      const items = trimmed.split('\n').map(line => line.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
+      blocks.push({ type: 'list', content: 'ordered', items });
+    }
+    // Bullet list
+    else if (trimmed.startsWith('-')) {
+      const items = trimmed.split('\n').map(line => line.replace(/^-\s*/, '').trim()).filter(Boolean);
+      blocks.push({ type: 'list', content: 'unordered', items });
+    }
+    // Regular paragraph
+    else {
+      blocks.push({ type: 'p', content: trimmed });
+    }
+  }
+
+  return blocks;
 };
 
 /**

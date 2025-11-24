@@ -1,12 +1,12 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
 import { getPostBySlug, getRelatedPosts, faqItems } from "@/lib/blog-data";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
-import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios } from "@/lib/article-utils";
+import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios, parseContentBlocks } from "@/lib/article-utils";
 import { useToast } from "@/hooks/use-toast";
 
 export default function BlogPost() {
@@ -18,6 +18,8 @@ export default function BlogPost() {
   const relatedPosts = post ? getRelatedPosts(slug) : [];
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
   const [toc, setToc] = useState<ReturnType<typeof generateTableOfContents>>([]);
+  const [isTocOpen, setIsTocOpen] = useState(false);
+  const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,6 +29,8 @@ export default function BlogPost() {
     if (post) {
       const tableOfContents = generateTableOfContents(post.content);
       setToc(tableOfContents);
+      const blocks = parseContentBlocks(post.content);
+      setContentBlocks(blocks);
     }
   }, [post]);
 
@@ -93,20 +97,20 @@ export default function BlogPost() {
       </Helmet>
 
       <div className="min-h-screen bg-background flex flex-col lg:flex-row">
-        {/* TOC Sidebar */}
+        {/* Desktop TOC Sidebar */}
         {toc.length > 0 && (
           <aside className="hidden lg:block lg:w-64 border-r border-border/50 bg-background/50 sticky top-0 h-screen overflow-y-auto">
             <div className="p-6 space-y-4">
-              <h3 className="font-bold text-foreground text-sm">Table of Contents</h3>
+              <h3 className="font-bold text-foreground text-sm uppercase tracking-wide">Contents</h3>
               <nav className="space-y-2">
                 {toc.map((item) => (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`block text-sm transition-colors no-underline ${
+                    className={`block text-sm transition-colors no-underline hover-elevate px-2 py-1.5 rounded ${
                       item.level === 2
-                        ? 'text-foreground hover:text-primary'
-                        : 'text-muted-foreground hover:text-foreground ml-4'
+                        ? 'text-foreground font-medium'
+                        : 'text-muted-foreground ml-3'
                     }`}
                   >
                     {item.title}
@@ -115,6 +119,59 @@ export default function BlogPost() {
               </nav>
             </div>
           </aside>
+        )}
+
+        {/* Mobile TOC Toggle Button */}
+        {toc.length > 0 && (
+          <div className="lg:hidden fixed bottom-6 right-6 z-40">
+            <Button
+              size="icon"
+              className="rounded-full shadow-lg h-12 w-12 bg-emerald-600 hover:bg-emerald-700 text-white"
+              onClick={() => setIsTocOpen(!isTocOpen)}
+              aria-label={isTocOpen ? "Close table of contents" : "Open table of contents"}
+              data-testid="button-mobile-toc-toggle"
+            >
+              {isTocOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
+        )}
+
+        {/* Mobile TOC Overlay */}
+        {toc.length > 0 && isTocOpen && (
+          <div className="lg:hidden fixed inset-0 z-30 bg-background/80 backdrop-blur-sm">
+            <div className="absolute left-0 top-0 bottom-0 w-64 bg-background border-r border-border/50 overflow-y-auto">
+              <div className="p-6 space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-bold text-foreground text-sm uppercase tracking-wide">Contents</h3>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => setIsTocOpen(false)}
+                    className="h-8 w-8"
+                    data-testid="button-close-toc"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <nav className="space-y-2">
+                  {toc.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className={`block text-sm transition-colors no-underline px-2 py-1.5 rounded ${
+                        item.level === 2
+                          ? 'text-foreground font-medium hover:bg-muted'
+                          : 'text-muted-foreground ml-3 hover:text-foreground'
+                      }`}
+                      onClick={() => setIsTocOpen(false)}
+                    >
+                      {item.title}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          </div>
         )}
 
         <div className="flex-1">
@@ -171,21 +228,56 @@ export default function BlogPost() {
             {post.title}
           </h1>
 
-          <div className="prose prose-invert max-w-none mb-12 space-y-6 text-foreground/80 leading-relaxed whitespace-pre-wrap">
-            {post.content.split('\n\n').map((paragraph, idx) => {
-              if (paragraph.startsWith('## ')) {
-                return <h2 key={idx} className="text-2xl md:text-3xl font-bold text-foreground mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+          <div className="prose prose-invert max-w-none mb-12">
+            {contentBlocks.map((block, idx) => {
+              switch (block.type) {
+                case 'h2':
+                  return (
+                    <h2
+                      key={idx}
+                      id={block.id}
+                      className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6 pt-4 scroll-mt-20"
+                      data-testid={`heading-${block.id}`}
+                    >
+                      {block.content}
+                    </h2>
+                  );
+                case 'h3':
+                  return (
+                    <h3
+                      key={idx}
+                      id={block.id}
+                      className="text-xl md:text-2xl font-semibold text-foreground mt-8 mb-4 pt-3 scroll-mt-20"
+                    >
+                      {block.content}
+                    </h3>
+                  );
+                case 'list':
+                  return block.content === 'ordered' ? (
+                    <ol key={idx} className="space-y-2 ml-6 my-6">
+                      {block.items?.map((item, i) => (
+                        <li key={i} className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                          {item}
+                        </li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <ul key={idx} className="space-y-2 ml-6 my-6 list-disc">
+                      {block.items?.map((item, i) => (
+                        <li key={i} className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                case 'p':
+                default:
+                  return (
+                    <p key={idx} className="text-base md:text-lg text-foreground/80 leading-relaxed my-4">
+                      {block.content}
+                    </p>
+                  );
               }
-              if (paragraph.startsWith('**') && paragraph.includes(':')) {
-                return <p key={idx} className="text-base md:text-lg"><strong>{paragraph.split(':')[0].replace(/\*\*/g, '')}:</strong> {paragraph.split(':').slice(1).join(':').replace(/\*\*/g, '')}</p>;
-              }
-              if (paragraph.match(/^\d+\./)) {
-                return <p key={idx} className="text-base md:text-lg ml-4 mb-2">{paragraph}</p>;
-              }
-              if (paragraph.startsWith('-')) {
-                return <li key={idx} className="text-base md:text-lg ml-6 mb-2">{paragraph.replace('- ', '')}</li>;
-              }
-              return <p key={idx} className="text-base md:text-lg">{paragraph}</p>;
             })}
           </div>
 
