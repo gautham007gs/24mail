@@ -126,17 +126,17 @@ export function EmailDetailModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-2xl lg:max-w-3xl max-h-[90vh] p-0 glassmorphism flex flex-col overflow-hidden" data-testid="modal-email-detail">
+      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-3xl lg:max-w-4xl h-[95vh] sm:h-[90vh] p-0 glassmorphism flex flex-col overflow-hidden" data-testid="modal-email-detail">
         <DialogDescription className="sr-only">Email details and content</DialogDescription>
         {isLoading ? (
           <LoadingState />
         ) : email ? (
-          <div className="flex h-full flex-col overflow-hidden">
-            {/* Header */}
-            <div className="border-b border-border px-3 sm:px-6 py-4 sm:py-5 flex-shrink-0">
-              <div className="space-y-3">
+          <div className="flex h-full w-full flex-col overflow-hidden">
+            {/* Header - Compact */}
+            <div className="border-b border-border px-3 sm:px-4 py-2 sm:py-3 flex-shrink-0 bg-background">
+              <div className="space-y-2">
                 <div className="flex items-start justify-between gap-2">
-                  <h2 className="text-lg sm:text-xl font-semibold text-foreground flex-1 break-words pr-2" data-testid="text-email-subject">
+                  <h2 className="text-base sm:text-lg font-semibold text-foreground flex-1 break-words line-clamp-2" data-testid="text-email-subject">
                     {email.subject || "(No subject)"}
                   </h2>
                   <Button
@@ -144,7 +144,7 @@ export function EmailDetailModal({
                     size="icon"
                     onClick={onClose}
                     data-testid="button-close-modal"
-                    className="h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
+                    className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
                     aria-label="Close email"
                     title="Close email"
                   >
@@ -152,66 +152,58 @@ export function EmailDetailModal({
                   </Button>
                 </div>
 
-                {/* Email metadata - Clean and compact */}
-                <div className="space-y-2 text-xs sm:text-sm">
-                  <div className="flex flex-col gap-1">
-                    <span className="font-medium text-foreground/70">From</span>
-                    <span className="text-foreground break-all" data-testid="text-email-from">
+                {/* Email metadata - Minimal and compact */}
+                <div className="space-y-1 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-foreground/70">From:</span>
+                    <span className="text-foreground break-all text-right" data-testid="text-email-from">
                       {email.from_address}
                     </span>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="font-medium text-foreground/70">To</span>
-                    <span className="text-foreground break-all" data-testid="text-email-to">
-                      {email.to_address}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-foreground/70">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-muted-foreground" data-testid="text-email-date">
                       {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
                     </span>
                     {email.has_attachments && (
-                      <span className="flex items-center gap-1 text-muted-foreground">
-                        <Paperclip className="h-4 w-4" />
-                        <span className="text-xs">
-                          {email.attachment_count || 0} attachment{email.attachment_count !== 1 ? "s" : ""}
-                        </span>
+                      <span className="flex items-center gap-1 text-muted-foreground text-xs">
+                        <Paperclip className="h-3 w-3" />
+                        {email.attachment_count || 0}
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* Action buttons - Clean and organized */}
-                <div className="flex flex-wrap gap-1 pt-2 border-t border-border/50">
+                {/* Action buttons - Compact row */}
+                <div className="flex flex-wrap gap-1 pt-1">
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleCopyEmail}
                     data-testid="button-copy-email"
-                    className="text-xs h-8"
+                    className="text-xs h-7"
                   >
-                    <Copy className="h-3.5 w-3.5 mr-1" />
-                    <span className="hidden sm:inline">Copy</span>
+                    <Copy className="h-3 w-3 mr-1" />
+                    Copy
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleShareWhatsApp}
                     data-testid="button-share-whatsapp"
-                    className="text-xs h-8"
+                    className="text-xs h-7"
                   >
-                    <MessageCircle className="h-3.5 w-3.5 mr-1" />
-                    <span className="hidden sm:inline">Share</span>
+                    <MessageCircle className="h-3 w-3 mr-1" />
+                    Share
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleShareTwitter}
                     data-testid="button-share-twitter"
-                    className="text-xs h-8"
+                    className="text-xs h-7"
                   >
-                    <Share2 className="h-3.5 w-3.5 mr-1" />
-                    <span className="hidden sm:inline">Tweet</span>
+                    <Share2 className="h-3 w-3 mr-1" />
+                    Tweet
                   </Button>
                   <div className="flex-1"></div>
                   <Button
@@ -220,33 +212,33 @@ export function EmailDetailModal({
                     onClick={onDelete}
                     disabled={isDeleting}
                     data-testid="button-delete-email"
-                    className="text-destructive border-destructive/30 text-xs h-8"
+                    className="text-destructive border-destructive/30 text-xs h-7"
                   >
-                    <Trash2 className="h-3.5 w-3.5 mr-1" />
-                    <span className="hidden sm:inline">Delete</span>
+                    <Trash2 className="h-3 w-3 mr-1" />
+                    Delete
                   </Button>
                 </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden min-h-0 bg-muted/30">
+            <div className="flex-1 overflow-hidden min-h-0 bg-background">
               <Tabs defaultValue={email.html_content ? "html" : "text"} className="h-full flex flex-col">
                 {email.html_content && email.text_content && (
-                  <div className="border-b border-border px-3 sm:px-6 py-3 flex-shrink-0 bg-background">
-                    <TabsList className="h-9">
-                      <TabsTrigger value="html" data-testid="tab-html" className="text-sm">HTML View</TabsTrigger>
-                      <TabsTrigger value="text" data-testid="tab-text" className="text-sm">Text View</TabsTrigger>
+                  <div className="border-b border-border px-3 sm:px-4 py-1 flex-shrink-0 bg-background/50">
+                    <TabsList className="h-8 bg-transparent">
+                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs sm:text-sm">HTML</TabsTrigger>
+                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs sm:text-sm">Text</TabsTrigger>
                     </TabsList>
                   </div>
                 )}
                 
-                <ScrollArea className="flex-1 min-h-0">
+                <div className="flex-1 overflow-hidden min-h-0">
                   {email.html_content && (
-                    <TabsContent value="html" className="m-0 h-full">
-                      <div className="h-full p-4 sm:p-6 overflow-auto">
+                    <TabsContent value="html" className="m-0 h-full overflow-hidden">
+                      <div className="h-full overflow-y-auto p-3 sm:p-4">
                         <div
-                          className="prose prose-base max-w-full dark:prose-invert text-base leading-relaxed text-foreground/90"
+                          className="prose prose-sm max-w-full dark:prose-invert text-sm leading-relaxed text-foreground/90"
                           dangerouslySetInnerHTML={{ __html: email.html_content }}
                           data-testid="content-html"
                           style={{
@@ -260,10 +252,10 @@ export function EmailDetailModal({
                   )}
                   
                   {email.text_content && (
-                    <TabsContent value="text" className="m-0 h-full">
-                      <div className="h-full p-4 sm:p-6 overflow-auto">
+                    <TabsContent value="text" className="m-0 h-full overflow-hidden">
+                      <div className="h-full overflow-y-auto p-3 sm:p-4">
                         <pre 
-                          className="font-sans text-base leading-relaxed text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
+                          className="font-sans text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
                           data-testid="content-text"
                         >
                           {email.text_content || "No content"}
@@ -273,11 +265,11 @@ export function EmailDetailModal({
                   )}
                   
                   {!email.html_content && !email.text_content && (
-                    <div className="h-full flex items-center justify-center p-6">
-                      <p className="text-muted-foreground text-center">No email content available</p>
+                    <div className="h-full flex items-center justify-center p-4">
+                      <p className="text-muted-foreground text-center text-sm">No email content available</p>
                     </div>
                   )}
-                </ScrollArea>
+                </div>
               </Tabs>
             </div>
           </div>
