@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 
 // Lazy load below-the-fold components for faster initial load
+const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
 const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
@@ -290,6 +291,13 @@ export default function Home() {
               isDeleting={deleteAllEmailsMutation.isPending}
               onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
             />
+          </div>
+
+          {/* How It Works Section - Lazy loaded for faster initial render */}
+          <div className="mt-20 pt-8 md:pt-12 border-t border-border/30 fade-in">
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <HowItWorks />
+            </Suspense>
           </div>
 
           {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}

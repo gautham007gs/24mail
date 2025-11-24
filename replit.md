@@ -4,20 +4,21 @@
 
 This project is a temporary email service application providing disposable email addresses. It enables instant email creation, message viewing, and content reading without registration, prioritizing privacy and a simple user experience. The application's design adheres to Apple HIG principles, focusing on accessibility, animations, smooth interactions, and a Gen-Z friendly aesthetic. The business vision is to offer a reliable, user-friendly disposable email solution with a premium feel, aiming for broad market adoption due to its privacy features and intuitive design.
 
-## Recent Updates (v3.32)
+## Recent Updates (v3.33)
 
-**✅ Premium Features Added:**
-- **Home Page SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, JSON-LD structured data
-- **Share Email Links**: Generate unique shareable URLs with email + subject
-- **Download Emails**: Export emails as formatted HTML files
-- **Improved UI**: New share link and download buttons in email toolbar
+**✅ Homepage Optimized for Performance & Gen-Z UX:**
+- **Hybrid Landing Page Structure**: Email generator + inbox above fold (instant gratification), social proof/testimonials/FAQ lazy loaded below fold
+- **New "How It Works" Section**: 4-step visual guide (Generate → Use Anywhere → Receive Emails → Auto-Delete) with feature highlights
+- **Lazy Loading Strategy**: Below-the-fold content doesn't impact initial 2-3 second load time
+- **Fixed React Hook Errors**: App now renders cleanly without console errors
+- **Mobile-First Design**: Optimized for Gen-Z mobile users with instant functionality and minimal cognitive load
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-Preferred features: Email sharing, animations, mobile-first design, Gen-Z friendly UI.
+Preferred features: Email sharing, animations, mobile-first design, Gen-Z friendly UI, fast performance.
 Performance Priority: Lightning-fast initial load times (target <3 seconds)
-UX Design: Inline accordion-style email expansion (no modal popups, ultra-compact, no scrolling)
+UX Design: Inline accordion-style email expansion (no modal popups, ultra-compact, no scrolling), hybrid landing page (minimalist above fold, comprehensive below fold)
 Theme Support: Full dark mode support with consistent styling across all components
 Email Viewing: Default to HTML view, all links open in new tabs for user retention
 
@@ -25,7 +26,20 @@ Email Viewing: Default to HTML view, all links open in new tabs for user retenti
 
 ### Frontend Architecture
 
-The frontend is built with React and TypeScript, utilizing Vite for development. It leverages `shadcn/ui` (Radix UI and Tailwind CSS) for its component system, following a "new-york" style with CSS variables for theming. TanStack Query manages server state, and Wouter handles client-side routing. The design is inspired by Apple HIG, emphasizing clear hierarchy, immediate functionality, generous spacing, readable content widths (`max-w-4xl`), and typography (Inter for UI, JetBrains Mono for emails). It features smooth animations (animated gradients, confetti, fade-in-up, pulse) and a mobile-first, Gen-Z friendly aesthetic with vibrant colors. Key components include `EmailGenerator`, `InboxList`, `InlineEmailReader`, and a responsive `Header`. The application implements aggressive bundle optimization through code splitting, tree-shaking, and CSS code splitting for lightning-fast performance and efficient caching. It also includes comprehensive caching strategies using `localStorage` with TTL, request deduplication, and a service worker for offline support and stale-while-revalidate caching. Premium domain indicators (golden crown icons) are integrated for select domains.
+The frontend is built with React and TypeScript, utilizing Vite for development. It leverages `shadcn/ui` (Radix UI and Tailwind CSS) for its component system, following a "new-york" style with CSS variables for theming. TanStack Query manages server state, and Wouter handles client-side routing. The design is inspired by Apple HIG, emphasizing clear hierarchy, immediate functionality, generous spacing, readable content widths (`max-w-3xl`), and typography (Inter for UI, JetBrains Mono for emails). It features smooth animations (animated gradients, confetti, fade-in-up, pulse) and a mobile-first, Gen-Z friendly aesthetic with vibrant colors. Key components include `EmailGenerator`, `InboxList`, `InlineEmailReader`, `HowItWorks`, and a responsive `Header`. The application implements aggressive bundle optimization through code splitting, lazy loading, tree-shaking, and CSS code splitting for lightning-fast performance and efficient caching. It also includes comprehensive caching strategies using `localStorage` with TTL, request deduplication, and a service worker for offline support and stale-while-revalidate caching. Premium domain indicators (golden crown icons) are integrated for select domains.
+
+**Homepage Structure (Hybrid Approach):**
+- **Above Fold (Critical Path - No Lazy Loading)**:
+  - Header with navigation
+  - Email Generator with domain selector
+  - Inbox display with inline email reading
+  - Notification banner
+- **Below Fold (Lazy Loaded - Code Split)**:
+  - "How It Works" section (4-step visual guide)
+  - Social proof badges (user stats)
+  - Testimonials carousel (user feedback)
+  - FAQ accordion (common questions)
+  - Footer
 
 **Dark Mode Implementation:**
 - CSS custom properties for light and dark themes in `index.css`
@@ -79,5 +93,5 @@ The core functionality relies entirely on the external temp mail API located at 
 ### Development Tools
 
 - **TypeScript**: Ensures end-to-end type safety.
-- **Vite**: Frontend build tool and development server.
+- **Vite**: Frontend build tool and development server with HMR.
 - **esbuild**: Bundles backend server code.
