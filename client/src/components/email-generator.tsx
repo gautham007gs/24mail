@@ -476,34 +476,42 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* QR Code Modal - Premium Design */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden">
+        <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
           {/* Header with gradient */}
-          <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-6 pt-6 pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30">
+          <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30 flex-shrink-0">
             <DialogHeader className="space-y-1">
-              <DialogTitle className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
+              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
                 Share Your Email
               </DialogTitle>
-              <p className="text-xs md:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Let others reach you instantly
               </p>
             </DialogHeader>
           </div>
 
-          {/* Main Content */}
-          <div className="px-6 py-8 space-y-6">
+          {/* Main Content - Scrollable */}
+          <div className="px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
             {/* QR Code Container - Premium */}
-            <div className="flex flex-col items-center justify-center space-y-4">
+            <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
               {/* QR Code Background with glow effect */}
               <div className="relative group">
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
-                {/* QR Code Box */}
-                <div className="relative bg-white dark:bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
+                {/* QR Code Box - Responsive Sizing */}
+                <div className="relative bg-white dark:bg-white/95 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
                   <div className="animate-in fade-in duration-300">
                     <QRCode
                       value={shareUrl}
-                      size={280}
+                      size={
+                        typeof window !== 'undefined'
+                          ? window.innerWidth < 360
+                            ? 200
+                            : window.innerWidth < 640
+                            ? 240
+                            : 280
+                          : 280
+                      }
                       level="H"
                       data-testid="qr-code-svg"
                       className="drop-shadow-sm"
@@ -513,7 +521,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </div>
 
               {/* Scanning Instructions */}
-              <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-4 py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
                 <Smartphone className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                 <span>Point your camera to scan</span>
               </div>
@@ -524,41 +532,43 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Email Address</p>
               <div className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-emerald-50/50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/30 p-4 rounded-xl border border-emerald-200/40 dark:border-emerald-800/40 backdrop-blur-sm">
-                  <p className="font-mono text-sm md:text-base font-semibold text-foreground break-all leading-tight">{currentEmail}</p>
+                <div className="relative bg-gradient-to-r from-emerald-50/50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/30 p-3 sm:p-4 rounded-xl border border-emerald-200/40 dark:border-emerald-800/40 backdrop-blur-sm">
+                  <p className="font-mono text-xs sm:text-sm md:text-base font-semibold text-foreground break-all leading-tight">{currentEmail}</p>
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {/* Primary: Copy Button */}
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
-                className="w-full h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
+                className="w-full h-10 sm:h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
                 data-testid="button-copy-email-qr"
               >
-                <Copy className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                Copy Email Address
+                <Copy className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Copy Email Address</span>
+                <span className="sm:hidden">Copy Email</span>
               </Button>
 
               {/* Secondary: Download QR */}
               <Button
                 onClick={handleDownloadQR}
                 variant="outline"
-                className="w-full h-11 md:h-12 border-2 border-emerald-200/50 dark:border-emerald-800/50 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 font-semibold text-sm md:text-base transition-all duration-200 active-elevate-2"
+                className="w-full h-10 sm:h-11 md:h-12 border-2 border-emerald-200/50 dark:border-emerald-800/50 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 font-semibold text-xs sm:text-sm md:text-base transition-all duration-200 active-elevate-2"
                 data-testid="button-download-qr"
               >
-                <Download className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                Download QR Code
+                <Download className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Download QR Code</span>
+                <span className="sm:hidden">Download</span>
               </Button>
             </div>
 
             {/* Social Share Section */}
-            <div className="space-y-3 pt-3 border-t border-border/50 dark:border-border/30">
+            <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-3 border-t border-border/50 dark:border-border/30">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share On</p>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 <Button
                   variant="outline"
                   size="lg"
@@ -568,10 +578,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-whatsapp-qr"
-                  className="h-12 border-2 border-green-200/50 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/30 transition-all duration-200 active-elevate-2"
+                  className="h-10 sm:h-12 border-2 border-green-200/50 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on WhatsApp"
                 >
-                  <MessageCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
                 </Button>
                 <Button
                   variant="outline"
@@ -582,10 +592,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-telegram-qr"
-                  className="h-12 border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition-all duration-200 active-elevate-2"
+                  className="h-10 sm:h-12 border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on Telegram"
                 >
-                  <Send className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <Send className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
                 </Button>
                 <Button
                   variant="outline"
@@ -596,18 +606,18 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                     summary: 'Free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-twitter-qr"
-                  className="h-12 border-2 border-sky-200/50 dark:border-sky-800/50 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition-all duration-200 active-elevate-2"
+                  className="h-10 sm:h-12 border-2 border-sky-200/50 dark:border-sky-800/50 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on X (Twitter)"
                 >
-                  <Share2 className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+                  <Share2 className="h-4 w-4 sm:h-5 sm:w-5 text-sky-600 dark:text-sky-400" />
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-t border-border/50 dark:border-border/30 text-center text-xs text-muted-foreground">
-            Safe, private, and instant sharing - no tracking, no ads
+          <div className="bg-muted/30 dark:bg-muted/10 px-4 sm:px-6 py-3 sm:py-4 border-t border-border/50 dark:border-border/30 text-center text-xs text-muted-foreground flex-shrink-0">
+            Safe, private, and instant sharing
           </div>
         </DialogContent>
       </Dialog>

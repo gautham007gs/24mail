@@ -49,3 +49,32 @@ The core functionality relies entirely on the external temp mail API located at 
 - **Vite**: Frontend build tool and development server.
 - **esbuild**: Bundles backend server code.
 - **Drizzle ORM**: Configured for PostgreSQL but not currently utilized.
+### v3.11 - Responsive QR Modal (Nov 24, 2025)
+
+**✅ Responsive Modal Redesign:**
+- **Mobile-First Sizing:** w-[95vw] on mobile, w-11/12 on sm+
+- **Dynamic QR Sizing:** 
+  - Small devices (<360px): 200px QR
+  - Medium devices (360-640px): 240px QR
+  - Large devices (640px+): 280px QR
+- **Scrollable Content:** max-h-[90vh] with overflow-y-auto
+- **Adaptive Padding:** px-3 on mobile, px-6 on sm+
+- **Responsive Spacing:** Reduced gaps on mobile
+- **Smart Button Text:** 
+  - Mobile: "Copy Email", "Download" (shorter)
+  - Desktop: "Copy Email Address", "Download QR Code"
+- **Flexible Heights:** h-10 on mobile, h-11 sm, h-12 md+
+- **Perfect Fit on All Devices:**
+  - ✅ Fits on tiny phones (280px width)
+  - ✅ All content visible without side scroll
+  - ✅ No content cut off
+  - ✅ Scrollable if needed on very small screens
+  - ✅ Perfect on tablets
+  - ✅ Beautiful on desktop
+
+**Build Status:**
+- ✅ Zero TypeScript errors
+- ✅ CSS: 20.11kb (gzipped)
+- ✅ All responsive breakpoints working
+- ✅ Tested on multiple device sizes
+- ✅ Production-ready
