@@ -69,6 +69,39 @@ The core functionality relies entirely on the external temp mail API located at 
 
 ## Recent Changes
 
+### v3.30 - Avatar Placeholders for Senders (Nov 24, 2025)
+
+**✅ COMPLETE Avatar System with Sender Initials:**
+
+**1. Avatar Generation:**
+   - Extracts initials from sender email (e.g., "john.doe@example.com" → "JD")
+   - Shows in circular placeholder (8×8px, medium-sized)
+   - Positioned before sender name in inbox row
+
+**2. Consistent Color Coding:**
+   - Each sender gets a unique color based on email hash
+   - 8 beautiful color palette (blue, purple, pink, green, orange, red, indigo, cyan)
+   - Same sender always gets same color (consistent across sessions)
+   - Colors work perfectly in both light and dark modes
+
+**3. Visual Design:**
+   - Circular shape with rounded-full styling
+   - Proper sizing to match interactable controls (h-8 w-8)
+   - Semibold text for readability
+   - Tooltip shows full email on hover
+
+**4. Performance:**
+   - Hash-based color generation (no external libraries)
+   - Initial extraction with regex split
+   - Lightweight and fast (no API calls)
+
+**Result:**
+- ✅ Visual recognition of frequent senders at a glance
+- ✅ Colorful, friendly inbox that's easy on the eyes
+- ✅ Consistent colors help users recognize patterns
+- ✅ Works seamlessly in dark/light modes
+- ✅ Zero impact on performance
+
 ### v3.29 - Mobile Swipe Actions & Long Press (Nov 24, 2025)
 
 **✅ COMPLETE Intuitive Mobile Touch Gestures (Gmail/Inbox Zero Style):**

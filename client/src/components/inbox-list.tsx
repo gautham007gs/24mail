@@ -28,6 +28,39 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
+// Generate avatar initials and consistent color from email address
+function getAvatarData(email: string): { initials: string; bgColor: string; textColor: string } {
+  // Extract initials from email (e.g., "john.doe@example.com" -> "JD")
+  const name = email.split('@')[0];
+  const parts = name.split(/[._-]/);
+  const initials = parts.slice(0, 2).map(p => p.charAt(0).toUpperCase()).join('').slice(0, 2);
+  
+  // Generate consistent color based on email hash
+  let hash = 0;
+  for (let i = 0; i < email.length; i++) {
+    hash = ((hash << 5) - hash) + email.charCodeAt(i);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  
+  const colors = [
+    { bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300' },
+    { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300' },
+    { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300' },
+    { bg: 'bg-green-100 dark:bg-green-900/40', text: 'text-green-700 dark:text-green-300' },
+    { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300' },
+    { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+    { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
+    { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  ];
+  
+  const selectedColor = colors[Math.abs(hash) % colors.length];
+  return {
+    initials: initials || '?',
+    bgColor: selectedColor.bg,
+    textColor: selectedColor.text,
+  };
+}
+
 // Detect email type for color coding and badges
 function getEmailType(email: EmailSummary): { type: 'verification' | 'security' | 'normal'; label: string; color: string } {
   const subject = (email.subject || "").toLowerCase();
@@ -592,9 +625,13 @@ function EmailTableRow({
         <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
       </div>
 
-      {/* Sender with Unread Badge and Icons */}
+      {/* Sender with Avatar, Unread Badge and Icons */}
       <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
         {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-primary shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
+        
+        {/* Avatar with initials */}
+        <AvatarPlaceholder email={email.from_address} emailId={email.id} />
+        
         <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
         {email.has_attachments && (
           <Paperclip className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0" data-testid={`attachment-icon-${email.id}`} aria-label="Has attachment" />
@@ -639,6 +676,19 @@ function EmailTableRow({
         </Button>
       </div>
       </div>
+    </div>
+  );
+}
+
+function AvatarPlaceholder({ email, emailId }: { email: string; emailId: string }) {
+  const avatarData = getAvatarData(email);
+  return (
+    <div
+      className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 font-semibold text-xs ${avatarData.bgColor} ${avatarData.textColor}`}
+      data-testid={`avatar-${emailId}`}
+      title={email}
+    >
+      {avatarData.initials}
     </div>
   );
 }
