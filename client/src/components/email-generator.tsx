@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, memo } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign, Crown, Download, Smartphone } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone } from "lucide-react";
+import { SiWhatsapp, SiTelegram, SiX } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -581,7 +582,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   className="h-10 sm:h-12 border-2 border-green-200/50 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on WhatsApp"
                 >
-                  <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
+                  <SiWhatsapp className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
                 </Button>
                 <Button
                   variant="outline"
@@ -595,7 +596,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   className="h-10 sm:h-12 border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on Telegram"
                 >
-                  <Send className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
+                  <SiTelegram className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
                 </Button>
                 <Button
                   variant="outline"
@@ -609,7 +610,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   className="h-10 sm:h-12 border-2 border-sky-200/50 dark:border-sky-800/50 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on X (Twitter)"
                 >
-                  <Share2 className="h-4 w-4 sm:h-5 sm:w-5 text-sky-600 dark:text-sky-400" />
+                  <SiX className="h-4 w-4 sm:h-5 sm:w-5 text-sky-600 dark:text-sky-400" />
                 </Button>
               </div>
             </div>

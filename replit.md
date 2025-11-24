@@ -115,3 +115,28 @@ The core functionality relies entirely on the external temp mail API located at 
 - ✅ Smooth animations working perfectly
 - ✅ All browsers supported
 - ✅ Production-ready
+
+### v3.13 - Brand Logo Icons for Social Share (Nov 24, 2025)
+
+**✅ Professional Brand Icons:**
+- **WhatsApp:** Replaced generic MessageCircle with actual WhatsApp logo
+- **Telegram:** Replaced generic Send icon with actual Telegram logo  
+- **Twitter/X:** Replaced generic Share2 with actual X (Twitter) logo
+- **Source:** Using react-icons/si (Feather Icons) for brand logos
+- **Styling:** All icons match brand colors:
+  - WhatsApp: Green (#16A34A)
+  - Telegram: Blue (#0EA5E9)
+  - X/Twitter: Sky blue (#0284C7)
+- **Dark Mode:** Full support with adjusted colors
+- **Responsive:** Icons scale from h-4 w-4 on mobile to h-5 w-5 on desktop
+
+**Impact:**
+- ✅ More recognizable and professional
+- ✅ Users instantly know which platform they're sharing to
+- ✅ Consistent with modern UI standards
+- ✅ Better visual hierarchy
+
+**Build Status:**
+- ✅ Zero TypeScript errors
+- ✅ All brand icons rendering correctly
+- ✅ Production-ready
