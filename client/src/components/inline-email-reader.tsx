@@ -86,7 +86,7 @@ export function InlineEmailReader({
   }
 
   return (
-    <div className="col-span-full bg-background border-t border-border/50">
+    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/50">
       {/* Compact header - subject and buttons only */}
       <div className="px-3 sm:px-4 py-1 flex items-center justify-between gap-2 border-b border-border/50">
         <div className="min-w-0 flex-1">
@@ -169,7 +169,7 @@ export function InlineEmailReader({
 
       {/* Content - ultra-compact, no scrolling */}
       <div className="overflow-visible">
-        <Tabs value={tabValue} onValueChange={setTabValue} className="flex flex-col">
+        <Tabs value={tabValue} onValueChange={setTabValue} className="inline-email-reader-tabs flex flex-col">
           {email.html_content && email.text_content && (
             <div className="border-b border-border/50 px-3 sm:px-4 py-0 bg-background">
               <TabsList className="h-4 bg-transparent gap-0">

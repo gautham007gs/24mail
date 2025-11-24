@@ -148,18 +148,67 @@
     transition: background-color 0.3s ease;
   }
 
-  /* Email HTML content - Complete isolation using CSS containment */
-  .inline-email-html {
-    contain: layout style;
+  /* Email viewer complete isolation - Prevent ALL style cascading */
+  .inline-email-reader-container {
+    contain: layout style paint;
+    isolation: isolate;
     color: hsl(var(--foreground));
     background-color: hsl(var(--background));
   }
 
-  .dark .inline-email-html {
-    contain: layout style;
+  .dark .inline-email-reader-container {
+    contain: layout style paint;
+    isolation: isolate;
     color: hsl(var(--foreground));
     background-color: hsl(var(--background));
     color-scheme: dark;
+  }
+
+  /* Email HTML content - Aggressive isolation */
+  .inline-email-html {
+    all: initial;
+    contain: layout style paint;
+    isolation: isolate;
+    color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .dark .inline-email-html {
+    all: initial;
+    contain: layout style paint;
+    isolation: isolate;
+    color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+    color-scheme: dark;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  /* Email HTML content - Reset all child elements */
+  .inline-email-html * {
+    all: unset;
+    display: revert;
+    color: hsl(var(--foreground)) !important;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  .dark .inline-email-html * {
+    all: unset;
+    display: revert;
+    color: hsl(var(--foreground)) !important;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* Email tabs - Isolated */
+  .inline-email-reader-tabs {
+    contain: layout style paint;
+    isolation: isolate;
   }
 
   /* Neumorphism - Subtle 3D effect for cards */
