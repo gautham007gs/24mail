@@ -126,17 +126,17 @@ export function EmailDetailModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-2xl lg:max-w-3xl max-h-[90vh] p-0 glassmorphism" data-testid="modal-email-detail">
+      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-2xl lg:max-w-3xl max-h-[90vh] p-0 glassmorphism flex flex-col overflow-hidden" data-testid="modal-email-detail">
         <DialogDescription className="sr-only">Email details and content</DialogDescription>
         {isLoading ? (
           <LoadingState />
         ) : email ? (
           <div className="flex h-full flex-col overflow-hidden">
             {/* Header */}
-            <div className="border-b border-border px-3 sm:px-6 py-4 sm:py-5">
+            <div className="border-b border-border px-3 sm:px-6 py-4 sm:py-5 flex-shrink-0">
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-2">
-                  <h2 className="text-lg sm:text-xl font-semibold text-foreground flex-1 break-words" data-testid="text-email-subject">
+                  <h2 className="text-lg sm:text-xl font-semibold text-foreground flex-1 break-words pr-2" data-testid="text-email-subject">
                     {email.subject || "(No subject)"}
                   </h2>
                   <Button
@@ -145,6 +145,8 @@ export function EmailDetailModal({
                     onClick={onClose}
                     data-testid="button-close-modal"
                     className="h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
+                    aria-label="Close email"
+                    title="Close email"
                   >
                     <X className="h-4 w-4" />
                   </Button>
@@ -228,10 +230,10 @@ export function EmailDetailModal({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden min-h-0">
               <Tabs defaultValue={email.html_content ? "html" : "text"} className="h-full flex flex-col">
                 {email.html_content && email.text_content && (
-                  <div className="border-b border-border px-3 sm:px-6 py-2">
+                  <div className="border-b border-border px-3 sm:px-6 py-2 flex-shrink-0">
                     <TabsList className="h-8">
                       <TabsTrigger value="html" data-testid="tab-html" className="text-xs">HTML</TabsTrigger>
                       <TabsTrigger value="text" data-testid="tab-text" className="text-xs">Text</TabsTrigger>
@@ -239,19 +241,23 @@ export function EmailDetailModal({
                   </div>
                 )}
                 
-                <ScrollArea className="flex-1">
+                <ScrollArea className="flex-1 overflow-hidden">
                   {email.html_content && (
-                    <TabsContent value="html" className="m-0 p-3 sm:p-6">
+                    <TabsContent value="html" className="m-0 p-3 sm:p-6 max-w-full">
                       <div
-                        className="prose prose-sm max-w-none dark:prose-invert rounded-lg dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 dark:shadow-lg text-xs sm:text-sm"
+                        className="prose prose-sm max-w-full dark:prose-invert rounded-lg dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 dark:shadow-lg text-xs sm:text-sm overflow-x-auto"
                         dangerouslySetInnerHTML={{ __html: email.html_content }}
                         data-testid="content-html"
+                        style={{
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word'
+                        }}
                       />
                     </TabsContent>
                   )}
                   
-                  <TabsContent value="text" className="m-0 p-3 sm:p-6">
-                    <pre className="whitespace-pre-wrap font-mono text-xs sm:text-sm text-foreground dark:text-slate-100 dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 rounded-lg dark:shadow-md overflow-auto" data-testid="content-text">
+                  <TabsContent value="text" className="m-0 p-3 sm:p-6 max-w-full">
+                    <pre className="whitespace-pre-wrap font-mono text-xs sm:text-sm text-foreground dark:text-slate-100 dark:bg-slate-900/40 dark:border dark:border-slate-700/50 p-3 sm:p-6 rounded-lg dark:shadow-md max-w-full overflow-auto break-words" data-testid="content-text">
                       {email.text_content || "No content"}
                     </pre>
                   </TabsContent>
