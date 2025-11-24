@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo, memo } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign, Crown } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, MessageCircle, Send, Share2, AtSign, Crown, Download, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -474,98 +474,140 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       </Card>
 
-      {/* QR Code Modal */}
+      {/* QR Code Modal - Premium Design */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="w-11/12 max-w-xs sm:max-w-sm mx-auto glassmorphism">
-          <DialogHeader>
-            <DialogTitle className="text-lg">Share Your Email</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center justify-center gap-3 py-2 bg-white p-3 sm:p-4 rounded-lg">
-            <QRCode
-              value={shareUrl}
-              size={180}
-              level="H"
-              data-testid="qr-code-svg"
-            />
-            <p className="text-xs sm:text-sm text-muted-foreground text-center leading-tight">
-              Scan to share your email
-            </p>
-            
-            {/* Email Display in Modal */}
-            <div className="w-full p-2 sm:p-3 bg-muted/40 border border-border/50 rounded-lg">
-              <p className="text-xs text-muted-foreground mb-1">Your Email:</p>
-              <p className="font-mono text-xs sm:text-sm font-semibold text-foreground break-all">{currentEmail}</p>
+        <DialogContent className="w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden">
+          {/* Header with gradient */}
+          <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-6 pt-6 pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30">
+            <DialogHeader className="space-y-1">
+              <DialogTitle className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
+                Share Your Email
+              </DialogTitle>
+              <p className="text-xs md:text-sm text-muted-foreground">
+                Let others reach you instantly
+              </p>
+            </DialogHeader>
+          </div>
+
+          {/* Main Content */}
+          <div className="px-6 py-8 space-y-6">
+            {/* QR Code Container - Premium */}
+            <div className="flex flex-col items-center justify-center space-y-4">
+              {/* QR Code Background with glow effect */}
+              <div className="relative group">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* QR Code Box */}
+                <div className="relative bg-white dark:bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
+                  <div className="animate-in fade-in duration-300">
+                    <QRCode
+                      value={shareUrl}
+                      size={280}
+                      level="H"
+                      data-testid="qr-code-svg"
+                      className="drop-shadow-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Scanning Instructions */}
+              <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-4 py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
+                <Smartphone className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <span>Point your camera to scan</span>
+              </div>
             </div>
-            
-            {/* Share Buttons */}
-            <div className="w-full space-y-1.5">
+
+            {/* Email Display - Premium */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Email Address</p>
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-gradient-to-r from-emerald-50/50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/30 p-4 rounded-xl border border-emerald-200/40 dark:border-emerald-800/40 backdrop-blur-sm">
+                  <p className="font-mono text-sm md:text-base font-semibold text-foreground break-all leading-tight">{currentEmail}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-3">
+              {/* Primary: Copy Button */}
               <Button
                 onClick={handleCopy}
-                size="sm"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white button-press smooth-transition text-xs sm:text-sm"
+                disabled={!currentEmail}
+                className="w-full h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
                 data-testid="button-copy-email-qr"
               >
-                <Copy className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Copy Email</span>
-                <span className="sm:hidden">Copy</span>
+                <Copy className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                Copy Email Address
               </Button>
+
+              {/* Secondary: Download QR */}
               <Button
                 onClick={handleDownloadQR}
-                size="sm"
-                className="w-full button-press smooth-transition text-xs sm:text-sm"
+                variant="outline"
+                className="w-full h-11 md:h-12 border-2 border-emerald-200/50 dark:border-emerald-800/50 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 font-semibold text-sm md:text-base transition-all duration-200 active-elevate-2"
                 data-testid="button-download-qr"
               >
-                <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Download QR</span>
-                <span className="sm:hidden">Download</span>
+                <Download className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                Download QR Code
               </Button>
             </div>
 
-            {/* Social Share Buttons */}
-            <div className="w-full space-y-1">
-              <p className="text-xs text-muted-foreground text-center">Share:</p>
-              <div className="grid grid-cols-3 gap-2">
+            {/* Social Share Section */}
+            <div className="space-y-3 pt-3 border-t border-border/50 dark:border-border/30">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share On</p>
+              <div className="grid grid-cols-3 gap-3">
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   onClick={() => shareArticleOn('whatsapp', {
                     title: 'Check out TempMail',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-whatsapp-qr"
-                  className="text-xs"
+                  className="h-12 border-2 border-green-200/50 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/30 transition-all duration-200 active-elevate-2"
+                  title="Share on WhatsApp"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <MessageCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
                 </Button>
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   onClick={() => shareArticleOn('telegram', {
                     title: 'Check out TempMail',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-telegram-qr"
-                  className="text-xs"
+                  className="h-12 border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition-all duration-200 active-elevate-2"
+                  title="Share on Telegram"
                 >
-                  <Send className="h-4 w-4" />
+                  <Send className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                 </Button>
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   onClick={() => shareArticleOn('twitter', {
                     title: 'Check out TempMail',
                     url: shareUrl,
                     summary: 'Free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-twitter-qr"
-                  className="text-xs"
+                  className="h-12 border-2 border-sky-200/50 dark:border-sky-800/50 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition-all duration-200 active-elevate-2"
+                  title="Share on X (Twitter)"
                 >
-                  <Share2 className="h-4 w-4" />
+                  <Share2 className="h-5 w-5 text-sky-600 dark:text-sky-400" />
                 </Button>
               </div>
             </div>
+          </div>
+
+          {/* Footer */}
+          <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-t border-border/50 dark:border-border/30 text-center text-xs text-muted-foreground">
+            Safe, private, and instant sharing - no tracking, no ads
           </div>
         </DialogContent>
       </Dialog>
