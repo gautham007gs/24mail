@@ -126,146 +126,124 @@ export function EmailDetailModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-3xl lg:max-w-4xl h-[95vh] sm:h-[90vh] p-0 glassmorphism flex flex-col overflow-hidden" data-testid="modal-email-detail">
+      <DialogContent className="w-[95vw] sm:w-11/12 md:max-w-3xl lg:max-w-4xl h-[95vh] sm:h-[90vh] p-0 gap-0 glassmorphism flex flex-col overflow-hidden" data-testid="modal-email-detail">
         <DialogDescription className="sr-only">Email details and content</DialogDescription>
         {isLoading ? (
           <LoadingState />
         ) : email ? (
-          <div className="flex h-full w-full flex-col overflow-hidden">
-            {/* Header - Ultra-compact */}
-            <div className="border-b border-border px-3 sm:px-4 py-1.5 flex-shrink-0 bg-background">
-              <div className="space-y-0.5">
-                <div className="flex items-start justify-between gap-2">
-                  <h2 className="text-sm sm:text-base font-semibold text-foreground flex-1 break-words line-clamp-1" data-testid="text-email-subject">
-                    {email.subject || "(No subject)"}
-                  </h2>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={onClose}
-                    data-testid="button-close-modal"
-                    className="h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0"
-                    aria-label="Close email"
-                    title="Close email"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                  </Button>
+          <div className="flex h-full w-full flex-col overflow-hidden bg-background">
+            {/* Header - Minimal one-liner */}
+            <div className="border-b border-border px-2 sm:px-3 py-1 flex-shrink-0 bg-background">
+              {/* Subject */}
+              <h2 className="text-xs sm:text-sm font-semibold text-foreground break-words line-clamp-1 mb-0.5" data-testid="text-email-subject">
+                {email.subject || "(No subject)"}
+              </h2>
+              
+              {/* Metadata in one compact row */}
+              <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-0.5 min-w-0">
+                  <span className="font-medium text-foreground/60">From:</span>
+                  <span className="text-foreground truncate" data-testid="text-email-from">{email.from_address}</span>
                 </div>
-
-                {/* Email metadata - Ultra-minimal */}
-                <div className="space-y-0 text-xs">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="font-medium text-foreground/60 truncate">From:</span>
-                    <span className="text-foreground break-all text-right text-xs" data-testid="text-email-from">
-                      {email.from_address}
+                <span className="text-muted-foreground text-xs flex-shrink-0">•</span>
+                <span className="text-muted-foreground text-xs flex-shrink-0" data-testid="text-email-date">
+                  {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
+                </span>
+                {email.has_attachments && (
+                  <>
+                    <span className="text-muted-foreground text-xs flex-shrink-0">•</span>
+                    <span className="flex items-center gap-0.5 text-muted-foreground text-xs flex-shrink-0">
+                      <Paperclip className="h-2.5 w-2.5" />
+                      {email.attachment_count}
                     </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="text-muted-foreground text-xs" data-testid="text-email-date">
-                      {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
-                    </span>
-                    {email.has_attachments && (
-                      <span className="flex items-center gap-0.5 text-muted-foreground text-xs">
-                        <Paperclip className="h-2.5 w-2.5" />
-                        {email.attachment_count || 0}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                  </>
+                )}
+              </div>
 
-                {/* Action buttons - Single row, ultra-compact */}
-                <div className="flex flex-nowrap gap-0.5 pt-1 overflow-x-auto">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={handleCopyEmail}
-                    data-testid="button-copy-email"
-                    className="text-xs h-6 px-2 flex-shrink-0"
-                  >
-                    <Copy className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="hidden sm:inline">Copy</span>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={handleShareWhatsApp}
-                    data-testid="button-share-whatsapp"
-                    className="text-xs h-6 px-2 flex-shrink-0"
-                  >
-                    <MessageCircle className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="hidden sm:inline">Share</span>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={handleShareTwitter}
-                    data-testid="button-share-twitter"
-                    className="text-xs h-6 px-2 flex-shrink-0"
-                  >
-                    <Share2 className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="hidden sm:inline">Tweet</span>
-                  </Button>
-                  <div className="flex-1"></div>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={onDelete}
-                    disabled={isDeleting}
-                    data-testid="button-delete-email"
-                    className="text-destructive border-destructive/30 text-xs h-6 px-2 flex-shrink-0"
-                  >
-                    <Trash2 className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="hidden sm:inline">Delete</span>
-                  </Button>
-                </div>
+              {/* Action buttons - Single row, ultra-compact */}
+              <div className="flex flex-nowrap gap-0.5 pt-0.5 overflow-x-auto">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleCopyEmail}
+                  data-testid="button-copy-email"
+                  className="text-xs h-5 px-1.5 flex-shrink-0"
+                >
+                  <Copy className="h-2.5 w-2.5" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleShareWhatsApp}
+                  data-testid="button-share-whatsapp"
+                  className="text-xs h-5 px-1.5 flex-shrink-0"
+                >
+                  <MessageCircle className="h-2.5 w-2.5" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleShareTwitter}
+                  data-testid="button-share-twitter"
+                  className="text-xs h-5 px-1.5 flex-shrink-0"
+                >
+                  <Share2 className="h-2.5 w-2.5" />
+                </Button>
+                <div className="flex-1"></div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={onDelete}
+                  disabled={isDeleting}
+                  data-testid="button-delete-email"
+                  className="text-destructive border-destructive/30 text-xs h-5 px-1.5 flex-shrink-0"
+                >
+                  <Trash2 className="h-2.5 w-2.5" />
+                </Button>
               </div>
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden min-h-0 bg-background">
+            <div className="flex-1 overflow-hidden min-h-0">
               <Tabs defaultValue={email.html_content ? "html" : "text"} className="h-full flex flex-col">
                 {email.html_content && email.text_content && (
-                  <div className="border-b border-border px-2 sm:px-3 py-0.5 flex-shrink-0 bg-background">
-                    <TabsList className="h-6 bg-transparent gap-0">
-                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs px-2">HTML</TabsTrigger>
-                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs px-2">Text</TabsTrigger>
+                  <div className="border-b border-border px-2 sm:px-3 py-0 flex-shrink-0 bg-background">
+                    <TabsList className="h-5 bg-transparent gap-0">
+                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs px-1.5 data-[state=active]:bg-muted/50">HTML</TabsTrigger>
+                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs px-1.5 data-[state=active]:bg-muted/50">Text</TabsTrigger>
                     </TabsList>
                   </div>
                 )}
                 
                 <div className="flex-1 overflow-hidden min-h-0">
                   {email.html_content && (
-                    <TabsContent value="html" className="m-0 h-full overflow-hidden bg-background">
-                      <div className="h-full overflow-y-auto p-2 sm:p-3">
-                        <div
-                          className="prose prose-xs max-w-full dark:prose-invert text-xs leading-tight text-foreground/90"
-                          dangerouslySetInnerHTML={{ __html: email.html_content }}
-                          data-testid="content-html"
-                          style={{
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                            wordBreak: 'break-word'
-                          }}
-                        />
-                      </div>
+                    <TabsContent value="html" className="m-0 h-full overflow-auto bg-background p-2 sm:p-2.5">
+                      <div
+                        className="prose prose-xs max-w-full dark:prose-invert text-xs leading-tight text-foreground/90"
+                        dangerouslySetInnerHTML={{ __html: email.html_content }}
+                        data-testid="content-html"
+                        style={{
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word',
+                          wordBreak: 'break-word'
+                        }}
+                      />
                     </TabsContent>
                   )}
                   
                   {email.text_content && (
-                    <TabsContent value="text" className="m-0 h-full overflow-hidden bg-background">
-                      <div className="h-full overflow-y-auto p-2 sm:p-3">
-                        <pre 
-                          className="font-sans text-xs leading-tight text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
-                          data-testid="content-text"
-                        >
-                          {email.text_content || "No content"}
-                        </pre>
-                      </div>
+                    <TabsContent value="text" className="m-0 h-full overflow-auto bg-background p-2 sm:p-2.5">
+                      <pre 
+                        className="font-sans text-xs leading-tight text-foreground/90 whitespace-pre-wrap break-words" 
+                        data-testid="content-text"
+                      >
+                        {email.text_content || "No content"}
+                      </pre>
                     </TabsContent>
                   )}
                   
                   {!email.html_content && !email.text_content && (
-                    <div className="h-full flex items-center justify-center p-2">
+                    <div className="h-full flex items-center justify-center p-2 bg-background">
                       <p className="text-muted-foreground text-center text-xs">No email content available</p>
                     </div>
                   )}
