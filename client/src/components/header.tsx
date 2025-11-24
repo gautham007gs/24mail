@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X, ChevronDown, Home, BookOpen, Zap, Award, AtSign, Crown } from "lucide-react";
+import { Mail, Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,6 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const navItems = [
     { label: "Home", href: "/", icon: Home },
     { label: "Blog", href: "/blog", icon: BookOpen },
-    { label: "Extension", href: "/browser-extension", icon: Zap },
     { label: "Stories", href: "/success-stories", icon: Award },
   ];
 
@@ -53,39 +52,18 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           {/* Desktop Navigation - Improved spacing */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {navItems.map((item) => (
-              <div key={item.href}>
-                {item.href === "/browser-extension" ? (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toast({
-                        title: "Coming Soon!",
-                        description: "Browser extension is launching very soon. Stay tuned!",
-                      });
-                    }}
-                    className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 cursor-pointer hover-elevate ${
-                      isActive(item.href)
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                    data-testid={`nav-link-${item.label.toLowerCase()}`}
-                  >
-                    {item.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
-                      isActive(item.href)
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                    data-testid={`nav-link-${item.label.toLowerCase()}`}
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </div>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
+                  isActive(item.href)
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid={`nav-link-${item.label.toLowerCase()}`}
+              >
+                {item.label}
+              </Link>
             ))}
           </nav>
 
@@ -117,45 +95,21 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 {navItems.map((item, idx) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.href}>
-                      {item.href === "/browser-extension" ? (
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsOpen(false);
-                            toast({
-                              title: "Coming Soon! 🎉",
-                              description: "Browser extension is launching very soon. Stay tuned!",
-                            });
-                          }}
-                          className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all text-base text-left cursor-pointer active-elevate-2 ${
-                            isActive(item.href)
-                              ? "bg-primary text-primary-foreground"
-                              : "text-foreground hover:bg-secondary/50"
-                          }`}
-                          data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                          style={{ animationDelay: `${idx * 50}ms` }}
-                        >
-                          <Icon className="h-5 w-5 flex-shrink-0" />
-                          <span>{item.label}</span>
-                        </button>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
-                            isActive(item.href)
-                              ? "bg-primary text-primary-foreground"
-                              : "text-foreground hover:bg-secondary/50"
-                          }`}
-                          data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                          style={{ animationDelay: `${idx * 50}ms` }}
-                        >
-                          <Icon className="h-5 w-5 flex-shrink-0" />
-                          <span>{item.label}</span>
-                        </Link>
-                      )}
-                    </div>
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
+                        isActive(item.href)
+                          ? "bg-primary text-primary-foreground"
+                          : "text-foreground hover:bg-secondary/50"
+                      }`}
+                      data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                      style={{ animationDelay: `${idx * 50}ms` }}
+                    >
+                      <Icon className="h-5 w-5 flex-shrink-0" />
+                      <span>{item.label}</span>
+                    </Link>
                   );
                 })}
               </div>

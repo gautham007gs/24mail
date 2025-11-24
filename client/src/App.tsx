@@ -15,7 +15,6 @@ const BlogPost = lazy(() => import("@/pages/blog-post"));
 const TermsConditions = lazy(() => import("@/pages/terms-conditions"));
 const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const SuccessStories = lazy(() => import("@/pages/success-stories"));
-const BrowserExtension = lazy(() => import("@/pages/browser-extension"));
 
 // Fallback component for lazy-loaded pages
 function PageLoader() {
@@ -62,13 +61,6 @@ function Router() {
         {() => (
           <Suspense fallback={<PageLoader />}>
             <SuccessStories />
-          </Suspense>
-        )}
-      </Route>
-      <Route path="/browser-extension">
-        {() => (
-          <Suspense fallback={<PageLoader />}>
-            <BrowserExtension />
           </Suspense>
         )}
       </Route>
