@@ -20,7 +20,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { getRandomMessage } from "@/lib/fun-messages";
-import { audioEffects } from "@/lib/audio-effects";
 import { InboxLoadingSkeleton } from "@/lib/loading-skeletons";
 import { type EmailSummary } from "@shared/schema";
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
@@ -70,7 +69,6 @@ export function InboxList({
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
-          audioEffects.playWhip();
           return 5;
         }
         return prev - 1;

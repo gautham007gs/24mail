@@ -9,7 +9,6 @@ import QRCode from "react-qr-code";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
-import { audioEffects } from "@/lib/audio-effects";
 import { triggerConfetti } from "@/lib/confetti";
 import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
 import CacheManager from "@/lib/cache";
@@ -134,7 +133,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       await navigator.clipboard.writeText(currentEmail);
       setCopied(true);
       triggerConfetti();
-      audioEffects.playPop();
       const copiedMessage = getRandomMessage("copied");
       toast({
         title: copiedMessage,
@@ -151,7 +149,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   };
 
   const handleRefresh = () => {
-    audioEffects.playWhip();
     toast({
       title: "Inbox refreshed",
       description: "Checking for new emails...",
@@ -168,7 +165,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     
     onGenerate(newEmail);
     setSessionEmailCount(prev => prev + 1);
-    audioEffects.playPop();
     toast({
       title: "New email generated",
       description: "Your new temporary email is ready",
@@ -176,7 +172,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   };
 
   const handleDelete = () => {
-    audioEffects.playWhip();
     handleGenerateWithDomain();
     if (onDelete) {
       onDelete();

@@ -3,7 +3,6 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
-import { audioEffects } from "@/lib/audio-effects";
 import { Mail as MailIcon } from "lucide-react";
 import { type EmailSummary, type Email, type Domain } from "@shared/schema";
 import { EmailGenerator } from "@/components/email-generator";
@@ -16,7 +15,6 @@ import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { FAQAccordion } from "@/components/faq-accordion";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
-import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
@@ -232,9 +230,6 @@ export default function Home() {
       const newEmailCount = emails.length - previousEmailCount.current;
       const latestEmail = emails[0]; // Newest email is first
       
-      // Play celebration sound
-      audioEffects.playDing();
-      
       // Show browser notification
       const arrivedMessage = getRandomMessage("emailArrived");
       showNotification(
@@ -293,20 +288,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
-        <title>TempMail - Free Temporary Email Address | Disposable Email Service</title>
-        <meta name="description" content="Get instant free temporary email addresses. Protect your privacy with disposable email. No registration required. Anonymous email service with 99.9% uptime." />
-        <meta name="keywords" content="temporary email, disposable email, temp mail, free email, anonymous email, throwaway email, burner email, privacy protection, instant email" />
-        <link rel="canonical" href="https://tempmail.org/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org/" />
-        <meta property="og:title" content="TempMail - Free Temporary Email Address | Get Instant Disposable Email" />
-        <meta property="og:description" content="Instant temporary email for privacy. No signup needed. 99.9% uptime, 5-second auto-refresh, QR code sharing." />
-        <meta property="og:image" content="https://tempmail.org/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TempMail - Free Temporary Email" />
-        <meta name="twitter:description" content="Get instant temporary email addresses - no signup needed. Privacy protection made simple." />
-      </Helmet>
       <Header 
         domains={domains}
         selectedDomain={currentEmail.split('@')[1] || ''}
