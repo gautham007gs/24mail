@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Helmet } from "react-helmet";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -18,6 +17,20 @@ const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carous
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TempMail",
+    "description": "Free temporary email service providing instant, anonymous disposable email addresses for privacy protection",
+    "url": "https://tempmail.org",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
     if (typeof window !== "undefined") {
       // Check for email in URL query params first (from QR code share)
@@ -246,39 +259,7 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>TempMail - Free Temporary Email Address | Instant & Anonymous</title>
-        <meta name="description" content="Get a free temporary email address instantly. No signup required. Perfect for privacy protection, spam prevention, and online security. Use disposable emails for maximum anonymity." />
-        <meta name="keywords" content="temporary email, disposable email, temp mail, fake email, anonymous email, throwaway email, privacy email" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <link rel="canonical" href="https://tempmail.org" />
-        
-        {/* Open Graph Meta Tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org" />
-        <meta property="og:title" content="TempMail - Free Temporary Email Address" />
-        <meta property="og:description" content="Get a free temporary email address instantly. No signup required. Perfect for privacy protection and spam prevention." />
-        <meta property="og:image" content="https://tempmail.org/og-image.png" />
-        <meta property="og:site_name" content="TempMail" />
-        
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TempMail - Free Temporary Email Address" />
-        <meta name="twitter:description" content="Get a free temporary email address instantly. No signup, no spam, complete privacy." />
-        <meta name="twitter:image" content="https://tempmail.org/og-image.png" />
-        
-        {/* Additional SEO Meta Tags */}
-        <meta name="author" content="TempMail" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#10b981" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
-      </Helmet>
-      <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
         <Header 
           domains={domains}
           selectedDomain={currentEmail.split('@')[1] || ''}
@@ -349,8 +330,7 @@ export default function Home() {
       <Suspense fallback={<div className="h-40 bg-muted/20" />}>
         <Footer />
       </Suspense>
-      </div>
-    </>
+    </div>
   );
 }
 
