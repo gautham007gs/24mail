@@ -9,24 +9,28 @@
     <meta name="theme-color" content="#0ea5e9" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="preconnect" href="https://api.barid.site" crossorigin>
     <title>TempMail - Simple Temporary Email Service</title>
     <meta name="description" content="Generate temporary email addresses instantly. Receive emails without registration. Simple, fast, and private temporary email service for everyone." />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="manifest" href="/manifest.json" />
-    <!-- Font optimization: preconnect and DNS prefetch -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <!-- Load fonts with swap to prevent FOUT/FOIT -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Prefetch critical resources -->
-    <link rel="prefetch" href="/src/pages/home.tsx" as="fetch" crossorigin>
+    <!-- Critical inline styles for fastest first paint -->
+    <style>
+      :root { --background: 0 0% 100%; --foreground: 0 0% 3.6%; --primary: 168 86.6% 40.2%; --card: 0 0% 100%; }
+      .dark { --background: 0 0% 3.6%; --foreground: 0 0% 98%; --primary: 168 86.6% 40.2%; --card: 0 0% 10%; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+      body { font-family: system-ui, -apple-system, sans-serif; background-color: hsl(var(--background)); color: hsl(var(--foreground)); line-height: 1.6; }
+      #root { display: flex; flex-direction: column; min-height: 100vh; }
+    </style>
+    <!-- Defer non-critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script>
+    <script type="module" src="/src/main.tsx" defer></script>
+    <script defer>
       if ('serviceWorker' in navigator && 'caches' in window) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});

@@ -30,21 +30,24 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    // Aggressive bundle optimization
+    // Aggressive performance optimization
+    minify: "esbuild",
     rollupOptions: {
       output: [
         {
           dir: path.resolve(import.meta.dirname, "dist/public/assets"),
           format: "es",
           manualChunks: (id) => {
-            // Vendor chunks
+            // Optimized chunking for Lighthouse
             if (id.includes("node_modules")) {
-              if (id.includes("lucide-react")) return "lucide";
-              if (id.includes("@radix-ui")) return "radix";
-              if (id.includes("date-fns")) return "date-fns";
-              if (id.includes("recharts")) return "recharts";
-              if (id.includes("react-hook-form")) return "form";
-              // Default vendor chunk
+              // UI libraries - combine
+              if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
+              // Data processing - combine
+              if (id.includes("date-fns") || id.includes("recharts")) return "data";
+              // Forms & icons - combine
+              if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
+              // QR & routing - combine
+              if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
               return "vendor";
             }
           },
@@ -59,14 +62,16 @@ export default defineConfig({
         propertyReadSideEffects: false,
       },
     },
-    // Optimize CSS
+    // Split CSS per chunk for faster loading
     cssCodeSplit: true,
-    // Source maps only in dev
-    sourcemap: process.env.NODE_ENV === "development",
+    // Only production build is minimized
+    sourcemap: false,
     // Target modern browsers
     target: "esnext",
-    // Inline small imports
-    assetsInlineLimit: 4096,
+    // Inline small assets
+    assetsInlineLimit: 2048,
+    // Chunk size limits
+    chunkSizeWarningLimit: 500,
   },
   server: {
     fs: {
