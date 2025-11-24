@@ -20,9 +20,15 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
-// Helper function to apply theme to DOM
-const applyTheme = (theme: Theme) => {
+// Helper function to apply theme to DOM with smooth transition
+const applyTheme = (theme: Theme, smooth = false) => {
   const root = window.document.documentElement;
+  
+  // Add transition class for smooth color animation
+  if (smooth) {
+    root.classList.add("theme-transitioning");
+  }
+  
   root.classList.remove("light", "dark");
 
   if (theme === "system") {
@@ -31,6 +37,13 @@ const applyTheme = (theme: Theme) => {
     root.classList.add(systemTheme);
   } else {
     root.classList.add(theme);
+  }
+  
+  // Remove transition class after animation completes
+  if (smooth) {
+    setTimeout(() => {
+      root.classList.remove("theme-transitioning");
+    }, 300);
   }
 };
 
@@ -66,8 +79,8 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (newTheme: Theme) => {
-      // Apply theme immediately (don't wait for state update)
-      applyTheme(newTheme);
+      // Apply theme with smooth transition animation
+      applyTheme(newTheme, true);
       // Update state
       setThemeValue(newTheme);
       // Save to localStorage

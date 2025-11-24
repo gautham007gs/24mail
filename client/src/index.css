@@ -122,6 +122,18 @@
     }
   }
 
+  /* Smooth theme transition - Applied to html element */
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                fill 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
   /* Image fade-in transitions */
   img[loading="lazy"] {
     transition: opacity 0.3s ease-in-out;
