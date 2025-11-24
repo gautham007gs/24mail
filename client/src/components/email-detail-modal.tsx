@@ -132,11 +132,11 @@ export function EmailDetailModal({
           <LoadingState />
         ) : email ? (
           <div className="flex h-full w-full flex-col overflow-hidden">
-            {/* Header - Compact */}
-            <div className="border-b border-border px-3 sm:px-4 py-2 sm:py-3 flex-shrink-0 bg-background">
-              <div className="space-y-2">
+            {/* Header - Ultra-compact */}
+            <div className="border-b border-border px-3 sm:px-4 py-1.5 flex-shrink-0 bg-background">
+              <div className="space-y-0.5">
                 <div className="flex items-start justify-between gap-2">
-                  <h2 className="text-base sm:text-lg font-semibold text-foreground flex-1 break-words line-clamp-2" data-testid="text-email-subject">
+                  <h2 className="text-sm sm:text-base font-semibold text-foreground flex-1 break-words line-clamp-1" data-testid="text-email-subject">
                     {email.subject || "(No subject)"}
                   </h2>
                   <Button
@@ -144,66 +144,66 @@ export function EmailDetailModal({
                     size="icon"
                     onClick={onClose}
                     data-testid="button-close-modal"
-                    className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
+                    className="h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0"
                     aria-label="Close email"
                     title="Close email"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-3.5 w-3.5" />
                   </Button>
                 </div>
 
-                {/* Email metadata - Minimal and compact */}
-                <div className="space-y-1 text-xs sm:text-sm">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-medium text-foreground/70">From:</span>
-                    <span className="text-foreground break-all text-right" data-testid="text-email-from">
+                {/* Email metadata - Ultra-minimal */}
+                <div className="space-y-0 text-xs">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="font-medium text-foreground/60 truncate">From:</span>
+                    <span className="text-foreground break-all text-right text-xs" data-testid="text-email-from">
                       {email.from_address}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-muted-foreground" data-testid="text-email-date">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="text-muted-foreground text-xs" data-testid="text-email-date">
                       {formatDistanceToNow(email.received_at * 1000, { addSuffix: true })}
                     </span>
                     {email.has_attachments && (
-                      <span className="flex items-center gap-1 text-muted-foreground text-xs">
-                        <Paperclip className="h-3 w-3" />
+                      <span className="flex items-center gap-0.5 text-muted-foreground text-xs">
+                        <Paperclip className="h-2.5 w-2.5" />
                         {email.attachment_count || 0}
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* Action buttons - Compact row */}
-                <div className="flex flex-wrap gap-1 pt-1">
+                {/* Action buttons - Single row, ultra-compact */}
+                <div className="flex flex-nowrap gap-0.5 pt-1 overflow-x-auto">
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleCopyEmail}
                     data-testid="button-copy-email"
-                    className="text-xs h-7"
+                    className="text-xs h-6 px-2 flex-shrink-0"
                   >
-                    <Copy className="h-3 w-3 mr-1" />
-                    Copy
+                    <Copy className="h-2.5 w-2.5 mr-0.5" />
+                    <span className="hidden sm:inline">Copy</span>
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleShareWhatsApp}
                     data-testid="button-share-whatsapp"
-                    className="text-xs h-7"
+                    className="text-xs h-6 px-2 flex-shrink-0"
                   >
-                    <MessageCircle className="h-3 w-3 mr-1" />
-                    Share
+                    <MessageCircle className="h-2.5 w-2.5 mr-0.5" />
+                    <span className="hidden sm:inline">Share</span>
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={handleShareTwitter}
                     data-testid="button-share-twitter"
-                    className="text-xs h-7"
+                    className="text-xs h-6 px-2 flex-shrink-0"
                   >
-                    <Share2 className="h-3 w-3 mr-1" />
-                    Tweet
+                    <Share2 className="h-2.5 w-2.5 mr-0.5" />
+                    <span className="hidden sm:inline">Tweet</span>
                   </Button>
                   <div className="flex-1"></div>
                   <Button
@@ -212,10 +212,10 @@ export function EmailDetailModal({
                     onClick={onDelete}
                     disabled={isDeleting}
                     data-testid="button-delete-email"
-                    className="text-destructive border-destructive/30 text-xs h-7"
+                    className="text-destructive border-destructive/30 text-xs h-6 px-2 flex-shrink-0"
                   >
-                    <Trash2 className="h-3 w-3 mr-1" />
-                    Delete
+                    <Trash2 className="h-2.5 w-2.5 mr-0.5" />
+                    <span className="hidden sm:inline">Delete</span>
                   </Button>
                 </div>
               </div>
@@ -225,20 +225,20 @@ export function EmailDetailModal({
             <div className="flex-1 overflow-hidden min-h-0 bg-background">
               <Tabs defaultValue={email.html_content ? "html" : "text"} className="h-full flex flex-col">
                 {email.html_content && email.text_content && (
-                  <div className="border-b border-border px-3 sm:px-4 py-1 flex-shrink-0 bg-background/50">
-                    <TabsList className="h-8 bg-transparent">
-                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs sm:text-sm">HTML</TabsTrigger>
-                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs sm:text-sm">Text</TabsTrigger>
+                  <div className="border-b border-border px-2 sm:px-3 py-0.5 flex-shrink-0 bg-background">
+                    <TabsList className="h-6 bg-transparent gap-0">
+                      <TabsTrigger value="html" data-testid="tab-html" className="text-xs px-2">HTML</TabsTrigger>
+                      <TabsTrigger value="text" data-testid="tab-text" className="text-xs px-2">Text</TabsTrigger>
                     </TabsList>
                   </div>
                 )}
                 
                 <div className="flex-1 overflow-hidden min-h-0">
                   {email.html_content && (
-                    <TabsContent value="html" className="m-0 h-full overflow-hidden">
-                      <div className="h-full overflow-y-auto p-3 sm:p-4">
+                    <TabsContent value="html" className="m-0 h-full overflow-hidden bg-background">
+                      <div className="h-full overflow-y-auto p-2 sm:p-3">
                         <div
-                          className="prose prose-sm max-w-full dark:prose-invert text-sm leading-relaxed text-foreground/90"
+                          className="prose prose-xs max-w-full dark:prose-invert text-xs leading-tight text-foreground/90"
                           dangerouslySetInnerHTML={{ __html: email.html_content }}
                           data-testid="content-html"
                           style={{
@@ -252,10 +252,10 @@ export function EmailDetailModal({
                   )}
                   
                   {email.text_content && (
-                    <TabsContent value="text" className="m-0 h-full overflow-hidden">
-                      <div className="h-full overflow-y-auto p-3 sm:p-4">
+                    <TabsContent value="text" className="m-0 h-full overflow-hidden bg-background">
+                      <div className="h-full overflow-y-auto p-2 sm:p-3">
                         <pre 
-                          className="font-sans text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
+                          className="font-sans text-xs leading-tight text-foreground/90 whitespace-pre-wrap break-words bg-transparent" 
                           data-testid="content-text"
                         >
                           {email.text_content || "No content"}
@@ -265,8 +265,8 @@ export function EmailDetailModal({
                   )}
                   
                   {!email.html_content && !email.text_content && (
-                    <div className="h-full flex items-center justify-center p-4">
-                      <p className="text-muted-foreground text-center text-sm">No email content available</p>
+                    <div className="h-full flex items-center justify-center p-2">
+                      <p className="text-muted-foreground text-center text-xs">No email content available</p>
                     </div>
                   )}
                 </div>
