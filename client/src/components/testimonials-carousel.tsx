@@ -73,7 +73,7 @@ export function TestimonialsCarousel() {
             </div>
 
             {/* Quote */}
-            <blockquote className="text-lg text-foreground italic font-medium leading-relaxed">
+            <blockquote className="text-base md:text-lg text-foreground italic font-medium leading-relaxed break-words">
               "{testimonial.quote}"
             </blockquote>
 
@@ -187,7 +187,7 @@ export function TestimonialsCarousel() {
           </div>
 
           {/* Quote */}
-          <blockquote className="text-lg md:text-xl text-foreground italic font-medium leading-relaxed">
+          <blockquote className="text-base sm:text-lg md:text-xl text-foreground italic font-medium leading-relaxed break-words hyphens-auto">
             "{testimonial.quote}"
           </blockquote>
 

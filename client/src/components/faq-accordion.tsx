@@ -22,17 +22,18 @@ export function FAQAccordion() {
           <button
             id={`faq-button-${idx}`}
             onClick={() => setExpanded(expanded === idx ? null : idx)}
-            className="w-full px-6 py-4 flex items-center justify-between text-left bg-card hover:bg-card/80 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="w-full px-4 py-3 md:px-6 md:py-4 flex items-center justify-between text-left bg-card hover:bg-card/80 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-12"
             data-testid={`button-faq-${idx}`}
             aria-expanded={expanded === idx}
             aria-controls={`faq-answer-${idx}`}
           >
-            <span className="font-semibold text-foreground pr-4">{item.question}</span>
+            <span className="font-semibold text-foreground pr-3 md:pr-4 text-sm md:text-base break-words">{item.question}</span>
             <ChevronDown
-              className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${
+              className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 min-w-5 ${
                 expanded === idx ? "rotate-180" : ""
               }`}
               data-testid={`chevron-faq-${idx}`}
+              aria-hidden="true"
             />
           </button>
           {expanded === idx && (

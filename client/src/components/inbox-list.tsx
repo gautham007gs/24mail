@@ -380,7 +380,7 @@ function EmailTableRow({
 
   return (
     <div
-      className={`grid grid-cols-12 gap-4 px-6 py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+      className={`hidden sm:grid grid-cols-12 gap-4 px-3 sm:px-6 py-3 sm:py-4 min-h-12 sm:min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
         isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/50" : "border-transparent"
       }`}
       onClick={handleRowClick}
@@ -402,7 +402,7 @@ function EmailTableRow({
       </div>
 
       {/* Sender with Unread Badge */}
-      <div className="col-span-3 text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
+      <div className="col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
         {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
         <span className={isUnread ? "font-semibold" : ""}>{email.from_address}</span>
       </div>
@@ -410,7 +410,7 @@ function EmailTableRow({
       {/* Subject with Preview Tooltip */}
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="col-span-5 text-sm truncate text-foreground/80 cursor-help" data-testid={`text-subject-${email.id}`}>
+          <div className="col-span-5 text-xs sm:text-sm truncate text-foreground/80 cursor-help" data-testid={`text-subject-${email.id}`}>
             {email.subject || "(No subject)"}
           </div>
         </TooltipTrigger>
@@ -440,6 +440,65 @@ function EmailTableRow({
       </div>
     </div>
   );
+  
+  // Mobile card view for small screens
+  if (typeof window !== 'undefined' && window.innerWidth < 640) {
+    return (
+      <div
+        className={`p-3 rounded-lg border transition-all cursor-pointer hover:bg-muted/20 ${
+          isSelected ? "bg-primary/5 border-primary" : isUnread ? "border-primary/30 bg-primary/2" : "border-border/30"
+        }`}
+        onClick={handleRowClick}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        data-testid={`row-email-${email.id}`}
+        style={{ transform: `translateX(-${swipeDistance}px)` }}
+      >
+        <div className="flex items-start gap-3">
+          <div
+            className="mt-1"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(email.id);
+            }}
+          >
+            <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              {isUnread && <span className="h-2 w-2 rounded-full bg-primary shrink-0" data-testid={`unread-badge-${email.id}`} />}
+              <p className={`text-xs truncate ${isUnread ? "font-semibold" : "font-medium"}`} data-testid={`text-from-${email.id}`}>
+                {email.from_address}
+              </p>
+            </div>
+            <p className="text-xs text-foreground/70 truncate mb-2" data-testid={`text-subject-${email.id}`}>
+              {email.subject || "(No subject)"}
+            </p>
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground" data-testid={`text-date-${email.id}`}>
+                {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
+              </span>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="h-8 px-2 text-xs"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRowClick();
+                }}
+                data-testid={`button-view-email-${email.id}`}
+              >
+                View
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  return null;
 }
 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {
