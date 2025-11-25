@@ -10,8 +10,8 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <img srcSet="/logo-32.png 1x, /logo-64.png 2x" src="/logo-32.png" alt="Burner Email" className="h-8 w-8 flex-shrink-0 object-contain" />
+            <div className="flex items-center gap-3 mb-4">
+              <img srcSet="/logo-32.png 1x, /logo-64.png 2x" src="/logo-32.png" alt="Burner Email" className="h-10 w-10 flex-shrink-0 object-contain" />
               <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
