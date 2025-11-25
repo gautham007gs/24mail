@@ -270,81 +270,69 @@ export default function Home() {
           }}
         />
         
-        <main className="flex-1 px-4 py-6 md:px-6 md:py-8 w-full overflow-hidden">
-          {/* Two-Column Layout: Email Generator (Left) + Inbox (Right) */}
-          <div className="mx-auto w-full h-full flex flex-col lg:flex-row gap-4 md:gap-6 max-h-[calc(100vh-180px)]">
-            {/* Email Generator - Compact on Desktop */}
-            <div className="w-full lg:w-80 flex-shrink-0">
-              <EmailGenerator
-                currentEmail={currentEmail}
-                domains={domains}
-                onGenerate={handleGenerateEmail}
-                emailCount={emails.length}
-                compact={true}
-              />
-            </div>
+        <main className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
+        <div className="mx-auto max-w-3xl">
+          {/* Email Generator Card */}
+          <EmailGenerator
+            currentEmail={currentEmail}
+            domains={domains}
+            onGenerate={handleGenerateEmail}
+            emailCount={emails.length}
+          />
 
-            {/* Inbox Section - Takes Remaining Space */}
-            <div className="flex-1 min-w-0 overflow-y-auto fade-in">
-              <div className="h-full">
-                <InboxList
-                  emails={displayedEmails}
-                  isLoading={isLoadingInbox}
-                  currentEmail={currentEmail}
-                  onRefresh={handleRefresh}
-                  onDeleteAll={handleDeleteAllEmails}
-                  isDeleting={deleteAllEmailsMutation.isPending}
-                  onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
-                />
-              </div>
-            </div>
+          {/* Inbox Section */}
+          <div className="mt-12 pt-8 md:pt-12 border-t border-border/30 fade-in">
+            <InboxList
+              emails={displayedEmails}
+              isLoading={isLoadingInbox}
+              currentEmail={currentEmail}
+              onRefresh={handleRefresh}
+              onDeleteAll={handleDeleteAllEmails}
+              isDeleting={deleteAllEmailsMutation.isPending}
+              onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
+            />
           </div>
 
-        </main>
+          {/* How It Works Section - Lazy loaded for faster initial render */}
+          <div className="mt-20 pt-8 md:pt-12 border-t border-border/30 fade-in">
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <HowItWorks />
+            </Suspense>
+          </div>
 
-        {/* Below-the-fold content - Lazy loaded for faster initial render */}
-        <div className="px-4 py-12 md:px-6 md:py-16 w-full bg-gradient-to-b from-background to-muted/10">
-          <div className="mx-auto max-w-4xl space-y-20">
-            {/* How It Works Section */}
-            <div className="fade-in">
-              <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-                <HowItWorks />
-              </Suspense>
-            </div>
+          {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
+          <div className="mt-20 space-y-20 fade-in">
+            {/* Unified Social Proof */}
+            <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section>
+                <UnifiedSocialProof />
+              </section>
+            </Suspense>
 
-            {/* Social Proof & Trust Section */}
-            <div className="space-y-20 fade-in">
-              {/* Unified Social Proof */}
-              <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
-                <section>
-                  <UnifiedSocialProof />
-                </section>
-              </Suspense>
+            {/* Testimonials */}
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section className="space-y-6">
+                <div className="text-center space-y-2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
+                  <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
+                </div>
+                <TestimonialsCarousel />
+              </section>
+            </Suspense>
 
-              {/* Testimonials */}
-              <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-                <section className="space-y-6">
-                  <div className="text-center space-y-2">
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
-                    <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
-                  </div>
-                  <TestimonialsCarousel />
-                </section>
-              </Suspense>
-
-              {/* FAQ Section */}
-              <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-                <section className="space-y-6">
-                  <div className="text-center space-y-2">
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
-                    <p className="text-muted-foreground">Everything you need to know about TempMail</p>
-                  </div>
-                  <FAQAccordion />
-                </section>
-              </Suspense>
-            </div>
+            {/* FAQ Section */}
+            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
+              <section className="space-y-6">
+                <div className="text-center space-y-2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
+                  <p className="text-muted-foreground">Everything you need to know about TempMail</p>
+                </div>
+                <FAQAccordion />
+              </section>
+            </Suspense>
           </div>
         </div>
+      </main>
 
       {/* Footer - Lazy loaded */}
       <Suspense fallback={<div className="h-40 bg-muted/20" />}>

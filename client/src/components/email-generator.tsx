@@ -20,7 +20,6 @@ interface EmailGeneratorProps {
   onGenerate: (email: string) => void;
   onDelete?: () => void;
   emailCount?: number;
-  compact?: boolean;
 }
 
 // Premium domains marked with crown icon
@@ -30,7 +29,7 @@ const isPremiumDomain = (domain: string): boolean => {
   return PREMIUM_DOMAINS.has(domain.toLowerCase());
 };
 
-export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, emailCount = 0, compact = false }: EmailGeneratorProps) {
+export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, emailCount = 0 }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState<string>(() => {
@@ -255,19 +254,17 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Animated Background */}
-      <Card className={`${compact ? 'p-3 md:p-4 space-y-4' : 'p-4 md:p-8 lg:p-10 space-y-8 md:space-y-10 lg:space-y-12'} animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent`}>
+      <Card className="p-4 md:p-8 lg:p-10 space-y-8 md:space-y-10 lg:space-y-12 animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent">
         {/* Section Title */}
-        {!compact && (
-          <div className="text-center space-y-2">
-            <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
-              Your Temporary Email Address
-            </h2>
-          </div>
-        )}
+        <div className="text-center space-y-2">
+          <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
+            Your Temporary Email Address
+          </h2>
+        </div>
 
         {/* Email Display Box with Timer */}
-        <div className={compact ? 'space-y-2' : 'space-y-4'}>
-          <div className={`bg-muted/40 border border-border/50 rounded-lg ${compact ? 'p-2 md:p-3' : 'p-3 md:p-6 lg:p-8'} shadow-sm hover:shadow-md transition-shadow duration-300`}>
+        <div className="space-y-4">
+          <div className="bg-muted/40 border border-border/50 rounded-lg p-3 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
               <div className="flex-1 min-w-0">
                 <span
@@ -311,16 +308,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Description */}
-        {!compact && (
-          <div className="text-center text-xs md:text-sm text-muted-foreground/80 max-w-2xl mx-auto">
-            <p>
-              Keep your real mailbox clean and secure. TempMail provides temporary, anonymous, free disposable email addresses.
-            </p>
-          </div>
-        )}
+        <div className="text-center text-xs md:text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+          <p>
+            Keep your real mailbox clean and secure. TempMail provides temporary, anonymous, free disposable email addresses.
+          </p>
+        </div>
 
         {/* Domain Selector - Desktop Only */}
-        <div className={`hidden md:block ${compact ? 'space-y-2' : 'space-y-3'}`}>
+        <div className="hidden md:block space-y-3">
           <label htmlFor="domain-select" className="text-sm font-semibold text-foreground flex items-center gap-2">
             <AtSign className="h-4 w-4 text-emerald-500" />
             Email Domain
