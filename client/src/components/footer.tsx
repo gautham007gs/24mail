@@ -10,13 +10,13 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1">
-            <div className="flex items-center justify-start gap-3 mb-4">
-              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" className="h-11 w-11 flex-shrink-0 text-orange-500 dark:text-orange-400" fill="none" preserveAspectRatio="xMidYMid meet">
-                <path d="M10 20H54V44H10V20Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round"/>
-                <path d="M10 20L32 35L54 20" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round"/>
+            <div className="flex items-center gap-3 mb-4">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 flex-shrink-0 text-orange-500" fill="none">
+                <path d="M10 20H54V44H10V20Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                <path d="M10 20L32 35L54 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
                 <g transform="translate(32, 28)">
                   <path d="M0 -8 C-3 -4, -4 0, -2 4 C0 8, 2 10, 2 10 C2 10, 4 8, 6 4 C8 0, 7 -4, 4 -8 C2 -6, 1 -6, 0 -8 Z" 
-                        fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round"/>
+                        fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
                 </g>
               </svg>
               <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
