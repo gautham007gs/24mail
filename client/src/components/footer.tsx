@@ -11,7 +11,14 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img srcSet="/logo-32.png 1x, /logo-64.png 2x" src="/logo-32.png" alt="Burner Email" className="h-10 w-10 flex-shrink-0 object-contain" />
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 flex-shrink-0 text-orange-500" fill="none">
+                <path d="M10 20H54V44H10V20Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                <path d="M10 20L32 35L54 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                <g transform="translate(32, 28)">
+                  <path d="M0 -8 C-3 -4, -4 0, -2 4 C0 8, 2 10, 2 10 C2 10, 4 8, 6 4 C8 0, 7 -4, 4 -8 C2 -6, 1 -6, 0 -8 Z" 
+                        fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                </g>
+              </svg>
               <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
