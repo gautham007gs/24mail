@@ -13,14 +13,15 @@ export default function TermsConditions() {
   return (
     <>
       <Helmet>
-        <title>Terms & Conditions - TempMail | Legal Agreement</title>
-        <meta name="description" content="Read TempMail's Terms and Conditions. Legal agreement governing the use of our temporary email service." />
+        <title>Terms & Conditions - Burner Email | Legal Agreement for Temp Mail Service</title>
+        <meta name="description" content="Burner Email Terms and Conditions. Legal agreement for burner email, temp mail, and temporary email service usage. Understand your rights and responsibilities." />
+        <meta name="keywords" content="terms and conditions, burner email terms, temp mail legal, temporary email agreement, email service terms" />
         <meta name="robots" content="index, follow, noarchive" />
-        <link rel="canonical" href="https://tempmail.org/terms" />
+        <link rel="canonical" href="https://burneremail.email/terms" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org/terms" />
-        <meta property="og:title" content="Terms & Conditions - TempMail" />
-        <meta property="og:description" content="TempMail Terms and Conditions - Legal agreement for service use." />
+        <meta property="og:url" content="https://burneremail.email/terms" />
+        <meta property="og:title" content="Terms & Conditions - Burner Email" />
+        <meta property="og:description" content="Burner Email Terms and Conditions - Legal agreement for burner email service." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

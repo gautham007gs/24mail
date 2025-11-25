@@ -76,12 +76,13 @@ export default function SuccessStories() {
   return (
     <>
       <Helmet>
-        <title>Success Stories & Case Studies - TempMail | Customer Testimonials</title>
-        <meta name="description" content="Read success stories from developers, QA engineers, security researchers, and privacy advocates who switched to TempMail. See why 500K+ users trust us." />
+        <title>Burner Email Success Stories - Real User Reviews & Testimonials</title>
+        <meta name="description" content="Read real success stories from burner email, temp mail, and disposable email users. Discover how temporary email services help professionals protect privacy." />
+        <meta name="keywords" content="burner email reviews, temp mail testimonials, disposable email success, temporary email reviews, private email services, secure email" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://tempmail.org/success-stories" />
+        <link rel="canonical" href="https://burneremail.email/success-stories" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org/success-stories" />
+        <meta property="og:url" content="https://burneremail.email/success-stories" />
         <meta property="og:title" content="Success Stories - TempMail | Real Customer Results" />
         <meta property="og:description" content="See how companies like Slack, Airbnb, and EFF use TempMail. Real success stories from real users." />
         <meta property="og:image" content="https://tempmail.org/og-image.png" />

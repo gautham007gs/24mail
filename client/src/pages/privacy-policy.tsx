@@ -12,14 +12,15 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy - TempMail | Your Privacy Rights</title>
-        <meta name="description" content="TempMail Privacy Policy. Learn how we collect, use, and protect your personal information. GDPR and CCPA compliant." />
+        <title>Privacy Policy - Burner Email | Your Email Privacy & Data Protection</title>
+        <meta name="description" content="Burner Email Privacy Policy. Learn how we protect your privacy with burner email, temp mail, and disposable email. GDPR and CCPA compliant secure email service." />
+        <meta name="keywords" content="privacy policy, email privacy, data protection, burner email privacy, temp mail security, disposable email protection" />
         <meta name="robots" content="index, follow, noarchive" />
-        <link rel="canonical" href="https://tempmail.org/privacy" />
+        <link rel="canonical" href="https://burneremail.email/privacy" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org/privacy" />
-        <meta property="og:title" content="Privacy Policy - TempMail" />
-        <meta property="og:description" content="TempMail Privacy Policy - GDPR and CCPA compliant data protection." />
+        <meta property="og:url" content="https://burneremail.email/privacy" />
+        <meta property="og:title" content="Privacy Policy - Burner Email" />
+        <meta property="og:description" content="Burner Email Privacy Policy - Secure email protection with GDPR and CCPA compliance." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

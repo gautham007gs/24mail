@@ -49,9 +49,9 @@ export default function Blog() {
   return (
     <>
       <Helmet>
-        <title>Burner Email Blog - Expert Guides on Burner Email & Privacy Protection</title>
-        <meta name="description" content="Read expert guides on burner email addresses, privacy protection, spam prevention, and email security. Learn best practices for anonymous, disposable email online." />
-        <meta name="keywords" content="burner email blog, disposable email guide, temporary email guide, privacy tips, email security, spam prevention, throwaway email" />
+        <title>Burner Email Blog - Expert Guides on Temp Mail, Disposable Email & Privacy</title>
+        <meta name="description" content="Read expert guides on burner email, temp mail, temporary email, and disposable email. Learn privacy protection, spam prevention, and email security best practices." />
+        <meta name="keywords" content="burner email blog, temp mail guide, temporary email guide, disposable email guide, privacy tips, email security, spam prevention, email privacy, secure email" />
         <link rel="canonical" href="https://burneremail.email/blog" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://burneremail.email/blog" />

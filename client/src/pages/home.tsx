@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
@@ -22,11 +23,12 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Burner Email",
-    "alternateName": ["BurnerEmail", "burner email", "throwaway email", "disposable email", "temporary email"],
-    "description": "Free burner email service providing instant, anonymous disposable email addresses. Create temporary throwaway emails for maximum privacy protection and spam prevention.",
+    "alternateName": ["burner email", "temp mail", "temporary email", "disposable email", "private email", "secure email", "anonymous email", "throwaway email"],
+    "description": "Free burner email and temp mail service providing instant, anonymous disposable email addresses. Create temporary mail for maximum privacy protection, spam prevention, and secure private communication. Get instant burner email without signup.",
     "url": "https://burneremail.email",
     "applicationCategory": "UtilityApplication",
     "applicationSubCategory": "Privacy Tool, Email Service, Temporary Email",
+    "keywords": "burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, spam prevention, email privacy",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -43,8 +45,7 @@ export default function Home() {
     "author": {
       "@type": "Organization",
       "name": "Burner Email"
-    },
-    "keywords": "burner email, temporary email, disposable email, throwaway email, anonymous email, privacy email, temp mail, free email"
+    }
   };
 
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
@@ -275,7 +276,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <>
+      <Helmet>
+        <title>Burner Email - Free Temporary Email & Temp Mail | Secure Private Email Service</title>
+        <meta name="description" content="Get free burner email, temp mail, and disposable email instantly - no signup required. Protect your privacy with Burner Email's secure private mail service. Spam prevention, anonymous communication, and email privacy in one platform." />
+        <meta name="keywords" content="burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, email privacy, spam prevention, temporary mail" />
+        <link rel="canonical" href="https://burneremail.email/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://burneremail.email/" />
+        <meta property="og:title" content="Burner Email - Free Temporary Email & Temp Mail" />
+        <meta property="og:description" content="Get free burner email and temp mail instantly. Create disposable email for privacy protection. No signup needed." />
+        <meta property="og:image" content="https://burneremail.email/logo-256.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Burner Email - Free Temporary Email & Temp Mail" />
+        <meta name="twitter:description" content="Get instant burner email and temp mail. Disposable email for spam prevention and privacy protection." />
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen flex flex-col bg-background">
         <Header 
           domains={domains}
           selectedDomain={currentEmail.split('@')[1] || ''}
@@ -354,6 +373,7 @@ export default function Home() {
         <Footer />
       </Suspense>
     </div>
+    </>
   );
 }
 
