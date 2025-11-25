@@ -67,26 +67,26 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   useEffect(() => {
     // Always reset ref when email changes to ensure fresh timer
     expiryDateRef.current = null;
-    
+
     const storageKey = `burneremail_expiry_${currentEmail}`;
     const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
-    
+
     // Create new timestamp - either load existing or create fresh one
     const expiryTimestamp = stored ? parseInt(stored, 10) : Date.now() + 15 * 60 * 1000;
     expiryDateRef.current = expiryTimestamp;
-    
+
     if (typeof window !== "undefined") {
       localStorage.setItem(storageKey, expiryTimestamp.toString());
     }
 
     const updateExpiry = () => {
       if (!expiryDateRef.current) return;
-      
+
       const now = Date.now();
       const diff = expiryDateRef.current - now;
       const minutes = Math.floor(diff / 60000);
       const seconds = Math.floor((diff % 60000) / 1000);
-      
+
       if (diff > 0) {
         setExpiryTime(`${minutes}m ${seconds}s`);
       } else {
@@ -128,7 +128,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
   const handleCopy = async () => {
     if (!currentEmail) return;
-    
+
     try {
       await navigator.clipboard.writeText(currentEmail);
       setCopied(true);
@@ -159,10 +159,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     const username = generateRandomUsername();
     const domain = selectedDomain || cachedDomains[0] || "example.com";
     const newEmail = `${username}@${domain}`;
-    
+
     // Cache the selected domain for next time
     CacheManager.set("selected_domain", domain);
-    
+
     onGenerate(newEmail);
     setSessionEmailCount(prev => prev + 1);
     toast({
@@ -185,7 +185,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const img = new Image();
-      
+
       img.onload = () => {
         canvas.width = img.width;
         canvas.height = img.height;
@@ -199,12 +199,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           description: "Check your downloads folder",
         });
       };
-      
+
       img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
     }
   };
 
-  const shareUrl = typeof window !== "undefined" 
+  const shareUrl = typeof window !== "undefined"
     ? `${window.location.origin}?email=${encodeURIComponent(currentEmail)}`
     : currentEmail;
 
@@ -321,8 +321,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             Email Domain
           </label>
           <div className="flex gap-2">
-            <Select 
-              value={selectedDomain} 
+            <Select
+              value={selectedDomain}
               onValueChange={(domain) => {
                 setSelectedDomain(domain);
                 CacheManager.set("selected_domain", domain); // Cache on change
@@ -493,7 +493,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <div className="relative group">
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 {/* QR Code Box - Responsive Sizing */}
                 <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
                   <div className="animate-in fade-in duration-300">

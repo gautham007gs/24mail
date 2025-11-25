@@ -34,14 +34,14 @@ function getAvatarData(email: string): { initials: string; bgColor: string; text
   const name = email.split('@')[0];
   const parts = name.split(/[._-]/);
   const initials = parts.slice(0, 2).map(p => p.charAt(0).toUpperCase()).join('').slice(0, 2);
-  
+
   // Generate consistent color based on email hash
   let hash = 0;
   for (let i = 0; i < email.length; i++) {
     hash = ((hash << 5) - hash) + email.charCodeAt(i);
     hash = hash & hash; // Convert to 32bit integer
   }
-  
+
   const colors = [
     { bg: 'bg-blue-100 dark:bg-blue-900', text: 'text-blue-900 dark:text-white' },
     { bg: 'bg-purple-100 dark:bg-purple-900', text: 'text-purple-900 dark:text-white' },
@@ -52,7 +52,7 @@ function getAvatarData(email: string): { initials: string; bgColor: string; text
     { bg: 'bg-indigo-100 dark:bg-indigo-900', text: 'text-indigo-900 dark:text-white' },
     { bg: 'bg-cyan-100 dark:bg-cyan-900', text: 'text-cyan-900 dark:text-white' },
   ];
-  
+
   const selectedColor = colors[Math.abs(hash) % colors.length];
   return {
     initials: initials || '?',
@@ -65,21 +65,21 @@ function getAvatarData(email: string): { initials: string; bgColor: string; text
 function getEmailType(email: EmailSummary): { type: 'verification' | 'security' | 'normal'; label: string; color: string } {
   const subject = (email.subject || "").toLowerCase();
   const sender = email.from_address.toLowerCase();
-  
+
   // Security/verification keywords
   const verificationKeywords = ['verify', 'confirm', 'verification', 'confirmation', 'activate', 'validate', 'check', 'urgent verify', 'urgent action'];
   const securityKeywords = ['reset password', 'password reset', 'reset your', 'verify identity', 'confirm identity', 'security alert', 'unusual activity', 'suspicious', 'unauthorized'];
-  
+
   const text = `${subject} ${sender}`;
-  
+
   if (securityKeywords.some(keyword => text.includes(keyword))) {
     return { type: 'security', label: 'Security', color: 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-100' };
   }
-  
+
   if (verificationKeywords.some(keyword => text.includes(keyword))) {
     return { type: 'verification', label: 'Verification', color: 'bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100' };
   }
-  
+
   return { type: 'normal', label: '', color: '' };
 }
 
@@ -121,7 +121,7 @@ export function InboxList({
   const [starredIds, setStarredIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`starred_${currentEmail}`);
-      return stored ? JSON.parse(stored) : [];
+      return stored ? JSON.JSON.parse(stored) : [];
     }
     return [];
   });
@@ -157,7 +157,7 @@ export function InboxList({
   // Countdown timer for auto-refresh (5 seconds)
   useEffect(() => {
     if (!currentEmail) return;
-    
+
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -181,7 +181,7 @@ export function InboxList({
       const from = email.from_address.toLowerCase();
       const subject = (email.subject || "").toLowerCase();
       const to = email.to_address.toLowerCase();
-      
+
       return (
         from.includes(query) ||
         subject.includes(query) ||
@@ -249,24 +249,14 @@ export function InboxList({
 
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
   const hasSelected = selectedIds.length > 0;
-  
+
   // Count new (unread) emails
   const newEmailCount = unreadIds.length;
 
   return (
-    <div className="mt-12 space-y-4">
-      {/* New emails badge - shows when there are unread emails */}
-      {newEmailCount > 0 && (
-        <div className="flex items-center justify-center animate-pulse">
-          <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-sm font-medium" data-testid="badge-new-emails">
-            <span className="h-2 w-2 rounded-full bg-primary-foreground animate-pulse"></span>
-            {newEmailCount} new {newEmailCount === 1 ? 'email' : 'emails'}
-          </span>
-        </div>
-      )}
-      
-      {/* Controls */}
-      <div className="flex items-center justify-between">
+    <div className="space-y-5 md:space-y-6">
+      {/* Header with Actions */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-base font-semibold text-foreground bg-primary/10 px-2.5 py-1 rounded-full" data-testid="text-inbox-count">
@@ -509,7 +499,7 @@ function EmailTableRow({
       y: e.touches[0].clientY,
       time: Date.now(),
     };
-    
+
     // Start long press timer (500ms)
     longPressTimerRef.current = setTimeout(() => {
       onSelect(email.id);
@@ -522,7 +512,7 @@ function EmailTableRow({
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!longPressTimerRef.current) return; // Long press already triggered
-    
+
     const currentX = e.touches[0].clientX;
     const currentY = e.touches[0].clientY;
     const deltaX = touchStartRef.current.x - currentX;
@@ -583,7 +573,7 @@ function EmailTableRow({
 
   // Get email type for color coding
   const emailInfo = getEmailType(email);
-  
+
   // Desktop table view
   return (
     <div className="relative">
@@ -598,7 +588,7 @@ function EmailTableRow({
           <Star className="h-5 w-5 text-white" />
         </div>
       )}
-      
+
       {/* Email row */}
       <div
         className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
@@ -628,10 +618,10 @@ function EmailTableRow({
       {/* Sender with Avatar, Unread Badge and Icons */}
       <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
         {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-primary shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
-        
+
         {/* Avatar with initials */}
         <AvatarPlaceholder email={email.from_address} emailId={email.id} />
-        
+
         <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
         {email.has_attachments && (
           <Paperclip className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0" data-testid={`attachment-icon-${email.id}`} aria-label="Has attachment" />
