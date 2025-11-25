@@ -39,7 +39,14 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
         <div className="flex items-center justify-between min-h-14 md:h-16">
           {/* Logo - Compact on mobile */}
           <Link href="/" className="flex items-center gap-1.5 md:gap-2.5 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
-            <img srcSet="/logo-32.png 1x, /logo-64.png 2x" src="/logo-32.png" alt="Burner Email" className="h-10 md:h-12 w-10 md:w-12 flex-shrink-0 object-contain" />
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" className="h-10 md:h-12 w-10 md:w-12 flex-shrink-0 text-orange-500" fill="none">
+              <path d="M10 20H54V44H10V20Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+              <path d="M10 20L32 35L54 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+              <g transform="translate(32, 28)">
+                <path d="M0 -8 C-3 -4, -4 0, -2 4 C0 8, 2 10, 2 10 C2 10, 4 8, 6 4 C8 0, 7 -4, 4 -8 C2 -6, 1 -6, 0 -8 Z" 
+                      fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+              </g>
+            </svg>
             <span className="text-base md:text-lg font-black tracking-tight hidden sm:inline" data-testid="text-app-title">
               BURNER EMAIL
             </span>

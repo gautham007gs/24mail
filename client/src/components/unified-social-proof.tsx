@@ -199,7 +199,7 @@ export function UnifiedSocialProof() {
               <div className="relative z-10 space-y-2 sm:space-y-3">
                 {/* Icon */}
                 <div className="flex justify-center">
-                  <div className="text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export function UnifiedSocialProof() {
               <div className="relative z-10 space-y-2 sm:space-y-3">
                 {/* Icon */}
                 <div className="flex justify-center">
-                  <div className="text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                 </div>
