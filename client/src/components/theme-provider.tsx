@@ -50,7 +50,7 @@ const applyTheme = (theme: Theme, smooth = false) => {
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "tempmail-theme",
+  storageKey = "burneremail-theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setThemeValue] = useState<Theme>(() => {

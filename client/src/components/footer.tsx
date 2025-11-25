@@ -15,10 +15,10 @@ export function Footer() {
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 flex-shrink-0">
                 <Mail className="h-5 w-5 text-white dark:text-emerald-100" />
               </div>
-              <h3 className="font-bold text-base md:text-lg">TempMail</h3>
+              <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Free temporary email addresses to protect your privacy online.
+              Free burner email addresses for anonymous, disposable privacy protection.
             </p>
           </div>
 
@@ -71,13 +71,13 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Contact</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
-                <a href="mailto:support@tempmail.com" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-support">
-                  support@tempmail.com
+                <a href="mailto:support@burneremail.email" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-support">
+                  support@burneremail.email
                 </a>
               </li>
               <li>
-                <a href="mailto:privacy@tempmail.com" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-privacy">
-                  privacy@tempmail.com
+                <a href="mailto:privacy@burneremail.email" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-privacy">
+                  privacy@burneremail.email
                 </a>
               </li>
             </ul>
@@ -90,7 +90,7 @@ export function Footer() {
         {/* Bottom Section - Responsive */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6">
           <p className="text-xs text-muted-foreground leading-relaxed order-2 sm:order-1">
-            &copy; {currentYear} TempMail. All rights reserved. Protecting your privacy is our priority.
+            &copy; {currentYear} Burner Email. All rights reserved. Your privacy is our priority.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
             <span className="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 font-medium whitespace-nowrap">100% Free</span>

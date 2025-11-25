@@ -45,7 +45,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
               </svg>
             </div>
             <span className="text-base md:text-lg font-black tracking-tight hidden sm:inline" data-testid="text-app-title">
-              TEMPMAIL
+              BURNER EMAIL
             </span>
           </Link>
 

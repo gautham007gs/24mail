@@ -68,7 +68,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     // Always reset ref when email changes to ensure fresh timer
     expiryDateRef.current = null;
     
-    const storageKey = `tempmail_expiry_${currentEmail}`;
+    const storageKey = `burneremail_expiry_${currentEmail}`;
     const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
     
     // Create new timestamp - either load existing or create fresh one
@@ -192,7 +192,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         ctx?.drawImage(img, 0, 0);
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
-        link.download = `tempmail-qr-${currentEmail.split('@')[0]}.png`;
+        link.download = `burneremail-qr-${currentEmail.split('@')[0]}.png`;
         link.click();
         toast({
           title: "QR Code downloaded",
@@ -310,7 +310,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         {/* Description */}
         <div className="text-center text-xs md:text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <p>
-            Keep your real mailbox clean and secure. TempMail provides temporary, anonymous, free disposable email addresses.
+            Keep your real mailbox clean and secure. Burner Email provides temporary, anonymous, free disposable email addresses.
           </p>
         </div>
 
@@ -569,7 +569,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   variant="outline"
                   size="lg"
                   onClick={() => shareArticleOn('whatsapp', {
-                    title: 'Check out TempMail',
+                    title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
@@ -583,7 +583,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   variant="outline"
                   size="lg"
                   onClick={() => shareArticleOn('telegram', {
-                    title: 'Check out TempMail',
+                    title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
@@ -597,7 +597,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   variant="outline"
                   size="lg"
                   onClick={() => shareArticleOn('twitter', {
-                    title: 'Check out TempMail',
+                    title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Free temporary email for instant privacy protection',
                   })}

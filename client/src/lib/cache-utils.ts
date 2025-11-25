@@ -1,21 +1,21 @@
 // Cache utility functions for localStorage and session management
 export const cacheUtils = {
   // Theme caching (already implemented in theme-provider.tsx)
-  getTheme: () => localStorage.getItem("tempmail-theme"),
-  setTheme: (theme: string) => localStorage.setItem("tempmail-theme", theme),
+  getTheme: () => localStorage.getItem("burneremail-theme"),
+  setTheme: (theme: string) => localStorage.setItem("burneremail-theme", theme),
 
   // Email persistence across page refreshes
-  getCurrentEmail: () => localStorage.getItem("tempmail_current_email"),
-  setCurrentEmail: (email: string) => localStorage.setItem("tempmail_current_email", email),
-  clearCurrentEmail: () => localStorage.removeItem("tempmail_current_email"),
+  getCurrentEmail: () => localStorage.getItem("burneremail_current_email"),
+  setCurrentEmail: (email: string) => localStorage.setItem("burneremail_current_email", email),
+  clearCurrentEmail: () => localStorage.removeItem("burneremail_current_email"),
 
   // User preferences
-  getNotificationPreference: () => localStorage.getItem("tempmail-notifications") === "true",
-  setNotificationPreference: (enabled: boolean) => localStorage.setItem("tempmail-notifications", String(enabled)),
+  getNotificationPreference: () => localStorage.getItem("burneremail-notifications") === "true",
+  setNotificationPreference: (enabled: boolean) => localStorage.setItem("burneremail-notifications", String(enabled)),
 
   // Session management
-  getSessionId: () => sessionStorage.getItem("tempmail-session-id"),
-  setSessionId: (id: string) => sessionStorage.setItem("tempmail-session-id", id),
+  getSessionId: () => sessionStorage.getItem("burneremail-session-id"),
+  setSessionId: (id: string) => sessionStorage.setItem("burneremail-session-id", id),
 
   // API cache with TTL
   setCache: (key: string, data: unknown, ttlMs: number = 5000) => {
@@ -45,7 +45,7 @@ export const cacheUtils = {
   // Clear all app caches
   clearAllCaches: () => {
     Object.keys(localStorage).forEach(key => {
-      if (key.startsWith("cache_") || key.startsWith("tempmail")) {
+      if (key.startsWith("cache_") || key.startsWith("burneremail")) {
         localStorage.removeItem(key);
       }
     });

@@ -177,7 +177,7 @@ export function UnifiedSocialProof() {
           Built for Enterprise, Loved by Developers
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Join millions who trust TempMail for their privacy needs
+          Join millions who trust Burner Email for anonymous, disposable privacy protection
         </p>
       </div>
 

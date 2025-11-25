@@ -55,14 +55,14 @@ export default function Home() {
       
       if (emailFromUrl) {
         // Save to localStorage and update URL
-        localStorage.setItem("tempmail_current_email", emailFromUrl);
+        localStorage.setItem("burneremail_current_email", emailFromUrl);
         // Clean up URL by removing query params
         window.history.replaceState({}, document.title, window.location.pathname);
         return emailFromUrl;
       }
       
       // Otherwise load from localStorage
-      return localStorage.getItem("tempmail_current_email") || "";
+      return localStorage.getItem("burneremail_current_email") || "";
     }
     return "";
   });
