@@ -139,6 +139,11 @@
     transition: opacity 0.3s ease-in-out;
   }
 
+  /* Ensure logo images maintain transparent backgrounds */
+  img[src*="logo"] {
+    background: transparent !important;
+  }
+
   /* Code blocks - No dark mode specific rules to prevent cascade */
   code {
     transition: all 0.3s ease;
