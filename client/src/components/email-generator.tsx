@@ -254,7 +254,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Animated Background */}
-      <Card className="p-4 md:p-8 lg:p-10 space-y-8 md:space-y-10 lg:space-y-12 animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent">
+      <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent">
         {/* Section Title */}
         <div className="text-center space-y-2">
           <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">

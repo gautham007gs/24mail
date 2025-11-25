@@ -11,13 +11,15 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img 
-                srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
-                src="/logo-32.png?v=2" 
-                alt="Burner Email" 
-                className="h-10 w-10 flex-shrink-0 object-contain logo-transparent" 
-              />
-              <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
+              <div className="flex items-center justify-center">
+                <img 
+                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
+                  src="/logo-32.png?v=2" 
+                  alt="Burner Email" 
+                  className="h-11 w-11 flex-shrink-0 object-contain logo-transparent" 
+                />
+              </div>
+              <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               Free burner email addresses for anonymous, disposable privacy protection.

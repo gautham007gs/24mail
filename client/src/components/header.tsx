@@ -38,14 +38,16 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
       <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6">
         <div className="flex items-center justify-between min-h-14 md:h-16">
           {/* Logo - Compact on mobile */}
-          <Link href="/" className="flex items-center gap-1.5 md:gap-2.5 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
-            <img 
-              srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
-              src="/logo-32.png?v=2" 
-              alt="Burner Email" 
-              className="h-10 md:h-12 w-10 md:w-12 flex-shrink-0 object-contain logo-transparent" 
-            />
-            <span className="text-base md:text-lg font-black tracking-tight hidden sm:inline" data-testid="text-app-title">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
+            <div className="flex items-center justify-center">
+              <img 
+                srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
+                src="/logo-32.png?v=2" 
+                alt="Burner Email" 
+                className="h-11 md:h-12 w-11 md:w-12 flex-shrink-0 object-contain logo-transparent" 
+              />
+            </div>
+            <span className="text-lg md:text-xl font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
               BURNER EMAIL
             </span>
           </Link>
