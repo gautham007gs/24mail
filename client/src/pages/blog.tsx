@@ -49,18 +49,18 @@ export default function Blog() {
   return (
     <>
       <Helmet>
-        <title>TempMail Blog - Guides on Temporary Email & Privacy Protection</title>
-        <meta name="description" content="Read expert guides on temporary email addresses, privacy protection, spam prevention, and email security. Learn best practices for online privacy." />
-        <meta name="keywords" content="temporary email blog, disposable email guide, privacy tips, email security, spam prevention" />
-        <link rel="canonical" href="https://tempmail.org/blog" />
+        <title>Burner Email Blog - Expert Guides on Burner Email & Privacy Protection</title>
+        <meta name="description" content="Read expert guides on burner email addresses, privacy protection, spam prevention, and email security. Learn best practices for anonymous, disposable email online." />
+        <meta name="keywords" content="burner email blog, disposable email guide, temporary email guide, privacy tips, email security, spam prevention, throwaway email" />
+        <link rel="canonical" href="https://burneremail.email/blog" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tempmail.org/blog" />
-        <meta property="og:title" content="TempMail Blog - Expert Guides on Temporary Email & Privacy" />
-        <meta property="og:description" content="Expert guides on temporary email, privacy protection, spam prevention, and email security best practices." />
-        <meta property="og:image" content="https://tempmail.org/og-image.png" />
+        <meta property="og:url" content="https://burneremail.email/blog" />
+        <meta property="og:title" content="Burner Email Blog - Expert Guides on Burner Email & Privacy" />
+        <meta property="og:description" content="Expert guides on burner email, disposable email, privacy protection, spam prevention, and email security best practices." />
+        <meta property="og:image" content="https://burneremail.email/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TempMail Blog - Privacy Protection Guides" />
-        <meta name="twitter:description" content="Learn about temporary email, privacy protection, and email security from our expert guides." />
+        <meta name="twitter:title" content="Burner Email Blog - Privacy Protection Guides" />
+        <meta name="twitter:description" content="Learn about burner email, disposable email, privacy protection, and email security from our expert guides." />
       </Helmet>
       <div className="min-h-screen bg-background fade-in">
         {/* Header */}

@@ -1,5 +1,4 @@
 import { Link } from "wouter";
-import { BurnerEmailIcon } from "@/components/burner-email-icon";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,9 +11,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex-shrink-0">
-                <BurnerEmailIcon size={32} />
-              </div>
+              <img src="/logo.png" alt="Burner Email" className="h-8 w-8 flex-shrink-0 object-contain" />
               <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">

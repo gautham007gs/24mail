@@ -1,7 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Mail, Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BurnerEmailIcon } from "@/components/burner-email-icon";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
@@ -40,9 +39,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
         <div className="flex items-center justify-between min-h-14 md:h-16">
           {/* Logo - Compact on mobile */}
           <Link href="/" className="flex items-center gap-1.5 md:gap-2.5 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
-            <div className="flex-shrink-0">
-              <BurnerEmailIcon size={32} />
-            </div>
+            <img src="/logo.png" alt="Burner Email" className="h-8 md:h-9 w-8 md:w-9 flex-shrink-0 object-contain" />
             <span className="text-base md:text-lg font-black tracking-tight hidden sm:inline" data-testid="text-app-title">
               BURNER EMAIL
             </span>
