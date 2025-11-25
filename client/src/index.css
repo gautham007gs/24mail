@@ -139,8 +139,18 @@
     transition: opacity 0.3s ease-in-out;
   }
 
-  /* Ensure logo images maintain transparent backgrounds */
-  img[src*="logo"] {
+  /* Ensure logo images maintain transparent backgrounds - aggressive approach */
+  img[src*="logo"],
+  img[srcset*="logo"],
+  .logo-transparent {
+    background-color: transparent !important;
+    background-image: none !important;
+    background: none !important;
+  }
+  
+  /* Ensure parent containers don't add backgrounds */
+  a:has(img[src*="logo"]),
+  div:has(img[src*="logo"]) {
     background: transparent !important;
   }
 
