@@ -57,7 +57,9 @@ export default function Blog() {
         <meta property="og:url" content="https://burneremail.email/blog" />
         <meta property="og:title" content="Burner Email Blog - Expert Guides on Burner Email & Privacy" />
         <meta property="og:description" content="Expert guides on burner email, disposable email, privacy protection, spam prevention, and email security best practices." />
-        <meta property="og:image" content="https://burneremail.email/logo.png" />
+        <meta property="og:image" content="https://burneremail.email/logo-256.png" />
+        <meta property="og:image:width" content="256" />
+        <meta property="og:image:height" content="256" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Burner Email Blog - Privacy Protection Guides" />
         <meta name="twitter:description" content="Learn about burner email, disposable email, privacy protection, and email security from our expert guides." />
