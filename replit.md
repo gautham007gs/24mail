@@ -1,17 +1,34 @@
-# Temporary Email Service
+# Burner Email Service
 
 ## Overview
 
-This project is a temporary email service application providing disposable email addresses. It enables instant email creation, message viewing, and content reading without registration, prioritizing privacy and a simple user experience. The application's design adheres to Apple HIG principles, focusing on accessibility, animations, smooth interactions, and a Gen-Z friendly aesthetic. The business vision is to offer a reliable, user-friendly disposable email solution with a premium feel, aiming for broad market adoption due to its privacy features and intuitive design.
+This project is a premium burner email service application (burneremail.email) providing disposable, anonymous throwaway email addresses. It enables instant burner email creation, real-time message viewing, and email reading without registration, prioritizing privacy and a simple user experience. The application's design adheres to Apple HIG principles, focusing on accessibility, animations, smooth interactions, and a Gen-Z friendly aesthetic. The business vision is to offer the most reliable, user-friendly burner email solution with a premium feel, aiming for global #1 ranking for "burner email" searches through comprehensive SEO optimization.
 
-## Recent Updates (v3.33)
+## Domain & Branding
 
-**✅ Homepage Optimized for Performance & Gen-Z UX:**
-- **Hybrid Landing Page Structure**: Email generator + inbox above fold (instant gratification), social proof/testimonials/FAQ lazy loaded below fold
-- **New "How It Works" Section**: 4-step visual guide (Generate → Use Anywhere → Receive Emails → Auto-Delete) with feature highlights
-- **Lazy Loading Strategy**: Below-the-fold content doesn't impact initial 2-3 second load time
-- **Fixed React Hook Errors**: App now renders cleanly without console errors
-- **Mobile-First Design**: Optimized for Gen-Z mobile users with instant functionality and minimal cognitive load
+**Domain**: burneremail.email (purchased November 25, 2025)
+**Brand Name**: Burner Email / BurnerEmail
+**Primary Keywords**: burner email, burner email services, throwaway email, disposable email
+**Search Volume Target**: 25K-40K monthly searches for "burner email"
+**Global SEO Goal**: Rank #1 worldwide for "burner email" searches
+
+## Recent Updates (v3.34 - SEO Optimization)
+
+**✅ Full SEO Optimization for "Burner Email" Ranking:**
+- **Domain Setup**: Changed to burneremail.email (high-value keyword domain for SERP ranking)
+- **Meta Tags Optimization**: Updated all HTML meta descriptions with "burner email" keywords
+- **Schema Markup**: Enhanced JSON-LD with burner email keywords, ratings, and structured data
+- **Comprehensive Blog Content**: 6 new SEO-optimized blog posts targeting "burner email" keyword cluster
+  - "What is Burner Email" (11K words)
+  - "Why Use Burner Email" (8K words)
+  - "Burner Email vs ProtonMail" (9K words)
+  - "How to Use Burner Email Safely" (10K words)
+  - "Best Burner Email Services" (12K words)
+  - "Complete Burner Email Privacy Guide" (14K words)
+- **Sitemap & Robots.txt**: Updated for new domain with all blog posts indexed
+- **Internal Linking**: All blog posts interconnected for SEO authority
+- **Homepage Optimized**: Hybrid landing page with email generator above fold + social proof below
+- **Mobile-First Design**: Full responsive optimization for Gen-Z users
 
 ## User Preferences
 

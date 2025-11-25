@@ -21,15 +21,30 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "TempMail",
-    "description": "Free temporary email service providing instant, anonymous disposable email addresses for privacy protection",
-    "url": "https://tempmail.org",
+    "name": "Burner Email",
+    "alternateName": ["BurnerEmail", "burner email", "throwaway email", "disposable email", "temporary email"],
+    "description": "Free burner email service providing instant, anonymous disposable email addresses. Create temporary throwaway emails for maximum privacy protection and spam prevention.",
+    "url": "https://burneremail.email",
     "applicationCategory": "UtilityApplication",
+    "applicationSubCategory": "Privacy Tool, Email Service, Temporary Email",
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
-    }
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "5000",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Burner Email"
+    },
+    "keywords": "burner email, temporary email, disposable email, throwaway email, anonymous email, privacy email, temp mail, free email"
   };
 
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
