@@ -80,10 +80,10 @@ export function TestimonialsCarousel() {
             {/* Author */}
             <div className="flex items-center gap-3">
               <div
-                className={`h-12 w-12 rounded-full bg-gradient-to-br ${testimonial.bgColor} flex items-center justify-center flex-shrink-0`}
+                className="h-12 w-12 rounded-full flex items-center justify-center flex-shrink-0"
                 data-testid={`avatar-current-${testimonial.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <span className="text-white dark:text-slate-100 font-bold text-xs">{testimonial.avatar}</span>
+                <span className="font-bold text-xs text-foreground">{testimonial.avatar}</span>
               </div>
               <div>
                 <p className="font-bold text-foreground text-sm" data-testid={`name-current-${testimonial.name.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -138,10 +138,10 @@ export function TestimonialsCarousel() {
             {/* Author */}
             <div className="flex items-center gap-3">
               <div
-                className={`h-12 w-12 rounded-full bg-gradient-to-br ${nextTestimonial.bgColor} flex items-center justify-center flex-shrink-0`}
+                className="h-12 w-12 rounded-full flex items-center justify-center flex-shrink-0"
                 data-testid={`avatar-next-${nextTestimonial.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <span className="text-white dark:text-slate-100 font-bold text-xs">{nextTestimonial.avatar}</span>
+                <span className="font-bold text-xs text-foreground">{nextTestimonial.avatar}</span>
               </div>
               <div>
                 <p className="font-bold text-foreground text-sm" data-testid={`name-next-${nextTestimonial.name.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -194,10 +194,10 @@ export function TestimonialsCarousel() {
           {/* Author */}
           <div className="flex items-center gap-4">
             <div
-              className={`h-14 w-14 rounded-full bg-gradient-to-br ${testimonial.bgColor} flex items-center justify-center flex-shrink-0`}
+              className="h-14 w-14 rounded-full flex items-center justify-center flex-shrink-0"
               data-testid={`avatar-${testimonial.name.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <span className="text-white dark:text-slate-100 font-bold text-sm">{testimonial.avatar}</span>
+              <span className="font-bold text-sm text-foreground">{testimonial.avatar}</span>
             </div>
             <div>
               <p className="font-bold text-foreground" data-testid={`name-${testimonial.name.toLowerCase().replace(/\s+/g, '-')}`}>
