@@ -48,9 +48,7 @@ export function HowItWorks() {
               </div>
 
               {/* Icon */}
-              <div className="w-16 h-16 rounded-lg bg-muted/40 flex items-center justify-center">
-                <Icon className="w-8 h-8 text-foreground/70" strokeWidth={1.5} />
-              </div>
+              <Icon className="w-12 h-12 text-foreground/70" strokeWidth={1.5} />
 
               {/* Content */}
               <div className="space-y-2">
