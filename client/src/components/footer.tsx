@@ -12,9 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 flex-shrink-0">
-                <Mail className="h-5 w-5 text-white dark:text-emerald-100" />
-              </div>
+              <img src="/logo.png" alt="Burner Email" className="h-8 w-8 rounded-md object-cover flex-shrink-0" />
               <h3 className="font-bold text-base md:text-lg">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
