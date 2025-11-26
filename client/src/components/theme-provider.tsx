@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 type Theme = "light" | "dark" | "system";
 
 type ThemeProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
 };
@@ -22,6 +22,8 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 // Helper function to apply theme to DOM with smooth transition
 const applyTheme = (theme: Theme, smooth = false) => {
+  if (typeof window === "undefined") return;
+  
   const root = window.document.documentElement;
   
   // Add transition class for smooth color animation
@@ -51,22 +53,27 @@ export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "burneremail-theme",
-  ...props
 }: ThemeProviderProps) {
   const [theme, setThemeValue] = useState<Theme>(() => {
     if (typeof window === "undefined") return defaultTheme;
-    return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+    try {
+      const stored = localStorage.getItem(storageKey);
+      return (stored as Theme) || defaultTheme;
+    } catch {
+      return defaultTheme;
+    }
   });
 
-  // Apply theme immediately on initial load
+  // Apply theme immediately on mount
   useEffect(() => {
-    if (typeof window === "undefined") return;
     applyTheme(theme);
   }, [theme]);
 
   // Listen for system theme changes only when in system mode
   useEffect(() => {
-    if (typeof window === "undefined" || theme !== "system") return;
+    if (theme !== "system") return;
+
+    if (typeof window === "undefined") return;
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -78,20 +85,28 @@ export function ThemeProvider({
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
-  const value = {
-    theme,
-    setTheme: (newTheme: Theme) => {
+  const setTheme = (newTheme: Theme) => {
+    if (typeof window === "undefined") return;
+    
+    try {
       // Apply theme with smooth transition animation
       applyTheme(newTheme, true);
       // Update state
       setThemeValue(newTheme);
       // Save to localStorage
       localStorage.setItem(storageKey, newTheme);
-    },
+    } catch {
+      setThemeValue(newTheme);
+    }
+  };
+
+  const value: ThemeProviderState = {
+    theme,
+    setTheme,
   };
 
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
+    <ThemeProviderContext.Provider value={value}>
       {children}
     </ThemeProviderContext.Provider>
   );
