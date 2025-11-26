@@ -401,13 +401,13 @@
   --popover: 0 0% 98%;
   --popover-foreground: 15 20% 14%;
   --popover-border: 20 50% 90%;
-  --primary: 20 100% 55%;
+  --primary: 20 100% 60%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 20 75% 80%;
-  --secondary-foreground: 15 30% 18%;
-  --muted: 20 25% 92%;
-  --muted-foreground: 15 12% 38%;
-  --accent: 180 70% 48%;
+  --secondary: 20 75% 82%;
+  --secondary-foreground: 15 30% 16%;
+  --muted: 20 20% 93%;
+  --muted-foreground: 15 10% 40%;
+  --accent: 180 75% 52%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
@@ -486,14 +486,14 @@
   --popover: 20 25% 18%;
   --popover-foreground: 0 0% 98%;
   --popover-border: 20 45% 26%;
-  --primary: 20 100% 68%;
-  --primary-foreground: 15 20% 6%;
-  --secondary: 20 50% 32%;
+  --primary: 20 100% 72%;
+  --primary-foreground: 15 20% 4%;
+  --secondary: 20 50% 36%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 20 25% 22%;
-  --muted-foreground: 0 0% 80%;
-  --accent: 180 70% 58%;
-  --accent-foreground: 15 20% 6%;
+  --muted: 20 20% 24%;
+  --muted-foreground: 0 0% 85%;
+  --accent: 180 75% 62%;
+  --accent-foreground: 15 20% 4%;
   --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 98%;
   --input: 20 25% 28%;
@@ -671,6 +671,60 @@
 
   .dark .border-enhance:hover {
     @apply border-border/80;
+  }
+
+  /* GLOW EFFECTS FOR PROMINENT ELEMENTS */
+  .glow-soft {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.15);
+  }
+
+  .dark .glow-soft {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.25);
+  }
+
+  .glow-medium {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.25);
+  }
+
+  .dark .glow-medium {
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.35);
+  }
+
+  .glow-strong {
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.35), inset 0 0 20px rgba(255, 107, 53, 0.1);
+  }
+
+  .dark .glow-strong {
+    box-shadow: 0 0 50px rgba(255, 107, 53, 0.45), inset 0 0 20px rgba(255, 107, 53, 0.15);
+  }
+
+  /* ENHANCED TEXT SIZES FOR BETTER HIERARCHY */
+  .text-display-xl {
+    @apply text-4xl md:text-5xl font-black tracking-tight;
+  }
+
+  .text-display-lg {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  .text-email-display {
+    @apply text-2xl md:text-3xl font-mono font-semibold tracking-wider;
+  }
+
+  /* BUTTON GLOW ON HOVER */
+  .button-glow-hover:hover {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+
+  .dark .button-glow-hover:hover {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+  }
+
+  /* MOBILE-FIRST SPACING IMPROVEMENTS */
+  @media (max-width: 768px) {
+    .mobile-spacing-lg {
+      @apply py-6 px-4 space-y-6;
+    }
   }
 
   @keyframes fadeIn {
