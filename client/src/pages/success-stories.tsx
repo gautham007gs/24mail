@@ -94,11 +94,9 @@ export default function SuccessStories() {
       <div className="min-h-screen bg-background">
         <div className="border-b border-border/50">
           <div className="mx-auto max-w-6xl px-4 md:px-6 py-8">
-            <WouterLink href="/">
-              <button className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4 hover-elevate transition-all">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </button>
+            <WouterLink href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4 hover-elevate transition-all">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
             </WouterLink>
             <h1 className="text-5xl font-bold text-foreground mb-4">Success Stories</h1>
             <p className="text-lg text-muted-foreground">Hear from people who switched to TempMail and never looked back</p>
@@ -188,10 +186,8 @@ export default function SuccessStories() {
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Experience the Difference?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Join 500K+ users who trust TempMail for their email privacy needs. No registration, completely free.</p>
-            <WouterLink href="/">
-              <button className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors hover-elevate active-elevate-2">
-                Get Started Now
-              </button>
+            <WouterLink href="/" className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors hover-elevate active-elevate-2">
+              Get Started Now
             </WouterLink>
           </div>
         </main>

@@ -27,11 +27,9 @@ export default function TermsConditions() {
       <div className="min-h-screen bg-background">
         <div className="border-b border-border/50">
           <div className="mx-auto max-w-4xl px-4 md:px-6 py-8">
-            <Link href="/">
-              <a className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </a>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
             </Link>
           </div>
         </div>
