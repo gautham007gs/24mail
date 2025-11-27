@@ -21,6 +21,7 @@ const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof"
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 const UseCasesSection = lazy(() => import("@/components/use-cases-section").then(m => ({ default: m.UseCasesSection })));
+const DataPrivacySection = lazy(() => import("@/components/data-privacy-section").then(m => ({ default: m.DataPrivacySection })));
 
 export default function Home() {
   const jsonLd = {
@@ -313,11 +314,10 @@ export default function Home() {
           {/* Hero Section - Above the Fold */}
           <div className="text-center mb-8 md:mb-12 space-y-5">
             <h1 className="text-display text-foreground">
-              Instant Burner Email
+              Instant Burner Email Addresses
             </h1>
             <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              Free temporary email addresses. No signup. Complete privacy.<br className="hidden sm:block" />
-              Perfect for protecting your real inbox from spam.
+              Free, private, and disposable email addresses. No signup required. Protect your real inbox from spam.
             </p>
             <div className="flex flex-col items-center gap-4 pt-3">
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
@@ -325,19 +325,19 @@ export default function Home() {
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  100% Free
+                  ✔ 100% Free
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-anonymous">
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Anonymous
+                  ✔ Anonymous
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-instant">
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Instant Setup
+                  ✔ Instant Setup
                 </span>
               </div>
               <div className="text-center">
@@ -383,6 +383,11 @@ export default function Home() {
               <HowItWorks />
             </Suspense>
           </div>
+
+          {/* Data & Privacy Section - Trust building */}
+          <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
+            <DataPrivacySection />
+          </Suspense>
 
           {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 space-y-20 fade-in">
