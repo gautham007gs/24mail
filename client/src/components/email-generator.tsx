@@ -300,8 +300,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           Instant • Secure • No Signup
         </p>
 
-        {/* Email Display Box - 20px Padding */}
-        <div className="card-flame-edge p-5 shadow-sm hover:shadow-lg transition-all duration-300">
+        {/* Email Display Box - Clean & Premium */}
+        <div className="card-flame-edge p-6 sm:p-8 space-y-5">
           {/* Timer Progress Bar */}
           {(() => {
             const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
@@ -318,87 +318,48 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             );
           })()}
           
-          <div className="space-y-5">
-            {/* Email with Active Indicator Dot */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2.5 group">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0 cursor-help" data-testid="indicator-active" />
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="text-xs">Active inbox</TooltipContent>
-                </Tooltip>
-                <span
-                  className="text-email-code sm:text-lg text-foreground block flex-1 email-box-highlight"
-                  data-testid="text-current-email"
-                >
-                  {currentEmail || "Generating..."}
-                </span>
-                <button
-                  onClick={handleCopy}
-                  disabled={!currentEmail}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded hover:bg-accent/10 active-elevate-2 flex-shrink-0"
-                  aria-label="Copy email address"
-                  data-testid="button-copy-icon-inside"
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4 text-accent" data-testid="icon-check" />
-                  ) : (
-                    <Copy className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" data-testid="icon-copy-display" />
-                  )}
-                </button>
-              </div>
-            </div>
+          {/* Email Address - Large & Clean */}
+          <div className="flex items-center justify-between gap-4">
+            <span
+              className="text-2xl sm:text-3xl font-mono font-semibold text-foreground break-all"
+              data-testid="text-current-email"
+            >
+              {currentEmail || "Generating..."}
+            </span>
+            <button
+              onClick={handleCopy}
+              disabled={!currentEmail}
+              className="flex-shrink-0 p-2 rounded-lg hover:bg-accent/10 active-elevate-2 transition-colors"
+              aria-label="Copy email address"
+              data-testid="button-copy-icon-inside"
+            >
+              {copied ? (
+                <Check className="h-5 w-5 text-accent" data-testid="icon-check" />
+              ) : (
+                <Copy className="h-5 w-5 text-muted-foreground hover:text-accent transition-colors" data-testid="icon-copy-display" />
+              )}
+            </button>
+          </div>
 
-            {/* Desktop: Expires + Copy/QR on right */}
-            <div className="hidden sm:flex sm:items-center sm:justify-between gap-4">
-              <p className="text-muted-foreground/70 flex items-center gap-1.5">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
-                <span className="text-sm">Expires: <span className="text-timer-label">{expiryTime}</span></span>
-              </p>
-              <div className="flex gap-2 items-center">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setShowQRCode(true)}
-                  data-testid="button-qr-code"
-                  aria-label="Generate QR code to share email"
-                  className="hover-elevate"
-                >
-                  <QrCode className="h-4 w-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  onClick={handleCopy}
-                  disabled={!currentEmail}
-                  data-testid="button-copy-email"
-                  className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm"
-                  aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
-            </div>
+          {/* Divider */}
+          <div className="h-px bg-border/50" />
 
-            {/* Mobile: Progress Bar Timer */}
-            <div className="sm:hidden space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">Expires in:</span>
-                <span className="text-timer-label text-sm">{expiryTime}</span>
-              </div>
-              <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-timer to-timer/80 rounded-full transition-all duration-300"
-                  style={{
-                    width: `${Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)))}%`
-                  }}
-                  data-testid="progress-bar-timer"
-                />
-              </div>
+          {/* Expiry Info + Actions - Subtle */}
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">
+              Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+            </span>
+            <div className="flex gap-2 items-center">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setShowQRCode(true)}
+                data-testid="button-qr-code"
+                aria-label="Generate QR code to share email"
+                className="h-8 w-8 hover-elevate"
+              >
+                <QrCode className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
