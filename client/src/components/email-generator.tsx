@@ -327,51 +327,49 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Clean Button Action Row - Organized & Minimal - 16px above, 32px below */}
         <div className="mt-4 mb-8">
-          {/* Mobile: 2-row grid layout */}
-          <div className="md:hidden space-y-2">
-            <div className="grid grid-cols-2 gap-2">
+          {/* Mobile: Simple 4-button single row layout - clean & minimal */}
+          <div className="md:hidden">
+            <div className="grid grid-cols-4 gap-2">
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-action-copy"
-                className="text-sm font-semibold"
-                aria-label="Copy email address"
+                size="sm"
+                className="text-xs font-semibold"
+                aria-label="Copy email"
               >
-                <Copy className="h-4 w-4 mr-1.5" />
-                Copy
+                <Copy className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                onClick={handleRefresh}
+                variant="outline"
+                data-testid="button-action-refresh"
+                size="sm"
+                className="text-xs font-semibold"
+                aria-label="Refresh"
+              >
+                <RefreshCw className="h-3.5 w-3.5" />
               </Button>
               <Button
                 onClick={handleGenerateWithDomain}
                 disabled={domains.length === 0}
                 variant="secondary"
                 data-testid="button-action-new-email"
-                className="text-sm font-semibold"
-                aria-label="Generate new email"
+                size="sm"
+                className="text-xs font-semibold"
+                aria-label="New Email"
               >
-                <RotateCw className="h-4 w-4 mr-1.5" />
-                New
-              </Button>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                onClick={handleRefresh}
-                variant="outline"
-                data-testid="button-action-refresh"
-                className="text-sm font-semibold"
-                aria-label="Refresh inbox"
-              >
-                <RefreshCw className="h-4 w-4 mr-1.5" />
-                Refresh
+                <RotateCw className="h-3.5 w-3.5" />
               </Button>
               <Button
                 onClick={handleBurn}
                 variant="destructive"
                 data-testid="button-action-burn"
-                className={`text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
-                aria-label="Burn email"
+                size="sm"
+                className={`text-xs font-semibold ${isBurning ? "burn-animation" : ""}`}
+                aria-label="Burn"
               >
-                <Trash2 className={`h-4 w-4 mr-1.5 ${isBurning ? "burn-icon" : ""}`} />
-                Burn
+                <Trash2 className={`h-3.5 w-3.5 ${isBurning ? "burn-icon" : ""}`} />
               </Button>
             </div>
           </div>

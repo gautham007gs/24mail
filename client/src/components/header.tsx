@@ -134,15 +134,6 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             )}
             <ThemeToggle />
             <button
-              onClick={handleCleanup}
-              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
-              data-testid="button-cleanup-mobile"
-              aria-label="Clear cache and cleanup"
-              title="Clear cache"
-            >
-              <Trash2 className="h-4 w-4" />
-            </button>
-            <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
               data-testid="button-mobile-menu"
