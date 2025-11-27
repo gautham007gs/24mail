@@ -121,7 +121,7 @@ export function InboxList({
   const [starredIds, setStarredIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`starred_${currentEmail}`);
-      return stored ? JSON.JSON.parse(stored) : [];
+      return stored ? JSON.parse(stored) : [];
     }
     return [];
   });
@@ -259,11 +259,11 @@ export function InboxList({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
-          <span className="text-base font-semibold text-foreground bg-primary/10 px-2.5 py-1 rounded-full" data-testid="text-inbox-count">
+          <span className="text-base font-semibold text-foreground bg-accent/10 px-2.5 py-1 rounded-full" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>
           {hasSelected && (
-            <span className="ml-4 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <span className="ml-4 px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium">
               {selectedIds.length} selected
             </span>
           )}
@@ -592,7 +592,7 @@ function EmailTableRow({
       {/* Email row */}
       <div
         className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-          isSelected ? "bg-primary/5 border-primary" : isExpanded ? "bg-muted/20 border-primary" : isUnread ? "border-primary bg-primary/5" : "border-transparent"
+          isSelected ? "bg-accent/5 border-accent" : isExpanded ? "bg-muted/20 border-accent" : isUnread ? "border-accent bg-accent/5" : "border-transparent"
         }`}
         onClick={handleRowClick}
         onTouchStart={handleTouchStart}
@@ -617,7 +617,7 @@ function EmailTableRow({
 
       {/* Sender with Avatar, Unread Badge and Icons */}
       <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
-        {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-primary shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
+        {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-accent shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
 
         {/* Avatar with initials */}
         <AvatarPlaceholder email={email.from_address} emailId={email.id} />

@@ -60,7 +60,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 href={item.href}
                 className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
                   isActive(item.href)
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-accent text-accent-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
@@ -104,7 +104,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                       onClick={() => setIsOpen(false)}
                       className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
                         isActive(item.href)
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-accent text-accent-foreground"
                           : "text-foreground hover:bg-secondary/50"
                       }`}
                       data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}

@@ -43,13 +43,13 @@ export function HowItWorks() {
               data-testid={`step-card-${index + 1}`}
             >
               {/* Step Number */}
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10">
-                <span className="text-lg font-bold text-primary">{index + 1}</span>
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-accent/10">
+                <span className="text-lg font-bold text-accent">{index + 1}</span>
               </div>
 
               {/* Icon */}
-              <div className="w-16 h-16 rounded-lg bg-muted/40 flex items-center justify-center">
-                <Icon className="w-8 h-8 text-foreground/70" strokeWidth={1.5} />
+              <div className="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center">
+                <Icon className="w-8 h-8 text-accent" strokeWidth={1.5} />
               </div>
 
               {/* Content */}
@@ -60,7 +60,7 @@ export function HowItWorks() {
 
               {/* Connector line (except last) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute w-6 h-0.5 bg-primary/20 ml-32 -right-12 transform scale-x-150" />
+                <div className="hidden lg:block absolute w-6 h-0.5 bg-accent/30 ml-32 -right-12 transform scale-x-150" />
               )}
             </div>
           );
@@ -70,21 +70,21 @@ export function HowItWorks() {
       {/* Feature highlights below steps */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 pt-8 border-t border-border/20">
         <div className="flex items-start gap-3">
-          <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+          <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
           <div>
             <p className="font-semibold text-foreground text-sm">Instant Access</p>
             <p className="text-xs text-muted-foreground">Start using your email immediately</p>
           </div>
         </div>
         <div className="flex items-start gap-3">
-          <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+          <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
           <div>
             <p className="font-semibold text-foreground text-sm">100% Anonymous</p>
             <p className="text-xs text-muted-foreground">No personal info required</p>
           </div>
         </div>
         <div className="flex items-start gap-3">
-          <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+          <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
           <div>
             <p className="font-semibold text-foreground text-sm">Auto-Cleanup</p>
             <p className="text-xs text-muted-foreground">Emails self-destruct after expiry</p>
