@@ -175,10 +175,10 @@ html.dark {
     background: transparent;
   }
 
-  /* Premium glass blur card design */
+  /* Premium glass blur card design - Unified 1px borders */
   .glassmorphic {
     background: hsl(var(--card) / 0.95);
-    border: 2px solid hsl(var(--card-border));
+    border: 1px solid hsl(var(--card-border));
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     box-shadow: 0 8px 24px hsl(0 0% 0% / 0.08), 0 2px 8px hsl(0 0% 0% / 0.04), inset 0 1px 2px hsl(255 255% 255% / 0.1);
@@ -186,7 +186,7 @@ html.dark {
 
   .dark .glassmorphic {
     background: hsl(var(--card) / 0.9);
-    border: 1px solid hsl(var(--card-border) / 0.4);
+    border: 1px solid hsl(var(--card-border) / 0.5);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     box-shadow: 0 8px 24px hsl(0 0% 0% / 0.3), 0 2px 8px hsl(0 0% 0% / 0.2), inset 0 1px 2px hsl(255 255% 255% / 0.05);
@@ -910,7 +910,7 @@ html.dark {
     75% { transform: translateY(-4px) scaleX(0.98); }
   }
 
-  /* Email box - Modern & subtle design with ambient shadows */
+  /* Email box - Modern & subtle design with unified 1px border */
   .card-flame-edge {
     border: 1px solid rgba(255, 140, 0, 0.25);
     border-radius: 18px;
@@ -939,6 +939,36 @@ html.dark {
   .dark .card-flame-edge:hover {
     border-color: rgba(255, 140, 0, 0.35);
     box-shadow: 0 6px 20px hsl(0 0% 0% / 0.5), 0 2px 4px hsl(0 0% 0% / 0.4), inset 0 1px 2px hsl(73 100% 50% / 0.1);
+  }
+
+  /* 12-Column Grid System - Strict alignment */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
+  .col-12 { grid-column: span 12; }
+  .col-6 { grid-column: span 6; }
+  .col-4 { grid-column: span 4; }
+  .col-3 { grid-column: span 3; }
+  .col-2 { grid-column: span 2; }
+  .col-1 { grid-column: span 1; }
+
+  @media (max-width: 768px) {
+    .grid-12 { gap: 0.75rem; }
+    .col-6 { grid-column: span 12; }
+    .col-4 { grid-column: span 12; }
+    .col-3 { grid-column: span 6; }
+    .col-2 { grid-column: span 6; }
+  }
+
+  @media (max-width: 480px) {
+    .grid-12 { gap: 0.5rem; }
+    .col-6 { grid-column: span 12; }
+    .col-4 { grid-column: span 12; }
+    .col-3 { grid-column: span 12; }
+    .col-2 { grid-column: span 12; }
   }
 
   /* Heading Styles - Professional Typography Hierarchy */
