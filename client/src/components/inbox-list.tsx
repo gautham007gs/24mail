@@ -328,7 +328,6 @@ export function InboxList({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-9 pr-9"
-            data-testid="input-search-emails"
           />
           {searchQuery && (
             <Button
