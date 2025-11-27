@@ -265,7 +265,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
         {/* Header - Title + Flame Icon in One Row */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <h2 className="text-card-title text-foreground text-center">
@@ -292,7 +292,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 <span className="text-status-label">Active</span>
               </div>
               <span
-                className="text-email-code text-foreground block"
+                className="text-email-code sm:text-lg text-foreground block"
                 data-testid="text-current-email"
               >
                 {currentEmail || "Generating..."}
@@ -333,23 +333,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </div>
             </div>
 
-            {/* Mobile: Timer (faded) + QR Icon (centered) Below Email */}
-            <div className="sm:hidden space-y-3">
-              <p className="text-muted-foreground/60 flex items-center gap-1.5">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
-                <span className="text-sm">Expires: <span className="text-timer-label">{expiryTime}</span></span>
-              </p>
-              <div className="flex justify-center">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setShowQRCode(true)}
-                  data-testid="button-qr-code-mobile"
-                  aria-label="Generate QR code to share email"
-                  className="hover-elevate h-9 w-9"
-                >
-                  <QrCode className="h-5 w-5" />
-                </Button>
+            {/* Mobile: Progress Bar Timer */}
+            <div className="sm:hidden space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Expires in:</span>
+                <span className="text-timer-label text-sm">{expiryTime}</span>
+              </div>
+              <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-timer to-timer/80 rounded-full transition-all duration-300"
+                  style={{
+                    width: `${Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)))}%`
+                  }}
+                  data-testid="progress-bar-timer"
+                />
               </div>
             </div>
           </div>
@@ -407,11 +404,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold px-2 sm:px-3"
+            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
             aria-label="Copy email address to clipboard (Ctrl+C)"
             title="Copy email (Ctrl+C)"
           >
-            <Copy className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1 sm:mr-1.5" />
+            <Copy className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
             Copy
           </Button>
 
@@ -420,11 +417,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             disabled={domains.length === 0}
             variant="secondary"
             data-testid="button-action-change"
-            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold px-2 sm:px-3"
+            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
             aria-label="Generate new email address (Ctrl+G)"
             title="New email (Ctrl+G)"
           >
-            <RotateCw className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1 sm:mr-1.5" />
+            <RotateCw className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
             <span className="hidden xs:inline">New Email</span>
             <span className="inline xs:hidden">New</span>
           </Button>
@@ -433,10 +430,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleBurn}
             variant="destructive"
             data-testid="button-action-burn"
-            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold px-2 sm:px-3"
+            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
             aria-label="Burn current email address"
           >
-            <Trash2 className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1 sm:mr-1.5" />
+            <Trash2 className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
             Burn
           </Button>
         </div>
