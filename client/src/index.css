@@ -89,7 +89,7 @@
   animation: timerGlowPulse 2s ease-in-out infinite;
 }
 
-/* Green (0-50%) → Orange (50-75%) → Red (75-100%) */
+/* Green (50-100%) → Orange (0-50%) - 2 Color System */
 .timer-progress-fill.green {
   background: linear-gradient(90deg, #10b981 0%, #10b981 100%);
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.5), 0 0 16px rgba(16, 185, 129, 0.3);
@@ -97,15 +97,9 @@
 }
 
 .timer-progress-fill.orange {
-  background: linear-gradient(90deg, #f59e0b 0%, #f59e0b 100%);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5), 0 0 16px rgba(245, 158, 11, 0.3);
-  color: #f59e0b;
-}
-
-.timer-progress-fill.red {
-  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6), 0 0 16px rgba(239, 68, 68, 0.4);
-  color: #ef4444;
+  background: linear-gradient(90deg, #ff6b2c 0%, #ff6b2c 100%);
+  box-shadow: 0 0 8px rgba(255, 107, 44, 0.5), 0 0 16px rgba(255, 107, 44, 0.3);
+  color: #ff6b2c;
 }
 
 .dark .timer-progress-fill.green {
@@ -113,11 +107,7 @@
 }
 
 .dark .timer-progress-fill.orange {
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6), 0 0 20px rgba(245, 158, 11, 0.4);
-}
-
-.dark .timer-progress-fill.red {
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.7), 0 0 20px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 12px rgba(255, 107, 44, 0.6), 0 0 20px rgba(255, 107, 44, 0.4);
 }
 
 /* Font optimization: Use system fonts as fallback immediately */
@@ -481,15 +471,15 @@ html.dark {
   --primary-foreground: 0 0% 100%;
   --secondary: 160 42% 45%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 160 25% 90%;
-  --muted-foreground: 160 20% 40%;
-  --tertiary-foreground: 160 15% 55%;
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 45%;
+  --tertiary-foreground: 0 0% 55%;
   --accent: 16 100% 50%;
   --accent-foreground: 0 0% 100%;
   --timer: 18 100% 44%;
   --timer-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: 16 100% 50%;
+  --destructive-foreground: 0 0% 100%;
   --input: 150 80% 95%;
   --ring: 16 100% 52%;
   --chart-1: 160 42% 45%;

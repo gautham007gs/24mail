@@ -287,9 +287,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           {/* Timer Progress Bar */}
           {(() => {
             const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
-            let colorClass = 'green';
-            if (percentage < 25) colorClass = 'red';
-            else if (percentage < 50) colorClass = 'orange';
+            const colorClass = percentage >= 50 ? 'green' : 'orange';
             
             return (
               <div className="timer-progress-container" data-testid="timer-progress-container">
