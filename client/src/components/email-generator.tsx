@@ -251,7 +251,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
         <div className="flex items-start gap-4 rounded-lg border border-primary/30 p-5 md:p-6 hover-elevate" data-testid="notification-banner">
-          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5 font-bold" aria-hidden="true" />
+          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
           <div className="flex-1 space-y-2">
             <p className="text-sm font-bold text-foreground">
               Get notified of new emails
@@ -324,7 +324,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <div className="flex items-center gap-2.5 group">
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0 cursor-help" data-testid="indicator-active" />
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0 cursor-help" data-testid="indicator-active" />
                   </TooltipTrigger>
                   <TooltipContent side="top" className="text-xs">Active inbox</TooltipContent>
                 </Tooltip>
@@ -342,9 +342,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   data-testid="button-copy-icon-inside"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 text-accent" />
+                    <Check className="h-4 w-4 text-accent" data-testid="icon-check" />
                   ) : (
-                    <Copy className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" />
+                    <Copy className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" data-testid="icon-copy-display" />
                   )}
                 </button>
               </div>
@@ -363,7 +363,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   onClick={() => setShowQRCode(true)}
                   data-testid="button-qr-code"
                   aria-label="Generate QR code to share email"
-                  className="hover-elevate h-8 w-8 sm:h-9 sm:w-9"
+                  className="hover-elevate"
                 >
                   <QrCode className="h-4 w-4" />
                 </Button>
@@ -372,13 +372,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   onClick={handleCopy}
                   disabled={!currentEmail}
                   data-testid="button-copy-email"
-                  className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm h-8 w-8 sm:h-9 sm:w-9"
+                  className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm"
                   aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                 >
                   {copied ? (
-                    <Check className="h-3.5 w-3.5" />
+                    <Check className="h-4 w-4" />
                   ) : (
-                    <Copy className="h-3.5 w-3.5" />
+                    <Copy className="h-4 w-4" />
                   )}
                 </Button>
               </div>
@@ -431,7 +431,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   <span className="flex items-center gap-2">
                     <span className="text-base">{getDomainIcon(domain)}</span>
                     <span>{domain}</span>
-                    {isPremiumDomain(domain) && <Crown className="h-3.5 w-3.5 ml-1 flex-shrink-0" />}
+                    {isPremiumDomain(domain) && <Crown className="h-4 w-4 ml-1 flex-shrink-0 text-accent" />}
                   </span>
                 </SelectItem>
               ))}
@@ -458,7 +458,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             aria-label="Copy email address to clipboard (Ctrl+C)"
             title="Copy email (Ctrl+C)"
           >
-            <Copy className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
+            <Copy className="h-4 w-4 mr-1.5 sm:mr-2" />
             Copy
           </Button>
 
@@ -471,7 +471,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             aria-label="Generate new email address (Ctrl+G)"
             title="New email (Ctrl+G)"
           >
-            <RotateCw className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
+            <RotateCw className="h-4 w-4 mr-1.5 sm:mr-2" />
             <span className="hidden xs:inline">New Email</span>
             <span className="inline xs:hidden">New</span>
           </Button>
@@ -484,7 +484,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             aria-label="Toggle advanced options"
             title="More options"
           >
-            <RotateCw className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" style={{ transform: showAdvancedOptions ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
+            <RotateCw className="h-4 w-4 mr-1.5 sm:mr-2" style={{ transform: showAdvancedOptions ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
             <span className="hidden xs:inline">More</span>
             <span className="inline xs:hidden">+</span>
           </Button>
@@ -521,7 +521,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                     <span className="flex items-center gap-2">
                       <span className="text-base">{getDomainIcon(domain)}</span>
                       <span className="text-sm">{domain}</span>
-                      {isPremiumDomain(domain) && <Crown className="h-3.5 w-3.5 ml-1 flex-shrink-0" />}
+                      {isPremiumDomain(domain) && <Crown className="h-4 w-4 ml-1 flex-shrink-0 text-accent" />}
                     </span>
                   </SelectItem>
                 ))}
@@ -633,7 +633,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
               {/* Scanning Instructions */}
               <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
-                <Smartphone className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <Smartphone className="h-4 w-4 text-primary flex-shrink-0" />
                 <span>Point your camera to scan</span>
               </div>
             </div>
