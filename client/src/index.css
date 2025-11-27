@@ -738,11 +738,11 @@ html.dark {
     line-height: 1.3;
   }
 
-  /* Email Address - 24px bold monospace (technical code style) */
+  /* Email Address - 24px 600weight monospace (technical code style) */
   .text-email-code {
     font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', 'Monaco', monospace;
-    @apply font-bold;
-    font-size: clamp(1.375rem, 3vw, 1.5rem); /* 24px base */
+    @apply font-semibold;
+    font-size: 1.5rem; /* 24px */
     letter-spacing: 0.01em;
     line-height: 1.6;
     word-break: break-all;
@@ -756,17 +756,18 @@ html.dark {
     line-height: 1.5;
   }
 
-  /* Status Label - 14px */
+  /* Status Label - 13px low contrast */
   .text-status-label {
-    @apply font-normal text-muted-foreground;
-    font-size: 0.875rem; /* 14px */
+    @apply font-normal text-muted-foreground/70;
+    font-size: 0.8125rem; /* 13px */
     letter-spacing: 0;
     line-height: 1.4;
   }
 
-  /* Button Text - 15-16px */
+  /* Button Text - 15px 500weight round pill */
   button {
-    font-size: clamp(0.9375rem, 1vw, 1rem); /* 15-16px */
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 500;
   }
 
   /* Email Box Highlight - Important Data Style */
