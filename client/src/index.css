@@ -221,7 +221,7 @@ html.dark {
   }
 
   .email-address-highlight {
-    animation: emailHighlightSlide 3s ease-in-out infinite;
+    /* Animation removed - clean static display */
   }
 
   @keyframes buttonLift {
@@ -910,20 +910,20 @@ html.dark {
     75% { transform: translateY(-4px) scaleX(0.98); }
   }
 
-  /* Email box - Modern & subtle design with unified 1px border */
+  /* Email box - Clean & simple with perfect background */
   .card-flame-edge {
-    border: 1px solid rgba(255, 140, 0, 0.25);
-    border-radius: 18px;
-    background: linear-gradient(145deg, #F9FFF9, #F4FBF4);
-    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.06), 0 1px 3px hsl(0 0% 0% / 0.04), inset 0 1px 2px hsl(255 255% 255% / 0.5);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px hsl(0 0% 0% / 0.05);
     position: relative;
     overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: none;
+    padding: 16px;
   }
 
   .card-flame-edge:hover {
-    border-color: rgba(255, 140, 0, 0.35);
-    box-shadow: 0 6px 20px hsl(0 0% 0% / 0.08), 0 2px 4px hsl(0 0% 0% / 0.05), inset 0 1px 2px hsl(255 255% 255% / 0.5);
+    border-color: rgba(255, 140, 0, 0.25);
   }
 
   .card-flame-edge::before {
@@ -931,14 +931,13 @@ html.dark {
   }
 
   .dark .card-flame-edge {
-    background: linear-gradient(145deg, #0E2414, #07190C);
-    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.4), 0 1px 3px hsl(0 0% 0% / 0.3), inset 0 1px 2px hsl(73 100% 50% / 0.08);
-    border: 1px solid rgba(255, 140, 0, 0.25);
+    background: rgba(20, 20, 20, 0.95);
+    box-shadow: 0 2px 8px hsl(0 0% 0% / 0.3);
+    border: 1px solid rgba(255, 140, 0, 0.15);
   }
 
   .dark .card-flame-edge:hover {
-    border-color: rgba(255, 140, 0, 0.35);
-    box-shadow: 0 6px 20px hsl(0 0% 0% / 0.5), 0 2px 4px hsl(0 0% 0% / 0.4), inset 0 1px 2px hsl(73 100% 50% / 0.1);
+    border-color: rgba(255, 140, 0, 0.2);
   }
 
   /* 12-Column Grid System - Strict alignment */

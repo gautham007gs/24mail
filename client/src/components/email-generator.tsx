@@ -294,62 +294,54 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Email Display Box - Minimal & Clean - 16px component spacing */}
         <div className="card-flame-edge p-[22px] mt-4">
-          {/* Email Address + Copy Icon - Large & Clean - JetBrains Mono */}
-          <div className="flex items-center justify-between gap-4 mb-3">
-            <span
-              className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all email-address-highlight"
-              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", paddingTop: "6px" }}
-              data-testid="text-current-email"
-            >
-              {currentEmail || "Generating..."}
-            </span>
-            <button
-              onClick={handleCopy}
-              disabled={!currentEmail}
-              className="flex-shrink-0 p-2 rounded-lg hover:bg-accent/10 active-elevate-2 transition-colors"
-              aria-label="Copy email address"
-              data-testid="button-copy-icon-inside"
-            >
-              {copied ? (
-                <Check className="h-5 w-5 text-accent" data-testid="icon-check" />
-              ) : (
-                <Copy className="h-5 w-5 text-muted-foreground hover:text-accent transition-colors" data-testid="icon-copy-display" />
-              )}
-            </button>
-          </div>
-
-          {/* Expiry Info - Minimal Text Only */}
-          <span className="text-sm text-muted-foreground">
-            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+          {/* Email Address - Large & Clean - JetBrains Mono - No Animation */}
+          <span
+            className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all block"
+            style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.5", wordBreak: "break-all" }}
+            data-testid="text-current-email"
+          >
+            {currentEmail || "Generating..."}
           </span>
+
+          {/* Expiry Info - Minimal Text Only - Separate line */}
+          <div className="mt-2">
+            <span className="text-sm text-muted-foreground">
+              Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+            </span>
+          </div>
         </div>
 
 
         {/* Clean Button Action Row - Organized & Minimal - 16px above, 32px below */}
         <div className="mt-4 mb-8">
-          {/* Mobile: Simple 4-button single row layout - clean & minimal */}
-          <div className="md:hidden">
-            <div className="grid grid-cols-4 gap-2">
+          {/* Mobile: Two prominent rows - Copy & Refresh main, others secondary */}
+          <div className="md:hidden space-y-2">
+            {/* Primary Row - Copy & Refresh - Larger and prominent */}
+            <div className="grid grid-cols-2 gap-2">
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-action-copy"
-                size="sm"
-                className="text-xs font-semibold"
+                className="text-sm font-semibold"
                 aria-label="Copy email"
               >
-                <Copy className="h-3.5 w-3.5" />
+                <Copy className="h-4 w-4 mr-1.5" />
+                Copy
               </Button>
               <Button
                 onClick={handleRefresh}
                 variant="outline"
                 data-testid="button-action-refresh"
-                size="sm"
-                className="text-xs font-semibold"
-                aria-label="Refresh"
+                className="text-sm font-semibold"
+                aria-label="Refresh inbox"
               >
-                <RefreshCw className="h-3.5 w-3.5" />
+                <RefreshCw className="h-4 w-4 mr-1.5" />
+                Refresh
               </Button>
+            </div>
+
+            {/* Secondary Row - New Email & Burn - Smaller icons */}
+            <div className="grid grid-cols-2 gap-2">
               <Button
                 onClick={handleGenerateWithDomain}
                 disabled={domains.length === 0}
