@@ -345,10 +345,10 @@ export function InboxList({
       )}
 
       {/* Table Layout */}
-      <div className="border border-border/50 rounded-lg overflow-hidden bg-background">
+      <div className="border border-border/80 rounded-lg overflow-hidden bg-background">
         {/* Table Header */}
         {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
-          <div className="bg-foreground/10 grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 border-b border-border/50">
+          <div className="bg-muted/50 grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 border-b border-border/80">
             <div className="hidden sm:block col-span-1 text-xs font-semibold text-foreground"></div>
             <div className="col-span-5 sm:col-span-3 text-xs font-semibold text-foreground">SENDER</div>
             <div className="hidden md:block col-span-5 text-xs font-semibold text-foreground">SUBJECT</div>
@@ -358,7 +358,7 @@ export function InboxList({
         )}
 
         {/* Table Body */}
-        <div className="divide-y divide-border/50">
+        <div className="divide-y divide-border/80">
           {isLoading ? (
             <LoadingState />
           ) : hasSearchResults ? (
@@ -695,7 +695,7 @@ function EmptyState({ emptyMessage }: { emptyMessage: string }) {
       <p className="text-body-small text-muted-foreground mt-3 max-w-xs" data-testid="text-empty-message">
         Share your email address to start receiving messages
       </p>
-      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground/70">
+      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
         <span>Email will refresh automatically every 5 seconds</span>
       </div>
     </div>
