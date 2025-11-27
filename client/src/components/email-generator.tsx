@@ -286,8 +286,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-5 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[60vw] shadow-lg shadow-black/10 dark:shadow-black/20" data-testid="email-generator-card">
-        {/* Header - Title + Flame Icon in One Row */}
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[60vw] shadow-lg shadow-black/10 dark:shadow-black/20" data-testid="email-generator-card">
+        {/* Header - Title + Flame Icon in One Row - 24px top section */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <h2 className="text-card-title text-foreground text-center">
             Your Temporary Email
@@ -299,12 +299,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
           )}
         </div>
-        <p className="text-[13px] font-semibold text-muted-foreground/70 uppercase tracking-wide text-center">
+        {/* Subtitle - 12px below title */}
+        <p className="text-[13px] font-semibold text-muted-foreground/70 uppercase tracking-wide text-center -mt-3">
           Instant • Secure • No Signup
         </p>
 
-        {/* Email Display Box - Clean & Premium */}
-        <div className="card-flame-edge p-6 sm:p-8 space-y-5">
+        {/* Email Display Box - Clean & Premium - 16px component spacing */}
+        <div className="card-flame-edge p-6 sm:p-8 space-y-3 mt-4">
           {/* Timer Progress Bar */}
           {(() => {
             const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
@@ -368,8 +369,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Domain Selector - Compact Pill (Desktop Only) */}
-        <div className="hidden md:flex gap-3 items-center">
+        {/* Domain Selector - Compact Pill (Desktop Only) - 16px above */}
+        <div className="hidden md:flex gap-3 items-center mt-4">
           <Select
             value={selectedDomain}
             onValueChange={(domain) => {
@@ -412,8 +413,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
         </div>
 
-        {/* Mobile: Clean Minimal Layout */}
-        <div className="md:hidden space-y-3">
+        {/* Mobile: Clean Minimal Layout - 16px above, 32px below */}
+        <div className="md:hidden space-y-3 mt-4 mb-8">
           {/* Primary Row - Copy + New Email */}
           <div className="grid grid-cols-2 gap-3">
             <Button
@@ -467,8 +468,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Desktop: 4-column button grid (distinct colors - Centered) */}
-        <div className="hidden md:grid grid-cols-4 gap-4 max-w-sm mx-auto">
+        {/* Desktop: 4-column button grid (distinct colors - Centered) - 16px above, 32px below */}
+        <div className="hidden md:grid grid-cols-4 gap-4 max-w-sm mx-auto mt-4 mb-8">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
