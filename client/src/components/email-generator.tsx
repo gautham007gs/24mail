@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import QRCode from "react-qr-code";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
@@ -318,13 +319,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           })()}
           
           <div className="space-y-4">
-            {/* Status & Email */}
+            {/* Email with Active Indicator Dot */}
             <div className="space-y-2.5">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span className="text-status-label">Active</span>
-              </div>
               <div className="flex items-center gap-2.5 group">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0 cursor-help" data-testid="indicator-active" />
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="text-xs">Active inbox</TooltipContent>
+                </Tooltip>
                 <span
                   className="text-email-code sm:text-lg text-foreground block flex-1 email-box-highlight"
                   data-testid="text-current-email"
