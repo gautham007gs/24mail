@@ -16,6 +16,7 @@ const EmailGenerator = lazy(() => import("@/components/email-generator").then(m 
 const InboxList = lazy(() => import("@/components/inbox-list").then(m => ({ default: m.InboxList })));
 const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
 const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
+const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
@@ -365,6 +366,11 @@ export default function Home() {
               onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
             />
           </div>
+
+          {/* Trust Section - Why You Can Trust Us */}
+          <Suspense fallback={<div className="h-64 bg-muted/30 rounded-lg animate-pulse mt-16 md:mt-20" />}>
+            <TrustSection />
+          </Suspense>
 
           {/* Use Cases Section - Lazy loaded for better LCP */}
           <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-16 md:mt-20" />}>
