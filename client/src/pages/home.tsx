@@ -311,10 +311,10 @@ export default function Home() {
         <div className="mx-auto max-w-3xl">
           {/* Hero Section - Above the Fold */}
           <div className="text-center mb-8 md:mb-12 space-y-5 fade-in-up">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-tight">
+            <h1 className="text-display text-foreground">
               Instant Burner Email
             </h1>
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
+            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Free temporary email addresses. No signup. Complete privacy.<br className="hidden sm:block" />
               Perfect for protecting your real inbox from spam.
             </p>

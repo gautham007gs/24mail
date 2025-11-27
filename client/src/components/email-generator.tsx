@@ -257,10 +257,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg">
         {/* Section Title */}
         <div className="text-center space-y-2">
-          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-foreground tracking-tight">
+          <h2 className="text-heading-sm text-foreground">
             Your Temporary Email Address
           </h2>
-          <p className="text-xs md:text-sm text-muted-foreground">
+          <p className="text-caption text-muted-foreground">
             Instant • Secure • No Signup Required
           </p>
         </div>
@@ -274,15 +274,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Active</span>
+                    <span className="text-caption text-muted-foreground">Active</span>
                   </div>
                   <span
-                    className="font-mono text-sm md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
+                    className="font-mono text-lg md:text-xl lg:text-2xl font-bold text-foreground break-all block leading-relaxed"
                     data-testid="text-current-email"
                   >
                     {currentEmail || "Generating..."}
                   </span>
-                  <p className="text-xs text-muted-foreground mt-3 flex items-center gap-2">
+                  <p className="text-body-sm text-muted-foreground mt-3 flex items-center gap-2">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
                     Expires in: <span className="font-semibold text-accent">{expiryTime}</span>
                   </p>
