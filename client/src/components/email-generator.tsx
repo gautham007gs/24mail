@@ -265,7 +265,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 glassmorphic animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
         {/* Header - Title + Flame Icon in One Row */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <h2 className="text-card-title text-foreground text-center">
@@ -353,71 +353,59 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Domain Selector - Desktop Only */}
-        <div className="hidden md:block space-y-3">
-          <label htmlFor="domain-select" className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2">
-            <AtSign className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-accent" />
-            Email Domain
-          </label>
-          <div className="flex gap-2 items-center">
-            <Select
-              value={selectedDomain}
-              onValueChange={(domain) => {
-                setSelectedDomain(domain);
-                CacheManager.set("selected_domain", domain);
-              }}
-            >
-              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-2 sm:py-2.5 border-2 hover:border-accent/50 transition-colors" data-testid="select-domain">
-                <SelectValue placeholder="Choose domain..." />
-              </SelectTrigger>
-              <SelectContent className="min-w-[200px]">
-                {/* Regular domains */}
-                <div>
-                  {cachedDomains.filter(d => !isPremiumDomain(d)).map((domain, idx) => (
-                    <SelectItem 
-                      key={domain} 
-                      value={domain} 
-                      data-testid={`domain-option-${domain}`}
-                      className="select-item-animate cursor-pointer"
-                    >
-                      <span className="flex items-center gap-2.5">
-                        <Mail className="h-4 w-4 text-secondary flex-shrink-0" />
-                        <span className="font-medium">{domain}</span>
-                      </span>
-                    </SelectItem>
-                  ))}
-                </div>
-                
-                {/* Divider if premium domains exist */}
-                {cachedDomains.some(d => isPremiumDomain(d)) && (
-                  <div className="my-2 border-t border-muted" />
-                )}
-                
-                {/* Premium domains */}
-                {cachedDomains.filter(d => isPremiumDomain(d)).map((domain) => (
-                  <SelectItem 
-                    key={domain} 
-                    value={domain} 
-                    data-testid={`domain-option-${domain}`}
-                    className="select-item-animate cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <Crown className="h-4 w-4 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400 flex-shrink-0" />
-                      <span className="font-medium">{domain}</span>
-                    </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button
-              onClick={handleGenerateWithDomain}
-              disabled={domains.length === 0}
-              data-testid="button-generate-selected-domain"
-              className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold active-elevate-2"
-            >
-              <RotateCw className="h-4 w-4 mr-1.5" />
-              Generate
-            </Button>
-          </div>
+        <div className="hidden md:flex gap-2 items-center">
+          <Select
+            value={selectedDomain}
+            onValueChange={(domain) => {
+              setSelectedDomain(domain);
+              CacheManager.set("selected_domain", domain);
+            }}
+          >
+            <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-2 sm:py-2.5" data-testid="select-domain">
+              <SelectValue placeholder="Choose domain..." />
+            </SelectTrigger>
+            <SelectContent className="min-w-[200px]">
+              {/* Regular domains */}
+              {cachedDomains.filter(d => !isPremiumDomain(d)).map((domain) => (
+                <SelectItem 
+                  key={domain} 
+                  value={domain} 
+                  data-testid={`domain-option-${domain}`}
+                  className="select-item-animate cursor-pointer"
+                >
+                  <span>{domain}</span>
+                </SelectItem>
+              ))}
+              
+              {/* Divider if premium domains exist */}
+              {cachedDomains.some(d => isPremiumDomain(d)) && (
+                <div className="my-1 border-t border-muted" />
+              )}
+              
+              {/* Premium domains */}
+              {cachedDomains.filter(d => isPremiumDomain(d)).map((domain) => (
+                <SelectItem 
+                  key={domain} 
+                  value={domain} 
+                  data-testid={`domain-option-${domain}`}
+                  className="select-item-animate cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400 flex-shrink-0" />
+                    <span>{domain}</span>
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            onClick={handleGenerateWithDomain}
+            disabled={domains.length === 0}
+            data-testid="button-generate-selected-domain"
+            className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold active-elevate-2"
+          >
+            Generate
+          </Button>
         </div>
 
         {/* Action Buttons - Mobile Optimized (Uncluttered) */}
