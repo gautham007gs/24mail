@@ -378,7 +378,7 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - STRONGER TEAL GREEN + VIBRANT ORANGE ACCENT */
+/* LIGHT MODE - STRONGER TEAL GREEN + VIBRANT FLAME ORANGE ACCENT */
 :root {
   --button-outline: rgba(31, 138, 112, 0.15);
   --badge-outline: rgba(31, 138, 112, 0.08);
@@ -409,14 +409,14 @@ html.dark {
   --secondary-foreground: 0 0% 100%;
   --muted: 160 25% 90%;
   --muted-foreground: 0 0% 35%;
-  --accent: 24 100% 48%;
+  --accent: 16 100% 52%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
   --input: 160 30% 93%;
-  --ring: 160 63% 35%;
-  --chart-1: 147 77% 47%;
-  --chart-2: 25 100% 50%;
+  --ring: 16 100% 52%;
+  --chart-1: 160 63% 35%;
+  --chart-2: 16 100% 52%;
   --chart-3: 40 90% 55%;
   --chart-4: 10 80% 50%;
   --chart-5: 35 85% 60%;
@@ -586,6 +586,55 @@ html.dark {
   /* Card with enhanced shadow and border */
   .card-enhanced {
     @apply border border-border shadow-md;
+  }
+
+  /* Soft premium badge with glow and animation */
+  .badge-premium {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 border border-emerald-200/60 dark:border-emerald-800/60 text-sm font-semibold text-emerald-700 dark:text-emerald-300;
+    box-shadow: 0 0 16px rgba(72, 201, 169, 0.25), inset 0 1px 0 rgba(72, 201, 169, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .badge-premium:hover {
+    box-shadow: 0 0 24px rgba(72, 201, 169, 0.35), inset 0 1px 0 rgba(72, 201, 169, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Icon animation for badge */
+  .badge-icon {
+    @apply animate-pulse;
+    animation: badge-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes badge-glow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  /* Orange accent highlighting system */
+  .highlight-orange {
+    @apply text-accent font-semibold;
+  }
+
+  .highlight-number {
+    @apply text-accent font-bold text-lg;
+  }
+
+  .highlight-cta {
+    @apply text-accent font-semibold hover:text-accent/80 transition-colors;
+  }
+
+  .highlight-underline {
+    @apply border-b-2 border-accent pb-0.5 transition-colors;
+  }
+
+  .highlight-active {
+    @apply bg-accent/10 text-accent font-semibold border border-accent/30;
+  }
+
+  .highlight-hover:hover {
+    @apply text-accent;
+    transition: all 0.2s ease;
   }
 
   /* Heading Styles - Professional Typography Hierarchy */
