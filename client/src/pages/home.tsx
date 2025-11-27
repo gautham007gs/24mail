@@ -315,25 +315,30 @@ export default function Home() {
               Free temporary email addresses. No signup. Complete privacy.<br className="hidden sm:block" />
               Perfect for protecting your real inbox from spam.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-3 px-4">
-              <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
-                <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                100% Free
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
-                <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Anonymous
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
-                <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Instant Setup
-              </span>
+            <div className="flex flex-col items-center gap-4 pt-3">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  100% Free
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Anonymous
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold shadow-sm">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Instant Setup
+                </span>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-semibold text-accent" data-testid="text-user-count">🚀 Trusted by 100,000+ users worldwide</p>
+              </div>
             </div>
           </div>
 
@@ -344,6 +349,58 @@ export default function Home() {
             onGenerate={handleGenerateEmail}
             emailCount={emails.length}
           />
+
+          {/* Use Cases Section */}
+          <section className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-border/30 fade-in-up">
+            <div className="text-center mb-10 md:mb-12 space-y-3">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">Why Use Burner Email?</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">Protect your real inbox with disposable email for any situation</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">📰</span>
+                  <h3 className="font-semibold text-foreground">Newsletter Signups</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Sign up for newsletters and marketing emails without cluttering your real inbox</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">🧪</span>
+                  <h3 className="font-semibold text-foreground">Test Apps & Sites</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Developer and QA testing without creating permanent accounts</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">🎁</span>
+                  <h3 className="font-semibold text-foreground">Free Trial Access</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Use multiple trials without getting marked as a repeat customer</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">🔒</span>
+                  <h3 className="font-semibold text-foreground">Avoid Data Breaches</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">If a site gets breached, your real email stays completely safe</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">⬇️</span>
+                  <h3 className="font-semibold text-foreground">Download Files</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Get files from sketchy sites without exposing your real identity</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="text-xl">👤</span>
+                  <h3 className="font-semibold text-foreground">Online Privacy</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Stay anonymous and avoid targeted ads and spam</p>
+              </div>
+            </div>
+          </section>
 
           {/* Inbox Section */}
           <div className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-border/30 fade-in">

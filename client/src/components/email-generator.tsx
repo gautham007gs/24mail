@@ -253,8 +253,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card with Animated Background */}
-      <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 animate-gradient-bg neomorphic bg-gradient-to-br from-emerald-50/30 to-transparent dark:from-emerald-950/20 dark:to-transparent">
+      {/* Main Card with Glassmorphism Effect */}
+      <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg">
         {/* Section Title */}
         <div className="text-center space-y-2">
           <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
@@ -274,7 +274,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   {currentEmail || "Generating..."}
                 </span>
                 <p className="text-xs text-muted-foreground mt-2 flex items-center gap-2">
-                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 pulse-soft" />
+                  <span className="inline-block h-2 w-2 rounded-full bg-accent pulse-soft" />
                   Expires in: <span className="font-semibold">{expiryTime}</span>
                 </p>
               </div>
@@ -293,7 +293,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   onClick={handleCopy}
                   disabled={!currentEmail}
                   data-testid="button-copy-email"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white shrink-0 transition-all active-elevate-2"
+                  className="bg-accent hover:bg-accent/90 text-white shrink-0 transition-all active-elevate-2"
                   aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                 >
                   {copied ? (
@@ -317,7 +317,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         {/* Domain Selector - Desktop Only */}
         <div className="hidden md:block space-y-3">
           <label htmlFor="domain-select" className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <AtSign className="h-4 w-4 text-emerald-500" />
+            <AtSign className="h-4 w-4 text-accent" />
             Email Domain
           </label>
           <div className="flex gap-2">
@@ -328,7 +328,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 CacheManager.set("selected_domain", domain); // Cache on change
               }}
             >
-              <SelectTrigger id="domain-select" className="flex-1 border-emerald-200/50 dark:border-emerald-800/50" data-testid="select-domain">
+              <SelectTrigger id="domain-select" className="flex-1" data-testid="select-domain">
                 <SelectValue placeholder="Select a domain" />
               </SelectTrigger>
               <SelectContent>
@@ -337,7 +337,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   return (
                     <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>
                       <span className="flex items-center gap-2">
-                        <AtSign className="h-3 w-3 text-emerald-500" />
+                        <AtSign className="h-3 w-3 text-accent" />
                         {domain}
                         {isPremium && (
                           <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" data-testid={`premium-badge-${domain}`} />
@@ -352,7 +352,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               data-testid="button-generate-selected-domain"
-              className="bg-emerald-100 hover:bg-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 dark:text-emerald-300 active-elevate-2"
+              className="bg-accent/20 hover:bg-accent/30 text-accent dark:text-accent active-elevate-2"
             >
               Generate
             </Button>
@@ -366,7 +366,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-13 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold active-elevate-2"
+            className="h-13 bg-accent hover:bg-accent/90 text-white text-sm font-semibold active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
@@ -427,7 +427,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-9 bg-emerald-600 hover:bg-emerald-700 text-white active-elevate-2"
+            className="min-h-9 bg-accent hover:bg-accent/90 text-white active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
