@@ -40,7 +40,7 @@ export function TrustSection() {
         {trustItems.map((item, index) => (
           <Card 
             key={index}
-            className="p-6 border-2 border-accent/20 hover:border-accent/40 hover:shadow-lg transition-all duration-300 group"
+            className="p-6 border-2 border-accent/20 hover:border-accent/40 hover:shadow-lg transition-all duration-300 group trust-card shadow-sm"
           >
             <div className="flex flex-col items-center text-center space-y-3">
               <div className="p-3 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">

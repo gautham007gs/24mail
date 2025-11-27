@@ -58,7 +58,7 @@
 
 /* Dark theme gradient background */
 html.dark {
-  background: linear-gradient(135deg, #000000 0%, #0A1C17 100%);
+  background: linear-gradient(135deg, #0e1217 0%, #0f1419 100%);
 }
 
 /* Animated Gradient Utility - Updated with Orange theme */
@@ -409,7 +409,7 @@ html.dark {
   --secondary-foreground: 0 0% 100%;
   --muted: 160 25% 90%;
   --muted-foreground: 0 0% 35%;
-  --accent: 16 100% 52%;
+  --accent: 20 100% 50%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
@@ -559,7 +559,7 @@ html.dark {
   }
 
   .dark body {
-    background: linear-gradient(135deg, #000000 0%, #0A1C17 100%);
+    background: linear-gradient(135deg, #0e1217 0%, #0f1419 100%);
     background-attachment: fixed;
   }
 
@@ -586,6 +586,26 @@ html.dark {
   /* Card with enhanced shadow and border */
   .card-enhanced {
     @apply border border-border shadow-md;
+  }
+
+  /* Light mode subtle shadows for depth */
+  .light-section-shadow {
+    @apply shadow-sm;
+  }
+
+  /* Trust cards in light mode */
+  :not(.dark) .trust-card {
+    @apply shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  /* Enhanced card shadows in light mode */
+  :not(.dark) .card {
+    @apply shadow-sm;
+  }
+
+  /* Section borders with subtle shadow */
+  :not(.dark) section {
+    @apply shadow-[0_1px_3px_rgba(0,0,0,0.05)];
   }
 
   /* Soft premium badge with glow and animation */

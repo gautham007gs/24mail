@@ -311,7 +311,7 @@ export default function Home() {
         <main className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
         <div className="mx-auto max-w-3xl">
           {/* Hero Section - Above the Fold */}
-          <div className="text-center mb-8 md:mb-12 space-y-5 fade-in-up">
+          <div className="text-center mb-8 md:mb-12 space-y-5">
             <h1 className="text-display text-foreground">
               Instant Burner Email
             </h1>
