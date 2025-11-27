@@ -244,11 +244,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Floating Email Counter - Premium Badge */}
+      {/* Floating Email Counter - Premium Badge with Flame */}
       {sessionEmailCount > 0 && (
         <div className="fixed top-20 right-4 md:right-6 z-40 slide-in">
           <div className="badge-premium">
-            <Mail className="h-4 w-4 badge-icon" />
+            <span className="loader-flame text-lg">🔥</span>
             <span>Generated: <span className="highlight-number">{sessionEmailCount}</span></span>
           </div>
         </div>
@@ -256,10 +256,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* Main Card with Glassmorphism Effect */}
       <Card className="p-6 sm:p-8 md:p-10 lg:p-12 space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-14 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg" data-testid="email-generator-card">
-        {/* Section Title */}
+        {/* Section Title - with Flame Emoji */}
         <div className="text-center space-y-3">
           <h2 className="text-heading text-foreground font-black">
-            Your Temporary Email Address
+            🔥 Your Temporary Email Address
           </h2>
           <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
             Instant • Secure • No Signup Required
@@ -270,7 +270,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         <div className="space-y-4">
           <div className="relative group">
             
-            <div className="relative bg-orange-50/60 dark:bg-slate-900/50 border border-orange-200/60 dark:border-orange-900/40 rounded-xl p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div className="card-flame-edge p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
