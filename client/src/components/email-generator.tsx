@@ -287,43 +287,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* Main Card with Glassmorphism Effect */}
       <Card className="p-4 sm:p-6 md:p-8 lg:p-10 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[60vw] shadow-lg shadow-black/10 dark:shadow-black/20" data-testid="email-generator-card">
-        {/* Header - Title + Flame Icon in One Row - 24px top section */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4">
-          <h2 className="text-card-title text-foreground text-center">
-            Your Temporary Email
-          </h2>
-          {sessionEmailCount > 0 && (
-            <div className="badge-premium flex-shrink-0 text-xs sm:text-sm">
-              <span className="loader-flame">🔥</span>
-              <span>{sessionEmailCount}</span>
-            </div>
-          )}
-        </div>
-        {/* Subtitle - 12px below title */}
-        <p className="text-[13px] font-semibold text-muted-foreground/70 uppercase tracking-wide text-center -mt-3">
-          Instant • Secure • No Signup
-        </p>
+        {/* Header - Title Only - Minimal & Clean */}
+        <h2 className="text-card-title text-foreground text-center">
+          Your Temporary Email
+        </h2>
 
-        {/* Email Display Box - Clean & Premium - 16px component spacing */}
-        <div className="card-flame-edge p-[22px] space-y-3 mt-4">
-          {/* Timer Progress Bar */}
-          {(() => {
-            const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
-            const colorClass = percentage >= 50 ? 'green' : 'orange';
-            
-            return (
-              <div className="timer-progress-container" data-testid="timer-progress-container">
-                <div 
-                  className={`timer-progress-fill ${colorClass}`}
-                  style={{ width: `${percentage}%` }}
-                  data-testid="timer-progress-fill"
-                />
-              </div>
-            );
-          })()}
-          
-          {/* Email Address - Large & Clean - JetBrains Mono with highlight animation */}
-          <div className="flex items-center justify-between gap-4">
+        {/* Email Display Box - Minimal & Clean - 16px component spacing */}
+        <div className="card-flame-edge p-[22px] mt-4">
+          {/* Email Address + Copy Icon - Large & Clean - JetBrains Mono */}
+          <div className="flex items-center justify-between gap-4 mb-3">
             <span
               className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all email-address-highlight"
               style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", paddingTop: "6px" }}
@@ -346,27 +318,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </button>
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-border/50" />
-
-          {/* Expiry Info + QR Action (Desktop Only) */}
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">
-              Expires in <span className="text-accent font-semibold">{expiryTime}</span>
-            </span>
-            <div className="hidden sm:flex gap-2 items-center">
-              <Button
-                size="icon"
-                variant="ghost"
-                onClick={() => setShowQRCode(true)}
-                data-testid="button-qr-code"
-                aria-label="Generate QR code to share email"
-                className="h-8 w-8 hover-elevate"
-              >
-                <QrCode className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+          {/* Expiry Info - Minimal Text Only */}
+          <span className="text-sm text-muted-foreground">
+            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+          </span>
         </div>
 
         {/* Domain Selector + Generate - Unified Component Group (Desktop Only) - 16px above */}
