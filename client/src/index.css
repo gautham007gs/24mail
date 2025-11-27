@@ -886,10 +886,10 @@ html.dark {
   }
 
   h2 {
-    @apply font-bold tracking-tight;
-    font-size: clamp(1.375rem, 5vw, 2.25rem);
+    @apply font-semibold tracking-tight;
+    font-size: clamp(1.25rem, 5vw, 1.875rem);
     letter-spacing: -0.015em;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.3;
   }
 

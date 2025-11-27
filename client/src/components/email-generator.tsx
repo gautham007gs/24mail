@@ -296,7 +296,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
           )}
         </div>
-        <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide text-center">
+        <p className="text-[13px] font-semibold text-muted-foreground/70 uppercase tracking-wide text-center">
           Instant • Secure • No Signup
         </p>
 
@@ -321,7 +321,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           {/* Email Address - Large & Clean */}
           <div className="flex items-center justify-between gap-4">
             <span
-              className="text-2xl sm:text-3xl font-mono font-semibold text-foreground break-all"
+              className="text-lg sm:text-xl md:text-[22px] font-mono font-semibold text-foreground break-all"
               data-testid="text-current-email"
             >
               {currentEmail || "Generating..."}
