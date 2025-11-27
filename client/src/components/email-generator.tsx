@@ -257,14 +257,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg">
         {/* Section Title */}
         <div className="text-center space-y-2">
-          <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground/80">
+          <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground">
             Your Temporary Email Address
           </h2>
         </div>
 
         {/* Email Display Box with Timer */}
         <div className="space-y-4">
-          <div className="bg-muted/40 border border-border/50 rounded-lg p-3 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div className="bg-muted/60 dark:bg-muted/80 border border-border/60 dark:border-border/80 rounded-lg p-3 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
               <div className="flex-1 min-w-0">
                 <span
@@ -308,7 +308,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Description */}
-        <div className="text-center text-xs md:text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+        <div className="text-center text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
           <p>
             Keep your real mailbox clean and secure. Burner Email provides temporary, anonymous, free disposable email addresses.
           </p>

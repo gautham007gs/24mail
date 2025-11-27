@@ -370,7 +370,7 @@ export default function Home() {
               <p className="text-muted-foreground max-w-2xl mx-auto">Protect your real inbox with disposable email for any situation</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <div className="p-5 md:p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <div className="p-5 md:p-6 rounded-lg border border-border/70 dark:border-border bg-card/60 dark:bg-card/80 hover:bg-card/90 dark:hover:bg-card/95 transition-colors">
                 <div className="flex items-start gap-3 mb-3">
                   <span className="text-xl">📰</span>
                   <h3 className="font-semibold text-foreground">Newsletter Signups</h3>
