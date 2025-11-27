@@ -268,10 +268,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         {/* Email Display Box with Premium Gradient */}
         <div className="space-y-4">
           <div className="relative group">
-            {/* Gradient background effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-accent/15 via-accent/10 to-transparent dark:from-accent/25 dark:via-accent/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             
-            <div className="relative bg-gradient-to-br from-orange-50/40 via-white/20 to-orange-100/20 dark:from-orange-950/25 dark:via-slate-900/40 dark:to-orange-900/20 border border-orange-200/40 dark:border-orange-800/30 rounded-xl p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div className="relative bg-orange-50/60 dark:bg-slate-900/50 border border-orange-200/60 dark:border-orange-900/40 rounded-xl p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
