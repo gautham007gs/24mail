@@ -46,6 +46,22 @@
   }
 }
 
+@keyframes scrollAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown scroll animation */
+.select-item-animate {
+  animation: scrollAppear 0.2s ease-out;
+}
+
 /* Font optimization: Use system fonts as fallback immediately */
 @layer base {
   body {

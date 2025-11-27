@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo, memo } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail } from "lucide-react";
 import { SiWhatsapp, SiTelegram, SiX } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -353,12 +353,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Domain Selector - Desktop Only */}
-        <div className="hidden md:block space-y-2">
+        <div className="hidden md:block space-y-3">
           <label htmlFor="domain-select" className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2">
-            <AtSign className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-accent" />
+            <AtSign className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-accent" />
             Email Domain
           </label>
-          <div className="flex gap-1 sm:gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <Select
               value={selectedDomain}
               onValueChange={(domain) => {
@@ -366,32 +366,55 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 CacheManager.set("selected_domain", domain);
               }}
             >
-              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-1.5 sm:py-2" data-testid="select-domain">
-                <SelectValue placeholder="Select" />
+              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-2 sm:py-2.5 border-2 hover:border-accent/50 transition-colors" data-testid="select-domain">
+                <SelectValue placeholder="Choose domain..." />
               </SelectTrigger>
-              <SelectContent>
-                {cachedDomains.map((domain) => {
-                  const isPremium = isPremiumDomain(domain);
-                  return (
-                    <SelectItem key={domain} value={domain} data-testid={`domain-option-${domain}`}>
-                      <span className="flex items-center gap-2">
-                        <AtSign className="h-3 w-3 text-accent" />
-                        {domain}
-                        {isPremium && (
-                          <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" data-testid={`premium-badge-${domain}`} />
-                        )}
+              <SelectContent className="min-w-[200px]">
+                {/* Regular domains */}
+                <div>
+                  {cachedDomains.filter(d => !isPremiumDomain(d)).map((domain, idx) => (
+                    <SelectItem 
+                      key={domain} 
+                      value={domain} 
+                      data-testid={`domain-option-${domain}`}
+                      className="select-item-animate cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2.5">
+                        <Mail className="h-4 w-4 text-secondary flex-shrink-0" />
+                        <span className="font-medium">{domain}</span>
                       </span>
                     </SelectItem>
-                  );
-                })}
+                  ))}
+                </div>
+                
+                {/* Divider if premium domains exist */}
+                {cachedDomains.some(d => isPremiumDomain(d)) && (
+                  <div className="my-2 border-t border-muted" />
+                )}
+                
+                {/* Premium domains */}
+                {cachedDomains.filter(d => isPremiumDomain(d)).map((domain) => (
+                  <SelectItem 
+                    key={domain} 
+                    value={domain} 
+                    data-testid={`domain-option-${domain}`}
+                    className="select-item-animate cursor-pointer"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <Crown className="h-4 w-4 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400 flex-shrink-0" />
+                      <span className="font-medium">{domain}</span>
+                    </span>
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               data-testid="button-generate-selected-domain"
-              className="bg-accent/20 hover:bg-accent/30 text-accent dark:text-accent active-elevate-2"
+              className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold active-elevate-2"
             >
+              <RotateCw className="h-4 w-4 mr-1.5" />
               Generate
             </Button>
           </div>
