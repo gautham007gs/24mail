@@ -736,87 +736,120 @@ html.dark {
 
   /* Heading Styles - Professional Typography Hierarchy */
   h1 {
-    @apply font-black tracking-tight leading-tight;
-    font-size: clamp(2rem, 8vw, 3.5rem);
-    letter-spacing: -0.02em;
+    @apply font-black tracking-tight;
+    font-size: clamp(1.875rem, 8vw, 3.5rem);
+    letter-spacing: -0.025em;
     font-weight: 900;
+    line-height: 1.2;
   }
 
   h2 {
-    @apply font-bold tracking-tight leading-snug;
-    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    @apply font-bold tracking-tight;
+    font-size: clamp(1.375rem, 5vw, 2.25rem);
     letter-spacing: -0.015em;
     font-weight: 700;
+    line-height: 1.3;
   }
 
   h3 {
-    @apply font-bold tracking-tight leading-snug;
-    font-size: clamp(1.25rem, 4vw, 1.875rem);
-    letter-spacing: -0.01em;
+    @apply font-bold tracking-tight;
+    font-size: clamp(1.125rem, 4vw, 1.875rem);
+    letter-spacing: -0.012em;
     font-weight: 700;
+    line-height: 1.35;
   }
 
   h4 {
-    @apply font-semibold tracking-tight;
-    font-size: 1.125rem;
+    @apply font-semibold;
+    font-size: 1rem;
     font-weight: 600;
+    letter-spacing: -0.008em;
+    line-height: 1.4;
   }
 
-  /* Text Hierarchy System */
+  p {
+    @apply text-body;
+  }
+
+  /* Premium Typography System - Consistent & Beautiful */
+  
+  /* Text Hierarchy */
   .text-primary {
     @apply text-foreground font-semibold;
     letter-spacing: -0.01em;
+    line-height: 1.5;
   }
 
   .text-secondary {
     @apply text-muted-foreground font-normal;
     letter-spacing: -0.005em;
+    line-height: 1.6;
   }
 
   .text-tertiary {
-    @apply text-muted-foreground/75 font-normal text-sm;
+    @apply text-muted-foreground/70 font-normal text-sm;
     letter-spacing: -0.005em;
+    line-height: 1.5;
   }
 
-  /* Typography Scale - Mobile Optimized */
+  /* Display - Hero/Main Title (Largest) */
   .text-display {
     @apply text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tight;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    font-weight: 900;
   }
 
+  /* Heading Large - Major Section Titles */
   .text-heading-lg {
-    @apply text-xl sm:text-2xl md:text-4xl font-bold tracking-tight;
+    @apply text-xl sm:text-2xl md:text-4xl font-bold;
     letter-spacing: -0.015em;
+    line-height: 1.3;
+    font-weight: 700;
   }
 
+  /* Heading - Subsection Titles */
   .text-heading {
     @apply text-lg sm:text-xl md:text-3xl font-bold;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.012em;
+    line-height: 1.35;
+    font-weight: 700;
   }
 
+  /* Heading Small - Minor Headings */
   .text-heading-sm {
     @apply text-base sm:text-lg md:text-2xl font-semibold;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.008em;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
+  /* Body Large - Key Information */
   .text-body-lg {
-    @apply text-lg leading-relaxed;
+    @apply text-base sm:text-lg font-normal;
     letter-spacing: -0.005em;
+    line-height: 1.65;
   }
 
+  /* Body - Default Text */
   .text-body {
-    @apply text-base leading-relaxed;
-    letter-spacing: -0.005em;
+    @apply text-base font-normal;
+    letter-spacing: -0.003em;
+    line-height: 1.7;
   }
 
+  /* Body Small - Secondary Text */
   .text-body-sm {
-    @apply text-sm leading-relaxed;
+    @apply text-sm font-normal;
     letter-spacing: 0;
+    line-height: 1.6;
   }
 
+  /* Caption - Labels, Metadata */
   .text-caption {
-    @apply text-xs font-semibold uppercase tracking-wider;
-    letter-spacing: 0.05em;
+    @apply text-xs font-semibold uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
   }
 }
 
