@@ -326,7 +326,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           <div className="flex items-center justify-between gap-4">
             <span
               className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", paddingTop: "6px" }}
               data-testid="text-current-email"
             >
               {currentEmail || "Generating..."}
