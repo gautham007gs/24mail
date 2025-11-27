@@ -411,7 +411,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
+            className="min-h-10 sm:min-h-12 btn-info text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
             aria-label="Generate new email address (Ctrl+G)"
             title="Generate new email (Ctrl+G)"
           >
@@ -424,10 +424,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         <div className="md:hidden flex gap-1.5 sm:gap-2 justify-center">
           <Button
             size="icon"
-            variant="ghost"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
+            className="btn-info btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 sm:h-5 w-4 sm:w-5" />
@@ -446,10 +445,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
           <Button
             size="icon"
-            variant="ghost"
             onClick={handleBurn}
             data-testid="button-action-burn"
-            className="text-destructive btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
+            className="btn-danger btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Burn current email address"
           >
             <Trash2 className="h-4 sm:h-5 w-4 sm:w-5" />
@@ -480,11 +478,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
 
           <Button
-            variant="outline"
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="min-h-9 btn-hover-scale active-elevate-2"
+            className="min-h-9 btn-info btn-hover-scale active-elevate-2"
             aria-label="Generate new email address"
           >
             <RotateCw className="h-4 w-4 mr-2" />
@@ -573,7 +570,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
-                className="w-full h-10 sm:h-11 md:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 hover:from-emerald-700 hover:to-emerald-800 dark:hover:from-emerald-600 dark:hover:to-emerald-700 text-white dark:text-emerald-50 font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 active-elevate-2"
+                className="w-full h-10 sm:h-11 md:h-12 btn-success font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl"
                 data-testid="button-copy-email-qr"
               >
                 <Copy className="h-4 w-4 mr-2" />
