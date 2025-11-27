@@ -588,6 +588,28 @@ html.dark {
     @apply border border-border shadow-md;
   }
 
+  /* Button hover animation - scale and shadow */
+  .btn-hover-scale {
+    @apply transition-all duration-200 active:scale-95;
+  }
+
+  .btn-hover-scale:not(:disabled):hover {
+    transform: scale(1.02);
+  }
+
+  /* Color-coded buttons for intuitive UX */
+  .btn-success {
+    @apply bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white;
+  }
+
+  .btn-info {
+    @apply bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white;
+  }
+
+  .btn-danger {
+    @apply bg-destructive hover:bg-destructive/90 dark:hover:bg-destructive/80 text-destructive-foreground;
+  }
+
   /* Light mode subtle shadows for depth */
   .light-section-shadow {
     @apply shadow-sm;

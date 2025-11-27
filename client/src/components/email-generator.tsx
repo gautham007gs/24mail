@@ -378,7 +378,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-13 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold active-elevate-2"
+            className="h-13 btn-success text-sm font-semibold btn-hover-scale active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
@@ -389,7 +389,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="h-13 text-sm font-semibold active-elevate-2"
+            className="h-13 text-sm font-semibold btn-hover-scale active-elevate-2"
             aria-label="Generate new email address"
           >
             <RotateCw className="h-4 w-4 mr-2" />
@@ -404,7 +404,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="active-elevate-2"
+            className="btn-hover-scale active-elevate-2"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 w-4" />
@@ -415,7 +415,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={() => setShowQRCode(true)}
             data-testid="button-qr-quick"
-            className="active-elevate-2"
+            className="btn-hover-scale active-elevate-2"
             aria-label="Show QR code to share email"
           >
             <QrCode className="h-4 w-4" />
@@ -426,7 +426,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={handleDelete}
             data-testid="button-action-delete"
-            className="text-destructive hover:text-destructive active-elevate-2"
+            className="text-destructive btn-hover-scale active-elevate-2"
             aria-label="Delete current email address"
           >
             <Trash2 className="h-4 w-4" />
@@ -439,7 +439,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-9 bg-emerald-500 hover:bg-emerald-600 text-white active-elevate-2"
+            className="min-h-9 btn-success btn-hover-scale active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
@@ -447,10 +447,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
 
           <Button
-            variant="outline"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="min-h-9 active-elevate-2"
+            className="min-h-9 btn-info btn-hover-scale active-elevate-2"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
@@ -462,7 +461,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="min-h-9 active-elevate-2"
+            className="min-h-9 btn-hover-scale active-elevate-2"
             aria-label="Generate new email address"
           >
             <RotateCw className="h-4 w-4 mr-2" />
@@ -470,10 +469,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
 
           <Button
-            variant="outline"
             onClick={handleDelete}
             data-testid="button-action-delete"
-            className="min-h-9 text-destructive hover:text-destructive active-elevate-2"
+            className="min-h-9 btn-danger btn-hover-scale active-elevate-2"
             aria-label="Delete current email address"
           >
             <Trash2 className="h-4 w-4 mr-2" />

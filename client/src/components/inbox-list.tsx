@@ -271,12 +271,11 @@ export function InboxList({
         <div className="flex items-center gap-2">
           {hasSelected && (
             <Button
-              variant="outline"
               size="sm"
               onClick={() => setShowBulkDialog(true)}
               disabled={isDeleting}
               data-testid="button-delete-selected"
-              className="text-destructive border-destructive/30 hover:bg-destructive/10 active-elevate-2"
+              className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
               Delete {selectedIds.length}
@@ -284,12 +283,11 @@ export function InboxList({
           )}
           {emails.length > 0 && (
             <Button
-              variant="outline"
               size="sm"
               onClick={() => setShowClearDialog(true)}
               disabled={isDeleting}
               data-testid="button-delete-all"
-              className="text-destructive border-destructive/30 hover:bg-destructive/10 active-elevate-2"
+              className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
               <span className="hidden sm:inline">Clear Inbox</span>
@@ -305,15 +303,15 @@ export function InboxList({
             </div>
           )}
           <Button
-            variant="ghost"
             size="icon"
             onClick={onRefresh}
             disabled={isLoading}
             data-testid="button-refresh"
             aria-label="Refresh inbox to check for new emails"
             title="Refresh inbox"
+            className={`btn-hover-scale ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
           >
-            <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+            <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
           </Button>
         </div>
       </div>
