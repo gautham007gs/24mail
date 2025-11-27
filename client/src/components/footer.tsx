@@ -1,7 +1,21 @@
 import { Link } from "wouter";
+import { ChevronDown } from "lucide-react";
+import { useLanguage, type Language } from "@/contexts/language-context";
+import { useState } from "react";
+
+const LANGUAGES: { code: Language; name: string; flag: string }[] = [
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "pt", name: "Portuguese", flag: "🇵🇹" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { language, setLanguage } = useLanguage();
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const currentLangFlag = LANGUAGES.find(l => l.code === language)?.flag || "🇺🇸";
 
   return (
     <footer className="border-t border-border/50 bg-background/50 mt-8 md:mt-12 lg:mt-16">
@@ -102,6 +116,39 @@ export function Footer() {
             <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">Anonymous</span>
             <span className="hidden sm:inline text-border/50">•</span>
             <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">No Signup</span>
+            <span className="hidden sm:inline text-border/50">•</span>
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted/30 hover:bg-muted/50 transition-colors"
+                title="Select language"
+                data-testid="button-language-selector"
+              >
+                <span className="text-base">{currentLangFlag}</span>
+                <ChevronDown className="h-3 w-3" />
+              </button>
+              {showLanguageDropdown && (
+                <div className="absolute bottom-full right-0 mb-2 bg-background border border-border/50 rounded-lg shadow-lg overflow-hidden z-50">
+                  {LANGUAGES.map(lang => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setShowLanguageDropdown(false);
+                      }}
+                      className={`w-full px-3 py-2 text-xs text-left hover:bg-muted/50 transition-colors flex items-center gap-2 ${
+                        language === lang.code ? "bg-accent/10 text-accent font-semibold" : "text-foreground/80"
+                      }`}
+                      data-testid={`language-option-${lang.code}`}
+                    >
+                      <span className="text-base">{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
