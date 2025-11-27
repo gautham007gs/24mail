@@ -291,12 +291,27 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
                 <span className="text-status-label">Active</span>
               </div>
-              <span
-                className="text-email-code sm:text-lg text-foreground block"
-                data-testid="text-current-email"
-              >
-                {currentEmail || "Generating..."}
-              </span>
+              <div className="flex items-center gap-2.5 group">
+                <span
+                  className="text-email-code sm:text-lg text-foreground block flex-1 email-box-highlight"
+                  data-testid="text-current-email"
+                >
+                  {currentEmail || "Generating..."}
+                </span>
+                <button
+                  onClick={handleCopy}
+                  disabled={!currentEmail}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded hover:bg-accent/10 active-elevate-2 flex-shrink-0"
+                  aria-label="Copy email address"
+                  data-testid="button-copy-icon-inside"
+                >
+                  {copied ? (
+                    <Check className="h-4 w-4 text-accent" />
+                  ) : (
+                    <Copy className="h-4 w-4 text-muted-foreground hover:text-accent transition-colors" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Desktop: Expires + Copy/QR on right */}

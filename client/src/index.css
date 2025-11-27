@@ -721,6 +721,30 @@ html.dark {
     font-size: clamp(0.9375rem, 1vw, 1rem); /* 15-16px */
   }
 
+  /* Email Box Highlight - Important Data Style */
+  .email-box-highlight {
+    position: relative;
+    border-bottom: 2px solid hsl(var(--accent));
+    padding-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .email-box-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: hsl(var(--accent));
+    box-shadow: 0 0 8px hsl(var(--accent) / 0.4);
+    border-radius: 2px;
+  }
+
+  .dark .email-box-highlight::after {
+    box-shadow: 0 0 12px hsl(var(--accent) / 0.5);
+  }
+
   .highlight-cta {
     @apply text-accent font-semibold hover:text-accent/80 transition-colors;
   }
