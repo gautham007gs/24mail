@@ -286,52 +286,53 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Email Display Box with Premium Gradient */}
-        <div className="space-y-4">
-          <div className="relative group">
-            
-            <div className="card-flame-edge p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="space-y-2 sm:space-y-3">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                  <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
-                </div>
-                <span
-                  className="font-mono text-sm sm:text-base md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
-                  data-testid="text-current-email"
-                >
-                  {currentEmail || "Generating..."}
-                </span>
-                <p className="text-xs sm:text-body-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
-                  <span>Expires: <span className="highlight-number">{expiryTime}</span></span>
-                </p>
+        <div className="card-flame-edge p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+          <div className="space-y-3">
+            {/* Status & Email */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
               </div>
-                <div className="flex gap-2 sm:gap-3 shrink-0 items-center">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => setShowQRCode(true)}
-                    data-testid="button-qr-code"
-                    aria-label="Generate QR code to share email"
-                    className="hover-elevate h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
-                  >
-                    <QrCode className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    size="icon"
-                    onClick={handleCopy}
-                    disabled={!currentEmail}
-                    data-testid="button-copy-email"
-                    className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
-                    aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
-                  >
-                    {copied ? (
-                      <Check className="h-3.5 w-3.5" />
-                    ) : (
-                      <Copy className="h-3.5 w-3.5" />
-                    )}
-                  </Button>
-                </div>
+              <span
+                className="font-mono text-sm sm:text-base md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
+                data-testid="text-current-email"
+              >
+                {currentEmail || "Generating..."}
+              </span>
+            </div>
+
+            {/* Expires & Actions Row - Mobile Stacked, Desktop Inline */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
+              <p className="text-xs sm:text-body-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
+                <span>Expires: <span className="highlight-number">{expiryTime}</span></span>
+              </p>
+              <div className="flex gap-2 sm:gap-3 items-center">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setShowQRCode(true)}
+                  data-testid="button-qr-code"
+                  aria-label="Generate QR code to share email"
+                  className="hover-elevate h-8 w-8 sm:h-9 sm:w-9"
+                >
+                  <QrCode className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  onClick={handleCopy}
+                  disabled={!currentEmail}
+                  data-testid="button-copy-email"
+                  className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm h-8 w-8 sm:h-9 sm:w-9"
+                  aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
+                >
+                  {copied ? (
+                    <Check className="h-3.5 w-3.5" />
+                  ) : (
+                    <Copy className="h-3.5 w-3.5" />
+                  )}
+                </Button>
               </div>
             </div>
           </div>
