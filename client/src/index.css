@@ -151,9 +151,9 @@
   }
 }
 
-/* Dark theme gradient background - Strict palette */
+/* Dark theme gradient background - Classic dark */
 html.dark {
-  background: linear-gradient(135deg, #0B1210 0%, #12221C 100%);
+  background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
 }
 
 /* Animated Gradient Utility - Updated with Orange theme */
@@ -604,45 +604,45 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - FINAL PALETTE (#07190C bg, #0E2414 card, #49FF8F neon primary, #FF7A30 accent) */
+/* DARK MODE - OLD PALETTE (Classic dark theme with muted tones) */
 .dark {
-  --button-outline: rgba(73, 255, 143, 0.12);
-  --badge-outline: rgba(73, 255, 143, 0.08);
+  --button-outline: rgba(100, 200, 100, 0.12);
+  --badge-outline: rgba(100, 200, 100, 0.08);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(73, 255, 143, 0.08);
-  --elevate-2: rgba(73, 255, 143, 0.15);
-  --background: 141 76% 5%;
-  --foreground: 127 48% 86%;
-  --border: 141 50% 20%;
-  --card: 141 45% 8%;
-  --card-foreground: 127 48% 86%;
-  --card-border: 141 50% 18%;
-  --sidebar: 141 50% 10%;
-  --sidebar-foreground: 127 48% 86%;
-  --sidebar-border: 141 50% 18%;
-  --sidebar-primary: 141 100% 60%;
+  --elevate-1: rgba(100, 200, 100, 0.08);
+  --elevate-2: rgba(100, 200, 100, 0.15);
+  --background: 0 0% 9%;
+  --foreground: 0 0% 93%;
+  --border: 0 0% 25%;
+  --card: 0 0% 13%;
+  --card-foreground: 0 0% 93%;
+  --card-border: 0 0% 22%;
+  --sidebar: 0 0% 11%;
+  --sidebar-foreground: 0 0% 93%;
+  --sidebar-border: 0 0% 22%;
+  --sidebar-primary: 120 60% 45%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 18 100% 57%;
+  --sidebar-accent: 15 85% 50%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 141 100% 60%;
-  --popover: 141 50% 15%;
-  --popover-foreground: 127 48% 86%;
-  --popover-border: 141 50% 25%;
-  --primary: 141 100% 60%;
+  --sidebar-ring: 120 60% 45%;
+  --popover: 0 0% 15%;
+  --popover-foreground: 0 0% 93%;
+  --popover-border: 0 0% 28%;
+  --primary: 120 60% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 141 50% 18%;
-  --secondary-foreground: 127 48% 86%;
-  --muted: 141 40% 16%;
-  --muted-foreground: 127 48% 70%;
-  --tertiary-foreground: 127 48% 60%;
-  --accent: 18 100% 57%;
+  --secondary: 0 0% 22%;
+  --secondary-foreground: 0 0% 93%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 0 0% 70%;
+  --tertiary-foreground: 0 0% 60%;
+  --accent: 15 85% 50%;
   --accent-foreground: 0 0% 100%;
-  --timer: 141 100% 60%;
+  --timer: 120 60% 45%;
   --timer-foreground: 0 0% 100%;
-  --destructive: 18 100% 57%;
+  --destructive: 15 85% 50%;
   --destructive-foreground: 0 0% 100%;
-  --input: 141 45% 15%;
-  --ring: 141 100% 60%;
+  --input: 0 0% 18%;
+  --ring: 120 60% 45%;
   
   /* Dark mode premium gradient background */
   color-scheme: dark;
