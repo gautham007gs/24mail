@@ -656,6 +656,15 @@ html.dark {
     @apply text-accent font-bold text-lg;
   }
 
+  /* Timer styling - uses high attention color */
+  .text-timer {
+    color: hsl(var(--timer));
+  }
+
+  .bg-timer {
+    background-color: hsl(var(--timer));
+  }
+
   .highlight-cta {
     @apply text-accent font-semibold hover:text-accent/80 transition-colors;
   }
