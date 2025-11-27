@@ -496,8 +496,8 @@ html.dark {
   --muted: 160 30% 35%;
   --muted-foreground: 145 35% 72%;
   --tertiary-foreground: 145 20% 62%;
-  --accent: 24 90% 55%;
-  --accent-foreground: 160 30% 5%;
+  --accent: 24 90% 40%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 98%;
   --input: 160 35% 42%;
