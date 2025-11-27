@@ -57,6 +57,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   });
   const [sessionEmailCount, setSessionEmailCount] = useState(0);
   const [expiryTime, setExpiryTime] = useState<string>("");
+  const [isBurning, setIsBurning] = useState(false);
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
   const expiryDateRef = useRef<number | null>(null);
   const copyStatusRef = useRef<HTMLDivElement>(null);
@@ -210,6 +211,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   };
 
   const handleBurn = () => {
+    setIsBurning(true);
+    setTimeout(() => setIsBurning(false), 500);
     handleGenerateWithDomain();
     if (onDelete) {
       onDelete();
@@ -283,7 +286,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-5 glassmorphic animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-5 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[60vw] shadow-lg shadow-black/10 dark:shadow-black/20" data-testid="email-generator-card">
         {/* Header - Title + Flame Icon in One Row */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <h2 className="text-card-title text-foreground text-center">
@@ -456,15 +459,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleBurn}
               data-testid="button-action-burn-mobile"
               aria-label="Burn current email address"
-              className="hover-elevate"
+              className={`hover-elevate ${isBurning ? "burn-animation" : ""}`}
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className={`h-4 w-4 ${isBurning ? "burn-icon" : ""}`} />
             </Button>
           </div>
         </div>
 
-        {/* Desktop: 4-column button grid (distinct colors) */}
-        <div className="hidden md:grid grid-cols-4 gap-4">
+        {/* Desktop: 4-column button grid (distinct colors - Centered) */}
+        <div className="hidden md:grid grid-cols-4 gap-4 max-w-sm mx-auto">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
@@ -501,8 +504,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="destructive"
             data-testid="button-action-burn"
             aria-label="Burn current email address"
+            className={isBurning ? "burn-animation" : ""}
           >
-            <Trash2 className="h-4 w-4 mr-2" />
+            <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
             Burn
           </Button>
         </div>

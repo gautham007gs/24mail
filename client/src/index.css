@@ -110,6 +110,31 @@
   box-shadow: 0 0 12px rgba(255, 122, 48, 0.6), 0 0 20px rgba(255, 122, 48, 0.4);
 }
 
+/* Burn Animation - 0.5s flame effect */
+@keyframes burnFlame {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9) rotate(-5deg);
+    opacity: 0.8;
+  }
+}
+
+.burn-animation {
+  animation: burnFlame 0.5s ease-in-out;
+}
+
+.burn-icon {
+  animation: burnFlame 0.5s ease-in-out;
+  color: #FF7A30;
+}
+
 /* Font optimization: Use system fonts as fallback immediately */
 @layer base {
   body {
