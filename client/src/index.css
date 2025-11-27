@@ -868,43 +868,33 @@ html.dark {
     75% { transform: translateY(-4px) scaleX(0.98); }
   }
 
-  /* Flame-inspired email card edges - Micro shadow depth with soft gradient */
+  /* Email box - Modern & subtle design */
   .card-flame-edge {
-    @apply rounded-xl border-2 border-accent/30 relative;
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    border-radius: 18px;
     background: linear-gradient(145deg, #F7F9F8, #E9EEEC);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 4px rgba(255, 122, 48, 0.1);
+    box-shadow: none;
     position: relative;
     overflow: hidden;
-    transition: box-shadow 0.3s ease;
+    transition: border-color 0.3s ease;
   }
 
   .card-flame-edge:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 6px rgba(255, 122, 48, 0.15);
+    border-color: rgba(255, 140, 0, 0.35);
   }
 
   .card-flame-edge::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    animation: flame-flicker 3s ease-in-out infinite;
-  }
-
-  @keyframes flame-flicker {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+    display: none;
   }
 
   .dark .card-flame-edge {
     background: linear-gradient(145deg, #0B1210, #12221C);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 4px rgba(255, 122, 48, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 140, 0, 0.25);
   }
 
   .dark .card-flame-edge:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 6px rgba(255, 122, 48, 0.2);
+    border-color: rgba(255, 140, 0, 0.35);
   }
 
   /* Heading Styles - Professional Typography Hierarchy */

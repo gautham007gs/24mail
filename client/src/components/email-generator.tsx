@@ -305,7 +305,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </p>
 
         {/* Email Display Box - Clean & Premium - 16px component spacing */}
-        <div className="card-flame-edge p-6 sm:p-8 space-y-3 mt-4">
+        <div className="card-flame-edge p-[22px] space-y-3 mt-4">
           {/* Timer Progress Bar */}
           {(() => {
             const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
