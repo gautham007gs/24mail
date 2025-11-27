@@ -283,7 +283,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 glassmorphic animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-5 glassmorphic animate-gradient-bg max-w-2xl mx-auto shadow-md w-full" data-testid="email-generator-card">
         {/* Header - Title + Flame Icon in One Row */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <h2 className="text-card-title text-foreground text-center">
@@ -318,9 +318,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             );
           })()}
           
-          <div className="space-y-4">
+          <div className="space-y-5">
             {/* Email with Active Indicator Dot */}
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               <div className="flex items-center gap-2.5 group">
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -351,7 +351,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
 
             {/* Desktop: Expires + Copy/QR on right */}
-            <div className="hidden sm:flex sm:items-center sm:justify-between gap-3">
+            <div className="hidden sm:flex sm:items-center sm:justify-between gap-4">
               <p className="text-muted-foreground/70 flex items-center gap-1.5">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
                 <span className="text-sm">Expires: <span className="text-timer-label">{expiryTime}</span></span>
@@ -385,7 +385,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
 
             {/* Mobile: Progress Bar Timer */}
-            <div className="sm:hidden space-y-2">
+            <div className="sm:hidden space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Expires in:</span>
                 <span className="text-timer-label text-sm">{expiryTime}</span>
@@ -404,7 +404,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Domain Selector - Compact Pill (Desktop Only) */}
-        <div className="hidden md:flex gap-2 items-center">
+        <div className="hidden md:flex gap-3 items-center">
           <Select
             value={selectedDomain}
             onValueChange={(domain) => {
@@ -449,7 +449,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Action Buttons - Mobile Optimized (Uncluttered) */}
         {/* Mobile: 3 essential buttons only */}
-        <div className="md:hidden grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="md:hidden grid grid-cols-3 gap-3 sm:gap-4">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
@@ -492,7 +492,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Mobile Advanced Options - Domain Selector + Burn */}
         {showAdvancedOptions && (
-          <div className="md:hidden space-y-2 border-t border-border pt-3 mt-2">
+          <div className="md:hidden space-y-3 border-t border-border pt-4 mt-4">
             <Select
               value={selectedDomain}
               onValueChange={(domain) => {
@@ -541,7 +541,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         )}
 
         {/* Desktop: 4-column button grid (distinct colors) */}
-        <div className="hidden md:grid grid-cols-4 gap-3">
+        <div className="hidden md:grid grid-cols-4 gap-4">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
