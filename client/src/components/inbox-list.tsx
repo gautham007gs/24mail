@@ -93,6 +93,9 @@ interface InboxListProps {
   onDeleteSelected?: (emailIds: string[]) => void;
 }
 
+// Track previous email count for aria-live announcements
+let previousEmailCount = 0;
+
 export function InboxList({
   emails,
   isLoading,
