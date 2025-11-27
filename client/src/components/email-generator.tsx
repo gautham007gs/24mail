@@ -255,7 +255,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-14 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg" data-testid="email-generator-card">
+      <Card className="p-6 sm:p-8 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto" data-testid="email-generator-card">
         {/* Section Title - with Flame Emoji */}
         <div className="text-center space-y-3">
           <h2 className="text-heading text-foreground font-black">

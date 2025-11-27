@@ -666,8 +666,8 @@ html.dark {
   /* Flame-inspired email card edges */
   .card-flame-edge {
     @apply rounded-xl border-2 border-accent/30 relative;
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(16 100% 95%) 100%);
-    box-shadow: 0 4px 20px rgba(255, 102, 0, 0.15);
+    background: hsl(var(--background));
+    box-shadow: 0 4px 20px rgba(255, 102, 0, 0.12), inset 0 1px 0 rgba(255, 102, 0, 0.1);
     position: relative;
     overflow: hidden;
   }
@@ -689,7 +689,7 @@ html.dark {
   }
 
   .dark .card-flame-edge {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(16 80% 15%) 100%);
+    background: hsl(var(--background));
   }
 
   /* Heading Styles - Professional Typography Hierarchy */
