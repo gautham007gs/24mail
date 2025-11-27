@@ -357,14 +357,14 @@ export function InboxList({
 
       {/* Table Layout - Clean & Modern */}
       <div className="rounded-lg overflow-hidden border border-border/50 bg-background">
-        {/* Table Header */}
+        {/* Table Header - TempMail Style */}
         {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
-          <div className="bg-muted/30 grid grid-cols-12 gap-3 px-4 sm:px-5 py-3.5 border-b border-border/50">
+          <div className="bg-foreground/90 dark:bg-foreground/10 grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-3.5 border-b border-border/50">
             <div className="hidden sm:block col-span-1"></div>
-            <div className="col-span-5 sm:col-span-3 text-xs font-semibold text-foreground/70 uppercase tracking-wider">From</div>
-            <div className="hidden md:block col-span-5 text-xs font-semibold text-foreground/70 uppercase tracking-wider">Subject</div>
-            <div className="col-span-4 sm:col-span-2 text-xs font-semibold text-foreground/70 uppercase tracking-wider text-right">Date</div>
-            <div className="col-span-3 sm:col-span-1 text-right"></div>
+            <div className="col-span-5 sm:col-span-3 text-xs font-bold text-foreground/70 dark:text-foreground/80 uppercase tracking-wider">Sender</div>
+            <div className="hidden md:block col-span-5 text-xs font-bold text-foreground/70 dark:text-foreground/80 uppercase tracking-wider">Subject</div>
+            <div className="col-span-4 sm:col-span-2 text-xs font-bold text-foreground/70 dark:text-foreground/80 uppercase tracking-wider text-right">Date</div>
+            <div className="col-span-3 sm:col-span-1 text-right text-xs font-bold text-foreground/70 dark:text-foreground/80 uppercase tracking-wider">View</div>
           </div>
         )}
 
@@ -696,23 +696,26 @@ function AvatarPlaceholder({ email, emailId }: { email: string; emailId: string 
 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center px-4">
-      <div className="relative mb-6">
-        {/* Soft gradient background shape */}
-        <div className="absolute inset-0 h-32 w-32 rounded-full bg-gradient-to-br from-accent/15 to-accent/5 blur-2xl" />
-        {/* Icon */}
-        <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 shadow-sm">
-          <Inbox className="h-10 w-10 text-accent/60" />
-        </div>
+    <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center px-4">
+      {/* Icon - Clean and minimal */}
+      <div className="flex h-16 sm:h-20 w-16 sm:w-20 items-center justify-center rounded-full border border-border/30 bg-muted/20">
+        <Inbox className="h-8 sm:h-10 w-8 sm:w-10 text-muted-foreground/60" />
       </div>
-      <h3 className="text-title font-semibold text-foreground mt-6" data-testid="text-empty-title">
-        {emptyMessage}
+      
+      {/* Main message */}
+      <h3 className="text-lg sm:text-xl font-semibold text-foreground mt-6" data-testid="text-empty-title">
+        Your inbox is empty
       </h3>
-      <p className="text-body-small text-muted-foreground mt-3 max-w-xs" data-testid="text-empty-message">
-        Share your email address to start receiving messages
+      
+      {/* Subtext */}
+      <p className="text-sm text-muted-foreground mt-2 max-w-sm" data-testid="text-empty-message">
+        Waiting for incoming emails
       </p>
-      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-        <span>Email will refresh automatically every 5 seconds</span>
+      
+      {/* Auto-refresh info */}
+      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground/80">
+        <RefreshCw className="h-3 w-3 opacity-50" />
+        <span>Refreshes every 5 seconds</span>
       </div>
     </div>
   );
