@@ -309,8 +309,8 @@ export default function Home() {
           }}
         />
         
-        <main id="main-content" className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
-        <div className="mx-auto max-w-3xl">
+        <main id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full">
+        <div className="mx-auto max-w-3xl w-full">
           {/* Aria-live region for new email notifications */}
           <div 
             ref={(el) => {

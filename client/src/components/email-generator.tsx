@@ -275,7 +275,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-6 sm:p-8 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md" data-testid="email-generator-card">
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
         {/* Section Title - with Flame Emoji */}
         <div className="text-center space-y-3">
           <h2 className="text-heading text-foreground font-black">
@@ -290,15 +290,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         <div className="space-y-4">
           <div className="relative group">
             
-            <div className="card-flame-edge p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
+            <div className="card-flame-edge p-3 sm:p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
                     <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-caption text-muted-foreground">Active</span>
+                    <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
                   </div>
                   <span
-                    className="font-mono text-lg md:text-xl lg:text-2xl font-bold text-foreground break-all block leading-relaxed"
+                    className="font-mono text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-foreground break-all block leading-relaxed"
                     data-testid="text-current-email"
                   >
                     {currentEmail || "Generating..."}
@@ -308,29 +308,29 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                     Expires in: <span className="highlight-number">{expiryTime}</span>
                   </p>
                 </div>
-                <div className="flex gap-2 shrink-0 items-center">
+                <div className="flex gap-1.5 sm:gap-2 shrink-0 items-center">
                   <Button
                     size="icon"
                     variant="ghost"
                     onClick={() => setShowQRCode(true)}
                     data-testid="button-qr-code"
                     aria-label="Generate QR code to share email"
-                    className="hover-elevate"
+                    className="hover-elevate h-9 w-9 sm:h-10 sm:w-10"
                   >
-                    <QrCode className="h-5 w-5" />
+                    <QrCode className="h-4 sm:h-5 w-4 sm:w-5" />
                   </Button>
                   <Button
                     size="icon"
                     onClick={handleCopy}
                     disabled={!currentEmail}
                     data-testid="button-copy-email"
-                    className="bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white shrink-0 transition-all active-elevate-2 shadow-md"
+                    className="bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white shrink-0 transition-all active-elevate-2 shadow-md h-9 w-9 sm:h-10 sm:w-10"
                     aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                   >
                     {copied ? (
-                      <Check className="h-4 w-4 animate-bounce" />
+                      <Check className="h-3.5 sm:h-4 w-3.5 sm:w-4 animate-bounce" />
                     ) : (
-                      <Copy className="h-4 w-4" />
+                      <Copy className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
                     )}
                   </Button>
                 </div>
@@ -346,13 +346,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </p>
         </div>
 
-        {/* Domain Selector - Desktop Only */}
-        <div className="hidden md:block space-y-3">
-          <label htmlFor="domain-select" className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <AtSign className="h-4 w-4 text-accent" />
+        {/* Domain Selector - Mobile & Desktop */}
+        <div className="space-y-2 sm:space-y-3">
+          <label htmlFor="domain-select" className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2">
+            <AtSign className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-accent" />
             Email Domain
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2">
             <Select
               value={selectedDomain}
               onValueChange={(domain) => {
@@ -360,8 +360,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 CacheManager.set("selected_domain", domain); // Cache on change
               }}
             >
-              <SelectTrigger id="domain-select" className="flex-1" data-testid="select-domain">
-                <SelectValue placeholder="Select a domain" />
+              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm" data-testid="select-domain">
+                <SelectValue placeholder="Select domain" />
               </SelectTrigger>
               <SelectContent>
                 {cachedDomains.map((domain) => {
@@ -393,43 +393,44 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Action Buttons - Mobile Optimized */}
         {/* Mobile: 2 large buttons (Copy primary, New secondary) */}
-        <div className="md:hidden grid grid-cols-2 gap-3">
+        <div className="md:hidden grid grid-cols-2 gap-2 sm:gap-3">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-13 btn-success text-sm font-semibold btn-hover-scale active-elevate-2"
+            className="min-h-10 sm:min-h-12 btn-success text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
             aria-label="Copy email address to clipboard (Ctrl+C)"
             title="Copy email (Ctrl+C)"
           >
-            <Copy className="h-4 w-4 mr-2" />
-            Copy
+            <Copy className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1.5 sm:mr-2" />
+            <span className="hidden xs:inline">Copy</span>
+            <span className="inline xs:hidden">Copy</span>
           </Button>
 
           <Button
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="h-13 text-sm font-semibold btn-hover-scale active-elevate-2"
+            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
             aria-label="Generate new email address (Ctrl+G)"
             title="Generate new email (Ctrl+G)"
           >
-            <RotateCw className="h-4 w-4 mr-2" />
+            <RotateCw className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1.5 sm:mr-2" />
             New
           </Button>
         </div>
 
-        {/* Mobile: Icon-only quick actions (Refresh, QR, Delete) */}
-        <div className="md:hidden flex gap-2 justify-center">
+        {/* Mobile: Icon-only quick actions (Refresh, QR, Burn) */}
+        <div className="md:hidden flex gap-1.5 sm:gap-2 justify-center">
           <Button
             size="icon"
             variant="ghost"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="btn-hover-scale active-elevate-2"
+            className="btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Refresh inbox to check for new emails"
           >
-            <RefreshCw className="h-4 w-4" />
+            <RefreshCw className="h-4 sm:h-5 w-4 sm:w-5" />
           </Button>
 
           <Button
@@ -437,10 +438,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={() => setShowQRCode(true)}
             data-testid="button-qr-quick"
-            className="btn-hover-scale active-elevate-2"
+            className="btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Show QR code to share email"
           >
-            <QrCode className="h-4 w-4" />
+            <QrCode className="h-4 sm:h-5 w-4 sm:w-5" />
           </Button>
 
           <Button
@@ -448,10 +449,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={handleBurn}
             data-testid="button-action-burn"
-            className="text-destructive btn-hover-scale active-elevate-2"
+            className="text-destructive btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Burn current email address"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-4 sm:h-5 w-4 sm:w-5" />
           </Button>
         </div>
 
