@@ -264,73 +264,71 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Floating Email Counter - Premium Badge with Flame */}
-      {sessionEmailCount > 0 && (
-        <div className="fixed top-20 right-4 md:right-6 z-40 slide-in">
-          <div className="badge-premium">
-            <span className="loader-flame text-lg">🔥</span>
-            <span>Generated: <span className="highlight-number">{sessionEmailCount}</span></span>
-          </div>
-        </div>
-      )}
-
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
-        {/* Section Title - with Flame Emoji */}
-        <div className="text-center space-y-3">
-          <h2 className="text-heading text-foreground font-black">
-            🔥 Your Temporary Email Address
-          </h2>
-          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-            Instant • Secure • No Signup Required
-          </p>
+      <Card className="p-3 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-6 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
+        {/* Header with Badge - Clean Mobile Layout */}
+        <div className="flex items-start justify-between gap-2 md:gap-3">
+          <div className="text-center flex-1">
+            <h2 className="text-heading text-foreground font-black">
+              🔥 Your Temporary Email
+            </h2>
+            <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide mt-1 sm:mt-2">
+              Instant • Secure • No Signup
+            </p>
+          </div>
+          {/* Counter Badge - Integrated into header */}
+          {sessionEmailCount > 0 && (
+            <div className="badge-premium flex-shrink-0 ml-auto text-xs sm:text-sm">
+              <span className="loader-flame">🔥</span>
+              <span>{sessionEmailCount}</span>
+            </div>
+          )}
         </div>
 
         {/* Email Display Box with Premium Gradient */}
         <div className="space-y-4">
           <div className="relative group">
             
-            <div className="card-flame-edge p-3 sm:p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 flex-wrap">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
-                  </div>
-                  <span
-                    className="font-mono text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-foreground break-all block leading-relaxed"
-                    data-testid="text-current-email"
-                  >
-                    {currentEmail || "Generating..."}
-                  </span>
-                  <p className="text-body-sm text-muted-foreground mt-3 flex items-center gap-2">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
-                    Expires in: <span className="highlight-number">{expiryTime}</span>
-                  </p>
+            <div className="card-flame-edge p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                  <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
                 </div>
-                <div className="flex gap-1.5 sm:gap-2 shrink-0 items-center">
+                <span
+                  className="font-mono text-sm sm:text-base md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
+                  data-testid="text-current-email"
+                >
+                  {currentEmail || "Generating..."}
+                </span>
+                <p className="text-xs sm:text-body-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
+                  <span>Expires: <span className="highlight-number">{expiryTime}</span></span>
+                </p>
+              </div>
+                <div className="flex gap-2 sm:gap-3 shrink-0 items-center">
                   <Button
                     size="icon"
                     variant="ghost"
                     onClick={() => setShowQRCode(true)}
                     data-testid="button-qr-code"
                     aria-label="Generate QR code to share email"
-                    className="hover-elevate h-9 w-9 sm:h-10 sm:w-10"
+                    className="hover-elevate h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
                   >
-                    <QrCode className="h-4 sm:h-5 w-4 sm:w-5" />
+                    <QrCode className="h-4 w-4" />
                   </Button>
                   <Button
                     size="icon"
                     onClick={handleCopy}
                     disabled={!currentEmail}
                     data-testid="button-copy-email"
-                    className="bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white shrink-0 transition-all active-elevate-2 shadow-md h-9 w-9 sm:h-10 sm:w-10"
+                    className="bg-orange-500/90 dark:bg-orange-600/80 hover:bg-orange-600 dark:hover:bg-orange-600 text-white transition-all active-elevate-2 shadow-sm h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
                     aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                   >
                     {copied ? (
-                      <Check className="h-3.5 sm:h-4 w-3.5 sm:w-4 animate-bounce" />
+                      <Check className="h-3.5 w-3.5" />
                     ) : (
-                      <Copy className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
+                      <Copy className="h-3.5 w-3.5" />
                     )}
                   </Button>
                 </div>
@@ -339,29 +337,23 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Description */}
-        <div className="text-center text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          <p>
-            Keep your real inbox clean and secure from spam. Copy your email and start receiving messages instantly.
-          </p>
-        </div>
-
         {/* Domain Selector - Mobile & Desktop */}
-        <div className="space-y-2 sm:space-y-3">
+        <div className="space-y-2">
           <label htmlFor="domain-select" className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2">
-            <AtSign className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-accent" />
-            Email Domain
+            <AtSign className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-accent" />
+            <span className="hidden sm:inline">Email Domain</span>
+            <span className="sm:hidden">Domain</span>
           </label>
-          <div className="flex gap-1.5 sm:gap-2">
+          <div className="flex gap-1 sm:gap-2 items-center">
             <Select
               value={selectedDomain}
               onValueChange={(domain) => {
                 setSelectedDomain(domain);
-                CacheManager.set("selected_domain", domain); // Cache on change
+                CacheManager.set("selected_domain", domain);
               }}
             >
-              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm" data-testid="select-domain">
-                <SelectValue placeholder="Select domain" />
+              <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-1.5 sm:py-2" data-testid="select-domain">
+                <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
                 {cachedDomains.map((domain) => {
