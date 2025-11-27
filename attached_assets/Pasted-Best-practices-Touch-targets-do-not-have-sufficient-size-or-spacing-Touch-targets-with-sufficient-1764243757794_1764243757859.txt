@@ -1,0 +1,29 @@
+Best practices
+Touch targets do not have sufficient size or spacing.
+Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. Learn more about touch targets.
+Failing Elements
+Go to testimonial 2 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-1" aria-label="Go to testimonial 2 of 5" aria-current="false">
+Go to testimonial 3 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-2" aria-label="Go to testimonial 3 of 5" aria-current="false">
+Go to testimonial 3 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-2" aria-label="Go to testimonial 3 of 5" aria-current="false">
+Go to testimonial 2 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-1" aria-label="Go to testimonial 2 of 5" aria-current="false">
+Go to testimonial 4 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-3" aria-label="Go to testimonial 4 of 5" aria-current="false">
+Go to testimonial 4 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-3" aria-label="Go to testimonial 4 of 5" aria-current="false">
+Go to testimonial 3 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-2" aria-label="Go to testimonial 3 of 5" aria-current="false">
+Go to testimonial 5 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-4" aria-label="Go to testimonial 5 of 5" aria-current="false">
+Go to testimonial 5 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-4" aria-label="Go to testimonial 5 of 5" aria-current="false">
+Go to testimonial 4 of 5
+<button data-replit-metadata="client/src/components/testimonials-carousel.tsx:231:14" data-component-name="button" class="transition-all duration-300 rounded-full hover-elevate bg-emerald-200 dark…" data-testid="dot-3" aria-label="Go to testimonial 4 of 5" aria-current="false">
+These items highlight common accessibility best practices.
+Additional items to manually check (10)
+Show
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+Passed audits (23)

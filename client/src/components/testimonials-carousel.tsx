@@ -226,15 +226,15 @@ export function TestimonialsCarousel() {
           </Button>
 
           {/* Dot Indicators - Enhanced Styling */}
-          <div className="flex gap-2" role="group" aria-label="Testimonial selector">
+          <div className="flex gap-4" role="group" aria-label="Testimonial selector">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                className={`transition-all duration-300 rounded-full hover-elevate ${
+                className={`transition-all duration-300 rounded-full hover-elevate min-h-12 min-w-4 ${
                   idx === current 
-                    ? 'bg-emerald-600 dark:bg-emerald-500 w-8 h-3 shadow-sm' 
-                    : 'bg-emerald-200 dark:bg-emerald-900 w-2 h-2'
+                    ? 'bg-emerald-600 dark:bg-emerald-500 w-10 h-4 shadow-sm' 
+                    : 'bg-emerald-200 dark:bg-emerald-900 w-4 h-4'
                 }`}
                 data-testid={`dot-${idx}`}
                 aria-label={`Go to testimonial ${idx + 1} of ${testimonials.length}`}
