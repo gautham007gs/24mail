@@ -126,19 +126,19 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                       onClick={() => setShowDomainMenu(!showDomainMenu)}
                       className={`w-full flex items-center justify-between px-3 py-4 rounded-lg font-semibold transition-all cursor-pointer ${
                         showDomainMenu
-                          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50"
+                          ? "bg-accent/10 text-accent dark:text-accent border border-accent/30 dark:border-accent/50"
                           : "text-foreground hover:bg-secondary/50"
                       }`}
                       data-testid="button-domain-menu"
                     >
                       <span className="flex items-center gap-3">
-                        <AtSign className="h-5 w-5 text-emerald-500 flex-shrink-0" />
+                        <AtSign className="h-5 w-5 text-accent flex-shrink-0" />
                         <span>Email Domain</span>
                       </span>
                       <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
                     </button>
                     {showDomainMenu && (
-                      <div className="bg-emerald-50/30 dark:bg-emerald-950/10 rounded-lg p-2 space-y-1 border border-emerald-200/30 dark:border-emerald-800/30 animate-in fade-in duration-200">
+                      <div className="bg-accent/10 dark:bg-accent/10 rounded-lg p-2 space-y-1 border border-accent/30 dark:border-accent/30 animate-in fade-in duration-200">
                         {domains.map((domain, idx) => {
                           const isPremium = isPremiumDomain(domain);
                           return (
@@ -150,14 +150,14 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                               }}
                               className={`w-full flex items-center justify-between px-3 py-3 rounded text-sm font-medium transition-all text-left active-elevate-2 ${
                                 selectedDomain === domain
-                                  ? "bg-emerald-600 dark:bg-emerald-700 text-white dark:text-emerald-100"
+                                  ? "bg-accent text-accent-foreground dark:bg-accent dark:text-accent-foreground"
                                   : "text-foreground hover:bg-secondary/50"
                               }`}
                               data-testid={`mobile-domain-${domain}`}
                               style={{ animationDelay: `${idx * 30}ms` }}
                             >
                               <span className="flex items-center gap-2">
-                                <AtSign className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                                <AtSign className="h-4 w-4 text-accent flex-shrink-0" />
                                 <span>{domain}</span>
                               </span>
                               {isPremium && (
