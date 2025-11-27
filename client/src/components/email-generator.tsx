@@ -257,60 +257,73 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg">
         {/* Section Title */}
         <div className="text-center space-y-2">
-          <h2 className="text-base md:text-lg lg:text-xl font-semibold text-foreground">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-foreground tracking-tight">
             Your Temporary Email Address
           </h2>
+          <p className="text-xs md:text-sm text-muted-foreground">
+            Instant • Secure • No Signup Required
+          </p>
         </div>
 
-        {/* Email Display Box with Timer */}
+        {/* Email Display Box with Premium Gradient */}
         <div className="space-y-4">
-          <div className="bg-muted/60 dark:bg-muted/80 border border-border/60 dark:border-border/80 rounded-lg p-3 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
-              <div className="flex-1 min-w-0">
-                <span
-                  className="font-mono text-sm md:text-lg lg:text-xl font-semibold text-foreground break-all block"
-                  data-testid="text-current-email"
-                >
-                  {currentEmail || "Generating..."}
-                </span>
-                <p className="text-xs text-muted-foreground mt-2 flex items-center gap-2">
-                  <span className="inline-block h-2 w-2 rounded-full bg-accent pulse-soft" />
-                  Expires in: <span className="font-semibold">{expiryTime}</span>
-                </p>
-              </div>
-              <div className="flex gap-2 shrink-0 items-center">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setShowQRCode(true)}
-                  data-testid="button-qr-code"
-                  aria-label="Generate QR code to share email"
-                >
-                  <QrCode className="h-4 w-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  onClick={handleCopy}
-                  disabled={!currentEmail}
-                  data-testid="button-copy-email"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white shrink-0 transition-all active-elevate-2"
-                  aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4 animate-bounce" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </Button>
+          <div className="relative group">
+            {/* Gradient background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/15 via-accent/10 to-transparent dark:from-accent/25 dark:via-accent/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <div className="relative bg-gradient-to-br from-background/95 to-muted/40 dark:from-background/80 dark:to-muted/60 border border-accent/20 dark:border-accent/30 rounded-xl p-4 md:p-7 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between gap-3 md:gap-4 flex-wrap">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Active</span>
+                  </div>
+                  <span
+                    className="font-mono text-sm md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
+                    data-testid="text-current-email"
+                  >
+                    {currentEmail || "Generating..."}
+                  </span>
+                  <p className="text-xs text-muted-foreground mt-3 flex items-center gap-2">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+                    Expires in: <span className="font-semibold text-accent">{expiryTime}</span>
+                  </p>
+                </div>
+                <div className="flex gap-2 shrink-0 items-center">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => setShowQRCode(true)}
+                    data-testid="button-qr-code"
+                    aria-label="Generate QR code to share email"
+                    className="hover-elevate"
+                  >
+                    <QrCode className="h-5 w-5" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    onClick={handleCopy}
+                    disabled={!currentEmail}
+                    data-testid="button-copy-email"
+                    className="bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white shrink-0 transition-all active-elevate-2 shadow-md"
+                    aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
+                  >
+                    {copied ? (
+                      <Check className="h-4 w-4 animate-bounce" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Description */}
-        <div className="text-center text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-center text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           <p>
-            Keep your real mailbox clean and secure. Burner Email provides temporary, anonymous, free disposable email addresses.
+            Keep your real inbox clean and secure from spam. Copy your email and start receiving messages instantly.
           </p>
         </div>
 
