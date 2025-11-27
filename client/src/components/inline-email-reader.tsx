@@ -129,82 +129,82 @@ export function InlineEmailReader({
   }
 
   return (
-    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/50">
-      {/* Compact header - subject and buttons only */}
-      <div className="px-3 sm:px-4 py-1 flex items-center justify-between gap-2 border-b border-border/50">
+    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30">
+      {/* Email header - Better layout */}
+      <div className="px-4 sm:px-5 py-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 border-b border-border/30">
         <div className="min-w-0 flex-1">
-          <h3 className="text-xs font-semibold text-foreground break-words line-clamp-1" data-testid="text-inline-email-subject">
+          <h3 className="text-sm font-semibold text-foreground break-words line-clamp-2 mb-2" data-testid="text-inline-email-subject">
             {email.subject || "(No subject)"}
           </h3>
-          <div className="flex items-center gap-1 text-xs mt-0.5">
-            <span className="font-medium text-foreground/60 truncate">From: {email.from_address}</span>
-            <span className="text-muted-foreground flex-shrink-0">•</span>
-            <span className="text-muted-foreground text-xs flex-shrink-0" data-testid="text-inline-email-date">
-              {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
+          <div className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
+            <span className="font-medium text-foreground/70">From: {email.from_address}</span>
+            <span className="flex-shrink-0">•</span>
+            <span className="flex-shrink-0" data-testid="text-inline-email-date">
+              {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })} ago
             </span>
             {email.has_attachments && (
               <>
-                <span className="text-muted-foreground flex-shrink-0">•</span>
-                <span className="flex items-center gap-0.5 text-muted-foreground text-xs flex-shrink-0">
-                  <Paperclip className="h-2 w-2" />
-                  {email.attachment_count}
+                <span className="flex-shrink-0">•</span>
+                <span className="flex items-center gap-1 flex-shrink-0">
+                  <Paperclip className="h-3 w-3" />
+                  {email.attachment_count} file{email.attachment_count !== 1 ? 's' : ''}
                 </span>
               </>
             )}
           </div>
         </div>
         
-        {/* Action buttons - copy, share, delete, close */}
-        <div className="flex gap-0.5 flex-shrink-0 flex-wrap">
+        {/* Action buttons - Clean row */}
+        <div className="flex gap-1 flex-shrink-0 flex-wrap justify-start sm:justify-end">
           <Button
             size="sm"
             variant="ghost"
             onClick={handleCopyEmail}
             data-testid="button-inline-copy"
-            className="text-xs h-5 px-1.5"
+            className="h-8 px-2"
             title="Copy email"
           >
-            <Copy className="h-2.5 w-2.5" />
+            <Copy className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareEmailLink}
             data-testid="button-inline-share-link"
-            className="text-xs h-5 px-1.5"
-            title="Copy share link"
+            className="h-8 px-2"
+            title="Share link"
           >
-            <LinkIcon className="h-2.5 w-2.5" />
+            <LinkIcon className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleDownloadPDF}
             data-testid="button-inline-download"
-            className="text-xs h-5 px-1.5"
-            title="Download email"
+            className="h-8 px-2"
+            title="Download"
           >
-            <Download className="h-2.5 w-2.5" />
+            <Download className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareWhatsApp}
             data-testid="button-inline-share-whatsapp"
-            className="text-xs h-5 px-1.5"
-            title="Share on WhatsApp"
+            className="h-8 px-2"
+            title="WhatsApp"
           >
-            <MessageCircle className="h-2.5 w-2.5" />
+            <MessageCircle className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareTwitter}
             data-testid="button-inline-share-twitter"
-            className="text-xs h-5 px-1.5"
-            title="Share on Twitter"
+            className="h-8 px-2"
+            title="Twitter"
           >
-            <Share2 className="h-2.5 w-2.5" />
+            <Share2 className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
@@ -212,34 +212,34 @@ export function InlineEmailReader({
             onClick={onDelete}
             disabled={isDeleting}
             data-testid="button-inline-burn"
-            className="text-destructive border-destructive/30 text-xs h-5 px-1.5"
-            title="Burn email"
+            className="text-destructive border-destructive/30 h-8 px-2"
+            title="Delete"
           >
-            <Trash2 className="h-2.5 w-2.5" />
+            <Trash2 className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={onClose}
             data-testid="button-inline-collapse"
-            className="text-xs h-5 px-1.5"
-            title="Collapse email"
+            className="h-8 px-2"
+            title="Collapse"
           >
-            <ChevronUp className="h-3 w-3" />
+            <ChevronUp className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
-      {/* Content - ultra-compact, no scrolling */}
+      {/* Content - Better spacing */}
       <div className="overflow-visible">
         <Tabs value={tabValue} onValueChange={setTabValue} className="inline-email-reader-tabs flex flex-col">
           {email.html_content && email.text_content && (
-            <div className="border-b border-border/50 px-3 sm:px-4 py-0 bg-background">
-              <TabsList className="h-4 bg-transparent gap-0">
-                <TabsTrigger value="html" data-testid="tab-inline-html" className="text-xs px-1 py-0 data-[state=active]:bg-muted/50">
+            <div className="border-b border-border/30 px-4 sm:px-5 py-0 bg-background">
+              <TabsList className="h-10 bg-transparent gap-4 px-0">
+                <TabsTrigger value="html" data-testid="tab-inline-html" className="text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
                   HTML
                 </TabsTrigger>
-                <TabsTrigger value="text" data-testid="tab-inline-text" className="text-xs px-1 py-0 data-[state=active]:bg-muted/50">
+                <TabsTrigger value="text" data-testid="tab-inline-text" className="text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
                   Text
                 </TabsTrigger>
               </TabsList>
@@ -247,9 +247,9 @@ export function InlineEmailReader({
           )}
 
           {email.html_content && (
-            <TabsContent value="html" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
+            <TabsContent value="html" className="m-0 bg-background px-4 sm:px-5 py-4 overflow-visible">
               <div
-                className="inline-email-html max-w-full text-xs leading-tight"
+                className="inline-email-html max-w-full text-sm leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: processedHtmlContent || email.html_content }}
                 data-testid="content-inline-html"
                 style={{
@@ -262,9 +262,9 @@ export function InlineEmailReader({
           )}
 
           {email.text_content && (
-            <TabsContent value="text" className="m-0 bg-background px-3 sm:px-4 py-1 overflow-visible">
+            <TabsContent value="text" className="m-0 bg-background px-4 sm:px-5 py-4 overflow-visible">
               <pre
-                className="inline-email-html font-sans text-xs leading-tight whitespace-pre-wrap break-words m-0"
+                className="inline-email-html font-mono text-sm leading-relaxed whitespace-pre-wrap break-words m-0"
                 data-testid="content-inline-text"
               >
                 {email.text_content || "No content"}
@@ -273,8 +273,8 @@ export function InlineEmailReader({
           )}
 
           {!email.html_content && !email.text_content && (
-            <div className="px-3 sm:px-4 py-1 bg-background">
-              <p className="text-muted-foreground text-xs">No email content available</p>
+            <div className="px-4 sm:px-5 py-4 bg-background">
+              <p className="text-muted-foreground text-sm">No email content available</p>
             </div>
           )}
         </Tabs>

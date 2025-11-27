@@ -264,21 +264,21 @@ export function InboxList({
   const newEmailCount = unreadIds.length;
 
   return (
-    <div className="space-y-5 md:space-y-6 shadow-sm">
-      {/* Header with Actions */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-xl font-semibold text-foreground" data-testid="text-inbox-title">Inbox</h2>
-          <span className="text-base font-semibold text-foreground bg-accent/10 px-2.5 py-1 rounded-full" data-testid="text-inbox-count">
+    <div className="space-y-6">
+      {/* Header with Actions - Better spacing */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
+          <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>
           {hasSelected && (
-            <span className="ml-4 px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium">
+            <span className="text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium min-h-8 flex items-center">
               {selectedIds.length} selected
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           {hasSelected && (
             <Button
               size="sm"
@@ -305,11 +305,12 @@ export function InboxList({
           )}
           {currentEmail && (
             <div 
-              className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/5 to-primary/10 smooth-transition" 
+              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/70 px-3 py-1.5 rounded-full bg-muted/50" 
               data-testid="refresh-countdown-indicator"
               aria-label={`Auto-refresh in ${countdown} seconds`}
             >
-              <span data-testid="countdown-timer" className="font-semibold">{countdown}s</span>
+              <RefreshCw className="h-3 w-3 opacity-50" />
+              <span data-testid="countdown-timer">{countdown}s</span>
             </div>
           )}
           <Button
@@ -317,36 +318,36 @@ export function InboxList({
             onClick={onRefresh}
             disabled={isLoading}
             data-testid="button-refresh"
-            aria-label="Refresh inbox to check for new emails"
+            aria-label="Refresh inbox"
             title="Refresh inbox"
-            className={`btn-hover-scale ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
+            className={`${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
           </Button>
         </div>
       </div>
 
-      {/* Search Bar */}
+      {/* Search Bar - Better styling */}
       {emails.length > 0 && (
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="search"
             data-testid="input-search-emails"
-            aria-label="Search emails by sender, subject, or recipient"
-            placeholder="Search by sender or subject..."
+            aria-label="Search emails"
+            placeholder="Search emails..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 pr-9"
+            className="pl-10 pr-10 py-2.5 text-sm"
           />
           {searchQuery && (
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setSearchQuery("")}
-              className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+              className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
               data-testid="button-clear-search"
-              aria-label="Clear search query"
+              aria-label="Clear search"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -354,21 +355,21 @@ export function InboxList({
         </div>
       )}
 
-      {/* Table Layout */}
-      <div className="border border-border/80 rounded-lg overflow-hidden bg-background">
+      {/* Table Layout - Clean & Modern */}
+      <div className="rounded-lg overflow-hidden border border-border/50 bg-background">
         {/* Table Header */}
         {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
-          <div className="bg-muted/50 grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 border-b border-border/80">
-            <div className="hidden sm:block col-span-1 text-xs font-semibold text-foreground"></div>
-            <div className="col-span-5 sm:col-span-3 text-xs font-semibold text-foreground">SENDER</div>
-            <div className="hidden md:block col-span-5 text-xs font-semibold text-foreground">SUBJECT</div>
-            <div className="col-span-4 sm:col-span-2 text-xs font-semibold text-foreground text-right">DATE</div>
-            <div className="col-span-3 sm:col-span-1 text-xs font-semibold text-foreground text-right"></div>
+          <div className="bg-muted/30 grid grid-cols-12 gap-3 px-4 sm:px-5 py-3.5 border-b border-border/50">
+            <div className="hidden sm:block col-span-1"></div>
+            <div className="col-span-5 sm:col-span-3 text-xs font-semibold text-foreground/70 uppercase tracking-wider">From</div>
+            <div className="hidden md:block col-span-5 text-xs font-semibold text-foreground/70 uppercase tracking-wider">Subject</div>
+            <div className="col-span-4 sm:col-span-2 text-xs font-semibold text-foreground/70 uppercase tracking-wider text-right">Date</div>
+            <div className="col-span-3 sm:col-span-1 text-right"></div>
           </div>
         )}
 
         {/* Table Body */}
-        <div className="divide-y divide-border/80">
+        <div className="divide-y divide-border/30">
           {isLoading ? (
             <LoadingState />
           ) : hasSearchResults ? (
@@ -599,10 +600,10 @@ function EmailTableRow({
         </div>
       )}
 
-      {/* Email row */}
+      {/* Email row - Better spacing and alignment */}
       <div
-        className={`grid grid-cols-12 gap-3 px-3 sm:px-6 py-3 sm:py-4 min-h-14 hover:bg-muted/30 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-          isSelected ? "bg-accent/5 border-accent" : isExpanded ? "bg-muted/20 border-accent" : isUnread ? "border-accent bg-accent/5" : "border-transparent"
+        className={`grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-4 min-h-16 hover:bg-muted/20 cursor-pointer transition-all items-center border-l-4 swipe-row ${
+          isSelected ? "bg-accent/8 border-accent" : isExpanded ? "bg-muted/15 border-accent" : isUnread ? "border-accent bg-accent/6" : "border-transparent hover:border-border/30"
         }`}
         onClick={handleRowClick}
         onTouchStart={handleTouchStart}
