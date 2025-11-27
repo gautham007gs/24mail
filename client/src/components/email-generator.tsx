@@ -369,8 +369,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Domain Selector - Compact Pill (Desktop Only) - 16px above */}
-        <div className="hidden md:flex gap-3 items-center mt-4">
+        {/* Domain Selector + Generate - Unified Component Group (Desktop Only) - 16px above */}
+        <div className="hidden md:flex items-center mt-4 border border-border rounded-md overflow-hidden">
           <Select
             value={selectedDomain}
             onValueChange={(domain) => {
@@ -381,7 +381,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             <SelectTrigger 
               id="domain-select" 
               data-testid="select-domain"
-              className="domain-pill-trigger w-auto px-4 py-2 rounded-full border border-border transition-colors text-sm font-medium flex items-center gap-2"
+              className="domain-pill-trigger border-0 px-4 py-2 rounded-none transition-colors text-sm font-medium flex items-center gap-2 flex-1 bg-transparent hover:bg-accent/5"
             >
               <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
               <span className="text-xs sm:text-sm">{selectedDomain || "Select domain"}</span>
@@ -403,11 +403,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               ))}
             </SelectContent>
           </Select>
+          <div className="h-6 w-px bg-border" />
           <Button
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-generate-selected-domain"
-            className="font-semibold"
+            className="font-semibold rounded-none border-0 flex-shrink-0"
           >
             Generate
           </Button>
