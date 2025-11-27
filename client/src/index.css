@@ -837,10 +837,10 @@ html.dark {
     75% { transform: translateY(-4px) scaleX(0.98); }
   }
 
-  /* Flame-inspired email card edges - Micro shadow depth */
+  /* Flame-inspired email card edges - Micro shadow depth with soft gradient */
   .card-flame-edge {
     @apply rounded-xl border-2 border-accent/30 relative;
-    background: hsl(var(--background));
+    background: linear-gradient(145deg, #fafffd, #e8fff6);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 4px rgba(255, 107, 44, 0.1);
     position: relative;
     overflow: hidden;
@@ -868,7 +868,7 @@ html.dark {
   }
 
   .dark .card-flame-edge {
-    background: hsl(var(--background));
+    background: linear-gradient(145deg, #0e2c24, #143a32);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 4px rgba(255, 107, 44, 0.15);
   }
 
