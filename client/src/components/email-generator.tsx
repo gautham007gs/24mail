@@ -29,9 +29,26 @@ const isPremiumDomain = (domain: string): boolean => {
   return PREMIUM_DOMAINS.has(domain.toLowerCase());
 };
 
+// Domain icon mapping - returns a single character or icon indicator
+const getDomainIcon = (domain: string): string => {
+  const lower = domain.toLowerCase();
+  if (lower.includes("proton")) return "🔒";
+  if (lower.includes("tutanota")) return "🔐";
+  if (lower.includes("mail") || lower.includes("gmail")) return "✉️";
+  if (lower.includes("zoho")) return "Z";
+  if (lower.includes("gmx")) return "G";
+  if (lower.includes("privateemail") || lower.includes("privatemail")) return "🔑";
+  return "📧";
+};
+
+const getDomainColor = (domain: string): string => {
+  return isPremiumDomain(domain) ? "text-orange-500 dark:text-orange-400" : "text-accent";
+};
+
 export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, emailCount = 0 }: EmailGeneratorProps) {
   const [copied, setCopied] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState<string>(() => {
     // Load from cache first
     const cached = CacheManager.get<string>("selected_domain");
@@ -383,7 +400,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </div>
         </div>
 
-        {/* Domain Selector - Desktop Only */}
+        {/* Domain Selector - Compact Pill (Desktop Only) */}
         <div className="hidden md:flex gap-2 items-center">
           <Select
             value={selectedDomain}
@@ -392,29 +409,16 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               CacheManager.set("selected_domain", domain);
             }}
           >
-            <SelectTrigger id="domain-select" className="flex-1 text-xs sm:text-sm py-2 sm:py-2.5" data-testid="select-domain">
-              <SelectValue placeholder="Choose domain..." />
+            <SelectTrigger 
+              id="domain-select" 
+              data-testid="select-domain"
+              className="domain-pill-trigger w-auto px-4 py-2 rounded-full border border-border bg-card hover:bg-muted/50 transition-colors text-sm font-medium flex items-center gap-2"
+            >
+              <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
+              <span className="text-xs sm:text-sm">{selectedDomain || "Select domain"}</span>
             </SelectTrigger>
-            <SelectContent className="min-w-[200px]">
-              {/* Regular domains */}
-              {cachedDomains.filter(d => !isPremiumDomain(d)).map((domain) => (
-                <SelectItem 
-                  key={domain} 
-                  value={domain} 
-                  data-testid={`domain-option-${domain}`}
-                  className="select-item-animate cursor-pointer"
-                >
-                  <span>{domain}</span>
-                </SelectItem>
-              ))}
-              
-              {/* Divider if premium domains exist */}
-              {cachedDomains.some(d => isPremiumDomain(d)) && (
-                <div className="my-1 border-t border-muted" />
-              )}
-              
-              {/* Premium domains */}
-              {cachedDomains.filter(d => isPremiumDomain(d)).map((domain) => (
+            <SelectContent className="min-w-[220px]">
+              {cachedDomains.map((domain) => (
                 <SelectItem 
                   key={domain} 
                   value={domain} 
@@ -422,8 +426,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   className="select-item-animate cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
-                    <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400 flex-shrink-0" />
+                    <span className="text-base">{getDomainIcon(domain)}</span>
                     <span>{domain}</span>
+                    {isPremiumDomain(domain) && <Crown className="h-3.5 w-3.5 ml-1 flex-shrink-0" />}
                   </span>
                 </SelectItem>
               ))}
@@ -433,7 +438,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-generate-selected-domain"
-            className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold active-elevate-2"
+            className="font-semibold"
           >
             Generate
           </Button>
@@ -469,16 +474,68 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
 
           <Button
-            onClick={handleBurn}
-            variant="destructive"
-            data-testid="button-action-burn"
+            onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
+            variant="ghost"
+            data-testid="button-advanced-options"
             className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
-            aria-label="Burn current email address"
+            aria-label="Toggle advanced options"
+            title="More options"
           >
-            <Trash2 className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" />
-            Burn
+            <RotateCw className="h-4 sm:h-4.5 w-4 sm:w-4.5 mr-1.5 sm:mr-2" style={{ transform: showAdvancedOptions ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
+            <span className="hidden xs:inline">More</span>
+            <span className="inline xs:hidden">+</span>
           </Button>
         </div>
+
+        {/* Mobile Advanced Options - Domain Selector + Burn */}
+        {showAdvancedOptions && (
+          <div className="md:hidden space-y-2 border-t border-border pt-3 mt-2">
+            <Select
+              value={selectedDomain}
+              onValueChange={(domain) => {
+                setSelectedDomain(domain);
+                CacheManager.set("selected_domain", domain);
+              }}
+            >
+              <SelectTrigger 
+                id="domain-select-mobile" 
+                data-testid="select-domain-mobile"
+                className="domain-pill-trigger w-full px-3 py-2 rounded-lg border border-border bg-card hover:bg-muted/50 transition-colors text-sm"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
+                  <span className="text-xs">{selectedDomain || "Select domain"}</span>
+                </span>
+              </SelectTrigger>
+              <SelectContent className="min-w-[220px]">
+                {cachedDomains.map((domain) => (
+                  <SelectItem 
+                    key={domain} 
+                    value={domain} 
+                    data-testid={`domain-option-mobile-${domain}`}
+                    className="select-item-animate cursor-pointer"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-base">{getDomainIcon(domain)}</span>
+                      <span className="text-sm">{domain}</span>
+                      {isPremiumDomain(domain) && <Crown className="h-3.5 w-3.5 ml-1 flex-shrink-0" />}
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button
+              onClick={handleBurn}
+              variant="destructive"
+              data-testid="button-action-burn-mobile"
+              className="w-full min-h-10 text-sm font-semibold"
+              aria-label="Burn current email address"
+            >
+              <Trash2 className="h-4 w-4 mr-2" />
+              Burn Email
+            </Button>
+          </div>
+        )}
 
         {/* Desktop: 4-column button grid (distinct colors) */}
         <div className="hidden md:grid grid-cols-4 gap-3">
