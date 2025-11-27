@@ -84,7 +84,6 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Space Grotesk", "system-ui", "-apple-system", "sans-serif"],
         serif: ["var(--font-serif)"],
         mono: ["JetBrains Mono", "SF Mono", "Monaco", "Menlo", "monospace"],
       },

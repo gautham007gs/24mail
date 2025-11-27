@@ -51,20 +51,6 @@
   body {
     font-family: var(--font-sans);
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  
-  .text-heading,
-  .text-heading-sm,
-  [data-testid="text-app-title"] {
-    font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
-    font-weight: 700;
-  }
-  
   code, pre {
     font-family: var(--font-mono);
   }
