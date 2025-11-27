@@ -378,42 +378,43 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - CYBER GREEN PRIMARY + VIBRANT ORANGE ACCENT */
+/* LIGHT MODE - STRONGER TEAL GREEN + VIBRANT ORANGE ACCENT */
 :root {
-  --button-outline: rgba(255, 102, 0, 0.15);
-  --badge-outline: rgba(255, 102, 0, 0.08);
+  --button-outline: rgba(31, 138, 112, 0.15);
+  --badge-outline: rgba(31, 138, 112, 0.08);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(255, 102, 0, 0.06);
-  --elevate-2: rgba(255, 102, 0, 0.12);
+  --elevate-1: rgba(72, 201, 169, 0.08);
+  --elevate-2: rgba(72, 201, 169, 0.15);
+  --mint-glow: 0 0 12px rgba(72, 201, 169, 0.3);
   --background: 0 0% 100%;
   --foreground: 160 30% 8%;
-  --border: 147 55% 82%;
-  --card: 145 100% 96%;
+  --border: 160 25% 88%;
+  --card: 160 40% 97%;
   --card-foreground: 160 30% 8%;
-  --card-border: 147 50% 85%;
+  --card-border: 160 30% 90%;
   --sidebar: 0 0% 97%;
   --sidebar-foreground: 160 30% 8%;
-  --sidebar-border: 147 50% 88%;
-  --sidebar-primary: 147 77% 47%;
+  --sidebar-border: 160 25% 90%;
+  --sidebar-primary: 160 63% 35%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 147 77% 47%;
+  --sidebar-accent: 160 63% 35%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 147 77% 47%;
+  --sidebar-ring: 160 63% 35%;
   --popover: 0 0% 99%;
   --popover-foreground: 160 30% 8%;
-  --popover-border: 147 50% 88%;
-  --primary: 147 77% 47%;
+  --popover-border: 160 25% 90%;
+  --primary: 160 63% 35%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 147 55% 75%;
-  --secondary-foreground: 160 40% 15%;
-  --muted: 145 50% 92%;
-  --muted-foreground: 0 0% 25%;
+  --secondary: 160 55% 55%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 160 25% 90%;
+  --muted-foreground: 0 0% 35%;
   --accent: 24 100% 48%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --input: 145 40% 93%;
-  --ring: 147 77% 47%;
+  --input: 160 30% 93%;
+  --ring: 160 63% 35%;
   --chart-1: 147 77% 47%;
   --chart-2: 25 100% 50%;
   --chart-3: 40 90% 55%;
@@ -423,14 +424,14 @@ html.dark {
   --font-serif: Georgia, serif;
   --font-mono: JetBrains Mono, SF Mono, Monaco, Menlo, monospace;
   --radius: .5rem;
-  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.04);
-  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.04);
-  --shadow-md: 0px 4px 6px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.06);
-  --shadow-lg: 0px 10px 15px 0px hsl(0 0% 0% / 0.12), 0px 4px 6px -1px hsl(0 0% 0% / 0.08);
-  --shadow-xl: 0px 20px 25px 0px hsl(0 0% 0% / 0.15), 0px 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl: 0px 25px 50px 0px hsl(0 0% 0% / 0.15);
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.06);
+  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.08);
+  --shadow-sm: 0px 2px 4px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.04);
+  --shadow: 0px 2px 6px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+  --shadow-md: 0px 4px 12px 0px hsl(0 0% 0% / 0.12), 0px 2px 4px -1px hsl(0 0% 0% / 0.06);
+  --shadow-lg: 0px 10px 20px 0px hsl(0 0% 0% / 0.14), 0px 4px 6px -1px hsl(0 0% 0% / 0.08);
+  --shadow-xl: 0px 20px 30px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0px 25px 50px 0px hsl(0 0% 0% / 0.18);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
@@ -560,6 +561,31 @@ html.dark {
   .dark body {
     background: linear-gradient(135deg, #000000 0%, #0A1C17 100%);
     background-attachment: fixed;
+  }
+
+  /* Soft borders for depth and structure */
+  .card-bordered {
+    @apply border border-border;
+  }
+
+  /* Glassmorphism effect for email area */
+  .glassmorphism {
+    @apply bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-lg;
+    box-shadow: 0 8px 32px 0 rgba(31, 138, 112, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  /* Soft mint glow for primary button hover */
+  .mint-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .mint-glow:hover {
+    box-shadow: var(--mint-glow);
+  }
+
+  /* Card with enhanced shadow and border */
+  .card-enhanced {
+    @apply border border-border shadow-md;
   }
 
   /* Heading Styles - Professional Typography Hierarchy */
