@@ -97,11 +97,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved. Your privacy is our priority.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
-            <span className="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 font-medium whitespace-nowrap">100% Free</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">100% Free</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 font-medium whitespace-nowrap">Anonymous</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">Anonymous</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 font-medium whitespace-nowrap">No Signup</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">No Signup</span>
           </div>
         </div>
       </div>

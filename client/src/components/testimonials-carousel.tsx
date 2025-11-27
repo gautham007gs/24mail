@@ -66,7 +66,7 @@ export function TestimonialsCarousel() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="h-5 w-5 fill-emerald-500 text-emerald-500"
+                  className="h-5 w-5 fill-accent text-accent"
                   data-testid={`star-current-${i}`}
                 />
               ))}
@@ -124,7 +124,7 @@ export function TestimonialsCarousel() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="h-5 w-5 fill-emerald-500 text-emerald-500"
+                  className="h-5 w-5 fill-accent text-accent"
                   data-testid={`star-next-${i}`}
                 />
               ))}
@@ -180,7 +180,7 @@ export function TestimonialsCarousel() {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className="h-5 w-5 fill-emerald-500 text-emerald-500"
+                className="h-5 w-5 fill-accent text-accent"
                 data-testid={`star-${i}`}
               />
             ))}

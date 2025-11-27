@@ -167,9 +167,9 @@ export function UnifiedSocialProof() {
     <div className="space-y-12">
       {/* Section Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30">
-          <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-          <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">
+        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-accent/10 dark:bg-accent/10 border border-accent/30 dark:border-accent/30">
+          <TrendingUp className="h-4 w-4 text-accent dark:text-accent" />
+          <span className="text-sm font-semibold text-accent dark:text-accent">
             Trusted by Thousands Worldwide
           </span>
         </div>
