@@ -324,149 +324,99 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </span>
         </div>
 
-        {/* Domain Selector + Generate - Unified Component Group (Desktop Only) - 16px above */}
-        <div className="hidden md:flex items-center mt-4 border border-border rounded-md overflow-hidden">
-          <Select
-            value={selectedDomain}
-            onValueChange={(domain) => {
-              setSelectedDomain(domain);
-              CacheManager.set("selected_domain", domain);
-            }}
-          >
-            <SelectTrigger 
-              id="domain-select" 
-              data-testid="select-domain"
-              className="domain-pill-trigger border-0 px-4 py-2 rounded-none transition-colors text-sm font-medium flex items-center gap-2 flex-1 bg-transparent hover:bg-accent/5"
-            >
-              <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
-              <span className="text-xs sm:text-sm">{selectedDomain || "Select domain"}</span>
-            </SelectTrigger>
-            <SelectContent className="min-w-[220px]">
-              {cachedDomains.map((domain) => (
-                <SelectItem 
-                  key={domain} 
-                  value={domain} 
-                  data-testid={`domain-option-${domain}`}
-                  className="select-item-animate cursor-pointer"
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="text-base">{getDomainIcon(domain)}</span>
-                    <span>{domain}</span>
-                    {isPremiumDomain(domain) && <Crown className="h-4 w-4 ml-1 flex-shrink-0 text-accent" />}
-                  </span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <div className="h-6 w-px bg-border" />
-          <Button
-            onClick={handleGenerateWithDomain}
-            disabled={domains.length === 0}
-            data-testid="button-generate-selected-domain"
-            className="font-semibold rounded-none border-0 flex-shrink-0"
-          >
-            Generate
-          </Button>
-        </div>
 
-        {/* Mobile: Clean Minimal Layout - 16px above, 32px below */}
-        <div className="md:hidden space-y-3 mt-4 mb-8">
-          {/* Primary Row - Copy + New Email */}
-          <div className="grid grid-cols-2 gap-3">
+        {/* Clean Button Action Row - Organized & Minimal - 16px above, 32px below */}
+        <div className="mt-4 mb-8">
+          {/* Mobile: 2-row grid layout */}
+          <div className="md:hidden space-y-2">
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                onClick={handleCopy}
+                disabled={!currentEmail}
+                data-testid="button-action-copy"
+                className="text-sm font-semibold"
+                aria-label="Copy email address"
+              >
+                <Copy className="h-4 w-4 mr-1.5" />
+                Copy
+              </Button>
+              <Button
+                onClick={handleGenerateWithDomain}
+                disabled={domains.length === 0}
+                variant="secondary"
+                data-testid="button-action-new-email"
+                className="text-sm font-semibold"
+                aria-label="Generate new email"
+              >
+                <RotateCw className="h-4 w-4 mr-1.5" />
+                New
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                onClick={handleRefresh}
+                variant="outline"
+                data-testid="button-action-refresh"
+                className="text-sm font-semibold"
+                aria-label="Refresh inbox"
+              >
+                <RefreshCw className="h-4 w-4 mr-1.5" />
+                Refresh
+              </Button>
+              <Button
+                onClick={handleBurn}
+                variant="destructive"
+                data-testid="button-action-burn"
+                className={`text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
+                aria-label="Burn email"
+              >
+                <Trash2 className={`h-4 w-4 mr-1.5 ${isBurning ? "burn-icon" : ""}`} />
+                Burn
+              </Button>
+            </div>
+          </div>
+
+          {/* Desktop: Single row - Clean spacing */}
+          <div className="hidden md:flex gap-3 justify-center items-center flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="min-h-11 text-sm font-semibold"
-              aria-label="Copy email address to clipboard (Ctrl+C)"
-              title="Copy email (Ctrl+C)"
+              aria-label="Copy email"
             >
-              <Copy className="h-4 w-4 mr-1.5" />
+              <Copy className="h-4 w-4 mr-2" />
               Copy
             </Button>
-
+            <Button
+              onClick={handleRefresh}
+              variant="outline"
+              data-testid="button-action-refresh"
+              aria-label="Refresh"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
             <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               variant="secondary"
-              data-testid="button-action-change"
-              className="min-h-11 text-sm font-semibold"
-              aria-label="Generate new email address (Ctrl+G)"
-              title="New email (Ctrl+G)"
+              data-testid="button-action-new-email"
+              aria-label="New Email"
             >
-              <RotateCw className="h-4 w-4 mr-1.5" />
+              <RotateCw className="h-4 w-4 mr-2" />
               New Email
             </Button>
-          </div>
-
-          {/* Secondary Row - Icon-Only Actions */}
-          <div className="flex gap-2 items-center justify-center">
             <Button
-              size="icon"
-              variant="ghost"
-              onClick={handleRefresh}
-              data-testid="button-action-refresh-mobile"
-              aria-label="Refresh inbox to check for new emails"
-              className="hover-elevate"
-            >
-              <RefreshCw className="h-4 w-4" />
-            </Button>
-            <Button
-              size="icon"
-              variant="ghost"
               onClick={handleBurn}
-              data-testid="button-action-burn-mobile"
-              aria-label="Burn current email address"
-              className={`hover-elevate ${isBurning ? "burn-animation" : ""}`}
+              variant="destructive"
+              data-testid="button-action-burn"
+              className={isBurning ? "burn-animation" : ""}
+              aria-label="Burn"
             >
-              <Trash2 className={`h-4 w-4 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
+              Burn
             </Button>
           </div>
-        </div>
-
-        {/* Desktop: 4-column button grid (distinct colors - Centered) - 16px above, 32px below */}
-        <div className="hidden md:grid grid-cols-4 gap-4 max-w-sm mx-auto mt-4 mb-8">
-          <Button
-            onClick={handleCopy}
-            disabled={!currentEmail}
-            data-testid="button-action-copy"
-            aria-label="Copy email address to clipboard"
-          >
-            <Copy className="h-4 w-4 mr-2" />
-            Copy
-          </Button>
-
-          <Button
-            onClick={handleRefresh}
-            variant="outline"
-            data-testid="button-action-refresh"
-            aria-label="Refresh inbox to check for new emails"
-          >
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
-          </Button>
-
-          <Button
-            onClick={handleGenerateWithDomain}
-            disabled={domains.length === 0}
-            variant="secondary"
-            data-testid="button-action-change"
-            aria-label="Generate new email address"
-          >
-            <RotateCw className="h-4 w-4 mr-2" />
-            New Email
-          </Button>
-
-          <Button
-            onClick={handleBurn}
-            variant="destructive"
-            data-testid="button-action-burn"
-            aria-label="Burn current email address"
-            className={isBurning ? "burn-animation" : ""}
-          >
-            <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
-            Burn
-          </Button>
         </div>
       </Card>
 

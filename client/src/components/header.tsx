@@ -83,8 +83,55 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             ))}
           </nav>
 
-          {/* Right Side - Theme Toggle + Cleanup + Mobile Menu Button */}
+          {/* Right Side - Domain Selector (Desktop) + Theme Toggle + Mobile Menu Button */}
           <div className="flex items-center gap-1 md:gap-3 flex-shrink-0">
+            {/* Desktop Domain Selector */}
+            {domains.length > 0 && (
+              <div className="hidden lg:block relative">
+                <button
+                  onClick={() => setShowDomainMenu(!showDomainMenu)}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium text-sm transition-all cursor-pointer ${
+                    showDomainMenu
+                      ? "bg-accent/20 text-accent dark:bg-accent/20 dark:text-accent border border-accent/40"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  }`}
+                  data-testid="button-domain-selector-desktop"
+                >
+                  <span>Domain:</span>
+                  <span className="font-semibold text-accent">{selectedDomain || "Choose"}</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${showDomainMenu ? "rotate-180" : ""}`} />
+                </button>
+                {showDomainMenu && (
+                  <div className="absolute right-0 top-full mt-2 w-64 bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden">
+                    <div className="max-h-72 overflow-y-auto p-1 space-y-1">
+                      {domains.map((domain) => {
+                        const isPremium = isPremiumDomain(domain);
+                        return (
+                          <button
+                            key={domain}
+                            onClick={() => {
+                              onDomainChange?.(domain);
+                              setShowDomainMenu(false);
+                            }}
+                            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-all text-left active-elevate-2 ${
+                              selectedDomain === domain
+                                ? "bg-accent text-accent-foreground"
+                                : "text-foreground hover:bg-secondary/50"
+                            }`}
+                            data-testid={`domain-option-desktop-${domain}`}
+                          >
+                            <span>{domain}</span>
+                            {isPremium && (
+                              <Crown className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 fill-current" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             <ThemeToggle />
             <button
               onClick={handleCleanup}
