@@ -175,17 +175,21 @@ html.dark {
     background: transparent;
   }
 
-  /* Clean card design - No gradients */
+  /* Premium glass blur card design */
   .glassmorphic {
-    background: hsl(var(--card));
+    background: hsl(var(--card) / 0.95);
     border: 2px solid hsl(var(--card-border));
-    box-shadow: 0 6px 16px 0 hsl(0 0% 0% / 0.08), 0 2px 6px -1px hsl(0 0% 0% / 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 8px 24px hsl(0 0% 0% / 0.08), 0 2px 8px hsl(0 0% 0% / 0.04), inset 0 1px 2px hsl(255 255% 255% / 0.1);
   }
 
   .dark .glassmorphic {
-    background: hsl(var(--card));
+    background: hsl(var(--card) / 0.9);
     border: 1px solid hsl(var(--card-border) / 0.4);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 8px 24px hsl(0 0% 0% / 0.3), 0 2px 8px hsl(0 0% 0% / 0.2), inset 0 1px 2px hsl(255 255% 255% / 0.05);
   }
 
   .fade-in-up {
@@ -202,6 +206,44 @@ html.dark {
 
   .swipe-row {
     transition: transform 0.2s ease-out;
+  }
+
+  /* Micro-animations for premium feel */
+  @keyframes emailHighlightSlide {
+    from {
+      background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent);
+      background-position: -1000px 0;
+    }
+    to {
+      background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent);
+      background-position: 1000px 0;
+    }
+  }
+
+  .email-address-highlight {
+    animation: emailHighlightSlide 3s ease-in-out infinite;
+  }
+
+  @keyframes buttonLift {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  .button-hover-lift:hover {
+    animation: buttonLift 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes timerTick {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .timer-tick {
+    animation: timerTick 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   /* Page fade-in transitions */
@@ -868,19 +910,20 @@ html.dark {
     75% { transform: translateY(-4px) scaleX(0.98); }
   }
 
-  /* Email box - Modern & subtle design */
+  /* Email box - Modern & subtle design with ambient shadows */
   .card-flame-edge {
     border: 1px solid rgba(255, 140, 0, 0.25);
     border-radius: 18px;
-    background: linear-gradient(145deg, #F7F9F8, #E9EEEC);
-    box-shadow: none;
+    background: linear-gradient(145deg, #F9FFF9, #F4FBF4);
+    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.06), 0 1px 3px hsl(0 0% 0% / 0.04), inset 0 1px 2px hsl(255 255% 255% / 0.5);
     position: relative;
     overflow: hidden;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .card-flame-edge:hover {
     border-color: rgba(255, 140, 0, 0.35);
+    box-shadow: 0 6px 20px hsl(0 0% 0% / 0.08), 0 2px 4px hsl(0 0% 0% / 0.05), inset 0 1px 2px hsl(255 255% 255% / 0.5);
   }
 
   .card-flame-edge::before {
@@ -888,13 +931,14 @@ html.dark {
   }
 
   .dark .card-flame-edge {
-    background: linear-gradient(145deg, #0B1210, #12221C);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #0E2414, #07190C);
+    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.4), 0 1px 3px hsl(0 0% 0% / 0.3), inset 0 1px 2px hsl(73 100% 50% / 0.08);
     border: 1px solid rgba(255, 140, 0, 0.25);
   }
 
   .dark .card-flame-edge:hover {
     border-color: rgba(255, 140, 0, 0.35);
+    box-shadow: 0 6px 20px hsl(0 0% 0% / 0.5), 0 2px 4px hsl(0 0% 0% / 0.4), inset 0 1px 2px hsl(73 100% 50% / 0.1);
   }
 
   /* Heading Styles - Professional Typography Hierarchy */

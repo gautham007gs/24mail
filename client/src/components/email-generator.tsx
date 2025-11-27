@@ -322,10 +322,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             );
           })()}
           
-          {/* Email Address - Large & Clean - JetBrains Mono */}
+          {/* Email Address - Large & Clean - JetBrains Mono with highlight animation */}
           <div className="flex items-center justify-between gap-4">
             <span
-              className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all"
+              className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all email-address-highlight"
               style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", paddingTop: "6px" }}
               data-testid="text-current-email"
             >
