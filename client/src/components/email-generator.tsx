@@ -265,29 +265,26 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-3 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-6 md:space-y-8 lg:space-y-10 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
-        {/* Header with Badge - Clean Mobile Layout */}
-        <div className="flex items-start justify-between gap-2 md:gap-3">
-          <div className="text-center flex-1">
-            <h2 className="text-heading text-foreground font-black">
-              🔥 Your Temporary Email
-            </h2>
-            <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide mt-1 sm:mt-2">
-              Instant • Secure • No Signup
-            </p>
-          </div>
-          {/* Counter Badge - Integrated into header */}
+      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
+        {/* Header - Title + Flame Icon in One Row */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4">
+          <h2 className="text-heading text-foreground font-black text-center">
+            Your Temporary Email
+          </h2>
           {sessionEmailCount > 0 && (
-            <div className="badge-premium flex-shrink-0 ml-auto text-xs sm:text-sm">
+            <div className="badge-premium flex-shrink-0 text-xs sm:text-sm">
               <span className="loader-flame">🔥</span>
               <span>{sessionEmailCount}</span>
             </div>
           )}
         </div>
+        <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide text-center">
+          Instant • Secure • No Signup
+        </p>
 
-        {/* Email Display Box with Premium Gradient */}
-        <div className="card-flame-edge p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-          <div className="space-y-3">
+        {/* Email Display Box - 20px Padding */}
+        <div className="card-flame-edge p-5 shadow-sm hover:shadow-lg transition-all duration-300">
+          <div className="space-y-4">
             {/* Status & Email */}
             <div className="space-y-2">
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -302,13 +299,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </span>
             </div>
 
-            {/* Expires & Actions Row - Mobile Flex-end, Desktop Between */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-              <p className="hidden sm:flex text-xs sm:text-body-sm text-muted-foreground items-center gap-1.5 sm:gap-2">
+            {/* Desktop: Expires + Copy/QR on right */}
+            <div className="hidden sm:flex sm:items-center sm:justify-between gap-3">
+              <p className="text-xs sm:text-body-sm text-muted-foreground/70 flex items-center gap-1.5">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
                 <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
               </p>
-              <div className="flex gap-2 sm:gap-3 items-center ml-auto">
+              <div className="flex gap-2 items-center">
                 <Button
                   size="icon"
                   variant="ghost"
@@ -336,11 +333,25 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </div>
             </div>
 
-            {/* Mobile Timer Display - Moved Below Email */}
-            <p className="sm:hidden text-xs text-muted-foreground flex items-center gap-1.5">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
-              <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
-            </p>
+            {/* Mobile: Timer (faded) + QR Icon (centered) Below Email */}
+            <div className="sm:hidden space-y-3">
+              <p className="text-xs text-muted-foreground/60 flex items-center gap-1.5">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
+                <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
+              </p>
+              <div className="flex justify-center">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setShowQRCode(true)}
+                  data-testid="button-qr-code-mobile"
+                  aria-label="Generate QR code to share email"
+                  className="hover-elevate h-9 w-9"
+                >
+                  <QrCode className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
