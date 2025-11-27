@@ -665,6 +665,46 @@ html.dark {
     background-color: hsl(var(--timer));
   }
 
+  /* Text Hierarchy for Email Generator */
+  /* Card Title - 20-22px bold */
+  .text-card-title {
+    @apply font-bold;
+    font-size: clamp(1.25rem, 2.5vw, 1.375rem); /* 20-22px */
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  /* Email Address - 24px bold monospace (technical code style) */
+  .text-email-code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', 'Monaco', monospace;
+    @apply font-bold;
+    font-size: clamp(1.375rem, 3vw, 1.5rem); /* 24px base */
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    word-break: break-all;
+  }
+
+  /* Timer Text - 16px orange bold */
+  .text-timer-label {
+    @apply font-bold text-timer;
+    font-size: 1rem; /* 16px */
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+  }
+
+  /* Status Label - 14px */
+  .text-status-label {
+    @apply font-normal text-muted-foreground;
+    font-size: 0.875rem; /* 14px */
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  /* Button Text - 15-16px */
+  button {
+    font-size: clamp(0.9375rem, 1vw, 1rem); /* 15-16px */
+  }
+
   .highlight-cta {
     @apply text-accent font-semibold hover:text-accent/80 transition-colors;
   }

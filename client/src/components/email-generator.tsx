@@ -268,7 +268,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       <Card className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 sm:space-y-6 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg max-w-2xl mx-auto shadow-md w-full sm:w-auto" data-testid="email-generator-card">
         {/* Header - Title + Flame Icon in One Row */}
         <div className="flex items-center justify-center gap-3 sm:gap-4">
-          <h2 className="text-heading text-foreground font-black text-center">
+          <h2 className="text-card-title text-foreground text-center">
             Your Temporary Email
           </h2>
           {sessionEmailCount > 0 && (
@@ -286,13 +286,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         <div className="card-flame-edge p-5 shadow-sm hover:shadow-lg transition-all duration-300">
           <div className="space-y-4">
             {/* Status & Email */}
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span className="text-xs sm:text-caption text-muted-foreground">Active</span>
+                <span className="text-status-label">Active</span>
               </div>
               <span
-                className="font-mono text-sm sm:text-base md:text-lg lg:text-xl font-bold text-foreground break-all block leading-relaxed"
+                className="text-email-code text-foreground block"
                 data-testid="text-current-email"
               >
                 {currentEmail || "Generating..."}
@@ -301,9 +301,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
             {/* Desktop: Expires + Copy/QR on right */}
             <div className="hidden sm:flex sm:items-center sm:justify-between gap-3">
-              <p className="text-xs sm:text-body-sm text-muted-foreground/70 flex items-center gap-1.5">
+              <p className="text-muted-foreground/70 flex items-center gap-1.5">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
-                <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
+                <span className="text-sm">Expires: <span className="text-timer-label">{expiryTime}</span></span>
               </p>
               <div className="flex gap-2 items-center">
                 <Button
@@ -335,9 +335,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
             {/* Mobile: Timer (faded) + QR Icon (centered) Below Email */}
             <div className="sm:hidden space-y-3">
-              <p className="text-xs text-muted-foreground/60 flex items-center gap-1.5">
+              <p className="text-muted-foreground/60 flex items-center gap-1.5">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
-                <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
+                <span className="text-sm">Expires: <span className="text-timer-label">{expiryTime}</span></span>
               </p>
               <div className="flex justify-center">
                 <Button
