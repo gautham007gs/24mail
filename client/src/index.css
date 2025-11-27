@@ -377,13 +377,13 @@
   }
 }
 
-/* LIGHT MODE - CYBER GREEN PRIMARY + BURNER ORANGE ACCENT */
+/* LIGHT MODE - CYBER GREEN PRIMARY + VIBRANT ORANGE ACCENT */
 :root {
-  --button-outline: rgba(255, 106, 0, 0.12);
-  --badge-outline: rgba(255, 106, 0, 0.06);
+  --button-outline: rgba(255, 102, 0, 0.15);
+  --badge-outline: rgba(255, 102, 0, 0.08);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(255, 106, 0, 0.04);
-  --elevate-2: rgba(255, 106, 0, 0.10);
+  --elevate-1: rgba(255, 102, 0, 0.06);
+  --elevate-2: rgba(255, 102, 0, 0.12);
   --background: 0 0% 100%;
   --foreground: 160 30% 8%;
   --border: 147 55% 82%;
@@ -407,7 +407,7 @@
   --secondary-foreground: 160 40% 15%;
   --muted: 145 50% 92%;
   --muted-foreground: 0 0% 25%;
-  --accent: 25 100% 50%;
+  --accent: 24 100% 48%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
@@ -462,7 +462,7 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - CYBER GREEN PRIMARY + BURNER ORANGE ACCENT */
+/* DARK MODE - CYBER GREEN PRIMARY + VIBRANT ORANGE ACCENT */
 .dark {
   --button-outline: rgba(26, 215, 124, 0.15);
   --badge-outline: rgba(26, 215, 124, 0.08);
@@ -492,7 +492,7 @@
   --secondary-foreground: 145 100% 94%;
   --muted: 160 30% 35%;
   --muted-foreground: 145 50% 82%;
-  --accent: 25 100% 50%;
+  --accent: 24 100% 62%;
   --accent-foreground: 160 30% 5%;
   --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 98%;
