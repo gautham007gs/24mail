@@ -1,10 +1,11 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
+import { Mail, Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown, Trash2 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import CacheManager from "@/lib/cache";
 
 interface HeaderProps {
   domains?: Domain[];
@@ -32,6 +33,14 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   ];
 
   const isActive = (href: string) => location === href;
+
+  const handleCleanup = () => {
+    CacheManager.clear();
+    toast({
+      title: "Cache cleared",
+      description: "Local storage cleaned up successfully",
+    });
+  };
 
   return (
     <>
@@ -74,9 +83,18 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             ))}
           </nav>
 
-          {/* Right Side - Theme Toggle + Mobile Menu Button */}
+          {/* Right Side - Theme Toggle + Cleanup + Mobile Menu Button */}
           <div className="flex items-center gap-1 md:gap-3 flex-shrink-0">
             <ThemeToggle />
+            <button
+              onClick={handleCleanup}
+              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
+              data-testid="button-cleanup-mobile"
+              aria-label="Clear cache and cleanup"
+              title="Clear cache"
+            >
+              <Trash2 className="h-4 w-4" />
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
