@@ -292,97 +292,66 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           Your Temporary Email
         </h2>
 
-        {/* Email Display Box - Minimal & Clean - 16px component spacing */}
+        {/* Email Display Box - Minimal & Clean */}
         <div className="card-flame-edge p-[22px] mt-4">
-          {/* Email Address - Large & Clean - JetBrains Mono - No Animation */}
-          <span
-            className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all block"
-            style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.5", wordBreak: "break-all" }}
-            data-testid="text-current-email"
-          >
-            {currentEmail || "Generating..."}
-          </span>
-
-          {/* Expiry Info - Minimal Text Only - Separate line */}
-          <div className="mt-2">
-            <span className="text-sm text-muted-foreground">
-              Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+          {/* Email with Inline Action Buttons */}
+          <div className="flex items-start gap-2 mb-3">
+            {/* Email Address - Large & Clean - JetBrains Mono */}
+            <span
+              className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all flex-1"
+              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.5", wordBreak: "break-all" }}
+              data-testid="text-current-email"
+            >
+              {currentEmail || "Generating..."}
             </span>
+            
+            {/* Inline Action Icons - QR & Copy */}
+            <div className="flex gap-1.5 flex-shrink-0">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setShowQRCode(true)}
+                disabled={!currentEmail}
+                data-testid="button-email-qr"
+                className="h-8 w-8"
+                title="Share QR Code"
+              >
+                <QrCode className="h-4 w-4" />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={handleCopy}
+                disabled={!currentEmail}
+                data-testid="button-email-copy"
+                className="h-8 w-8"
+                title="Copy email"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4 text-accent" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
           </div>
+
+          {/* Expiry Info - Minimal Text Only */}
+          <span className="text-sm text-muted-foreground">
+            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+          </span>
         </div>
 
 
-        {/* Clean Button Action Row - Organized & Minimal - 16px above, 32px below */}
-        <div className="mt-4 mb-8">
-          {/* Mobile: Two prominent rows - Copy & Refresh main, others secondary */}
-          <div className="md:hidden space-y-2">
-            {/* Primary Row - Copy & Refresh - Larger and prominent */}
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                onClick={handleCopy}
-                disabled={!currentEmail}
-                data-testid="button-action-copy"
-                className="text-sm font-semibold"
-                aria-label="Copy email"
-              >
-                <Copy className="h-4 w-4 mr-1.5" />
-                Copy
-              </Button>
-              <Button
-                onClick={handleRefresh}
-                variant="outline"
-                data-testid="button-action-refresh"
-                className="text-sm font-semibold"
-                aria-label="Refresh inbox"
-              >
-                <RefreshCw className="h-4 w-4 mr-1.5" />
-                Refresh
-              </Button>
-            </div>
-
-            {/* Secondary Row - New Email, QR & Burn */}
-            <div className="grid grid-cols-3 gap-2">
-              <Button
-                onClick={handleGenerateWithDomain}
-                disabled={domains.length === 0}
-                variant="secondary"
-                data-testid="button-action-new-email"
-                size="sm"
-                className="text-xs font-semibold"
-                aria-label="New Email"
-              >
-                <RotateCw className="h-3.5 w-3.5" />
-              </Button>
-              <Button
-                onClick={() => setShowQRCode(true)}
-                disabled={!currentEmail}
-                variant="secondary"
-                data-testid="button-action-qr"
-                size="sm"
-                className="text-xs font-semibold"
-                aria-label="Share QR Code"
-              >
-                <QrCode className="h-3.5 w-3.5" />
-              </Button>
-              <Button
-                onClick={handleBurn}
-                variant="destructive"
-                data-testid="button-action-burn"
-                size="sm"
-                className={`text-xs font-semibold ${isBurning ? "burn-animation" : ""}`}
-                aria-label="Burn"
-              >
-                <Trash2 className={`h-3.5 w-3.5 ${isBurning ? "burn-icon" : ""}`} />
-              </Button>
-            </div>
-          </div>
-
-          {/* Desktop: Single row - Clean spacing */}
-          <div className="hidden md:flex gap-3 justify-center items-center flex-wrap">
+        {/* Action Buttons Row - Below Email */}
+        <div className="mt-6 mb-8">
+          {/* Mobile & Desktop: Unified button layout */}
+          <div className="flex gap-2 justify-center items-center flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
+              className="text-sm font-semibold"
               aria-label="Copy email"
             >
               <Copy className="h-4 w-4 mr-2" />
@@ -392,40 +361,32 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleRefresh}
               variant="outline"
               data-testid="button-action-refresh"
+              className="text-sm font-semibold"
               aria-label="Refresh"
             >
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh
             </Button>
             <Button
-              onClick={() => setShowQRCode(true)}
-              disabled={!currentEmail}
-              variant="outline"
-              data-testid="button-action-qr"
-              aria-label="Share QR Code"
-            >
-              <QrCode className="h-4 w-4 mr-2" />
-              QR Code
-            </Button>
-            <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               variant="secondary"
               data-testid="button-action-new-email"
+              className="text-sm font-semibold"
               aria-label="New Email"
             >
               <RotateCw className="h-4 w-4 mr-2" />
-              New Email
+              Change
             </Button>
             <Button
               onClick={handleBurn}
               variant="destructive"
               data-testid="button-action-burn"
-              className={isBurning ? "burn-animation" : ""}
-              aria-label="Burn"
+              className={`text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
+              aria-label="Delete"
             >
               <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
-              Burn
+              Delete
             </Button>
           </div>
         </div>
