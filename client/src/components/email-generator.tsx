@@ -385,26 +385,26 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Action Buttons - Mobile Optimized */}
-        {/* Mobile: 2 large buttons (Copy primary, New secondary) */}
+        {/* Mobile: 2 large buttons */}
         <div className="md:hidden grid grid-cols-2 gap-2 sm:gap-3">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-10 sm:min-h-12 btn-success text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
+            variant="secondary"
+            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold px-3 sm:px-4"
             aria-label="Copy email address to clipboard (Ctrl+C)"
             title="Copy email (Ctrl+C)"
           >
             <Copy className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1.5 sm:mr-2" />
-            <span className="hidden xs:inline">Copy</span>
-            <span className="inline xs:hidden">Copy</span>
+            Copy
           </Button>
 
           <Button
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="min-h-10 sm:min-h-12 btn-info text-xs sm:text-sm font-semibold btn-hover-scale active-elevate-2 px-3 sm:px-4"
+            className="min-h-10 sm:min-h-12 text-xs sm:text-sm font-semibold px-3 sm:px-4"
             aria-label="Generate new email address (Ctrl+G)"
             title="Generate new email (Ctrl+G)"
           >
@@ -413,13 +413,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
         </div>
 
-        {/* Mobile: Icon-only quick actions (Refresh, QR, Burn) */}
+        {/* Mobile: Icon-only quick actions */}
         <div className="md:hidden flex gap-1.5 sm:gap-2 justify-center">
           <Button
             size="icon"
+            variant="secondary"
             onClick={handleRefresh}
             data-testid="button-action-refresh"
-            className="btn-info btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
+            className="h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 sm:h-5 w-4 sm:w-5" />
@@ -430,7 +431,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             variant="ghost"
             onClick={() => setShowQRCode(true)}
             data-testid="button-qr-quick"
-            className="btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
+            className="h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Show QR code to share email"
           >
             <QrCode className="h-4 sm:h-5 w-4 sm:w-5" />
@@ -438,9 +439,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
           <Button
             size="icon"
+            variant="destructive"
             onClick={handleBurn}
             data-testid="button-action-burn"
-            className="btn-danger btn-hover-scale active-elevate-2 h-9 sm:h-10 w-9 sm:w-10"
+            className="h-9 sm:h-10 w-9 sm:w-10"
             aria-label="Burn current email address"
           >
             <Trash2 className="h-4 sm:h-5 w-4 sm:w-5" />
@@ -452,43 +454,42 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
+            variant="secondary"
             data-testid="button-action-copy"
-            className="min-h-9 btn-success btn-hover-scale active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
-            <span>Copy</span>
+            Copy
           </Button>
 
           <Button
             onClick={handleRefresh}
+            variant="secondary"
             data-testid="button-action-refresh"
-            className="min-h-9 btn-info btn-hover-scale active-elevate-2"
             aria-label="Refresh inbox to check for new emails"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
-            <span>Refresh</span>
+            Refresh
           </Button>
 
           <Button
             onClick={handleGenerateWithDomain}
             disabled={domains.length === 0}
             data-testid="button-action-change"
-            className="min-h-9 btn-info btn-hover-scale active-elevate-2"
             aria-label="Generate new email address"
           >
             <RotateCw className="h-4 w-4 mr-2" />
-            <span>New</span>
+            New
           </Button>
 
           <Button
             onClick={handleBurn}
+            variant="destructive"
             data-testid="button-action-burn"
-            className="min-h-9 btn-danger btn-hover-scale active-elevate-2"
             aria-label="Burn current email address"
           >
             <Trash2 className="h-4 w-4 mr-2" />
-            <span>Burn</span>
+            Burn
           </Button>
         </div>
       </Card>
@@ -559,76 +560,69 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
             {/* Action Buttons */}
             <div className="space-y-2 sm:space-y-3">
-              {/* Primary: Copy Button */}
               <Button
                 onClick={handleCopy}
                 disabled={!currentEmail}
-                className="w-full h-10 sm:h-11 md:h-12 btn-success font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl"
+                className="w-full font-semibold"
                 data-testid="button-copy-email-qr"
               >
                 <Copy className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Copy Email Address</span>
-                <span className="sm:hidden">Copy Email</span>
+                Copy Email
               </Button>
 
-              {/* Secondary: Download QR */}
               <Button
                 onClick={handleDownloadQR}
-                variant="outline"
-                className="w-full h-10 sm:h-11 md:h-12 border-2 border-emerald-200/50 dark:border-emerald-800/50 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 font-semibold text-xs sm:text-sm md:text-base transition-all duration-200 active-elevate-2"
+                variant="secondary"
+                className="w-full font-semibold"
                 data-testid="button-download-qr"
               >
                 <Download className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Download QR Code</span>
-                <span className="sm:hidden">Download</span>
+                Download QR
               </Button>
             </div>
 
             {/* Social Share Section */}
             <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-3 border-t border-border/50 dark:border-border/30">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share On</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share</p>
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 <Button
                   variant="outline"
-                  size="lg"
+                  size="icon"
                   onClick={() => shareArticleOn('whatsapp', {
                     title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-whatsapp-qr"
-                  className="h-10 sm:h-12 border-2 border-green-200/50 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700 hover:bg-green-50/50 dark:hover:bg-green-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on WhatsApp"
                 >
-                  <SiWhatsapp className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
+                  <SiWhatsapp className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="outline"
-                  size="lg"
+                  size="icon"
                   onClick={() => shareArticleOn('telegram', {
                     title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Get your free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-telegram-qr"
-                  className="h-10 sm:h-12 border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on Telegram"
                 >
-                  <SiTelegram className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
+                  <SiTelegram className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="outline"
-                  size="lg"
+                  size="icon"
                   onClick={() => shareArticleOn('twitter', {
                     title: 'Check out Burner Email',
                     url: shareUrl,
                     summary: 'Free temporary email for instant privacy protection',
                   })}
                   data-testid="button-share-twitter-qr"
-                  className="h-10 sm:h-12 border-2 border-sky-200/50 dark:border-sky-800/50 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition-all duration-200 active-elevate-2"
                   title="Share on X (Twitter)"
                 >
-                  <SiX className="h-4 w-4 sm:h-5 sm:w-5 text-sky-600 dark:text-sky-400" />
+                  <SiX className="h-4 w-4" />
                 </Button>
               </div>
             </div>
