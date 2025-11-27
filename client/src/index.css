@@ -135,13 +135,19 @@
   color: #FF7A30;
 }
 
-/* Font optimization: Use system fonts as fallback immediately */
+/* Font optimization: Inter (body) + JetBrains Mono (code) */
 @layer base {
   body {
-    font-family: var(--font-sans);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
   }
-  code, pre {
-    font-family: var(--font-mono);
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+  }
+  
+  code, pre, .font-mono {
+    font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", monospace;
   }
 }
 
