@@ -293,30 +293,30 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </h2>
 
         {/* Email Display Box - Minimal & Clean */}
-        <div className="card-flame-edge p-[22px] mt-4">
+        <div className="card-flame-edge p-4 sm:p-6 mt-4">
           {/* Email with Inline Action Buttons */}
-          <div className="flex items-start gap-2 mb-3">
+          <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
             {/* Email Address - Large & Clean - JetBrains Mono */}
             <span
-              className="text-lg sm:text-xl md:text-[22px] font-semibold text-foreground break-all flex-1"
-              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.5", wordBreak: "break-all" }}
+              className="text-base sm:text-lg md:text-xl lg:text-[22px] font-semibold text-foreground break-all flex-1"
+              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", wordBreak: "break-all" }}
               data-testid="text-current-email"
             >
               {currentEmail || "Generating..."}
             </span>
             
             {/* Inline Action Icons - QR & Copy */}
-            <div className="flex gap-1.5 flex-shrink-0">
+            <div className="flex gap-2 sm:gap-2.5 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="h-8 w-8"
+                className="h-9 w-9 sm:h-10 sm:w-10"
                 title="Share QR Code"
               >
-                <QrCode className="h-4 w-4" />
+                <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 size="icon"
@@ -324,68 +324,72 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="h-8 w-8"
+                className="h-9 w-9 sm:h-10 sm:w-10"
                 title="Copy email"
               >
                 {copied ? (
-                  <Check className="h-4 w-4 text-accent" />
+                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
                 ) : (
-                  <Copy className="h-4 w-4" />
+                  <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
               </Button>
             </div>
           </div>
 
           {/* Expiry Info - Minimal Text Only */}
-          <span className="text-sm text-muted-foreground">
+          <span className="text-xs sm:text-sm text-muted-foreground">
             Expires in <span className="text-accent font-semibold">{expiryTime}</span>
           </span>
         </div>
 
 
         {/* Action Buttons Row - Below Email */}
-        <div className="mt-6 mb-8">
-          {/* Mobile & Desktop: Unified button layout */}
-          <div className="flex gap-2 justify-center items-center flex-wrap">
+        <div className="mt-6 sm:mt-8 mb-8">
+          {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
+          <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-sm font-semibold"
+              size="sm"
+              className="text-xs sm:text-sm font-semibold"
               aria-label="Copy email"
             >
-              <Copy className="h-4 w-4 mr-2" />
+              <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Copy
             </Button>
             <Button
               onClick={handleRefresh}
               variant="outline"
+              size="sm"
               data-testid="button-action-refresh"
-              className="text-sm font-semibold"
+              className="text-xs sm:text-sm font-semibold"
               aria-label="Refresh"
             >
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <RefreshCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Refresh
             </Button>
             <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               variant="secondary"
+              size="sm"
               data-testid="button-action-new-email"
-              className="text-sm font-semibold"
-              aria-label="New Email"
+              className="text-xs sm:text-sm font-semibold"
+              aria-label="Change"
             >
-              <RotateCw className="h-4 w-4 mr-2" />
+              <RotateCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Change
             </Button>
             <Button
               onClick={handleBurn}
               variant="destructive"
+              size="sm"
               data-testid="button-action-burn"
-              className={`text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
+              className={`text-xs sm:text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete"
             >
-              <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 ${isBurning ? "burn-icon" : ""}`} />
               Delete
             </Button>
           </div>
