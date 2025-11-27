@@ -378,7 +378,7 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - STRONGER TEAL GREEN + VIBRANT FLAME ORANGE ACCENT */
+/* LIGHT MODE - TEAL GREEN + FLAME ORANGE ACCENT */
 :root {
   --button-outline: rgba(31, 138, 112, 0.15);
   --badge-outline: rgba(31, 138, 112, 0.08);
@@ -388,13 +388,13 @@ html.dark {
   --mint-glow: 0 0 12px rgba(72, 201, 169, 0.3);
   --background: 0 0% 100%;
   --foreground: 160 30% 8%;
-  --border: 160 25% 88%;
+  --border: 160 25% 85%;
   --card: 160 40% 97%;
   --card-foreground: 160 30% 8%;
-  --card-border: 160 30% 90%;
+  --card-border: 160 30% 88%;
   --sidebar: 0 0% 97%;
   --sidebar-foreground: 160 30% 8%;
-  --sidebar-border: 160 25% 90%;
+  --sidebar-border: 160 25% 88%;
   --sidebar-primary: 160 63% 35%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 160 63% 35%;
@@ -402,13 +402,14 @@ html.dark {
   --sidebar-ring: 160 63% 35%;
   --popover: 0 0% 99%;
   --popover-foreground: 160 30% 8%;
-  --popover-border: 160 25% 90%;
+  --popover-border: 160 25% 88%;
   --primary: 160 63% 35%;
   --primary-foreground: 0 0% 100%;
   --secondary: 160 55% 55%;
   --secondary-foreground: 0 0% 100%;
   --muted: 160 25% 90%;
-  --muted-foreground: 0 0% 35%;
+  --muted-foreground: 160 20% 40%;
+  --tertiary-foreground: 160 15% 55%;
   --accent: 20 100% 50%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
@@ -464,7 +465,7 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - CYBER GREEN PRIMARY + VIBRANT ORANGE ACCENT */
+/* DARK MODE - BALANCED GREEN PRIMARY + ORANGE ACCENT */
 .dark {
   --button-outline: rgba(26, 215, 124, 0.15);
   --badge-outline: rgba(26, 215, 124, 0.08);
@@ -480,26 +481,27 @@ html.dark {
   --sidebar: 160 30% 18%;
   --sidebar-foreground: 145 100% 94%;
   --sidebar-border: 160 30% 35%;
-  --sidebar-primary: 147 77% 47%;
+  --sidebar-primary: 147 68% 45%;
   --sidebar-primary-foreground: 160 30% 5%;
-  --sidebar-accent: 147 77% 47%;
+  --sidebar-accent: 147 68% 45%;
   --sidebar-accent-foreground: 160 30% 5%;
-  --sidebar-ring: 147 77% 47%;
+  --sidebar-ring: 147 68% 45%;
   --popover: 160 35% 28%;
   --popover-foreground: 145 100% 94%;
   --popover-border: 160 35% 42%;
-  --primary: 147 77% 47%;
+  --primary: 147 68% 45%;
   --primary-foreground: 160 30% 5%;
   --secondary: 160 40% 42%;
   --secondary-foreground: 145 100% 94%;
   --muted: 160 30% 35%;
-  --muted-foreground: 145 50% 82%;
+  --muted-foreground: 145 35% 72%;
+  --tertiary-foreground: 145 20% 62%;
   --accent: 24 90% 55%;
   --accent-foreground: 160 30% 5%;
   --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 98%;
   --input: 160 35% 42%;
-  --ring: 147 77% 47%;
+  --ring: 147 68% 45%;
   
   /* Dark mode premium gradient background */
   color-scheme: dark;
@@ -552,20 +554,20 @@ html.dark {
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(20 50% 99%) 100%);
+    background: hsl(var(--background));
     background-attachment: fixed;
     line-height: 1.6;
     letter-spacing: -0.01em;
   }
 
   .dark body {
-    background: linear-gradient(135deg, #0e1217 0%, #0f1419 100%);
+    background: hsl(var(--background));
     background-attachment: fixed;
   }
 
   /* Soft borders for depth and structure */
   .card-bordered {
-    @apply border border-border;
+    @apply border border-border/50;
   }
 
   /* Glassmorphism effect for email area */
@@ -597,21 +599,6 @@ html.dark {
     transform: scale(1.02);
   }
 
-  /* Color-coded buttons - Warm, Harmonious Palette */
-  /* Copy button - Soft sage/teal */
-  .btn-success {
-    @apply !bg-teal-600/90 hover:!bg-teal-700 dark:!bg-teal-700/80 dark:hover:!bg-teal-600 !text-white shadow-sm hover:shadow-md transition-all;
-  }
-
-  /* Refresh button - Soft sky blue */
-  .btn-info {
-    @apply !bg-sky-600/90 hover:!bg-sky-700 dark:!bg-sky-700/80 dark:hover:!bg-sky-600 !text-white shadow-sm hover:shadow-md transition-all;
-  }
-
-  /* Burn button - Warm coral/rust */
-  .btn-danger {
-    @apply !bg-orange-600/90 hover:!bg-orange-700 dark:!bg-orange-700/80 dark:hover:!bg-orange-600 !text-white shadow-sm hover:shadow-md transition-all;
-  }
 
   /* Light mode subtle shadows for depth */
   .light-section-shadow {
@@ -994,6 +981,12 @@ html.dark {
 
   .text-email-display {
     @apply text-2xl md:text-3xl font-mono font-semibold tracking-wider;
+  }
+
+  /* Tertiary text for least important information */
+  .text-tertiary {
+    @apply text-muted-foreground;
+    color: hsl(var(--tertiary-foreground));
   }
 
   /* BUTTON GLOW ON HOVER */

@@ -38,9 +38,9 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>
-      <header className="border-b border-border/30 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6">
-        <div className="flex items-center justify-between min-h-14 md:h-16">
+      <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6">
+        <div className="flex items-center justify-between min-h-16 md:h-16">
           {/* Logo - Compact on mobile */}
           <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
             <div className="flex items-center justify-center">
