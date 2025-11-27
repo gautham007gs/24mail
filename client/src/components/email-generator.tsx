@@ -191,7 +191,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     });
   };
 
-  const handleDelete = () => {
+  const handleBurn = () => {
     handleGenerateWithDomain();
     if (onDelete) {
       onDelete();
@@ -446,10 +446,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           <Button
             size="icon"
             variant="ghost"
-            onClick={handleDelete}
-            data-testid="button-action-delete"
+            onClick={handleBurn}
+            data-testid="button-action-burn"
             className="text-destructive btn-hover-scale active-elevate-2"
-            aria-label="Delete current email address"
+            aria-label="Burn current email address"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -491,13 +491,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
 
           <Button
-            onClick={handleDelete}
-            data-testid="button-action-delete"
+            onClick={handleBurn}
+            data-testid="button-action-burn"
             className="min-h-9 btn-danger btn-hover-scale active-elevate-2"
-            aria-label="Delete current email address"
+            aria-label="Burn current email address"
           >
             <Trash2 className="h-4 w-4 mr-2" />
-            <span>Delete</span>
+            <span>Burn</span>
           </Button>
         </div>
       </Card>

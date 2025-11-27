@@ -288,11 +288,11 @@ export function InboxList({
               size="sm"
               onClick={() => setShowBulkDialog(true)}
               disabled={isDeleting}
-              data-testid="button-delete-selected"
+              data-testid="button-burn-selected"
               className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
-              Delete {selectedIds.length}
+              Burn {selectedIds.length}
             </Button>
           )}
           {emails.length > 0 && (
@@ -300,11 +300,11 @@ export function InboxList({
               size="sm"
               onClick={() => setShowClearDialog(true)}
               disabled={isDeleting}
-              data-testid="button-delete-all"
+              data-testid="button-burn-all"
               className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
-              <span className="hidden sm:inline">Clear Inbox</span>
+              <span className="hidden sm:inline">Burn All</span>
             </Button>
           )}
           {currentEmail && (

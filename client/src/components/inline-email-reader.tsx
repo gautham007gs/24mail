@@ -211,9 +211,9 @@ export function InlineEmailReader({
             variant="outline"
             onClick={onDelete}
             disabled={isDeleting}
-            data-testid="button-inline-delete"
+            data-testid="button-inline-burn"
             className="text-destructive border-destructive/30 text-xs h-5 px-1.5"
-            title="Delete email"
+            title="Burn email"
           >
             <Trash2 className="h-2.5 w-2.5" />
           </Button>

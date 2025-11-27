@@ -27,10 +27,15 @@ The backend uses Express.js with Node.js and TypeScript, acting as a RESTful API
 
 Data validation is performed using Zod schemas for `EmailSummary`, `Email`, and `Domain` objects. The system operates without a persistent database, fetching all email-related data on-demand from the external API.
 
-## Recent Updates (Turn 3 - Final)
+## Recent Updates (Turn 7 - Final Polish)
 
 ### UI/UX Enhancements
-- **Color-coded buttons for intuitive UX**: Copy (green), Refresh (blue), Delete (red) with `!important` flags for consistent appearance
+- **Color-coded buttons for intuitive UX**: Copy (green), Refresh (blue), Burn (red) with `!important` flags for consistent appearance
+- **Thematic "Burn" terminology**: Replaced "Delete" with "Burn" throughout UI for brand consistency and less alarming UX
+  - "Burn" messaging aligns with burner email branding
+  - Reduced perception of permanence in user actions
+  - Applied to all delete buttons: "Burn", "Burn All", "Burn {count}"
+- **Fixed use-cases section**: Replaced confusing checkboxes with clean **Lucide React icons** (Newspaper, Microscope, Gift, Lock, Download, Eye)
 - **Button hover animations**: 0.2s scale(1.02) on hover, scale(0.95) on press with smooth transitions
 - **Fixed duplicate checkmarks** in hero badges (removed text "✔" to avoid duplication with SVG icon)
 - **Updated hero text** for professionalism: "Instant Burner Email Addresses" with refined subtitle
@@ -40,15 +45,24 @@ Data validation is performed using Zod schemas for `EmailSummary`, `Email`, and 
   - Respects `prefers-color-scheme: dark` CSS media query
   - Theme toggle button in top-right header
 
+### Accessibility Enhancements (Complete)
+- **Keyboard shortcuts**: Ctrl+C (copy email), Ctrl+G (generate new email) with documented titles
+- **Screen reader support**: Aria-live regions announce new emails to screen readers
+- **Skip-to-main link**: Keyboard users can jump directly to main content
+- **Reduced motion support**: `@media (prefers-reduce-motion: reduce)` disables animations for users with motion sensitivity
+- **WCAG-compliant**: All interactive elements have proper aria-labels and data-testid attributes
+
 ### Trust Building Components
 - **"Is My Data Private?" section** (6 FAQs with icons: Eye, Lock, Database, Trash, Shield, Zap)
 - **Enhanced footer** with Product, Legal, Contact sections and feature badges
+- **Use Cases section** with professional icons instead of confusing checkboxes
 - **Professional trust narrative flow**: Hero → Generator → Inbox → Trust → Use Cases → How It Works → Data & Privacy → Social Proof → Testimonials → FAQs
 
 ### CSS/Styling
 - **Color utility classes**: `.btn-success` (emerald), `.btn-info` (blue), `.btn-danger` (red)
 - **Hover animation**: `.btn-hover-scale` with 200ms transition
 - **Theme transition**: `.theme-transitioning` applies 0.25s fade across all color properties
+- **Reduced motion CSS**: Respects OS accessibility settings for users with motion sensitivity
 
 ## External Dependencies
 
