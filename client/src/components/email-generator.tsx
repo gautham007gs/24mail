@@ -302,13 +302,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </span>
             </div>
 
-            {/* Expires & Actions Row - Mobile Stacked, Desktop Inline */}
+            {/* Expires & Actions Row - Mobile Flex-end, Desktop Between */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-              <p className="text-xs sm:text-body-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+              <p className="hidden sm:flex text-xs sm:text-body-sm text-muted-foreground items-center gap-1.5 sm:gap-2">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
                 <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
               </p>
-              <div className="flex gap-2 sm:gap-3 items-center">
+              <div className="flex gap-2 sm:gap-3 items-center ml-auto">
                 <Button
                   size="icon"
                   variant="ghost"
@@ -335,15 +335,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 </Button>
               </div>
             </div>
+
+            {/* Mobile Timer Display - Moved Below Email */}
+            <p className="sm:hidden text-xs text-muted-foreground flex items-center gap-1.5">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-timer animate-pulse" />
+              <span>Expires: <span className="font-semibold text-timer">{expiryTime}</span></span>
+            </p>
           </div>
         </div>
 
-        {/* Domain Selector - Mobile & Desktop */}
-        <div className="space-y-2">
+        {/* Domain Selector - Desktop Only */}
+        <div className="hidden md:block space-y-2">
           <label htmlFor="domain-select" className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-2">
             <AtSign className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-accent" />
-            <span className="hidden sm:inline">Email Domain</span>
-            <span className="sm:hidden">Domain</span>
+            Email Domain
           </label>
           <div className="flex gap-1 sm:gap-2 items-center">
             <Select
