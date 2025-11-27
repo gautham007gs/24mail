@@ -47,7 +47,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 className="h-11 md:h-12 w-11 md:w-12 flex-shrink-0 object-contain logo-transparent" 
               />
             </div>
-            <span className="text-lg md:text-xl font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
+            <span className="text-lg md:text-xl font-black tracking-tight leading-none hidden sm:inline font-display" data-testid="text-app-title">
               BURNER EMAIL
             </span>
           </Link>

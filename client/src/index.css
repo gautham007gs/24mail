@@ -51,9 +51,28 @@
   body {
     font-family: var(--font-sans);
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .text-heading,
+  .text-heading-sm,
+  [data-testid="text-app-title"] {
+    font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+  }
+  
   code, pre {
     font-family: var(--font-mono);
   }
+}
+
+/* Dark theme gradient background */
+html.dark {
+  background: linear-gradient(135deg, #000000 0%, #0A1C17 100%);
 }
 
 /* Animated Gradient Utility - Updated with Orange theme */
@@ -494,6 +513,9 @@
   --destructive-foreground: 0 0% 98%;
   --input: 160 35% 42%;
   --ring: 147 77% 47%;
+  
+  /* Dark mode premium gradient background */
+  color-scheme: dark;
   --chart-1: 147 77% 47%;
   --chart-2: 25 100% 55%;
   --chart-3: 40 90% 65%;
@@ -507,8 +529,7 @@
   --shadow-lg: 0px 2px 4px 0px hsl(0 0% 0% / 0.20), 0px 4px 6px -1px hsl(0 0% 0% / 0.15);
   --shadow-xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.20), 0px 8px 10px -1px hsl(0 0% 0% / 0.15);
   --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.20);
-
-/* Fallback for older browsers */
+  /* Fallback for older browsers */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
   --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
@@ -551,7 +572,7 @@
   }
 
   .dark body {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(20 35% 9%) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A1C17 100%);
     background-attachment: fixed;
   }
 
