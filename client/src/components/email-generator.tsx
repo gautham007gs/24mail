@@ -293,7 +293,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   onClick={handleCopy}
                   disabled={!currentEmail}
                   data-testid="button-copy-email"
-                  className="bg-accent hover:bg-accent/90 text-white shrink-0 transition-all active-elevate-2"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white shrink-0 transition-all active-elevate-2"
                   aria-label={copied ? "Email copied to clipboard" : "Copy email to clipboard"}
                 >
                   {copied ? (
@@ -366,7 +366,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="h-13 bg-accent hover:bg-accent/90 text-white text-sm font-semibold active-elevate-2"
+            className="h-13 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />
@@ -427,7 +427,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-9 bg-accent hover:bg-accent/90 text-white active-elevate-2"
+            className="min-h-9 bg-emerald-500 hover:bg-emerald-600 text-white active-elevate-2"
             aria-label="Copy email address to clipboard"
           >
             <Copy className="h-4 w-4 mr-2" />

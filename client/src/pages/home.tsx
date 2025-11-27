@@ -350,6 +350,19 @@ export default function Home() {
             emailCount={emails.length}
           />
 
+          {/* Inbox Section */}
+          <div className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-border/30 fade-in">
+            <InboxList
+              emails={displayedEmails}
+              isLoading={isLoadingInbox}
+              currentEmail={currentEmail}
+              onRefresh={handleRefresh}
+              onDeleteAll={handleDeleteAllEmails}
+              isDeleting={deleteAllEmailsMutation.isPending}
+              onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
+            />
+          </div>
+
           {/* Use Cases Section */}
           <section className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-border/30 fade-in-up">
             <div className="text-center mb-10 md:mb-12 space-y-3">
@@ -401,19 +414,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
-          {/* Inbox Section */}
-          <div className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-border/30 fade-in">
-            <InboxList
-              emails={displayedEmails}
-              isLoading={isLoadingInbox}
-              currentEmail={currentEmail}
-              onRefresh={handleRefresh}
-              onDeleteAll={handleDeleteAllEmails}
-              isDeleting={deleteAllEmailsMutation.isPending}
-              onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
-            />
-          </div>
 
           {/* How It Works Section - Lazy loaded for faster initial render */}
           <div className="mt-20 pt-8 md:pt-12 border-t border-border/30 fade-in">
