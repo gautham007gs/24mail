@@ -62,6 +62,64 @@
   animation: scrollAppear 0.2s ease-out;
 }
 
+@keyframes timerGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 12px currentColor, 0 0 20px currentColor;
+  }
+}
+
+/* Timer Progress Bar - Premium Style */
+.timer-progress-container {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: hsl(var(--muted));
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.timer-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s linear;
+  animation: timerGlowPulse 2s ease-in-out infinite;
+}
+
+/* Green (0-50%) → Orange (50-75%) → Red (75-100%) */
+.timer-progress-fill.green {
+  background: linear-gradient(90deg, #10b981 0%, #10b981 100%);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5), 0 0 16px rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.timer-progress-fill.orange {
+  background: linear-gradient(90deg, #f59e0b 0%, #f59e0b 100%);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5), 0 0 16px rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.timer-progress-fill.red {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6), 0 0 16px rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+.dark .timer-progress-fill.green {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6), 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.dark .timer-progress-fill.orange {
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6), 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.dark .timer-progress-fill.red {
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.7), 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
 /* Font optimization: Use system fonts as fallback immediately */
 @layer base {
   body {

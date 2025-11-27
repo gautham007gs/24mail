@@ -284,6 +284,24 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
         {/* Email Display Box - 20px Padding */}
         <div className="card-flame-edge p-5 shadow-sm hover:shadow-lg transition-all duration-300">
+          {/* Timer Progress Bar */}
+          {(() => {
+            const percentage = Math.max(0, Math.min(100, ((expiryDateRef.current ? (expiryDateRef.current - Date.now()) / (15 * 60 * 1000) : 0) * 100)));
+            let colorClass = 'green';
+            if (percentage < 25) colorClass = 'red';
+            else if (percentage < 50) colorClass = 'orange';
+            
+            return (
+              <div className="timer-progress-container" data-testid="timer-progress-container">
+                <div 
+                  className={`timer-progress-fill ${colorClass}`}
+                  style={{ width: `${percentage}%` }}
+                  data-testid="timer-progress-fill"
+                />
+              </div>
+            );
+          })()}
+          
           <div className="space-y-4">
             {/* Status & Email */}
             <div className="space-y-2.5">
