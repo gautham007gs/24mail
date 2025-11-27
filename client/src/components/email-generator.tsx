@@ -408,14 +408,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </Button>
         </div>
 
-        {/* Action Buttons - Mobile Optimized (Uncluttered) */}
-        {/* Mobile: 3 essential buttons only */}
-        <div className="md:hidden grid grid-cols-3 gap-3 sm:gap-4">
+        {/* Mobile: Primary Row - Copy + New Email (Text Buttons) */}
+        <div className="md:hidden grid grid-cols-2 gap-3 sm:gap-4">
           <Button
             onClick={handleCopy}
             disabled={!currentEmail}
             data-testid="button-action-copy"
-            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
+            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold"
             aria-label="Copy email address to clipboard (Ctrl+C)"
             title="Copy email (Ctrl+C)"
           >
@@ -428,78 +427,75 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             disabled={domains.length === 0}
             variant="secondary"
             data-testid="button-action-change"
-            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
+            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold"
             aria-label="Generate new email address (Ctrl+G)"
             title="New email (Ctrl+G)"
           >
             <RotateCw className="h-4 w-4 mr-1.5 sm:mr-2" />
-            <span className="hidden xs:inline">New Email</span>
-            <span className="inline xs:hidden">New</span>
-          </Button>
-
-          <Button
-            onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
-            variant="ghost"
-            data-testid="button-advanced-options"
-            className="min-h-11 sm:min-h-12 text-sm sm:text-base font-semibold px-2 sm:px-3"
-            aria-label="Toggle advanced options"
-            title="More options"
-          >
-            <RotateCw className="h-4 w-4 mr-1.5 sm:mr-2" style={{ transform: showAdvancedOptions ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
-            <span className="hidden xs:inline">More</span>
-            <span className="inline xs:hidden">+</span>
+            New Email
           </Button>
         </div>
 
-        {/* Mobile Advanced Options - Domain Selector + Burn */}
-        {showAdvancedOptions && (
-          <div className="md:hidden space-y-3 border-t border-border pt-4 mt-4">
-            <Select
-              value={selectedDomain}
-              onValueChange={(domain) => {
-                setSelectedDomain(domain);
-                CacheManager.set("selected_domain", domain);
-              }}
-            >
-              <SelectTrigger 
-                id="domain-select-mobile" 
-                data-testid="select-domain-mobile"
-                className="domain-pill-trigger w-full px-3 py-2 rounded-lg border border-border transition-colors text-sm"
-              >
-                <span className="flex items-center gap-2">
-                  <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
-                  <span className="text-xs">{selectedDomain || "Select domain"}</span>
-                </span>
-              </SelectTrigger>
-              <SelectContent className="min-w-[220px]">
-                {cachedDomains.map((domain) => (
-                  <SelectItem 
-                    key={domain} 
-                    value={domain} 
-                    data-testid={`domain-option-mobile-${domain}`}
-                    className="select-item-animate cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2">
-                      <span className="text-base">{getDomainIcon(domain)}</span>
-                      <span className="text-sm">{domain}</span>
-                      {isPremiumDomain(domain) && <Crown className="h-4 w-4 ml-1 flex-shrink-0 text-accent" />}
-                    </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+        {/* Mobile: Secondary Row - Refresh + Burn (Icon-Only) */}
+        <div className="md:hidden flex gap-2 items-center justify-between">
+          <div className="flex gap-2">
             <Button
-              onClick={handleBurn}
-              variant="destructive"
-              data-testid="button-action-burn-mobile"
-              className="w-full min-h-10 text-sm font-semibold"
-              aria-label="Burn current email address"
+              size="icon"
+              variant="ghost"
+              onClick={handleRefresh}
+              data-testid="button-action-refresh-mobile"
+              aria-label="Refresh inbox to check for new emails"
+              className="hover-elevate"
             >
-              <Trash2 className="h-4 w-4 mr-2" />
-              Burn Email
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={handleBurn}
+              data-testid="button-action-burn-mobile"
+              aria-label="Burn current email address"
+              className="hover-elevate"
+            >
+              <Trash2 className="h-4 w-4" />
             </Button>
           </div>
-        )}
+          {/* Domain Selector on right - Mobile */}
+          <Select
+            value={selectedDomain}
+            onValueChange={(domain) => {
+              setSelectedDomain(domain);
+              CacheManager.set("selected_domain", domain);
+            }}
+          >
+            <SelectTrigger 
+              id="domain-select-mobile" 
+              data-testid="select-domain-mobile"
+              className="domain-pill-trigger w-auto px-3 py-2 rounded-full border border-border transition-colors text-xs"
+            >
+              <span className="flex items-center gap-1">
+                <span className="text-sm">{selectedDomain && getDomainIcon(selectedDomain)}</span>
+                <span className="text-xs">{selectedDomain || "Domain"}</span>
+              </span>
+            </SelectTrigger>
+            <SelectContent className="min-w-[200px]">
+              {cachedDomains.map((domain) => (
+                <SelectItem 
+                  key={domain} 
+                  value={domain} 
+                  data-testid={`domain-option-mobile-${domain}`}
+                  className="select-item-animate cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-base">{getDomainIcon(domain)}</span>
+                    <span className="text-sm">{domain}</span>
+                    {isPremiumDomain(domain) && <Crown className="h-4 w-4 ml-1 flex-shrink-0 text-accent" />}
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
         {/* Desktop: 4-column button grid (distinct colors) */}
         <div className="hidden md:grid grid-cols-4 gap-4">
