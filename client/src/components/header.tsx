@@ -75,10 +75,11 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-1.5 hover:bg-secondary rounded-md transition-colors"
+              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
               data-testid="button-mobile-menu"
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
+              aria-controls="mobile-nav"
             >
               {isOpen ? (
                 <X className="h-5 w-5" />
@@ -91,7 +92,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
         {/* Mobile Navigation - Full Screen Menu */}
         {isOpen && (
-          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe">
+          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe" id="mobile-nav">
             <div className="py-2 px-3 space-y-1">
               {/* Main Navigation Section */}
               <div className="space-y-1">

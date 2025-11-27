@@ -306,11 +306,12 @@ export function InboxList({
           )}
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={onRefresh}
             disabled={isLoading}
             data-testid="button-refresh"
-            aria-label="Refresh inbox manually"
+            aria-label="Refresh inbox to check for new emails"
+            title="Refresh inbox"
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
           </Button>
@@ -323,6 +324,8 @@ export function InboxList({
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="search"
+            data-testid="input-search-emails"
+            aria-label="Search emails by sender, subject, or recipient"
             placeholder="Search by sender or subject..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

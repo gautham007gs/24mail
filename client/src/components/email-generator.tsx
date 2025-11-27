@@ -212,13 +212,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     <div className="space-y-6">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
-        <div className="flex items-start gap-3 rounded-lg border border-accent/30 bg-accent/5 p-4 animate fade-in-up">
-          <Bell className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+        <div className="flex items-start gap-4 rounded-lg border border-primary/30 bg-primary/5 p-5 md:p-6 hover-elevate shadow-sm" data-testid="notification-banner">
+          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5 font-bold" aria-hidden="true" />
           <div className="flex-1 space-y-2">
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-sm font-bold text-foreground">
               Get notified of new emails
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Enable desktop notifications to know instantly when emails arrive
             </p>
           </div>
@@ -227,6 +227,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               size="sm"
               onClick={handleEnableNotifications}
               data-testid="button-enable-notifications"
+              aria-label="Enable notifications"
             >
               Enable
             </Button>
@@ -235,6 +236,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               variant="ghost"
               onClick={() => setShowNotificationBanner(false)}
               data-testid="button-dismiss-notifications"
+              aria-label="Dismiss notification banner"
             >
               Dismiss
             </Button>
@@ -254,13 +256,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-5 sm:p-6 md:p-8 lg:p-10 space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg">
+      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-14 glassmorphic border border-white/20 dark:border-white/10 animate-gradient-bg" data-testid="email-generator-card">
         {/* Section Title */}
-        <div className="text-center space-y-2">
-          <h2 className="text-heading-sm text-foreground">
+        <div className="text-center space-y-3">
+          <h2 className="text-heading text-foreground font-black">
             Your Temporary Email Address
           </h2>
-          <p className="text-caption text-muted-foreground">
+          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
             Instant • Secure • No Signup Required
           </p>
         </div>
