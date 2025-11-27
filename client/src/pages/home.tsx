@@ -1,29 +1,25 @@
 import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Helmet } from "react-helmet";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { type EmailSummary, type Domain } from "@shared/schema";
-import { EmailGenerator } from "@/components/email-generator";
-import { InboxList } from "@/components/inbox-list";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 
-// Lazy load below-the-fold components for faster initial load
+// Lazy load Helmet for SEO (not critical for initial render)
+const Helmet = lazy(() => import("react-helmet").then(m => ({ default: m.Helmet })));
+
+// Lazy load heavy components for faster initial paint
+const EmailGenerator = lazy(() => import("@/components/email-generator").then(m => ({ default: m.EmailGenerator })));
+const InboxList = lazy(() => import("@/components/inbox-list").then(m => ({ default: m.InboxList })));
 const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
 const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
-
-// Lazy load use cases for better initial render
-const UseCasesSection = lazy(() => new Promise(resolve => {
-  setTimeout(() => {
-    resolve(import("@/components/use-cases-section").then(m => ({ default: m.UseCasesSection })));
-  }, 500);
-}));
+const UseCasesSection = lazy(() => import("@/components/use-cases-section").then(m => ({ default: m.UseCasesSection })));
 
 export default function Home() {
   const jsonLd = {
