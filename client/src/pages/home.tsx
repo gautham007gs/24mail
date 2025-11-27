@@ -355,7 +355,7 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-border/30 fade-in">
+          <div className="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 border-t border-border/30 fade-in">
             <InboxList
               emails={displayedEmails}
               isLoading={isLoadingInbox}
@@ -368,24 +368,24 @@ export default function Home() {
           </div>
 
           {/* Trust Section - Why You Can Trust Us */}
-          <Suspense fallback={<div className="h-64 bg-muted/30 rounded-lg animate-pulse mt-16 md:mt-20" />}>
+          <Suspense fallback={<div className="h-64 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
             <TrustSection />
           </Suspense>
 
           {/* Use Cases Section - Lazy loaded for better LCP */}
-          <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-16 md:mt-20" />}>
+          <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
             <UseCasesSection />
           </Suspense>
 
           {/* How It Works Section - Lazy loaded for faster initial render */}
-          <div className="mt-20 pt-8 md:pt-12 border-t border-border/30 fade-in">
+          <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
             <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
               <HowItWorks />
             </Suspense>
           </div>
 
           {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
-          <div className="mt-20 space-y-20 fade-in">
+          <div className="mt-24 md:mt-32 pt-16 md:pt-20 space-y-20 fade-in">
             {/* Unified Social Proof */}
             <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
               <section>

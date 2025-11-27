@@ -254,7 +254,7 @@ export function InboxList({
   const newEmailCount = unreadIds.length;
 
   return (
-    <div className="space-y-5 md:space-y-6">
+    <div className="space-y-5 md:space-y-6 shadow-sm">
       {/* Header with Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
@@ -689,8 +689,13 @@ function AvatarPlaceholder({ email, emailId }: { email: string; emailId: string 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center px-4">
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted/40 mb-2 animate-pulse-gentle">
-        <Inbox className="h-10 w-10 text-muted-foreground" />
+      <div className="relative mb-6">
+        {/* Soft gradient background shape */}
+        <div className="absolute inset-0 h-32 w-32 rounded-full bg-gradient-to-br from-accent/15 to-accent/5 blur-2xl" />
+        {/* Icon */}
+        <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 shadow-sm">
+          <Inbox className="h-10 w-10 text-accent/60" />
+        </div>
       </div>
       <h3 className="text-title font-semibold text-foreground mt-6" data-testid="text-empty-title">
         {emptyMessage}
