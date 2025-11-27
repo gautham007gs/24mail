@@ -340,8 +340,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </Button>
             </div>
 
-            {/* Secondary Row - New Email & Burn - Smaller icons */}
-            <div className="grid grid-cols-2 gap-2">
+            {/* Secondary Row - New Email, QR & Burn */}
+            <div className="grid grid-cols-3 gap-2">
               <Button
                 onClick={handleGenerateWithDomain}
                 disabled={domains.length === 0}
@@ -352,6 +352,17 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 aria-label="New Email"
               >
                 <RotateCw className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                onClick={() => setShowQRCode(true)}
+                disabled={!currentEmail}
+                variant="secondary"
+                data-testid="button-action-qr"
+                size="sm"
+                className="text-xs font-semibold"
+                aria-label="Share QR Code"
+              >
+                <QrCode className="h-3.5 w-3.5" />
               </Button>
               <Button
                 onClick={handleBurn}
@@ -385,6 +396,16 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             >
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh
+            </Button>
+            <Button
+              onClick={() => setShowQRCode(true)}
+              disabled={!currentEmail}
+              variant="outline"
+              data-testid="button-action-qr"
+              aria-label="Share QR Code"
+            >
+              <QrCode className="h-4 w-4 mr-2" />
+              QR Code
             </Button>
             <Button
               onClick={handleGenerateWithDomain}
