@@ -125,6 +125,17 @@ export function InboxList({
     }
     return [];
   });
+  const ariaLiveRef = useRef<HTMLDivElement>(null);
+
+  // Announce new emails to screen readers
+  useEffect(() => {
+    if (emails.length > previousEmailCount && ariaLiveRef.current) {
+      const newCount = emails.length - previousEmailCount;
+      const message = newCount === 1 ? "1 new email received" : `${newCount} new emails received`;
+      ariaLiveRef.current.textContent = message;
+    }
+    previousEmailCount = emails.length;
+  }, [emails.length]);
 
   // Fetch expanded email details
   const { data: expandedEmail, isLoading: isLoadingExpandedEmail } = useQuery<Email>({

@@ -41,10 +41,30 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const [expiryTime, setExpiryTime] = useState<string>("");
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
   const expiryDateRef = useRef<number | null>(null);
+  const copyStatusRef = useRef<HTMLDivElement>(null);
 
   const { toast } = useToast();
   const { permission, isSupported, requestPermission } = useNotifications();
   const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
+
+  // Keyboard shortcuts for accessibility
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Ctrl+C: Copy email
+      if ((e.ctrlKey || e.metaKey) && e.key === 'c' && currentEmail && !copied) {
+        e.preventDefault();
+        handleCopy();
+      }
+      // Ctrl+G: Generate new email
+      if ((e.ctrlKey || e.metaKey) && e.key === 'g' && domains.length > 0) {
+        e.preventDefault();
+        handleGenerateWithDomain();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentEmail, domains, copied]);
 
   // Cache domains list (never changes during session)
   const cachedDomains = useMemo(() => {
@@ -379,7 +399,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             disabled={!currentEmail}
             data-testid="button-action-copy"
             className="h-13 btn-success text-sm font-semibold btn-hover-scale active-elevate-2"
-            aria-label="Copy email address to clipboard"
+            aria-label="Copy email address to clipboard (Ctrl+C)"
+            title="Copy email (Ctrl+C)"
           >
             <Copy className="h-4 w-4 mr-2" />
             Copy
@@ -390,7 +411,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             disabled={domains.length === 0}
             data-testid="button-action-change"
             className="h-13 text-sm font-semibold btn-hover-scale active-elevate-2"
-            aria-label="Generate new email address"
+            aria-label="Generate new email address (Ctrl+G)"
+            title="Generate new email (Ctrl+G)"
           >
             <RotateCw className="h-4 w-4 mr-2" />
             New

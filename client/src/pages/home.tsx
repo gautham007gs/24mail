@@ -309,8 +309,19 @@ export default function Home() {
           }}
         />
         
-        <main className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
+        <main id="main-content" className="flex-1 px-4 py-8 md:px-6 md:py-12 w-full">
         <div className="mx-auto max-w-3xl">
+          {/* Aria-live region for new email notifications */}
+          <div 
+            ref={(el) => {
+              if (el) (el as any).__ariaLiveRef = el;
+            }}
+            role="status" 
+            aria-live="polite" 
+            aria-atomic="true"
+            className="sr-only"
+            data-testid="aria-live-inbox"
+          />
           {/* Hero Section - Above the Fold */}
           <div className="text-center mb-8 md:mb-12 space-y-5">
             <h1 className="text-display text-foreground">
