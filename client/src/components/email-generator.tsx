@@ -250,7 +250,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     <div className="space-y-6">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
-        <div className="flex items-start gap-4 rounded-lg border border-primary/30 bg-primary/5 p-5 md:p-6 hover-elevate shadow-sm" data-testid="notification-banner">
+        <div className="flex items-start gap-4 rounded-lg border border-primary/30 p-5 md:p-6 hover-elevate" data-testid="notification-banner">
           <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5 font-bold" aria-hidden="true" />
           <div className="flex-1 space-y-2">
             <p className="text-sm font-bold text-foreground">
@@ -415,7 +415,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             <SelectTrigger 
               id="domain-select" 
               data-testid="select-domain"
-              className="domain-pill-trigger w-auto px-4 py-2 rounded-full border border-border bg-card hover:bg-muted/50 transition-colors text-sm font-medium flex items-center gap-2"
+              className="domain-pill-trigger w-auto px-4 py-2 rounded-full border border-border transition-colors text-sm font-medium flex items-center gap-2"
             >
               <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
               <span className="text-xs sm:text-sm">{selectedDomain || "Select domain"}</span>
@@ -503,7 +503,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <SelectTrigger 
                 id="domain-select-mobile" 
                 data-testid="select-domain-mobile"
-                className="domain-pill-trigger w-full px-3 py-2 rounded-lg border border-border bg-card hover:bg-muted/50 transition-colors text-sm"
+                className="domain-pill-trigger w-full px-3 py-2 rounded-lg border border-border transition-colors text-sm"
               >
                 <span className="flex items-center gap-2">
                   <span className="text-base">{selectedDomain && getDomainIcon(selectedDomain)}</span>
