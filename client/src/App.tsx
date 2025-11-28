@@ -73,7 +73,7 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="system" storageKey="tempmail-theme">
+      <ThemeProvider defaultTheme="dark" storageKey="tempmail-theme">
         <LanguageProvider>
           <NotificationProvider>
             <TooltipProvider>
