@@ -4,24 +4,32 @@ import { Card } from "@/components/ui/card";
 export function TrustSection() {
   const trustItems = [
     {
-      icon: <Eye className="h-7 w-7" />,
+      icon: Eye,
       title: "No Tracking",
-      description: "We never log your activity. Complete privacy guaranteed."
+      subtitle: "Zero logs — we can't access your inbox.",
+      description: "We never log your activity. Complete privacy guaranteed.",
+      isDominant: true
     },
     {
-      icon: <ShieldAlert className="h-7 w-7" />,
+      icon: ShieldAlert,
       title: "No Data Storage",
-      description: "Emails auto-delete. Zero logs kept. Ever."
+      subtitle: "Emails auto-delete — nothing stored.",
+      description: "Emails auto-delete. Zero logs kept. Ever.",
+      isDominant: false
     },
     {
-      icon: <Zap className="h-7 w-7" />,
+      icon: Zap,
       title: "Instant Setup",
-      description: "No signup. No forms. Start immediately."
+      subtitle: "No signup needed — start immediately.",
+      description: "No signup. No forms. Start immediately.",
+      isDominant: false
     },
     {
-      icon: <Lock className="h-7 w-7" />,
+      icon: Lock,
       title: "Cryptographic Security",
-      description: "Military-grade random email generation."
+      subtitle: "Military-grade encryption in every request.",
+      description: "Military-grade random email generation.",
+      isDominant: false
     }
   ];
 
@@ -37,28 +45,64 @@ export function TrustSection() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 px-4">
-        {trustItems.map((item, index) => (
-          <Card 
-            key={index}
-            className="p-7 md:p-8 border border-border/20 hover:border-border/40 bg-card/30 hover:bg-card/50 transition-all duration-300 group"
-          >
-            <div className="flex flex-col h-full gap-5">
-              <div className="p-3.5 rounded-lg bg-background/60 group-hover:bg-background w-fit">
-                <div className="text-foreground/70 group-hover:text-foreground transition-colors">
-                  {item.icon}
+        {trustItems.map((item, index) => {
+          const Icon = item.icon;
+          
+          return (
+            <Card 
+              key={index}
+              className={`group overflow-hidden transition-all duration-300 ${
+                item.isDominant
+                  ? "lg:col-span-1 p-7 md:p-9 border-2 border-primary bg-primary/8 hover:bg-primary/12 shadow-lg hover:shadow-xl"
+                  : "p-6 md:p-7 border border-border/20 hover:border-border/40 bg-muted/20 hover:bg-muted/30"
+              }`}
+            >
+              <div className="flex flex-col h-full gap-4 md:gap-5">
+                {/* Icon Container */}
+                <div className={`rounded-xl w-fit p-4 md:p-5 transition-all duration-300 ${
+                  item.isDominant
+                    ? "bg-primary/15 group-hover:bg-primary/20"
+                    : "bg-muted/40 group-hover:bg-muted/60"
+                }`}>
+                  <Icon className={`transition-all duration-300 ${
+                    item.isDominant
+                      ? "h-10 w-10 md:h-12 md:w-12 text-primary group-hover:text-primary/90"
+                      : "h-7 w-7 md:h-8 md:w-8 text-muted-foreground group-hover:text-foreground/70"
+                  }`} />
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className={`font-bold text-base md:text-lg mb-1.5 transition-colors ${
+                    item.isDominant
+                      ? "text-primary"
+                      : "text-foreground"
+                  }`}>
+                    {item.title}
+                  </h3>
+                  
+                  {/* Explanatory Subtitle - Key Proof Point */}
+                  <p className={`text-xs md:text-sm font-medium mb-2.5 transition-colors ${
+                    item.isDominant
+                      ? "text-primary/80"
+                      : "text-muted-foreground/70"
+                  }`}>
+                    {item.subtitle}
+                  </p>
+                  
+                  {/* Description */}
+                  <p className={`text-sm leading-relaxed transition-colors ${
+                    item.isDominant
+                      ? "text-foreground/80"
+                      : "text-muted-foreground"
+                  }`}>
+                    {item.description}
+                  </p>
                 </div>
               </div>
-              <div>
-                <h3 className="font-bold text-base text-foreground mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          );
+        })}
       </div>
     </section>
   );
