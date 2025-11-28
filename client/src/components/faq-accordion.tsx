@@ -11,9 +11,9 @@ export function FAQAccordion() {
       <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-8 md:py-12">
         {/* Inner container for centered content */}
         <div className="px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="w-full max-w-6xl mx-auto">
-            {/* FAQ Items Grid - Two columns on large screens */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          <div className="w-full max-w-4xl mx-auto">
+            {/* FAQ Items - Single column */}
+            <div className="space-y-4 md:space-y-5">
               {faqItems.map((item, idx) => (
                 <div
                   key={idx}
