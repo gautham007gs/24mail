@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
+import { useTranslation } from "@/hooks/use-translation";
 
 interface HeaderProps {
   domains?: Domain[];
@@ -18,14 +19,15 @@ const isPremiumDomain = (domain: string): boolean => {
 };
 
 export function Header({ domains = [], selectedDomain = "", onDomainChange }: HeaderProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [showDomainMenu, setShowDomainMenu] = useState(false);
   const [location] = useLocation();
 
   const navItems = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "Blog", href: "/blog", icon: BookOpen },
-    { label: "Stories", href: "/success-stories", icon: Award },
+    { label: t("header.home"), href: "/", icon: Home },
+    { label: t("header.blog"), href: "/blog", icon: BookOpen },
+    { label: t("header.stories"), href: "/success-stories", icon: Award },
   ];
 
   const isActive = (href: string) => location === href;
@@ -96,8 +98,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     aria-expanded={showDomainMenu}
                     aria-haspopup="listbox"
                   >
-                    <span>Domain:</span>
-                    <span className="font-semibold text-accent">{selectedDomain || "Choose"}</span>
+                    <span>{t("header.domain")}:</span>
+                    <span className="font-semibold text-accent">{selectedDomain || t("header.choose")}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
                   </button>
                   {showDomainMenu && (

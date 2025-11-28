@@ -72,6 +72,46 @@ export const translations: Record<Language, Record<string, string>> = {
     "blog.trending": "Trending",
     "blog.indepth": "In-Depth",
     "blog.back": "Back to Home",
+    
+    // Header/Navigation
+    "header.home": "Home",
+    "header.blog": "Blog",
+    "header.stories": "Stories",
+    "header.domain": "Domain",
+    "header.choose": "Choose",
+    
+    // Email Generator
+    "email.title": "Your Temporary Email",
+    "email.copy": "Copy",
+    "email.copied": "Copied!",
+    "email.generate": "Generate New Email",
+    "email.burn": "Burn & Generate",
+    "email.delete": "Delete All",
+    "email.qr": "QR Code",
+    "email.expires": "Expires in",
+    "email.expired": "Expired",
+    "email.notifications": "Get notified of new emails",
+    "email.enable": "Enable",
+    "email.dismiss": "Dismiss",
+    
+    // Inbox
+    "inbox.title": "Your Inbox",
+    "inbox.search": "Search emails...",
+    "inbox.refresh": "Refresh",
+    "inbox.deleteAll": "Delete All",
+    "inbox.empty": "Your inbox is empty",
+    "inbox.loading": "Loading emails...",
+    "inbox.noEmails": "No emails yet",
+    
+    // Social Proof
+    "social.title": "Proven at Scale",
+    "social.subtitle": "Trusted by developers, teams, and security professionals globally",
+    "social.emailsGenerated": "Emails Generated",
+    "social.processedDaily": "processed daily",
+    "social.activeUsers": "Active Users",
+    "social.worldwide": "worldwide",
+    "social.private": "Private",
+    "social.zeroTracking": "zero tracking",
   },
   es: {
     // Header
@@ -288,6 +328,23 @@ export const translations: Record<Language, Record<string, string>> = {
     "blog.trending": "Tendances",
     "blog.indepth": "Approfondi",
     "blog.back": "Retour à l'Accueil",
+    
+    // Header/Navigation
+    "header.home": "Accueil",
+    "header.blog": "Blog",
+    "header.stories": "Histoires",
+    "header.domain": "Domaine",
+    "header.choose": "Choisir",
+    
+    // Social Proof
+    "social.title": "Prouvé à l'Échelle",
+    "social.subtitle": "Approuvé par les développeurs, les équipes et les professionnels de la sécurité dans le monde",
+    "social.emailsGenerated": "Emails Générés",
+    "social.processedDaily": "traités quotidiennement",
+    "social.activeUsers": "Utilisateurs Actifs",
+    "social.worldwide": "dans le monde",
+    "social.private": "Privé",
+    "social.zeroTracking": "zéro suivi",
   },
   de: {
     // Header
@@ -360,6 +417,23 @@ export const translations: Record<Language, Record<string, string>> = {
     "blog.trending": "Trends",
     "blog.indepth": "Tiefgreifend",
     "blog.back": "Zurück zur Startseite",
+    
+    // Header/Navigation
+    "header.home": "Startseite",
+    "header.blog": "Blog",
+    "header.stories": "Geschichten",
+    "header.domain": "Domäne",
+    "header.choose": "Wählen",
+    
+    // Social Proof
+    "social.title": "Im Maßstab bewährt",
+    "social.subtitle": "Von Entwicklern, Teams und Sicherheitsfachleuten weltweit vertraut",
+    "social.emailsGenerated": "Emails Generiert",
+    "social.processedDaily": "täglich verarbeitet",
+    "social.activeUsers": "Aktive Benutzer",
+    "social.worldwide": "weltweit",
+    "social.private": "Privat",
+    "social.zeroTracking": "null Verfolgung",
   },
   hi: {
     // Header
@@ -432,6 +506,23 @@ export const translations: Record<Language, Record<string, string>> = {
     "blog.trending": "ट्रेंडिंग",
     "blog.indepth": "गहन",
     "blog.back": "होम पर वापस जाएं",
+    
+    // Header/Navigation
+    "header.home": "होम",
+    "header.blog": "ब्लॉग",
+    "header.stories": "कहानियां",
+    "header.domain": "डोमेन",
+    "header.choose": "चुनें",
+    
+    // Social Proof
+    "social.title": "पैमाने पर सिद्ध",
+    "social.subtitle": "दुनिया भर के डेवलपर्स, टीमों और सुरक्षा पेशेवरों द्वारा विश्वसनीय",
+    "social.emailsGenerated": "ईमेल जनरेट किए गए",
+    "social.processedDaily": "प्रतिदिन संसाधित",
+    "social.activeUsers": "सक्रिय उपयोगकर्ता",
+    "social.worldwide": "दुनिया भर में",
+    "social.private": "निजी",
+    "social.zeroTracking": "शून्य ट्रैकिंग",
   },
 };
 

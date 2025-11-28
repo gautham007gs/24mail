@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Mail, Users, Shield } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useTranslation } from "@/hooks/use-translation";
 
 interface StatItem {
   icon: React.ReactNode;
@@ -48,6 +49,7 @@ function AnimatedCounter({ target, shouldAnimate }: { target: string; shouldAnim
 }
 
 export function UnifiedSocialProof() {
+  const { t } = useTranslation();
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -69,20 +71,20 @@ export function UnifiedSocialProof() {
     {
       icon: <Mail className="h-6 w-6" />,
       value: "1M+",
-      label: "Emails Generated",
-      sublabel: "processed daily"
+      label: t("social.emailsGenerated"),
+      sublabel: t("social.processedDaily")
     },
     {
       icon: <Users className="h-6 w-6" />,
       value: "500K+",
-      label: "Active Users",
-      sublabel: "worldwide"
+      label: t("social.activeUsers"),
+      sublabel: t("social.worldwide")
     },
     {
       icon: <Shield className="h-6 w-6" />,
       value: "100%",
-      label: "Private",
-      sublabel: "zero tracking"
+      label: t("social.private"),
+      sublabel: t("social.zeroTracking")
     }
   ];
 
@@ -90,10 +92,10 @@ export function UnifiedSocialProof() {
     <div ref={containerRef} className="space-y-3">
       <div className="text-center max-w-2xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 leading-tight">
-          Proven at Scale
+          {t("social.title")}
         </h2>
         <p className="text-sm md:text-base text-muted-foreground">
-          Trusted by developers, teams, and security professionals globally
+          {t("social.subtitle")}
         </p>
       </div>
 
