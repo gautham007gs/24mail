@@ -44,7 +44,7 @@ Data validation is performed using Zod schemas for `EmailSummary`, `Email`, and 
 
 ✅ **Section Background Variations** - Added visual depth without borders
 - **TrustSection (Privacy Built In)**: `bg-gradient-to-b from-muted/20 to-transparent`
-- **HowItWorks**: `bg-gradient-to-b from-transparent via-accent/5 to-transparent`
+- **HowItWorks**: No background (clean, simple - as requested)
 - **FAQ Section**: `bg-gradient-to-b from-muted/15 to-transparent`
 - Creates subtle visual distinction between sections
 - Full-width backgrounds with proper edge padding
