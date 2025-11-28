@@ -91,11 +91,6 @@ export function AnimatedDemo() {
           ))}
         </div>
       </div>
-
-      {/* Caption */}
-      <p className="text-center text-xs md:text-sm text-muted-foreground mt-4">
-        Loops every 9 seconds
-      </p>
     </div>
   );
 }
