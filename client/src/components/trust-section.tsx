@@ -6,16 +6,19 @@ export function TrustSection() {
     {
       icon: Eye,
       title: "No Tracking",
+      subtitle: "Zero logs — we can't access your inbox.",
       isDominant: true
     },
     {
       icon: Shield,
       title: "No Data Storage",
+      subtitle: "Emails auto-delete — nothing stored.",
       isDominant: false
     },
     {
       icon: Lock,
       title: "Cryptographic Security",
+      subtitle: "Military-grade encryption in every request.",
       isDominant: false
     }
   ];
@@ -44,7 +47,7 @@ export function TrustSection() {
                   : "p-8 md:p-10 border border-border/30 hover:border-border/50 bg-muted/15 hover:bg-muted/25 transition-all"
               }`}
             >
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-5">
                 {/* Icon */}
                 <div className={`w-fit rounded-lg p-3.5 md:p-4 transition-all duration-300 ${
                   item.isDominant
@@ -59,13 +62,24 @@ export function TrustSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className={`font-bold text-lg md:text-xl transition-colors ${
-                  item.isDominant
-                    ? "text-primary"
-                    : "text-foreground"
-                }`}>
-                  {item.title}
-                </h3>
+                <div>
+                  <h3 className={`font-bold text-lg md:text-xl mb-2 transition-colors ${
+                    item.isDominant
+                      ? "text-primary"
+                      : "text-foreground"
+                  }`}>
+                    {item.title}
+                  </h3>
+
+                  {/* One-line subtitle explanation */}
+                  <p className={`text-sm leading-relaxed transition-colors ${
+                    item.isDominant
+                      ? "text-foreground/75"
+                      : "text-muted-foreground/75"
+                  }`}>
+                    {item.subtitle}
+                  </p>
+                </div>
               </div>
             </Card>
           );
