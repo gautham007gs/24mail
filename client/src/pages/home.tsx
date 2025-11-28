@@ -20,7 +20,6 @@ const TrustSection = lazy(() => import("@/components/trust-section").then(m => (
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
-const UseCasesSection = lazy(() => import("@/components/use-cases-section").then(m => ({ default: m.UseCasesSection })));
 
 export default function Home() {
   const jsonLd = {
@@ -380,11 +379,6 @@ export default function Home() {
           {/* Trust Section - Why You Can Trust Us */}
           <Suspense fallback={<div className="h-64 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
             <TrustSection />
-          </Suspense>
-
-          {/* Use Cases Section - Lazy loaded for better LCP */}
-          <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
-            <UseCasesSection />
           </Suspense>
 
           {/* How It Works Section - Lazy loaded for faster initial render */}
