@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Send, Copy, Menu, X } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Copy, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
@@ -20,6 +20,7 @@ export default function BlogPost() {
   const [toc, setToc] = useState<ReturnType<typeof generateTableOfContents>>([]);
   const [isTocOpen, setIsTocOpen] = useState(false);
   const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
+  const [readProgress, setReadProgress] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +34,20 @@ export default function BlogPost() {
       setContentBlocks(blocks);
     }
   }, [post]);
+
+  // Track reading progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight - windowHeight;
+      const scrolled = window.scrollY;
+      const progress = docHeight > 0 ? (scrolled / docHeight) * 100 : 0;
+      setReadProgress(Math.min(progress, 100));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!post) {
     return (
@@ -86,15 +101,19 @@ export default function BlogPost() {
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={post.image} />
         <meta property="og:site_name" content="TempMail" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={post.image} />
         <meta name="article:published_time" content={post.date} />
         <meta name="article:author" content={post.author} />
         <link rel="canonical" href={`https://tempmail.com/blog/${post.slug}`} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-border/30 z-50">
+        <div
+          className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-300"
+          style={{ width: `${readProgress}%` }}
+        />
+      </div>
 
       <div className="min-h-screen bg-background flex flex-col lg:flex-row">
         {/* Desktop TOC Sidebar */}
@@ -126,7 +145,7 @@ export default function BlogPost() {
           <div className="lg:hidden fixed bottom-6 right-6 z-40">
             <Button
               size="icon"
-              className="rounded-full shadow-lg h-12 w-12 bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="rounded-full shadow-lg h-12 w-12 bg-primary hover:bg-primary/90 text-white"
               onClick={() => setIsTocOpen(!isTocOpen)}
               aria-label={isTocOpen ? "Close table of contents" : "Open table of contents"}
               data-testid="button-mobile-toc-toggle"
@@ -176,8 +195,21 @@ export default function BlogPost() {
 
         <div className="flex-1">
           <div className="border-b border-border/50">
-            <div className="mx-auto max-w-4xl px-4 md:px-6 py-8">
-              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
+            <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
+              {/* Breadcrumb Navigation */}
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
+                <Link href="/" className="hover:text-foreground transition-colors">
+                  Home
+                </Link>
+                <ChevronRight className="h-3 w-3" />
+                <Link href="/blog" className="hover:text-foreground transition-colors">
+                  Blog
+                </Link>
+                <ChevronRight className="h-3 w-3" />
+                <span className="text-foreground font-medium truncate">{post.title}</span>
+              </div>
+
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Blog
               </Link>
@@ -185,15 +217,15 @@ export default function BlogPost() {
           </div>
 
         {/* CTA Banner */}
-        <div className="border-b border-border/50 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10">
+        <div className="border-b border-border/50 bg-gradient-to-r from-primary/10 to-primary/5">
           <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="text-sm md:text-base font-semibold text-foreground">Try TempMail Now</p>
+                <p className="text-sm md:text-base font-semibold text-foreground">Try Burner Email Now</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Get your free temporary email instantly</p>
               </div>
               <Link href="/" className="flex-shrink-0 w-full sm:w-auto">
-                <Button className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-email-banner-cta">
+                <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-email-banner-cta">
                   Generate Email
                 </Button>
               </Link>
@@ -307,12 +339,17 @@ export default function BlogPost() {
             </div>
           </section>
 
-          {/* Keywords */}
+          {/* Keywords - Now Clickable */}
           <div className="flex flex-wrap gap-2 mb-8">
             {post.keywords.map((keyword) => (
-              <span key={keyword} className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full">
+              <Link
+                key={keyword}
+                href={`/blog?search=${encodeURIComponent(keyword)}`}
+                className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors no-underline"
+                data-testid={`keyword-link-${keyword}`}
+              >
                 #{keyword}
-              </span>
+              </Link>
             ))}
           </div>
 
@@ -330,7 +367,7 @@ export default function BlogPost() {
             </Button>
           </div>
 
-          {/* Share Article Section */}
+          {/* Share Article Section - Consolidated */}
           <div className="py-8 border-y border-border/50 mb-12">
             <h3 className="text-lg font-bold text-foreground mb-4">Share This Article</h3>
             <div className="flex flex-wrap gap-2">
@@ -348,7 +385,7 @@ export default function BlogPost() {
                 data-testid="button-share-twitter-article"
               >
                 <Share2 className="h-4 w-4 mr-2" />
-                Share on Twitter
+                Twitter
               </Button>
               <Button
                 variant="outline"
@@ -364,23 +401,7 @@ export default function BlogPost() {
                 data-testid="button-share-whatsapp-article"
               >
                 <MessageCircle className="h-4 w-4 mr-2" />
-                Share on WhatsApp
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const url = `${window.location.origin}/blog/${post.slug}`;
-                  shareArticleOn('telegram', {
-                    title: post.title,
-                    url,
-                    summary: post.metaDescription,
-                  });
-                }}
-                data-testid="button-share-telegram-article"
-              >
-                <Send className="h-4 w-4 mr-2" />
-                Share on Telegram
+                WhatsApp
               </Button>
               <Button
                 variant="outline"
@@ -390,7 +411,7 @@ export default function BlogPost() {
                   const success = await copyArticleLink(url);
                   toast({
                     title: success ? "Copied!" : "Failed to copy",
-                    description: success ? "Article link copied to clipboard" : "Could not copy link",
+                    description: success ? `${url}` : "Could not copy link",
                   });
                 }}
                 data-testid="button-copy-article-link"

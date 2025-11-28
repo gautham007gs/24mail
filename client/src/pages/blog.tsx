@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, Search, BookOpen, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search, BookOpen, Sparkles, X, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<"latest" | "popular" | "trending">("latest");
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -23,6 +24,15 @@ export default function Blog() {
   };
 
   const categories = useMemo(() => Array.from(new Set(blogPosts.map(p => p.category))), []);
+
+  // Count posts per category
+  const categoryCount = useMemo(() => {
+    const counts: Record<string, number> = {};
+    blogPosts.forEach(post => {
+      counts[post.category] = (counts[post.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
 
   const filteredPosts = useMemo(() => {
     let filtered = blogPosts;
@@ -42,9 +52,24 @@ export default function Blog() {
       filtered = filtered.filter(post => post.category === selectedCategory);
     }
 
-    // Sort by date (newest first)
-    return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [searchQuery, selectedCategory]);
+    // Sort by selection
+    if (sortBy === "latest") {
+      filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    } else if (sortBy === "trending") {
+      // Assume featured posts are trending
+      filtered.sort((a, b) => {
+        if (a.featured === b.featured) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        }
+        return a.featured ? -1 : 1;
+      });
+    } else if (sortBy === "popular") {
+      // Sort by read time (more complex articles = more engagement)
+      filtered.sort((a, b) => b.readTime - a.readTime);
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory, sortBy]);
 
   return (
     <>
@@ -85,6 +110,7 @@ export default function Blog() {
         <main className="mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
           {/* Search & Filter Bar */}
           <div className="mb-8 space-y-4">
+            {/* Search Input */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
@@ -109,7 +135,7 @@ export default function Blog() {
               )}
             </div>
 
-            {/* Category Filters */}
+            {/* Category Filters with Counts */}
             <div className="flex flex-wrap gap-2">
               <Button
                 variant={selectedCategory === null ? "default" : "outline"}
@@ -119,6 +145,7 @@ export default function Blog() {
                 data-testid="button-category-all"
               >
                 All Articles
+                <span className="ml-2 text-xs font-semibold opacity-70">({blogPosts.length})</span>
               </Button>
               {categories.map((category) => (
                 <Button
@@ -130,8 +157,42 @@ export default function Blog() {
                   data-testid={`button-category-${category}`}
                 >
                   {category}
+                  <span className="ml-2 text-xs font-semibold opacity-70">({categoryCount[category]})</span>
                 </Button>
               ))}
+            </div>
+
+            {/* Sort Options */}
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Sort by:</span>
+              <Button
+                variant={sortBy === "latest" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("latest")}
+                className="active-elevate-2"
+                data-testid="button-sort-latest"
+              >
+                Latest
+              </Button>
+              <Button
+                variant={sortBy === "trending" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("trending")}
+                className="active-elevate-2 flex items-center gap-1"
+                data-testid="button-sort-trending"
+              >
+                <TrendingUp className="h-3.5 w-3.5" />
+                Trending
+              </Button>
+              <Button
+                variant={sortBy === "popular" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("popular")}
+                className="active-elevate-2"
+                data-testid="button-sort-popular"
+              >
+                In-Depth
+              </Button>
             </div>
           </div>
 
@@ -164,7 +225,15 @@ export default function Blog() {
                     className="group h-full no-underline block"
                     data-testid={`card-blog-post-${post.id}`}
                   >
-                    <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all flex flex-col">
+                    <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all flex flex-col relative">
+                      {/* Featured Badge */}
+                      {post.featured && (
+                        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/90 text-white text-xs font-bold shadow-lg">
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Featured
+                        </div>
+                      )}
+
                       {/* Image with Skeleton */}
                       <div className="relative h-48 overflow-hidden bg-muted flex-shrink-0">
                         {!loadedImages.includes(post.id) && <BlogImageSkeleton />}
@@ -182,11 +251,13 @@ export default function Blog() {
                       {/* Content */}
                       <div className="p-5 flex flex-col flex-1">
                         {/* Meta */}
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-2 mb-3 flex-wrap">
                           <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
                             {post.category}
                           </span>
-                          <span className="text-xs text-muted-foreground">{post.readTime} min read</span>
+                          <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">
+                            {post.readTime} min read
+                          </span>
                         </div>
 
                         {/* Title */}
