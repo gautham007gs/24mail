@@ -97,28 +97,51 @@ export function UnifiedSocialProof() {
         </p>
       </div>
 
-      {/* Stats Grid - 3 on desktop, 2 on tablet/mobile */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 px-4 max-w-3xl mx-auto">
+      {/* Mobile: Minimal inline layout | Desktop: Card layout */}
+      {/* Mobile: 3 items in tight grid with just icon + number + label */}
+      <div className="md:hidden">
+        <div className="grid grid-cols-3 gap-2 px-2 max-w-md mx-auto">
+          {stats.map((item, idx) => (
+            <div
+              key={idx}
+              className="text-center py-3 animate-in fade-in-50 duration-500"
+              style={{ animationDelay: `${idx * 100}ms` }}
+            >
+              <div className="flex justify-center mb-1.5">
+                <div className="text-foreground/70">
+                  {item.icon}
+                </div>
+              </div>
+              <div className="text-xl font-bold text-foreground">
+                <AnimatedCounter target={item.value} shouldAnimate={shouldAnimate} />
+              </div>
+              <p className="text-xs font-semibold text-foreground mt-0.5 leading-tight">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: Card grid with full details */}
+      <div className="hidden md:grid grid-cols-3 gap-6 px-4 max-w-3xl mx-auto">
         {stats.map((item, idx) => (
           <Card
             key={idx}
-            className="p-4 md:p-8 border border-border/20 bg-card/30 hover:bg-card/50 transition-all group text-center animate-in fade-in-50 duration-500"
+            className="p-8 border border-border/20 bg-card/30 hover:bg-card/50 transition-all group text-center animate-in fade-in-50 duration-500"
             style={{ animationDelay: `${idx * 100}ms` }}
           >
-            <div className="space-y-2 md:space-y-4">
-              <div className="flex justify-center p-2 md:p-3 rounded-lg bg-background/60 group-hover:bg-background w-fit mx-auto">
+            <div className="space-y-4">
+              <div className="flex justify-center p-3 rounded-lg bg-background/60 group-hover:bg-background w-fit mx-auto">
                 <div className="text-foreground/70 group-hover:text-foreground transition-colors">
                   {item.icon}
                 </div>
               </div>
               <div>
-                <div className="text-2xl md:text-4xl font-bold text-foreground">
+                <div className="text-4xl font-bold text-foreground">
                   <AnimatedCounter target={item.value} shouldAnimate={shouldAnimate} />
                 </div>
-                <p className="text-xs md:text-base font-semibold text-foreground mt-1 md:mt-2">{item.label}</p>
-                {/* Sublabel hidden on mobile, shown on md+ */}
+                <p className="text-base font-semibold text-foreground mt-2">{item.label}</p>
                 {item.sublabel && (
-                  <p className="hidden md:block text-xs text-muted-foreground mt-1">{item.sublabel}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{item.sublabel}</p>
                 )}
               </div>
             </div>

@@ -6,7 +6,7 @@ export function FAQAccordion() {
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <div className="space-y-3 max-w-2xl mx-auto px-4">
+    <div className="space-y-3 max-w-2xl mx-auto px-4 py-8 md:py-12 -mx-4 sm:-mx-6 md:mx-0 sm:px-6 md:px-4 bg-gradient-to-b from-muted/15 to-transparent rounded-none md:rounded-lg">
       {faqItems.map((item, idx) => (
         <div
           key={idx}

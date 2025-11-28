@@ -24,7 +24,7 @@ export function TrustSection() {
   ];
 
   return (
-    <section className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30">
+    <section className="mt-24 md:mt-32 pt-16 md:pt-20 pb-8 md:pb-12 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 bg-gradient-to-b from-muted/20 to-transparent">
       <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
           Privacy Built In
