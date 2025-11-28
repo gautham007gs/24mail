@@ -54,8 +54,8 @@ export function TestimonialsCarousel() {
           aria-live="polite"
           aria-atomic="true"
         >
-          <div className="absolute top-0 right-0 opacity-5">
-            <Quote className="h-40 w-40 text-foreground" />
+          <div className="absolute -top-4 -right-4 opacity-10">
+            <Quote className="h-48 w-48 text-foreground" />
           </div>
 
           <div className="relative z-10 space-y-5">
@@ -72,7 +72,7 @@ export function TestimonialsCarousel() {
 
             {/* Quote - Normal weight, high contrast */}
             <blockquote className="text-base md:text-lg text-foreground font-normal leading-relaxed">
-              "{testimonial.quote}"
+              {testimonial.quote}
             </blockquote>
 
             {/* Use-case badge */}
@@ -120,8 +120,8 @@ export function TestimonialsCarousel() {
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && next()}
         >
-          <div className="absolute top-0 right-0 opacity-5">
-            <Quote className="h-40 w-40 text-foreground" />
+          <div className="absolute -top-4 -right-4 opacity-10">
+            <Quote className="h-48 w-48 text-foreground" />
           </div>
 
           <div className="relative z-10 space-y-5">
@@ -138,7 +138,7 @@ export function TestimonialsCarousel() {
 
             {/* Quote - Normal weight, high contrast */}
             <blockquote className="text-base md:text-lg text-foreground font-normal leading-relaxed line-clamp-3">
-              "{nextTestimonial.quote}"
+              {nextTestimonial.quote}
             </blockquote>
 
             {/* Use-case badge */}
@@ -186,8 +186,8 @@ export function TestimonialsCarousel() {
         aria-live="polite"
         aria-atomic="true"
       >
-        <div className="absolute top-0 right-0 opacity-5">
-          <Quote className="h-40 w-40 text-foreground" />
+        <div className="absolute -top-4 -right-4 opacity-10">
+          <Quote className="h-48 w-48 text-foreground" />
         </div>
 
         <div className="relative z-10 space-y-5">
@@ -204,7 +204,7 @@ export function TestimonialsCarousel() {
 
           {/* Quote - Normal weight, high contrast */}
           <blockquote className="text-base sm:text-lg text-foreground font-normal leading-relaxed">
-            "{testimonial.quote}"
+            {testimonial.quote}
           </blockquote>
 
           {/* Use-case badge */}
