@@ -6,55 +6,62 @@ export function UseCasesSection() {
     {
       icon: Newspaper,
       title: "Newsletter Signups",
-      description: "Sign up for newsletters and marketing emails without cluttering your real inbox"
+      description: "Unsubscribe anytime. Keep your real inbox clean from marketing emails.",
     },
     {
       icon: Microscope,
-      title: "Test Apps & Sites",
-      description: "Developer and QA testing without creating permanent accounts"
+      title: "App Testing",
+      description: "Test multiple instances without fake account restrictions.",
     },
     {
       icon: Gift,
-      title: "Free Trial Access",
-      description: "Use multiple trials without getting marked as a repeat customer"
+      title: "Free Trials",
+      description: "Stack unlimited trials without repeat customer flags.",
     },
     {
       icon: Lock,
-      title: "Avoid Data Breaches",
-      description: "If a site gets breached, your real email stays completely safe"
+      title: "Data Breach Protection",
+      description: "If the site leaks, your real email stays completely safe.",
     },
     {
       icon: Download,
-      title: "Download Files",
-      description: "Get files from sketchy sites without exposing your real identity"
+      title: "Untrusted Downloads",
+      description: "Grab files from sketchy sites without identity exposure.",
     },
     {
       icon: Eye,
-      title: "Online Privacy",
-      description: "Stay anonymous and avoid targeted ads and spam"
+      title: "Ad Privacy",
+      description: "Avoid targeted ads and behavioral tracking networks.",
     }
   ];
 
   return (
-    <section className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-border/20 fade-in-up">
-      <div className="text-center mb-12 md:mb-14 space-y-3">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">Use Cases</h2>
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto">Protect your real inbox with disposable email for any situation</p>
+    <section className="mt-20 md:mt-24 pt-16 md:pt-20 border-t border-border/10">
+      <div className="text-center mb-14 md:mb-16 max-w-2xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+          Built For Every Situation
+        </h2>
+        <p className="text-base md:text-lg text-muted-foreground">
+          From newsletters to testing—protect your inbox in every scenario.
+        </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 px-4">
         {useCases.map((useCase, index) => {
           const IconComponent = useCase.icon;
           return (
             <Card
               key={index}
-              className="p-6 md:p-7 border border-border/30 hover:border-border/60 hover:shadow-md transition-all group bg-card/40 hover:bg-card/70"
+              className="p-7 md:p-8 border border-border/20 hover:border-border/40 bg-card/30 hover:bg-card/50 transition-all duration-300 group"
             >
-              <div className="flex flex-col items-start space-y-4">
-                <div className="p-3 rounded-lg bg-background/80 group-hover:bg-background transition-colors">
-                  <IconComponent className="h-5 w-5 text-foreground/60" />
+              <div className="flex flex-col h-full gap-5">
+                <div className="p-3.5 rounded-lg bg-background/60 group-hover:bg-background w-fit">
+                  <IconComponent className="h-7 w-7 text-foreground/70 group-hover:text-foreground transition-colors" />
                 </div>
-                <h3 className="font-bold text-foreground text-sm md:text-base leading-tight">{useCase.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
+                <div>
+                  <h3 className="font-bold text-base text-foreground mb-2">{useCase.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
+                </div>
               </div>
             </Card>
           );

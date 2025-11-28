@@ -6,15 +6,11 @@ export function FAQAccordion() {
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <div 
-      className="space-y-3"
-      role="region"
-      aria-label="Frequently asked questions"
-    >
+    <div className="space-y-3 px-4">
       {faqItems.map((item, idx) => (
         <div
           key={idx}
-          className="border border-border/30 rounded-lg overflow-hidden hover:border-border/60 transition-all hover:shadow-md group"
+          className="border border-border/20 rounded-lg overflow-hidden transition-all group"
           data-testid={`faq-item-${idx}`}
           role="region"
           aria-labelledby={`faq-button-${idx}`}
@@ -22,14 +18,14 @@ export function FAQAccordion() {
           <button
             id={`faq-button-${idx}`}
             onClick={() => setExpanded(expanded === idx ? null : idx)}
-            className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/60 hover:bg-card/80 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14"
+            className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14"
             data-testid={`button-faq-${idx}`}
             aria-expanded={expanded === idx}
             aria-controls={`faq-answer-${idx}`}
           >
             <span className="font-semibold text-foreground pr-4 md:pr-5 text-sm md:text-base break-words">{item.question}</span>
             <ChevronDown
-              className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 min-w-5 ${
+              className={`h-5 w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 min-w-5 ${
                 expanded === idx ? "rotate-180" : ""
               }`}
               data-testid={`chevron-faq-${idx}`}
@@ -39,7 +35,7 @@ export function FAQAccordion() {
           {expanded === idx && (
             <div
               id={`faq-answer-${idx}`}
-              className="px-5 md:px-6 py-4 md:py-5 bg-background/50 text-muted-foreground border-t border-border/20 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
+              className="px-5 md:px-6 py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/20 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
               data-testid={`faq-answer-${idx}`}
               role="region"
             >
