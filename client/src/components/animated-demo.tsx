@@ -21,25 +21,17 @@ export function AnimatedDemo() {
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4">
-      {/* Demo Container - Moderately Wide */}
-      <div className="relative bg-gradient-to-r from-primary/10 via-primary/8 to-primary/10 border border-primary/25 rounded-2xl p-8 md:p-10 overflow-hidden shadow-md">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,.1) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }} />
-        </div>
-
+    <div className="w-full max-w-5xl mx-auto">
+      {/* Demo Container - Horizontal */}
+      <div className="relative bg-gradient-to-br from-primary/8 to-primary/3 border border-primary/20 rounded-2xl p-8 md:p-12 overflow-hidden">
         {/* Content - Horizontal Row */}
-        <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
+        <div className="relative flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
           {/* Step 1: Generate */}
           <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 0 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+            step === 0 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-18 h-18 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-primary/30 to-primary/15 flex items-center justify-center border-2 border-primary/50 shadow-sm">
-              <AtSign className="w-9 h-9 md:w-10 md:h-10 text-primary" />
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
+              <AtSign className="w-8 h-8 md:w-10 md:h-10 text-primary" />
             </div>
             <div className="text-center">
               <p className="text-sm md:text-base font-bold text-foreground">Generate</p>
@@ -52,13 +44,13 @@ export function AnimatedDemo() {
 
           {/* Step 2: Copy */}
           <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 1 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+            step === 1 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-18 h-18 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-primary/30 to-primary/15 flex items-center justify-center border-2 border-primary/50 shadow-sm">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
               {showCopied ? (
-                <Check className="w-9 h-9 md:w-10 md:h-10 text-primary animate-pulse" />
+                <Check className="w-8 h-8 md:w-10 md:h-10 text-primary animate-pulse" />
               ) : (
-                <Copy className="w-9 h-9 md:w-10 md:h-10 text-primary" />
+                <Copy className="w-8 h-8 md:w-10 md:h-10 text-primary" />
               )}
             </div>
             <div className="text-center">
@@ -72,10 +64,10 @@ export function AnimatedDemo() {
 
           {/* Step 3: Receive */}
           <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 2 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+            step === 2 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-18 h-18 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-primary/30 to-primary/15 flex items-center justify-center border-2 border-primary/50 shadow-sm">
-              <svg className="w-9 h-9 md:w-10 md:h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
+              <svg className="w-8 h-8 md:w-10 md:h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
@@ -88,7 +80,7 @@ export function AnimatedDemo() {
         </div>
 
         {/* Progress Indicator */}
-        <div className="flex justify-center gap-2.5 mt-8">
+        <div className="flex justify-center gap-2 mt-8">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
@@ -99,6 +91,11 @@ export function AnimatedDemo() {
           ))}
         </div>
       </div>
+
+      {/* Caption */}
+      <p className="text-center text-xs md:text-sm text-muted-foreground mt-4">
+        Loops every 9 seconds
+      </p>
     </div>
   );
 }
