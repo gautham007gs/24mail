@@ -87,37 +87,38 @@ export function UnifiedSocialProof() {
   ];
 
   return (
-    <div ref={containerRef} className="space-y-6">
+    <div ref={containerRef} className="space-y-3">
       <div className="text-center max-w-2xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-          Trusted at Scale
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 leading-tight">
+          Proven at Scale
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground">
-          Millions of emails processed. Zero compromises on privacy.
+        <p className="text-sm md:text-base text-muted-foreground">
+          Trusted by developers, teams, and security professionals globally
         </p>
       </div>
 
-      {/* Stats Grid - 3 Key Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 px-4 max-w-3xl mx-auto">
+      {/* Stats Grid - 3 on desktop, 2 on tablet/mobile */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 px-4 max-w-3xl mx-auto">
         {stats.map((item, idx) => (
           <Card
             key={idx}
-            className="p-6 md:p-8 border border-border/20 bg-card/30 hover:bg-card/50 transition-all group text-center animate-in fade-in-50 duration-500"
+            className="p-4 md:p-8 border border-border/20 bg-card/30 hover:bg-card/50 transition-all group text-center animate-in fade-in-50 duration-500"
             style={{ animationDelay: `${idx * 100}ms` }}
           >
-            <div className="space-y-4">
-              <div className="flex justify-center p-3 rounded-lg bg-background/60 group-hover:bg-background w-fit mx-auto">
+            <div className="space-y-2 md:space-y-4">
+              <div className="flex justify-center p-2 md:p-3 rounded-lg bg-background/60 group-hover:bg-background w-fit mx-auto">
                 <div className="text-foreground/70 group-hover:text-foreground transition-colors">
                   {item.icon}
                 </div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-foreground">
+                <div className="text-2xl md:text-4xl font-bold text-foreground">
                   <AnimatedCounter target={item.value} shouldAnimate={shouldAnimate} />
                 </div>
-                <p className="text-sm md:text-base font-semibold text-foreground mt-2">{item.label}</p>
+                <p className="text-xs md:text-base font-semibold text-foreground mt-1 md:mt-2">{item.label}</p>
+                {/* Sublabel hidden on mobile, shown on md+ */}
                 {item.sublabel && (
-                  <p className="text-xs md:text-sm text-muted-foreground mt-1">{item.sublabel}</p>
+                  <p className="hidden md:block text-xs text-muted-foreground mt-1">{item.sublabel}</p>
                 )}
               </div>
             </div>
