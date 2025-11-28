@@ -398,10 +398,10 @@ export default function Home() {
           {/* FAQ Section */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
             <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-              <section className="space-y-6">
-                <div className="text-center space-y-2">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
-                  <p className="text-muted-foreground">Everything you need to know about TempMail</p>
+              <section className="space-y-8 md:space-y-10">
+                <div className="text-center space-y-3 max-w-3xl mx-auto px-4">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground">Frequently Asked Questions</h2>
+                  <p className="text-base md:text-lg text-muted-foreground">Everything you need to know about Burner Email and temporary email services</p>
                 </div>
                 <FAQAccordion />
               </section>
