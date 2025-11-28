@@ -7,50 +7,53 @@ export function FAQAccordion() {
 
   return (
     <div className="w-full">
-      {/* Full-width background container */}
-      <div className="-mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-muted/20 to-transparent py-8 md:py-12">
-        <div className="max-w-5xl mx-auto">
-          {/* FAQ Items Grid - Two columns on large screens */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
-            {faqItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="border border-border/30 rounded-lg overflow-hidden transition-all group hover:border-border/50 hover:shadow-md duration-300"
-                data-testid={`faq-item-${idx}`}
-                role="region"
-                aria-labelledby={`faq-button-${idx}`}
-              >
-                <button
-                  id={`faq-button-${idx}`}
-                  onClick={() => setExpanded(expanded === idx ? null : idx)}
-                  className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14 group"
-                  data-testid={`button-faq-${idx}`}
-                  aria-expanded={expanded === idx}
-                  aria-controls={`faq-answer-${idx}`}
+      {/* Full-width background with no max-width constraint */}
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-8 md:py-12">
+        {/* Inner container for centered content */}
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="w-full max-w-6xl mx-auto">
+            {/* FAQ Items Grid - Two columns on large screens */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+              {faqItems.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="border border-border/30 rounded-lg overflow-hidden transition-all group hover:border-border/50 hover:shadow-md duration-300"
+                  data-testid={`faq-item-${idx}`}
+                  role="region"
+                  aria-labelledby={`faq-button-${idx}`}
                 >
-                  <span className="font-semibold text-foreground pr-4 md:pr-5 text-sm md:text-base break-words leading-tight">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`h-5 w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 min-w-5 group-hover:text-foreground/70 ${
-                      expanded === idx ? "rotate-180" : ""
-                    }`}
-                    data-testid={`chevron-faq-${idx}`}
-                    aria-hidden="true"
-                  />
-                </button>
-                {expanded === idx && (
-                  <div
-                    id={`faq-answer-${idx}`}
-                    className="px-5 md:px-6 py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
-                    data-testid={`faq-answer-${idx}`}
-                    role="region"
+                  <button
+                    id={`faq-button-${idx}`}
+                    onClick={() => setExpanded(expanded === idx ? null : idx)}
+                    className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14 group"
+                    data-testid={`button-faq-${idx}`}
+                    aria-expanded={expanded === idx}
+                    aria-controls={`faq-answer-${idx}`}
                   >
-                    <p className="text-sm leading-relaxed">{item.answer}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+                    <span className="font-semibold text-foreground pr-4 md:pr-5 text-sm md:text-base break-words leading-tight">
+                      {item.question}
+                    </span>
+                    <ChevronDown
+                      className={`h-5 w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 min-w-5 group-hover:text-foreground/70 ${
+                        expanded === idx ? "rotate-180" : ""
+                      }`}
+                      data-testid={`chevron-faq-${idx}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  {expanded === idx && (
+                    <div
+                      id={`faq-answer-${idx}`}
+                      className="px-5 md:px-6 py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
+                      data-testid={`faq-answer-${idx}`}
+                      role="region"
+                    >
+                      <p className="text-sm leading-relaxed">{item.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
