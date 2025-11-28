@@ -5,6 +5,7 @@ import CacheManager from "@/lib/cache";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { type EmailSummary, type Domain } from "@shared/schema";
 import { Header } from "@/components/header";
+import { PerformanceBadge } from "@/components/performance-badge";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 
@@ -355,6 +356,11 @@ export default function Home() {
                 <p className="text-sm font-bold text-accent px-4 py-2 rounded-full bg-accent/10 inline-block shadow-sm" data-testid="text-user-count">Trusted by 100,000+ users worldwide</p>
               </div>
             </div>
+          </div>
+
+          {/* Performance Badge - Trust Signal */}
+          <div className="flex justify-center mb-8">
+            <PerformanceBadge />
           </div>
 
           {/* Email Generator Card */}
