@@ -14,7 +14,7 @@ export function FAQAccordion() {
       {faqItems.map((item, idx) => (
         <div
           key={idx}
-          className="border border-border/50 rounded-lg overflow-hidden hover-elevate transition-all"
+          className="border border-border/30 rounded-lg overflow-hidden hover:border-border/60 transition-all hover:shadow-md group"
           data-testid={`faq-item-${idx}`}
           role="region"
           aria-labelledby={`faq-button-${idx}`}
@@ -22,12 +22,12 @@ export function FAQAccordion() {
           <button
             id={`faq-button-${idx}`}
             onClick={() => setExpanded(expanded === idx ? null : idx)}
-            className="w-full px-4 py-3 md:px-6 md:py-4 flex items-center justify-between text-left bg-card hover:bg-card/80 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-12"
+            className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/60 hover:bg-card/80 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14"
             data-testid={`button-faq-${idx}`}
             aria-expanded={expanded === idx}
             aria-controls={`faq-answer-${idx}`}
           >
-            <span className="font-semibold text-foreground pr-3 md:pr-4 text-sm md:text-base break-words">{item.question}</span>
+            <span className="font-semibold text-foreground pr-4 md:pr-5 text-sm md:text-base break-words">{item.question}</span>
             <ChevronDown
               className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 min-w-5 ${
                 expanded === idx ? "rotate-180" : ""
@@ -39,7 +39,7 @@ export function FAQAccordion() {
           {expanded === idx && (
             <div
               id={`faq-answer-${idx}`}
-              className="px-6 py-4 bg-background/50 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
+              className="px-5 md:px-6 py-4 md:py-5 bg-background/50 text-muted-foreground border-t border-border/20 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
               data-testid={`faq-answer-${idx}`}
               role="region"
             >

@@ -1,4 +1,5 @@
 import { Newspaper, Microscope, Gift, Lock, Download, Eye } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export function UseCasesSection() {
   const useCases = [
@@ -35,25 +36,27 @@ export function UseCasesSection() {
   ];
 
   return (
-    <section className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-border/30 fade-in-up">
-      <div className="text-center mb-10 md:mb-12 space-y-3">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">Why Use Burner Email?</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Protect your real inbox with disposable email for any situation</p>
+    <section className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-border/20 fade-in-up">
+      <div className="text-center mb-12 md:mb-14 space-y-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground">Use Cases</h2>
+        <p className="text-base text-muted-foreground max-w-2xl mx-auto">Protect your real inbox with disposable email for any situation</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
         {useCases.map((useCase, index) => {
           const IconComponent = useCase.icon;
           return (
-            <div 
+            <Card
               key={index}
-              className="p-5 md:p-6 rounded-lg border border-border/70 dark:border-border bg-card/60 dark:bg-card/80 hover:bg-card/90 dark:hover:bg-card/95 transition-colors"
+              className="p-6 md:p-7 border border-border/30 hover:border-border/60 hover:shadow-md transition-all group bg-card/40 hover:bg-card/70"
             >
-              <div className="flex items-start gap-3 mb-3">
-                <IconComponent className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                <h3 className="font-semibold text-foreground">{useCase.title}</h3>
+              <div className="flex flex-col items-start space-y-4">
+                <div className="p-3 rounded-lg bg-background/80 group-hover:bg-background transition-colors">
+                  <IconComponent className="h-5 w-5 text-foreground/60" />
+                </div>
+                <h3 className="font-bold text-foreground text-sm md:text-base leading-tight">{useCase.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{useCase.description}</p>
               </div>
-              <p className="text-sm text-muted-foreground">{useCase.description}</p>
-            </div>
+            </Card>
           );
         })}
       </div>
