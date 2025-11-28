@@ -18,7 +18,6 @@ const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ d
 const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
-const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 
 export default function Home() {
@@ -389,27 +388,15 @@ export default function Home() {
           </div>
 
 
-          {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
-          <div className="mt-24 md:mt-32 pt-16 md:pt-20 space-y-20 fade-in">
-            {/* Unified Social Proof */}
+          {/* Social Proof Section - Lazy loaded for faster initial render */}
+          <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
             <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
-              <section>
-                <UnifiedSocialProof />
-              </section>
+              <UnifiedSocialProof />
             </Suspense>
+          </div>
 
-            {/* Testimonials */}
-            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-              <section className="space-y-6">
-                <div className="text-center space-y-2">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Users Say</h2>
-                  <p className="text-muted-foreground">Loved by teams at leading organizations worldwide</p>
-                </div>
-                <TestimonialsCarousel />
-              </section>
-            </Suspense>
-
-            {/* FAQ Section */}
+          {/* FAQ Section */}
+          <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
             <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
               <section className="space-y-6">
                 <div className="text-center space-y-2">
