@@ -2872,16 +2872,16 @@ export const faqItems: FAQItem[] = [
     answer: "No, temporary emails are not suitable for important accounts (banking, email providers, payment services). Use temporary email only for one-time signups, newsletters, and services you don't plan to use long-term. For critical accounts, use your primary, recovery-protected email address."
   },
   {
+    question: "Can you or anyone else see my emails?",
+    answer: "No. Your emails are completely private. Only you can access them during your session. We cannot see your emails, and they're encrypted in transit. Once your session expires, all emails are permanently deleted from our servers. No one—including us—can recover or view your data."
+  },
+  {
     question: "How long does a temporary email address last?",
     answer: "TempMail provides an active, usable inbox during your session. The temporary address remains active and receives emails while you're using the service. Emails are automatically purged after your session expires to protect your privacy. Unlike competitors, our session management is reliable."
   },
   {
     question: "Why does TempMail have 99.9% uptime when competitors are always down?",
     answer: "TempMail uses enterprise-grade distributed infrastructure with redundancy, automated failover, and multi-region servers. Competitors rely on outdated shared hosting, causing regular outages. We invest in infrastructure reliability, so you never miss emails. Our monitoring is 24/7."
-  },
-  {
-    question: "How much faster is TempMail compared to 10MinuteMail and Guerrilla Mail?",
-    answer: "Independent speed tests show TempMail loads 40% faster than 10MinuteMail and displays emails 30% faster than Guerrilla Mail. Our optimized servers, edge caching, and CDN distribution ensure instant performance. On 3G connections, we're 3x faster than competitors."
   },
   {
     question: "What makes TempMail's QR code feature unique?",
