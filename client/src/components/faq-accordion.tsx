@@ -8,12 +8,12 @@ export function FAQAccordion() {
   return (
     <div className="w-full">
       {/* Full-width background with no max-width constraint */}
-      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-8 md:py-12">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-6 sm:py-8 md:py-10 lg:py-12">
         {/* Inner container for centered content */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="w-full max-w-4xl mx-auto">
             {/* FAQ Items - Single column */}
-            <div className="space-y-4 md:space-y-5">
+            <div className="space-y-3 sm:space-y-4 md:space-y-5">
               {faqItems.map((item, idx) => (
                 <div
                   key={idx}
@@ -25,16 +25,16 @@ export function FAQAccordion() {
                   <button
                     id={`faq-button-${idx}`}
                     onClick={() => setExpanded(expanded === idx ? null : idx)}
-                    className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-14 group"
+                    className="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-12 sm:min-h-13 md:min-h-14 group"
                     data-testid={`button-faq-${idx}`}
                     aria-expanded={expanded === idx}
                     aria-controls={`faq-answer-${idx}`}
                   >
-                    <span className="font-semibold text-foreground pr-4 md:pr-5 text-sm md:text-base break-words leading-tight">
+                    <span className="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:text-base break-words leading-tight">
                       {item.question}
                     </span>
                     <ChevronDown
-                      className={`h-5 w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 min-w-5 group-hover:text-foreground/70 ${
+                      className={`h-4 w-4 sm:h-5 sm:w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 group-hover:text-foreground/70 ${
                         expanded === idx ? "rotate-180" : ""
                       }`}
                       data-testid={`chevron-faq-${idx}`}
@@ -44,11 +44,11 @@ export function FAQAccordion() {
                   {expanded === idx && (
                     <div
                       id={`faq-answer-${idx}`}
-                      className="px-5 md:px-6 py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
+                      className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
                       data-testid={`faq-answer-${idx}`}
                       role="region"
                     >
-                      <p className="text-sm leading-relaxed">{item.answer}</p>
+                      <p className="text-xs sm:text-sm leading-relaxed">{item.answer}</p>
                     </div>
                   )}
                 </div>

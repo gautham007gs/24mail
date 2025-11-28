@@ -92,33 +92,33 @@ export default function Blog() {
       <div className="min-h-screen bg-background fade-in">
         {/* Header */}
         <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
-          <div className="mx-auto max-w-6xl px-4 md:px-6 py-8">
-            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-              <ArrowLeft className="h-4 w-4" />
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+            <Link href="/" className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground mb-3 sm:mb-4">
+              <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
               Back to Home
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 sm:mb-3">
               Blog & Guides
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
               Expert guides on temporary email, privacy protection, and email security best practices
             </p>
           </div>
         </div>
 
         {/* Main Content */}
-        <main className="mx-auto max-w-6xl px-4 md:px-6 py-8 md:py-12">
+        <main className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Search & Filter Bar */}
-          <div className="mb-8 space-y-4">
+          <div className="mb-6 sm:mb-8 space-y-4">
             {/* Search Input */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search articles by topic, keyword..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12"
+                className="pl-9 sm:pl-10 h-10 sm:h-12 text-sm"
                 data-testid="input-blog-search"
               />
               {searchQuery && (
