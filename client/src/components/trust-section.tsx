@@ -1,4 +1,4 @@
-import { Lock, Eye, Shield, CheckCircle2, Zap, Database } from "lucide-react";
+import { Lock, Eye, Shield, CheckCircle2, Zap, Database, Check, Code2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export function TrustSection() {
@@ -36,10 +36,10 @@ export function TrustSection() {
   ];
 
   const certifications = [
-    { name: "GDPR Compliant", icon: "🔒" },
-    { name: "SSL Encrypted", icon: "🔐" },
-    { name: "Open Source", icon: "⚙️" },
-    { name: "No Logs Policy", icon: "🚫" },
+    { name: "GDPR Compliant", icon: Lock, description: "EU data protection" },
+    { name: "SSL Encrypted", icon: Shield, description: "256-bit encryption" },
+    { name: "Open Source", icon: Code2, description: "Fully transparent" },
+    { name: "No Logs Policy", icon: Check, description: "Zero data retention" },
   ];
 
   return (
@@ -167,25 +167,45 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Security Certifications */}
+      {/* Security Certifications - Premium Redesign */}
       <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
-        <p className="text-center text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-6">
-          Security & Compliance
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {certifications.map((cert, index) => (
-            <div 
-              key={index}
-              className="p-4 rounded-lg border border-border/40 bg-muted/20 hover:bg-muted/35 hover:border-border/60 transition-all duration-300 text-center group"
-            >
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
-                {cert.icon}
-              </div>
-              <p className="text-xs font-semibold text-foreground leading-tight">
-                {cert.name}
-              </p>
-            </div>
-          ))}
+        <div className="text-center mb-8">
+          <p className="text-center text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            Security & Compliance
+          </p>
+          <p className="text-sm text-muted-foreground">Industry-leading standards and certifications</p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {certifications.map((cert, index) => {
+            const Icon = cert.icon;
+            return (
+              <Card
+                key={index}
+                className="group p-6 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-border/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center h-full"
+              >
+                {/* Icon */}
+                <div className="mb-4 p-3.5 rounded-lg bg-primary/15 group-hover:bg-primary/25 ring-1 ring-primary/30 transition-all duration-300">
+                  <Icon className="h-6 w-6 text-primary" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 flex flex-col justify-center">
+                  <h4 className="font-bold text-sm md:text-base text-foreground mb-1.5">
+                    {cert.name}
+                  </h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {cert.description}
+                  </p>
+                </div>
+
+                {/* Checkmark */}
+                <div className="mt-4 pt-4 border-t border-border/20 w-full">
+                  <CheckCircle2 className="h-4 w-4 text-primary/70 mx-auto" />
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
