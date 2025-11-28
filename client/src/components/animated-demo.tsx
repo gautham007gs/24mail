@@ -21,9 +21,9 @@ export function AnimatedDemo() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-6xl mx-auto">
       {/* Demo Container - Wide Horizontal */}
-      <div className="relative bg-gradient-to-r from-primary/10 via-primary/8 to-primary/10 border border-primary/25 rounded-3xl p-10 md:p-16 overflow-hidden shadow-lg">
+      <div className="relative bg-gradient-to-r from-primary/10 via-primary/8 to-primary/10 border border-primary/25 rounded-3xl p-10 md:p-12 overflow-hidden shadow-lg">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
