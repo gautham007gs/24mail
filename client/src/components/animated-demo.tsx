@@ -21,79 +21,71 @@ export function AnimatedDemo() {
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       {/* Demo Container - Horizontal */}
-      <div className="relative bg-gradient-to-br from-muted/30 to-muted/10 border border-border/30 rounded-2xl p-6 md:p-8 overflow-hidden">
-        {/* Background Grid Effect */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-grid-pattern" style={{
-            backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent)',
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
-
+      <div className="relative bg-gradient-to-br from-primary/8 to-primary/3 border border-primary/20 rounded-2xl p-8 md:p-12 overflow-hidden">
         {/* Content - Horizontal Row */}
-        <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-3">
+        <div className="relative flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
           {/* Step 1: Generate */}
-          <div className={`flex flex-col items-center gap-2 transition-all duration-500 transform flex-shrink-0 ${
-            step === 0 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
+            step === 0 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-lg bg-primary/20 flex items-center justify-center border-2 border-primary/40">
-              <AtSign className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
+              <AtSign className="w-8 h-8 md:w-10 md:h-10 text-primary" />
             </div>
             <div className="text-center">
-              <p className="text-xs md:text-sm font-semibold text-foreground">Generate</p>
-              <p className="text-[10px] md:text-xs text-muted-foreground font-mono">user@barid.site</p>
+              <p className="text-sm md:text-base font-bold text-foreground">Generate</p>
+              <p className="text-xs text-muted-foreground font-mono mt-1">user@barid.site</p>
             </div>
           </div>
 
           {/* Arrow 1 */}
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-primary/50 flex-shrink-0 hidden sm:block" />
+          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-primary/60 flex-shrink-0 hidden sm:block" />
 
           {/* Step 2: Copy */}
-          <div className={`flex flex-col items-center gap-2 transition-all duration-500 transform flex-shrink-0 ${
-            step === 1 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
+            step === 1 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-lg bg-primary/20 flex items-center justify-center border-2 border-primary/40">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
               {showCopied ? (
-                <Check className="w-7 h-7 md:w-8 md:h-8 text-primary animate-pulse" />
+                <Check className="w-8 h-8 md:w-10 md:h-10 text-primary animate-pulse" />
               ) : (
-                <Copy className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+                <Copy className="w-8 h-8 md:w-10 md:h-10 text-primary" />
               )}
             </div>
             <div className="text-center">
-              <p className="text-xs md:text-sm font-semibold text-foreground">Copy</p>
-              <p className="text-[10px] md:text-xs text-muted-foreground">Paste anywhere</p>
+              <p className="text-sm md:text-base font-bold text-foreground">Copy</p>
+              <p className="text-xs text-muted-foreground mt-1">Paste anywhere</p>
             </div>
           </div>
 
           {/* Arrow 2 */}
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-primary/50 flex-shrink-0 hidden sm:block" />
+          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-primary/60 flex-shrink-0 hidden sm:block" />
 
           {/* Step 3: Receive */}
-          <div className={`flex flex-col items-center gap-2 transition-all duration-500 transform flex-shrink-0 ${
-            step === 2 ? "scale-100 opacity-100" : "scale-90 opacity-50"
+          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
+            step === 2 ? "scale-100 opacity-100" : "scale-95 opacity-40"
           }`}>
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-lg bg-primary/20 flex items-center justify-center border-2 border-primary/40">
-              <svg className="w-7 h-7 md:w-8 md:h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
+              <svg className="w-8 h-8 md:w-10 md:h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </div>
             <div className="text-center">
-              <p className="text-xs md:text-sm font-semibold text-foreground">Receive</p>
-              <p className="text-[10px] md:text-xs text-muted-foreground">In your inbox</p>
+              <p className="text-sm md:text-base font-bold text-foreground">Receive</p>
+              <p className="text-xs text-muted-foreground mt-1">In your inbox</p>
             </div>
           </div>
         </div>
 
         {/* Progress Indicator */}
-        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5">
+        <div className="flex justify-center gap-2 mt-8">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === step ? "w-6 bg-primary" : "w-1.5 bg-muted-foreground/30"
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === step ? "w-7 bg-primary" : "w-2 bg-primary/30"
               }`}
             />
           ))}
@@ -101,7 +93,7 @@ export function AnimatedDemo() {
       </div>
 
       {/* Caption */}
-      <p className="text-center text-xs md:text-sm text-muted-foreground mt-3">
+      <p className="text-center text-xs md:text-sm text-muted-foreground mt-4">
         Loops every 9 seconds
       </p>
     </div>
