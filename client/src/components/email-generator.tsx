@@ -12,7 +12,6 @@ import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { triggerConfetti } from "@/lib/confetti";
 import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
-import { DomainSelectorPill } from "@/components/domain-selector-pill";
 import CacheManager from "@/lib/cache";
 import { type Domain } from "@shared/schema";
 
@@ -294,9 +293,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </h2>
 
         {/* Email Display Box - Minimal & Clean */}
-        <div className="card-flame-edge p-4 sm:p-6 mt-4 space-y-4">
+        <div className="card-flame-edge p-4 sm:p-6 mt-4">
           {/* Email with Inline Action Buttons */}
-          <div className="flex items-start gap-2.5 sm:gap-3">
+          <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
             {/* Email Address - Large & Clean - JetBrains Mono */}
             <span
               className="text-base sm:text-lg md:text-xl lg:text-[22px] font-semibold text-foreground break-all flex-1"
@@ -336,24 +335,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </Button>
             </div>
           </div>
-
-          {/* Domain Selector Pill */}
-          {cachedDomains.length > 0 && (
-            <div className="pt-2 border-t border-border/10">
-              <DomainSelectorPill
-                domains={cachedDomains}
-                selectedDomain={selectedDomain}
-                onDomainChange={(domain) => {
-                  setSelectedDomain(domain);
-                  CacheManager.set("selected_domain", domain);
-                  toast({
-                    title: "Domain updated",
-                    description: `Now using ${domain}`,
-                  });
-                }}
-              />
-            </div>
-          )}
 
           {/* Expiry Info - Minimal Text Only */}
           <span className="text-xs sm:text-sm text-muted-foreground">
