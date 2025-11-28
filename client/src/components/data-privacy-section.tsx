@@ -36,33 +36,33 @@ export function DataPrivacySection() {
   ];
 
   return (
-    <section className="mt-20 md:mt-24 pt-16 md:pt-20 border-t border-border/10">
-      <div className="text-center mb-14 md:mb-16 max-w-2xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-          Your Questions Answered
+    <section className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30">
+      <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          Privacy Built In
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground">
-          Transparency matters. Here's what you need to know.
+        <p className="text-muted-foreground text-sm md:text-base">
+          Your privacy is our priority. Everything encrypted, nothing stored, complete peace of mind.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 max-w-5xl mx-auto px-4">
         {faqs.map((item, index) => {
           const Icon = item.icon;
           return (
             <Card
               key={index}
-              className="p-7 md:p-8 border border-border/20 hover:border-border/40 bg-card/30 hover:bg-card/50 transition-all duration-300 group"
+              className="p-6 md:p-7 border border-emerald-500/20 bg-gradient-to-br from-emerald-50/5 to-emerald-950/5 dark:from-emerald-950/15 dark:to-emerald-900/10 hover:border-emerald-500/40 hover:bg-emerald-50/10 dark:hover:bg-emerald-950/20 transition-all duration-300 group"
             >
-              <div className="flex flex-col h-full gap-5">
-                <div className="p-3.5 rounded-lg bg-background/60 group-hover:bg-background w-fit">
-                  <Icon className="h-7 w-7 text-foreground/70 group-hover:text-foreground transition-colors" />
+              <div className="flex flex-col h-full gap-4">
+                <div className="p-3 rounded-lg bg-emerald-500/15 group-hover:bg-emerald-500/25 transition-colors w-fit">
+                  <Icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-base text-foreground mb-2">
+                  <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">
                     {item.question}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                     {item.answer}
                   </p>
                 </div>
