@@ -24,17 +24,17 @@ export function TrustSection() {
   ];
 
   return (
-    <section className="mt-24 md:mt-32 pt-16 md:pt-24 border-t border-border/10">
-      <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+    <section className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30">
+      <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
           Privacy Built In
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground">
+        <p className="text-muted-foreground text-sm md:text-base">
           No compromises. No backdoors. Just pure privacy protection.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 max-w-5xl mx-auto px-4">
         {trustItems.map((item, index) => {
           const Icon = item.icon;
           
@@ -43,27 +43,27 @@ export function TrustSection() {
               key={index}
               className={`group overflow-hidden transition-all duration-300 ${
                 item.isDominant
-                  ? "p-8 md:p-10 border-2 border-primary bg-gradient-to-br from-primary/8 to-primary/3 hover:from-primary/12 hover:to-primary/5 shadow-sm hover:shadow-md"
-                  : "p-8 md:p-10 border border-border/30 hover:border-border/50 bg-muted/15 hover:bg-muted/25 transition-all"
+                  ? "p-6 md:p-7 border-2 border-primary bg-gradient-to-br from-primary/8 to-primary/3 hover:from-primary/12 hover:to-primary/5 shadow-sm hover:shadow-md"
+                  : "p-6 md:p-7 border border-border/30 hover:border-border/50 bg-muted/15 hover:bg-muted/25 transition-all"
               }`}
             >
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-4">
                 {/* Icon */}
-                <div className={`w-fit rounded-lg p-3.5 md:p-4 transition-all duration-300 ${
+                <div className={`w-fit rounded-lg p-3 md:p-3.5 transition-all duration-300 ${
                   item.isDominant
                     ? "bg-primary/20"
                     : "bg-muted/40 group-hover:bg-muted/60"
                 }`}>
                   <Icon className={`transition-all duration-300 ${
                     item.isDominant
-                      ? "h-9 w-9 md:h-11 md:w-11 text-primary"
-                      : "h-8 w-8 md:h-10 md:w-10 text-muted-foreground group-hover:text-foreground/80"
+                      ? "h-6 w-6 md:h-7 md:w-7 text-primary"
+                      : "h-6 w-6 md:h-7 md:w-7 text-muted-foreground group-hover:text-foreground/80"
                   }`} />
                 </div>
 
                 {/* Title */}
                 <div>
-                  <h3 className={`font-bold text-lg md:text-xl mb-2 transition-colors ${
+                  <h3 className={`font-bold text-base md:text-lg mb-1.5 transition-colors ${
                     item.isDominant
                       ? "text-primary"
                       : "text-foreground"
@@ -72,7 +72,7 @@ export function TrustSection() {
                   </h3>
 
                   {/* One-line subtitle explanation */}
-                  <p className={`text-sm leading-relaxed transition-colors ${
+                  <p className={`text-xs md:text-sm leading-relaxed transition-colors ${
                     item.isDominant
                       ? "text-foreground/75"
                       : "text-muted-foreground/75"

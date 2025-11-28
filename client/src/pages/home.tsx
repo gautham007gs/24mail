@@ -22,7 +22,6 @@ const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof"
 const TestimonialsCarousel = lazy(() => import("@/components/testimonials-carousel").then(m => ({ default: m.TestimonialsCarousel })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 const UseCasesSection = lazy(() => import("@/components/use-cases-section").then(m => ({ default: m.UseCasesSection })));
-const DataPrivacySection = lazy(() => import("@/components/data-privacy-section").then(m => ({ default: m.DataPrivacySection })));
 
 export default function Home() {
   const jsonLd = {
@@ -401,10 +400,6 @@ export default function Home() {
             </Suspense>
           </div>
 
-          {/* Data & Privacy Section - Trust building */}
-          <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
-            <DataPrivacySection />
-          </Suspense>
 
           {/* Social Proof & Trust Section - Lazy loaded for faster initial render */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 space-y-20 fade-in">
