@@ -48,30 +48,30 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
         Skip to main content
       </a>
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6">
-        <div className="flex items-center justify-between min-h-16 md:h-16">
-          {/* Logo - Compact on mobile */}
-          <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
-            <div className="flex items-center justify-center">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo - Consistent sizing */}
+          <Link href="/" className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0" data-testid="link-home">
+            <div className="flex items-center justify-center flex-shrink-0">
               <img 
                 srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
                 src="/logo-32.png?v=2" 
                 alt="Burner Email" 
-                className="h-11 md:h-12 w-11 md:w-12 flex-shrink-0 object-contain logo-transparent" 
+                className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent" 
               />
             </div>
-            <span className="text-lg md:text-xl font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
+            <span className="text-base md:text-lg font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
               BURNER EMAIL
             </span>
           </Link>
 
-          {/* Desktop Navigation - Improved spacing */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          {/* Desktop Navigation - Proper spacing */}
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 md:px-4 py-2 text-xs md:text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
+                className={`px-4 py-2.5 text-sm font-semibold rounded-md transition-all duration-200 no-underline block hover-elevate ${
                   isActive(item.href)
                     ? "bg-accent text-accent-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -84,13 +84,13 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           </nav>
 
           {/* Right Side - Domain Selector (Desktop) + Theme Toggle + Mobile Menu Button */}
-          <div className="flex items-center gap-1 md:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2 md:gap-2.5 flex-shrink-0">
             {/* Desktop Domain Selector */}
             {domains.length > 0 && (
               <div className="hidden lg:block relative">
                 <button
                   onClick={() => setShowDomainMenu(!showDomainMenu)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium text-sm transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm transition-all cursor-pointer whitespace-nowrap ${
                     showDomainMenu
                       ? "bg-accent/20 text-accent dark:bg-accent/20 dark:text-accent border border-accent/40"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
@@ -99,7 +99,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 >
                   <span>Domain:</span>
                   <span className="font-semibold text-accent">{selectedDomain || "Choose"}</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform ${showDomainMenu ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
                 </button>
                 {showDomainMenu && (
                   <div className="absolute right-0 top-full mt-2 w-64 bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden">
@@ -135,7 +135,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors active-elevate-2"
+              className="md:hidden p-2.5 hover:bg-secondary rounded-lg transition-colors active-elevate-2 flex items-center justify-center"
               data-testid="button-mobile-menu"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
@@ -152,8 +152,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
         {/* Mobile Navigation - Full Screen Menu */}
         {isOpen && (
-          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe" id="mobile-nav">
-            <div className="py-2 px-3 space-y-1">
+          <nav className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe" id="mobile-nav">
+            <div className="py-2.5 px-3 space-y-1">
               {/* Main Navigation Section */}
               <div className="space-y-1">
                 {navItems.map((item, idx) => {
@@ -163,7 +163,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                       key={item.href}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`w-full flex items-center gap-3 px-4 py-4 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg font-semibold transition-all no-underline text-base active-elevate-2 ${
                         isActive(item.href)
                           ? "bg-accent text-accent-foreground"
                           : "text-foreground hover:bg-secondary/50"
@@ -185,7 +185,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                   <div className="space-y-2 px-2">
                     <button
                       onClick={() => setShowDomainMenu(!showDomainMenu)}
-                      className={`w-full flex items-center justify-between px-3 py-4 rounded-lg font-semibold transition-all cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-3 py-3.5 rounded-lg font-semibold transition-all cursor-pointer ${
                         showDomainMenu
                           ? "bg-accent/10 text-accent dark:text-accent border border-accent/30 dark:border-accent/50"
                           : "text-foreground hover:bg-secondary/50"
@@ -239,7 +239,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <Link
                   href="/terms"
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
+                  className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
                   data-testid="mobile-nav-link-terms"
                 >
                   Terms & Conditions
@@ -247,7 +247,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <Link
                   href="/privacy"
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
+                  className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline active-elevate-2"
                   data-testid="mobile-nav-link-privacy"
                 >
                   Privacy Policy
