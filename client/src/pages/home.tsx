@@ -7,6 +7,7 @@ import { type EmailSummary, type Domain } from "@shared/schema";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
+import { useTranslation } from "@/hooks/use-translation";
 
 // Lazy load Helmet for SEO (not critical for initial render)
 const Helmet = lazy(() => import("react-helmet").then(m => ({ default: m.Helmet })));
@@ -21,6 +22,7 @@ const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof"
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 
 export default function Home() {
+  const { t } = useTranslation();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -322,10 +324,10 @@ export default function Home() {
           {/* Hero Section - Above the Fold */}
           <div className="text-center mb-8 md:mb-12 space-y-5">
             <h1 className="text-display text-foreground">
-              Instant Burner Email Addresses
+              {t("hero.title")}
             </h1>
             <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              Free, private, and disposable email addresses. No signup required. Protect your real inbox from spam.
+              {t("hero.subtitle")}
             </p>
             <div className="flex flex-col items-center gap-4 pt-3">
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
@@ -333,23 +335,23 @@ export default function Home() {
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  100% Free
+                  {t("hero.badge.free")}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-anonymous">
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Anonymous
+                  {t("hero.badge.anonymous")}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-instant">
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Instant Setup
+                  {t("hero.badge.instant")}
                 </span>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-accent px-4 py-2 rounded-full bg-accent/10 inline-block shadow-sm" data-testid="text-user-count">Trusted by 100,000+ users worldwide</p>
+                <p className="text-sm font-bold text-accent px-4 py-2 rounded-full bg-accent/10 inline-block shadow-sm" data-testid="text-user-count">{t("hero.trusted")}</p>
               </div>
             </div>
           </div>
@@ -401,8 +403,8 @@ export default function Home() {
       {/* FAQ Section - Full Width */}
       <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
         <div className="max-w-3xl mx-auto px-4 md:px-6 mb-8 md:mb-10 text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Frequently Asked Questions</h2>
-          <p className="text-base md:text-lg text-muted-foreground">Everything you need to know about Burner Email and temporary email services</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("faq.title")}</h2>
+          <p className="text-base md:text-lg text-muted-foreground">{t("faq.subtitle")}</p>
         </div>
         
         <Suspense fallback={<div className="h-96 bg-muted/30 animate-pulse" />}>

@@ -1,35 +1,37 @@
 import { Lock, Eye, Shield, CheckCircle2, Zap, Database, Check, Code2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function TrustSection() {
+  const { t } = useTranslation();
   const metrics = [
-    { value: "1M+", label: "Emails Processed", icon: Zap },
-    { value: "100K+", label: "Active Users", icon: Database },
-    { value: "99.9%", label: "Uptime SLA", icon: Shield },
+    { value: "1M+", label: t("trust.metric.emails"), icon: Zap },
+    { value: "100K+", label: t("trust.metric.users"), icon: Database },
+    { value: "99.9%", label: t("trust.metric.uptime"), icon: Shield },
   ];
 
   const trustItems = [
     {
       icon: Eye,
-      title: "No Tracking",
-      subtitle: "Zero logs — we can't access your inbox.",
-      details: "We don't collect, store, or analyze your data",
+      title: t("trust.item1.title"),
+      subtitle: t("trust.item1.subtitle"),
+      details: t("trust.item1.details"),
       isDominant: true,
       step: 1,
     },
     {
       icon: Lock,
-      title: "Cryptographic Security",
-      subtitle: "Military-grade encryption in every request.",
-      details: "End-to-end encryption protects your communications",
+      title: t("trust.item2.title"),
+      subtitle: t("trust.item2.subtitle"),
+      details: t("trust.item2.details"),
       isDominant: false,
       step: 2,
     },
     {
       icon: Shield,
-      title: "No Data Storage",
-      subtitle: "Emails auto-delete — nothing stored.",
-      details: "All emails permanently deleted after 24 hours",
+      title: t("trust.item3.title"),
+      subtitle: t("trust.item3.subtitle"),
+      details: t("trust.item3.details"),
       isDominant: false,
       step: 3,
     },
@@ -50,10 +52,10 @@ export function TrustSection() {
           <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wide">Why Trust Us</p>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-          Privacy Built In
+          {t("trust.title")}
         </h2>
         <p className="text-muted-foreground text-sm md:text-base">
-          No compromises. No backdoors. Just pure privacy protection backed by transparency and security.
+          {t("trust.subtitle")}
         </p>
       </div>
 

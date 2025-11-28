@@ -1,27 +1,24 @@
 import { useLanguage } from "@/contexts/language-context";
-import { translations } from "@/lib/translations";
+import { translations, type Language } from "@/lib/translations";
 
 export function useTranslation() {
   const { language } = useLanguage();
 
   const t = (key: string): string => {
-    const keys = key.split(".");
-    let current: any = translations[language];
-    
-    for (const k of keys) {
-      if (current && typeof current === "object" && k in current) {
-        current = current[k];
-      } else {
-        // Fallback to English if key not found
-        current = translations.en;
-        for (const fallbackKey of keys) {
-          current = current?.[fallbackKey];
-        }
-        return typeof current === "string" ? current : key;
-      }
+    // Direct lookup for flat key structure
+    const translation = (translations[language] as any)?.[key];
+    if (translation) {
+      return translation;
     }
     
-    return typeof current === "string" ? current : key;
+    // Fallback to English
+    const enTranslation = (translations.en as any)?.[key];
+    if (enTranslation) {
+      return enTranslation;
+    }
+    
+    // Return key if not found (fallback)
+    return key;
   };
 
   return { t, language };

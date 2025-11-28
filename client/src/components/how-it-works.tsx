@@ -1,6 +1,8 @@
 import { AnimatedDemo } from "./animated-demo";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function HowItWorks() {
+  const { t } = useTranslation();
   return (
     <section className="space-y-8">
       <div className="text-center space-y-3">
