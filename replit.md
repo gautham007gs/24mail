@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a premium burner email service (burneremail.email) providing disposable, anonymous email addresses. It focuses on instant email creation, real-time message viewing, and email reading without registration, prioritizing privacy and user experience. The application aims to be the most reliable and user-friendly burner email solution, striving for global #1 SEO ranking for "burner email" searches.
+This project is a premium burner email service (burneremail.email) designed to provide disposable, anonymous email addresses. It prioritizes instant email creation, real-time message viewing without registration, and a strong focus on user privacy and experience. The service aims to be the most reliable and user-friendly burner email solution, with a strategic goal of achieving global #1 SEO ranking for "burner email" searches.
 
 ## User Preferences
 
@@ -12,182 +12,25 @@ Performance Priority: Lightning-fast initial load times (target <3 seconds)
 UX Design: Inline accordion-style email expansion (no modal popups, ultra-compact, no scrolling), hybrid landing page (minimalist above fold, comprehensive below fold)
 Theme Support: Full dark mode support with consistent styling across all components
 Email Viewing: Default to HTML view, all links open in new tabs for user retention
-**Design Philosophy: Extreme minimalism** - Aggressive iterative simplification focused on core user flow (arrive → copy email → leave)
+Design Philosophy: Extreme minimalism - Aggressive iterative simplification focused on core user flow (arrive → copy email → leave)
 
 ## System Architecture
 
 ### Frontend Architecture
 
-The frontend is built with React and TypeScript, using Vite for development and `shadcn/ui` (Radix UI and Tailwind CSS) for components. Design adheres to Apple HIG principles, emphasizing accessibility, animations, smooth interactions, and a Gen-Z friendly aesthetic. TanStack Query manages server state, and Wouter handles client-side routing. Key features include an `EmailGenerator`, `InboxList`, and `InlineEmailReader`. The application employs aggressive bundle optimization (code splitting, lazy loading, tree-shaking) and comprehensive caching strategies (`localStorage` with TTL, request deduplication, service worker) for performance. A hybrid homepage loads critical elements above the fold instantly, with other sections lazy-loaded. **Full dark mode support with auto-switch based on system preference** - uses `prefers-color-scheme: dark` CSS media query with smooth 0.25s transitions. Theme toggle in header (3-state: light → dark → system). Email viewing defaults to HTML, with all links opening in new tabs. Mobile gestures include swipe actions and long-press for multi-select. Visual hierarchy is enhanced with unread indicators, prominent attachment icons, and color-coded email type badges.
+The frontend is built with React and TypeScript, utilizing Vite for development and `shadcn/ui` (Radix UI and Tailwind CSS) for components. Design principles adhere to Apple HIG, emphasizing accessibility, animations, smooth interactions, and a Gen-Z aesthetic. TanStack Query manages server state, and Wouter handles client-side routing, including URL-based language routing (e.g., `/:lang/`). Key features include an `EmailGenerator`, `InboxList`, and `InlineEmailReader`. The application employs aggressive bundle optimization (code splitting, lazy loading, tree-shaking) and comprehensive caching strategies. A hybrid homepage loads critical elements instantly. Full dark mode support with auto-switch based on system preference and a 3-state theme toggle. Email viewing defaults to HTML, with all links opening in new tabs. Mobile gestures include swipe actions and long-press for multi-select. Typography is managed by a premium system with defined classes for display, headings, body, and captions, with adaptive sizing for mobile.
 
 ### Backend Architecture
 
-The backend uses Express.js with Node.js and TypeScript, acting as a RESTful API proxy to an external temp mail service (`api.barid.site`). It provides endpoints for domains, inbox contents, and email details. Middleware handles logging, JSON parsing, error handling, and Zod schema validation. Security features include attack detection, progressive IP blocking, rate limiting, and enhanced security headers.
+The backend uses Express.js with Node.js and TypeScript, serving as a RESTful API proxy to an external temp mail service. It provides endpoints for domains, inbox contents, and email details. Middleware handles logging, JSON parsing, error handling, and Zod schema validation. Security features include attack detection, progressive IP blocking, rate limiting, and enhanced security headers.
 
 ### Data Models
 
 Data validation is performed using Zod schemas for `EmailSummary`, `Email`, and `Domain` objects. The system operates without a persistent database, fetching all email-related data on-demand from the external API.
 
-## Recent Updates (Turn 12-13 - Extreme Minimalism: Testimonials Deletion & Aggressive Mobile Optimization)
+### UI/UX Decisions
 
-### What Was Done
-
-**Turn 13 - Ultra-Compact Mobile & Section Depth**
-
-✅ **Aggressive Mobile Stat Card Optimization**
-- Completely different mobile layout: No cards, just inline elements
-- Mobile: Icon + Number + Label only (no sublabel, no padding/border)
-- Layout: 3-column tight grid with `grid-cols-3 gap-2 py-3`
-- Result: **~120px per stat vs 200px before** (40% reduction!)
-- Desktop: Full card layout unchanged (still shows all details)
-- Implementation: Dual layouts with `md:hidden` and `hidden md:grid`
-
-✅ **Section Background Variations** - Added visual depth without borders
-- **TrustSection (Privacy Built In)**: `bg-gradient-to-b from-muted/20 to-transparent`
-- **HowItWorks**: No background (clean, simple - as requested)
-- **FAQ Section**: `bg-gradient-to-b from-muted/15 to-transparent`
-- Creates subtle visual distinction between sections
-- Full-width backgrounds with proper edge padding
-- Maintains minimalist aesthetic while improving visual hierarchy
-
-**Turn 12 - Testimonials Deletion & Social Proof Optimization**
-
-**✅ Deleted Testimonials Section** - Entire carousel removed for extreme minimalism
-- Freed 600px+ on mobile (56% space reduction vs before)
-- Removed auto-rotating carousel complexity
-- Simplified page flow: Hero → Generator → Inbox → Privacy → How It Works → **Proven at Scale** → FAQ → Footer
-- Aligns with core philosophy: arrive → copy email → leave (users don't need testimonials)
-
-**✅ Optimized "Proven at Scale" Section (formerly "Trusted at Scale")**
-- **New messaging** - "Proven at Scale" + "Trusted by developers, teams, and security professionals globally"
-  - No longer redundant with Privacy section (each section has distinct purpose)
-  - More focused, actionable subtitle
-- **Mobile optimizations** (Turn 12):
-  - Grid: `grid-cols-2 md:grid-cols-3` = 2 stats on mobile, 3 on desktop
-  - Sublabels hidden on mobile: `hidden md:block`
-  - Reduced spacing: `space-y-6` → `space-y-3` (saves ~40% vertical space)
-  - Tighter card padding on mobile: `p-4 md:p-8`
-  - Result: ~370px space savings (56% reduction in mobile height)
-- **Desktop unchanged** - Full 3-column layout with all sublabels visible
-
-**✅ Added Visual Separators** - Consistent `border-t border-border/30` between sections
-- Social Proof section: `border-t` added
-- FAQ section: `border-t` added
-- Creates visual distinction with borders + background gradients
-- Maintains minimalist aesthetic
-
-### Page Structure After Changes
-```
-Hero + Email Generator
-    ↓
-Inbox Section
-    ↓
-Privacy Built In (3 boxes)
-    ↓
-How It Works (Animated Demo)
-    ↓
-Proven at Scale (3 stats) [OPTIMIZED]
-    ↓
-FAQ Accordion
-    ↓
-Footer
-```
-
-### Mobile Performance Impact
-- **Before all optimizations (Turn 11)**: ~2700px total page height
-- **After Turn 12 (removed testimonials + optimized stats)**: ~1860px (31% reduction)
-- **After Turn 13 (aggressive mobile cards + gradients)**: ~1620px (40% total reduction!)
-- **Result**: Faster scrolling, ultra-clean experience, perfect alignment with extreme minimalism
-
-### Component Changes
-- `unified-social-proof.tsx`: Dual layouts (mobile inline vs desktop cards), aggressive mobile optimization
-- `trust-section.tsx`: Added `bg-gradient-to-b from-muted/20 to-transparent`
-- `how-it-works.tsx`: Added `bg-gradient-to-b from-transparent via-accent/5 to-transparent`
-- `faq-accordion.tsx`: Added `bg-gradient-to-b from-muted/15 to-transparent` with full-width styling
-- `home.tsx`: Removed testimonials, added visual separators
-
-
-## Previous Updates (Turn 11 - Mobile View Cleanup & Badge Integration)
-
-### What Was Done
-**Mobile View Complete Cleanup** - Clean, beautiful, zero overlap issues
-**"Generated: 1" Badge Repositioned** - Integrated into header instead of floating (fixed overlap)
-**Email Display Section Restructured** - Proper responsive layout for all screen sizes
-**Responsive Typography & Spacing** - Mobile-first design with smooth breakpoints
-
-Complete mobile view overhaul: removed fixed-position "Generated: 1" badge that was overlapping content and integrated it cleanly into the header with proper flex layout. Email display section completely restructured for clean mobile experience with zero layout shifts.
-
-### Mobile View Enhancements (New - Turn 11)
-- **"Generated: 1" Badge Integration**: Moved from fixed floating element to header component
-  - No more layout overlap issues on mobile
-  - Proper flex layout with header title
-  - Badge scales responsively (text-xs on mobile → text-sm on desktop)
-  - Flame icon properly sized: `h-4 w-4`
-- **Email Display Section Restructured**:
-  - Status indicator, email, and expiry info in clean vertical stack on mobile
-  - Expires info + QR/Copy buttons responsive flex (column on mobile → row on desktop)
-  - Buttons smaller on mobile (h-8 w-8) → larger on desktop (sm:h-9 sm:w-9)
-  - Proper padding: `p-3 sm:p-4 md:p-6 lg:p-8`
-- **Clean Responsive Typography**:
-  - Email text: `text-sm` mobile → `text-lg lg:text-xl` desktop
-  - Expires text: `text-xs` mobile → `text-body-sm` desktop
-  - Labels: `text-xs sm:text-sm` with proper icon sizing
-- **Touch-Friendly Spacing**: `gap-2.5 sm:gap-3` prevents button crowding
-- **Domain Selector Mobile Optimization**: Shortened label, compact select trigger
-
-### UI/UX Enhancements (Previous - Turn 10)
-- **Harmonious button color system**: Soft, muted palette that's easy on the eyes
-  - **Copy button**: Soft teal-600 (gentle, professional)
-  - **Refresh button**: Soft sky-600 (calming, intuitive)
-  - **Burn button**: Warm orange-600 (matches brand, approachable)
-  - All buttons use 90% opacity base + hover effects for visual depth
-  - Consistent shadows and transitions across all states
-  - Works beautifully in both light and dark modes
-
-### Premium Typography System (New)
-- **Display** (Heroes): `text-display` - 1.2 line-height, -0.025em letter-spacing, font-black for maximum impact
-- **Headings Large** (Sections): `text-heading-lg` - 1.3 line-height, -0.015em letter-spacing, bold
-- **Headings** (Subsections): `text-heading` - 1.35 line-height, -0.012em letter-spacing, bold
-- **Headings Small** (Minor): `text-heading-sm` - 1.4 line-height, -0.008em letter-spacing, semibold
-- **Body Large** (Key info): `text-body-lg` - 1.65 line-height for premium reading comfort
-- **Body** (Default): `text-body` - 1.7 line-height for optimal readability
-- **Body Small** (Secondary): `text-body-sm` - 1.6 line-height, no letter-spacing
-- **Caption** (Labels): `text-caption` - 1.4 line-height, +0.04em letter-spacing for elegance
-- **Consistent Font Weights**: Hierarchy from 600 (semibold) to 900 (black)
-- **Professional Spacing**: All headings and text have consistent margin relationships
-- **User Delight**: Premium feel achieved through careful typographic proportion and breathing room
-
-### Mobile Responsiveness (Complete - 70% User Focus)
-- **Typography optimization for mobile**: 
-  - Headlines scaled down for small screens: `text-display` now `text-2xl` on mobile → `text-5xl` on desktop
-  - All heading sizes adjusted for mobile readability
-- **Button sizing**: Touch-friendly sizes with `min-h-10` on mobile, proper scaling on larger screens
-- **Card padding**: Reduced from `p-6` to `p-4` on mobile (16px vs 24px)
-- **Email display**: Font reduced to `text-sm` on mobile, scales to `text-2xl` on desktop
-- **Icon sizing**: Adaptive sizing from `h-3.5` on mobile to `h-5` on desktop
-- **Domain selector**: Now available on mobile (was desktop-only)
-- **Gap/spacing**: Mobile-optimized `gap-1.5 sm:gap-2` pattern for better fit
-- **Main content**: Tighter padding on mobile (`px-3 py-6`) for maximum screen real estate
-- **Button groups**: Responsive gap reduction for small screens
-
-### Accessibility Enhancements (Complete)
-- **Keyboard shortcuts**: Ctrl+C (copy email), Ctrl+G (generate new email) with documented titles
-- **Screen reader support**: Aria-live regions announce new emails to screen readers
-- **Skip-to-main link**: Keyboard users can jump directly to main content
-- **Reduced motion support**: `@media (prefers-reduce-motion: reduce)` disables animations for users with motion sensitivity
-- **WCAG-compliant**: All interactive elements have proper aria-labels and data-testid attributes
-
-### Trust Building Components
-- **"Is My Data Private?" section** (6 FAQs with icons: Eye, Lock, Database, Trash, Shield, Zap)
-- **Enhanced footer** with Product, Legal, Contact sections and feature badges
-- **Use Cases section** with professional icons instead of confusing checkboxes
-- **Professional trust narrative flow**: Hero → Generator → Inbox → Trust → Use Cases → How It Works → Data & Privacy → Social Proof → Testimonials → FAQs
-
-### CSS/Styling
-- **Color utility classes**: `.btn-success` (emerald), `.btn-info` (blue), `.btn-danger` (red)
-- **Hover animation**: `.btn-hover-scale` with 200ms transition
-- **Theme transition**: `.theme-transitioning` applies 0.25s fade across all color properties
-- **Reduced motion CSS**: Respects OS accessibility settings for users with motion sensitivity
+The design prioritizes extreme minimalism, with an aggressive iterative simplification of the core user flow. This includes removing testimonials, optimizing mobile layouts for extreme compactness, and implementing subtle section background variations and visual separators. The button color system is harmonious and soft, with consistent hover effects and shadows. Accessibility is a core focus, including keyboard shortcuts, screen reader support, a skip-to-main link, and reduced motion support. Trust-building components include a "Is My Data Private?" section, an enhanced footer, and a "Proven at Scale" section, all designed to reinforce a professional trust narrative.
 
 ## External Dependencies
 
@@ -197,16 +40,17 @@ Complete mobile view overhaul: removed fixed-position "Generated: 1" badge that 
 
 ### Key Libraries
 
-- **axios**: HTTP client.
-- **date-fns**: Date and time manipulation.
-- **Radix UI**: Headless UI components.
-- **Tailwind CSS**: Utility-first CSS framework.
-- **TanStack Query**: Asynchronous state management.
-- **Zod**: Schema validation.
+- **axios**: HTTP client for API requests.
+- **date-fns**: For date and time manipulation.
+- **Radix UI**: Headless UI components used via `shadcn/ui`.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **TanStack Query**: For asynchronous state management and caching.
+- **Zod**: For schema validation of data models.
 - **lucide-react**: Icon library.
+- **wouter**: For client-side routing.
 
 ### Development Tools
 
-- **TypeScript**: Type safety.
+- **TypeScript**: Ensures type safety throughout the codebase.
 - **Vite**: Frontend build tool and development server.
-- **esbuild**: Bundles backend server code.
+- **esbuild**: Used for bundling backend server code.
