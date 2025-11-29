@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
 import { getPostBySlug, getRelatedPosts, faqItems } from "@/lib/blog-data";
+import { getBlogContentByLanguage, type LanguageCode } from "@/lib/blog-content-translations";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
 import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios, parseContentBlocks } from "@/lib/article-utils";
@@ -28,6 +29,13 @@ export default function BlogPost() {
   const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
   const [readProgress, setReadProgress] = useState(0);
   
+  // Get language-specific content for this post
+  const translatedContent = slug ? getBlogContentByLanguage(slug, language as LanguageCode) : null;
+  const displayContent = {
+    ...post,
+    ...(translatedContent || {}),
+  };
+  
   const hreflangs = generateHreflangs(location, language);
   const languageVersions = getAllLanguageVersions(slug ? `/blog/${slug}` : `/blog`);
 
@@ -36,13 +44,13 @@ export default function BlogPost() {
   }, [slug]);
 
   useEffect(() => {
-    if (post) {
-      const tableOfContents = generateTableOfContents(post.content);
+    if (displayContent?.content) {
+      const tableOfContents = generateTableOfContents(displayContent.content);
       setToc(tableOfContents);
-      const blocks = parseContentBlocks(post.content);
+      const blocks = parseContentBlocks(displayContent.content);
       setContentBlocks(blocks);
     }
-  }, [post]);
+  }, [displayContent, language]);
 
   // Track reading progress
   useEffect(() => {
@@ -72,30 +80,30 @@ export default function BlogPost() {
     );
   }
 
-  const keywordString = post.keywords.join(", ");
+  const keywordString = displayContent?.keywords?.join(", ") || "";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.metaDescription,
-    "image": post.image,
+    "headline": displayContent?.title || post?.title,
+    "description": displayContent?.metaDescription || post?.metaDescription,
+    "image": post?.image,
     "author": {
       "@type": "Person",
-      "name": post.author
+      "name": post?.author
     },
-    "datePublished": post.date,
-    "dateModified": post.date,
-    "articleBody": post.title,
-    "keywords": post.keywords.join(", "),
+    "datePublished": post?.date,
+    "dateModified": post?.date,
+    "articleBody": displayContent?.content || post?.content,
+    "keywords": keywordString,
   };
 
   return (
     <>
       <Helmet>
-        <title>{post.title} | Burner Email Blog - Temporary Email Guide</title>
-        <meta name="description" content={post.metaDescription} />
+        <title>{displayContent?.title || post?.title} | Burner Email Blog</title>
+        <meta name="description" content={displayContent?.metaDescription || post?.metaDescription} />
         <meta name="keywords" content={keywordString} />
-        <meta name="author" content={post.author} />
+        <meta name="author" content={post?.author} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta name="language" content={language} />
         <link rel="canonical" href={`https://burneremail.email${languageVersions[language]}`} />
@@ -104,18 +112,18 @@ export default function BlogPost() {
         ))}
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://burneremail.email${languageVersions[language]}`} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={post.image} />
-        <meta property="article:author" content={post.author} />
-        <meta property="article:published_time" content={post.date} />
+        <meta property="og:title" content={displayContent?.title || post?.title} />
+        <meta property="og:description" content={displayContent?.description || post?.description} />
+        <meta property="og:image" content={post?.image} />
+        <meta property="article:author" content={post?.author} />
+        <meta property="article:published_time" content={post?.date} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={post.image} />
+        <meta name="twitter:title" content={displayContent?.title || post?.title} />
+        <meta name="twitter:description" content={displayContent?.description || post?.description} />
+        <meta name="twitter:image" content={post?.image} />
         <meta property="og:site_name" content="Burner Email" />
-        <meta name="article:published_time" content={post.date} />
-        <meta name="article:author" content={post.author} />
+        <meta name="article:published_time" content={post?.date} />
+        <meta name="article:author" content={post?.author} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
@@ -218,7 +226,7 @@ export default function BlogPost() {
                   Blog
                 </Link>
                 <ChevronRight className="h-3 w-3" />
-                <span className="text-foreground font-medium truncate">{post.title}</span>
+                <span className="text-foreground font-medium truncate">{displayContent?.title || post?.title}</span>
               </div>
 
               <Link href={getLocalizedLink("/blog")} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
@@ -247,29 +255,29 @@ export default function BlogPost() {
 
         <article className="mx-auto max-w-4xl px-4 md:px-6 py-8 md:py-12">
           <div className="rounded-lg overflow-hidden mb-8 h-64 md:h-96">
-            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+            <img src={post?.image} alt={displayContent?.title || post?.title} className="w-full h-full object-cover" />
           </div>
 
           <div className="flex flex-wrap gap-4 md:gap-6 text-sm text-muted-foreground mb-6 pb-8 border-b border-border/50">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              <time>{new Date(post.date).toLocaleDateString()}</time>
+              <time>{new Date(post?.date || '').toLocaleDateString()}</time>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              <span>{post.readTime} min read</span>
+              <span>{post?.readTime} min read</span>
             </div>
             <div className="flex items-center gap-2">
               <User className="h-4 w-4" />
-              <span>{post.author}</span>
+              <span>{post?.author}</span>
             </div>
             <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full h-fit">
-              {post.category}
+              {displayContent?.category || post?.category}
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
-            {post.title}
+            {displayContent?.title || post?.title}
           </h1>
 
           <div className="prose prose-invert max-w-none mb-12">
@@ -353,7 +361,7 @@ export default function BlogPost() {
 
           {/* Keywords - Now Clickable */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {post.keywords.map((keyword) => (
+            {(displayContent?.keywords || post?.keywords || []).map((keyword) => (
               <Link
                 key={keyword}
                 href={`/blog?search=${encodeURIComponent(keyword)}`}
@@ -387,11 +395,11 @@ export default function BlogPost() {
                 variant="outline"
                 size="sm"
                 onClick={() => {
-                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  const url = `${window.location.origin}/blog/${post?.slug}`;
                   shareArticleOn('twitter', {
-                    title: post.title,
+                    title: displayContent?.title || post?.title,
                     url,
-                    summary: post.metaDescription,
+                    summary: displayContent?.metaDescription || post?.metaDescription,
                   });
                 }}
                 data-testid="button-share-twitter-article"
@@ -403,11 +411,11 @@ export default function BlogPost() {
                 variant="outline"
                 size="sm"
                 onClick={() => {
-                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  const url = `${window.location.origin}/blog/${post?.slug}`;
                   shareArticleOn('whatsapp', {
-                    title: post.title,
+                    title: displayContent?.title || post?.title,
                     url,
-                    summary: post.metaDescription,
+                    summary: displayContent?.metaDescription || post?.metaDescription,
                   });
                 }}
                 data-testid="button-share-whatsapp-article"
@@ -419,7 +427,7 @@ export default function BlogPost() {
                 variant="outline"
                 size="sm"
                 onClick={async () => {
-                  const url = `${window.location.origin}/blog/${post.slug}`;
+                  const url = `${window.location.origin}/blog/${post?.slug}`;
                   const success = await copyArticleLink(url);
                   toast({
                     title: success ? "Copied!" : "Failed to copy",

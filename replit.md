@@ -27,9 +27,15 @@ Design Philosophy: Extreme minimalism - Aggressive iterative simplification focu
 - **Canonical URLs**: Language-specific canonical URLs prevent duplicate content issues
 - **Meta Language Attribute**: `<meta name="language">` on all pages
 - **Blog Infrastructure**: 
-  - Blogs are multilingual-ready (English content, can add translations per language)
-  - Blog pages include full hreflang + canonical setup for international ranking
+  - Full multilingual blog content support via `blog-content-translations.ts`
+  - Each blog post has translated content (title, description, body) for all 6 languages
+  - Automatic fallback to English if translation not available
+  - Blog content displayed in user's selected language with hreflang + canonical setup
   - SEO utility (`seo-utils.ts`) generates proper alternate links for all language versions
+- **Blog Content System**: 
+  - `blog-content-translations.ts`: Centralized multilingual content storage
+  - `getBlogContentByLanguage(slug, language)`: Retrieves blog content in requested language
+  - `blog-post.tsx`: Uses language context to display translated content automatically
 
 ## System Architecture
 
