@@ -2,7 +2,6 @@ import { Link } from "wouter";
 import { ChevronDown } from "lucide-react";
 import { useLanguage, type Language } from "@/contexts/language-context";
 import { useState } from "react";
-import { useTranslation } from "@/hooks/use-translation";
 
 const LANGUAGES: { code: Language; name: string; flag: string }[] = [
   { code: "en", name: "English", flag: "🇺🇸" },
@@ -16,7 +15,6 @@ const LANGUAGES: { code: Language; name: string; flag: string }[] = [
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { language, setLanguage } = useLanguage();
-  const { t } = useTranslation();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const currentLangFlag = LANGUAGES.find(l => l.code === language)?.flag || "🇺🇸";
 
@@ -39,27 +37,27 @@ export function Footer() {
               <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              {t("footer.brand")}
+              Fast, secure, and anonymous temporary email service
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.product")}</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Product</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <Link href="/" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-home">
-                  {t("footer.temp.email")}
+                  Temporary Email
                 </Link>
               </li>
               <li>
                 <Link href="/browser-extension" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-extension">
-                  {t("footer.extension")}
+                  Browser Extension
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-blog">
-                  {t("footer.blog")}
+                  Blog
                 </Link>
               </li>
             </ul>
@@ -67,21 +65,21 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.legal")}</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Legal</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <Link href="/success-stories" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-stories">
-                  {t("footer.stories")}
+                  Success Stories
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-terms">
-                  {t("footer.terms")}
+                  Terms of Service
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-privacy">
-                  {t("footer.privacy")}
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -89,7 +87,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.contact")}</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Contact</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <a href="mailto:support@burneremail.email" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-support">
@@ -111,14 +109,14 @@ export function Footer() {
         {/* Bottom Section - Responsive */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6">
           <p className="text-xs text-muted-foreground leading-relaxed order-2 sm:order-1">
-            &copy; {currentYear} Burner Email. {t("footer.copyright")}
+            &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.free")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">100% Free</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.anonymous")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">Anonymous</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.nosignup")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">No Signup</span>
             <span className="hidden sm:inline text-border/50">•</span>
             {/* Language Selector */}
             <div className="relative">
