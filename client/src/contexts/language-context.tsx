@@ -28,7 +28,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     
     // Remove existing language prefix and add new one
     const cleanPath = location.replace(/^\/[a-z]{2}(\/|$)/, "/");
-    const newPath = `/${lang}${cleanPath === "/" ? "" : cleanPath}`;
+    // Always ensure trailing slash for proper route matching
+    const newPath = `/${lang}${cleanPath === "/" ? "/" : cleanPath}`;
     navigate(newPath);
     
     if (typeof window !== "undefined") {
