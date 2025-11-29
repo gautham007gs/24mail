@@ -1,25 +1,18 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 export const translations = {
-  en: {
-    // Header
+  "en": {
     "header.home": "Home",
     "header.blog": "Blog",
     "header.stories": "Stories",
     "header.domain": "Domain",
     "header.choose": "Choose",
-
-    // Hero
     "hero.title": "Your Privacy, Protected",
     "hero.subtitle": "Anonymous temporary email addresses that protect your privacy. No signup, no ads, no tracking.",
     "hero.getStarted": "Get Started",
-
-    // Features
     "features.unlimited": "100% Free",
     "features.anonymous": "Anonymous",
     "features.instant": "Instant Setup",
-
-    // FAQ
     "faq.title": "Frequently Asked Questions",
     "faq.subtitle": "Everything you need to know about Burner Email",
     "faq.q1": "Is temporary email legal and safe to use?",
@@ -34,8 +27,6 @@ export const translations = {
     "faq.a5": "We use enterprise-grade distributed infrastructure.",
     "faq.q6": "What makes BurnerEmail's QR code feature unique?",
     "faq.a6": "We're the ONLY service offering QR code sharing.",
-
-    // Blog
     "blog.title": "Blog & Guides",
     "blog.subtitle": "Expert guides on temporary email and privacy",
     "blog.search": "Search articles...",
@@ -44,8 +35,6 @@ export const translations = {
     "blog.trending": "Trending",
     "blog.indepth": "In-Depth",
     "blog.back": "Back to Home",
-
-    // Email Generator
     "email.title": "Your Temporary Email",
     "email.copy": "Copy",
     "email.copied": "Copied!",
@@ -58,8 +47,6 @@ export const translations = {
     "email.notifications": "Get notified of new emails",
     "email.enable": "Enable",
     "email.dismiss": "Dismiss",
-
-    // Inbox
     "inbox.title": "Inbox",
     "inbox.search": "Search emails...",
     "inbox.refresh": "Refresh",
@@ -73,8 +60,6 @@ export const translations = {
     "inbox.noResults": "No emails found",
     "inbox.loading": "Loading emails...",
     "inbox.noEmails": "No emails yet",
-
-    // Trust & Security
     "trust.whyTrust": "Why Trust Us",
     "trust.security": "Security & Compliance",
     "trust.standardsDesc": "Industry-leading standards",
@@ -86,8 +71,6 @@ export const translations = {
     "trust.opensourceDesc": "Fully transparent",
     "trust.nologs": "No Logs Policy",
     "trust.nologsDesc": "Zero data retention",
-
-    // How It Works
     "how.title": "How It Works",
     "how.subtitle": "Three simple steps to complete privacy",
     "how.step1": "Generate",
@@ -95,9 +78,9 @@ export const translations = {
     "how.step2": "Receive",
     "how.step2desc": "Get emails in your private inbox",
     "how.step3": "Delete",
-    "how.step3desc": "Emails auto-delete after expiry",
+    "how.step3desc": "Emails auto-delete after expiry"
   },
-  es: {
+  "es": {
     "header.home": "Inicio",
     "header.blog": "Blog",
     "header.stories": "Historias",
@@ -174,9 +157,9 @@ export const translations = {
     "how.step2": "Recibir",
     "how.step2desc": "Recibe correos en tu bandeja privada",
     "how.step3": "Eliminar",
-    "how.step3desc": "Los correos se eliminan automáticamente",
+    "how.step3desc": "Los correos se eliminan automáticamente"
   },
-  pt: {
+  "pt": {
     "header.home": "Início",
     "header.blog": "Blog",
     "header.stories": "Histórias",
@@ -204,7 +187,7 @@ export const translations = {
     "faq.a6": "Somos o ÚNICO serviço que oferece compartilhamento de código QR.",
     "blog.title": "Blog e Guias",
     "blog.subtitle": "Guias de especialistas sobre email temporário e privacidade",
-    "blog.search": "Pesquisar artigos...",
+    "blog.search": "Pesquisar artículos...",
     "blog.sort": "Ordenar por:",
     "blog.latest": "Mais Recente",
     "blog.trending": "Tendência",
@@ -253,9 +236,9 @@ export const translations = {
     "how.step2": "Receber",
     "how.step2desc": "Receba emails em sua caixa privada",
     "how.step3": "Excluir",
-    "how.step3desc": "Os emails são excluídos automaticamente",
+    "how.step3desc": "Os emails são excluídos automaticamente"
   },
-  fr: {
+  "fr": {
     "header.home": "Accueil",
     "header.blog": "Blog",
     "header.stories": "Histoires",
@@ -332,9 +315,9 @@ export const translations = {
     "how.step2": "Recevoir",
     "how.step2desc": "Recevez des emails dans votre boîte privée",
     "how.step3": "Supprimer",
-    "how.step3desc": "Les emails sont supprimés automatiquement",
+    "how.step3desc": "Les emails sont supprimés automatiquement"
   },
-  de: {
+  "de": {
     "header.home": "Startseite",
     "header.blog": "Blog",
     "header.stories": "Geschichten",
@@ -411,9 +394,9 @@ export const translations = {
     "how.step2": "Empfangen",
     "how.step2desc": "Erhalte E-Mails in deinem privaten Posteingang",
     "how.step3": "Löschen",
-    "how.step3desc": "E-Mails werden automatisch gelöscht",
+    "how.step3desc": "E-Mails werden automatisch gelöscht"
   },
-  hi: {
+  "hi": {
     "header.home": "होम",
     "header.blog": "ब्लॉग",
     "header.stories": "कहानियां",
@@ -490,8 +473,8 @@ export const translations = {
     "how.step2": "प्राप्त करें",
     "how.step2desc": "अपने निजी इनबॉक्स में ईमेल प्राप्त करें",
     "how.step3": "हटाएं",
-    "how.step3desc": "ईमेल स्वचालित रूप से हटाए जाते हैं",
-  },
+    "how.step3desc": "ईमेल स्वचालित रूप से हटाए जाते हैं"
+  }
 };
 
 type Language = keyof typeof translations;
