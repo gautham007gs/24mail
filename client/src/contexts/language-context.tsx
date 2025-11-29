@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { extractLanguageFromPath, isValidLanguage, type Language } from "@/lib/language-utils";
 
@@ -12,8 +12,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [location, navigate] = useLocation();
   
-  // Extract language from URL path
-  const language = extractLanguageFromPath(location);
+  // Track language in state and update when location changes
+  const [language, setLanguageState] = useState<Language>(() => {
+    return extractLanguageFromPath(location);
+  });
+
+  // Update language state whenever location changes
+  useEffect(() => {
+    const newLanguage = extractLanguageFromPath(location);
+    setLanguageState(newLanguage);
+  }, [location]);
 
   const setLanguage = (lang: Language) => {
     if (lang === language) return;
