@@ -27,6 +27,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/hooks/use-translation";
 
 // Generate avatar initials and consistent color from email address
 function getAvatarData(email: string): { initials: string; bgColor: string; textColor: string } {
