@@ -28,13 +28,13 @@ export default function Home() {
 
   // Generate hreflang tags for SEO
   const hreflangTags = [
-    { rel: "alternate", hrefLang: "en", href: "https://burneremail.email/" },
-    { rel: "alternate", hrefLang: "es", href: "https://burneremail.email/?lang=es" },
-    { rel: "alternate", hrefLang: "pt", href: "https://burneremail.email/?lang=pt" },
-    { rel: "alternate", hrefLang: "fr", href: "https://burneremail.email/?lang=fr" },
-    { rel: "alternate", hrefLang: "de", href: "https://burneremail.email/?lang=de" },
-    { rel: "alternate", hrefLang: "hi", href: "https://burneremail.email/?lang=hi" },
-    { rel: "alternate", hrefLang: "x-default", href: "https://burneremail.email/" },
+    { rel: "alternate", hrefLang: "en", href: "https://burneremail.email/en" },
+    { rel: "alternate", hrefLang: "es", href: "https://burneremail.email/es" },
+    { rel: "alternate", hrefLang: "pt", href: "https://burneremail.email/pt" },
+    { rel: "alternate", hrefLang: "fr", href: "https://burneremail.email/fr" },
+    { rel: "alternate", hrefLang: "de", href: "https://burneremail.email/de" },
+    { rel: "alternate", hrefLang: "hi", href: "https://burneremail.email/hi" },
+    { rel: "alternate", hrefLang: "x-default", href: "https://burneremail.email/en" },
   ];
 
   const jsonLd = {

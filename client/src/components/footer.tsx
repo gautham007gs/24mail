@@ -1,22 +1,25 @@
 import { Link } from "wouter";
 import { ChevronDown } from "lucide-react";
 import { useLanguage, type Language } from "@/contexts/language-context";
+import { LANGUAGE_FLAGS } from "@/lib/language-utils";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 import { useState } from "react";
 
-const LANGUAGES: { code: Language; name: string; flag: string }[] = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "pt", name: "Português", flag: "🇵🇹" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+const LANGUAGES = [
+  { code: "en" as Language, name: "English" },
+  { code: "es" as Language, name: "Español" },
+  { code: "pt" as Language, name: "Português" },
+  { code: "fr" as Language, name: "Français" },
+  { code: "de" as Language, name: "Deutsch" },
+  { code: "hi" as Language, name: "हिन्दी" },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { language, setLanguage } = useLanguage();
+  const getLocalizedLink = useLocalizedLink();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const currentLangFlag = LANGUAGES.find(l => l.code === language)?.flag || "🇺🇸";
+  const currentLangFlag = LANGUAGE_FLAGS[language];
 
   return (
     <footer className="border-t border-border/50 bg-background/50 mt-8 md:mt-12 lg:mt-16">
@@ -46,17 +49,17 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Product</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
-                <Link href="/" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-home">
+                <Link href={getLocalizedLink("/")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-home">
                   Temporary Email
                 </Link>
               </li>
               <li>
-                <Link href="/browser-extension" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-extension">
+                <Link href={getLocalizedLink("/browser-extension")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-extension">
                   Browser Extension
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-blog">
+                <Link href={getLocalizedLink("/blog")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-blog">
                   Blog
                 </Link>
               </li>
@@ -68,17 +71,17 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Legal</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
-                <Link href="/success-stories" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-stories">
+                <Link href={getLocalizedLink("/success-stories")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-stories">
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-terms">
+                <Link href={getLocalizedLink("/terms")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-terms">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-privacy">
+                <Link href={getLocalizedLink("/privacy")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-privacy">
                   Privacy Policy
                 </Link>
               </li>
@@ -143,7 +146,7 @@ export function Footer() {
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >
-                      <span className="text-base">{lang.flag}</span>
+                      <span className="text-base">{LANGUAGE_FLAGS[lang.code]}</span>
                       <span>{lang.name}</span>
                     </button>
                   ))}

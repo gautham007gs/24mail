@@ -93,7 +93,7 @@ export default function Blog() {
         {/* Header */}
         <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
-            <Link href="/" className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground mb-3 sm:mb-4">
+            <Link href={getLocalizedLink("/")} className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground mb-3 sm:mb-4">
               <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
               Back to Home
             </Link>
@@ -203,7 +203,7 @@ export default function Blog() {
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">Ready to protect your privacy?</h2>
                 <p className="text-sm md:text-base text-muted-foreground">Get your free temporary email address instantly. No signup required.</p>
               </div>
-              <Link href="/" className="flex-shrink-0">
+              <Link href={getLocalizedLink("/")} className="flex-shrink-0">
                 <Button className="bg-emerald-600 dark:bg-emerald-700 hover:bg-emerald-700 dark:hover:bg-emerald-800 text-white dark:text-emerald-50 font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-get-email-cta">
                   Get Free Email
                 </Button>

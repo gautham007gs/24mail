@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
 import { useTranslation } from "@/hooks/use-translation";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 
 interface HeaderProps {
   domains?: Domain[];
@@ -23,6 +24,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const [isOpen, setIsOpen] = useState(false);
   const [showDomainMenu, setShowDomainMenu] = useState(false);
   const [location] = useLocation();
+  const getLocalizedLink = useLocalizedLink();
 
   const navItems = [
     { label: t("header.home"), href: "/", icon: Home },
@@ -250,7 +252,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <div className="h-px bg-border/30 my-3 mx-2" />
                 <div className="space-y-1 px-2">
                   <Link
-                    href="/terms"
+                    href={getLocalizedLink("/terms")}
                     onClick={() => setIsOpen(false)}
                     className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     data-testid="mobile-nav-link-terms"
@@ -258,7 +260,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     Terms & Conditions
                   </Link>
                   <Link
-                    href="/privacy"
+                    href={getLocalizedLink("/privacy")}
                     onClick={() => setIsOpen(false)}
                     className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     data-testid="mobile-nav-link-privacy"

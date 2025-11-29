@@ -55,7 +55,7 @@ export default function BlogPost() {
         <div className="text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Article not found</h1>
           <p className="text-muted-foreground mb-4">The article you're looking for doesn't exist.</p>
-          <Link href="/blog">
+          <Link href={getLocalizedLink("/blog")}>
             <Button>Back to Blog</Button>
           </Link>
         </div>
@@ -198,18 +198,18 @@ export default function BlogPost() {
             <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
               {/* Breadcrumb Navigation */}
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                <Link href="/" className="hover:text-foreground transition-colors">
+                <Link href={getLocalizedLink("/")} className="hover:text-foreground transition-colors">
                   Home
                 </Link>
                 <ChevronRight className="h-3 w-3" />
-                <Link href="/blog" className="hover:text-foreground transition-colors">
+                <Link href={getLocalizedLink("/blog")} className="hover:text-foreground transition-colors">
                   Blog
                 </Link>
                 <ChevronRight className="h-3 w-3" />
                 <span className="text-foreground font-medium truncate">{post.title}</span>
               </div>
 
-              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+              <Link href={getLocalizedLink("/blog")} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Blog
               </Link>
@@ -224,7 +224,7 @@ export default function BlogPost() {
                 <p className="text-sm md:text-base font-semibold text-foreground">Try Burner Email Now</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Get your free temporary email instantly</p>
               </div>
-              <Link href="/" className="flex-shrink-0 w-full sm:w-auto">
+              <Link href={getLocalizedLink("/")} className="flex-shrink-0 w-full sm:w-auto">
                 <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-email-banner-cta">
                   Generate Email
                 </Button>
