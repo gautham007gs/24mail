@@ -38,3 +38,31 @@ export function createLocalizedPath(pathname: string, lang: Language): string {
   // Add new language prefix
   return `/${lang}${cleanPath === "/" ? "" : cleanPath}`;
 }
+
+export function detectBrowserLanguage(): Language {
+  // Try to get language from browser
+  if (typeof navigator === "undefined") return "en";
+  
+  // Get browser language (e.g., "pt-PT", "pt", "en-US")
+  const browserLang = navigator.language?.split("-")?.[0]?.toLowerCase();
+  
+  // Check if browser language matches our supported languages
+  if (isValidLanguage(browserLang)) {
+    return browserLang;
+  }
+  
+  // Map common language codes to our supported languages
+  const languageMap: Record<string, Language> = {
+    pt: "pt", // Portuguese
+    es: "es", // Spanish
+    en: "en", // English
+    fr: "fr", // French
+    de: "de", // German
+    hi: "hi", // Hindi
+    bn: "hi", // Bengali → Hindi (South Asian region)
+    ta: "hi", // Tamil → Hindi (South Asian region)
+    te: "hi", // Telugu → Hindi (South Asian region)
+  };
+  
+  return languageMap[browserLang] || "en";
+}

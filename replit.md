@@ -21,6 +21,9 @@ Design Philosophy: Extreme minimalism - Aggressive iterative simplification focu
 - **Language Context**: React context with useState tracking current language from URL
 - **Navigation**: Footer language selector updates URL + auto-scrolls to top (smooth scroll behavior)
 - **Translations**: 760+ translation keys for full UI coverage (header, footer, hero, blog, etc.)
+- **Browser Language Detection**: When users land on root `/`, system detects browser language and redirects to matching language (e.g., Portuguese user → `/pt`, Spanish user → `/es`)
+- **Regional Language Mapping**: Maps regional language variants (Bengali, Tamil, Telugu) to Hindi for South Asian users
+- **Fallback**: Falls back to English if browser language not supported
 
 ### International SEO Strategy
 - **hreflang Tags**: All pages (home, blog, blog posts) generate hreflang alternates + x-default for all 6 languages

@@ -7,7 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
 import { NotificationProvider } from "@/contexts/notification-context";
-import { SUPPORTED_LANGUAGES, isValidLanguage } from "@/lib/language-utils";
+import { SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage } from "@/lib/language-utils";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
@@ -32,9 +32,12 @@ function Router() {
   
   return (
     <Switch>
-      {/* Redirect root path to /en */}
+      {/* Redirect root path to user's browser language or /en default */}
       <Route path="/">
-        {() => <Redirect to="/en" />}
+        {() => {
+          const browserLang = detectBrowserLanguage();
+          return <Redirect to={`/${browserLang}`} />;
+        }}
       </Route>
 
       {/* Language-prefixed routes */}
