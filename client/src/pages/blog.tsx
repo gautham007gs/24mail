@@ -235,8 +235,8 @@ export default function Blog() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredPosts.map((post) => (
                   <Link 
-                    key={post.id} 
-                    href={`/blog/${post.slug}`}
+                    key={post.slug} 
+                    href={getLocalizedLink(`/blog/${post.slug}`)}
                     className="group h-full no-underline block"
                     data-testid={`card-blog-post-${post.id}`}
                   >

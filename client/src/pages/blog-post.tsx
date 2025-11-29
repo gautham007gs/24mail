@@ -9,12 +9,14 @@ import { useState, useEffect } from "react";
 import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios, parseContentBlocks } from "@/lib/article-utils";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/language-context";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 import { generateHreflangs, getAllLanguageVersions } from "@/lib/seo-utils";
 
 export default function BlogPost() {
   const [, params] = useRoute("/:lang/blog/:slug");
   const [location] = useLocation();
   const { language } = useLanguage();
+  const getLocalizedLink = useLocalizedLink();
   const slug = params?.slug as string;
   const { toast } = useToast();
   
