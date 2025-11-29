@@ -107,13 +107,41 @@ export const translations: Record<Language, Record<string, string>> = {
     "email.dismiss": "Dismiss",
     
     // Inbox
-    "inbox.title": "Your Inbox",
+    "inbox.title": "Inbox",
     "inbox.search": "Search emails...",
     "inbox.refresh": "Refresh",
     "inbox.deleteAll": "Delete All",
     "inbox.empty": "Your inbox is empty",
+    "inbox.waiting": "Waiting for incoming emails",
+    "inbox.refreshes": "Refreshes every 5 seconds",
+    "inbox.burn": "Burn",
+    "inbox.burnAll": "Burn All",
+    "inbox.selected": "selected",
+    "inbox.noResults": "No emails found",
     "inbox.loading": "Loading emails...",
     "inbox.noEmails": "No emails yet",
+    
+    // Trust & Security
+    "trust.whyTrust": "Why Trust Us",
+    "trust.security": "Security & Compliance",
+    "trust.standardsDesc": "Industry-leading standards and certifications",
+    "trust.gdpr": "GDPR Compliant",
+    "trust.gdprDesc": "EU data protection",
+    "trust.ssl": "SSL Encrypted",
+    "trust.sslDesc": "256-bit encryption",
+    "trust.opensource": "Open Source",
+    "trust.opensourceDesc": "Fully transparent",
+    "trust.nologs": "No Logs Policy",
+    "trust.nologsDesc": "Zero data retention",
+    
+    // How It Works
+    "how.title": "How It Works",
+    "how.subtitle": "Three simple steps to complete privacy",
+    "how.generate": "Generate",
+    "how.copy": "Copy",
+    "how.paste": "Paste anywhere",
+    "how.receive": "Receive",
+    "how.inbox": "In your inbox",
     
     // Social Proof
     "social.title": "Proven at Scale",

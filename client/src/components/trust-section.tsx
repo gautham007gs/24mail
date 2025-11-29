@@ -38,10 +38,10 @@ export function TrustSection() {
   ];
 
   const certifications = [
-    { name: "GDPR Compliant", icon: Lock, description: "EU data protection" },
-    { name: "SSL Encrypted", icon: Shield, description: "256-bit encryption" },
-    { name: "Open Source", icon: Code2, description: "Fully transparent" },
-    { name: "No Logs Policy", icon: Check, description: "Zero data retention" },
+    { name: t("trust.gdpr"), icon: Lock, description: t("trust.gdprDesc") },
+    { name: t("trust.ssl"), icon: Shield, description: t("trust.sslDesc") },
+    { name: t("trust.opensource"), icon: Code2, description: t("trust.opensourceDesc") },
+    { name: t("trust.nologs"), icon: Check, description: t("trust.nologsDesc") },
   ];
 
   return (
@@ -49,7 +49,7 @@ export function TrustSection() {
       {/* Header */}
       <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
         <div className="inline-block mb-4 px-3 py-1.5 rounded-full bg-emerald-100/50 dark:bg-emerald-950/40 border border-emerald-200/50 dark:border-emerald-800/50">
-          <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wide">Why Trust Us</p>
+          <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wide">{t("trust.whyTrust")}</p>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
           {t("trust.title")}
@@ -173,9 +173,9 @@ export function TrustSection() {
       <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
         <div className="text-center mb-8">
           <p className="text-center text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-            Security & Compliance
+            {t("trust.security")}
           </p>
-          <p className="text-sm text-muted-foreground">Industry-leading standards and certifications</p>
+          <p className="text-sm text-muted-foreground">{t("trust.standardsDesc")}</p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -268,13 +268,13 @@ export function InboxList({
       {/* Header with Actions - Better spacing */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">{t("inbox.title")}</h2>
           <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>
           {hasSelected && (
             <span className="text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium min-h-8 flex items-center">
-              {selectedIds.length} selected
+              {selectedIds.length} {t("inbox.selected")}
             </span>
           )}
         </div>
@@ -288,7 +288,7 @@ export function InboxList({
               className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
-              Burn {selectedIds.length}
+              {t("inbox.burn")} {selectedIds.length}
             </Button>
           )}
           {emails.length > 0 && (
@@ -300,7 +300,7 @@ export function InboxList({
               className="btn-danger btn-hover-scale active-elevate-2"
             >
               <Trash2 className="h-4 w-4 mr-1.5" />
-              <span className="hidden sm:inline">Burn All</span>
+              <span className="hidden sm:inline">{t("inbox.burnAll")}</span>
             </Button>
           )}
           {currentEmail && (
@@ -704,18 +704,18 @@ function EmptyState({ emptyMessage }: { emptyMessage: string }) {
       
       {/* Main message */}
       <h3 className="text-lg sm:text-xl font-semibold text-foreground mt-6" data-testid="text-empty-title">
-        Your inbox is empty
+        {t("inbox.empty")}
       </h3>
       
       {/* Subtext */}
       <p className="text-sm text-muted-foreground mt-2 max-w-sm" data-testid="text-empty-message">
-        Waiting for incoming emails
+        {t("inbox.waiting")}
       </p>
       
       {/* Auto-refresh info */}
       <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground/80">
         <RefreshCw className="h-3 w-3 opacity-50" />
-        <span>Refreshes every 5 seconds</span>
+        <span>{t("inbox.refreshes")}</span>
       </div>
     </div>
   );
