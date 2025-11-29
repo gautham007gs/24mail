@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ArrowLeft, ArrowRight, Search, BookOpen, Sparkles, X, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,12 +8,23 @@ import { Footer } from "@/components/footer";
 import { BlogImageSkeleton } from "@/lib/loading-skeletons";
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useLanguage } from "@/contexts/language-context";
+import { useTranslation } from "@/hooks/use-translation";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
+import { generateHreflangs, getAllLanguageVersions } from "@/lib/seo-utils";
 
 export default function Blog() {
+  const [location] = useLocation();
+  const { language } = useLanguage();
+  const { t } = useTranslation();
+  const getLocalizedLink = useLocalizedLink();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<"latest" | "popular" | "trending">("latest");
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
+
+  const hreflangs = generateHreflangs(location, language);
+  const languageVersions = getAllLanguageVersions("/blog");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,9 +88,13 @@ export default function Blog() {
         <title>Burner Email Blog - Expert Guides on Temp Mail, Disposable Email & Privacy</title>
         <meta name="description" content="Read expert guides on burner email, temp mail, temporary email, and disposable email. Learn privacy protection, spam prevention, and email security best practices." />
         <meta name="keywords" content="burner email blog, temp mail guide, temporary email guide, disposable email guide, privacy tips, email security, spam prevention, email privacy, secure email" />
-        <link rel="canonical" href="https://burneremail.email/blog" />
+        <meta name="language" content={language} />
+        <link rel="canonical" href={`https://burneremail.email${languageVersions[language]}`} />
+        {hreflangs.map((link) => (
+          <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
+        ))}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://burneremail.email/blog" />
+        <meta property="og:url" content={`https://burneremail.email${languageVersions[language]}`} />
         <meta property="og:title" content="Burner Email Blog - Expert Guides on Burner Email & Privacy" />
         <meta property="og:description" content="Expert guides on burner email, disposable email, privacy protection, spam prevention, and email security best practices." />
         <meta property="og:image" content="https://burneremail.email/logo-256.png" />
@@ -95,13 +110,13 @@ export default function Blog() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
             <Link href={getLocalizedLink("/")} className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground mb-3 sm:mb-4">
               <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
-              Back to Home
+              {t("blog.backHome")}
             </Link>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 sm:mb-3">
-              Blog & Guides
+              {t("blog.title")}
             </h1>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
-              Expert guides on temporary email, privacy protection, and email security best practices
+              {t("blog.subtitle")}
             </p>
           </div>
         </div>
@@ -115,7 +130,7 @@ export default function Blog() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Search articles by topic, keyword..."
+                placeholder={t("blog.search")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9 sm:pl-10 h-10 sm:h-12 text-sm"
@@ -144,7 +159,7 @@ export default function Blog() {
                 className="active-elevate-2"
                 data-testid="button-category-all"
               >
-                All Articles
+                {t("blog.allArticles")}
                 <span className="ml-2 text-xs font-semibold opacity-70">({blogPosts.length})</span>
               </Button>
               {categories.map((category) => (
@@ -164,7 +179,7 @@ export default function Blog() {
 
             {/* Sort Options */}
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Sort by:</span>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">{t("blog.sort")}</span>
               <Button
                 variant={sortBy === "latest" ? "default" : "outline"}
                 size="sm"

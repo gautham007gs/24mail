@@ -1,4 +1,4 @@
-import { useRoute, Link } from "wouter";
+import { useRoute, Link, useLocation } from "wouter";
 import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, MessageCircle, Copy, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,9 +8,13 @@ import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
 import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios, parseContentBlocks } from "@/lib/article-utils";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/language-context";
+import { generateHreflangs, getAllLanguageVersions } from "@/lib/seo-utils";
 
 export default function BlogPost() {
-  const [, params] = useRoute("/blog/:slug");
+  const [, params] = useRoute("/:lang/blog/:slug");
+  const [location] = useLocation();
+  const { language } = useLanguage();
   const slug = params?.slug as string;
   const { toast } = useToast();
   
@@ -21,6 +25,9 @@ export default function BlogPost() {
   const [isTocOpen, setIsTocOpen] = useState(false);
   const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
   const [readProgress, setReadProgress] = useState(0);
+  
+  const hreflangs = generateHreflangs(location, language);
+  const languageVersions = getAllLanguageVersions(slug ? `/blog/${slug}` : `/blog`);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,14 +90,18 @@ export default function BlogPost() {
   return (
     <>
       <Helmet>
-        <title>{post.title} | TempMail Blog - Temporary Email Guide</title>
+        <title>{post.title} | Burner Email Blog - Temporary Email Guide</title>
         <meta name="description" content={post.metaDescription} />
         <meta name="keywords" content={keywordString} />
         <meta name="author" content={post.author} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <link rel="canonical" href={`https://tempmail.org/blog/${slug}`} />
+        <meta name="language" content={language} />
+        <link rel="canonical" href={`https://burneremail.email${languageVersions[language]}`} />
+        {hreflangs.map((link) => (
+          <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
+        ))}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://tempmail.org/blog/${slug}`} />
+        <meta property="og:url" content={`https://burneremail.email${languageVersions[language]}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={post.image} />
@@ -100,10 +111,9 @@ export default function BlogPost() {
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={post.image} />
-        <meta property="og:site_name" content="TempMail" />
+        <meta property="og:site_name" content="Burner Email" />
         <meta name="article:published_time" content={post.date} />
         <meta name="article:author" content={post.author} />
-        <link rel="canonical" href={`https://tempmail.com/blog/${post.slug}`} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 

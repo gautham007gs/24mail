@@ -14,6 +14,23 @@ Theme Support: Full dark mode support with consistent styling across all compone
 Email Viewing: Default to HTML view, all links open in new tabs for user retention
 Design Philosophy: Extreme minimalism - Aggressive iterative simplification focused on core user flow (arrive → copy email → leave)
 
+## Multilingual & SEO Implementation
+
+### Language Routing (6 Languages)
+- **URL Structure**: `/:lang(en|es|pt|fr|de|hi)/*` - all pages language-prefixed
+- **Language Context**: React context with useState tracking current language from URL
+- **Navigation**: Footer language selector updates URL + auto-scrolls to top (smooth scroll behavior)
+- **Translations**: 760+ translation keys for full UI coverage (header, footer, hero, blog, etc.)
+
+### International SEO Strategy
+- **hreflang Tags**: All pages (home, blog, blog posts) generate hreflang alternates + x-default for all 6 languages
+- **Canonical URLs**: Language-specific canonical URLs prevent duplicate content issues
+- **Meta Language Attribute**: `<meta name="language">` on all pages
+- **Blog Infrastructure**: 
+  - Blogs are multilingual-ready (English content, can add translations per language)
+  - Blog pages include full hreflang + canonical setup for international ranking
+  - SEO utility (`seo-utils.ts`) generates proper alternate links for all language versions
+
 ## System Architecture
 
 ### Frontend Architecture
