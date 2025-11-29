@@ -32,7 +32,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const newPath = `/${lang}${cleanPath === "/" ? "/" : cleanPath}`;
     navigate(newPath);
     
+    // Scroll to top smoothly when language changes
     if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       localStorage.setItem("burner-email-language", lang);
     }
   };

@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useLanguage, type Language } from "@/contexts/language-context";
 import { LANGUAGE_FLAGS } from "@/lib/language-utils";
 import { useLocalizedLink } from "@/hooks/use-localized-link";
+import { useTranslation } from "@/hooks/use-translation";
 import { useState } from "react";
 
 const LANGUAGES = [
@@ -17,6 +18,7 @@ const LANGUAGES = [
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
   const getLocalizedLink = useLocalizedLink();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const currentLangFlag = LANGUAGE_FLAGS[language];
@@ -40,27 +42,27 @@ export function Footer() {
               <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Fast, secure, and anonymous temporary email service
+              {t("footer.desc")}
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Product</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.product")}</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <Link href={getLocalizedLink("/")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-home">
-                  Temporary Email
+                  {t("footer.tempEmail")}
                 </Link>
               </li>
               <li>
                 <Link href={getLocalizedLink("/browser-extension")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-extension">
-                  Browser Extension
+                  {t("footer.browserExtension")}
                 </Link>
               </li>
               <li>
                 <Link href={getLocalizedLink("/blog")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-blog">
-                  Blog
+                  {t("header.blog")}
                 </Link>
               </li>
             </ul>
@@ -68,21 +70,21 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Legal</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.legal")}</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <Link href={getLocalizedLink("/success-stories")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-stories">
-                  Success Stories
+                  {t("footer.successStories")}
                 </Link>
               </li>
               <li>
                 <Link href={getLocalizedLink("/terms")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-terms">
-                  Terms of Service
+                  {t("footer.terms")}
                 </Link>
               </li>
               <li>
                 <Link href={getLocalizedLink("/privacy")} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block" data-testid="footer-link-privacy">
-                  Privacy Policy
+                  {t("footer.privacy")}
                 </Link>
               </li>
             </ul>
@@ -90,7 +92,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">Contact</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm md:text-base">{t("footer.contact")}</h4>
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <a href="mailto:support@burneremail.email" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors hover-elevate inline-block break-all" data-testid="footer-email-support">
@@ -115,11 +117,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">100% Free</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge1")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">Anonymous</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge2")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">No Signup</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge3")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
             {/* Language Selector */}
             <div className="relative">
