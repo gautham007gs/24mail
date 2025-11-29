@@ -8,6 +8,7 @@ import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { useTranslation } from "@/hooks/use-translation";
+import { useLanguage } from "@/contexts/language-context";
 
 // Lazy load Helmet for SEO (not critical for initial render)
 const Helmet = lazy(() => import("react-helmet").then(m => ({ default: m.Helmet })));
@@ -23,6 +24,19 @@ const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => (
 
 export default function Home() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
+
+  // Generate hreflang tags for SEO
+  const hreflangTags = [
+    { rel: "alternate", hrefLang: "en", href: "https://burneremail.email/" },
+    { rel: "alternate", hrefLang: "es", href: "https://burneremail.email/?lang=es" },
+    { rel: "alternate", hrefLang: "pt", href: "https://burneremail.email/?lang=pt" },
+    { rel: "alternate", hrefLang: "fr", href: "https://burneremail.email/?lang=fr" },
+    { rel: "alternate", hrefLang: "de", href: "https://burneremail.email/?lang=de" },
+    { rel: "alternate", hrefLang: "hi", href: "https://burneremail.email/?lang=hi" },
+    { rel: "alternate", hrefLang: "x-default", href: "https://burneremail.email/" },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -33,6 +47,7 @@ export default function Home() {
     "applicationCategory": "UtilityApplication",
     "applicationSubCategory": "Privacy Tool, Email Service, Temporary Email",
     "keywords": "burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, spam prevention, email privacy",
+    "inLanguage": language.toUpperCase(),
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -286,6 +301,14 @@ export default function Home() {
         <meta name="description" content="Get free burner email, temp mail, and disposable email instantly - no signup required. Protect your privacy with Burner Email's secure private mail service. Spam prevention, anonymous communication, and email privacy in one platform." />
         <meta name="keywords" content="burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, email privacy, spam prevention, temporary mail" />
         <link rel="canonical" href="https://burneremail.email/" />
+        {/* hreflang tags for multilingual SEO */}
+        <link rel="alternate" hrefLang="en" href="https://burneremail.email/" />
+        <link rel="alternate" hrefLang="es" href="https://burneremail.email/?lang=es" />
+        <link rel="alternate" hrefLang="pt" href="https://burneremail.email/?lang=pt" />
+        <link rel="alternate" hrefLang="fr" href="https://burneremail.email/?lang=fr" />
+        <link rel="alternate" hrefLang="de" href="https://burneremail.email/?lang=de" />
+        <link rel="alternate" hrefLang="hi" href="https://burneremail.email/?lang=hi" />
+        <link rel="alternate" hrefLang="x-default" href="https://burneremail.email/" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://burneremail.email/" />
         <meta property="og:title" content="Burner Email - Free Temporary Email & Temp Mail" />

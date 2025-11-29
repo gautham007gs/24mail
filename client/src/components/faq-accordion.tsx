@@ -1,8 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { faqItems } from "@/lib/blog-data";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function FAQAccordion() {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
@@ -12,6 +14,11 @@ export function FAQAccordion() {
         {/* Inner container for centered content */}
         <div className="px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="w-full max-w-4xl mx-auto">
+            {/* FAQ Heading */}
+            <div className="mb-6 md:mb-8 text-center max-w-2xl mx-auto px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{t("faq.title")}</h2>
+              <p className="text-sm md:text-base text-muted-foreground">{t("faq.subtitle")}</p>
+            </div>
             {/* FAQ Items - Single column */}
             <div className="space-y-3 sm:space-y-4 md:space-y-5">
               {faqItems.map((item, idx) => (
