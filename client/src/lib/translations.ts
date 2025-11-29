@@ -104,7 +104,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "email.expired": "Expired",
     "email.notifications": "Get notified of new emails",
     "email.enable": "Enable",
-    "email.dismiss": "Dismiss",
     
     // Inbox
     "inbox.title": "Inbox",

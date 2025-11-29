@@ -102,6 +102,7 @@ export function InboxList({
   isDeleting,
   onDeleteSelected,
 }: InboxListProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [countdown, setCountdown] = useState(5);
   const [showClearDialog, setShowClearDialog] = useState(false);
