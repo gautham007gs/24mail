@@ -1,5 +1,3 @@
-import { createContext, useContext, useState, useEffect } from "react";
-
 export const translations = {
   en: {
     "header.home": "Home",
@@ -477,40 +475,4 @@ export const translations = {
   },
 };
 
-type Language = keyof typeof translations;
-
-const LanguageContext = createContext<{
-  language: Language;
-  setLanguage: (lang: Language) => void;
-}>({ language: "en", setLanguage: () => {} });
-
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("language");
-      return (saved as Language) || "en";
-    }
-    return "en";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-}
-
-export function useTranslation() {
-  const { language } = useContext(LanguageContext);
-
-  return {
-    t: (key: string) => {
-      return (translations[language] as Record<string, string>)[key] || key;
-    },
-    language,
-  };
-}
+export type Language = keyof typeof translations;
