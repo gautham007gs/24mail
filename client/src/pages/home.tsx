@@ -425,11 +425,6 @@ export default function Home() {
 
       {/* FAQ Section - Full Width */}
       <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-        <div className="max-w-3xl mx-auto px-4 md:px-6 mb-8 md:mb-10 text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">{t("faq.title")}</h2>
-          <p className="text-base md:text-lg text-muted-foreground">{t("faq.subtitle")}</p>
-        </div>
-        
         <Suspense fallback={<div className="h-96 bg-muted/30 animate-pulse" />}>
           <FAQAccordion />
         </Suspense>
