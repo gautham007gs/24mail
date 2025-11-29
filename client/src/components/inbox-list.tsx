@@ -697,6 +697,7 @@ function AvatarPlaceholder({ email, emailId }: { email: string; emailId: string 
 }
 
 function EmptyState({ emptyMessage }: { emptyMessage: string }) {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center px-4">
       {/* Icon - Clean and minimal */}
