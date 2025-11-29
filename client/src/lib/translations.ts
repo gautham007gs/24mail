@@ -62,6 +62,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "Frequently Asked Questions",
     "faq.subtitle": "Everything you need to know about Burner Email and temporary email services",
+    "faq.q1": "Is temporary email legal and safe to use?",
+    "faq.a1": "Yes, temporary email is completely legal and safe. It's used by millions worldwide—developers for testing, businesses for security research, and individuals for privacy protection. Your data is encrypted and automatically deleted, ensuring complete privacy and security.",
+    "faq.q2": "Can I use temporary email for important accounts like banking?",
+    "faq.a2": "No, temporary emails are not suitable for important accounts (banking, email providers, payment services). Use temporary email only for one-time signups, newsletters, and services you don't plan to use long-term. For critical accounts, use your primary, recovery-protected email address.",
+    "faq.q3": "Can you or anyone else see my emails?",
+    "faq.a3": "No. Your emails are completely private. Only you can access them during your session. We cannot see your emails, and they're encrypted in transit. Once your session expires, all emails are permanently deleted from our servers. No one—including us—can recover or view your data.",
+    "faq.q4": "How long does a temporary email address last?",
+    "faq.a4": "TempMail provides an active, usable inbox during your session. The temporary address remains active and receives emails while you're using the service. Emails are automatically purged after your session expires to protect your privacy. Unlike competitors, our session management is reliable.",
+    "faq.q5": "Why does TempMail have 99.9% uptime when competitors are always down?",
+    "faq.a5": "TempMail uses enterprise-grade distributed infrastructure with redundancy, automated failover, and multi-region servers. Competitors rely on outdated shared hosting, causing regular outages. We invest in infrastructure reliability, so you never miss emails. Our monitoring is 24/7.",
+    "faq.q6": "What makes TempMail's QR code feature unique?",
+    "faq.a6": "TempMail is the ONLY service offering QR code sharing for emails. Scan with another device to instantly access the same email on mobile or desktop. This exclusive feature enables seamless cross-device synchronization that no competitor offers. Share emails without typing addresses.",
     
     // Blog
     "blog.title": "Blog & Guides",
@@ -174,6 +186,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "Preguntas Frecuentes",
     "faq.subtitle": "Todo lo que necesitas saber sobre Burner Email y servicios de correo temporal",
+    "faq.q1": "¿Es legal y seguro usar correo electrónico temporal?",
+    "faq.a1": "Sí, el correo electrónico temporal es completamente legal y seguro. Lo usan millones en todo el mundo: desarrolladores para pruebas, empresas para investigación de seguridad e individuos para protección de privacidad.",
+    "faq.q2": "¿Puedo usar correo temporal para cuentas importantes como banca?",
+    "faq.a2": "No, los correos temporales no son adecuados para cuentas importantes. Use correo temporal solo para registros únicos y servicios que no planee usar a largo plazo.",
+    "faq.q3": "¿Pueden verlo usted u otra persona mis correos?",
+    "faq.a3": "No. Sus correos son completamente privados. Solo usted puede acceder a ellos durante su sesión.",
+    "faq.q4": "¿Cuánto tiempo dura una dirección de correo temporal?",
+    "faq.a4": "TempMail proporciona una bandeja de entrada activa durante su sesión. Los correos se eliminan automáticamente después de que su sesión expira.",
+    "faq.q5": "¿Por qué TempMail tiene 99.9% de tiempo de actividad?",
+    "faq.a5": "TempMail utiliza infraestructura distribuida de nivel empresarial con redundancia y conmutación automática en múltiples regiones.",
+    "faq.q6": "¿Qué hace única la característica de código QR de TempMail?",
+    "faq.a6": "TempMail es el ÚNICO servicio que ofrece código QR compartido para correos. Escanee con otro dispositivo para acceder al mismo correo instantáneamente.",
     
     // Blog
     "blog.title": "Blog y Guías",
@@ -246,6 +270,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "Perguntas Frequentes",
     "faq.subtitle": "Tudo que você precisa saber sobre Burner Email e serviços de email temporário",
+    "faq.q1": "É legal e seguro usar email temporário?",
+    "faq.a1": "Sim, email temporário é completamente legal e seguro. É usado por milhões em todo o mundo para proteger privacidade.",
+    "faq.q2": "Posso usar email temporário para contas importantes como banco?",
+    "faq.a2": "Não, emails temporários não são adequados para contas importantes. Use apenas para inscrições únicas e serviços que não usa a longo prazo.",
+    "faq.q3": "Alguém pode ver meus emails?",
+    "faq.a3": "Não. Seus emails são completamente privados. Apenas você pode acessá-los durante sua sessão.",
+    "faq.q4": "Quanto tempo dura um endereço de email temporário?",
+    "faq.a4": "TempMail fornece uma caixa de entrada ativa durante sua sessão. Os emails são deletados automaticamente após a sessão expirar.",
+    "faq.q5": "Por que TempMail tem 99,9% de disponibilidade?",
+    "faq.a5": "TempMail usa infraestrutura distribuída de nível empresarial com redundância e failover automático em múltiplas regiões.",
+    "faq.q6": "O que torna único o recurso de código QR do TempMail?",
+    "faq.a6": "TempMail é o ÚNICO serviço oferecendo código QR compartilhado para emails. Escaneie com outro dispositivo para acessar o mesmo email instantaneamente.",
     
     // Blog
     "blog.title": "Blog e Guias",
@@ -318,6 +354,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "Questions Fréquemment Posées",
     "faq.subtitle": "Tout ce que vous devez savoir sur Burner Email et les services d'email temporaire",
+    "faq.q1": "Le courrier électronique temporaire est-il légal et sûr?",
+    "faq.a1": "Oui, le courrier électronique temporaire est complètement légal et sûr. Il est utilisé par des millions dans le monde entier pour la protection de la vie privée.",
+    "faq.q2": "Puis-je utiliser le courrier électronique temporaire pour des comptes importants comme la banque?",
+    "faq.a2": "Non, les emails temporaires ne conviennent pas aux comptes importants. Utilisez uniquement pour les inscriptions uniques et les services à court terme.",
+    "faq.q3": "Quelqu'un d'autre peut-il voir mes emails?",
+    "faq.a3": "Non. Vos emails sont complètement privés. Seul vous pouvez y accéder pendant votre session.",
+    "faq.q4": "Combien de temps dure une adresse email temporaire?",
+    "faq.a4": "TempMail fournit une boîte de réception active pendant votre session. Les emails sont supprimés automatiquement après expiration.",
+    "faq.q5": "Pourquoi TempMail a-t-il 99,9% de disponibilité?",
+    "faq.a5": "TempMail utilise une infrastructure distribuée de niveau entreprise avec redondance et basculement automatique dans plusieurs régions.",
+    "faq.q6": "Qu'est-ce qui rend unique la fonctionnalité de code QR de TempMail?",
+    "faq.a6": "TempMail est le SEUL service offrant un partage de code QR pour les emails. Scannez sur un autre appareil pour accéder instantánement au même email.",
     
     // Blog
     "blog.title": "Blog et Guides",
@@ -407,6 +455,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "Häufig Gestellte Fragen",
     "faq.subtitle": "Alles, was Sie über Burner Email und Dienste für temporäre E-Mails wissen müssen",
+    "faq.q1": "Ist temporäre E-Mail legal und sicher zu verwenden?",
+    "faq.a1": "Ja, temporäre E-Mail ist völlig legal und sicher. Sie wird weltweit von Millionen zum Datenschutz verwendet.",
+    "faq.q2": "Kann ich temporäre E-Mail für wichtige Konten wie Banking verwenden?",
+    "faq.a2": "Nein, temporäre E-Mails sind nicht für wichtige Konten geeignet. Verwenden Sie nur für einmalige Anmeldungen und kurzfristige Dienste.",
+    "faq.q3": "Kann jemand anderes meine E-Mails sehen?",
+    "faq.a3": "Nein. Ihre E-Mails sind völlig privat. Nur Sie können darauf während Ihrer Sitzung zugreifen.",
+    "faq.q4": "Wie lange hält eine temporäre E-Mail-Adresse?",
+    "faq.a4": "TempMail bietet während Ihrer Sitzung ein aktives Postfach. E-Mails werden automatisch nach Ablauf der Sitzung gelöscht.",
+    "faq.q5": "Warum hat TempMail 99,9% Verfügbarkeit?",
+    "faq.a5": "TempMail verwendet unternehmensweite verteilte Infrastruktur mit Redundanz und automatischem Failover in mehreren Regionen.",
+    "faq.q6": "Was macht die QR-Code-Funktion von TempMail einzigartig?",
+    "faq.a6": "TempMail ist der EINZIGE Service, der QR-Code-Freigabe für E-Mails anbietet. Scannen Sie auf einem anderen Gerät, um sofort auf die gleiche E-Mail zuzugreifen.",
     
     // Blog
     "blog.title": "Blog und Leitfäden",
@@ -496,6 +556,18 @@ export const translations: Record<Language, Record<string, string>> = {
     // FAQ
     "faq.title": "अक्सर पूछे जाने वाले प्रश्न",
     "faq.subtitle": "Burner Email और अस्थायी ईमेल सेवाओं के बारे में आपको जो कुछ जानना चाहिए",
+    "faq.q1": "क्या अस्थायी ईमेल कानूनी और सुरक्षित है?",
+    "faq.a1": "हाँ, अस्थायी ईमेल पूरी तरह कानूनी और सुरक्षित है। इसे दुनिया भर में लाखों लोग गोपनीयता सुरक्षा के लिए उपयोग करते हैं।",
+    "faq.q2": "क्या मैं बैंकिंग जैसे महत्वपूर्ण खातों के लिए अस्थायी ईमेल का उपयोग कर सकता हूँ?",
+    "faq.a2": "नहीं, अस्थायी ईमेल महत्वपूर्ण खातों के लिए उपयुक्त नहीं हैं। केवल एकबारी पंजीकरण और अल्पकालिक सेवाओं के लिए उपयोग करें।",
+    "faq.q3": "क्या कोई और मेरे ईमेल देख सकता है?",
+    "faq.a3": "नहीं। आपके ईमेल पूरी तरह निजी हैं। केवल आप अपने सत्र के दौरान उन्हें एक्सेस कर सकते हैं।",
+    "faq.q4": "एक अस्थायी ईमेल पता कितने समय तक चलता है?",
+    "faq.a4": "TempMail आपके सत्र के दौरान एक सक्रिय इनबॉक्स प्रदान करता है। सत्र समाप्त होने के बाद ईमेल स्वचालित रूप से हटा दिए जाते हैं।",
+    "faq.q5": "TempMail के पास 99.9% अपटाइम क्यों है?",
+    "faq.a5": "TempMail एंटरप्राइज-ग्रेड वितरित बुनियादी ढांचे का उपयोग करता है जिसमें अनावश्यकता और कई क्षेत्रों में स्वचालित फेलओवर है।",
+    "faq.q6": "TempMail की QR कोड सुविधा क्या अद्वितीय बनाती है?",
+    "faq.a6": "TempMail ईमेल के लिए QR कोड साझाकरण प्रदान करने वाली एकमात्र सेवा है। एक अन्य डिवाइस पर स्कैन करें और तुरंत एक ही ईमेल एक्सेस करें।",
     
     // Blog
     "blog.title": "ब्लॉग और गाइड",

@@ -21,41 +21,42 @@ export function FAQAccordion() {
             </div>
             {/* FAQ Items - Single column */}
             <div className="space-y-3 sm:space-y-4 md:space-y-5">
-              {faqItems.map((item, idx) => (
+              {/* Render translated FAQ items */}
+              {[1, 2, 3, 4, 5, 6].map((idx) => (
                 <div
                   key={idx}
                   className="border border-border/30 rounded-lg overflow-hidden transition-all group hover:border-border/50 hover:shadow-md duration-300"
-                  data-testid={`faq-item-${idx}`}
+                  data-testid={`faq-item-${idx - 1}`}
                   role="region"
-                  aria-labelledby={`faq-button-${idx}`}
+                  aria-labelledby={`faq-button-${idx - 1}`}
                 >
                   <button
-                    id={`faq-button-${idx}`}
-                    onClick={() => setExpanded(expanded === idx ? null : idx)}
+                    id={`faq-button-${idx - 1}`}
+                    onClick={() => setExpanded(expanded === idx - 1 ? null : idx - 1)}
                     className="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify-between text-left bg-card/40 hover:bg-card/60 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-h-12 sm:min-h-13 md:min-h-14 group"
-                    data-testid={`button-faq-${idx}`}
-                    aria-expanded={expanded === idx}
-                    aria-controls={`faq-answer-${idx}`}
+                    data-testid={`button-faq-${idx - 1}`}
+                    aria-expanded={expanded === idx - 1}
+                    aria-controls={`faq-answer-${idx - 1}`}
                   >
                     <span className="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:text-base break-words leading-tight">
-                      {item.question}
+                      {t(`faq.q${idx}`)}
                     </span>
                     <ChevronDown
                       className={`h-4 w-4 sm:h-5 sm:w-5 text-foreground/50 flex-shrink-0 transition-transform duration-300 group-hover:text-foreground/70 ${
-                        expanded === idx ? "rotate-180" : ""
+                        expanded === idx - 1 ? "rotate-180" : ""
                       }`}
                       data-testid={`chevron-faq-${idx}`}
                       aria-hidden="true"
                     />
                   </button>
-                  {expanded === idx && (
+                  {expanded === idx - 1 && (
                     <div
-                      id={`faq-answer-${idx}`}
+                      id={`faq-answer-${idx - 1}`}
                       className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 bg-background/30 text-muted-foreground border-t border-border/30 animate-in fade-in-50 slide-in-from-top-2 duration-300 overflow-hidden"
-                      data-testid={`faq-answer-${idx}`}
+                      data-testid={`faq-answer-${idx - 1}`}
                       role="region"
                     >
-                      <p className="text-xs sm:text-sm leading-relaxed">{item.answer}</p>
+                      <p className="text-xs sm:text-sm leading-relaxed">{t(`faq.a${idx}`)}</p>
                     </div>
                   )}
                 </div>
