@@ -26,24 +26,13 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const [location] = useLocation();
   const getLocalizedLink = useLocalizedLink();
 
-  const rawNavItems = [
+  const navItems = [
     { label: t("header.home"), href: "/", icon: Home },
     { label: t("header.blog"), href: "/blog", icon: BookOpen },
     { label: t("header.stories"), href: "/success-stories", icon: Award },
   ];
 
-  // Convert raw paths to localized paths
-  const navItems = rawNavItems.map(item => ({
-    ...item,
-    href: getLocalizedLink(item.href)
-  }));
-
-  const isActive = (href: string) => {
-    // Normalize paths for comparison
-    const normalizedLocation = location.replace(/\/$/, "") || "/";
-    const normalizedHref = href.replace(/\/$/, "") || "/";
-    return normalizedLocation === normalizedHref || normalizedLocation.startsWith(normalizedHref + "/");
-  }
+  const isActive = (href: string) => location === href;
 
   return (
     <>
@@ -55,7 +44,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           <div className="flex items-center justify-between h-16">
             {/* Logo + Desktop Navigation */}
             <Link 
-              href={getLocalizedLink("/")} 
+              href="/" 
               className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md" 
               data-testid="link-home"
             >
