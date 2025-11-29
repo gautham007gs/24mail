@@ -7,7 +7,8 @@ export function useLocalizedLink() {
   return (path: string) => {
     // Remove existing language prefix if present
     const cleanPath = path.replace(/^\/[a-z]{2}(\/|$)/, "/");
-    // Add language prefix
-    return `${getLanguagePrefix(language)}${cleanPath === "/" ? "" : cleanPath}`;
+    // Add language prefix with trailing slash for consistency
+    const finalPath = cleanPath === "/" ? "" : (cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`);
+    return `${getLanguagePrefix(language)}${finalPath}`;
   };
 }
