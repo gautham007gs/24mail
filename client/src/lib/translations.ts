@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 export const translations = {
-  "en": {
+  en: {
     "header.home": "Home",
     "header.blog": "Blog",
     "header.stories": "Stories",
@@ -78,9 +78,9 @@ export const translations = {
     "how.step2": "Receive",
     "how.step2desc": "Get emails in your private inbox",
     "how.step3": "Delete",
-    "how.step3desc": "Emails auto-delete after expiry"
+    "how.step3desc": "Emails auto-delete after expiry",
   },
-  "es": {
+  es: {
     "header.home": "Inicio",
     "header.blog": "Blog",
     "header.stories": "Historias",
@@ -157,9 +157,9 @@ export const translations = {
     "how.step2": "Recibir",
     "how.step2desc": "Recibe correos en tu bandeja privada",
     "how.step3": "Eliminar",
-    "how.step3desc": "Los correos se eliminan automáticamente"
+    "how.step3desc": "Los correos se eliminan automáticamente",
   },
-  "pt": {
+  pt: {
     "header.home": "Início",
     "header.blog": "Blog",
     "header.stories": "Histórias",
@@ -236,9 +236,9 @@ export const translations = {
     "how.step2": "Receber",
     "how.step2desc": "Receba emails em sua caixa privada",
     "how.step3": "Excluir",
-    "how.step3desc": "Os emails são excluídos automaticamente"
+    "how.step3desc": "Os emails são excluídos automaticamente",
   },
-  "fr": {
+  fr: {
     "header.home": "Accueil",
     "header.blog": "Blog",
     "header.stories": "Histoires",
@@ -315,9 +315,9 @@ export const translations = {
     "how.step2": "Recevoir",
     "how.step2desc": "Recevez des emails dans votre boîte privée",
     "how.step3": "Supprimer",
-    "how.step3desc": "Les emails sont supprimés automatiquement"
+    "how.step3desc": "Les emails sont supprimés automatiquement",
   },
-  "de": {
+  de: {
     "header.home": "Startseite",
     "header.blog": "Blog",
     "header.stories": "Geschichten",
@@ -394,9 +394,9 @@ export const translations = {
     "how.step2": "Empfangen",
     "how.step2desc": "Erhalte E-Mails in deinem privaten Posteingang",
     "how.step3": "Löschen",
-    "how.step3desc": "E-Mails werden automatisch gelöscht"
+    "how.step3desc": "E-Mails werden automatisch gelöscht",
   },
-  "hi": {
+  hi: {
     "header.home": "होम",
     "header.blog": "ब्लॉग",
     "header.stories": "कहानियां",
@@ -473,8 +473,8 @@ export const translations = {
     "how.step2": "प्राप्त करें",
     "how.step2desc": "अपने निजी इनबॉक्स में ईमेल प्राप्त करें",
     "how.step3": "हटाएं",
-    "how.step3desc": "ईमेल स्वचालित रूप से हटाए जाते हैं"
-  }
+    "how.step3desc": "ईमेल स्वचालित रूप से हटाए जाते हैं",
+  },
 };
 
 type Language = keyof typeof translations;
