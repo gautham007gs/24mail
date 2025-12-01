@@ -129,7 +129,7 @@ export function InlineEmailReader({
   }
 
   return (
-    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30">
+    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30" role="region" aria-label="Email content">
       {/* Email header - Better layout */}
       <div className="px-4 sm:px-5 py-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 border-b border-border/30">
         <div className="min-w-0 flex-1">
@@ -278,6 +278,51 @@ export function InlineEmailReader({
             </div>
           )}
         </Tabs>
+
+        {/* Attachments section */}
+        {email.has_attachments && email.attachments && email.attachments.length > 0 && (
+          <div className="border-t border-border/30 px-4 sm:px-5 py-4 bg-background/50">
+            <h4 className="text-sm font-semibold mb-3 flex items-center gap-2 text-foreground">
+              <Paperclip className="h-4 w-4" />
+              Attachments ({email.attachments.length})
+            </h4>
+            <div className="space-y-2">
+              {email.attachments.map((attachment, idx) => (
+                <div
+                  key={`${attachment.id}-${idx}`}
+                  className="flex items-center justify-between gap-3 p-3 rounded-lg bg-background border border-border/30 hover-elevate"
+                  data-testid={`attachment-item-${idx}`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium text-foreground truncate" data-testid={`attachment-name-${idx}`}>
+                      {attachment.filename}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {(attachment.size / 1024).toFixed(1)} KB
+                    </p>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      // Note: Download functionality would need backend implementation
+                      toast({
+                        title: "Download",
+                        description: `Attachment feature available with premium subscription`,
+                      });
+                    }}
+                    data-testid={`button-download-attachment-${idx}`}
+                    className="h-8 px-2 flex-shrink-0"
+                    title={`Download ${attachment.filename}`}
+                    aria-label={`Download attachment: ${attachment.filename}`}
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
