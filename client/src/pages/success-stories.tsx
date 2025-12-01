@@ -28,6 +28,7 @@ export default function SuccessStories() {
 }
 
 function StoriesContent() {
+  const getLocalizedLink = (path: string) => path; // Placeholder
   const stories = [
     {
       id: 1,
@@ -92,7 +93,7 @@ function StoriesContent() {
   ];
 
   return (
-    <div className="contents">
+    <>
 
       <div className="min-h-screen bg-background">
         <div className="border-b border-border/50">
