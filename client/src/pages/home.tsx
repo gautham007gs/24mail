@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
@@ -9,18 +9,14 @@ import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { useTranslation } from "@/hooks/use-translation";
 import { useLanguage } from "@/contexts/language-context";
-
-// Lazy load Helmet for SEO (not critical for initial render)
-const Helmet = lazy(() => import("react-helmet").then(m => ({ default: m.Helmet })));
-
-// Lazy load heavy components for faster initial paint
-const EmailGenerator = lazy(() => import("@/components/email-generator").then(m => ({ default: m.EmailGenerator })));
-const InboxList = lazy(() => import("@/components/inbox-list").then(m => ({ default: m.InboxList })));
-const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
-const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
-const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
-const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
-const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
+import { Helmet } from "react-helmet";
+import { EmailGenerator } from "@/components/email-generator";
+import { InboxList } from "@/components/inbox-list";
+import { HowItWorks } from "@/components/how-it-works";
+import { Footer } from "@/components/footer";
+import { TrustSection } from "@/components/trust-section";
+import { UnifiedSocialProof } from "@/components/unified-social-proof";
+import { FAQAccordion } from "@/components/faq-accordion";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -401,23 +397,17 @@ export default function Home() {
           </div>
 
           {/* Trust Section - Why You Can Trust Us */}
-          <Suspense fallback={<div className="h-64 bg-muted/30 rounded-lg animate-pulse mt-24 md:mt-32 pt-16 md:pt-20" />}>
-            <TrustSection />
-          </Suspense>
+          <TrustSection />
 
-          {/* How It Works Section - Lazy loaded for faster initial render */}
+          {/* How It Works Section */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-            <Suspense fallback={<div className="h-96 bg-muted/30 rounded-lg animate-pulse" />}>
-              <HowItWorks />
-            </Suspense>
+            <HowItWorks />
           </div>
 
 
-          {/* Social Proof Section - Lazy loaded for faster initial render */}
+          {/* Social Proof Section */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-            <Suspense fallback={<div className="h-32 bg-muted/30 rounded-lg animate-pulse" />}>
-              <UnifiedSocialProof />
-            </Suspense>
+            <UnifiedSocialProof />
           </div>
 
         </div>
@@ -425,15 +415,11 @@ export default function Home() {
 
       {/* FAQ Section - Full Width */}
       <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-        <Suspense fallback={<div className="h-96 bg-muted/30 animate-pulse" />}>
-          <FAQAccordion />
-        </Suspense>
+        <FAQAccordion />
       </div>
 
-      {/* Footer - Lazy loaded */}
-      <Suspense fallback={<div className="h-40 bg-muted/20" />}>
-        <Footer />
-      </Suspense>
+      {/* Footer */}
+      <Footer />
     </div>
     </>
   );

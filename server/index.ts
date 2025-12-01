@@ -23,7 +23,14 @@ app.use(express.text());
   // Vite middleware in development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { 
+        middlewareMode: true,
+        allowedHosts: true,
+        fs: {
+          strict: true,
+          deny: ["**/.*"],
+        },
+      },
     });
     app.use(vite.middlewares);
   } else {
