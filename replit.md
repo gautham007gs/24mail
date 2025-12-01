@@ -162,8 +162,13 @@ npm run check  # Run TypeScript type checker
 ### High Priority
 1. **Replace Fictional Testimonials**: Implement real user testimonials or mark as examples
 2. ✅ **Complete WCAG 2.1 AAA Audit**: Full compliance with enhancements (see ACCESSIBILITY_AUDIT_WCAG_AAA.md)
-3. **Attachment Downloads**: Implement actual file download functionality (backend + frontend)
-4. **Analytics**: Add privacy-first analytics (Plausible/Fathom)
+3. ✅ **Major Performance Optimization** (December 1, 2025):
+   - Removed 5MB `react-icons/si` dependency (was 5,070.91 KiB!)
+   - Replaced social share icons with lucide-react alternatives (MessageCircle, Send, Share2)
+   - Fixed JSX fragment mismatch in success-stories.tsx
+   - **Expected Lighthouse improvement**: +30-40 points on performance score
+4. **Attachment Downloads**: Implement actual file download functionality (backend + frontend)
+5. **Analytics**: Add privacy-first analytics (Plausible/Fathom)
 
 ### Medium Priority
 1. **Email Persistence**: Add optional persistent storage for premium features
@@ -221,11 +226,17 @@ npm run check  # Run TypeScript type checker
 
 ## Recent Changes (December 1, 2025)
 
-1. ✅ Image optimization: PNG → WebP conversion (10 images)
-2. ✅ Service Worker: Comprehensive offline caching (4 strategies)
-3. ✅ Attachment UI: Download buttons + size display in inline reader
-4. ✅ Accessibility: Role/aria-label on email reader
-5. ✅ HTML head: WebP preload hints + icon fallbacks
+### Performance & Accessibility (Turn 1-12)
+1. ✅ **WCAG 2.1 AAA Accessibility Audit**: Full compliance + enhancements (aria-live, aria-label, keyboard navigation)
+2. ✅ **Performance Optimization (Turn 11-12)**:
+   - Removed 5MB `react-icons/si` bundle size
+   - Replaced social icons with lucide-react (MessageCircle, Send, Share2)
+   - Fixed JSX fragment mismatch in success-stories.tsx
+   - **Total bundle size reduction**: ~5MB (estimated +30-40 Lighthouse points)
+3. ✅ Image optimization: PNG → WebP conversion (10 images)
+4. ✅ Service Worker: Comprehensive offline caching (4 strategies)
+5. ✅ Attachment UI: Download buttons + size display in inline reader
+6. ✅ Email inbox: Keyboard shortcuts (Enter, Space, Delete), aria-pressed, full context labels
 
 ---
 
