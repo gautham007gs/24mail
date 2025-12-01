@@ -1,0 +1,4760 @@
+Insights
+Render blocking requests Est savings of 430 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+replit.dev 1st party
+5.8 KiB	1,380 ms
+…vite-plugin-dev-banner/banner-script.js(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.8 KiB
+1,380 ms
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…deps/chunk-RPCDYKBN.js?v=57c3af38:378:48(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+302 ms
+Source
+Total reflow time
+[unattributed]
+1,539 ms
+…components/email-generator.tsx:567:61(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+429 ms
+…deps/chunk-BMYZRN7H.js?v=57c3af38:438:43(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+114 ms
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+7,440 ms
+body > ::before
+<::before>
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 14,567 ms
+Initial Navigation
+/blog(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 1,535 ms, 51.04 KiB
+/src/main.tsx?v=JUmu5UdA7…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 1,880 ms, 2.38 KiB
+…deps/react_jsx-dev-runtime.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,756 ms, 37.16 KiB
+…deps/react-dom_client.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,575 ms, 2.10 KiB
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,806 ms, 907.33 KiB
+…deps/chunk-QCHXOAYK.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,164 ms, 76.96 KiB
+…deps/chunk-WOOG5QLI.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,697 ms, 3.75 KiB
+/src/App.tsx?v=JUmu5UdA7…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,726 ms, 24.24 KiB
+…deps/wouter.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,158 ms, 16.35 KiB
+…deps/react.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,112 ms, 1.20 KiB
+…lib/queryClient.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,976 ms, 5.76 KiB
+…lib/request-dedup.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,556 ms, 4.50 KiB
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,529 ms, 125.58 KiB
+…deps/chunk-KBTYAULA.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,156 ms, 37.48 KiB
+…ui/toaster.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,143 ms, 8.09 KiB
+…hooks/use-toast.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,548 ms, 12.59 KiB
+…ui/toast.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,554 ms, 20.69 KiB
+…deps/@radix-ui_react-toast.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,346 ms, 27.82 KiB
+…deps/chunk-3DVHA2TN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,637 ms, 8.72 KiB
+…deps/class-variance-authority.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,197 ms, 3.28 KiB
+…deps/lucide-react.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,941 ms, 1,127.07 KiB
+…ui/tooltip.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,971 ms, 7.37 KiB
+…deps/@radix-ui_react-tooltip.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,096 ms, 95.98 KiB
+…deps/chunk-G35RCKQ5.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,632 ms, 2.29 KiB
+…deps/chunk-VVTPOCK3.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,521 ms, 2.50 KiB
+…deps/chunk-Z7H7E4KT.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,635 ms, 1.77 KiB
+…deps/chunk-FHEVPFFC.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,639 ms, 12.20 KiB
+…deps/chunk-KCFVMCIE.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,519 ms, 1.63 KiB
+…deps/chunk-BMYZRN7H.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,696 ms, 18.20 KiB
+…deps/chunk-JDYSANEB.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,517 ms, 2.17 KiB
+…lib/utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,555 ms, 1.69 KiB
+…deps/clsx.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,108 ms, 1.22 KiB
+…deps/chunk-U7P2NEEE.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,519 ms, 1.55 KiB
+…deps/tailwind-merge.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,117 ms, 71.91 KiB
+…components/theme-provider.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,957 ms, 13.00 KiB
+…contexts/language-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,116 ms, 9.78 KiB
+…contexts/notification-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,975 ms, 11.23 KiB
+…lib/language-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,114 ms, 4.31 KiB
+…pages/home.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,066 ms, 84.41 KiB
+…hooks/use-translation.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,627 ms, 2.85 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,564 ms, 102.12 KiB
+…deps/react-helmet.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,064 ms, 39.34 KiB
+…deps/chunk-PJ25BUVZ.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,884 ms, 34.03 KiB
+…components/email-generator.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,163 ms, 94.76 KiB
+…deps/react-icons_si.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 11,569 ms, 5,070.91 KiB
+…ui/dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,231 ms, 19.68 KiB
+…deps/@radix-ui_react-dialog.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,520 ms, 2.39 KiB
+…deps/chunk-GDIDNX2O.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,959 ms, 56.03 KiB
+…deps/react-qr-code.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,234 ms, 36.84 KiB
+…lib/confetti.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,019 ms, 7.46 KiB
+…lib/article-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,030 ms, 15.00 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,168 ms, 125.02 KiB
+…deps/date-fns.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,413 ms, 177.98 KiB
+…ui/input.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,049 ms, 6.08 KiB
+…ui/checkbox.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,050 ms, 7.76 KiB
+…deps/@radix-ui_react-checkbox.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,521 ms, 10.48 KiB
+…ui/alert-dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,232 ms, 21.77 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,547 ms, 12.90 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,385 ms, 61.59 KiB
+…ui/tabs.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,960 ms, 10.35 KiB
+…deps/@radix-ui_react-tabs.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 11,571 ms, 16.84 KiB
+…lib/email-share.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,954 ms, 16.29 KiB
+…lib/loading-skeletons.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,236 ms, 19.75 KiB
+…ui/skeleton.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,492 ms, 4.28 KiB
+…inbox/2nd1t08ix1%40barid.site(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 14,567 ms, 0.83 KiB
+…components/trust-section.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,508 ms, 44.46 KiB
+…components/how-it-works.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,506 ms, 6.68 KiB
+…components/animated-demo.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,839 ms, 24.68 KiB
+/api/domains(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 12,786 ms, 0.99 KiB
+…components/unified-social-proof.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,791 ms, 28.84 KiB
+…components/faq-accordion.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,482 ms, 18.58 KiB
+…components/footer.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,925 ms, 44.57 KiB
+…lib/cache.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,633 ms, 9.37 KiB
+…lib/fun-messages.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,516 ms, 4.44 KiB
+…components/header.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,698 ms, 60.70 KiB
+…components/theme-toggle.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,086 ms, 10.76 KiB
+…ui/button.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,649 ms, 10.48 KiB
+…deps/@radix-ui_react-slot.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 7,214 ms, 5.97 KiB
+…hooks/use-localized-link.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,191 ms, 2.37 KiB
+…pages/not-found.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,675 ms, 7.30 KiB
+…ui/card.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,942 ms, 12.61 KiB
+/src/index.css?v=JUmu5UdA7…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,129 ms, 142.32 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 2,063 ms, 115.71 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 2,989 ms, 135.54 KiB
+…client/env.mjs(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,552 ms, 4.85 KiB
+…vite-plugin-dev-banner/banner-script.js(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 2,438 ms, 5.77 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 34 KiB
+Your first network request is the most important. Reduce its latency by avoiding redirects, ensuring a fast server response, and enabling text compression.LCPFCPUnscored
+Avoids redirects
+Server responds quickly (observed 371 ms)
+No compression applied
+Optimize DOM size
+A large DOM can increase the duration of style calculations and layout reflows, impacting page responsiveness. A large DOM will also increase memory usage. Learn how to avoid an excessive DOM size.Unscored
+Statistic
+Element
+Value
+Total elements
+547
+DOM depth
+div.flex-1 > div.flex > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+16
+Most children
+div.flex > div.flex > button.inline-flex > svg.lucide
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-qr-code h-4 w-4 sm:h-5 sm:w-5" data-replit-metadata="client/src/components/email-generator.tsx:319:16" data-component-name="QrCode">
+12
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Minimize main-thread work 6.0 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+Time Spent
+Style & Layout
+3,222 ms
+Other
+1,421 ms
+Script Evaluation
+901 ms
+Script Parsing & Compilation
+222 ms
+Rendering
+196 ms
+Garbage Collection
+22 ms
+Parse HTML & CSS
+6 ms
+Minify JavaScript Est savings of 1,651 KiB
+Minifying JavaScript files can reduce payload sizes and script parse time. Learn how to minify JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+4,135.1 KiB	1,650.6 KiB
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+906.4 KiB
+331.7 KiB
+…deps/lucide-react.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,126.1 KiB
+206.0 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+134.6 KiB
+117.1 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+114.8 KiB
+104.6 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.1 KiB
+81.3 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+101.2 KiB
+73.3 KiB
+…components/email-generator.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+93.8 KiB
+61.3 KiB
+…pages/home.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+83.5 KiB
+54.2 KiB
+…deps/date-fns.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+177.0 KiB
+51.0 KiB
+…deps/tailwind-merge.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+71.0 KiB
+39.4 KiB
+…components/header.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+59.8 KiB
+39.0 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+60.7 KiB
+37.7 KiB
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.6 KiB
+32.7 KiB
+…deps/chunk-QCHXOAYK.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+76.0 KiB
+31.0 KiB
+…components/trust-section.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+43.5 KiB
+25.6 KiB
+…components/footer.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+43.7 KiB
+24.5 KiB
+…deps/@radix-ui_react-tooltip.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+95.0 KiB
+23.6 KiB
+…components/unified-social-proof.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+27.9 KiB
+16.2 KiB
+…deps/chunk-KBTYAULA.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+36.5 KiB
+14.2 KiB
+…deps/react_jsx-dev-runtime.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+36.2 KiB
+14.0 KiB
+…deps/chunk-GDIDNX2O.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+55.1 KiB
+12.9 KiB
+…deps/react-qr-code.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+35.9 KiB
+12.9 KiB
+…ui/alert-dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20.9 KiB
+12.8 KiB
+…components/animated-demo.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23.8 KiB
+12.5 KiB
+…ui/toast.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+19.8 KiB
+12.3 KiB
+/src/App.tsx?v=JUmu5UdA7…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23.3 KiB
+11.9 KiB
+…lib/email-share.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.4 KiB
+11.4 KiB
+…ui/dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+18.8 KiB
+11.2 KiB
+…lib/article-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+14.1 KiB
+10.7 KiB
+…components/faq-accordion.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+17.7 KiB
+10.3 KiB
+…deps/chunk-PJ25BUVZ.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+33.1 KiB
+10.1 KiB
+…hooks/use-toast.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.7 KiB
+9.5 KiB
+…deps/react-helmet.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+38.4 KiB
+9.0 KiB
+…lib/loading-skeletons.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+18.8 KiB
+8.8 KiB
+…components/theme-provider.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+12.1 KiB
+8.1 KiB
+…lib/cache.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+8.4 KiB
+7.1 KiB
+…ui/card.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.7 KiB
+6.9 KiB
+…deps/@radix-ui_react-toast.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+26.9 KiB
+6.7 KiB
+…contexts/notification-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+10.3 KiB
+6.6 KiB
+…ui/button.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.6 KiB
+6.1 KiB
+…components/theme-toggle.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.8 KiB
+5.5 KiB
+…contexts/language-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+8.9 KiB
+5.5 KiB
+…ui/tabs.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.4 KiB
+5.4 KiB
+…lib/confetti.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.5 KiB
+5.2 KiB
+…deps/wouter.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.4 KiB
+4.2 KiB
+…deps/@radix-ui_react-tabs.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.9 KiB
+4.0 KiB
+…deps/chunk-BMYZRN7H.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+17.3 KiB
+3.8 KiB
+…lib/queryClient.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+4.8 KiB
+3.8 KiB
+…client/env.mjs(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.9 KiB
+3.5 KiB
+…ui/toaster.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+7.2 KiB
+3.5 KiB
+…ui/checkbox.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.8 KiB
+3.4 KiB
+…ui/tooltip.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.5 KiB
+3.4 KiB
+…lib/request-dedup.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.6 KiB
+3.0 KiB
+…pages/not-found.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.4 KiB
+2.7 KiB
+…lib/language-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.4 KiB
+2.7 KiB
+…deps/@radix-ui_react-checkbox.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.5 KiB
+2.7 KiB
+…lib/fun-messages.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.5 KiB
+2.6 KiB
+…ui/input.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.2 KiB
+2.6 KiB
+…components/how-it-works.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.8 KiB
+2.5 KiB
+…deps/chunk-FHEVPFFC.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.3 KiB
+2.3 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+12.0 KiB
+2.1 KiB
+Reduce unused JavaScript Est savings of 5,833 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+7,893.9 KiB	5,833.1 KiB
+…deps/react-icons_si.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5,070.0 KiB
+5,020.8 KiB
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+906.4 KiB
+313.9 KiB
+…deps/date-fns.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+177.0 KiB
+135.6 KiB
+…deps/@radix-ui_react-tooltip.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+95.0 KiB
+85.9 KiB
+…floating-ui/core/dist/floating-ui.core.mjs
+22.8 KiB
+22.6 KiB
+…floating-ui/dom/dist/floating-ui.dom.mjs
+20.0 KiB
+19.4 KiB
+…radix-ui/react-tooltip/src/tooltip.tsx
+16.8 KiB
+14.4 KiB
+…radix-ui/react-popper/src/popper.tsx
+8.7 KiB
+7.8 KiB
+…floating-ui/react-dom/dist/floating-ui.react-dom.mjs
+7.4 KiB
+7.0 KiB
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.6 KiB
+62.9 KiB
+…query-core/src/queriesObserver.ts
+7.3 KiB
+6.8 KiB
+…query-core/src/queryClient.ts
+9.3 KiB
+6.4 KiB
+…query-core/src/mutation.ts
+6.5 KiB
+6.1 KiB
+…query-core/src/hydration.ts
+4.9 KiB
+4.9 KiB
+…query-core/src/infiniteQueryBehavior.ts
+3.7 KiB
+3.7 KiB
+…deps/chunk-GDIDNX2O.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+55.1 KiB
+43.3 KiB
+…@radix-ui/react-dialog/src/dialog.tsx
+10.8 KiB
+7.8 KiB
+…@radix-ui/react-focus-scope/src/focus-scope.tsx
+7.5 KiB
+7.0 KiB
+…react-remove-scroll/dist/es2015/SideEffect.js
+6.4 KiB
+6.2 KiB
+…aria-hidden/dist/es2015/index.js
+3.9 KiB
+3.7 KiB
+…react-remove-scroll/dist/es2015/handleScroll.js
+3.5 KiB
+3.2 KiB
+/blog(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+42.9 KiB
+37.2 KiB
+…deps/chunk-QCHXOAYK.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+76.0 KiB
+34.0 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+60.7 KiB
+28.7 KiB
+…
+29.8 KiB
+28.4 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.1 KiB
+24.3 KiB
+…
+54.9 KiB
+24.0 KiB
+…deps/lucide-react.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,126.1 KiB
+23.8 KiB
+…deps/react-qr-code.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+35.9 KiB
+22.6 KiB
+…qr.js/lib/QRCode.js
+10.8 KiB
+10.0 KiB
+…qr.js/lib/util.js
+7.6 KiB
+5.6 KiB
+…react-qr-code/lib/index.js
+3.2 KiB
+1.8 KiB
+…react-qr-code/lib/QRCodeSvg/index.js
+2.6 KiB
+1.4 KiB
+…qr.js/lib/Polynomial.js
+1.6 KiB
+1.3 KiB
+Minify CSS Est savings of 6 KiB
+Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+*, ::before, ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: …
+26.8 KiB
+6.0 KiB
+Reduce unused CSS Est savings of 20 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+*, ::before, ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: …
+26.8 KiB
+19.6 KiB
+Avoid enormous network payloads Total size was 9,708 KiB
+Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
+URL
+Transfer Size
+replit.dev 1st party
+8,029.6 KiB
+…deps/react-icons_si.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5,070.9 KiB
+…deps/lucide-react.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,127.1 KiB
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+907.3 KiB
+…deps/date-fns.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+178.0 KiB
+/src/index.css?v=JUmu5UdA7…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+142.3 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+135.5 KiB
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+125.6 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+125.0 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+115.7 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+102.1 KiB
+Avoid long main-thread tasks 20 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+replit.dev 1st party
+2,969 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,994 ms
+343 ms
+/blog(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,950 ms
+248 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23,886 ms
+233 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23,181 ms
+216 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,086 ms
+204 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+21,391 ms
+202 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+21,593 ms
+178 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+21,771 ms
+159 ms
+/blog(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,805 ms
+145 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,290 ms
+138 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,428 ms
+138 ms
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23,046 ms
+135 ms
+…deps/@tanstack_react-query.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23,397 ms
+135 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,885 ms
+109 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,647 ms
+108 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23,784 ms
+102 ms
+…deps/react-icons_si.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,330 ms
+91 ms
+…deps/chunk-RPCDYKBN.js?v=57c3af38(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20,800 ms
+85 ms
+Unattributable
+416 ms
+Unattributable
+1,421 ms
+273 ms
+Unattributable
+1,165 ms
+143 ms
+Avoid non-composited animations 360 animated elements found
+Animations which are not composited can be janky and increase CLS. Learn how to avoid non-composited animationsCLSUnscored
+Element
+Name
+body
+<body style="padding-top: 55px;">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: background-color
+background-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+html.dark
+<html lang="en" class="dark">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: color
+color
+Skip to main content Current theme: dark Your Privacy, Protected Anonymous tem…
+<div id="root">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+body > div#replit-dev-banner > button.banner-close > svg
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Deploy your app
+<a href="https://docs.replit.com/category/replit-deployments?ref=replit-dev-banner" target="_blank" class="banner-link">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Inbox 0 3s Your inbox is empty Waiting for incoming emails Refreshes every 5 …
+<div data-replit-metadata="client/src/pages/home.tsx:391:10" data-component-name="div" class="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 border-t border-border/30 fade-in">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+This is a temporary development preview, and these links are not for public use…
+<div class="banner-text">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ 1M+
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:107:12" data-component-name="div" class="text-center py-3 animate-in fade-in-50 duration-500" style="animation-delay: 0ms;">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Proven at Scale Trusted by developers globally 1M+ 1M+ 500K+ 500K+ 100% …
+<div data-replit-metadata="client/src/pages/home.tsx:417:10" data-component-name="div" class="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How It Works Three simple steps to complete privacy Generate user@barid.site…
+<div data-replit-metadata="client/src/pages/home.tsx:409:10" data-component-name="div" class="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div#replit-dev-banner > button.banner-close > svg > path
+<path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414…">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: border-top-color
+border-top-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+500K+ 500K+
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:107:12" data-component-name="div" class="text-center py-3 animate-in fade-in-50 duration-500" style="animation-delay: 100ms;">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% 100%
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:107:12" data-component-name="div" class="text-center py-3 animate-in fade-in-50 duration-500" style="animation-delay: 200ms;">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email Is …
+<div data-replit-metadata="client/src/pages/home.tsx:427:6" data-component-name="div" class="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Yes, temporary email is completely legal and safe.
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:53:20" data-component-name="div" id="faq-answer-0" class="px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 bg-background/30 text-muted-fore…" data-testid="faq-answer-0" role="region">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Skip to main content Current theme: dark Your Privacy, Protected Anonymous tem…
+<div data-replit-metadata="client/src/pages/home.tsx:324:6" data-component-name="div" class="min-h-screen flex flex-col bg-background">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Notifications (F8)
+<div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Close banner
+<button class="banner-close" aria-label="Close banner">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email Fast, secure, and anonymous temporary email service Product Temp…
+<footer data-replit-metadata="client/src/components/footer.tsx:27:4" data-component-name="footer" class="border-t border-border/50 bg-background/50 mt-8 md:mt-12 lg:mt-16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Privacy, Protected Anonymous temporary email addresses that protect your …
+<main data-replit-metadata="client/src/pages/home.tsx:334:8" data-component-name="main" id="main-content" class="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+body > div#root > div > ol.fixed
+<ol tabindex="-1" data-replit-metadata="client/src/components/ui/toaster.tsx:30:6" data-component-name="ToastViewport" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:botto…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<header data-replit-metadata="client/src/components/header.tsx:42:6" data-component-name="header" class="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email Is …
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:11:4" data-component-name="div" class="w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email Fast, secure, and anonymous temporary email service Product Temp…
+<div data-replit-metadata="client/src/components/footer.tsx:28:6" data-component-name="div" class="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 py-8 md:py-12 lg:py-16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<div data-replit-metadata="client/src/components/header.tsx:43:8" data-component-name="div" class="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Privacy, Protected Anonymous temporary email addresses that protect your …
+<div data-replit-metadata="client/src/pages/home.tsx:335:8" data-component-name="div" class="mx-auto max-w-3xl w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Burner Email Fast, secure, and anonymous temporary email service Product Temp…
+<div data-replit-metadata="client/src/components/footer.tsx:30:8" data-component-name="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Temporary Email 2nd1t08ix1@barid.site Expires in 14m 43s Copy Refresh Chan…
+<div data-replit-metadata="client/src/components/email-generator.tsx:253:4" data-component-name="div" class="space-y-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+© 2025 Burner Email. All rights reserved. 100% Free Anonymous No Signup 🇺🇸
+<div data-replit-metadata="client/src/components/footer.tsx:116:8" data-component-name="div" class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email Is …
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:13:6" data-component-name="div" class="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-mute…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.min-h-screen > main#main-content > div.mx-auto > div.sr-only
+<div data-replit-metadata="client/src/pages/home.tsx:337:10" data-component-name="div" role="status" aria-live="polite" aria-atomic="true" class="sr-only" data-testid="aria-live-inbox">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<div data-replit-metadata="client/src/components/header.tsx:44:10" data-component-name="div" class="flex items-center justify-between h-16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Privacy, Protected Anonymous temporary email addresses that protect your …
+<div data-replit-metadata="client/src/pages/home.tsx:348:10" data-component-name="div" class="text-center mb-8 md:mb-12 space-y-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+WHY TRUST US Why Trust Us Proven at Scale 1M+ 1M+ Emails 100K+ 100K+ User…
+<section data-replit-metadata="client/src/components/trust-section.tsx:48:4" data-component-name="section" class="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 md:pb-16 -mx-4 sm:-mx-6 md:mx-0 px-4 s…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.min-h-screen > footer.border-t > div.mx-auto > div.border-t
+<div data-replit-metadata="client/src/components/footer.tsx:113:8" data-component-name="div" class="border-t border-border/30 my-8 md:my-10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Proven at Scale Trusted by developers globally 1M+ 1M+ 500K+ 500K+ 100% …
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:92:4" data-component-name="div" class="space-y-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Privacy, Protected
+<h1 data-replit-metadata="client/src/pages/home.tsx:349:12" data-component-name="h1" class="text-display text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+© 2025 Burner Email. All rights reserved.
+<p data-replit-metadata="client/src/components/footer.tsx:117:10" data-component-name="p" class="text-xs text-muted-foreground leading-relaxed order-2 sm:order-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+🇺🇸
+<div data-replit-metadata="client/src/components/footer.tsx:128:12" data-component-name="div" class="relative">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free Anonymous No Signup 🇺🇸
+<div data-replit-metadata="client/src/components/footer.tsx:120:10" data-component-name="div" class="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground o…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+🇺🇸
+<span data-replit-metadata="client/src/components/footer.tsx:135:16" data-component-name="span" class="text-base">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous temporary email addresses that protect your privacy. No signup, no ad…
+<p data-replit-metadata="client/src/pages/home.tsx:352:12" data-component-name="p" class="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email Fast, secure, and anonymous temporary email service
+<div data-replit-metadata="client/src/components/footer.tsx:32:10" data-component-name="div" class="col-span-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+2nd1t08ix1@barid.site
+<div data-replit-metadata="client/src/components/email-generator.tsx:298:10" data-component-name="div" class="flex items-start gap-2.5 sm:gap-3 mb-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy Refresh Change Delete
+<div data-replit-metadata="client/src/components/email-generator.tsx:347:8" data-component-name="div" class="mt-6 sm:mt-8 mb-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.card-flame-edge > div.flex > div.flex > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:321:14" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-fu…" data-testid="button-email-copy">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M12 7v3a2 2 0 0 1-2 2H7">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M21 16h-3a2 2 0 0 0-2 2v3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > rect
+<rect width="5" height="5" x="3" y="3" rx="1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Contact support@burneremail.email privacy@burneremail.email
+<div data-replit-metadata="client/src/components/footer.tsx:95:10" data-component-name="div">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Refresh
+<button data-replit-metadata="client/src/components/email-generator.tsx:361:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap focus-visi…" data-testid="button-action-refresh" aria-label="Refresh">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.card-flame-edge > div.flex > div.flex > button.inline-flex
+<button data-replit-metadata="client/src/components/email-generator.tsx:310:14" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-fu…" data-testid="button-email-qr">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy Refresh Change Delete
+<div data-replit-metadata="client/src/components/email-generator.tsx:349:10" data-component-name="div" class="grid grid-cols-2 sm:flex gap-2 sm:gap-3 sm:justify-center sm:items-center …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > rect
+<rect width="14" height="14" x="8" y="8" rx="2" ry="2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > rect
+<rect width="5" height="5" x="16" y="3" rx="1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Product Temporary Email Browser Extension Blog
+<div data-replit-metadata="client/src/components/footer.tsx:51:10" data-component-name="div">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+SECURITY & COMPLIANCE Industry-leading standards GDPR Compliant EU data prot…
+<div data-replit-metadata="client/src/components/trust-section.tsx:173:6" data-component-name="div" class="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<div data-replit-metadata="client/src/components/header.tsx:88:12" data-component-name="div" class="flex items-center gap-2 md:gap-2.5 flex-shrink-0">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Temporary Email 2nd1t08ix1@barid.site Expires in 14m 43s Copy Refresh Chan…
+<div data-replit-metadata="client/src/components/email-generator.tsx:289:6" data-component-name="Card" class="shadcn-card rounded-xl border bg-card border-card-border text-card-foregro…" data-testid="email-generator-card">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.card-flame-edge > div.flex > div.flex
+<div data-replit-metadata="client/src/components/email-generator.tsx:309:12" data-component-name="div" class="flex gap-2 sm:gap-2.5 flex-shrink-0">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free Anonymous Instant Trusted by millions
+<div data-replit-metadata="client/src/pages/home.tsx:355:12" data-component-name="div" class="flex flex-col items-center gap-4 pt-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Burner Email - Free Temporary Email Service
+<div data-replit-metadata="client/src/components/header.tsx:51:14" data-component-name="div" class="flex items-center justify-center flex-shrink-0">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M12 3h.01">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+WHY TRUST US Why Trust Us Proven at Scale
+<div data-replit-metadata="client/src/components/trust-section.tsx:50:6" data-component-name="div" class="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1 100% Free No payment needed Forever free, no hidden charges 2 Anonymous C…
+<div data-replit-metadata="client/src/components/trust-section.tsx:86:6" data-component-name="div" class="max-w-5xl mx-auto px-4 mb-12 md:mb-16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M3 12h.01">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M21 12v.01">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+🇺🇸
+<button data-replit-metadata="client/src/components/footer.tsx:129:14" data-component-name="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted/30 hove…" data-testid="button-language-selector">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M16 12h1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ 1M+ Emails 100K+ 100K+ Users 99.9% 99.9% Uptime
+<div data-replit-metadata="client/src/components/trust-section.tsx:63:6" data-component-name="div" class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto px-4 mb-1…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How It Works Three simple steps to complete privacy Generate user@barid.site…
+<section data-replit-metadata="client/src/components/how-it-works.tsx:7:4" data-component-name="section" class="space-y-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Legal Success Stories Terms of Service Privacy Policy
+<div data-replit-metadata="client/src/components/footer.tsx:73:10" data-component-name="div">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M21 3v5h-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M8 16H3v5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M21 21v.01">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M12 16v.01">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email Is …
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:15:8" data-component-name="div" class="px-3 sm:px-4 md:px-6 lg:px-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > rect
+<rect width="5" height="5" x="3" y="16" rx="1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.relative > button.inline-flex > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M12 21v-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Delete
+<button data-replit-metadata="client/src/components/email-generator.tsx:384:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap focus-visi…" data-testid="button-action-burn" aria-label="Delete">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > line
+<line x1="10" x2="10" y1="11" y2="17">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ 1M+ Emails
+<div data-replit-metadata="client/src/components/trust-section.tsx:67:12" data-component-name="div" class="group p-6 rounded-lg border border-emerald-200/30 dark:border-emerald-800/…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free
+<span data-replit-metadata="client/src/components/footer.tsx:121:12" data-component-name="span" class="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email
+<div data-replit-metadata="client/src/components/footer.tsx:33:12" data-component-name="div" class="flex items-center gap-3 mb-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+99.9% 99.9% Uptime
+<div data-replit-metadata="client/src/components/trust-section.tsx:67:12" data-component-name="div" class="group p-6 rounded-lg border border-emerald-200/30 dark:border-emerald-800/…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100K+ 100K+ Users
+<div data-replit-metadata="client/src/components/trust-section.tsx:67:12" data-component-name="div" class="group p-6 rounded-lg border border-emerald-200/30 dark:border-emerald-800/…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free Anonymous Instant
+<div data-replit-metadata="client/src/pages/home.tsx:356:14" data-component-name="div" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Expires in 14m 42s
+<span data-replit-metadata="client/src/components/email-generator.tsx:340:10" data-component-name="span" class="text-xs sm:text-sm text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M3 6h18">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous
+<span data-replit-metadata="client/src/components/footer.tsx:123:12" data-component-name="span" class="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate user@barid.site Copy Paste anywhere Receive In your inbox
+<div data-replit-metadata="client/src/components/animated-demo.tsx:24:4" data-component-name="div" class="w-full max-w-5xl mx-auto">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Proven at Scale Trusted by developers globally
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:93:6" data-component-name="div" class="text-center max-w-2xl mx-auto px-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+SECURITY & COMPLIANCE Industry-leading standards
+<div data-replit-metadata="client/src/components/trust-section.tsx:174:8" data-component-name="div" class="text-center mb-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email Is …
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:16:10" data-component-name="div" class="w-full max-w-4xl mx-auto">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email - Free Temporary Email Service
+<img data-replit-metadata="client/src/components/header.tsx:52:16" data-component-name="img" srcset="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" src="https://42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.…" alt="Burner Email - Free Temporary Email Service" class="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent" aria-label="Burner Email logo - home">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Temporary Email Browser Extension Blog
+<ul data-replit-metadata="client/src/components/footer.tsx:53:12" data-component-name="ul" class="space-y-2.5 md:space-y-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<button data-replit-metadata="client/src/components/theme-toggle.tsx:30:4" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-fu…" data-testid="button-theme-toggle" aria-label="Switch to system theme">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Change
+<button data-replit-metadata="client/src/components/email-generator.tsx:372:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap focus-visi…" data-testid="button-action-new-email" aria-label="Change">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Success Stories Terms of Service Privacy Policy
+<ul data-replit-metadata="client/src/components/footer.tsx:75:12" data-component-name="ul" class="space-y-2.5 md:space-y-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Toggle navigation menu
+<button data-replit-metadata="client/src/components/header.tsx:144:14" data-component-name="button" class="md:hidden p-2.5 hover:bg-secondary rounded-lg transition-colors flex items…" data-testid="button-mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy
+<button data-replit-metadata="client/src/components/email-generator.tsx:350:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap focus-visi…" data-testid="button-action-copy" aria-label="Copy email">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Product
+<h4 data-replit-metadata="client/src/components/footer.tsx:52:12" data-component-name="h4" class="font-semibold text-foreground mb-4 text-sm md:text-base">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ 1M+ 500K+ 500K+ 100% 100%
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:104:6" data-component-name="div" class="md:hidden">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Trusted by millions
+<div data-replit-metadata="client/src/pages/home.tsx:376:14" data-component-name="div" class="text-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Why Trust Us
+<h2 data-replit-metadata="client/src/components/trust-section.tsx:54:8" data-component-name="h2" class="text-3xl md:text-4xl font-bold text-foreground mb-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+No Signup
+<span data-replit-metadata="client/src/components/footer.tsx:125:12" data-component-name="span" class="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+support@burneremail.email privacy@burneremail.email
+<ul data-replit-metadata="client/src/components/footer.tsx:97:12" data-component-name="ul" class="space-y-2.5 md:space-y-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > path
+<path d="M21 3v5h-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Fast, secure, and anonymous temporary email service
+<p data-replit-metadata="client/src/components/footer.tsx:45:12" data-component-name="p" class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > line
+<line x1="14" x2="14" y1="11" y2="17">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+GDPR Compliant EU data protection SSL Encrypted 256-bit encryption Open Sou…
+<div data-replit-metadata="client/src/components/trust-section.tsx:181:8" data-component-name="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Legal
+<h4 data-replit-metadata="client/src/components/footer.tsx:74:12" data-component-name="h4" class="font-semibold text-foreground mb-4 text-sm md:text-base">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Contact
+<h4 data-replit-metadata="client/src/components/footer.tsx:96:12" data-component-name="h4" class="font-semibold text-foreground mb-4 text-sm md:text-base">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Your Temporary Email
+<h2 data-replit-metadata="client/src/components/email-generator.tsx:291:8" data-component-name="h2" class="text-card-title text-foreground text-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+2nd1t08ix1@barid.site
+<span data-replit-metadata="client/src/components/email-generator.tsx:300:12" data-component-name="span" class="text-base sm:text-lg md:text-xl lg:text-[22px] font-semibold text-foregrou…" data-testid="text-current-email" style="font-family: &quot;JetBrains Mono&quot;, monospace; line-height: 1.4;">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+WHY TRUST US
+<div data-replit-metadata="client/src/components/trust-section.tsx:51:8" data-component-name="div" class="inline-block mb-4 px-3 py-1.5 rounded-full bg-emerald-100/50 dark:bg-emera…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How It Works Three simple steps to complete privacy
+<div data-replit-metadata="client/src/components/how-it-works.tsx:8:6" data-component-name="div" class="text-center space-y-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > button.inline-flex > svg.lucide > rect
+<rect width="14" height="14" x="8" y="8" rx="2" ry="2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Proven at Scale
+<p data-replit-metadata="client/src/components/trust-section.tsx:57:8" data-component-name="p" class="text-muted-foreground text-sm md:text-base">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1 100% Free No payment needed Forever free, no hidden charges 2 Anonymous C…
+<div data-replit-metadata="client/src/components/trust-section.tsx:87:8" data-component-name="div" class="relative">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+section.mt-24 > div.grid > div.group > div.flex
+<div data-replit-metadata="client/src/components/trust-section.tsx:71:14" data-component-name="div" class="flex items-center gap-3 mb-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+SECURITY & COMPLIANCE
+<p data-replit-metadata="client/src/components/trust-section.tsx:175:10" data-component-name="p" class="text-center text-xs font-semibold text-muted-foreground uppercase tracking…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Proven at Scale
+<h2 data-replit-metadata="client/src/components/unified-social-proof.tsx:94:8" data-component-name="h2" class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 leading-ti…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+99.9% Uptime
+<p data-replit-metadata="client/src/components/trust-section.tsx:79:14" data-component-name="p" class="text-sm text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+GDPR Compliant EU data protection
+<div data-replit-metadata="client/src/components/trust-section.tsx:195:16" data-component-name="div" class="flex-1 flex flex-col justify-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mb-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:190:16" data-component-name="div" class="mb-4 p-3.5 rounded-lg bg-primary/15 group-hover:bg-primary/25 ring-1 ring-…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Terms of Service
+<li data-replit-metadata="client/src/components/footer.tsx:81:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ 1M+ 500K+ 500K+ 100% 100%
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:105:8" data-component-name="div" class="grid grid-cols-3 gap-2 px-2 max-w-md mx-auto">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email
+<h3 data-replit-metadata="client/src/components/footer.tsx:43:14" data-component-name="h3" class="font-bold text-base md:text-lg leading-none">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+section.mt-24 > div.grid > div.group > div.flex
+<div data-replit-metadata="client/src/components/trust-section.tsx:71:14" data-component-name="div" class="flex items-center gap-3 mb-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+99.9%
+<div data-replit-metadata="client/src/components/trust-section.tsx:76:14" data-component-name="div" class="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300 mb-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.md:hidden > svg.lucide > line
+<line x1="4" x2="20" y1="6" y2="6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Success Stories
+<li data-replit-metadata="client/src/components/footer.tsx:76:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Current theme: dark
+<span data-replit-metadata="client/src/components/theme-toggle.tsx:47:6" data-component-name="span" class="sr-only">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Burner Email logo - Free Temporary Email Service
+<div data-replit-metadata="client/src/components/footer.tsx:34:14" data-component-name="div" class="flex items-center justify-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+section.mt-24 > div.grid > div.group > div.flex
+<div data-replit-metadata="client/src/components/trust-section.tsx:71:14" data-component-name="div" class="flex items-center gap-3 mb-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Instant
+<span data-replit-metadata="client/src/pages/home.tsx:369:16" data-component-name="span" class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emera…" data-testid="badge-instant">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+No Logs Policy Zero data retention
+<div data-replit-metadata="client/src/components/trust-section.tsx:195:16" data-component-name="div" class="flex-1 flex flex-col justify-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Privacy Policy
+<li data-replit-metadata="client/src/components/footer.tsx:86:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+
+<div data-replit-metadata="client/src/components/trust-section.tsx:76:14" data-component-name="div" class="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300 mb-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1 100% Free No payment needed Forever free, no hidden charges 2 Anonymous C…
+<div data-replit-metadata="client/src/components/trust-section.tsx:92:10" data-component-name="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mt-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:205:16" data-component-name="div" class="mt-4 pt-4 border-t border-border/20 w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mb-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:190:16" data-component-name="div" class="mb-4 p-3.5 rounded-lg bg-primary/15 group-hover:bg-primary/25 ring-1 ring-…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+GDPR Compliant EU data protection
+<div data-replit-metadata="client/src/components/trust-section.tsx:185:14" data-component-name="Card" class="shadcn-card rounded-xl bg-card text-card-foreground group p-6 border borde…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.md:hidden > svg.lucide > line
+<line x1="4" x2="20" y1="18" y2="18">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Blog
+<li data-replit-metadata="client/src/components/footer.tsx:64:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mt-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:205:16" data-component-name="div" class="mt-4 pt-4 border-t border-border/20 w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100K+ Users
+<p data-replit-metadata="client/src/components/trust-section.tsx:79:14" data-component-name="p" class="text-sm text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate user@barid.site Copy Paste anywhere Receive In your inbox
+<div data-replit-metadata="client/src/components/animated-demo.tsx:26:6" data-component-name="div" class="relative bg-gradient-to-br from-primary/8 to-primary/3 border border-prima…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions Everything you need to know about Burner Email
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:18:12" data-component-name="div" class="mb-6 md:mb-8 text-center max-w-2xl mx-auto px-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How It Works
+<h2 data-replit-metadata="client/src/components/how-it-works.tsx:9:8" data-component-name="h2" class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Trusted by millions
+<p data-replit-metadata="client/src/pages/home.tsx:377:16" data-component-name="p" class="text-sm font-bold text-accent px-4 py-2 rounded-full bg-accent/10 inline-b…" data-testid="text-user-count">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free
+<span data-replit-metadata="client/src/pages/home.tsx:357:16" data-component-name="span" class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emera…" data-testid="badge-free">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mt-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:205:16" data-component-name="div" class="mt-4 pt-4 border-t border-border/20 w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Browser Extension
+<li data-replit-metadata="client/src/components/footer.tsx:59:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+No Logs Policy Zero data retention
+<div data-replit-metadata="client/src/components/trust-section.tsx:185:14" data-component-name="Card" class="shadcn-card rounded-xl bg-card text-card-foreground group p-6 border borde…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+support@burneremail.email
+<li data-replit-metadata="client/src/components/footer.tsx:98:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+ Emails
+<p data-replit-metadata="client/src/components/trust-section.tsx:79:14" data-component-name="p" class="text-sm text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+14m 42s
+<span data-replit-metadata="client/src/components/email-generator.tsx:341:23" data-component-name="span" class="text-accent font-semibold">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100K+
+<div data-replit-metadata="client/src/components/trust-section.tsx:76:14" data-component-name="div" class="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300 mb-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Three simple steps to complete privacy
+<p data-replit-metadata="client/src/components/how-it-works.tsx:10:8" data-component-name="p" class="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Trusted by developers globally
+<p data-replit-metadata="client/src/components/unified-social-proof.tsx:97:8" data-component-name="p" class="text-sm md:text-base text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous
+<span data-replit-metadata="client/src/pages/home.tsx:363:16" data-component-name="span" class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emera…" data-testid="badge-anonymous">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mb-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:190:16" data-component-name="div" class="mb-4 p-3.5 rounded-lg bg-primary/15 group-hover:bg-primary/25 ring-1 ring-…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mb-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:190:16" data-component-name="div" class="mb-4 p-3.5 rounded-lg bg-primary/15 group-hover:bg-primary/25 ring-1 ring-…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.md:hidden > svg.lucide > line
+<line x1="4" x2="20" y1="12" y2="12">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+WHY TRUST US
+<p data-replit-metadata="client/src/components/trust-section.tsx:52:10" data-component-name="p" class="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tra…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Temporary Email
+<li data-replit-metadata="client/src/components/footer.tsx:54:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Open Source Fully transparent
+<div data-replit-metadata="client/src/components/trust-section.tsx:185:14" data-component-name="Card" class="shadcn-card rounded-xl bg-card text-card-foreground group p-6 border borde…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Industry-leading standards
+<p data-replit-metadata="client/src/components/trust-section.tsx:178:10" data-component-name="p" class="text-sm text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+SSL Encrypted 256-bit encryption
+<div data-replit-metadata="client/src/components/trust-section.tsx:195:16" data-component-name="div" class="flex-1 flex flex-col justify-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Open Source Fully transparent
+<div data-replit-metadata="client/src/components/trust-section.tsx:195:16" data-component-name="div" class="flex-1 flex flex-col justify-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.max-w-5xl > div.grid > div.shadcn-card > div.mt-4
+<div data-replit-metadata="client/src/components/trust-section.tsx:205:16" data-component-name="div" class="mt-4 pt-4 border-t border-border/20 w-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+SSL Encrypted 256-bit encryption
+<div data-replit-metadata="client/src/components/trust-section.tsx:185:14" data-component-name="Card" class="shadcn-card rounded-xl bg-card text-card-foreground group p-6 border borde…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Is temporary email legal and safe to use? Yes, temporary email is completely l…
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:23:12" data-component-name="div" class="space-y-3 sm:space-y-4 md:space-y-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+privacy@burneremail.email
+<li data-replit-metadata="client/src/components/footer.tsx:103:14" data-component-name="li">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="m18 16 4-4-4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mt-4 > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+SSL Encrypted
+<h4 data-replit-metadata="client/src/components/trust-section.tsx:196:18" data-component-name="h4" class="font-bold text-sm md:text-base text-foreground mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Can I use temporary email for important accounts?
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-1" role="region" aria-labelledby="faq-button-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+256-bit encryption
+<p data-replit-metadata="client/src/components/trust-section.tsx:199:18" data-component-name="p" class="text-xs text-muted-foreground leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mb-4 > svg.lucide > rect
+<rect width="18" height="11" x="3" y="11" rx="2" ry="2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Burner Email logo - Free Temporary Email Service
+<img data-replit-metadata="client/src/components/footer.tsx:35:16" data-component-name="img" srcset="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" src="https://42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.…" alt="Burner Email logo - Free Temporary Email Service" class="h-11 w-11 flex-shrink-0 object-contain logo-transparent" aria-label="Burner Email logo">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.flex > span.inline-flex > svg.h-4
+<svg data-replit-metadata="client/src/pages/home.tsx:370:18" data-component-name="svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+3 Instant Ready in seconds No signup required
+<div data-replit-metadata="client/src/components/trust-section.tsx:97:16" data-component-name="div" class="group">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="M7 11V7a5 5 0 0 1 10 0v4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mt-4 > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mt-4 > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+No Logs Policy
+<h4 data-replit-metadata="client/src/components/trust-section.tsx:196:18" data-component-name="h4" class="font-bold text-sm md:text-base text-foreground mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+section.space-y-8 > div.w-full > div.relative > div.flex
+<div data-replit-metadata="client/src/components/animated-demo.tsx:83:8" data-component-name="div" class="flex justify-center gap-2 mt-8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+What makes BurnerEmail's QR code feature unique?
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-5" role="region" aria-labelledby="faq-button-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Frequently Asked Questions
+<h2 data-replit-metadata="client/src/components/faq-accordion.tsx:19:14" data-component-name="h2" class="text-3xl md:text-4xl font-bold text-foreground mb-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mt-4 > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Is temporary email legal and safe to use? Yes, temporary email is completely l…
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-0" role="region" aria-labelledby="faq-button-0">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > div.group > div.flex > div.p-2
+<div data-replit-metadata="client/src/components/trust-section.tsx:72:16" data-component-name="div" class="p-2 rounded-lg bg-emerald-100/70 dark:bg-emerald-950/50 group-hover:bg-eme…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mt-4 > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Why does BurnerEmail have 99.9% uptime?
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-4" role="region" aria-labelledby="faq-button-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+EU data protection
+<p data-replit-metadata="client/src/components/trust-section.tsx:199:18" data-component-name="p" class="text-xs text-muted-foreground leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mt-4 > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Fully transparent
+<p data-replit-metadata="client/src/components/trust-section.tsx:199:18" data-component-name="p" class="text-xs text-muted-foreground leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+GDPR Compliant
+<h4 data-replit-metadata="client/src/components/trust-section.tsx:196:18" data-component-name="h4" class="font-bold text-sm md:text-base text-foreground mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Can you see my emails?
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-2" role="region" aria-labelledby="faq-button-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="m14.5 4-5 16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="m6 8-4 4 4 4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="M20 6 9 17l-5-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+How long does a temporary email last?
+<div data-replit-metadata="client/src/components/faq-accordion.tsx:26:16" data-component-name="div" class="border border-border/30 rounded-lg overflow-hidden transition-all group ho…" data-testid="faq-item-3" role="region" aria-labelledby="faq-button-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mt-4 > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Everything you need to know about Burner Email
+<p data-replit-metadata="client/src/components/faq-accordion.tsx:20:14" data-component-name="p" class="text-sm md:text-base text-muted-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate user@barid.site Copy Paste anywhere Receive In your inbox
+<div data-replit-metadata="client/src/components/animated-demo.tsx:28:8" data-component-name="div" class="relative flex flex-col sm:flex-row items-center justify-center gap-6 sm:ga…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.shadcn-card > div.mb-4 > svg.lucide > path
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+2 Anonymous Complete privacy We don't store your data
+<div data-replit-metadata="client/src/components/trust-section.tsx:97:16" data-component-name="div" class="group">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > div.group > div.flex > div.p-2
+<div data-replit-metadata="client/src/components/trust-section.tsx:72:16" data-component-name="div" class="p-2 rounded-lg bg-emerald-100/70 dark:bg-emerald-950/50 group-hover:bg-eme…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Open Source
+<h4 data-replit-metadata="client/src/components/trust-section.tsx:196:18" data-component-name="h4" class="font-bold text-sm md:text-base text-foreground mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Zero data retention
+<p data-replit-metadata="client/src/components/trust-section.tsx:199:18" data-component-name="p" class="text-xs text-muted-foreground leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.shadcn-card > div.mt-4 > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.flex > span.inline-flex > svg.h-4
+<svg data-replit-metadata="client/src/pages/home.tsx:364:18" data-component-name="svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > div.group > div.flex > div.p-2
+<div data-replit-metadata="client/src/components/trust-section.tsx:72:16" data-component-name="div" class="p-2 rounded-lg bg-emerald-100/70 dark:bg-emerald-950/50 group-hover:bg-eme…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1 100% Free No payment needed Forever free, no hidden charges
+<div data-replit-metadata="client/src/components/trust-section.tsx:97:16" data-component-name="div" class="group">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.flex > span.inline-flex > svg.h-4
+<svg data-replit-metadata="client/src/pages/home.tsx:358:18" data-component-name="svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100%
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:117:14" data-component-name="div" class="text-xl font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+We don't store your data
+<div data-replit-metadata="client/src/components/trust-section.tsx:148:24" data-component-name="div" class="flex items-start gap-2 pt-2 border-t border-border/20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.p-2 > svg.lucide > path
+<path d="M3 12A9 3 0 0 0 21 12">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+What makes BurnerEmail's QR code feature unique?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-5" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-5" aria-expanded="false" aria-controls="faq-answer-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.w-full > div.relative > div.flex > div.h-2
+<div data-replit-metadata="client/src/components/animated-demo.tsx:85:12" data-component-name="div" class="h-2 rounded-full transition-all duration-300 w-7 bg-primary">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: background-color
+background-color
+Unsupported CSS Property: width
+width
+Receive In your inbox
+<div data-replit-metadata="client/src/components/animated-demo.tsx:66:10" data-component-name="div" class="flex flex-col items-center gap-3 transition-all duration-500 transform fle…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+500K+
+<p data-replit-metadata="client/src/components/unified-social-proof.tsx:120:14" data-component-name="p" class="text-xs font-semibold text-foreground mt-0.5 leading-tight">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Instant Ready in seconds No signup required
+<div data-replit-metadata="client/src/components/trust-section.tsx:115:20" data-component-name="div" class="flex flex-col gap-4 h-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate user@barid.site
+<div data-replit-metadata="client/src/components/animated-demo.tsx:30:10" data-component-name="div" class="flex flex-col items-center gap-3 transition-all duration-500 transform fle…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Yes, temporary email is completely legal and safe.
+<p data-replit-metadata="client/src/components/faq-accordion.tsx:59:22" data-component-name="p" class="text-xs sm:text-sm leading-relaxed">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.md:hidden > div.grid > div.text-center > div.flex
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:112:14" data-component-name="div" class="flex justify-center mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.p-2 > svg.lucide > path
+<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 1…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Can I use temporary email for important accounts?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-1" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-1" aria-expanded="false" aria-controls="faq-answer-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Forever free, no hidden charges
+<div data-replit-metadata="client/src/components/trust-section.tsx:148:24" data-component-name="div" class="flex items-start gap-2 pt-2 border-t border-border/20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+
+<span data-replit-metadata="client/src/components/unified-social-proof.tsx:48:9" data-component-name="span">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:117:14" data-component-name="div" class="text-xl font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.p-2 > svg.lucide > ellipse
+<ellipse cx="12" cy="5" rx="9" ry="3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.md:hidden > div.grid > div.text-center > div.flex
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:112:14" data-component-name="div" class="flex justify-center mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+No signup required
+<div data-replit-metadata="client/src/components/trust-section.tsx:148:24" data-component-name="div" class="flex items-start gap-2 pt-2 border-t border-border/20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > span.inline-flex > svg.h-4 > path
+<path data-replit-metadata="client/src/pages/home.tsx:365:20" data-component-name="path" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.58…" clip-rule="evenodd">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.w-full > div.relative > div.flex > div.h-2
+<div data-replit-metadata="client/src/components/animated-demo.tsx:85:12" data-component-name="div" class="h-2 rounded-full transition-all duration-300 w-2 bg-primary/30">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: background-color
+background-color
+Unsupported CSS Property: width
+width
+100%
+<p data-replit-metadata="client/src/components/unified-social-proof.tsx:120:14" data-component-name="p" class="text-xs font-semibold text-foreground mt-0.5 leading-tight">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Instant Ready in seconds No signup required
+<div data-replit-metadata="client/src/components/trust-section.tsx:130:22" data-component-name="div" class="flex-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How long does a temporary email last?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-3" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-3" aria-expanded="false" aria-controls="faq-answer-3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > span.inline-flex > svg.h-4 > path
+<path data-replit-metadata="client/src/pages/home.tsx:371:20" data-component-name="path" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.58…" clip-rule="evenodd">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+500K+
+<span data-replit-metadata="client/src/components/unified-social-proof.tsx:48:9" data-component-name="span">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy Paste anywhere
+<div data-replit-metadata="client/src/components/animated-demo.tsx:46:10" data-component-name="div" class="flex flex-col items-center gap-3 transition-all duration-500 transform fle…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1M+
+<p data-replit-metadata="client/src/components/unified-social-proof.tsx:120:14" data-component-name="p" class="text-xs font-semibold text-foreground mt-0.5 leading-tight">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous Complete privacy We don't store your data
+<div data-replit-metadata="client/src/components/trust-section.tsx:115:20" data-component-name="div" class="flex flex-col gap-4 h-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Instant Ready in seconds No signup required
+<div data-replit-metadata="client/src/components/trust-section.tsx:108:18" data-component-name="Card" class="shadcn-card rounded-xl text-card-foreground group overflow-hidden duration…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.group > div.shadcn-card > div.flex > div.w-fit
+<div data-replit-metadata="client/src/components/trust-section.tsx:117:22" data-component-name="div" class="w-fit rounded-lg p-3 md:p-3.5 transition-all duration-300 bg-muted/50 grou…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Why does BurnerEmail have 99.9% uptime?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-4" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-4" aria-expanded="false" aria-controls="faq-answer-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+2
+<div data-replit-metadata="client/src/components/trust-section.tsx:99:18" data-component-name="div" class="flex items-start mb-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous Complete privacy We don't store your data
+<div data-replit-metadata="client/src/components/trust-section.tsx:130:22" data-component-name="div" class="flex-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1
+<div data-replit-metadata="client/src/components/trust-section.tsx:99:18" data-component-name="div" class="flex items-start mb-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Can you see my emails?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-2" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-2" aria-expanded="false" aria-controls="faq-answer-2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.p-2 > svg.lucide > path
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Is temporary email legal and safe to use?
+<button data-replit-metadata="client/src/components/faq-accordion.tsx:33:18" data-component-name="button" id="faq-button-0" class="w-full px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 flex items-center justify…" data-testid="button-faq-0" aria-expanded="true" aria-controls="faq-answer-0">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.group > div.shadcn-card > div.flex > div.w-fit
+<div data-replit-metadata="client/src/components/trust-section.tsx:117:22" data-component-name="div" class="w-fit rounded-lg p-3 md:p-3.5 transition-all duration-300 bg-primary/25 ri…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free No payment needed Forever free, no hidden charges
+<div data-replit-metadata="client/src/components/trust-section.tsx:108:18" data-component-name="Card" class="shadcn-card rounded-xl bg-card text-card-foreground group overflow-hidden …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+3
+<div data-replit-metadata="client/src/components/trust-section.tsx:99:18" data-component-name="div" class="flex items-start mb-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.w-full > div.relative > div.flex > div.h-2
+<div data-replit-metadata="client/src/components/animated-demo.tsx:85:12" data-component-name="div" class="h-2 rounded-full transition-all duration-300 w-2 bg-primary/30">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100%
+<span data-replit-metadata="client/src/components/unified-social-proof.tsx:48:9" data-component-name="span">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free No payment needed Forever free, no hidden charges
+<div data-replit-metadata="client/src/components/trust-section.tsx:130:22" data-component-name="div" class="flex-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.md:hidden > div.grid > div.text-center > div.flex
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:112:14" data-component-name="div" class="flex justify-center mb-1.5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+100% Free No payment needed Forever free, no hidden charges
+<div data-replit-metadata="client/src/components/trust-section.tsx:115:20" data-component-name="div" class="flex flex-col gap-4 h-full">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.p-2 > svg.lucide > path
+<path d="M3 5V19A9 3 0 0 0 21 19V5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+500K+
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:117:14" data-component-name="div" class="text-xl font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Anonymous Complete privacy We don't store your data
+<div data-replit-metadata="client/src/components/trust-section.tsx:108:18" data-component-name="Card" class="shadcn-card rounded-xl text-card-foreground group overflow-hidden duration…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > span.inline-flex > svg.h-4 > path
+<path data-replit-metadata="client/src/pages/home.tsx:359:20" data-component-name="path" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.58…" clip-rule="evenodd">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.group > div.shadcn-card > div.flex > div.w-fit
+<div data-replit-metadata="client/src/components/trust-section.tsx:117:22" data-component-name="div" class="w-fit rounded-lg p-3 md:p-3.5 transition-all duration-300 bg-muted/50 grou…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.relative > div.relative > div.flex > div.w-16
+<div data-replit-metadata="client/src/components/animated-demo.tsx:33:12" data-component-name="div" class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1
+<div data-replit-metadata="client/src/components/trust-section.tsx:100:20" data-component-name="div" class="relative z-10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.text-foreground/70 > svg.lucide > path
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.w-fit > svg.lucide > rect
+<rect width="18" height="11" x="3" y="11" rx="2" ry="2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Can you see my emails?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+2
+<div data-replit-metadata="client/src/components/trust-section.tsx:100:20" data-component-name="div" class="relative z-10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex-1 > div.flex > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.text-foreground/70 > svg.lucide > path
+<path d="M16 3.13a4 4 0 0 1 0 7.75">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy Paste anywhere
+<div data-replit-metadata="client/src/components/animated-demo.tsx:56:12" data-component-name="div" class="text-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+We don't store your data
+<p data-replit-metadata="client/src/components/trust-section.tsx:154:26" data-component-name="p" class="text-xs leading-relaxed text-muted-foreground/60">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+100% Free
+<h3 data-replit-metadata="client/src/components/trust-section.tsx:131:24" data-component-name="h3" class="font-bold text-base md:text-lg mb-1.5 transition-colors text-primary">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.border > button#faq-button-1 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+What makes BurnerEmail's QR code feature unique?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Can I use temporary email for important accounts?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Instant
+<h3 data-replit-metadata="client/src/components/trust-section.tsx:131:24" data-component-name="h3" class="font-bold text-base md:text-lg mb-1.5 transition-colors text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Anonymous
+<h3 data-replit-metadata="client/src/components/trust-section.tsx:131:24" data-component-name="h3" class="font-bold text-base md:text-lg mb-1.5 transition-colors text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Forever free, no hidden charges
+<p data-replit-metadata="client/src/components/trust-section.tsx:154:26" data-component-name="p" class="text-xs leading-relaxed text-foreground/60">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+Receive In your inbox
+<div data-replit-metadata="client/src/components/animated-demo.tsx:75:12" data-component-name="div" class="text-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+No signup required
+<p data-replit-metadata="client/src/components/trust-section.tsx:154:26" data-component-name="p" class="text-xs leading-relaxed text-muted-foreground/60">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.border > button#faq-button-2 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.relative > div.relative > div.flex > div.w-16
+<div data-replit-metadata="client/src/components/animated-demo.tsx:69:12" data-component-name="div" class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.border > button#faq-button-4 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > div.text-center > div.flex > div.text-foreground/70
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:113:16" data-component-name="div" class="text-foreground/70">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.text-foreground/70 > svg.lucide > path
+<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex-1 > div.flex > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.border > button#faq-button-5 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate user@barid.site
+<div data-replit-metadata="client/src/components/animated-demo.tsx:36:12" data-component-name="div" class="text-center">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Complete privacy
+<p data-replit-metadata="client/src/components/trust-section.tsx:139:24" data-component-name="p" class="text-xs md:text-sm leading-relaxed mb-3 transition-colors text-muted-foreg…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.grid > div.text-center > div.flex > div.text-foreground/70
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:113:16" data-component-name="div" class="text-foreground/70">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Is temporary email legal and safe to use?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Ready in seconds
+<p data-replit-metadata="client/src/components/trust-section.tsx:139:24" data-component-name="p" class="text-xs md:text-sm leading-relaxed mb-3 transition-colors text-muted-foreg…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+No payment needed
+<p data-replit-metadata="client/src/components/trust-section.tsx:139:24" data-component-name="p" class="text-xs md:text-sm leading-relaxed mb-3 transition-colors text-foreground/…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.text-foreground/70 > svg.lucide > rect
+<rect width="20" height="16" x="2" y="4" rx="2">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex-1 > div.flex > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.relative > div.relative > div.flex > div.w-16
+<div data-replit-metadata="client/src/components/animated-demo.tsx:49:12" data-component-name="div" class="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.text-foreground/70 > svg.lucide > circle
+<circle cx="9" cy="7" r="4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.text-foreground/70 > svg.lucide > path
+<path d="M22 21v-2a4 4 0 0 0-3-3.87">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.text-foreground/70 > svg.lucide > path
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Why does BurnerEmail have 99.9% uptime?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex-1 > div.flex > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.border > button#faq-button-3 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+How long does a temporary email last?
+<span data-replit-metadata="client/src/components/faq-accordion.tsx:41:20" data-component-name="span" class="font-semibold text-foreground pr-3 sm:pr-4 md:pr-5 text-xs sm:text-sm md:t…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.grid > div.text-center > div.flex > div.text-foreground/70
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:113:16" data-component-name="div" class="text-foreground/70">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.border > button#faq-button-0 > svg.lucide > path
+<path d="m6 9 6 6 6-6">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex-1 > div.flex > svg.lucide > circle
+<circle cx="12" cy="12" r="10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.w-fit > svg.lucide > path
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 …">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex-1 > div.flex > svg.lucide > path
+<path d="m9 12 2 2 4-4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.w-fit > svg.lucide > path
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.w-fit > svg.lucide > path
+<path d="M7 11V7a5 5 0 0 1 10 0v4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+div.flex > div.w-fit > svg.lucide > circle
+<circle cx="12" cy="12" r="3">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+3
+<div data-replit-metadata="client/src/components/trust-section.tsx:100:20" data-component-name="div" class="relative z-10">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Receive
+<p data-replit-metadata="client/src/components/animated-demo.tsx:76:14" data-component-name="p" class="text-sm md:text-base font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.w-16 > svg.w-8 > path
+<path data-replit-metadata="client/src/components/animated-demo.tsx:72:16" data-component-name="path" d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.w-16 > svg.lucide > circle
+<circle cx="12" cy="12" r="4">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.relative > div.flex > div.w-16 > svg.w-8
+<svg data-replit-metadata="client/src/components/animated-demo.tsx:70:14" data-component-name="svg" class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Generate
+<p data-replit-metadata="client/src/components/animated-demo.tsx:37:14" data-component-name="p" class="text-sm md:text-base font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.w-16 > svg.w-8 > path
+<path data-replit-metadata="client/src/components/animated-demo.tsx:71:16" data-component-name="path" d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+user@barid.site
+<p data-replit-metadata="client/src/components/animated-demo.tsx:38:14" data-component-name="p" class="text-xs text-muted-foreground font-mono mt-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Paste anywhere
+<p data-replit-metadata="client/src/components/animated-demo.tsx:58:14" data-component-name="p" class="text-xs text-muted-foreground mt-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+In your inbox
+<p data-replit-metadata="client/src/components/animated-demo.tsx:77:14" data-component-name="p" class="text-xs text-muted-foreground mt-1">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Copy
+<p data-replit-metadata="client/src/components/animated-demo.tsx:57:14" data-component-name="p" class="text-sm md:text-base font-bold text-foreground">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.w-16 > svg.lucide > path
+<path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Inbox 0 1s Your inbox is empty Waiting for incoming emails Refreshes every 5 …
+<div data-replit-metadata="client/src/components/inbox-list.tsx:269:4" data-component-name="div" class="space-y-6">
+Unsupported CSS Property: color
+color
+Inbox 0 1s
+<div data-replit-metadata="client/src/components/inbox-list.tsx:271:6" data-component-name="div" class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-…">
+Unsupported CSS Property: color
+color
+Your inbox is empty Waiting for incoming emails Refreshes every 5 seconds
+<div data-replit-metadata="client/src/components/inbox-list.tsx:361:6" data-component-name="div" class="rounded-lg overflow-hidden border border-border/50 bg-background">
+Unsupported CSS Property: color
+color
+1s
+<div data-replit-metadata="client/src/components/inbox-list.tsx:283:8" data-component-name="div" class="flex items-center gap-2 flex-wrap">
+Unsupported CSS Property: color
+color
+Your inbox is empty Waiting for incoming emails Refreshes every 5 seconds
+<div data-replit-metadata="client/src/components/inbox-list.tsx:374:8" data-component-name="div" class="divide-y divide-border/30">
+Unsupported CSS Property: color
+color
+Inbox 0
+<div data-replit-metadata="client/src/components/inbox-list.tsx:272:8" data-component-name="div" class="flex items-center gap-3 flex-wrap">
+Unsupported CSS Property: color
+color
+Refresh inbox
+<button data-replit-metadata="client/src/components/inbox-list.tsx:318:10" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-fu…" data-testid="button-refresh" aria-label="Refresh inbox">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: background-color
+background-color
+div.flex > div.flex > svg.lucide > path
+<path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.flex > svg.lucide > path
+<path d="M21 3v5h-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1s
+<div data-replit-metadata="client/src/components/inbox-list.tsx:309:12" data-component-name="div" class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground…" data-testid="refresh-countdown-indicator" aria-label="Auto-refresh in 1 seconds">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.flex > svg.lucide > path
+<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > div.flex > svg.lucide > path
+<path d="M8 16H3v5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Inbox
+<h2 data-replit-metadata="client/src/components/inbox-list.tsx:273:10" data-component-name="h2" class="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+1s
+<span data-replit-metadata="client/src/components/inbox-list.tsx:315:14" data-component-name="span" data-testid="countdown-timer">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+0
+<span data-replit-metadata="client/src/components/inbox-list.tsx:274:10" data-component-name="span" class="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full mi…" data-testid="text-inbox-count">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M8 16H3v5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M21 3v5h-5">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+div.flex > button.inline-flex > svg.lucide > path
+<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
