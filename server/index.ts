@@ -43,34 +43,41 @@ app.use(express.text());
     // Production: Serve static files from dist/public
     const publicPath = path.join(process.cwd(), "dist/public");
     
-    // Explicitly serve manifest.json
-    app.get("/manifest.json", (req, res) => {
-      res.sendFile(path.join(publicPath, "manifest.json"));
-    });
-    
-    // Serve all static files
+    // Serve all static files including manifest.json
     app.use(express.static(publicPath, {
       maxAge: "1d",
-      etag: false,
+      etag: true,
       setHeaders: (res, filePath) => {
         if (filePath.endsWith('.json')) {
           res.set('Content-Type', 'application/json');
+        }
+        if (filePath.endsWith('.js')) {
+          res.set('Content-Type', 'application/javascript');
+        }
+        if (filePath.endsWith('.css')) {
+          res.set('Content-Type', 'text/css');
         }
       }
     }));
   }
 
-  // Fallback to index.html for SPA (only for non-API, non-static routes)
-  app.get("*", (req, res, next) => {
-    // Skip if it's an API route or static file
-    if (req.path.startsWith('/api/') || req.path.includes('.')) {
-      return next();
+  // Fallback to index.html for SPA (only for non-API routes)
+  app.get("*", (req, res) => {
+    // Skip if it's an API route
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ error: 'Not found' });
     }
     
     const indexPath = process.env.NODE_ENV === "production" 
       ? path.join(process.cwd(), "dist/public/index.html")
       : path.join(process.cwd(), "client/index.html");
-    res.sendFile(indexPath);
+    
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        console.error('Error sending index.html:', err);
+        res.status(500).send('Internal server error');
+      }
+    });
   });
 
   const PORT = process.env.PORT || 5000;
