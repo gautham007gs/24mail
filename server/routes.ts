@@ -290,7 +290,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Referral endpoints
   app.get("/api/referral/create", async (req, res) => {
     try {
-      const sessionId = (req as any).sessionID || "anonymous";
+      const sessionId = req.sessionID || "anonymous";
       let referral = await storage.getReferral(sessionId);
       if (!referral) {
         referral = await storage.createReferral(sessionId);
@@ -308,7 +308,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/referral/stats", async (req, res) => {
     try {
-      const sessionId = (req as any).sessionID || "anonymous";
+      const sessionId = req.sessionID || "anonymous";
       let referral = await storage.getReferral(sessionId);
       if (!referral) {
         referral = await storage.createReferral(sessionId);

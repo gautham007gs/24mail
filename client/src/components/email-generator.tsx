@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, memo } from "react";
-import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail, MessageCircle, Send, Share2 } from "lucide-react";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail } from "lucide-react";
+import { SiWhatsapp, SiTelegram, SiX } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -337,7 +338,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
           {/* Expiry Info - Minimal Text Only */}
           <span className="text-xs sm:text-sm text-muted-foreground">
-            Expires in <span className="text-foreground font-semibold">{expiryTime}</span>
+            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
           </span>
         </div>
 
@@ -496,9 +497,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-whatsapp-qr"
                   title="Share on WhatsApp"
-                  aria-label="Share on WhatsApp"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <SiWhatsapp className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="outline"
@@ -510,9 +510,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-telegram-qr"
                   title="Share on Telegram"
-                  aria-label="Share on Telegram"
                 >
-                  <Send className="h-4 w-4" />
+                  <SiTelegram className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="outline"
@@ -524,9 +523,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-twitter-qr"
                   title="Share on X (Twitter)"
-                  aria-label="Share on X (Twitter)"
                 >
-                  <Share2 className="h-4 w-4" />
+                  <SiX className="h-4 w-4" />
                 </Button>
               </div>
             </div>

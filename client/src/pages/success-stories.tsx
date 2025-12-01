@@ -10,25 +10,6 @@ export default function SuccessStories() {
     window.scrollTo(0, 0);
   }, []);
 
-  return (
-    <>
-      <Helmet>
-        <title>Success Stories - Burner Email | Real User Testimonials & Results</title>
-        <meta name="description" content="See how companies and teams use Burner Email for secure email testing, privacy protection, and spam prevention. Read real success stories from QA teams, security researchers, and enterprises." />
-        <meta name="keywords" content="success stories, burner email testimonials, temp mail reviews, email privacy success, user case studies, security testing" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://burneremail.email/success-stories" />
-        <meta property="og:title" content="Success Stories - Burner Email" />
-        <meta property="og:description" content="Real success stories from Burner Email users across QA, security, and privacy sectors." />
-      </Helmet>
-
-      <StoriesContent />
-    </>
-  );
-}
-
-function StoriesContent() {
-  const getLocalizedLink = (path: string) => path; // Placeholder
   const stories = [
     {
       id: 1,
@@ -94,6 +75,21 @@ function StoriesContent() {
 
   return (
     <>
+      <Helmet>
+        <title>Burner Email Success Stories - Real User Reviews & Testimonials</title>
+        <meta name="description" content="Read real success stories from burner email, temp mail, and disposable email users. Discover how temporary email services help professionals protect privacy." />
+        <meta name="keywords" content="burner email reviews, temp mail testimonials, disposable email success, temporary email reviews, private email services, secure email" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://burneremail.email/success-stories" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://burneremail.email/success-stories" />
+        <meta property="og:title" content="Success Stories - TempMail | Real Customer Results" />
+        <meta property="og:description" content="See how companies like Slack, Airbnb, and EFF use TempMail. Real success stories from real users." />
+        <meta property="og:image" content="https://tempmail.org/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TempMail Success Stories" />
+        <meta name="twitter:description" content="See real customer success stories from leading companies using TempMail." />
+      </Helmet>
 
       <div className="min-h-screen bg-background">
         <div className="border-b border-border/50">

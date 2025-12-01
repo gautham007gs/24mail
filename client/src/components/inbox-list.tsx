@@ -612,18 +612,6 @@ function EmailTableRow({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         data-testid={`row-email-${email.id}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleRowClick();
-          } else if (e.key === 'Delete') {
-            e.preventDefault();
-            onDelete(email.id);
-          }
-        }}
-        aria-label={`Email from ${email.from_address}, subject: ${email.subject || 'No subject'}, ${isUnread ? 'unread' : 'read'}`}
-        aria-pressed={isExpanded}
         style={{ 
           transform: `translateX(${swipeDirection === 'left' ? -swipeDistance : swipeDistance}px)`,
           transition: swipeDistance === 0 ? 'transform 0.2s ease-out' : 'none',

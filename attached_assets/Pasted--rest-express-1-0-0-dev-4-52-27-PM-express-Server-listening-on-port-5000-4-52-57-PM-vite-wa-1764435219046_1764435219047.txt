@@ -1,0 +1,138 @@
+
+> rest-express@1.0.0 dev
+4:52:27 PM [express] Server listening on port 5000
+4:52:57 PM [vite] warning: Duplicate key "blog.title" in object literal
+116|      "footer.badge2": "Anonymous",
+117|      "footer.badge3": "No Signup",
+118|      "blog.title": "Blog & Guides",
+   |      ^
+119|      "blog.subtitle": "Expert guides on temporary email, privacy protection, and email security best practices",
+120|      "blog.search": "Search articles by topic, keyword...",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.subtitle" in object literal
+117|      "footer.badge3": "No Signup",
+118|      "blog.title": "Blog & Guides",
+119|      "blog.subtitle": "Expert guides on temporary email, privacy protection, and email security best practices",
+   |      ^
+120|      "blog.search": "Search articles by topic, keyword...",
+121|      "blog.allArticles": "All Articles",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.search" in object literal
+118|      "blog.title": "Blog & Guides",
+119|      "blog.subtitle": "Expert guides on temporary email, privacy protection, and email security best practices",
+120|      "blog.search": "Search articles by topic, keyword...",
+   |      ^
+121|      "blog.allArticles": "All Articles",
+122|      "blog.sort": "Sort by:",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.sort" in object literal
+120|      "blog.search": "Search articles by topic, keyword...",
+121|      "blog.allArticles": "All Articles",
+122|      "blog.sort": "Sort by:",
+   |      ^
+123|      "blog.latest": "Latest",
+124|      "blog.trending": "Trending",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.latest" in object literal
+121|      "blog.allArticles": "All Articles",
+122|      "blog.sort": "Sort by:",
+123|      "blog.latest": "Latest",
+   |      ^
+124|      "blog.trending": "Trending",
+125|      "blog.popular": "Popular",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.trending" in object literal
+122|      "blog.sort": "Sort by:",
+123|      "blog.latest": "Latest",
+124|      "blog.trending": "Trending",
+   |      ^
+125|      "blog.popular": "Popular",
+126|      "blog.noResults": "No articles found",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.title" in object literal
+243|      "footer.badge2": "Anónimo",
+244|      "footer.badge3": "Sin Registro",
+245|      "blog.title": "Blog y Guías",
+   |      ^
+246|      "blog.subtitle": "Guías de expertos sobre correo temporal, protección de privacidad y mejores prácticas de seguridad de correo electrónico",
+247|      "blog.search": "Buscar artículos por tema, palabra clave...",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.subtitle" in object literal
+244|      "footer.badge3": "Sin Registro",
+245|      "blog.title": "Blog y Guías",
+246|      "blog.subtitle": "Guías de expertos sobre correo temporal, protección de privacidad y mejores prácticas de seguridad de correo electrónico",
+   |      ^
+247|      "blog.search": "Buscar artículos por tema, palabra clave...",
+248|      "blog.allArticles": "Todos los Artículos",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.search" in object literal
+245|      "blog.title": "Blog y Guías",
+246|      "blog.subtitle": "Guías de expertos sobre correo temporal, protección de privacidad y mejores prácticas de seguridad de correo electrónico",
+247|      "blog.search": "Buscar artículos por tema, palabra clave...",
+   |      ^
+248|      "blog.allArticles": "Todos los Artículos",
+249|      "blog.sort": "Ordenar por:",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.sort" in object literal
+247|      "blog.search": "Buscar artículos por tema, palabra clave...",
+248|      "blog.allArticles": "Todos los Artículos",
+249|      "blog.sort": "Ordenar por:",
+   |      ^
+250|      "blog.latest": "Más Reciente",
+251|      "blog.trending": "Tendencias",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.latest" in object literal
+248|      "blog.allArticles": "Todos los Artículos",
+249|      "blog.sort": "Ordenar por:",
+250|      "blog.latest": "Más Reciente",
+   |      ^
+251|      "blog.trending": "Tendencias",
+252|      "blog.popular": "Populares",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.trending" in object literal
+249|      "blog.sort": "Ordenar por:",
+250|      "blog.latest": "Más Reciente",
+251|      "blog.trending": "Tendencias",
+   |      ^
+252|      "blog.popular": "Populares",
+253|      "blog.noResults": "No se encontraron artículos",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts
+4:52:57 PM [vite] warning: Duplicate key "blog.title" in object literal
+370|      "footer.badge2": "Anônimo",
+371|      "footer.badge3": "Sem Cadastro",
+372|      "blog.title": "Blog e Guias",
+   |      ^
+4:52:57 PM [vite] warning: Duplicate key "blog.trending" in object literal
+757|      "blog.sort": "इसके अनुसार सॉर्ट करें:",
+758|      "blog.latest": "नवीनतम",
+759|      "blog.trending": "ट्रेंडिंग",
+   |      ^
+760|      "blog.popular": "लोकप्रिय",
+761|      "blog.noResults": "कोई लेख नहीं मिला",
+
+  Plugin: vite:esbuild
+  File: /home/runner/workspace/client/src/lib/translations.ts

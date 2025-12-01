@@ -33,11 +33,10 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center">
                 <img 
-                  srcSet="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" 
+                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
                   src="/logo-32.png?v=2" 
-                  alt="Burner Email logo - Free Temporary Email Service" 
+                  alt="Burner Email" 
                   className="h-11 w-11 flex-shrink-0 object-contain logo-transparent" 
-                  aria-label="Burner Email logo"
                 />
               </div>
               <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
@@ -118,11 +117,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
-            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge1")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge1")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge2")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge2")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge3")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge3")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
             {/* Language Selector */}
             <div className="relative">
@@ -145,7 +144,7 @@ export function Footer() {
                         setShowLanguageDropdown(false);
                       }}
                       className={`w-full px-3 py-2 text-xs text-left hover:bg-muted/50 transition-colors flex items-center gap-2 ${
-                        language === lang.code ? "bg-accent text-accent-foreground font-semibold" : "text-foreground/80"
+                        language === lang.code ? "bg-accent/10 text-accent font-semibold" : "text-foreground/80"
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >

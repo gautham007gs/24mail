@@ -26,17 +26,28 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
   const [location] = useLocation();
   const getLocalizedLink = useLocalizedLink();
 
-  const navItems = [
+  const rawNavItems = [
     { label: t("header.home"), href: "/", icon: Home },
     { label: t("header.blog"), href: "/blog", icon: BookOpen },
     { label: t("header.stories"), href: "/success-stories", icon: Award },
   ];
 
-  const isActive = (href: string) => location === href;
+  // Convert raw paths to localized paths
+  const navItems = rawNavItems.map(item => ({
+    ...item,
+    href: getLocalizedLink(item.href)
+  }));
+
+  const isActive = (href: string) => {
+    // Normalize paths for comparison
+    const normalizedLocation = location.replace(/\/$/, "") || "/";
+    const normalizedHref = href.replace(/\/$/, "") || "/";
+    return normalizedLocation === normalizedHref || normalizedLocation.startsWith(normalizedHref + "/");
+  }
 
   return (
     <>
-      <a href="#main-content" className="skip-to-main absolute -top-10 left-0 z-50 bg-foreground text-background px-4 py-2 rounded-md focus:top-0 transition-all focus-visible:top-0 font-semibold">
+      <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
@@ -44,17 +55,16 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           <div className="flex items-center justify-between h-16">
             {/* Logo + Desktop Navigation */}
             <Link 
-              href="/" 
+              href={getLocalizedLink("/")} 
               className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md" 
               data-testid="link-home"
             >
               <div className="flex items-center justify-center flex-shrink-0">
                 <img 
-                  srcSet="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" 
+                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
                   src="/logo-32.png?v=2" 
-                  alt="Burner Email - Free Temporary Email Service" 
+                  alt="Burner Email" 
                   className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent" 
-                  aria-label="Burner Email logo - home"
                 />
               </div>
               <span className="text-base md:text-lg font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">

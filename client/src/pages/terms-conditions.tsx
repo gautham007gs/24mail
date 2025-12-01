@@ -4,12 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
-import { useLocalizedLink } from "@/hooks/use-localized-link";
-
-function getLocalizedLink(path: string): string {
-  const { getLocalizedLink: useGetLink } = useLocalizedLink();
-  return useGetLink(path);
-}
 
 export default function TermsConditions() {
   useEffect(() => {

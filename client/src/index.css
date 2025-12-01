@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Defer non-critical animations */
-@media (prefers-reduced-motion: no-preference) {
-  /* Animated Background Gradient */
-      @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+/* Animated Background Gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 @keyframes fadeInUp {
   from {
@@ -22,13 +26,14 @@
   }
 }
 
-    @keyframes pulse-soft {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-    }
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
   }
-  
-  /* End of prefers-reduced-motion media query */
+  50% {
+    opacity: 0.8;
+  }
+}
 
 @keyframes slideIn {
   from {
@@ -36,7 +41,7 @@
     transform: translateX(-10px);
   }
   to {
-    opacity: 1;
+    opacity: 0;
     transform: translateX(0);
   }
 }
@@ -879,11 +884,18 @@ html.dark {
     transition: all 0.2s ease;
   }
 
-  /* Flame Watermark Background - REMOVED: was causing 6.77s render delay 
-     (decorative element with 0.03 opacity not worth blocking initial render)
-  */
+  /* Flame Watermark Background */
   body::before {
-    display: none;
+    content: "🔥";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(200px, 40vw, 600px);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+    user-select: none;
   }
 
   /* Flame-shaped loader animation */
