@@ -1,6 +1,6 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
-import { allRoutes } from "./routes.js";
+import { registerRoutes } from "./routes.js";
 
 const app = express();
 
@@ -14,11 +14,12 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.text());
 
-// API routes
-app.use("/api", allRoutes);
-
-// Vite middleware setup
+// Setup routes and start server
 (async () => {
+  // Register API routes
+  await registerRoutes(app);
+
+  // Vite middleware in development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -26,7 +27,7 @@ app.use("/api", allRoutes);
     app.use(vite.middlewares);
   }
 
-  // Fallback to index.html
+  // Fallback to index.html for SPA
   app.get("*", (req, res) => {
     res.sendFile(process.cwd() + "/client/index.html");
   });
