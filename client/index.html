@@ -74,6 +74,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
     
+    <!-- Compression headers for assets -->
+    <meta http-equiv="Content-Encoding" content="gzip" />
+    
     <!-- DNS prefetch for external APIs -->
     <link rel="dns-prefetch" href="https://api.barid.site" />
     
@@ -85,7 +88,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx" defer data-turbo-track="reload"></script>
     <script defer>
       if ('serviceWorker' in navigator && 'caches' in window) {
         window.addEventListener('load', () => {

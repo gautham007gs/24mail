@@ -1,0 +1,135 @@
+Insights
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…deps/chunk-RPCDYKBN.js?v=3953359d:378:48(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+138 ms
+Source
+Total reflow time
+[unattributed]
+1,263 ms
+…components/email-generator.tsx:566:61(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+227 ms
+…deps/chunk-EBFNMNIR.js?v=3953359d:438:43(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+135 ms
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+11,770 ms
+Anonymous temporary email addresses that protect your privacy. No signup, no ad…
+<p data-replit-metadata="client/src/pages/home.tsx:352:12" data-component-name="p" class="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 13,726 ms
+Initial Navigation
+/en(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 1,525 ms, 50.99 KiB
+/src/main.tsx?v=9VccFsgSt…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 2,079 ms, 2.38 KiB
+…deps/react_jsx-dev-runtime.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,939 ms, 37.16 KiB
+…deps/react-dom_client.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,750 ms, 2.10 KiB
+…deps/chunk-RPCDYKBN.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,997 ms, 907.33 KiB
+…deps/chunk-QCHXOAYK.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,275 ms, 76.96 KiB
+…deps/chunk-WOOG5QLI.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,319 ms, 3.75 KiB
+/src/App.tsx?v=9VccFsgSt…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,928 ms, 24.24 KiB
+…deps/wouter.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,067 ms, 16.35 KiB
+…deps/react.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,883 ms, 1.20 KiB
+…lib/queryClient.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,320 ms, 5.76 KiB
+…lib/request-dedup.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,903 ms, 4.50 KiB
+…deps/@tanstack_react-query.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,507 ms, 125.58 KiB
+…deps/chunk-KBTYAULA.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,108 ms, 37.48 KiB
+…ui/toaster.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,312 ms, 8.09 KiB
+…hooks/use-toast.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,921 ms, 12.59 KiB
+…ui/toast.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,104 ms, 20.69 KiB
+…deps/@radix-ui_react-toast.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,206 ms, 27.82 KiB
+…deps/chunk-GBIZOLDG.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,760 ms, 8.72 KiB
+…deps/class-variance-authority.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,438 ms, 3.28 KiB
+…ui/tooltip.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,317 ms, 7.37 KiB
+…deps/@radix-ui_react-tooltip.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,908 ms, 95.98 KiB
+…deps/chunk-EBFNMNIR.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,440 ms, 18.20 KiB
+…deps/chunk-JDYSANEB.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,443 ms, 2.17 KiB
+…deps/chunk-QDVTPAFR.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,013 ms, 2.29 KiB
+…deps/chunk-2GQF7EY3.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,451 ms, 2.50 KiB
+…deps/chunk-54AJDA27.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,433 ms, 12.20 KiB
+…deps/chunk-WCO7AI2A.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,451 ms, 1.77 KiB
+…deps/chunk-KCFVMCIE.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,025 ms, 1.63 KiB
+…lib/utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,902 ms, 1.69 KiB
+…deps/clsx.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,435 ms, 1.22 KiB
+…deps/chunk-U7P2NEEE.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,836 ms, 1.55 KiB
+…deps/tailwind-merge.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,631 ms, 71.91 KiB
+…components/theme-provider.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,082 ms, 13.00 KiB
+…contexts/language-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,898 ms, 9.78 KiB
+…contexts/notification-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,081 ms, 11.23 KiB
+…lib/language-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,309 ms, 4.31 KiB
+…pages/home.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,252 ms, 84.43 KiB
+…lib/cache.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,821 ms, 9.37 KiB
+…lib/fun-messages.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,464 ms, 4.44 KiB
+…components/header.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,007 ms, 61.02 KiB
+…components/theme-toggle.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,402 ms, 10.76 KiB
+…ui/button.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,959 ms, 10.48 KiB
+…deps/@radix-ui_react-slot.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 7,521 ms, 5.97 KiB
+…hooks/use-localized-link.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,405 ms, 2.37 KiB
+…hooks/use-translation.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,814 ms, 2.85 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,938 ms, 102.12 KiB
+…deps/react-helmet.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,503 ms, 39.34 KiB
+…deps/chunk-PJ25BUVZ.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,034 ms, 34.03 KiB
+…components/email-generator.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,860 ms, 95.03 KiB
+…ui/dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,611 ms, 19.68 KiB
+…deps/@radix-ui_react-dialog.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,674 ms, 2.39 KiB
+…deps/chunk-ORW73UQW.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 11,606 ms, 56.03 KiB
+…deps/react-qr-code.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,600 ms, 36.84 KiB
+…lib/confetti.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,415 ms, 7.46 KiB
+…lib/article-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,417 ms, 15.00 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,862 ms, 125.02 KiB
+…deps/date-fns.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,391 ms, 177.98 KiB
+…ui/input.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,436 ms, 6.08 KiB
+…ui/checkbox.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,201 ms, 7.76 KiB
+…deps/@radix-ui_react-checkbox.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,435 ms, 10.48 KiB
+…ui/alert-dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,615 ms, 21.77 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,679 ms, 12.90 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,394 ms, 61.59 KiB
+…ui/skeleton.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,768 ms, 4.28 KiB
+…ui/tabs.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 10,664 ms, 10.35 KiB
+…deps/@radix-ui_react-tabs.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 11,228 ms, 16.84 KiB
+…lib/email-share.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,769 ms, 16.29 KiB
+…lib/loading-skeletons.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 9,601 ms, 19.75 KiB
+…inbox/hv1y32m720%40barid.site(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 13,726 ms, 0.83 KiB
+…components/trust-section.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,669 ms, 44.46 KiB
+…components/how-it-works.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,271 ms, 6.68 KiB
+…components/animated-demo.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,825 ms, 24.68 KiB
+/api/domains(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 12,324 ms, 0.99 KiB
+…components/unified-social-proof.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,483 ms, 28.84 KiB
+…components/faq-accordion.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,252 ms, 18.58 KiB
+…components/footer.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 8,697 ms, 44.41 KiB
+…pages/not-found.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,882 ms, 7.30 KiB
+…ui/card.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 5,438 ms, 12.61 KiB
+…deps/lucide-react.js?v=3953359d(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 6,600 ms, 1,127.07 KiB
+/src/index.css?v=9VccFsgSt…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 4,317 ms, 142.50 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,213 ms, 115.71 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,205 ms, 135.54 KiB
+…client/env.mjs(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 3,765 ms, 4.85 KiB
+…vite-plugin-dev-banner/banner-script.js(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev) - 2,631 ms, 5.77 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 34 KiB
+Your first network request is the most important. Reduce its latency by avoiding redirects, ensuring a fast server response, and enabling text compression.LCPFCPUnscored
+Avoids redirects
+Server responds quickly (observed 369 ms)
+No compression applied
+Render blocking requests
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+replit.dev 1st party
+5.8 KiB	1,460 ms
+…vite-plugin-dev-banner/banner-script.js(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.8 KiB
+1,460 ms

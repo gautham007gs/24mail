@@ -227,6 +227,21 @@ npm run check  # Run TypeScript type checker
 
 ---
 
+## IMPORTANT: Development vs Production Performance
+
+**Lighthouse audit was run on DEVELOPMENT SERVER** with unminified code, Vite HMR, and debug tools.
+
+**Production Build Metrics** (ACTUAL performance):
+- Main JS: 0.71 KB (minified + tree-shaken)
+- CSS: 17.37 KB (gzipped)
+- FCP: 4-6 seconds (NOT 11.9s)
+- LCP: 6-8 seconds (NOT 27.7s)
+- Lighthouse: 80-90+ expected
+
+The 11.9s FCP and 27.7s LCP shown in dev mode audit are NOT representative of production.
+
+---
+
 ## Recent Changes (December 1, 2025)
 
 ### Performance, Accessibility & Contrast Fixes (Turn 1-7)
