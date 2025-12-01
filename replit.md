@@ -161,7 +161,7 @@ npm run check  # Run TypeScript type checker
 
 ### High Priority
 1. **Replace Fictional Testimonials**: Implement real user testimonials or mark as examples
-2. **Complete WCAG Audit**: Screen reader testing, full accessibility compliance
+2. ✅ **Complete WCAG 2.1 AAA Audit**: Full compliance with enhancements (see ACCESSIBILITY_AUDIT_WCAG_AAA.md)
 3. **Attachment Downloads**: Implement actual file download functionality (backend + frontend)
 4. **Analytics**: Add privacy-first analytics (Plausible/Fathom)
 
