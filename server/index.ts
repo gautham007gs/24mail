@@ -41,14 +41,32 @@ app.use(express.text());
     app.use(vite.middlewares);
   } else {
     // Production: Serve static files from dist/public
-    app.use(express.static(path.join(process.cwd(), "dist/public"), {
+    const publicPath = path.join(process.cwd(), "dist/public");
+    
+    // Explicitly serve manifest.json
+    app.get("/manifest.json", (req, res) => {
+      res.sendFile(path.join(publicPath, "manifest.json"));
+    });
+    
+    // Serve all static files
+    app.use(express.static(publicPath, {
       maxAge: "1d",
-      etag: false
+      etag: false,
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.json')) {
+          res.set('Content-Type', 'application/json');
+        }
+      }
     }));
   }
 
-  // Fallback to index.html for SPA
-  app.get("*", (req, res) => {
+  // Fallback to index.html for SPA (only for non-API, non-static routes)
+  app.get("*", (req, res, next) => {
+    // Skip if it's an API route or static file
+    if (req.path.startsWith('/api/') || req.path.includes('.')) {
+      return next();
+    }
+    
     const indexPath = process.env.NODE_ENV === "production" 
       ? path.join(process.cwd(), "dist/public/index.html")
       : path.join(process.cwd(), "client/index.html");
