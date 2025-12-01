@@ -2,18 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Animated Background Gradient */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Defer non-critical animations */
+@media (prefers-reduced-motion: no-preference) {
+  /* Animated Background Gradient */
+      @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
 @keyframes fadeInUp {
   from {
@@ -26,14 +22,13 @@
   }
 }
 
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
   }
-  50% {
-    opacity: 0.8;
-  }
-}
+  
+  /* End of prefers-reduced-motion media query */
 
 @keyframes slideIn {
   from {
