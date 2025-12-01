@@ -34,8 +34,8 @@ app.use(express.text());
     });
     app.use(vite.middlewares);
   } else {
-    // Production: Serve static files from dist/public/assets
-    app.use(express.static(path.join(process.cwd(), "dist/public/assets"), {
+    // Production: Serve static files from dist/public
+    app.use(express.static(path.join(process.cwd(), "dist/public"), {
       maxAge: "1d",
       etag: false
     }));
@@ -44,13 +44,13 @@ app.use(express.text());
   // Fallback to index.html for SPA
   app.get("*", (req, res) => {
     const indexPath = process.env.NODE_ENV === "production" 
-      ? path.join(process.cwd(), "dist/public/assets/index.html")
+      ? path.join(process.cwd(), "dist/public/index.html")
       : path.join(process.cwd(), "client/index.html");
     res.sendFile(indexPath);
   });
 
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`[express] Server listening on port ${PORT}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[express] Server listening on http://0.0.0.0:${PORT}`);
   });
 })();
