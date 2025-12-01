@@ -33,29 +33,26 @@ export default defineConfig({
     // Aggressive performance optimization
     minify: "esbuild",
     rollupOptions: {
-      output: [
-        {
-          dir: path.resolve(import.meta.dirname, "dist/public/assets"),
-          format: "es",
-          manualChunks: (id) => {
-            // Optimized chunking for Lighthouse
-            if (id.includes("node_modules")) {
-              // UI libraries - combine
-              if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
-              // Data processing - combine
-              if (id.includes("date-fns") || id.includes("recharts")) return "data";
-              // Forms & icons - combine
-              if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
-              // QR & routing - combine
-              if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
-              return "vendor";
-            }
-          },
-          entryFileNames: "chunks/[name]-[hash].js",
-          chunkFileNames: "chunks/[name]-[hash].js",
-          assetFileNames: "assets/[name]-[hash][extname]",
+      output: {
+        format: "es",
+        manualChunks: (id) => {
+          // Optimized chunking for Lighthouse
+          if (id.includes("node_modules")) {
+            // UI libraries - combine
+            if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
+            // Data processing - combine
+            if (id.includes("date-fns") || id.includes("recharts")) return "data";
+            // Forms & icons - combine
+            if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
+            // QR & routing - combine
+            if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
+            return "vendor";
+          }
         },
-      ],
+        entryFileNames: "assets/chunks/[name]-[hash].js",
+        chunkFileNames: "assets/chunks/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
+      },
       external: [],
       treeshake: {
         moduleSideEffects: false,
@@ -74,7 +71,15 @@ export default defineConfig({
     chunkSizeWarningLimit: 500,
   },
   server: {
-    allowedHosts: true,
+    host: '0.0.0.0',
+    port: 5000,
+    strictPort: false,
+    allowedHosts: [
+      '.replit.dev',
+      '.repl.co',
+      'localhost',
+      '127.0.0.1'
+    ],
     fs: {
       strict: true,
       deny: ["**/.*"],

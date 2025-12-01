@@ -25,7 +25,13 @@ app.use(express.text());
     const vite = await createViteServer({
       server: { 
         middlewareMode: true,
-        allowedHosts: true,
+        host: '0.0.0.0',
+        allowedHosts: [
+          '.replit.dev',
+          '.repl.co',
+          'localhost',
+          '127.0.0.1'
+        ],
         fs: {
           strict: true,
           deny: ["**/.*"],
