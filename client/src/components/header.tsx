@@ -50,10 +50,11 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             >
               <div className="flex items-center justify-center flex-shrink-0">
                 <img 
-                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
+                  srcSet="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" 
                   src="/logo-32.png?v=2" 
-                  alt="Burner Email" 
+                  alt="Burner Email - Free Temporary Email Service" 
                   className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent" 
+                  aria-label="Burner Email logo - home"
                 />
               </div>
               <span className="text-base md:text-lg font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">

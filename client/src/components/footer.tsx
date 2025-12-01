@@ -33,10 +33,11 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center">
                 <img 
-                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
+                  srcSet="/logo-32.webp?v=2 1x, /logo-64.webp?v=2 2x" 
                   src="/logo-32.png?v=2" 
-                  alt="Burner Email" 
+                  alt="Burner Email logo - Free Temporary Email Service" 
                   className="h-11 w-11 flex-shrink-0 object-contain logo-transparent" 
+                  aria-label="Burner Email logo"
                 />
               </div>
               <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
