@@ -36,7 +36,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
   return (
     <>
-      <a href="#main-content" className="skip-to-main">
+      <a href="#main-content" className="skip-to-main absolute -top-10 left-0 z-50 bg-foreground text-background px-4 py-2 rounded-md focus:top-0 transition-all focus-visible:top-0 font-semibold">
         Skip to main content
       </a>
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">

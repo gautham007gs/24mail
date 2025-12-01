@@ -118,11 +118,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs text-muted-foreground order-1 sm:order-2">
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge1")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge1")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge2")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge2")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
-            <span className="px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent/10 text-accent dark:text-accent font-medium whitespace-nowrap">{t("footer.badge3")}</span>
+            <span className="px-2.5 py-1 rounded-full bg-accent text-accent-foreground font-medium whitespace-nowrap">{t("footer.badge3")}</span>
             <span className="hidden sm:inline text-border/50">•</span>
             {/* Language Selector */}
             <div className="relative">
@@ -145,7 +145,7 @@ export function Footer() {
                         setShowLanguageDropdown(false);
                       }}
                       className={`w-full px-3 py-2 text-xs text-left hover:bg-muted/50 transition-colors flex items-center gap-2 ${
-                        language === lang.code ? "bg-accent/10 text-accent font-semibold" : "text-foreground/80"
+                        language === lang.code ? "bg-accent text-accent-foreground font-semibold" : "text-foreground/80"
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >

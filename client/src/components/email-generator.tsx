@@ -337,7 +337,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
           {/* Expiry Info - Minimal Text Only */}
           <span className="text-xs sm:text-sm text-muted-foreground">
-            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+            Expires in <span className="text-foreground font-semibold">{expiryTime}</span>
           </span>
         </div>
 
