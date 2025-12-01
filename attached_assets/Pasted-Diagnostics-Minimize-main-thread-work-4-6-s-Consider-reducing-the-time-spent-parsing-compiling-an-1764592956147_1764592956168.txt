@@ -1,0 +1,375 @@
+Diagnostics
+Minimize main-thread work 4.6 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+Time Spent
+Style & Layout
+2,574 ms
+Other
+1,019 ms
+Script Evaluation
+627 ms
+Rendering
+201 ms
+Script Parsing & Compilation
+146 ms
+Garbage Collection
+25 ms
+Parse HTML & CSS
+4 ms
+Minify JavaScript Est savings of 1,651 KiB
+Minifying JavaScript files can reduce payload sizes and script parse time. Learn how to minify JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+4,135.4 KiB	1,650.9 KiB
+…deps/chunk-RPCDYKBN.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+906.4 KiB
+331.7 KiB
+…deps/lucide-react.js?v=6c0c5716(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,126.1 KiB
+206.0 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+134.6 KiB
+117.1 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+114.8 KiB
+104.6 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.1 KiB
+81.3 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+101.2 KiB
+73.3 KiB
+…components/email-generator.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+94.1 KiB
+61.5 KiB
+…pages/home.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+83.5 KiB
+54.2 KiB
+…deps/date-fns.js?v=92ccddc8(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+177.0 KiB
+51.0 KiB
+…deps/tailwind-merge.js?v=f2817677(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+71.0 KiB
+39.4 KiB
+…components/header.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+59.8 KiB
+39.0 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+60.7 KiB
+37.7 KiB
+…deps/@tanstack_react-query.js?v=9aed6596(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.6 KiB
+32.7 KiB
+…deps/chunk-QCHXOAYK.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+76.0 KiB
+31.0 KiB
+…components/trust-section.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+43.5 KiB
+25.6 KiB
+…components/footer.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+43.7 KiB
+24.5 KiB
+…deps/@radix-ui_react-tooltip.js?v=6f6e6cfa(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+95.0 KiB
+23.6 KiB
+…components/unified-social-proof.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+27.9 KiB
+16.2 KiB
+…deps/chunk-KBTYAULA.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+36.5 KiB
+14.2 KiB
+…deps/react_jsx-dev-runtime.js?v=75ae1acd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+36.2 KiB
+14.0 KiB
+…deps/chunk-ORW73UQW.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+55.1 KiB
+12.9 KiB
+…deps/react-qr-code.js?v=6df03463(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+35.9 KiB
+12.9 KiB
+…ui/alert-dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+20.9 KiB
+12.8 KiB
+…components/animated-demo.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23.8 KiB
+12.5 KiB
+…ui/toast.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+19.8 KiB
+12.3 KiB
+/src/App.tsx?v=uTHlldmDM…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+23.3 KiB
+11.9 KiB
+…lib/email-share.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.4 KiB
+11.4 KiB
+…ui/dialog.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+18.8 KiB
+11.2 KiB
+…lib/article-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+14.1 KiB
+10.7 KiB
+…components/faq-accordion.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+17.7 KiB
+10.3 KiB
+…deps/chunk-PJ25BUVZ.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+33.1 KiB
+10.1 KiB
+…hooks/use-toast.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.7 KiB
+9.5 KiB
+…deps/react-helmet.js?v=8de1ecaa(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+38.4 KiB
+9.0 KiB
+…lib/loading-skeletons.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+18.8 KiB
+8.8 KiB
+…components/theme-provider.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+12.1 KiB
+8.1 KiB
+…lib/cache.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+8.4 KiB
+7.1 KiB
+…ui/card.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.7 KiB
+6.9 KiB
+…deps/@radix-ui_react-toast.js?v=796a9958(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+26.9 KiB
+6.7 KiB
+…contexts/notification-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+10.3 KiB
+6.6 KiB
+…ui/button.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.6 KiB
+6.1 KiB
+…components/theme-toggle.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.8 KiB
+5.5 KiB
+…contexts/language-context.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+8.9 KiB
+5.5 KiB
+…ui/tabs.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.4 KiB
+5.4 KiB
+…lib/confetti.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.5 KiB
+5.2 KiB
+…deps/wouter.js?v=3c500133(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.4 KiB
+4.2 KiB
+…deps/@radix-ui_react-tabs.js?v=ed284493(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+15.9 KiB
+4.0 KiB
+…deps/chunk-EBFNMNIR.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+17.3 KiB
+3.8 KiB
+…lib/queryClient.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+4.8 KiB
+3.8 KiB
+…client/env.mjs(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.9 KiB
+3.5 KiB
+…ui/toaster.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+7.2 KiB
+3.5 KiB
+…ui/checkbox.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.8 KiB
+3.4 KiB
+…ui/tooltip.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.5 KiB
+3.4 KiB
+…lib/request-dedup.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.6 KiB
+3.0 KiB
+…pages/not-found.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+6.4 KiB
+2.7 KiB
+…lib/language-utils.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.4 KiB
+2.7 KiB
+…deps/@radix-ui_react-checkbox.js?v=ed037925(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+9.5 KiB
+2.7 KiB
+…lib/fun-messages.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+3.5 KiB
+2.6 KiB
+…ui/input.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.2 KiB
+2.6 KiB
+…components/how-it-works.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+5.8 KiB
+2.5 KiB
+…deps/chunk-54AJDA27.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+11.3 KiB
+2.3 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=931c7a3e(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+12.0 KiB
+2.1 KiB
+Reduce unused JavaScript Est savings of 812 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+2,823.9 KiB	812.3 KiB
+…deps/chunk-RPCDYKBN.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+906.4 KiB
+313.9 KiB
+…deps/date-fns.js?v=92ccddc8(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+177.0 KiB
+135.6 KiB
+…_lib/format/formatters.mjs
+16.6 KiB
+14.9 KiB
+…parseISO.mjs
+6.0 KiB
+5.6 KiB
+…parse.mjs
+5.0 KiB
+4.7 KiB
+…formatDistance.mjs
+3.3 KiB
+3.3 KiB
+…parse/_lib/utils.mjs
+3.1 KiB
+3.1 KiB
+…deps/@radix-ui_react-tooltip.js?v=6f6e6cfa(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+95.0 KiB
+85.9 KiB
+…floating-ui/core/dist/floating-ui.core.mjs
+22.8 KiB
+22.6 KiB
+…floating-ui/dom/dist/floating-ui.dom.mjs
+20.0 KiB
+19.4 KiB
+…radix-ui/react-tooltip/src/tooltip.tsx
+16.8 KiB
+14.4 KiB
+…radix-ui/react-popper/src/popper.tsx
+8.7 KiB
+7.8 KiB
+…floating-ui/react-dom/dist/floating-ui.react-dom.mjs
+7.4 KiB
+7.0 KiB
+…deps/@tanstack_react-query.js?v=9aed6596(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.6 KiB
+62.9 KiB
+…query-core/src/queriesObserver.ts
+7.3 KiB
+6.8 KiB
+…query-core/src/queryClient.ts
+9.3 KiB
+6.4 KiB
+…query-core/src/mutation.ts
+6.5 KiB
+6.1 KiB
+…query-core/src/hydration.ts
+4.9 KiB
+4.9 KiB
+…query-core/src/infiniteQueryBehavior.ts
+3.7 KiB
+3.7 KiB
+…deps/chunk-ORW73UQW.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+55.1 KiB
+43.3 KiB
+…@radix-ui/react-dialog/src/dialog.tsx
+10.8 KiB
+7.8 KiB
+…@radix-ui/react-focus-scope/src/focus-scope.tsx
+7.5 KiB
+7.0 KiB
+…react-remove-scroll/dist/es2015/SideEffect.js
+6.4 KiB
+6.2 KiB
+…aria-hidden/dist/es2015/index.js
+3.9 KiB
+3.7 KiB
+…react-remove-scroll/dist/es2015/handleScroll.js
+3.5 KiB
+3.2 KiB
+/en(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+42.9 KiB
+37.2 KiB
+…deps/chunk-QCHXOAYK.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+76.0 KiB
+34.0 KiB
+…cjs/react.development.js
+75.2 KiB
+34.0 KiB
+…components/inline-email-reader.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+60.7 KiB
+28.7 KiB
+…
+29.8 KiB
+28.4 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+124.1 KiB
+24.3 KiB
+…
+54.9 KiB
+24.0 KiB
+…deps/lucide-react.js?v=6c0c5716(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,126.1 KiB
+23.8 KiB
+…deps/react-qr-code.js?v=6df03463(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+35.9 KiB
+22.6 KiB
+…qr.js/lib/QRCode.js
+10.8 KiB
+10.0 KiB
+…qr.js/lib/util.js
+7.6 KiB
+5.6 KiB
+…react-qr-code/lib/index.js
+3.2 KiB
+1.8 KiB
+…react-qr-code/lib/QRCodeSvg/index.js
+2.6 KiB
+1.4 KiB
+…qr.js/lib/Polynomial.js
+1.6 KiB
+1.3 KiB
+Minify CSS Est savings of 6 KiB
+Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+*, ::before, ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: …
+26.8 KiB
+6.0 KiB
+Reduce unused CSS Est savings of 20 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+*, ::before, ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: …
+26.8 KiB
+19.6 KiB
+Avoid enormous network payloads Total size was 4,635 KiB
+Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
+URL
+Transfer Size
+replit.dev 1st party
+3,054.7 KiB
+…deps/lucide-react.js?v=6c0c5716(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+1,127.1 KiB
+…deps/chunk-RPCDYKBN.js?v=96f2e8bd(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+907.3 KiB
+…deps/date-fns.js?v=92ccddc8(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+178.0 KiB
+/src/index.css?v=uTHlldmDM…(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+142.3 KiB
+/@vite/client(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+135.5 KiB
+…deps/@tanstack_react-query.js?v=9aed6596(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+125.6 KiB
+…components/inbox-list.tsx(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+125.0 KiB
+/@react-refresh(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+115.7 KiB
+…lib/translations.ts(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+102.1 KiB
+…deps/@radix-ui_react-tooltip.js?v=6f6e6cfa(42c7b881-23a3-4f53-89d5-dbd07c689ee4-00-2poow6myj98xr.worf.replit.dev)
+96.0 KiB
