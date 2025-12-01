@@ -879,18 +879,11 @@ html.dark {
     transition: all 0.2s ease;
   }
 
-  /* Flame Watermark Background */
+  /* Flame Watermark Background - REMOVED: was causing 6.77s render delay 
+     (decorative element with 0.03 opacity not worth blocking initial render)
+  */
   body::before {
-    content: "🔥";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: clamp(200px, 40vw, 600px);
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: -1;
-    user-select: none;
+    display: none;
   }
 
   /* Flame-shaped loader animation */
