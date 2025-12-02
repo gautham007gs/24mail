@@ -39,7 +39,9 @@ export function Footer() {
                   className="h-11 w-11 flex-shrink-0 object-contain logo-transparent" 
                 />
               </div>
-              <h3 className="font-bold text-base md:text-lg leading-none">Burner Email</h3>
+              <h3 className="font-bold text-base md:text-lg leading-none bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 bg-clip-text text-transparent">
+                Burner Email 🔥
+              </h3>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               {t("footer.desc")}

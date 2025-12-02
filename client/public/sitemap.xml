@@ -1,106 +1,113 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
-  <!-- Homepage -->
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage - All Languages -->
   <url>
-    <loc>https://burneremail.email</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://burneremail.email/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://burneremail.email/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://burneremail.email/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://burneremail.email/pt/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://burneremail.email/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://burneremail.email/de/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://burneremail.email/hi/" />
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Blog Landing -->
   <url>
-    <loc>https://burneremail.email/blog</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/es/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://burneremail.email/pt/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://burneremail.email/fr/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://burneremail.email/de/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://burneremail.email/hi/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog Pages -->
+  <url>
+    <loc>https://burneremail.email/en/blog/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Featured Blog Posts - Burner Email Focused -->
+  <!-- Blog Posts -->
   <url>
-    <loc>https://burneremail.email/blog/what-is-burner-email</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/blog/what-is-burner-email/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://burneremail.email/blog/why-use-burner-email</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/blog/why-use-burner-email/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://burneremail.email/blog/burner-email-vs-protonmail</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/blog/burner-email-vs-protonmail/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://burneremail.email/blog/how-to-use-burner-email-safely</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/blog/how-to-use-burner-email-safely/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
+  <!-- Success Stories -->
   <url>
-    <loc>https://burneremail.email/blog/best-burner-email-services</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://burneremail.email/blog/burner-email-privacy-guide</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://burneremail.email/blog/what-is-temporary-email-complete-guide</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://burneremail.email/blog/protect-privacy-stop-spam-disposable-email</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://burneremail.email/blog/temporary-email-safe-online-shopping</loc>
-    <lastmod>2025-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Main Pages -->
-  <url>
-    <loc>https://burneremail.email/success-stories</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/success-stories/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Legal Pages -->
   <url>
-    <loc>https://burneremail.email/privacy</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/privacy/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://burneremail.email/terms</loc>
-    <lastmod>2025-11-25</lastmod>
+    <loc>https://burneremail.email/en/terms/</loc>
+    <lastmod>2025-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

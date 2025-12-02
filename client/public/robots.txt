@@ -1,19 +1,37 @@
+
 User-agent: *
 Allow: /
-Allow: /blog
+Allow: /en/
+Allow: /es/
+Allow: /pt/
+Allow: /fr/
+Allow: /de/
+Allow: /hi/
+Allow: /blog/
 Allow: /blog/*
-Allow: /success-stories
-Allow: /privacy
-Allow: /terms
+Allow: /success-stories/
+Allow: /privacy/
+Allow: /terms/
 
 # Disallow admin and private paths
 Disallow: /api/
 Disallow: /.well-known/
 Disallow: /node_modules/
 Disallow: /.git/
+Disallow: /dist/
 
 # Sitemaps
 Sitemap: https://burneremail.email/sitemap.xml
 
-# Crawl delay (optional - remove or adjust based on server capacity)
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Crawl delay
 Crawl-delay: 1

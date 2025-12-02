@@ -83,7 +83,7 @@ export default function Blog() {
   }, [searchQuery, selectedCategory, sortBy]);
 
   return (
-    <>
+    <main role="main">
       <Helmet>
         <title>Burner Email Blog - Expert Guides on Temp Mail, Disposable Email & Privacy</title>
         <meta name="description" content="Read expert guides on burner email, temp mail, temporary email, and disposable email. Learn privacy protection, spam prevention, and email security best practices." />
@@ -323,6 +323,6 @@ export default function Blog() {
 
         <Footer />
       </div>
-    </>
+    </main>
   );
 }
