@@ -6,7 +6,9 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
+    ...(process.env.NODE_ENV !== "production"
+      ? [runtimeErrorOverlay()]
+      : []),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -25,6 +27,11 @@ export default defineConfig({
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
+    dedupe: ["react", "react-dom"],
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+    force: true,
   },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
@@ -48,10 +55,6 @@ export default defineConfig({
         assetFileNames: "assets/[name]-[hash][extname]",
       },
       external: [],
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
-      },
     },
     // Split CSS per chunk for faster loading
     cssCodeSplit: true,

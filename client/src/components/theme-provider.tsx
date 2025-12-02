@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import * as React from "react";
 
 type Theme = "light" | "dark";
 
 type ThemeProviderProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
 };
@@ -18,23 +18,14 @@ const initialState: ThemeProviderState = {
   setTheme: () => null,
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
-
-// Helper function to apply theme to DOM
-const applyTheme = (theme: Theme) => {
-  if (typeof window === "undefined") return;
-  
-  const root = window.document.documentElement;
-  root.classList.remove("light", "dark");
-  root.classList.add(theme);
-};
+const ThemeProviderContext = React.createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "burneremail-theme",
 }: ThemeProviderProps) {
-  const [theme, setThemeValue] = useState<Theme>(() => {
+  const [theme, setThemeValue] = React.useState<Theme>(() => {
     if (typeof window === "undefined") return defaultTheme;
     try {
       const stored = localStorage.getItem(storageKey);
@@ -44,16 +35,20 @@ export function ThemeProvider({
     }
   });
 
-  // Apply theme immediately on mount
-  useEffect(() => {
-    applyTheme(theme);
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
   }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     if (typeof window === "undefined") return;
     
     try {
-      applyTheme(newTheme);
+      const root = window.document.documentElement;
+      root.classList.remove("light", "dark");
+      root.classList.add(newTheme);
       setThemeValue(newTheme);
       localStorage.setItem(storageKey, newTheme);
     } catch {
@@ -74,7 +69,7 @@ export function ThemeProvider({
 }
 
 export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
+  const context = React.useContext(ThemeProviderContext);
 
   if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider");
