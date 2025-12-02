@@ -2,7 +2,7 @@
  * Service Worker for offline support and smart caching
  */
 
-const CACHE_NAME = 'tempmail-v1';
+const CACHE_NAME = 'tempmail-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
