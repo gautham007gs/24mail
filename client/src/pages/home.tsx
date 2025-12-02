@@ -310,7 +310,7 @@ export default function Home() {
           }}
         />
 
-        <main role="main" id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full" aria-label="Main content area for Burner Email services">
+        <main id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full" aria-label="Main content area for Burner Email services">
         <div className="mx-auto max-w-3xl w-full">
           {/* Aria-live region for new email notifications */}
           <div
