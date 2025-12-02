@@ -42,7 +42,13 @@ function Router() {
       </Route>
 
       {/* Language-prefixed routes */}
-      <Route path={`/:lang(${supportedLangs})/`} component={Home} />
+      <Route path={`/:lang(${supportedLangs})/`}>
+        {() => (
+          <ErrorBoundary>
+            <Home />
+          </ErrorBoundary>
+        )}
+      </Route>
       <Route path={`/:lang(${supportedLangs})/blog/`}>
         {() => (
           <ErrorBoundary>
