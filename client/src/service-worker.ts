@@ -1,5 +1,5 @@
 // Service Worker for PWA functionality
-const CACHE_NAME = "tempmail-v2";
+const CACHE_NAME = "tempmail-v1";
 const URLS_TO_CACHE = [
   "/",
   "/index.html",
