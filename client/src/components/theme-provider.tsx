@@ -1,3 +1,4 @@
+
 import * as React from "react";
 
 type Theme = "light" | "dark";
@@ -25,44 +26,43 @@ export function ThemeProvider({
   defaultTheme = "dark",
   storageKey = "burneremail-theme",
 }: ThemeProviderProps) {
-  const [theme, setThemeValue] = React.useState<Theme>(() => {
-    if (typeof window === "undefined") return defaultTheme;
-    try {
-      const stored = localStorage.getItem(storageKey);
-      return (stored as Theme) || defaultTheme;
-    } catch {
-      return defaultTheme;
-    }
-  });
+  // Prevent SSR/root mismatch by waiting for mount
+  const [mounted, setMounted] = React.useState(false);
+  const [theme, setThemeState] = React.useState<Theme>(defaultTheme);
 
   React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-  }, [theme]);
+    setMounted(true);
+
+    // Load stored theme AFTER mount
+    try {
+      const stored = localStorage.getItem(storageKey) as Theme | null;
+      const finalTheme = stored || defaultTheme;
+      setThemeState(finalTheme);
+
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(finalTheme);
+    } catch {}
+  }, []);
 
   const setTheme = (newTheme: Theme) => {
-    if (typeof window === "undefined") return;
-    
+    setThemeState(newTheme);
+
     try {
-      const root = window.document.documentElement;
-      root.classList.remove("light", "dark");
-      root.classList.add(newTheme);
-      setThemeValue(newTheme);
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(newTheme);
       localStorage.setItem(storageKey, newTheme);
-    } catch {
-      setThemeValue(newTheme);
-    }
+    } catch {}
   };
 
-  const value: ThemeProviderState = {
-    theme,
-    setTheme,
-  };
+  if (!mounted) return null; // Avoids build/runtime crash
 
   return (
-    <ThemeProviderContext.Provider value={value}>
+    <ThemeProviderContext.Provider
+      value={{
+        theme,
+        setTheme,
+      }}
+    >
       {children}
     </ThemeProviderContext.Provider>
   );
@@ -72,7 +72,7 @@ export const useTheme = () => {
   const context = React.useContext(ThemeProviderContext);
 
   if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider");
+    throw new Error("useTheme must be used inside ThemeProvider");
 
   return context;
 };
