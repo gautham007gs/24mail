@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-type Theme = "light" | "dark" | "system";
+type Theme = "light" | "dark";
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -14,39 +14,19 @@ type ThemeProviderState = {
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: "dark",
   setTheme: () => null,
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
-// Helper function to apply theme to DOM with smooth transition
-const applyTheme = (theme: Theme, smooth = false) => {
+// Helper function to apply theme to DOM
+const applyTheme = (theme: Theme) => {
   if (typeof window === "undefined") return;
   
   const root = window.document.documentElement;
-  
-  // Add transition class for smooth color animation
-  if (smooth) {
-    root.classList.add("theme-transitioning");
-  }
-  
   root.classList.remove("light", "dark");
-
-  if (theme === "system") {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const systemTheme = mediaQuery.matches ? "dark" : "light";
-    root.classList.add(systemTheme);
-  } else {
-    root.classList.add(theme);
-  }
-  
-  // Remove transition class after animation completes
-  if (smooth) {
-    setTimeout(() => {
-      root.classList.remove("theme-transitioning");
-    }, 300);
-  }
+  root.classList.add(theme);
 };
 
 export function ThemeProvider({
@@ -69,31 +49,12 @@ export function ThemeProvider({
     applyTheme(theme);
   }, [theme]);
 
-  // Listen for system theme changes only when in system mode
-  useEffect(() => {
-    if (theme !== "system") return;
-
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const handleChange = () => {
-      applyTheme("system");
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [theme]);
-
   const setTheme = (newTheme: Theme) => {
     if (typeof window === "undefined") return;
     
     try {
-      // Apply theme with smooth transition animation
-      applyTheme(newTheme, true);
-      // Update state
+      applyTheme(newTheme);
       setThemeValue(newTheme);
-      // Save to localStorage
       localStorage.setItem(storageKey, newTheme);
     } catch {
       setThemeValue(newTheme);

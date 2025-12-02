@@ -18,21 +18,21 @@ import { TrustSection } from "@/components/trust-section";
 import { UnifiedSocialProof } from "@/components/unified-social-proof";
 import { FAQAccordion } from "@/components/faq-accordion";
 
+// Helper function to generate a random username
+function generateRandomUsername(): string {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let username = "";
+  for (let i = 0; i < 10; i++) {
+    username += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return username;
+}
+
 export default function Home() {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // Generate hreflang tags for SEO
-  const hreflangTags = [
-    { rel: "alternate", hrefLang: "en", href: "https://burneremail.email/en" },
-    { rel: "alternate", hrefLang: "es", href: "https://burneremail.email/es" },
-    { rel: "alternate", hrefLang: "pt", href: "https://burneremail.email/pt" },
-    { rel: "alternate", hrefLang: "fr", href: "https://burneremail.email/fr" },
-    { rel: "alternate", hrefLang: "de", href: "https://burneremail.email/de" },
-    { rel: "alternate", hrefLang: "hi", href: "https://burneremail.email/hi" },
-    { rel: "alternate", hrefLang: "x-default", href: "https://burneremail.email/en" },
-  ];
-
+  // Structured data (JSON-LD) for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -63,21 +63,17 @@ export default function Home() {
     }
   };
 
+  // State for the current email address
   const [currentEmail, setCurrentEmail] = useState<string>(() => {
     if (typeof window !== "undefined") {
-      // Check for email in URL query params first (from QR code share)
       const params = new URLSearchParams(window.location.search);
       const emailFromUrl = params.get("email");
 
       if (emailFromUrl) {
-        // Save to localStorage and update URL
         localStorage.setItem("burneremail_current_email", emailFromUrl);
-        // Clean up URL by removing query params
         window.history.replaceState({}, document.title, window.location.pathname);
         return emailFromUrl;
       }
-
-      // Otherwise load from localStorage
       return localStorage.getItem("burneremail_current_email") || "";
     }
     return "";
@@ -87,7 +83,7 @@ export default function Home() {
   const { showNotification } = useNotifications();
   const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
 
-  // Fetch available domains with caching (24 hour TTL) - defer until needed
+  // Fetch available domains with caching
   const { data: domainsData = [] } = useQuery<Domain[]>({
     queryKey: ["/api/domains"],
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
@@ -99,7 +95,6 @@ export default function Home() {
     if (domainsData.length > 0) {
       CacheManager.set("domains_cache", domainsData, 24 * 60 * 60 * 1000);
     } else {
-      // Try to get from cache if API call fails
       const cached = CacheManager.get<Domain[]>("domains_cache");
       return cached || domainsData;
     }
@@ -111,7 +106,6 @@ export default function Home() {
     queryKey: ["/api/inbox", currentEmail],
     enabled: !!currentEmail,
     queryFn: async () => {
-      // Check cache first for instant response
       const cacheKey = `inbox_${currentEmail}`;
       const cached = CacheManager.get<EmailSummary[]>(cacheKey);
 
@@ -119,34 +113,29 @@ export default function Home() {
         credentials: "include",
       });
 
-      // 404 means no emails yet - return empty array without throwing
       if (response.status === 404) {
-        CacheManager.set(cacheKey, [], 30 * 1000); // Cache empty result for 30s
+        CacheManager.set(cacheKey, [], 30 * 1000);
         return cached || [];
       }
 
-      // For other non-OK statuses, throw to trigger error state
       if (!response.ok) {
         const text = await response.text();
         throw new Error(`${response.status}: ${text}`);
       }
 
       const data = await response.json();
-      // Cache for 10 seconds (shorter since emails arrive frequently)
       CacheManager.set(cacheKey, data, 10 * 1000);
       return data;
     },
-    refetchInterval: currentEmail ? 5000 : false, // Auto-refresh every 5 seconds
-    staleTime: 8000, // Reuse data for 8 seconds
+    refetchInterval: currentEmail ? 5000 : false,
+    staleTime: 8000,
   });
 
-  // Progressive email loading - add new emails gradually
+  // Progressive email loading
   useEffect(() => {
     if (emails.length > displayedEmails.length) {
-      // New emails arrived - add them one by one with a small delay
       const newEmails = emails.slice(displayedEmails.length);
       let index = 0;
-
       const interval = setInterval(() => {
         if (index < newEmails.length) {
           setDisplayedEmails(prev => [newEmails[index], ...prev]);
@@ -155,10 +144,8 @@ export default function Home() {
           clearInterval(interval);
         }
       }, 100);
-
       return () => clearInterval(interval);
     } else if (emails.length < displayedEmails.length) {
-      // Emails were deleted - update immediately
       setDisplayedEmails(emails);
     }
   }, [emails]);
@@ -173,7 +160,6 @@ export default function Home() {
       });
     }
   }, [inboxError, toast]);
-
 
   // Delete all emails mutation
   const deleteAllEmailsMutation = useMutation({
@@ -223,11 +209,9 @@ export default function Home() {
       const randomUsername = generateRandomUsername();
       const newEmail = `${randomUsername}@${domains[0]}`;
       setCurrentEmail(newEmail);
-      // Persist to localStorage
       if (typeof window !== "undefined") {
         localStorage.setItem("tempmail_current_email", newEmail);
       }
-      // Show welcome message
       const welcomeMessage = getRandomMessage("welcome");
       toast({
         title: welcomeMessage,
@@ -238,18 +222,15 @@ export default function Home() {
 
   // Track email count and notify on new emails
   useEffect(() => {
-    // Initialize on first load - don't notify for existing emails
     if (previousEmailCount.current === -1) {
       previousEmailCount.current = emails.length;
       return;
     }
 
-    // Detect new emails
     if (emails.length > previousEmailCount.current) {
       const newEmailCount = emails.length - previousEmailCount.current;
-      const latestEmail = emails[0]; // Newest email is first
+      const latestEmail = emails[0];
 
-      // Show browser notification
       const arrivedMessage = getRandomMessage("emailArrived");
       showNotification(
         arrivedMessage,
@@ -262,7 +243,6 @@ export default function Home() {
         }
       );
 
-      // Show in-app toast notification
       toast({
         title: arrivedMessage,
         description: newEmailCount === 1
@@ -276,7 +256,6 @@ export default function Home() {
 
   const handleGenerateEmail = (email: string) => {
     setCurrentEmail(email);
-    // Persist email to localStorage
     if (typeof window !== "undefined") {
       localStorage.setItem("tempmail_current_email", email);
     }
@@ -305,20 +284,24 @@ export default function Home() {
         <link rel="alternate" hrefLang="de" href="https://burneremail.email/?lang=de" />
         <link rel="alternate" hrefLang="hi" href="https://burneremail.email/?lang=hi" />
         <link rel="alternate" hrefLang="x-default" href="https://burneremail.email/" />
+        {/* Open Graph Meta Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://burneremail.email/" />
         <meta property="og:title" content="Burner Email - Free Temporary Email & Temp Mail" />
         <meta property="og:description" content="Get free burner email and temp mail instantly. Create disposable email for privacy protection. No signup needed." />
         <meta property="og:image" content="https://burneremail.email/logo-256.png" />
+        {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Burner Email - Free Temporary Email & Temp Mail" />
         <meta name="twitter:description" content="Get instant burner email and temp mail. Disposable email for spam prevention and privacy protection." />
+        <meta name="twitter:image" content="https://burneremail.email/logo-256.png" /> {/* Added twitter:image for completeness */}
+        {/* Structured Data (JSON-LD) */}
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
         </script>
       </Helmet>
       <div className="min-h-screen flex flex-col bg-background">
-        <Header 
+        <Header
           domains={domains}
           selectedDomain={currentEmail.split('@')[1] || ''}
           onDomainChange={(domain) => {
@@ -327,19 +310,21 @@ export default function Home() {
           }}
         />
 
-        <main id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full">
+        <main id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full" aria-label="Main content area for Burner Email services">
         <div className="mx-auto max-w-3xl w-full">
           {/* Aria-live region for new email notifications */}
-          <div 
+          <div
             ref={(el) => {
               if (el) (el as any).__ariaLiveRef = el;
             }}
-            role="status" 
-            aria-live="polite" 
+            role="status"
+            aria-live="polite"
             aria-atomic="true"
             className="sr-only"
             data-testid="aria-live-inbox"
-          />
+          >
+            {/* Content here will be announced by screen readers */}
+          </div>
           {/* Hero Section - Above the Fold */}
           <div className="text-center mb-8 md:mb-12 space-y-5">
             <h1 className="text-display text-foreground">
@@ -422,13 +407,4 @@ export default function Home() {
     </div>
     </>
   );
-}
-
-function generateRandomUsername(): string {
-  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let username = "";
-  for (let i = 0; i < 10; i++) {
-    username += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return username;
 }

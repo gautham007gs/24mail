@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
 import { NotificationProvider } from "@/contexts/notification-context";
+import { ErrorBoundary } from "@/components/error-boundary";
 import { SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage } from "@/lib/language-utils";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
@@ -44,37 +45,47 @@ function Router() {
       <Route path={`/:lang(${supportedLangs})/`} component={Home} />
       <Route path={`/:lang(${supportedLangs})/blog/`}>
         {() => (
-          <Suspense fallback={<PageLoader />}>
-            <Blog />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <Blog />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </Route>
       <Route path={`/:lang(${supportedLangs})/blog/:slug/`}>
         {() => (
-          <Suspense fallback={<PageLoader />}>
-            <BlogPost />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <BlogPost />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </Route>
       <Route path={`/:lang(${supportedLangs})/terms/`}>
         {() => (
-          <Suspense fallback={<PageLoader />}>
-            <TermsConditions />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <TermsConditions />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </Route>
       <Route path={`/:lang(${supportedLangs})/privacy/`}>
         {() => (
-          <Suspense fallback={<PageLoader />}>
-            <PrivacyPolicy />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <PrivacyPolicy />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </Route>
       <Route path={`/:lang(${supportedLangs})/success-stories/`}>
         {() => (
-          <Suspense fallback={<PageLoader />}>
-            <SuccessStories />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <SuccessStories />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </Route>
 

@@ -304,7 +304,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             >
               {currentEmail || "Generating..."}
             </span>
-            
+
             {/* Inline Action Icons - QR & Copy */}
             <div className="flex gap-2 sm:gap-2.5 flex-shrink-0">
               <Button
@@ -315,6 +315,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 data-testid="button-email-qr"
                 className="h-9 w-9 sm:h-10 sm:w-10"
                 title="Share QR Code"
+                aria-label="Show QR code for email"
               >
                 <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
@@ -326,6 +327,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 data-testid="button-email-copy"
                 className="h-9 w-9 sm:h-10 sm:w-10"
                 title="Copy email"
+                aria-label="Copy email address to clipboard"
               >
                 {copied ? (
                   <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
@@ -353,7 +355,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               data-testid="button-action-copy"
               size="sm"
               className="text-xs sm:text-sm font-semibold"
-              aria-label="Copy email"
+              aria-label="Copy email address to clipboard"
             >
               <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Copy
@@ -364,7 +366,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               size="sm"
               data-testid="button-action-refresh"
               className="text-xs sm:text-sm font-semibold"
-              aria-label="Refresh"
+              aria-label="Refresh inbox"
             >
               <RefreshCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Refresh
@@ -376,7 +378,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               size="sm"
               data-testid="button-action-new-email"
               className="text-xs sm:text-sm font-semibold"
-              aria-label="Change"
+              aria-label="Generate a new email address"
             >
               <RotateCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
               Change
@@ -387,7 +389,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               size="sm"
               data-testid="button-action-burn"
               className={`text-xs sm:text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
-              aria-label="Delete"
+              aria-label="Delete current email address"
             >
               <Trash2 className={`h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 ${isBurning ? "burn-icon" : ""}`} />
               Delete
@@ -467,6 +469,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 disabled={!currentEmail}
                 className="w-full font-semibold"
                 data-testid="button-copy-email-qr"
+                aria-label="Copy email address to clipboard"
               >
                 <Copy className="h-4 w-4 mr-2" />
                 Copy Email
@@ -477,6 +480,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 variant="secondary"
                 className="w-full font-semibold"
                 data-testid="button-download-qr"
+                aria-label="Download QR code for email"
               >
                 <Download className="h-4 w-4 mr-2" />
                 Download QR
@@ -497,6 +501,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-whatsapp-qr"
                   title="Share on WhatsApp"
+                  aria-label="Share email via WhatsApp"
                 >
                   <SiWhatsapp className="h-4 w-4" />
                 </Button>
@@ -510,6 +515,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-telegram-qr"
                   title="Share on Telegram"
+                  aria-label="Share email via Telegram"
                 >
                   <SiTelegram className="h-4 w-4" />
                 </Button>
@@ -523,6 +529,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   })}
                   data-testid="button-share-twitter-qr"
                   title="Share on X (Twitter)"
+                  aria-label="Share email via X (Twitter)"
                 >
                   <SiX className="h-4 w-4" />
                 </Button>
