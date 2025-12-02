@@ -43,15 +43,18 @@ export default defineConfig(async () => {
       sourcemap: false,
       target: "esnext",
       cssCodeSplit: true,
-      assetsInlineLimit: 2048,
+      cssMinify: true,
+      assetsInlineLimit: 4096,
       chunkSizeWarningLimit: 500,
+      modulePreload: {
+        polyfill: true,
+      },
 
       rollupOptions: {
         output: {
           format: "es",
           manualChunks(id) {
             if (id.includes("node_modules")) {
-              // Keep react/react-dom in main vendor chunk to prevent hoisting issues
               if (id.includes("react") || id.includes("react-dom")) {
                 return "vendor";
               }
@@ -65,9 +68,13 @@ export default defineConfig(async () => {
           entryFileNames: "assets/[name]-[hash].js",
           chunkFileNames: "assets/[name]-[hash].js",
           assetFileNames: "assets/[name]-[hash][extname]",
-          // Prevent hoisting issues by preserving module structure
           preserveModules: false,
           hoistTransitiveImports: false,
+        },
+        treeshake: {
+          moduleSideEffects: true,
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
         },
       },
     },

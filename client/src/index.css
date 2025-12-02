@@ -135,10 +135,11 @@
   color: #FF7A30;
 }
 
-/* Font optimization: Inter (body) + JetBrains Mono (code) */
+/* Font optimization */
 @layer base {
   body {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
+    text-rendering: optimizeSpeed;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -462,24 +463,28 @@ html.dark {
     animation: themeToggleSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Smooth color transitions on theme change */
-  * {
-    @apply transition-colors duration-300 ease-out;
-  }
-
-  /* Override for elements that shouldn't animate colors */
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible,
-  button:active,
-  a:active {
-    @apply transition-none;
+  /* Optimized theme transitions - Only apply to elements that need it */
+  .theme-transition,
+  .theme-transition *:not(svg):not(path):not(circle):not(rect):not(input):not(textarea) {
+    @apply transition-colors duration-200 ease-out;
   }
 
   /* Smooth background transition for page theme change */
   html,
   body {
-    @apply transition-colors duration-300 ease-out;
+    @apply transition-colors duration-200 ease-out;
+  }
+
+  /* Cards and interactive elements get theme transitions */
+  button,
+  a,
+  [class*="card"],
+  [class*="badge"],
+  header,
+  footer,
+  nav,
+  aside {
+    @apply transition-colors duration-200 ease-out;
   }
 
   /* Email content containers - Removed to prevent cascade issues */
