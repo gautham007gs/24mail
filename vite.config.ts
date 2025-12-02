@@ -33,6 +33,10 @@ export default defineConfig({
     include: ["react", "react-dom"],
     force: true,
   },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+    force: true,
+  },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
