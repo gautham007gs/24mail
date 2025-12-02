@@ -20,7 +20,7 @@ export default function BlogPost() {
   const getLocalizedLink = useLocalizedLink();
   const slug = params?.slug as string;
   const { toast } = useToast();
-
+  
   const post = getPostBySlug(slug);
   const relatedPosts = post ? getRelatedPosts(slug) : [];
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -28,14 +28,14 @@ export default function BlogPost() {
   const [isTocOpen, setIsTocOpen] = useState(false);
   const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
   const [readProgress, setReadProgress] = useState(0);
-
+  
   // Get language-specific content for this post
   const translatedContent = slug ? getBlogContentByLanguage(slug, language as LanguageCode) : null;
   const displayContent = {
     ...post,
     ...(translatedContent || {}),
   };
-
+  
   const hreflangs = generateHreflangs(location, language);
   const languageVersions = getAllLanguageVersions(slug ? `/blog/${slug}` : `/blog`);
 
@@ -213,7 +213,7 @@ export default function BlogPost() {
           </div>
         )}
 
-        <main className="flex-1">
+        <div className="flex-1">
           <div className="border-b border-border/50">
             <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
               {/* Breadcrumb Navigation */}
