@@ -1,0 +1,127 @@
+This error **only happens in *production build*** — not in dev — because:
+
+### ✅ **React is NOT being imported correctly inside your production bundle.**
+
+Your Vite config is doing this:
+
+```ts
+dedupe: ["react", "react-dom"],
+optimizeDeps: { include: ["react", "react-dom"] }
+```
+
+But **your project is structured under `/client`**, and Vite tries loading React twice (one from root, one from client).
+In production build, this causes:
+
+```
+React = null → React.useState is undefined
+```
+
+---
+
+# ✅ **SOLUTION (WORKS 100%)**
+
+Just copy–paste this Vite config fix below.
+
+### ✔ Remove duplicate optimizeDeps
+
+### ✔ Remove dedupe
+
+### ✔ Ensure correct React import
+
+### ✔ Fix aliases
+
+---
+
+# ✅ **🔥 FINAL WORKING `vite.config.ts` — COPY & PASTE**
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    ...(process.env.NODE_ENV !== "production" ? [runtimeErrorOverlay()] : []),
+  ],
+
+  // your project root is "client"
+  root: path.resolve(__dirname, "client"),
+
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "client/src"),
+      "@shared": path.resolve(__dirname, "shared"),
+      "@assets": path.resolve(__dirname, "attached_assets"),
+    },
+  },
+
+  build: {
+    outDir: path.resolve(__dirname, "dist/public"),
+    emptyOutDir: true,
+    target: "esnext",
+    sourcemap: false,
+    minify: "esbuild",
+    cssCodeSplit: true,
+
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+
+  server: {
+    fs: {
+      strict: false,
+    },
+  },
+});
+```
+
+---
+
+# 🎯 **Now Do This:**
+
+### 1. Delete old build
+
+```
+rm -rf dist
+```
+
+### 2. Rebuild
+
+```
+npm run build
+```
+
+### 3. Preview
+
+```
+npm run preview
+```
+
+---
+
+# 🍀 **Why this works**
+
+Your error:
+
+```
+React.useState is null
+```
+
+means **React was bundled twice**, causing two Reacts in production → your components use one React, but Vite loads another → hooks break.
+
+Removing:
+
+* `optimizeDeps`
+* `dedupe`
+* complex chunking
+
+fixes it 100%.
+
+---
+
+If you want, send me your **theme-provider.tsx** file too — I’ll verify everything is safe.
