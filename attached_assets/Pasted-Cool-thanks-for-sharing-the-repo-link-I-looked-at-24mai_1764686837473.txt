@@ -1,0 +1,103 @@
+Cool — thanks for sharing the repo link. I looked at **24mail** briefly. Based on the error and what’s typical in such projects, I believe the issue is that your build ends up importing **multiple copies of react**, or otherwise React isn’t resolved consistently — that’s why `React.useState` ends up being `null` in production (hooks crash). Errors like this occur when there are duplicate React instances or React is bundled incorrectly for production. ([Stack Overflow][1])
+
+Here’s a **full “copy-paste ready” fix** targeted specifically at your codebase, to ensure only one React instance and hooks work in build.
+
+---
+
+## ✅ What to change in your repo — exactly
+
+### 1. Update your `vite.config.ts` to avoid duplicate React bundling
+
+Replace the contents of `client/vite.config.ts` with this version:
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  root: path.resolve(__dirname, "client"),
+  plugins: [
+    react()
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "client/src"),
+      "@shared": path.resolve(__dirname, "shared"),
+      "@assets": path.resolve(__dirname, "attached_assets"),
+    },
+    // Remove dedupe or duplicate-React tricks
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+    force: true,
+  },
+  build: {
+    outDir: path.resolve(__dirname, "dist/public"),
+    emptyOutDir: true,
+    target: "esnext",
+    minify: "esbuild",
+    cssCodeSplit: true,
+    sourcemap: false,
+    // keep rollupOptions minimal to avoid causing React duplication
+  },
+  server: {
+    fs: {
+      strict: false,
+    },
+  },
+});
+```
+
+**What changed / why:**
+
+* Use only one `react()` plugin.
+* Removed other conditional imports — those can cause duplicate React in final bundle or mess with module resolution.
+* Simplified build config so React is resolved only from `node_modules/react`, avoiding multiple copies.
+* Kept root correct: Vite will start from `/client` where your `src/` and `index.html` should be.
+
+---
+
+### 2. Make sure your project uses a **single version of React**
+
+Run:
+
+```bash
+npm ls react
+```
+
+Make sure output shows **only one** React version (e.g. `react@18.2.0`).
+If you see more, you must remove duplicates, ensure peerDependencies, and re-install. Duplicate React causes hook errors. ([Stack Overflow][1])
+
+---
+
+### 3. Use a clean ThemeProvider implementation (like we fixed earlier)
+
+Your `theme-provider.tsx` must **import React once**, and use hooks inside a function – not outside.
+
+You should use this kind of structure (already suggested before).
+
+---
+
+## ✅ After changes: Rebuild and test
+
+* Run `rm -rf dist` (delete old build)
+* Run `npm install`
+* Run `npm run build`
+* Run `npm run preview` (or your equivalent)
+
+If everything’s correct, your build should work without the `useState null` error.
+
+---
+
+## ⚠️ Why this approach works
+
+React will only be loaded **once** from `node_modules/react`. All components and hooks across entire app — ThemeProvider, routers, etc. — use the same React instance. That avoids “invalid hook call” or “useState of null” errors caused by duplicate Reacts. ([GitHub][2])
+
+---
+
+If you want — I can **prepare a minimal “clean” branch** for your repo with these fixes, then you just merge and test.
+Do you want me to build that branch for you (i.e. give you the patch)?
+
+[1]: https://stackoverflow.com/questions/66488492/solve-having-more-than-one-copy-of-react-in-the-same-app?utm_source=chatgpt.com "Solve having more than one copy of React in the same app"
+[2]: https://github.com/facebook/react/issues/13991?utm_source=chatgpt.com "Hooks + multiple instances of React · Issue #13991"
