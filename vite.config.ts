@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
@@ -26,17 +25,6 @@ export default defineConfig(async () => {
         "@": path.resolve(__dirname, "client/src"),
         "@shared": path.resolve(__dirname, "shared"),
         "@assets": path.resolve(__dirname, "attached_assets"),
-        "react": path.resolve(__dirname, "node_modules/react"),
-        "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
-      },
-      dedupe: ["react", "react-dom"],
-    },
-
-    optimizeDeps: {
-      include: ["react", "react-dom"],
-      exclude: [],
-      esbuildOptions: {
-        target: "esnext",
       },
     },
 
@@ -73,8 +61,7 @@ export default defineConfig(async () => {
 
     server: {
       fs: {
-        strict: true,
-        deny: ["**/.*"],
+        strict: false,
       },
     },
   };
