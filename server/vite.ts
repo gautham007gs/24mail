@@ -8,6 +8,27 @@ import { nanoid } from "nanoid";
 
 const viteLogger = createLogger();
 
+export function serveStatic(app: Express) {
+  const distPath = path.resolve(import.meta.dirname, "..", "dist", "public");
+  const indexPath = path.join(distPath, "index.html");
+
+  if (!fs.existsSync(indexPath)) {
+    throw new Error(
+      `Production build not found at ${indexPath}. Run 'npm run build' first.`
+    );
+  }
+
+  app.use(express.static(distPath, {
+    maxAge: "1y",
+    etag: true,
+    lastModified: true,
+  }));
+
+  app.get("*", (_req, res) => {
+    res.sendFile(indexPath);
+  });
+}
+
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",

@@ -30,32 +30,23 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    // Aggressive performance optimization
     minify: "esbuild",
     rollupOptions: {
-      output: [
-        {
-          dir: path.resolve(import.meta.dirname, "dist/public/assets"),
-          format: "es",
-          manualChunks: (id) => {
-            // Optimized chunking for Lighthouse
-            if (id.includes("node_modules")) {
-              // UI libraries - combine
-              if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
-              // Data processing - combine
-              if (id.includes("date-fns") || id.includes("recharts")) return "data";
-              // Forms & icons - combine
-              if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
-              // QR & routing - combine
-              if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
-              return "vendor";
-            }
-          },
-          entryFileNames: "chunks/[name]-[hash].js",
-          chunkFileNames: "chunks/[name]-[hash].js",
-          assetFileNames: "assets/[name]-[hash][extname]",
+      output: {
+        format: "es",
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
+            if (id.includes("date-fns") || id.includes("recharts")) return "data";
+            if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
+            if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
+            return "vendor";
+          }
         },
-      ],
+        entryFileNames: "assets/[name]-[hash].js",
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
+      },
       external: [],
       treeshake: {
         moduleSideEffects: false,
