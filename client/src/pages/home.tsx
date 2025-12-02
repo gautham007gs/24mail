@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, lazy, Suspense } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import CacheManager from "@/lib/cache";
@@ -12,11 +12,13 @@ import { useLanguage } from "@/contexts/language-context";
 import { Helmet } from "react-helmet";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
-import { HowItWorks } from "@/components/how-it-works";
 import { Footer } from "@/components/footer";
-import { TrustSection } from "@/components/trust-section";
-import { UnifiedSocialProof } from "@/components/unified-social-proof";
-import { FAQAccordion } from "@/components/faq-accordion";
+
+// Lazy load below-fold sections for faster initial render
+const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
+const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
+const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
+const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 
 // Helper function to generate a random username
 function generateRandomUsername(): string {
@@ -381,26 +383,31 @@ export default function Home() {
             />
           </div>
 
-          {/* Trust Section - Why You Can Trust Us */}
-          <TrustSection />
+          {/* Below-fold sections - lazy loaded for faster initial render */}
+          <Suspense fallback={<div className="h-32" />}>
+            {/* Trust Section - Why You Can Trust Us */}
+            <TrustSection />
 
-          {/* How It Works Section */}
-          <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-            <HowItWorks />
-          </div>
+            {/* How It Works Section */}
+            <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+              <HowItWorks />
+            </div>
 
-          {/* Social Proof Section */}
-          <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-            <UnifiedSocialProof />
-          </div>
+            {/* Social Proof Section */}
+            <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+              <UnifiedSocialProof />
+            </div>
+          </Suspense>
 
         </div>
       </main>
 
       {/* FAQ Section - Full Width */}
-      <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-        <FAQAccordion />
-      </div>
+      <Suspense fallback={<div className="h-32" />}>
+        <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+          <FAQAccordion />
+        </div>
+      </Suspense>
 
       {/* Footer */}
       <Footer />

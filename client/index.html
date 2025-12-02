@@ -44,20 +44,33 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://burneremail.email/" />
     <link rel="preconnect" href="https://api.barid.site" crossorigin>
+    
+    <!-- Preload critical API for faster data loading -->
+    <link rel="preload" href="/api/domains" as="fetch" crossorigin="use-credentials">
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/logo-64.png" sizes="64x64" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="512x512" />
     
-    <!-- Critical inline styles for fastest first paint -->
+    <!-- Critical inline styles for fastest first paint - covers above-fold content -->
     <style>
-      :root { --background: 120 100% 98%; --foreground: 210 7% 11%; --primary: 141 61% 52%; --card: 120 100% 97%; }
-      .dark { --background: 141 76% 5%; --foreground: 127 48% 86%; --primary: 141 100% 60%; --card: 141 45% 8%; }
+      :root { --background: 120 100% 98%; --foreground: 210 7% 11%; --primary: 141 61% 52%; --card: 120 100% 97%; --muted-foreground: 210 5% 45%; --border: 210 10% 90%; --accent: 141 70% 45%; }
+      .dark { --background: 141 76% 5%; --foreground: 127 48% 86%; --primary: 141 100% 60%; --card: 141 45% 8%; --muted-foreground: 141 10% 60%; --border: 141 20% 15%; --accent: 141 80% 50%; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+      html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
       body { font-family: system-ui, -apple-system, sans-serif; background-color: hsl(var(--background)); color: hsl(var(--foreground)); line-height: 1.6; }
       #root { display: flex; flex-direction: column; min-height: 100vh; }
+      .text-display { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+      .text-body-lg { font-size: 1.125rem; line-height: 1.75; }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid hsl(var(--border)); position: sticky; top: 0; z-index: 50; background: hsl(var(--background) / 0.95); backdrop-filter: blur(8px); }
+      main { flex: 1; padding: 1.5rem 1rem; }
+      .container { max-width: 72rem; margin: 0 auto; }
+      .text-center { text-align: center; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
     </style>
+    
+    <!-- Preload main script for faster execution -->
+    <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- DNS prefetch for faster resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
