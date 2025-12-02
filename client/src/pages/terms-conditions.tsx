@@ -37,10 +37,10 @@ export default function TermsConditions() {
         </div>
 
         <article className="mx-auto max-w-4xl px-4 md:px-6 py-12">
-          <h1 className="text-5xl font-bold text-foreground mb-2">Terms & Conditions</h1>
-          <p className="text-muted-foreground mb-8">Last updated: November 2024</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">Terms & Conditions</h1>
+          <p className="text-sm text-muted-foreground mb-12 pb-6 border-b border-border/30">Last updated: November 2024</p>
 
-          <div className="prose prose-invert max-w-none space-y-8 text-foreground/80 leading-relaxed">
+          <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-foreground/90 leading-relaxed [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-foreground [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-foreground [&_p]:mb-4 [&_ul]:space-y-2 [&_ul]:ml-6 [&_li]:text-foreground/80 [&_strong]:text-foreground [&_strong]:font-semibold">
             <section>
               <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">1. Agreement to Terms</h2>
               <p>By accessing and using TempMail ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>

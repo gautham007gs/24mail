@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
-import { useLocalizedLink } from "@/hooks/useLocalizedLink";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 
 export default function PrivacyPolicy() {
   const getLocalizedLink = useLocalizedLink();
@@ -37,19 +37,19 @@ export default function PrivacyPolicy() {
         </div>
 
         <article className="mx-auto max-w-4xl px-4 md:px-6 py-12">
-          <h1 className="text-5xl font-bold text-foreground mb-2">Privacy Policy</h1>
-          <p className="text-muted-foreground mb-8">Last updated: November 2024</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">Privacy Policy</h1>
+          <p className="text-sm text-muted-foreground mb-12 pb-6 border-b border-border/30">Last updated: November 2024</p>
 
-          <div className="prose prose-invert max-w-none space-y-8 text-foreground/80 leading-relaxed">
+          <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-foreground/90 leading-relaxed [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-foreground [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-foreground [&_p]:mb-4 [&_ul]:space-y-2 [&_ul]:ml-6 [&_li]:text-foreground/80 [&_strong]:text-foreground [&_strong]:font-semibold">
             <section>
-              <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">1. Introduction</h2>
+              <h2>1. Introduction</h2>
               <p>TempMail ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains our data practices and your privacy rights. This policy applies to all users of TempMail's website and services.</p>
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">2. Information We Collect</h2>
+              <h2>2. Information We Collect</h2>
 
-              <h3 className="text-2xl font-semibold text-foreground mt-6 mb-3">2.1 Automatically Collected Information</h3>
+              <h3>2.1 Automatically Collected Information</h3>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li><strong>IP Address:</strong> We collect your IP address for security, fraud prevention, and analytics purposes</li>
                 <li><strong>Browser Information:</strong> Browser type, version, and operating system</li>

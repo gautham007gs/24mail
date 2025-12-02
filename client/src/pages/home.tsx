@@ -68,7 +68,7 @@ export default function Home() {
       // Check for email in URL query params first (from QR code share)
       const params = new URLSearchParams(window.location.search);
       const emailFromUrl = params.get("email");
-      
+
       if (emailFromUrl) {
         // Save to localStorage and update URL
         localStorage.setItem("burneremail_current_email", emailFromUrl);
@@ -76,7 +76,7 @@ export default function Home() {
         window.history.replaceState({}, document.title, window.location.pathname);
         return emailFromUrl;
       }
-      
+
       // Otherwise load from localStorage
       return localStorage.getItem("burneremail_current_email") || "";
     }
@@ -114,23 +114,23 @@ export default function Home() {
       // Check cache first for instant response
       const cacheKey = `inbox_${currentEmail}`;
       const cached = CacheManager.get<EmailSummary[]>(cacheKey);
-      
+
       const response = await fetch(`/api/inbox/${encodeURIComponent(currentEmail)}`, {
         credentials: "include",
       });
-      
+
       // 404 means no emails yet - return empty array without throwing
       if (response.status === 404) {
         CacheManager.set(cacheKey, [], 30 * 1000); // Cache empty result for 30s
         return cached || [];
       }
-      
+
       // For other non-OK statuses, throw to trigger error state
       if (!response.ok) {
         const text = await response.text();
         throw new Error(`${response.status}: ${text}`);
       }
-      
+
       const data = await response.json();
       // Cache for 10 seconds (shorter since emails arrive frequently)
       CacheManager.set(cacheKey, data, 10 * 1000);
@@ -146,7 +146,7 @@ export default function Home() {
       // New emails arrived - add them one by one with a small delay
       const newEmails = emails.slice(displayedEmails.length);
       let index = 0;
-      
+
       const interval = setInterval(() => {
         if (index < newEmails.length) {
           setDisplayedEmails(prev => [newEmails[index], ...prev]);
@@ -155,7 +155,7 @@ export default function Home() {
           clearInterval(interval);
         }
       }, 100);
-      
+
       return () => clearInterval(interval);
     } else if (emails.length < displayedEmails.length) {
       // Emails were deleted - update immediately
@@ -248,7 +248,7 @@ export default function Home() {
     if (emails.length > previousEmailCount.current) {
       const newEmailCount = emails.length - previousEmailCount.current;
       const latestEmail = emails[0]; // Newest email is first
-      
+
       // Show browser notification
       const arrivedMessage = getRandomMessage("emailArrived");
       showNotification(
@@ -326,7 +326,7 @@ export default function Home() {
             handleGenerateEmail(`${username}@${domain}`);
           }}
         />
-        
+
         <main id="main-content" className="flex-1 px-3 sm:px-4 py-6 sm:py-8 md:px-6 md:py-12 w-full">
         <div className="mx-auto max-w-3xl w-full">
           {/* Aria-live region for new email notifications */}
