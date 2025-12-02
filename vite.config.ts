@@ -26,13 +26,18 @@ export default defineConfig(async () => {
         "@": path.resolve(__dirname, "client/src"),
         "@shared": path.resolve(__dirname, "shared"),
         "@assets": path.resolve(__dirname, "attached_assets"),
+        "react": path.resolve(__dirname, "node_modules/react"),
+        "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
       },
       dedupe: ["react", "react-dom"],
     },
 
     optimizeDeps: {
       include: ["react", "react-dom"],
-      force: true,
+      exclude: [],
+      esbuildOptions: {
+        target: "esnext",
+      },
     },
 
     root: path.resolve(__dirname, "client"),
