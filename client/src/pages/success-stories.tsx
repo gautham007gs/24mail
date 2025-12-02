@@ -4,8 +4,11 @@ import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 
 export default function SuccessStories() {
+  const getLocalizedLink = useLocalizedLink();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -3,8 +3,11 @@ import { ArrowLeft } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import { useLocalizedLink } from "@/hooks/useLocalizedLink";
 
 export default function PrivacyPolicy() {
+  const getLocalizedLink = useLocalizedLink();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -45,7 +48,7 @@ export default function PrivacyPolicy() {
 
             <section>
               <h2 className="text-3xl font-bold text-foreground mt-8 mb-4">2. Information We Collect</h2>
-              
+
               <h3 className="text-2xl font-semibold text-foreground mt-6 mb-3">2.1 Automatically Collected Information</h3>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li><strong>IP Address:</strong> We collect your IP address for security, fraud prevention, and analytics purposes</li>

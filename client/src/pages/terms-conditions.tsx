@@ -1,14 +1,16 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Helmet } from "react-helmet";
+import { useLocalizedLink } from "@/hooks/use-localized-link";
 import { useEffect } from "react";
 
 export default function TermsConditions() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const getLocalizedLink = useLocalizedLink();
 
   return (
     <>
