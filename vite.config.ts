@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
@@ -26,6 +27,11 @@ export default defineConfig(async () => {
         "@shared": path.resolve(__dirname, "shared"),
         "@assets": path.resolve(__dirname, "attached_assets"),
       },
+      dedupe: ["react", "react-dom"],
+    },
+
+    optimizeDeps: {
+      include: ["react", "react-dom"],
     },
 
     root: path.resolve(__dirname, "client"),
@@ -45,6 +51,10 @@ export default defineConfig(async () => {
           format: "es",
           manualChunks(id) {
             if (id.includes("node_modules")) {
+              // Keep react/react-dom in main vendor chunk to prevent hoisting issues
+              if (id.includes("react") || id.includes("react-dom")) {
+                return "vendor";
+              }
               if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
               if (id.includes("date-fns") || id.includes("recharts")) return "data";
               if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
@@ -55,6 +65,9 @@ export default defineConfig(async () => {
           entryFileNames: "assets/[name]-[hash].js",
           chunkFileNames: "assets/[name]-[hash].js",
           assetFileNames: "assets/[name]-[hash][extname]",
+          // Prevent hoisting issues by preserving module structure
+          preserveModules: false,
+          hoistTransitiveImports: false,
         },
       },
     },
