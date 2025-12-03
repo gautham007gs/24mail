@@ -328,7 +328,11 @@ export default function Home() {
             {/* Content here will be announced by screen readers */}
           </div>
           {/* Hero Section - Above the Fold */}
-          <div className="text-center mb-8 md:mb-12 space-y-5">
+          <div className="relative text-center mb-8 md:mb-12 space-y-5">
+            {/* Subtle gradient glow background */}
+            <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
+            </div>
             <h1 className="text-display text-foreground">
               {t("hero.title")}
             </h1>

@@ -1,6 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
@@ -51,8 +50,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
         Skip to main content
       </a>
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex items-center justify-between h-14">
             {/* Logo + Desktop Navigation */}
             <Link 
               href={getLocalizedLink("/")} 
@@ -73,22 +72,25 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1 ml-8">
+            <nav className="hidden md:flex items-center gap-6 ml-10">
               {navItems.map((item) => {
                 const isActiveRoute = isActive(item.href);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2.5 text-sm font-semibold rounded-md transition-all duration-200 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                    className={`relative px-1 py-2 text-xs font-medium transition-all duration-200 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       isActiveRoute
-                        ? "bg-accent text-accent-foreground"
+                        ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                     aria-current={isActiveRoute ? "page" : undefined}
                   >
                     {item.label}
+                    {isActiveRoute && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full" />
+                    )}
                   </Link>
                 );
               })}
@@ -149,8 +151,6 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 </div>
               )}
 
-              <ThemeToggle />
-              
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden p-2.5 hover:bg-secondary rounded-lg transition-colors flex items-center justify-center focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -184,16 +184,16 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                       key={item.href}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg font-semibold transition-all no-underline text-base focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg font-medium transition-all no-underline text-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                         isActiveRoute
-                          ? "bg-accent text-accent-foreground"
-                          : "text-foreground hover:bg-secondary/50"
+                          ? "text-foreground border-l-2 border-accent bg-accent/10"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                       }`}
                       data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
                       aria-current={isActiveRoute ? "page" : undefined}
                       style={{ animationDelay: `${idx * 50}ms` }}
                     >
-                      <Icon className="h-5 w-5 flex-shrink-0" />
+                      <Icon className="h-4 w-4 flex-shrink-0" />
                       <span>{item.label}</span>
                     </Link>
                   );
