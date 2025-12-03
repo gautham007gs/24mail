@@ -52,11 +52,11 @@ export function DataPrivacySection() {
           return (
             <Card
               key={index}
-              className="p-6 md:p-7 border border-emerald-500/20 bg-gradient-to-br from-emerald-50/5 to-emerald-950/5 dark:from-emerald-950/15 dark:to-emerald-900/10 hover:border-emerald-500/40 hover:bg-emerald-50/10 dark:hover:bg-emerald-950/20 transition-all duration-300 group"
+              className="p-6 md:p-7 border border-emerald-500/15 bg-gradient-to-br from-emerald-50/5 to-emerald-950/5 dark:from-emerald-950/15 dark:to-emerald-900/10 hover:border-emerald-500/25 hover:bg-emerald-50/8 dark:hover:bg-emerald-950/15 transition-all duration-300 group"
             >
               <div className="flex flex-col h-full gap-4">
-                <div className="p-3 rounded-lg bg-emerald-500/15 group-hover:bg-emerald-500/25 transition-colors w-fit">
-                  <Icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                <div className="p-3 rounded-lg bg-emerald-500/12 group-hover:bg-emerald-500/18 transition-colors w-fit">
+                  <Icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">

@@ -64,10 +64,10 @@
 
 @keyframes timerGlowPulse {
   0%, 100% {
-    box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+    opacity: 0.9;
   }
   50% {
-    box-shadow: 0 0 12px currentColor, 0 0 20px currentColor;
+    opacity: 1;
   }
 }
 
@@ -89,25 +89,25 @@
   animation: timerGlowPulse 2s ease-in-out infinite;
 }
 
-/* Green (50-100%) → Orange (0-50%) - Strict Color Palette */
+/* Green (50-100%) → Orange (0-50%) - Strict Color Palette - Subtle glow */
 .timer-progress-fill.green {
   background: linear-gradient(90deg, #00C46B 0%, #00C46B 100%);
-  box-shadow: 0 0 8px rgba(0, 196, 107, 0.5), 0 0 16px rgba(0, 196, 107, 0.3);
+  box-shadow: 0 0 4px rgba(0, 196, 107, 0.25);
   color: #00C46B;
 }
 
 .timer-progress-fill.orange {
   background: linear-gradient(90deg, #FF7A30 0%, #FF7A30 100%);
-  box-shadow: 0 0 8px rgba(255, 122, 48, 0.5), 0 0 16px rgba(255, 122, 48, 0.3);
+  box-shadow: 0 0 4px rgba(255, 122, 48, 0.25);
   color: #FF7A30;
 }
 
 .dark .timer-progress-fill.green {
-  box-shadow: 0 0 12px rgba(0, 196, 107, 0.6), 0 0 20px rgba(0, 196, 107, 0.4);
+  box-shadow: 0 0 6px rgba(0, 196, 107, 0.35);
 }
 
 .dark .timer-progress-fill.orange {
-  box-shadow: 0 0 12px rgba(255, 122, 48, 0.6), 0 0 20px rgba(255, 122, 48, 0.4);
+  box-shadow: 0 0 6px rgba(255, 122, 48, 0.35);
 }
 
 /* Burn Animation - 0.5s flame effect */
@@ -775,13 +775,11 @@ html.dark {
   /* Soft premium badge with glow and animation */
   .badge-premium {
     @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 border border-emerald-200/60 dark:border-emerald-800/60 text-sm font-semibold text-emerald-700 dark:text-emerald-300;
-    box-shadow: 0 0 16px rgba(72, 201, 169, 0.25), inset 0 1px 0 rgba(72, 201, 169, 0.2);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .badge-premium:hover {
-    box-shadow: 0 0 24px rgba(72, 201, 169, 0.35), inset 0 1px 0 rgba(72, 201, 169, 0.3);
-    transform: translateY(-1px);
+    @apply bg-gradient-to-r from-emerald-500/15 to-emerald-600/15;
   }
 
   /* Icon animation for badge */
@@ -1190,29 +1188,29 @@ html.dark {
     @apply border-border/80;
   }
 
-  /* GLOW EFFECTS FOR PROMINENT ELEMENTS */
+  /* GLOW EFFECTS FOR PROMINENT ELEMENTS - Subtle, no halo artifacts */
   .glow-soft {
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.15);
+    box-shadow: 0 0 8px rgba(255, 107, 53, 0.08);
   }
 
   .dark .glow-soft {
-    box-shadow: 0 0 30px rgba(255, 107, 53, 0.25);
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.12);
   }
 
   .glow-medium {
-    box-shadow: 0 0 30px rgba(255, 107, 53, 0.25);
+    box-shadow: 0 0 12px rgba(255, 107, 53, 0.12);
   }
 
   .dark .glow-medium {
-    box-shadow: 0 0 40px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 0 16px rgba(255, 107, 53, 0.18);
   }
 
   .glow-strong {
-    box-shadow: 0 0 40px rgba(255, 107, 53, 0.35), inset 0 0 20px rgba(255, 107, 53, 0.1);
+    box-shadow: 0 0 16px rgba(255, 107, 53, 0.18);
   }
 
   .dark .glow-strong {
-    box-shadow: 0 0 50px rgba(255, 107, 53, 0.45), inset 0 0 20px rgba(255, 107, 53, 0.15);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.25);
   }
 
   /* ENHANCED TEXT SIZES FOR BETTER HIERARCHY */
@@ -1529,13 +1527,40 @@ html.dark {
     animation: shake 0.5s ease-in-out;
   }
 
-  /* Emerald glow effects */
+  /* Emerald glow effects - Subtle for cards, stronger for CTAs only */
   .emerald-glow {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.15);
   }
 
   .emerald-glow-lg {
-    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  }
+  
+  /* CTA-specific glow using pseudo-element for hardware acceleration */
+  .cta-glow {
+    position: relative;
+  }
+  
+  .cta-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: radial-gradient(ellipse at center, rgba(0, 196, 107, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    will-change: opacity;
+  }
+  
+  .cta-glow:hover::before,
+  .cta-glow:focus-visible::before {
+    opacity: 1;
+  }
+  
+  .dark .cta-glow::before {
+    background: radial-gradient(ellipse at center, rgba(0, 196, 107, 0.25) 0%, transparent 70%);
   }
 
   /* Orange glow effects */
@@ -1551,6 +1576,36 @@ html.dark {
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+  
+  /* Horizontal scroll with snap and partial peeking */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
+  
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+  
+  /* Partial item peeking for mobile scrollers */
+  .scroll-peek {
+    padding-inline-start: 1rem;
+    padding-inline-end: 2rem;
+    margin-inline: -1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .scroll-peek {
+      padding-inline-start: 0;
+      padding-inline-end: 0;
+      margin-inline: 0;
+    }
   }
 
   /* Premium glassmorphic effect */

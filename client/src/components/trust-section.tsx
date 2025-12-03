@@ -155,18 +155,18 @@ export function TrustSection() {
           <p className="text-sm text-muted-foreground">{t("trust.standardsDesc")}</p>
         </div>
         
-        {/* Mobile: Horizontal Scroll */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
+        {/* Mobile: Horizontal Scroll with snap */}
+        <div className="md:hidden overflow-x-auto scrollbar-hide scroll-snap-x scroll-peek -mx-4 px-4 pb-4">
           <div className="flex gap-4 min-w-max">
             {certifications.map((cert, index) => {
               const Icon = cert.icon;
               return (
                 <Card
                   key={index}
-                  className="group relative flex-shrink-0 w-48 p-5 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"
+                  className="group relative flex-shrink-0 w-48 p-5 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm transition-all duration-300 flex flex-col items-center text-center scroll-snap-start"
                 >
-                  <div className="mb-3 p-3 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/25 ring-1 ring-emerald-500/30 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-                    <Icon className="h-7 w-7 text-emerald-400 drop-shadow-[0_0_4px_rgba(16,185,129,0.4)]" />
+                  <div className="mb-3 p-3 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
+                    <Icon className="h-7 w-7 text-emerald-400" aria-hidden="true" />
                   </div>
                   <h4 className="font-bold text-sm text-foreground mb-1">{cert.name}</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">{cert.description}</p>
@@ -183,13 +183,10 @@ export function TrustSection() {
             return (
               <Card
                 key={index}
-                className="group relative p-7 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
+                className="group relative p-7 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
               >
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-
-                <div className="mb-4 p-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/25 ring-1 ring-emerald-500/30 transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]">
-                  <Icon className="h-8 w-8 text-emerald-400 drop-shadow-[0_0_6px_rgba(16,185,129,0.4)]" />
+                <div className="mb-4 p-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
+                  <Icon className="h-8 w-8 text-emerald-400" aria-hidden="true" />
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center">
@@ -198,7 +195,7 @@ export function TrustSection() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-border/20 w-full">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500/70 mx-auto" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-500/70 mx-auto" aria-hidden="true" />
                 </div>
               </Card>
             );

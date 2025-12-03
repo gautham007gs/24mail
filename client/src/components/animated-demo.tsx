@@ -28,11 +28,11 @@ export function AnimatedDemo() {
   return (
     <div className="w-full max-w-5xl mx-auto">
       {/* Demo Container - Premium Design */}
-      <div className="relative bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/30 rounded-3xl p-8 md:p-14 overflow-hidden shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-        {/* Background glow */}
+      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-8 md:p-14 overflow-hidden">
+        {/* Background glow - subtle */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-emerald-600/5 rounded-full blur-2xl" />
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-emerald-600/3 rounded-full blur-2xl" />
         </div>
 
         {/* Animated connecting line */}
@@ -40,7 +40,7 @@ export function AnimatedDemo() {
           <div className="h-full bg-gradient-to-r from-emerald-500/20 via-emerald-500/40 to-emerald-500/20 rounded-full" />
           {/* Animated dot traveling along the line */}
           <div 
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)] transition-all duration-1000"
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full transition-all duration-1000"
             style={{
               left: step === 0 ? '0%' : step === 1 ? '50%' : '100%',
             }}
@@ -55,11 +55,11 @@ export function AnimatedDemo() {
           }`}>
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 0 
-                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                ? "bg-emerald-500/20 border-emerald-400" 
                 : "bg-emerald-500/10 border-emerald-500/40"
             }`}>
               <AtSign className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                step === 0 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+                step === 0 ? "text-emerald-400" : "text-emerald-500/60"
               }`} />
               {step === 0 && (
                 <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
@@ -86,14 +86,14 @@ export function AnimatedDemo() {
           }`}>
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 1 
-                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                ? "bg-emerald-500/20 border-emerald-400" 
                 : "bg-emerald-500/10 border-emerald-500/40"
             }`}>
               {showCopied ? (
                 <Check className="w-10 h-10 md:w-12 md:h-12 text-emerald-400 animate-bounce" />
               ) : (
                 <Copy className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                  step === 1 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+                  step === 1 ? "text-emerald-400" : "text-emerald-500/60"
                 }`} />
               )}
               {step === 1 && !showCopied && (
@@ -122,17 +122,17 @@ export function AnimatedDemo() {
             {/* Flying email animation */}
             {emailFlying && (
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 animate-bounce">
-                <Mail className="w-6 h-6 text-orange-400 drop-shadow-[0_0_6px_rgba(251,146,60,0.6)]" />
+                <Mail className="w-6 h-6 text-orange-400" />
               </div>
             )}
             
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 2 
-                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                ? "bg-emerald-500/20 border-emerald-400" 
                 : "bg-emerald-500/10 border-emerald-500/40"
             }`}>
               <Mail className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                step === 2 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+                step === 2 ? "text-emerald-400" : "text-emerald-500/60"
               }`} />
               {step === 2 && (
                 <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
@@ -153,9 +153,10 @@ export function AnimatedDemo() {
             <button
               key={i}
               onClick={() => setStep(i as 0 | 1 | 2)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              aria-label={`Go to step ${i + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 i === step 
-                  ? "w-10 bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.6)]" 
+                  ? "w-10 bg-emerald-400" 
                   : "w-2.5 bg-emerald-500/30 hover:bg-emerald-500/50"
               }`}
             />
