@@ -278,11 +278,12 @@ export function InboxList({
 
   const filteredEmails = useMemo(() => {
     if (!searchQuery.trim()) {
-      return emails;
+      return emails.filter(email => email != null);
     }
 
     const query = searchQuery.toLowerCase();
     return emails.filter((email) => {
+      if (!email) return false;
       const from = email.from_address.toLowerCase();
       const subject = (email.subject || "").toLowerCase();
       const to = email.to_address.toLowerCase();
@@ -333,7 +334,7 @@ export function InboxList({
 
   const groupedEmails = useMemo(() => {
     const groups = new Map<string, EmailSummary[]>();
-    filteredEmails.forEach(email => {
+    filteredEmails.filter(email => email != null).forEach(email => {
       const sender = email.from_address;
       if (!groups.has(sender)) {
         groups.set(sender, []);
