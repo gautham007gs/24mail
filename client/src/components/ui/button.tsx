@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0" +
   " hover-elevate active-elevate-2" +
-  " focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  " focus-visible:outline-3 focus-visible:outline focus-visible:outline-[rgba(0,196,107,0.4)] focus-visible:outline-offset-[3px]",
   {
     variants: {
       variant: {
@@ -21,9 +21,9 @@ const buttonVariants = cva(
         ghost: "border border-transparent rounded-xl",
       },
       size: {
-        default: "min-h-10 px-4 py-2",
-        sm: "min-h-9 px-3 text-xs",
-        lg: "min-h-12 px-8",
+        default: "h-10 min-h-10 px-4 py-2",
+        sm: "h-9 min-h-9 px-3 text-xs",
+        lg: "h-12 min-h-12 px-8",
         icon: "h-11 w-11 min-h-[44px] min-w-[44px]",
       },
     },

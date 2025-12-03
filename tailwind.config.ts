@@ -6,10 +6,11 @@ export default {
   theme: {
     extend: {
       borderRadius: {
+        "2xl": "1rem", /* 16px - for cards */
         xl: ".75rem", /* 12px - for buttons and inputs */
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
+        lg: ".625rem", /* 10px */
+        md: ".5rem", /* 8px - for chips/badges */
+        sm: ".25rem", /* 4px */
       },
       colors: {
         // Flat / base colors (regular buttons)

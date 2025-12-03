@@ -41,19 +41,19 @@ export function TrustSection() {
 
   const globalStats = [
     { value: "1M+", label: t("trust.metric.emails"), icon: Mail },
-    { value: "100K+", label: t("trust.metric.users"), icon: Users },
+    { value: "150K+", label: t("trust.metric.users"), icon: Users },
     { value: "99.9%", label: t("trust.metric.uptime"), icon: Zap },
   ];
 
   return (
-    <section className="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 md:pb-16 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
+    <section className="mt-16 md:mt-24 pt-12 md:pt-16 pb-8 md:pb-12 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
       {/* Subtle Background - Reduced for performance */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-2xl" />
       </div>
 
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+      <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
         <div className="inline-block mb-4 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
           <p className="text-sm font-bold text-emerald-400 uppercase tracking-wide">{t("trust.whyTrust")}</p>
         </div>
@@ -66,7 +66,7 @@ export function TrustSection() {
       </div>
 
       {/* Global Stats - Clean Grid Layout */}
-      <div className="relative max-w-4xl mx-auto px-4 mb-16 md:mb-20">
+      <div className="relative max-w-4xl mx-auto px-4 mb-12 md:mb-16">
         {/* Unified Stats Grid - Mobile & Desktop */}
         <div className="grid grid-cols-3 gap-3 sm:gap-6">
           {globalStats.map((stat, index) => {
@@ -94,7 +94,7 @@ export function TrustSection() {
       </div>
 
       {/* Trust Items Grid - Simplified */}
-      <div className="max-w-5xl mx-auto px-4 mb-16 md:mb-20">
+      <div className="max-w-5xl mx-auto px-4 mb-12 md:mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
@@ -112,7 +112,7 @@ export function TrustSection() {
 
                 {/* Card */}
                 <Card 
-                  className="relative group overflow-visible transition-colors duration-300 h-full p-7 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80"
+                  className="relative group overflow-visible transition-all duration-300 h-full p-6 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80 hover:shadow-md hover:-translate-y-0.5"
                 >
                   <div className="flex flex-col gap-5 h-full">
                     {/* Icon Container - Simplified */}

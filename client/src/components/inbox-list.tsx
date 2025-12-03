@@ -385,11 +385,11 @@ export function InboxList({
               size="sm"
               onClick={() => setShowClearDialog(true)}
               disabled={isDeleting}
-              data-testid="button-burn-all"
+              data-testid="button-destroy-inbox"
               className="btn-danger btn-hover-scale active-elevate-2"
             >
-              <Trash2 className="h-4 w-4 mr-1.5" />
-              <span className="hidden sm:inline">{t("inbox.burnAll")}</span>
+              <Trash2 className="h-4 w-4 mr-1.5" aria-hidden="true" />
+              <span className="hidden sm:inline">Destroy Inbox</span>
             </Button>
           )}
           {currentEmail && (
@@ -536,27 +536,37 @@ export function InboxList({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Clear Inbox Dialog */}
+      {/* Destroy Inbox Dialog - 2-step confirmation */}
       <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
-        <AlertDialogContent data-testid="dialog-clear-inbox">
+        <AlertDialogContent data-testid="dialog-destroy-inbox">
           <AlertDialogHeader>
-            <AlertDialogTitle data-testid="dialog-clear-inbox-title">Clear entire inbox?</AlertDialogTitle>
-            <AlertDialogDescription data-testid="dialog-clear-inbox-description">
-              This will permanently delete all {emails.length} email{emails.length !== 1 ? 's' : ''} from your inbox. 
-              This action cannot be undone.
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 rounded-full bg-destructive/15">
+                <AlertTriangle className="h-5 w-5 text-destructive" aria-hidden="true" />
+              </div>
+              <AlertDialogTitle data-testid="dialog-destroy-inbox-title" className="text-lg font-bold">
+                Destroy Inbox?
+              </AlertDialogTitle>
+            </div>
+            <AlertDialogDescription data-testid="dialog-destroy-inbox-description" className="text-sm text-muted-foreground">
+              This will <strong className="text-destructive">permanently destroy</strong> all {emails.length} email{emails.length !== 1 ? 's' : ''} in your inbox. 
+              This action is irreversible and cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel data-testid="button-cancel-clear-inbox">Cancel</AlertDialogCancel>
+          <AlertDialogFooter className="gap-2 sm:gap-0">
+            <AlertDialogCancel data-testid="button-cancel-destroy-inbox" className="min-h-10">
+              Keep Emails
+            </AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
                 onDeleteAll();
                 setShowClearDialog(false);
               }}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              data-testid="button-confirm-clear-inbox"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 min-h-10"
+              data-testid="button-confirm-destroy-inbox"
             >
-              Clear Inbox
+              <Trash2 className="h-4 w-4 mr-2" aria-hidden="true" />
+              Destroy Inbox
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

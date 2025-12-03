@@ -274,9 +274,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Burner Email - Free Temporary Email & Temp Mail | Secure Private Email Service</title>
-        <meta name="description" content="Get free burner email, temp mail, and disposable email instantly - no signup required. Protect your privacy with Burner Email's secure private mail service. Spam prevention, anonymous communication, and email privacy in one platform." />
-        <meta name="keywords" content="burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, email privacy, spam prevention, temporary mail" />
+        <title>Burner Email - #1 Free Temporary Email & Temp Mail | Instant Private Email</title>
+        <meta name="description" content="Create free burner email and temp mail instantly - no signup required. 150K+ users trust our secure disposable email service. 99.9% uptime, 1M+ emails monthly. Best temporary email for privacy protection, spam prevention, and anonymous communication." />
+        <meta name="keywords" content="burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, email privacy, spam prevention, temporary mail, 10 minute mail, guerrilla mail alternative" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://burneremail.email/" />
         {/* hreflang tags for multilingual SEO */}
         <link rel="alternate" hrefLang="en" href="https://burneremail.email/" />
@@ -286,17 +287,24 @@ export default function Home() {
         <link rel="alternate" hrefLang="de" href="https://burneremail.email/?lang=de" />
         <link rel="alternate" hrefLang="hi" href="https://burneremail.email/?lang=hi" />
         <link rel="alternate" hrefLang="x-default" href="https://burneremail.email/" />
-        {/* Open Graph Meta Tags */}
+        {/* Open Graph Meta Tags - 1200x630 for optimal sharing */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://burneremail.email/" />
-        <meta property="og:title" content="Burner Email - Free Temporary Email & Temp Mail" />
-        <meta property="og:description" content="Get free burner email and temp mail instantly. Create disposable email for privacy protection. No signup needed." />
-        <meta property="og:image" content="https://burneremail.email/logo-256.png" />
+        <meta property="og:site_name" content="Burner Email" />
+        <meta property="og:title" content="Burner Email - #1 Free Temporary Email & Temp Mail Service" />
+        <meta property="og:description" content="Create instant burner email and temp mail. 150K+ users, 99.9% uptime, 1M+ emails monthly. Best disposable email for privacy protection. No signup needed." />
+        <meta property="og:image" content="https://burneremail.email/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Burner Email - Free Temporary Email Service" />
+        <meta property="og:locale" content="en_US" />
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Burner Email - Free Temporary Email & Temp Mail" />
-        <meta name="twitter:description" content="Get instant burner email and temp mail. Disposable email for spam prevention and privacy protection." />
-        <meta name="twitter:image" content="https://burneremail.email/logo-256.png" /> {/* Added twitter:image for completeness */}
+        <meta name="twitter:site" content="@burneremail" />
+        <meta name="twitter:title" content="Burner Email - #1 Free Temporary Email & Temp Mail" />
+        <meta name="twitter:description" content="Create instant burner email and temp mail. 150K+ users, 99.9% uptime. Best disposable email for privacy." />
+        <meta name="twitter:image" content="https://burneremail.email/og-image.png" />
+        <meta name="twitter:image:alt" content="Burner Email - Free Temporary Email Service" />
         {/* Structured Data (JSON-LD) */}
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}

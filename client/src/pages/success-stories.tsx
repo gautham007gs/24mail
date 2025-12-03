@@ -110,7 +110,7 @@ export default function SuccessStories() {
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             <Card className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">500K+</div>
+              <div className="text-3xl font-bold text-primary mb-2">150K+</div>
               <p className="text-sm text-muted-foreground">Active Users</p>
             </Card>
             <Card className="p-6 text-center">
@@ -122,7 +122,7 @@ export default function SuccessStories() {
               <p className="text-sm text-muted-foreground">Avg Response</p>
             </Card>
             <Card className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">4.8B</div>
+              <div className="text-3xl font-bold text-primary mb-2">1M+</div>
               <p className="text-sm text-muted-foreground">Emails/Month</p>
             </Card>
           </div>
@@ -188,7 +188,7 @@ export default function SuccessStories() {
           {/* CTA Section */}
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Experience the Difference?</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Join 500K+ users who trust TempMail for their email privacy needs. No registration, completely free.</p>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Join 150K+ users who trust TempMail for their email privacy needs. No registration, completely free.</p>
             <WouterLink href={getLocalizedLink("/")} className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors hover-elevate active-elevate-2">
               Get Started Now
             </WouterLink>
