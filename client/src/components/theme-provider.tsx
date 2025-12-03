@@ -1,10 +1,10 @@
 
-import * as React from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Theme = "light" | "dark";
 
 type ThemeProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
 };
@@ -19,7 +19,7 @@ const initialState: ThemeProviderState = {
   setTheme: () => null,
 };
 
-const ThemeProviderContext = React.createContext<ThemeProviderState>(initialState);
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
@@ -27,10 +27,10 @@ export function ThemeProvider({
   storageKey = "burneremail-theme",
 }: ThemeProviderProps) {
   // Prevent SSR/root mismatch by waiting for mount
-  const [mounted, setMounted] = React.useState(false);
-  const [theme, setThemeState] = React.useState<Theme>(defaultTheme);
+  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true);
 
     // Load stored theme AFTER mount
@@ -69,7 +69,7 @@ export function ThemeProvider({
 }
 
 export const useTheme = () => {
-  const context = React.useContext(ThemeProviderContext);
+  const context = useContext(ThemeProviderContext);
 
   if (context === undefined)
     throw new Error("useTheme must be used inside ThemeProvider");
