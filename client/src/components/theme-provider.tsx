@@ -1,5 +1,7 @@
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { React } from "@/react-fix";
+const { createContext, useContext, useState, useEffect } = React;
+import type { ReactNode } from "react";
 
 type Theme = "light" | "dark";
 
