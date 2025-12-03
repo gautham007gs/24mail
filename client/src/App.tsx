@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "wouter";
+import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
 import { Suspense, lazy, useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -27,7 +27,7 @@ function PageLoader() {
   );
 }
 
-function Router() {
+function AppRoutes() {
   const supportedLangs = Object.keys(SUPPORTED_LANGUAGES).join("|");
   
   return (
@@ -106,14 +106,16 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <NotificationProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-          </TooltipProvider>
-        </NotificationProvider>
-      </LanguageProvider>
+      <WouterRouter>
+        <LanguageProvider>
+          <NotificationProvider>
+            <TooltipProvider>
+              <Toaster />
+              <AppRoutes />
+            </TooltipProvider>
+          </NotificationProvider>
+        </LanguageProvider>
+      </WouterRouter>
     </QueryClientProvider>
   );
 }

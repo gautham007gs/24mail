@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, memo } from "react";
 import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail } from "lucide-react";
-import { SiWhatsapp, SiTelegram, SiX } from "react-icons/si";
+import { IconWhatsapp, IconTelegram, IconX } from "@/components/icons/social-icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -477,7 +477,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   aria-label="Share email via WhatsApp"
                   className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiWhatsapp className="h-5 w-5" />
+                  <IconWhatsapp className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
@@ -492,7 +492,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   aria-label="Share email via Telegram"
                   className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiTelegram className="h-5 w-5" />
+                  <IconTelegram className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
@@ -507,7 +507,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   aria-label="Share email via X (Twitter)"
                   className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiX className="h-5 w-5" />
+                  <IconX className="h-5 w-5" />
                 </Button>
               </div>
             </div>

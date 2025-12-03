@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ChevronDown, AlertTriangle } from "lucide-react";
-import { SiGithub, SiX, SiInstagram } from "react-icons/si";
+import { IconGithub, IconX, IconInstagram } from "@/components/icons/social-icons";
 import { useLanguage, type Language } from "@/contexts/language-context";
 import { LANGUAGE_FLAGS } from "@/lib/language-utils";
 import { useLocalizedLink } from "@/hooks/use-localized-link";
@@ -61,7 +61,7 @@ export function Footer() {
                 data-testid="footer-social-twitter"
                 aria-label="Follow us on X (Twitter)"
               >
-                <SiX className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconX className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
               </a>
               <a 
                 href="https://github.com/burneremail" 
@@ -71,7 +71,7 @@ export function Footer() {
                 data-testid="footer-social-github"
                 aria-label="Visit our GitHub"
               >
-                <SiGithub className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconGithub className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
               </a>
               <a 
                 href="https://instagram.com/burneremail" 
@@ -81,7 +81,7 @@ export function Footer() {
                 data-testid="footer-social-instagram"
                 aria-label="Follow us on Instagram"
               >
-                <SiInstagram className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconInstagram className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
               </a>
             </div>
           </div>

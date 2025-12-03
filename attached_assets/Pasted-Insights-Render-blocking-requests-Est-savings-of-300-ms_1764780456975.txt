@@ -1,0 +1,143 @@
+Insights
+Render blocking requests Est savings of 300 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+replit.dev 1st party
+5.8 KiB	890 ms
+…vite-plugin-dev-banner/banner-script.js(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev)
+5.8 KiB
+890 ms
+Layout shift culprits
+Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscored
+Element
+Layout shift score
+Total
+0.118
+Your Temporary Email 3byw143bk6@barid.site Expires in 14m 47s Copy Refresh Chan…
+<div data-replit-metadata="client/src/components/email-generator.tsx:277:6" data-component-name="Card" class="shadcn-card rounded-xl border bg-card border-card-border text-card-foregro…" data-testid="email-generator-card">
+0.118
+…v20/UcC73FwrK….woff2(fonts.gstatic.com)
+Web font
+…v24/tDbv2o-fl….woff2(fonts.gstatic.com)
+Web font
+Copy Refresh Change Delete
+<div data-replit-metadata="client/src/components/email-generator.tsx:337:8" data-component-name="div" class="mt-8 sm:mt-10 mb-10">
+0.001
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…deps/chunk-RPCDYKBN.js?v=f4fec71e:378:48(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev)
+33 ms
+Source
+Total reflow time
+…vite-plugin-dev-banner/banner-script.js:145:41(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev)
+20 ms
+[unattributed]
+113 ms
+…components/email-generator.tsx:576:61(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev)
+31 ms
+…deps/chunk-6L3H5IN5.js?v=f4fec71e:451:43(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev)
+52 ms
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+5,130 ms
+Anonymous temporary email addresses that protect your privacy. No signup, no ad…
+<p data-replit-metadata="client/src/pages/home.tsx:347:12" data-component-name="p" class="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 5,935 ms
+Initial Navigation
+/en(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 827 ms, 50.75 KiB
+/@react-refresh(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,658 ms, 115.71 KiB
+/@vite/client(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,324 ms, 135.54 KiB
+…client/env.mjs(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,626 ms, 4.85 KiB
+…vite-plugin-dev-banner/banner-script.js(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,423 ms, 5.77 KiB
+/src/main.tsx?v=bJPkFS51V…(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,369 ms, 2.51 KiB
+…deps/react_jsx-dev-runtime.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,782 ms, 37.16 KiB
+…deps/chunk-QCHXOAYK.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,046 ms, 76.96 KiB
+…deps/chunk-WOOG5QLI.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,945 ms, 3.75 KiB
+/src/react-fix.ts?v=bJPkFS51V…(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,674 ms, 1.68 KiB
+…deps/react-dom_client.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,964 ms, 2.10 KiB
+…deps/chunk-RPCDYKBN.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,910 ms, 907.33 KiB
+/src/App.tsx?v=bJPkFS51V…(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,625 ms, 26.80 KiB
+…deps/wouter.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,049 ms, 16.81 KiB
+…deps/react.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,933 ms, 1.20 KiB
+…lib/queryClient.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,953 ms, 5.76 KiB
+…lib/request-dedup.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,278 ms, 4.50 KiB
+…deps/@tanstack_react-query.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,547 ms, 125.58 KiB
+…deps/chunk-KBTYAULA.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,924 ms, 37.48 KiB
+…ui/toaster.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,928 ms, 8.09 KiB
+…hooks/use-toast.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,634 ms, 12.59 KiB
+…ui/toast.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,355 ms, 20.69 KiB
+…deps/@radix-ui_react-toast.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,633 ms, 27.73 KiB
+…deps/chunk-ZKH6V7Y2.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,938 ms, 8.72 KiB
+…deps/class-variance-authority.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,530 ms, 3.28 KiB
+…deps/chunk-U7P2NEEE.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,834 ms, 1.55 KiB
+…ui/tooltip.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,262 ms, 7.37 KiB
+…deps/@radix-ui_react-tooltip.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,579 ms, 96.94 KiB
+…deps/chunk-TSZNQYW6.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,721 ms, 2.29 KiB
+…deps/chunk-Q2S3QF6K.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,815 ms, 12.10 KiB
+…deps/chunk-COIWH2MB.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,834 ms, 1.77 KiB
+…deps/chunk-6L3H5IN5.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,838 ms, 18.63 KiB
+…inbox/3byw143bk6%40barid.site(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,935 ms, 0.83 KiB
+…deps/chunk-JDYSANEB.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,813 ms, 2.17 KiB
+…lib/utils.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,579 ms, 1.69 KiB
+…deps/clsx.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,835 ms, 1.22 KiB
+…deps/tailwind-merge.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,929 ms, 71.91 KiB
+…contexts/language-context.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,946 ms, 9.79 KiB
+…contexts/notification-context.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,340 ms, 11.23 KiB
+…components/error-boundary.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,353 ms, 11.72 KiB
+…ui/button.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,574 ms, 9.52 KiB
+…deps/@radix-ui_react-slot.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,825 ms, 5.97 KiB
+…lib/language-utils.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 1,952 ms, 6.69 KiB
+…pages/home.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,415 ms, 83.61 KiB
+…deps/react-helmet.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,723 ms, 39.34 KiB
+…deps/chunk-PJ25BUVZ.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,049 ms, 34.03 KiB
+…components/email-generator.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,820 ms, 95.46 KiB
+…ui/dialog.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,061 ms, 19.68 KiB
+…deps/@radix-ui_react-dialog.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,371 ms, 2.30 KiB
+…deps/chunk-GUUUQ5JT.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,794 ms, 56.19 KiB
+…deps/react-qr-code.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,047 ms, 36.84 KiB
+…lib/confetti.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,937 ms, 7.46 KiB
+…lib/article-utils.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,940 ms, 15.00 KiB
+…components/inbox-list.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,037 ms, 135.79 KiB
+…deps/date-fns.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,369 ms, 177.98 KiB
+…ui/skeleton.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,373 ms, 4.28 KiB
+…ui/input.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,372 ms, 6.08 KiB
+…ui/alert-dialog.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,370 ms, 21.77 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,682 ms, 12.81 KiB
+…components/inline-email-reader.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,362 ms, 51.12 KiB
+…ui/tabs.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,691 ms, 10.35 KiB
+…deps/@radix-ui_react-tabs.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 4,339 ms, 16.75 KiB
+…lib/email-share.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,680 ms, 16.29 KiB
+…components/trust-section.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,285 ms, 48.19 KiB
+…components/how-it-works.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,284 ms, 6.68 KiB
+…components/animated-demo.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,635 ms, 39.92 KiB
+…components/unified-social-proof.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,396 ms, 33.96 KiB
+…components/faq-accordion.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 5,388 ms, 18.98 KiB
+…components/footer.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,732 ms, 56.46 KiB
+…deps/react-icons_si.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,360 ms, 5,070.91 KiB
+…hooks/use-localized-link.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,050 ms, 2.66 KiB
+…lib/cache.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,532 ms, 9.37 KiB
+…lib/fun-messages.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,574 ms, 4.44 KiB
+…components/header.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,817 ms, 62.04 KiB
+…hooks/use-translation.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,572 ms, 2.85 KiB
+…lib/translations.ts(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,034 ms, 105.18 KiB
+…pages/not-found.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,263 ms, 7.30 KiB
+…ui/card.tsx(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,531 ms, 12.61 KiB
+…deps/lucide-react.js?v=f4fec71e(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 3,031 ms, 1,127.07 KiB
+/src/index.css?v=bJPkFS51V…(2e71317e-6896-44fb-9b00-1d5bca8967ae-00-1f4rvqe7drlxk.pike.replit.dev) - 2,259 ms, 156.44 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting

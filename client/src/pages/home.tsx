@@ -12,13 +12,13 @@ import { useLanguage } from "@/contexts/language-context";
 import { Helmet } from "react-helmet";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
-import { Footer } from "@/components/footer";
 
 // Lazy load below-fold sections for faster initial render
 const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
 const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
 const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
+const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 
 // Helper function to generate a random username
 function generateRandomUsername(): string {
@@ -421,8 +421,10 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer - Lazy loaded */}
+      <Suspense fallback={<div className="h-32 bg-background" />}>
+        <Footer />
+      </Suspense>
     </div>
     </>
   );
