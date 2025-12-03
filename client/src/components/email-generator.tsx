@@ -253,8 +253,11 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     <div className="space-y-6">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
-        <div className="flex items-start gap-4 rounded-lg border border-primary/30 p-5 md:p-6 hover-elevate" data-testid="notification-banner">
-          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+        <div 
+          className="flex items-start gap-4 rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-5 md:p-6 shadow-[0_0_20px_rgba(16,185,129,0.15)]" 
+          data-testid="notification-banner"
+        >
+          <Bell className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" aria-hidden="true" />
           <div className="flex-1 space-y-2">
             <p className="text-sm font-bold text-foreground">
               Get notified of new emails

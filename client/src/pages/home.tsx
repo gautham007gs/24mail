@@ -361,7 +361,7 @@ export default function Home() {
                 </span>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-accent px-4 py-2 rounded-full bg-accent/10 inline-block shadow-sm" data-testid="text-user-count">{t("hero.trusted")}</p>
+                <p className="text-sm font-bold text-orange-400/90 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">{t("hero.trusted")}</p>
               </div>
             </div>
           </div>
