@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { extractLanguageFromPath, isValidLanguage, type Language } from "@/lib/language-utils";
 
