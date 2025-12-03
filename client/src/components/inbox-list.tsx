@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle, Star, Trash } from "lucide-react";
+import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle, Star, Trash, Ghost, Mailbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -29,18 +29,15 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
 
-// Generate avatar initials and consistent color from email address
 function getAvatarData(email: string): { initials: string; bgColor: string; textColor: string } {
-  // Extract initials from email (e.g., "john.doe@example.com" -> "JD")
   const name = email.split('@')[0];
   const parts = name.split(/[._-]/);
   const initials = parts.slice(0, 2).map(p => p.charAt(0).toUpperCase()).join('').slice(0, 2);
 
-  // Generate consistent color based on email hash
   let hash = 0;
   for (let i = 0; i < email.length; i++) {
     hash = ((hash << 5) - hash) + email.charCodeAt(i);
-    hash = hash & hash; // Convert to 32bit integer
+    hash = hash & hash;
   }
 
   const colors = [
@@ -58,12 +55,10 @@ function getAvatarData(email: string): { initials: string; bgColor: string; text
   };
 }
 
-// Detect email type for color coding and badges
 function getEmailType(email: EmailSummary): { type: 'verification' | 'security' | 'normal'; label: string; color: string } {
   const subject = (email.subject || "").toLowerCase();
   const sender = email.from_address.toLowerCase();
 
-  // Security/verification keywords
   const verificationKeywords = ['verify', 'confirm', 'verification', 'confirmation', 'activate', 'validate', 'check', 'urgent verify', 'urgent action'];
   const securityKeywords = ['reset password', 'password reset', 'reset your', 'verify identity', 'confirm identity', 'security alert', 'unusual activity', 'suspicious', 'unauthorized'];
 
@@ -90,8 +85,105 @@ interface InboxListProps {
   onDeleteSelected?: (emailIds: string[]) => void;
 }
 
-// Track previous email count for aria-live announcements
 let previousEmailCount = 0;
+
+function EmptyStateIllustration() {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 px-4">
+      {/* Animated Ghost Mailbox Illustration */}
+      <div className="relative mb-8">
+        {/* Glow effect behind */}
+        <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" style={{ width: '200px', height: '200px', left: '-50px', top: '-50px' }} />
+        
+        {/* Mailbox */}
+        <div className="relative">
+          <div className="w-32 h-24 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl border-2 border-emerald-500/30 flex items-center justify-center relative overflow-hidden">
+            {/* Mailbox flag */}
+            <div className="absolute -right-1 top-3 w-3 h-8 bg-orange-500/80 rounded-sm transform rotate-12" />
+            
+            {/* Flying ghost envelope */}
+            <div className="absolute animate-bounce" style={{ animationDuration: '2s' }}>
+              <Ghost className="h-12 w-12 text-emerald-400/60" />
+            </div>
+          </div>
+          
+          {/* Mailbox post */}
+          <div className="w-4 h-12 bg-gradient-to-b from-muted to-muted/50 rounded-b-lg mx-auto" />
+        </div>
+
+        {/* Floating envelopes */}
+        <div className="absolute -top-4 -left-6 animate-float" style={{ animationDelay: '0s' }}>
+          <Mail className="h-6 w-6 text-emerald-400/40" />
+        </div>
+        <div className="absolute -top-2 -right-8 animate-float" style={{ animationDelay: '0.5s' }}>
+          <Mail className="h-5 w-5 text-orange-400/40" />
+        </div>
+        <div className="absolute top-8 -right-10 animate-float" style={{ animationDelay: '1s' }}>
+          <Mail className="h-4 w-4 text-emerald-400/30" />
+        </div>
+      </div>
+
+      <h3 className="text-xl font-bold text-foreground mb-2">Your inbox is empty</h3>
+      <p className="text-muted-foreground text-center max-w-sm mb-6">
+        Share your temporary email address and emails will appear here automatically.
+      </p>
+      
+      {/* Decorative dots */}
+      <div className="flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse" />
+        <div className="w-2 h-2 rounded-full bg-emerald-500/30 animate-pulse" style={{ animationDelay: '0.2s' }} />
+        <div className="w-2 h-2 rounded-full bg-emerald-500/20 animate-pulse" style={{ animationDelay: '0.4s' }} />
+      </div>
+    </div>
+  );
+}
+
+function SkeletonEmailRow() {
+  return (
+    <div className="grid grid-cols-12 gap-3 px-4 sm:px-5 py-4 items-center animate-pulse">
+      <div className="hidden sm:block col-span-1">
+        <Skeleton className="h-10 w-10 rounded-full" />
+      </div>
+      <div className="col-span-5 sm:col-span-3 space-y-2">
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-3 w-1/2" />
+      </div>
+      <div className="hidden md:block col-span-5 space-y-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-3 w-2/3" />
+      </div>
+      <div className="col-span-4 sm:col-span-2 flex justify-end">
+        <Skeleton className="h-4 w-16" />
+      </div>
+      <div className="col-span-3 sm:col-span-1 flex justify-end">
+        <Skeleton className="h-8 w-8 rounded-md" />
+      </div>
+    </div>
+  );
+}
+
+function LoadingState() {
+  return (
+    <div className="space-y-1">
+      <SkeletonEmailRow />
+      <SkeletonEmailRow />
+      <SkeletonEmailRow />
+      <SkeletonEmailRow />
+    </div>
+  );
+}
+
+function NoSearchResults({ query }: { query: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
+      <Search className="h-12 w-12 text-muted-foreground/30 mb-4" />
+      <h3 className="text-lg font-semibold text-foreground mb-2">No results found</h3>
+      <p className="text-sm text-muted-foreground">
+        No emails match "<span className="font-medium">{query}</span>"
+      </p>
+    </div>
+  );
+}
 
 export function InboxList({
   emails,
@@ -128,7 +220,6 @@ export function InboxList({
   });
   const ariaLiveRef = useRef<HTMLDivElement>(null);
 
-  // Announce new emails to screen readers
   useEffect(() => {
     if (emails.length > previousEmailCount && ariaLiveRef.current) {
       const newCount = emails.length - previousEmailCount;
@@ -138,13 +229,11 @@ export function InboxList({
     previousEmailCount = emails.length;
   }, [emails.length]);
 
-  // Fetch expanded email details
   const { data: expandedEmail, isLoading: isLoadingExpandedEmail } = useQuery<Email>({
     queryKey: ["/api/email", expandedEmailId],
     enabled: !!expandedEmailId,
   });
 
-  // Delete email mutation
   const deleteEmailMutation = useMutation({
     mutationFn: async (emailId: string) => {
       await apiRequest("DELETE", `/api/email/${emailId}`, {});
@@ -166,7 +255,6 @@ export function InboxList({
     },
   });
 
-  // Countdown timer for auto-refresh (5 seconds)
   useEffect(() => {
     if (!currentEmail) return;
 
@@ -182,7 +270,6 @@ export function InboxList({
     return () => clearInterval(interval);
   }, [currentEmail, emails]);
 
-  // Filter emails based on search query
   const filteredEmails = useMemo(() => {
     if (!searchQuery.trim()) {
       return emails;
@@ -202,7 +289,6 @@ export function InboxList({
     });
   }, [emails, searchQuery]);
 
-  // Mark email as read when clicked
   const markAsRead = useCallback((emailId: string) => {
     setUnreadIds(prev => {
       const updated = prev.filter(id => id !== emailId);
@@ -213,7 +299,6 @@ export function InboxList({
     });
   }, [currentEmail]);
 
-  // Toggle email selection
   const toggleSelect = useCallback((emailId: string) => {
     setSelectedIds(prev => {
       if (prev.includes(emailId)) {
@@ -224,7 +309,6 @@ export function InboxList({
     });
   }, []);
 
-  // Select all visible emails
   const toggleSelectAll = useCallback(() => {
     if (selectedIds.length === filteredEmails.length) {
       setSelectedIds([]);
@@ -233,7 +317,6 @@ export function InboxList({
     }
   }, [filteredEmails, selectedIds]);
 
-  // Handle bulk delete
   const handleBulkDelete = () => {
     if (onDeleteSelected && selectedIds.length > 0) {
       onDeleteSelected(selectedIds);
@@ -242,7 +325,6 @@ export function InboxList({
     }
   };
 
-  // Group emails by sender (threading)
   const groupedEmails = useMemo(() => {
     const groups = new Map<string, EmailSummary[]>();
     filteredEmails.forEach(email => {
@@ -262,12 +344,11 @@ export function InboxList({
   const hasSearchResults = searchQuery.trim() && filteredEmails.length === 0;
   const hasSelected = selectedIds.length > 0;
 
-  // Count new (unread) emails
   const newEmailCount = unreadIds.length;
 
   return (
     <div className="space-y-6">
-      {/* Header with Actions - Better spacing */}
+      {/* Header with Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-3 flex-wrap">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">{t("inbox.title")}</h2>
@@ -329,7 +410,7 @@ export function InboxList({
         </div>
       </div>
 
-      {/* Search Bar - Better styling */}
+      {/* Search Bar */}
       {emails.length > 0 && (
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -357,9 +438,9 @@ export function InboxList({
         </div>
       )}
 
-      {/* Table Layout - Clean & Modern */}
-      <div className="rounded-lg overflow-hidden border border-border/50 bg-background">
-        {/* Table Header - TempMail Style */}
+      {/* Table Layout */}
+      <div className="rounded-xl overflow-hidden border border-border/50 bg-background shadow-lg">
+        {/* Table Header */}
         {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
           <div className="bg-foreground/90 dark:bg-foreground/10 grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-3.5 border-b border-border/50">
             <div className="hidden sm:block col-span-1"></div>
@@ -377,7 +458,7 @@ export function InboxList({
           ) : hasSearchResults ? (
             <NoSearchResults query={searchQuery} />
           ) : filteredEmails.length === 0 ? (
-            <EmptyState emptyMessage={emptyMessage} />
+            <EmptyStateIllustration />
           ) : (
             filteredEmails.map((email) => (
               <div key={email.id}>
@@ -513,7 +594,6 @@ function EmailTableRow({
       time: Date.now(),
     };
 
-    // Start long press timer (500ms)
     longPressTimerRef.current = setTimeout(() => {
       onSelect(email.id);
       if (longPressTimerRef.current) {
@@ -524,14 +604,13 @@ function EmailTableRow({
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!longPressTimerRef.current) return; // Long press already triggered
+    if (!longPressTimerRef.current) return;
 
     const currentX = e.touches[0].clientX;
     const currentY = e.touches[0].clientY;
     const deltaX = touchStartRef.current.x - currentX;
     const deltaY = touchStartRef.current.y - currentY;
 
-    // If vertical scroll is more than horizontal, cancel
     if (Math.abs(deltaY) > Math.abs(deltaX)) {
       if (longPressTimerRef.current) {
         clearTimeout(longPressTimerRef.current);
@@ -540,13 +619,11 @@ function EmailTableRow({
       return;
     }
 
-    // Cancel long press on horizontal movement
     if (longPressTimerRef.current && (Math.abs(deltaX) > 10)) {
       clearTimeout(longPressTimerRef.current);
       longPressTimerRef.current = null;
     }
 
-    // Detect swipe direction
     if (Math.abs(deltaX) > 5) {
       if (deltaX > 0) {
         setSwipeDirection('left');
@@ -560,13 +637,11 @@ function EmailTableRow({
   };
 
   const handleTouchEnd = () => {
-    // Cancel long press timer if still active
     if (longPressTimerRef.current) {
       clearTimeout(longPressTimerRef.current);
       longPressTimerRef.current = null;
     }
 
-    // Handle swipe actions
     if (swipeDistance > 60) {
       if (swipeDirection === 'left') {
         onDelete(email.id);
@@ -584,13 +659,11 @@ function EmailTableRow({
     onToggleExpand(email.id);
   };
 
-  // Get email type for color coding
   const emailInfo = getEmailType(email);
+  const avatar = getAvatarData(email.from_address);
 
-  // Desktop table view
   return (
     <div className="relative">
-      {/* Swipe action backgrounds */}
       {swipeDirection === 'left' && swipeDistance > 0 && (
         <div className="absolute inset-0 bg-destructive/90 flex items-center justify-end pr-6 rounded-lg pointer-events-none">
           <Trash className="h-5 w-5 text-destructive-foreground" />
@@ -602,7 +675,6 @@ function EmailTableRow({
         </div>
       )}
 
-      {/* Email row - Better spacing and alignment */}
       <div
         className={`grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-4 min-h-16 hover:bg-muted/20 cursor-pointer transition-all items-center border-l-4 swipe-row ${
           isSelected ? "bg-accent/8 border-accent" : isExpanded ? "bg-muted/15 border-accent" : isUnread ? "border-accent bg-accent/6" : "border-transparent hover:border-border/30"
@@ -611,135 +683,64 @@ function EmailTableRow({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        data-testid={`row-email-${email.id}`}
-        style={{ 
-          transform: `translateX(${swipeDirection === 'left' ? -swipeDistance : swipeDistance}px)`,
-          transition: swipeDistance === 0 ? 'transform 0.2s ease-out' : 'none',
+        style={{
+          transform: swipeDistance > 0 ? `translateX(${swipeDirection === 'left' ? -swipeDistance : swipeDistance}px)` : 'none',
         }}
+        data-testid={`email-row-${email.id}`}
       >
-      {/* Checkbox */}
-      <div
-        className="hidden sm:flex col-span-1 items-center"
-        onClick={(e) => {
-          e.stopPropagation();
-          onSelect(email.id);
-        }}
-      >
-        <CheckboxComponent checked={isSelected} data-testid={`checkbox-email-${email.id}`} />
-      </div>
+        {/* Avatar */}
+        <div className="hidden sm:flex col-span-1 items-center justify-center">
+          <div className={`h-10 w-10 rounded-full ${avatar.bgColor} ${avatar.textColor} flex items-center justify-center font-bold text-sm`}>
+            {avatar.initials}
+          </div>
+        </div>
 
-      {/* Sender with Avatar, Unread Badge and Icons */}
-      <div className="col-span-5 sm:col-span-3 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-from-${email.id}`}>
-        {isUnread && <span className="h-2.5 w-2.5 rounded-full bg-accent shrink-0 animate-pulse" data-testid={`unread-badge-${email.id}`} />}
+        {/* Sender */}
+        <div className="col-span-5 sm:col-span-3 min-w-0">
+          <div className="flex items-center gap-2 mb-0.5">
+            {isStarred && <Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500 flex-shrink-0" />}
+            <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
+            {email.has_attachments && (
+              <Paperclip className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+            )}
+          </div>
+          {emailInfo.label && (
+            <span className={`text-[10px] px-1.5 py-0.5 rounded ${emailInfo.color} font-medium`}>
+              {emailInfo.label}
+            </span>
+          )}
+        </div>
 
-        {/* Avatar with initials */}
-        <AvatarPlaceholder email={email.from_address} emailId={email.id} />
+        {/* Subject */}
+        <div className="hidden md:block col-span-5 min-w-0">
+          <p className={`truncate ${isUnread ? "font-semibold text-foreground" : "text-foreground/70"}`}>
+            {email.subject || "(No subject)"}
+          </p>
+        </div>
 
-        <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
-        {email.has_attachments && (
-          <Paperclip className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0" data-testid={`attachment-icon-${email.id}`} aria-label="Has attachment" />
-        )}
-        {isStarred && (
-          <Star className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400 shrink-0 fill-current" data-testid={`star-icon-${email.id}`} aria-label="Starred email" />
-        )}
-      </div>
-
-      {/* Subject with Email Type Badge */}
-      <div className="hidden md:flex col-span-5 text-xs sm:text-sm truncate flex items-center gap-2" data-testid={`text-subject-${email.id}`}>
-        <span className={`truncate ${isUnread ? "font-semibold text-foreground" : "text-foreground/80"}`}>
-          {email.subject || "(No subject)"}
-        </span>
-        {emailInfo.type !== 'normal' && (
-          <span className={`inline-flex items-center shrink-0 text-xs px-2 py-0.5 rounded-md ${emailInfo.color}`} data-testid={`badge-${emailInfo.type}-${email.id}`}>
-            {emailInfo.type === 'verification' && <Shield className="h-3 w-3 mr-1" />}
-            {emailInfo.type === 'security' && <AlertTriangle className="h-3 w-3 mr-1" />}
-            {emailInfo.label}
+        {/* Date */}
+        <div className="col-span-4 sm:col-span-2 text-right">
+          <span className="text-xs text-muted-foreground whitespace-nowrap">
+            {formatDistanceToNow(new Date(email.received_at), { addSuffix: true })}
           </span>
-        )}
-      </div>
+        </div>
 
-      {/* Timestamp */}
-      <div className={`col-span-4 sm:col-span-2 text-xs text-right ${isUnread ? "font-semibold text-foreground" : "text-muted-foreground"}`} data-testid={`text-date-${email.id}`}>
-        {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })}
-      </div>
-
-      {/* Expand Button */}
-      <div className="col-span-3 sm:col-span-1 flex justify-end">
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleRowClick();
-          }}
-          data-testid={`button-expand-email-${email.id}`}
-        >
-          <span className="hidden sm:inline text-xs">{isExpanded ? "Close" : "View"}</span>
-          <ChevronDown className={`sm:hidden h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-        </Button>
-      </div>
+        {/* View Button */}
+        <div className="col-span-3 sm:col-span-1 flex justify-end">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleExpand(email.id);
+            }}
+            data-testid={`button-view-email-${email.id}`}
+          >
+            {isExpanded ? <ChevronDown className="h-4 w-4 rotate-180" /> : <ChevronDown className="h-4 w-4" />}
+          </Button>
+        </div>
       </div>
     </div>
   );
-}
-
-function AvatarPlaceholder({ email, emailId }: { email: string; emailId: string }) {
-  const avatarData = getAvatarData(email);
-  return (
-    <div
-      className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 font-semibold text-xs ${avatarData.bgColor} ${avatarData.textColor}`}
-      data-testid={`avatar-${emailId}`}
-      title={email}
-    >
-      {avatarData.initials}
-    </div>
-  );
-}
-
-function EmptyState({ emptyMessage }: { emptyMessage: string }) {
-  const { t } = useTranslation();
-  return (
-    <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center px-4">
-      {/* Icon - Clean and minimal */}
-      <div className="flex h-16 sm:h-20 w-16 sm:w-20 items-center justify-center rounded-full border border-border/30 bg-muted/20">
-        <Inbox className="h-8 sm:h-10 w-8 sm:w-10 text-muted-foreground/60" />
-      </div>
-      
-      {/* Main message */}
-      <h3 className="text-lg sm:text-xl font-semibold text-foreground mt-6" data-testid="text-empty-title">
-        {t("inbox.empty")}
-      </h3>
-      
-      {/* Subtext */}
-      <p className="text-sm text-muted-foreground mt-2 max-w-sm" data-testid="text-empty-message">
-        {t("inbox.waiting")}
-      </p>
-      
-      {/* Auto-refresh info */}
-      <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground/80">
-        <RefreshCw className="h-3 w-3 opacity-50" />
-        <span>{t("inbox.refreshes")}</span>
-      </div>
-    </div>
-  );
-}
-
-function NoSearchResults({ query }: { query: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-16 text-center px-4">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted/40">
-        <Search className="h-8 w-8 text-muted-foreground" />
-      </div>
-      <h3 className="text-title font-semibold text-foreground mt-4" data-testid="text-no-results-title">
-        No emails found
-      </h3>
-      <p className="text-body-small text-muted-foreground max-w-sm mt-2" data-testid="text-no-results-message">
-        No emails match <span className="font-mono font-semibold text-foreground/70">"{query}"</span>
-      </p>
-    </div>
-  );
-}
-
-function LoadingState() {
-  return <InboxLoadingSkeleton count={5} />;
 }

@@ -23,14 +23,12 @@ interface EmailGeneratorProps {
   emailCount?: number;
 }
 
-// Premium domains marked with crown icon
 const PREMIUM_DOMAINS = new Set(["gmx.com", "mail.com", "protonmail.com", "tutanota.com", "privatemail.com", "zoho.com"]);
 
 const isPremiumDomain = (domain: string): boolean => {
   return PREMIUM_DOMAINS.has(domain.toLowerCase());
 };
 
-// Domain icon mapping - returns a single character or icon indicator
 const getDomainIcon = (domain: string): string => {
   const lower = domain.toLowerCase();
   if (lower.includes("proton")) return "🔒";
@@ -51,7 +49,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const [showQRCode, setShowQRCode] = useState(false);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState<string>(() => {
-    // Load from cache first
     const cached = CacheManager.get<string>("selected_domain");
     return cached || "";
   });
@@ -66,15 +63,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
   const { permission, isSupported, requestPermission } = useNotifications();
   const [showNotificationBanner, setShowNotificationBanner] = useState(isSupported && permission === "default");
 
-  // Keyboard shortcuts for accessibility
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      // Ctrl+C: Copy email
       if ((e.ctrlKey || e.metaKey) && e.key === 'c' && currentEmail && !copied) {
         e.preventDefault();
         handleCopy();
       }
-      // Ctrl+G: Generate new email
       if ((e.ctrlKey || e.metaKey) && e.key === 'g' && domains.length > 0) {
         e.preventDefault();
         handleGenerateWithDomain();
@@ -85,15 +79,13 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [currentEmail, domains, copied]);
 
-  // Cache domains list (never changes during session)
   const cachedDomains = useMemo(() => {
     if (domains.length > 0) {
-      CacheManager.set("domains_list", domains, 24 * 60 * 60 * 1000); // 24 hour TTL
+      CacheManager.set("domains_list", domains, 24 * 60 * 60 * 1000);
     }
     return domains;
   }, [domains]);
 
-  // Set initial domain and cache it
   useEffect(() => {
     if (cachedDomains.length > 0 && !selectedDomain) {
       const domain = cachedDomains[0];
@@ -102,15 +94,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     }
   }, [cachedDomains, selectedDomain]);
 
-  // Calculate and update expiry time (15 minutes from generation)
   useEffect(() => {
-    // Always reset ref when email changes to ensure fresh timer
     expiryDateRef.current = null;
 
     const storageKey = `burneremail_expiry_${currentEmail}`;
     const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
 
-    // Create new timestamp - either load existing or create fresh one
     const expiryTimestamp = stored ? parseInt(stored, 10) : Date.now() + 15 * 60 * 1000;
     expiryDateRef.current = expiryTimestamp;
 
@@ -133,7 +122,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         if (expiryTimerRef.current) {
           clearInterval(expiryTimerRef.current);
         }
-        // Auto-generate new email when current one expires
         handleGenerateWithDomain();
       }
     };
@@ -199,7 +187,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     const domain = selectedDomain || cachedDomains[0] || "example.com";
     const newEmail = `${username}@${domain}`;
 
-    // Cache the selected domain for next time
     CacheManager.set("selected_domain", domain);
 
     onGenerate(newEmail);
@@ -250,25 +237,24 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     : currentEmail;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
         <div 
-          className="flex items-start gap-4 rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-5 md:p-6 shadow-[0_0_20px_rgba(16,185,129,0.15)]" 
+          className="flex items-start gap-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-6 md:p-7 shadow-[0_0_30px_rgba(16,185,129,0.2)]" 
           data-testid="notification-banner"
         >
-          <Bell className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" aria-hidden="true" />
+          <Bell className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(16,185,129,0.6)]" aria-hidden="true" />
           <div className="flex-1 space-y-2">
-            <p className="text-sm font-bold text-foreground">
+            <p className="text-base font-bold text-foreground">
               Get notified of new emails
             </p>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Enable desktop notifications to know instantly when emails arrive
             </p>
           </div>
-          <div className="flex gap-2 shrink-0">
+          <div className="flex gap-3 shrink-0">
             <Button
-              size="sm"
               onClick={handleEnableNotifications}
               data-testid="button-enable-notifications"
               aria-label="Enable notifications"
@@ -276,7 +262,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               Enable
             </Button>
             <Button
-              size="sm"
               variant="ghost"
               onClick={() => setShowNotificationBanner(false)}
               data-testid="button-dismiss-notifications"
@@ -288,39 +273,39 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card with Glassmorphism Effect */}
-      <Card className="p-4 sm:p-6 md:p-8 lg:p-10 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[60vw] shadow-lg shadow-black/10 dark:shadow-black/20" data-testid="email-generator-card">
-        {/* Header - Title Only - Minimal & Clean */}
-        <h2 className="text-card-title text-foreground text-center">
+      {/* Main Card - Increased Size 15% */}
+      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
+        {/* Header */}
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-2">
           Your Temporary Email
         </h2>
 
-        {/* Email Display Box - Minimal & Clean */}
-        <div className="card-flame-edge p-4 sm:p-6 mt-4">
+        {/* Email Display Box */}
+        <div className="card-flame-edge p-5 sm:p-7 mt-5">
           {/* Email with Inline Action Buttons */}
-          <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
-            {/* Email Address - Large & Clean - JetBrains Mono */}
+          <div className="flex items-start gap-3 sm:gap-4 mb-4">
+            {/* Email Address - Larger */}
             <span
-              className="text-base sm:text-lg md:text-xl lg:text-[22px] font-semibold text-foreground break-all flex-1"
+              className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-semibold text-foreground break-all flex-1"
               style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", wordBreak: "break-all" }}
               data-testid="text-current-email"
             >
               {currentEmail || "Generating..."}
             </span>
 
-            {/* Inline Action Icons - QR & Copy */}
-            <div className="flex gap-2 sm:gap-2.5 flex-shrink-0">
+            {/* Inline Action Icons - QR & Copy - Larger */}
+            <div className="flex gap-2.5 sm:gap-3 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="h-9 w-9 sm:h-10 sm:w-10"
+                className="h-11 w-11 sm:h-12 sm:w-12"
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
-                <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
+                <QrCode className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
               <Button
                 size="icon"
@@ -328,83 +313,78 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="h-9 w-9 sm:h-10 sm:w-10"
+                className="h-11 w-11 sm:h-12 sm:w-12"
                 title="Copy email"
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? (
-                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <Check className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 ) : (
-                  <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <Copy className="h-5 w-5 sm:h-6 sm:w-6" />
                 )}
               </Button>
             </div>
           </div>
 
-          {/* Expiry Info - Minimal Text Only */}
-          <span className="text-xs sm:text-sm text-muted-foreground">
+          {/* Expiry Info */}
+          <span className="text-sm sm:text-base text-muted-foreground">
             Expires in <span className="text-accent font-semibold">{expiryTime}</span>
           </span>
         </div>
 
 
-        {/* Action Buttons Row - Below Email */}
-        <div className="mt-6 sm:mt-8 mb-8">
+        {/* Action Buttons Row - Larger Buttons & Icons */}
+        <div className="mt-8 sm:mt-10 mb-10">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              size="sm"
-              className="text-xs sm:text-sm font-semibold"
+              className="text-sm sm:text-base font-semibold py-3 px-5"
               aria-label="Copy email address to clipboard"
             >
-              <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+              <Copy className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
               Copy
             </Button>
             <Button
               onClick={handleRefresh}
               variant="outline"
-              size="sm"
               data-testid="button-action-refresh"
-              className="text-xs sm:text-sm font-semibold"
+              className="text-sm sm:text-base font-semibold py-3 px-5"
               aria-label="Refresh inbox"
             >
-              <RefreshCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+              <RefreshCw className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
               Refresh
             </Button>
             <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               variant="secondary"
-              size="sm"
               data-testid="button-action-new-email"
-              className="text-xs sm:text-sm font-semibold"
+              className="text-sm sm:text-base font-semibold py-3 px-5"
               aria-label="Generate a new email address"
             >
-              <RotateCw className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+              <RotateCw className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
               Change
             </Button>
             <Button
               onClick={handleBurn}
-              variant="destructive"
-              size="sm"
+              variant="outline"
               data-testid="button-action-burn"
-              className={`text-xs sm:text-sm font-semibold ${isBurning ? "burn-animation" : ""}`}
+              className={`text-sm sm:text-base font-semibold py-3 px-5 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
-              <Trash2 className={`h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-5 w-5 sm:h-5 sm:w-5 mr-2 ${isBurning ? "burn-icon" : ""}`} />
               Delete
             </Button>
           </div>
         </div>
       </Card>
 
-      {/* QR Code Modal - Premium Design */}
+      {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
         <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
-          {/* Header with gradient */}
           <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30 flex-shrink-0">
             <DialogHeader className="space-y-1">
               <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
@@ -416,16 +396,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </DialogHeader>
           </div>
 
-          {/* Main Content - Scrollable */}
           <div className="px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
-            {/* QR Code Container - Premium */}
             <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
-              {/* QR Code Background with glow effect */}
               <div className="relative group">
-                {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                {/* QR Code Box - Responsive Sizing */}
                 <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
                   <div className="animate-in fade-in duration-300">
                     <QRCode
@@ -447,14 +421,12 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 </div>
               </div>
 
-              {/* Scanning Instructions */}
               <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
                 <Smartphone className="h-4 w-4 text-primary flex-shrink-0" />
                 <span>Point your camera to scan</span>
               </div>
             </div>
 
-            {/* Email Display - Premium */}
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Email Address</p>
               <div className="group relative">
@@ -465,7 +437,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="space-y-2 sm:space-y-3">
               <Button
                 onClick={handleCopy}
@@ -490,7 +461,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               </Button>
             </div>
 
-            {/* Social Share Section */}
             <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-3 border-t border-border/50 dark:border-border/30">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share</p>
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -540,7 +510,6 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
           </div>
 
-          {/* Footer */}
           <div className="bg-muted/30 dark:bg-muted/10 px-4 sm:px-6 py-3 sm:py-4 border-t border-border/50 dark:border-border/30 text-center text-xs text-muted-foreground flex-shrink-0">
             Safe, private, and instant sharing
           </div>

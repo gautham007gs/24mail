@@ -1463,4 +1463,141 @@ html.dark {
     height: 1px;
     overflow: hidden;
   }
+
+  /* ====== NEW ANIMATIONS FOR PREMIUM UI ====== */
+
+  /* Floating animation for decorative elements */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shake animation for interactive elements */
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-2px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(2px);
+    }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .group:hover .group-hover\:animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  /* Emerald glow effects */
+  .emerald-glow {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
+  }
+
+  .emerald-glow-lg {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.15);
+  }
+
+  /* Orange glow effects */
+  .orange-glow {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3), 0 0 40px rgba(251, 146, 60, 0.1);
+  }
+
+  /* Hide scrollbar for horizontal scroll areas */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Premium glassmorphic effect */
+  .glassmorphic {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animated gradient background for cards */
+  .animate-gradient-bg {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--card) / 0.95) 50%,
+      hsl(var(--card)) 100%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  /* Flame edge effect for email display box */
+  .card-flame-edge {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--muted) / 0.5), hsl(var(--muted) / 0.3));
+    border-radius: 12px;
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .card-flame-edge::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(251, 146, 60, 0.1), transparent);
+    z-index: -1;
+    filter: blur(4px);
+  }
+
+  /* Burn animation for delete button */
+  .burn-animation {
+    animation: burnFlame 0.5s ease-in-out;
+  }
+
+  .burn-icon {
+    color: #ff6b35 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 107, 53, 0.6));
+  }
+
+  /* Button styles for destructive actions */
+  .btn-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: rgb(248, 113, 113);
+  }
+
+  .btn-danger:hover {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+
+  .btn-hover-scale {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .btn-hover-scale:active {
+    transform: scale(0.98);
+  }
+
+  /* Swipe row animation for mobile */
+  .swipe-row {
+    transition: transform 0.15s ease-out;
+  }
 }

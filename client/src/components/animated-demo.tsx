@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import { Copy, Check, AtSign, ChevronRight } from "lucide-react";
+import { Copy, Check, AtSign, ChevronRight, Mail, ArrowRight } from "lucide-react";
 
 export function AnimatedDemo() {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [showCopied, setShowCopied] = useState(false);
+  const [emailFlying, setEmailFlying] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setStep((prev) => {
         const next = (prev + 1) % 3 as 0 | 1 | 2;
-        if (next === 2) {
+        if (next === 1) {
           setShowCopied(true);
           setTimeout(() => setShowCopied(false), 1000);
+        }
+        if (next === 2) {
+          setEmailFlying(true);
+          setTimeout(() => setEmailFlying(false), 2000);
         }
         return next;
       });
@@ -22,73 +27,146 @@ export function AnimatedDemo() {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
-      {/* Demo Container - Horizontal */}
-      <div className="relative bg-gradient-to-br from-primary/8 to-primary/3 border border-primary/20 rounded-2xl p-8 md:p-12 overflow-hidden">
+      {/* Demo Container - Premium Design */}
+      <div className="relative bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/30 rounded-3xl p-8 md:p-14 overflow-hidden shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+        {/* Background glow */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-emerald-600/5 rounded-full blur-2xl" />
+        </div>
+
+        {/* Animated connecting line */}
+        <div className="hidden sm:block absolute top-1/2 left-[15%] right-[15%] h-0.5 -translate-y-1/2 z-0">
+          <div className="h-full bg-gradient-to-r from-emerald-500/20 via-emerald-500/40 to-emerald-500/20 rounded-full" />
+          {/* Animated dot traveling along the line */}
+          <div 
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)] transition-all duration-1000"
+            style={{
+              left: step === 0 ? '0%' : step === 1 ? '50%' : '100%',
+            }}
+          />
+        </div>
+
         {/* Content - Horizontal Row */}
-        <div className="relative flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
+        <div className="relative flex flex-col sm:flex-row items-center justify-between gap-8 sm:gap-6">
           {/* Step 1: Generate */}
-          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 0 ? "scale-100 opacity-100" : "scale-95 opacity-40"
+          <div className={`flex flex-col items-center gap-4 transition-all duration-500 transform flex-shrink-0 z-10 ${
+            step === 0 ? "scale-110 opacity-100" : "scale-95 opacity-50"
           }`}>
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
-              <AtSign className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-            </div>
-            <div className="text-center">
-              <p className="text-sm md:text-base font-bold text-foreground">Generate</p>
-              <p className="text-xs text-muted-foreground font-mono mt-1">user@barid.site</p>
-            </div>
-          </div>
-
-          {/* Arrow 1 */}
-          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-primary/60 flex-shrink-0 hidden sm:block" />
-
-          {/* Step 2: Copy */}
-          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 1 ? "scale-100 opacity-100" : "scale-95 opacity-40"
-          }`}>
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
-              {showCopied ? (
-                <Check className="w-8 h-8 md:w-10 md:h-10 text-primary animate-pulse" />
-              ) : (
-                <Copy className="w-8 h-8 md:w-10 md:h-10 text-primary" />
+            <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
+              step === 0 
+                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                : "bg-emerald-500/10 border-emerald-500/40"
+            }`}>
+              <AtSign className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
+                step === 0 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+              }`} />
+              {step === 0 && (
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
             <div className="text-center">
-              <p className="text-sm md:text-base font-bold text-foreground">Copy</p>
-              <p className="text-xs text-muted-foreground mt-1">Paste anywhere</p>
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 0 ? "text-emerald-400" : "text-foreground"}`}>
+                Generate
+              </p>
+              <p className="text-xs md:text-sm text-muted-foreground font-mono mt-1">user@barid.site</p>
             </div>
           </div>
 
-          {/* Arrow 2 */}
-          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-primary/60 flex-shrink-0 hidden sm:block" />
+          {/* Arrow 1 - Mobile Hidden */}
+          <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
+            <ArrowRight className={`w-8 h-8 transition-all duration-500 ${
+              step >= 1 ? "text-emerald-400" : "text-emerald-500/30"
+            }`} />
+          </div>
 
-          {/* Step 3: Receive */}
-          <div className={`flex flex-col items-center gap-3 transition-all duration-500 transform flex-shrink-0 ${
-            step === 2 ? "scale-100 opacity-100" : "scale-95 opacity-40"
+          {/* Step 2: Copy */}
+          <div className={`flex flex-col items-center gap-4 transition-all duration-500 transform flex-shrink-0 z-10 ${
+            step === 1 ? "scale-110 opacity-100" : "scale-95 opacity-50"
           }`}>
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary/40">
-              <svg className="w-8 h-8 md:w-10 md:h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
+            <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
+              step === 1 
+                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                : "bg-emerald-500/10 border-emerald-500/40"
+            }`}>
+              {showCopied ? (
+                <Check className="w-10 h-10 md:w-12 md:h-12 text-emerald-400 animate-bounce" />
+              ) : (
+                <Copy className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
+                  step === 1 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+                }`} />
+              )}
+              {step === 1 && !showCopied && (
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
+              )}
             </div>
             <div className="text-center">
-              <p className="text-sm md:text-base font-bold text-foreground">Receive</p>
-              <p className="text-xs text-muted-foreground mt-1">In your inbox</p>
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 1 ? "text-emerald-400" : "text-foreground"}`}>
+                Copy
+              </p>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">Paste anywhere</p>
+            </div>
+          </div>
+
+          {/* Arrow 2 - Mobile Hidden */}
+          <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
+            <ArrowRight className={`w-8 h-8 transition-all duration-500 ${
+              step >= 2 ? "text-emerald-400" : "text-emerald-500/30"
+            }`} />
+          </div>
+
+          {/* Step 3: Receive */}
+          <div className={`relative flex flex-col items-center gap-4 transition-all duration-500 transform flex-shrink-0 z-10 ${
+            step === 2 ? "scale-110 opacity-100" : "scale-95 opacity-50"
+          }`}>
+            {/* Flying email animation */}
+            {emailFlying && (
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <Mail className="w-6 h-6 text-orange-400 drop-shadow-[0_0_6px_rgba(251,146,60,0.6)]" />
+              </div>
+            )}
+            
+            <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
+              step === 2 
+                ? "bg-emerald-500/25 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]" 
+                : "bg-emerald-500/10 border-emerald-500/40"
+            }`}>
+              <Mail className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
+                step === 2 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "text-emerald-500/60"
+              }`} />
+              {step === 2 && (
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
+              )}
+            </div>
+            <div className="text-center">
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 2 ? "text-emerald-400" : "text-foreground"}`}>
+                Receive
+              </p>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">In your inbox</p>
             </div>
           </div>
         </div>
 
-        {/* Progress Indicator */}
-        <div className="flex justify-center gap-2 mt-8">
+        {/* Progress Indicator - Enhanced */}
+        <div className="flex justify-center gap-3 mt-10">
           {[0, 1, 2].map((i) => (
-            <div
+            <button
               key={i}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === step ? "w-7 bg-primary" : "w-2 bg-primary/30"
+              onClick={() => setStep(i as 0 | 1 | 2)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === step 
+                  ? "w-10 bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.6)]" 
+                  : "w-2.5 bg-emerald-500/30 hover:bg-emerald-500/50"
               }`}
             />
           ))}
+        </div>
+
+        {/* Labels under progress */}
+        <div className="flex justify-center gap-16 mt-3 text-xs text-muted-foreground">
+          <span className={step === 0 ? "text-emerald-400 font-semibold" : ""}>Generate</span>
+          <span className={step === 1 ? "text-emerald-400 font-semibold" : ""}>Copy</span>
+          <span className={step === 2 ? "text-emerald-400 font-semibold" : ""}>Receive</span>
         </div>
       </div>
     </div>
