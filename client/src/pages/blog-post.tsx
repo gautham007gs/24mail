@@ -165,7 +165,7 @@ export default function BlogPost() {
           <div className="lg:hidden fixed bottom-6 right-6 z-40">
             <Button
               size="icon"
-              className="rounded-full shadow-lg h-12 w-12 bg-primary hover:bg-primary/90 text-white"
+              className="rounded-full shadow-lg min-h-[48px] min-w-[48px] h-12 w-12 bg-primary hover:bg-primary/90 text-white"
               onClick={() => setIsTocOpen(!isTocOpen)}
               aria-label={isTocOpen ? "Close table of contents" : "Open table of contents"}
               data-testid="button-mobile-toc-toggle"
@@ -186,7 +186,7 @@ export default function BlogPost() {
                     size="icon"
                     variant="ghost"
                     onClick={() => setIsTocOpen(false)}
-                    className="h-8 w-8"
+                    className="min-h-[44px] min-w-[44px]"
                     data-testid="button-close-toc"
                   >
                     <X className="h-4 w-4" />

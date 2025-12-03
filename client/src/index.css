@@ -176,21 +176,27 @@ html.dark {
     background: transparent;
   }
 
-  /* Premium glass blur card design - Unified 1px borders */
+  /* Premium glass card design - Lightweight version for performance */
   .glassmorphic {
-    background: hsl(var(--card) / 0.95);
+    background: linear-gradient(135deg, hsl(var(--card) / 0.97), hsl(var(--card) / 0.93));
     border: 1px solid hsl(var(--card-border));
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: 0 8px 24px hsl(0 0% 0% / 0.08), 0 2px 8px hsl(0 0% 0% / 0.04), inset 0 1px 2px hsl(255 255% 255% / 0.1);
+    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.06), 0 1px 4px hsl(0 0% 0% / 0.03);
   }
 
   .dark .glassmorphic {
-    background: hsl(var(--card) / 0.9);
+    background: linear-gradient(135deg, hsl(var(--card) / 0.95), hsl(var(--card) / 0.88));
     border: 1px solid hsl(var(--card-border) / 0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: 0 8px 24px hsl(0 0% 0% / 0.3), 0 2px 8px hsl(0 0% 0% / 0.2), inset 0 1px 2px hsl(255 255% 255% / 0.05);
+    box-shadow: 0 4px 16px hsl(0 0% 0% / 0.25), 0 1px 4px hsl(0 0% 0% / 0.15);
+  }
+  
+  /* Only apply blur on capable devices with explicit opt-in */
+  @supports (backdrop-filter: blur(4px)) {
+    @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+      .glassmorphic-blur {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+    }
   }
 
   .fade-in-up {
@@ -638,8 +644,8 @@ html.dark {
   --secondary: 0 0% 22%;
   --secondary-foreground: 0 0% 93%;
   --muted: 0 0% 20%;
-  --muted-foreground: 0 0% 70%;
-  --tertiary-foreground: 0 0% 60%;
+  --muted-foreground: 0 0% 78%;
+  --tertiary-foreground: 0 0% 68%;
   --accent: 15 85% 50%;
   --accent-foreground: 0 0% 100%;
   --timer: 120 60% 45%;
@@ -1435,6 +1441,28 @@ html.dark {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    
+    .animate-float,
+    .animate-bounce,
+    .animate-pulse,
+    .animate-shake,
+    .animate-gradient-bg,
+    .pulse-soft,
+    .fade-in-up,
+    .burn-animation,
+    .timer-tick,
+    .hover-lift,
+    .button-hover-lift {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .glassmorphic,
+    .glassmorphism {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
     }
   }
 

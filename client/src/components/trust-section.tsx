@@ -47,10 +47,9 @@ export function TrustSection() {
 
   return (
     <section className="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 md:pb-16 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
-      {/* Background Gradient Glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-600/5 rounded-full blur-3xl" />
+      {/* Subtle Background - Reduced for performance */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-2xl" />
       </div>
 
       {/* Header */}
@@ -66,45 +65,10 @@ export function TrustSection() {
         </p>
       </div>
 
-      {/* Global Stats with World Map Visual */}
-      <div className="relative max-w-5xl mx-auto px-4 mb-16 md:mb-20">
-        {/* World Map Background Hint */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <Globe className="w-64 h-64 text-emerald-500" />
-        </div>
-
-        {/* Mobile: Horizontal Scroll Cards */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
-          <div className="flex gap-4 min-w-max">
-            {globalStats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div 
-                  key={index}
-                  className="relative group flex-shrink-0 w-40"
-                >
-                  {/* Green blur glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="relative p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="p-2.5 rounded-lg bg-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
-                        <Icon className="h-6 w-6 text-emerald-400 drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
-                      </div>
-                    </div>
-                    <div className="text-2xl font-bold text-emerald-400 mb-1 drop-shadow-[0_0_6px_rgba(16,185,129,0.4)]">
-                      {stat.value}
-                    </div>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Desktop: Grid Layout */}
-        <div className="hidden md:grid grid-cols-3 gap-6">
+      {/* Global Stats - Clean Grid Layout */}
+      <div className="relative max-w-4xl mx-auto px-4 mb-16 md:mb-20">
+        {/* Unified Stats Grid - Mobile & Desktop */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-6">
           {globalStats.map((stat, index) => {
             const Icon = stat.icon;
             return (
@@ -112,26 +76,16 @@ export function TrustSection() {
                 key={index}
                 className="relative group"
               >
-                {/* Green blur glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/25 to-emerald-600/15 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative p-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.1)] hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-xl bg-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                      <Icon className="h-8 w-8 text-emerald-400 drop-shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
+                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-emerald-500/25 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-emerald-500/20">
+                      <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-emerald-400" aria-hidden="true" />
                     </div>
                   </div>
-                  <div className="text-4xl lg:text-5xl font-bold text-emerald-400 mb-2 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]">
+                  <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-emerald-400 mb-1 sm:mb-2">
                     {stat.value}
                   </div>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-
-                  {/* Animated dots representing global users */}
-                  <div className="absolute top-4 right-4 flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400/60 animate-pulse" />
-                    <div className="w-2 h-2 rounded-full bg-emerald-400/40 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                    <div className="w-2 h-2 rounded-full bg-emerald-400/30 animate-pulse" style={{ animationDelay: '1s' }} />
-                  </div>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
                 </div>
               </div>
             );
@@ -139,7 +93,7 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Trust Items Grid - Larger Icons */}
+      {/* Trust Items Grid - Simplified */}
       <div className="max-w-5xl mx-auto px-4 mb-16 md:mb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
@@ -147,13 +101,10 @@ export function TrustSection() {
             
             return (
               <div key={index} className="group relative">
-                {/* Green blur glow behind card */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.glowColor} rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
                 {/* Step Number */}
                 <div className="flex items-start mb-4">
                   <div className="relative z-10">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 group-hover:shadow-xl group-hover:shadow-emerald-500/40 transition-shadow">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white font-bold text-lg shadow-md">
                       {item.step}
                     </div>
                   </div>
@@ -161,12 +112,12 @@ export function TrustSection() {
 
                 {/* Card */}
                 <Card 
-                  className="relative group overflow-visible transition-all duration-300 h-full p-7 md:p-8 border border-border/40 hover:border-emerald-500/40 bg-card/50 hover:bg-card/80 shadow-md hover:shadow-xl"
+                  className="relative group overflow-visible transition-colors duration-300 h-full p-7 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80"
                 >
                   <div className="flex flex-col gap-5 h-full">
-                    {/* Icon Container - 20% Larger */}
-                    <div className="w-fit rounded-xl p-4 md:p-5 bg-emerald-500/15 ring-1 ring-emerald-500/30 group-hover:bg-emerald-500/25 group-hover:ring-emerald-500/50 transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]">
-                      <Icon className="h-9 w-9 md:h-10 md:w-10 text-emerald-400 drop-shadow-[0_0_6px_rgba(16,185,129,0.4)] group-hover:drop-shadow-[0_0_10px_rgba(16,185,129,0.6)] transition-all duration-300" />
+                    {/* Icon Container - Simplified */}
+                    <div className="w-fit rounded-xl p-4 md:p-5 bg-emerald-500/15 ring-1 ring-emerald-500/25 group-hover:bg-emerald-500/20 transition-colors duration-300">
+                      <Icon className="h-9 w-9 md:h-10 md:w-10 text-emerald-400" aria-hidden="true" />
                     </div>
 
                     {/* Content */}
@@ -181,8 +132,8 @@ export function TrustSection() {
 
                       {/* Details */}
                       <div className="flex items-start gap-2 pt-3 border-t border-border/20">
-                        <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-500/70" />
-                        <p className="text-sm leading-relaxed text-muted-foreground/80">
+                        <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-500/70" aria-hidden="true" />
+                        <p className="text-sm leading-relaxed text-muted-foreground">
                           {item.details}
                         </p>
                       </div>

@@ -243,7 +243,7 @@ export function TestimonialsCarousel() {
             size="icon"
             onClick={prev}
             data-testid="button-prev-testimonial"
-            className="h-9 w-9 flex-shrink-0"
+            className="min-h-[44px] min-w-[44px] flex-shrink-0"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -271,7 +271,7 @@ export function TestimonialsCarousel() {
             size="icon"
             onClick={next}
             data-testid="button-next-testimonial"
-            className="h-9 w-9 flex-shrink-0"
+            className="min-h-[44px] min-w-[44px] flex-shrink-0"
             aria-label="Next testimonial"
           >
             <ChevronRight className="h-5 w-5" />

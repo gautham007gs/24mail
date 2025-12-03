@@ -293,15 +293,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               {currentEmail || "Generating..."}
             </span>
 
-            {/* Inline Action Icons - QR & Copy - Larger */}
-            <div className="flex gap-2.5 sm:gap-3 flex-shrink-0">
+            {/* Inline Action Icons - QR & Copy - 44x44px minimum touch targets */}
+            <div className="flex gap-3 sm:gap-4 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="h-11 w-11 sm:h-12 sm:w-12"
+                className="min-h-[44px] min-w-[44px] h-11 w-11 sm:h-12 sm:w-12 p-3"
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
@@ -313,7 +313,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="h-11 w-11 sm:h-12 sm:w-12"
+                className="min-h-[44px] min-w-[44px] h-11 w-11 sm:h-12 sm:w-12 p-3"
                 title="Copy email"
                 aria-label="Copy email address to clipboard"
               >
@@ -463,7 +463,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
             <div className="space-y-2 sm:space-y-3 pt-2 sm:pt-3 border-t border-border/50 dark:border-border/30">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-center">Share</p>
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 <Button
                   variant="outline"
                   size="icon"
@@ -475,8 +475,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   data-testid="button-share-whatsapp-qr"
                   title="Share on WhatsApp"
                   aria-label="Share email via WhatsApp"
+                  className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiWhatsapp className="h-4 w-4" />
+                  <SiWhatsapp className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
@@ -489,8 +490,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   data-testid="button-share-telegram-qr"
                   title="Share on Telegram"
                   aria-label="Share email via Telegram"
+                  className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiTelegram className="h-4 w-4" />
+                  <SiTelegram className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
@@ -503,8 +505,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                   data-testid="button-share-twitter-qr"
                   title="Share on X (Twitter)"
                   aria-label="Share email via X (Twitter)"
+                  className="min-h-[44px] min-w-[44px] p-3"
                 >
-                  <SiX className="h-4 w-4" />
+                  <SiX className="h-5 w-5" />
                 </Button>
               </div>
             </div>

@@ -89,37 +89,37 @@ let previousEmailCount = 0;
 
 function EmptyStateIllustration() {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4">
-      {/* Animated Ghost Mailbox Illustration */}
+    <div 
+      className="flex flex-col items-center justify-center py-16 px-4"
+      role="status"
+      aria-live="polite"
+      aria-label="Your inbox is empty. Share your temporary email address and emails will appear here automatically."
+    >
+      {/* Simplified Mailbox Illustration - reduced animations for accessibility */}
       <div className="relative mb-8">
-        {/* Glow effect behind */}
-        <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" style={{ width: '200px', height: '200px', left: '-50px', top: '-50px' }} />
+        {/* Subtle glow effect - no animation */}
+        <div className="absolute inset-0 bg-emerald-500/15 rounded-full blur-2xl" style={{ width: '180px', height: '180px', left: '-40px', top: '-40px' }} />
         
         {/* Mailbox */}
         <div className="relative">
           <div className="w-32 h-24 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl border-2 border-emerald-500/30 flex items-center justify-center relative overflow-hidden">
             {/* Mailbox flag */}
-            <div className="absolute -right-1 top-3 w-3 h-8 bg-orange-500/80 rounded-sm transform rotate-12" />
+            <div className="absolute -right-1 top-3 w-3 h-8 bg-orange-500/80 rounded-sm transform rotate-12" aria-hidden="true" />
             
-            {/* Flying ghost envelope */}
-            <div className="absolute animate-bounce" style={{ animationDuration: '2s' }}>
-              <Ghost className="h-12 w-12 text-emerald-400/60" />
-            </div>
+            {/* Static mailbox icon */}
+            <Mailbox className="h-12 w-12 text-emerald-400/70" aria-hidden="true" />
           </div>
           
           {/* Mailbox post */}
-          <div className="w-4 h-12 bg-gradient-to-b from-muted to-muted/50 rounded-b-lg mx-auto" />
+          <div className="w-4 h-12 bg-gradient-to-b from-muted to-muted/50 rounded-b-lg mx-auto" aria-hidden="true" />
         </div>
 
-        {/* Floating envelopes */}
-        <div className="absolute -top-4 -left-6 animate-float" style={{ animationDelay: '0s' }}>
+        {/* Static envelope decorations - removed floating animations */}
+        <div className="absolute -top-4 -left-6" aria-hidden="true">
           <Mail className="h-6 w-6 text-emerald-400/40" />
         </div>
-        <div className="absolute -top-2 -right-8 animate-float" style={{ animationDelay: '0.5s' }}>
+        <div className="absolute -top-2 -right-8" aria-hidden="true">
           <Mail className="h-5 w-5 text-orange-400/40" />
-        </div>
-        <div className="absolute top-8 -right-10 animate-float" style={{ animationDelay: '1s' }}>
-          <Mail className="h-4 w-4 text-emerald-400/30" />
         </div>
       </div>
 
@@ -128,11 +128,11 @@ function EmptyStateIllustration() {
         Share your temporary email address and emails will appear here automatically.
       </p>
       
-      {/* Decorative dots */}
-      <div className="flex items-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-emerald-500/50 animate-pulse" />
-        <div className="w-2 h-2 rounded-full bg-emerald-500/30 animate-pulse" style={{ animationDelay: '0.2s' }} />
-        <div className="w-2 h-2 rounded-full bg-emerald-500/20 animate-pulse" style={{ animationDelay: '0.4s' }} />
+      {/* Static decorative dots - removed pulse animation */}
+      <div className="flex items-center gap-2" aria-hidden="true">
+        <div className="w-2 h-2 rounded-full bg-emerald-500/50" />
+        <div className="w-2 h-2 rounded-full bg-emerald-500/35" />
+        <div className="w-2 h-2 rounded-full bg-emerald-500/20" />
       </div>
     </div>
   );
@@ -140,7 +140,7 @@ function EmptyStateIllustration() {
 
 function SkeletonEmailRow() {
   return (
-    <div className="grid grid-cols-12 gap-3 px-4 sm:px-5 py-4 items-center animate-pulse">
+    <div className="grid grid-cols-12 gap-3 px-4 sm:px-5 py-4 items-center" aria-hidden="true">
       <div className="hidden sm:block col-span-1">
         <Skeleton className="h-10 w-10 rounded-full" />
       </div>
@@ -164,7 +164,13 @@ function SkeletonEmailRow() {
 
 function LoadingState() {
   return (
-    <div className="space-y-1">
+    <div 
+      className="space-y-1"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading emails, please wait..."
+    >
+      <span className="sr-only">Loading emails...</span>
       <SkeletonEmailRow />
       <SkeletonEmailRow />
       <SkeletonEmailRow />
@@ -403,7 +409,7 @@ export function InboxList({
             data-testid="button-refresh"
             aria-label="Refresh inbox"
             title="Refresh inbox"
-            className={`${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
+            className={`min-h-[44px] min-w-[44px] ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
           </Button>
@@ -428,7 +434,7 @@ export function InboxList({
               variant="ghost"
               size="icon"
               onClick={() => setSearchQuery("")}
-              className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
+              className="absolute right-1 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px]"
               data-testid="button-clear-search"
               aria-label="Clear search"
             >
