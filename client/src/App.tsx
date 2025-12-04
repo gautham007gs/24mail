@@ -13,11 +13,11 @@ import { QueryClientProvider } from "@tanstack/react-query";
 // const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy")); // Replaced with lazy loaded PrivacyPolicyPage
 // const SuccessStories = lazy(() => import("@/pages/success-stories")); // Replaced with lazy loaded SuccessStoriesPage
 
-// Lazy load providers
-const TooltipProvider = lazy(() => import("@/components/ui/tooltip").then(m => ({ default: m.TooltipProvider })));
-const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
-const NotificationProvider = lazy(() => import("@/contexts/notification-context").then(m => ({ default: m.NotificationProvider })));
-const LanguageProvider = lazy(() => import("@/contexts/language-context").then(m => ({ default: m.LanguageProvider })));
+// Load critical providers eagerly to prevent blank screen
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/toaster";
+import { NotificationProvider } from "@/contexts/notification-context";
+import { LanguageProvider } from "@/contexts/language-context";
 
 // Lazy load pages
 const HomePage = lazy(() => import("@/pages/home"));
@@ -123,25 +123,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <WouterRouter>
         <ErrorBoundary>
-          <Suspense fallback={
-            <div className="min-h-screen bg-background flex items-center justify-center">
-              <div className="animate-pulse space-y-4 w-full max-w-2xl px-4">
-                <div className="h-12 bg-muted rounded-xl w-3/4 mx-auto"></div>
-                <div className="h-64 bg-muted rounded-2xl"></div>
-              </div>
-            </div>
-          }>
-            <NotificationProvider>
-              <LanguageProvider>
-                <TooltipProvider delayDuration={0}>
-                  <Switch>
-                    {/* Routes are now handled within AppRoutes */}
-                  </Switch>
-                  <Toaster />
-                </TooltipProvider>
-              </LanguageProvider>
-            </NotificationProvider>
-          </Suspense>
+          <NotificationProvider>
+            <LanguageProvider>
+              <TooltipProvider delayDuration={0}>
+                <AppRoutes />
+                <Toaster />
+              </TooltipProvider>
+            </LanguageProvider>
+          </NotificationProvider>
         </ErrorBoundary>
       </WouterRouter>
     </QueryClientProvider>
