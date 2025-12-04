@@ -1,0 +1,28 @@
+ARIA
+Elements use prohibited ARIA attributes
+Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. Learn more about prohibited ARIA roles.
+Failing Elements
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+These are opportunities to improve the usage of ARIA in your application which may enhance the experience for users of assistive technology, like a screen reader.
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast.
+Failing Elements
+Skip to main content
+<a data-replit-metadata="client/src/components/header.tsx:49:6" data-component-name="a" href="#main-content" class="skip-to-main">
+Copy
+<button data-replit-metadata="client/src/components/email-generator.tsx:345:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap transition…" data-testid="button-action-copy" aria-label="Copy email address to clipboard">
+user@barid.site
+<p data-replit-metadata="client/src/components/animated-demo.tsx:72:14" data-component-name="p" class="text-xs md:text-sm text-muted-foreground font-mono mt-1">
+body
+<body style="padding-top: 55px;">
+In your inbox
+<p data-replit-metadata="client/src/components/animated-demo.tsx:145:14" data-component-name="p" class="text-xs md:text-sm text-muted-foreground mt-1">
+body
+<body style="padding-top: 55px;">
+These are opportunities to improve the legibility of your content.
