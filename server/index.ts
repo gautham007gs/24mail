@@ -38,10 +38,20 @@ app.use((req, res, next) => {
   
   // CSP: Development mode allows inline scripts for React and Vite HMR
   const isDev = process.env.NODE_ENV === "development";
-  if (!isDev) {
-    // Production CSP - allows Vite's module preloads and inline handlers
-    const prodCSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none';";
-    res.set("Content-Security-Policy", prodCSP);
+    if (!isDev) {
+    // Production CSP - allow Vite's modulepreload `data:` and `blob:` URIs,
+    // allow inline styles for critical CSS, and lock down other sources.
+    const prodCSP = [
+      "default-src 'self'",
+      "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' data: blob:",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: https:",
+      "connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com",
+      "frame-ancestors 'none'",
+    ].join('; ');
+
+    res.set('Content-Security-Policy', prodCSP);
   }
   
   // Set cache headers for blog and static content - SEO friendly
@@ -116,14 +126,41 @@ app.use((req, res, next) => {
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-  }, () => {
-    log(`Server listening on port ${port}`);
-  });
+  // Default to 5000 if not specified. If the port is in use, attempt a few
+  // higher ports instead of crashing with an unhandled exception.
+  const desiredPort = parseInt(process.env.PORT || '5000', 10);
+  let port = desiredPort;
+  const maxAttempts = 10;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const onError = (err: any) => reject(err);
+        server.once('error', onError);
+
+        server.listen({ port, host: '0.0.0.0' }, () => {
+          server.removeListener('error', onError);
+          log(`Server listening on port ${port}`);
+          resolve();
+        });
+      });
+      // Successfully bound the port
+      break;
+    } catch (err: any) {
+      // If port is in use, try next port. Otherwise rethrow.
+      const code = err && err.code;
+      if (code === 'EADDRINUSE' || code === 'EACCES') {
+        log(`Port ${port} unavailable (${code}). Trying port ${port + 1}...`);
+        port += 1;
+        if (attempt === maxAttempts - 1) {
+          throw new Error(`Could not bind to a port after ${maxAttempts} attempts: ${err?.message || err}`);
+        }
+        // small delay before retrying
+        await new Promise((r) => setTimeout(r, 150));
+        continue;
+      }
+
+      throw err;
+    }
+  }
 })();
