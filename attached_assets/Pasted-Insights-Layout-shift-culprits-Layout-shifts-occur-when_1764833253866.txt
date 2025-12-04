@@ -1,0 +1,496 @@
+Insights
+Layout shift culprits
+Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscored
+Element
+Layout shift score
+Total
+0.118
+Your Temporary Email kovnv5mwo9@barid.site Expires in 14m 51s Copy Refresh Chan…
+<div data-replit-metadata="client/src/components/email-generator.tsx:277:6" data-component-name="Card" class="shadcn-card rounded-xl border bg-card border-card-border text-card-foregro…" data-testid="email-generator-card">
+0.118
+…v20/UcC73FwrK….woff2(fonts.gstatic.com)
+Web font
+…v24/tDbv2o-fl….woff2(fonts.gstatic.com)
+Web font
+Copy Refresh Change Delete
+<div data-replit-metadata="client/src/components/email-generator.tsx:337:8" data-component-name="div" class="mt-8 sm:mt-10 mb-10">
+0.001
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…deps/chunk-6L3H5IN5.js?v=9635731a:409:34(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+11 ms
+Source
+Total reflow time
+…vite-plugin-dev-banner/banner-script.js:145:41(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+7 ms
+[unattributed]
+73 ms
+…components/email-generator.tsx:576:61(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+14 ms
+…deps/chunk-6L3H5IN5.js?v=9635731a:451:43(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+15 ms
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+5,310 ms
+Anonymous temporary email addresses that protect your privacy. No signup, no ad…
+<p data-replit-metadata="client/src/pages/home.tsx:347:12" data-component-name="p" class="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 6,267 ms
+Initial Navigation
+/en(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 1,005 ms, 50.75 KiB
+/@react-refresh(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,109 ms, 115.72 KiB
+/@vite/client(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,097 ms, 135.54 KiB
+…client/env.mjs(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,460 ms, 4.85 KiB
+…vite-plugin-dev-banner/banner-script.js(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 1,750 ms, 5.77 KiB
+/src/main.tsx?v=LtxB2MIEx…(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 1,739 ms, 2.51 KiB
+…deps/react_jsx-dev-runtime.js?v=aa254d0c(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,174 ms, 37.16 KiB
+…deps/chunk-QCHXOAYK.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,785 ms, 76.96 KiB
+…deps/chunk-WOOG5QLI.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,561 ms, 3.75 KiB
+/src/react-fix.ts?v=LtxB2MIEx…(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,406 ms, 1.68 KiB
+…deps/react.js?v=aa254d0c(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,545 ms, 1.20 KiB
+…deps/react-dom_client.js?v=58427434(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,410 ms, 2.11 KiB
+…deps/chunk-RPCDYKBN.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,706 ms, 907.34 KiB
+/src/App.tsx?v=LtxB2MIEx…(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,540 ms, 27.36 KiB
+…deps/wouter.js?v=f9793bfa(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,926 ms, 16.81 KiB
+…lib/queryClient.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,797 ms, 5.76 KiB
+…lib/request-dedup.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,167 ms, 4.50 KiB
+…deps/@tanstack_react-query.js?v=c03dc2d0(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,034 ms, 125.59 KiB
+…deps/chunk-KBTYAULA.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,409 ms, 37.48 KiB
+…ui/toaster.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,800 ms, 8.10 KiB
+…hooks/use-toast.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,646 ms, 12.59 KiB
+…ui/toast.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,172 ms, 20.69 KiB
+…deps/@radix-ui_react-toast.js?v=7f97c49f(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,536 ms, 27.73 KiB
+…deps/chunk-TSZNQYW6.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,804 ms, 2.29 KiB
+…deps/chunk-Q2S3QF6K.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,805 ms, 12.10 KiB
+…deps/chunk-ZKH6V7Y2.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,772 ms, 8.72 KiB
+…deps/chunk-6L3H5IN5.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,778 ms, 18.63 KiB
+…inbox/kovnv5mwo9%40barid.site(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,708 ms, 0.84 KiB
+…deps/chunk-JDYSANEB.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,804 ms, 2.17 KiB
+…deps/class-variance-authority.js?v=d61b5912(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,427 ms, 3.28 KiB
+…ui/tooltip.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,798 ms, 7.37 KiB
+…deps/@radix-ui_react-tooltip.js?v=6278d013(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,902 ms, 96.95 KiB
+…deps/chunk-COIWH2MB.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,145 ms, 1.77 KiB
+…lib/utils.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,168 ms, 1.69 KiB
+…deps/clsx.js?v=e9abbb66(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,423 ms, 1.22 KiB
+…deps/chunk-U7P2NEEE.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,798 ms, 1.55 KiB
+…deps/tailwind-merge.js?v=932ff0af(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,552 ms, 71.91 KiB
+…contexts/language-context.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,265 ms, 9.79 KiB
+…contexts/notification-context.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,915 ms, 11.23 KiB
+…components/error-boundary.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,908 ms, 11.72 KiB
+…ui/button.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,539 ms, 9.52 KiB
+…deps/@radix-ui_react-slot.js?v=3e72eb02(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,183 ms, 5.98 KiB
+…lib/language-utils.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,805 ms, 6.70 KiB
+…pages/home.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,056 ms, 84.91 KiB
+…components/email-generator.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,426 ms, 95.49 KiB
+…icons/social-icons.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,772 ms, 19.65 KiB
+…ui/dialog.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,938 ms, 19.68 KiB
+…deps/@radix-ui_react-dialog.js?v=aab6ba82(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,166 ms, 2.30 KiB
+…deps/chunk-GUUUQ5JT.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,429 ms, 56.20 KiB
+…deps/react-qr-code.js?v=4196d17d(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,288 ms, 36.84 KiB
+…lib/confetti.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,784 ms, 7.46 KiB
+…lib/article-utils.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,802 ms, 15.00 KiB
+…components/inbox-list.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,149 ms, 135.79 KiB
+…deps/date-fns.js?v=900cbba2(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,752 ms, 177.98 KiB
+…ui/skeleton.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,520 ms, 4.28 KiB
+…ui/input.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,523 ms, 6.08 KiB
+…ui/alert-dialog.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,519 ms, 21.77 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=8b5293d1(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,688 ms, 12.81 KiB
+…components/inline-email-reader.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,517 ms, 51.12 KiB
+…ui/tabs.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,678 ms, 10.35 KiB
+…deps/@radix-ui_react-tabs.js?v=69bbe817(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,057 ms, 16.75 KiB
+…lib/email-share.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,689 ms, 16.29 KiB
+…components/trust-section.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,618 ms, 48.19 KiB
+…components/how-it-works.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,619 ms, 6.68 KiB
+…components/animated-demo.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 6,267 ms, 39.92 KiB
+…components/unified-social-proof.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,489 ms, 33.96 KiB
+…components/faq-accordion.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,769 ms, 18.99 KiB
+…components/footer.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 5,871 ms, 56.49 KiB
+…lib/cache.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,658 ms, 9.37 KiB
+…lib/fun-messages.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,806 ms, 4.44 KiB
+…components/header.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,404 ms, 62.04 KiB
+…hooks/use-localized-link.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,784 ms, 2.66 KiB
+…hooks/use-translation.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,293 ms, 2.85 KiB
+…lib/translations.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,433 ms, 105.18 KiB
+…deps/react-helmet.js?v=6c83a491(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,889 ms, 39.34 KiB
+…deps/chunk-PJ25BUVZ.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 4,170 ms, 34.03 KiB
+…pages/not-found.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,907 ms, 7.31 KiB
+…ui/card.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,779 ms, 12.62 KiB
+…deps/lucide-react.js?v=fc627f6e(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 3,938 ms, 1,127.08 KiB
+/src/index.css?v=LtxB2MIEx…(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev) - 2,417 ms, 156.47 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 33 KiB
+Improve image delivery Est savings of 6 KiB
+Render blocking requests
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Minify JavaScript Est savings of 1,663 KiB
+Minifying JavaScript files can reduce payload sizes and script parse time. Learn how to minify JavaScript.LCPFCPUnscored
+React
+If your build system minifies JS files automatically, ensure that you are deploying the production build of your application. You can check this with the React Developer Tools extension. Learn more.
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+4,156.0 KiB	1,662.5 KiB
+…deps/chunk-RPCDYKBN.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+906.4 KiB
+331.7 KiB
+…deps/lucide-react.js?v=fc627f6e(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+1,126.1 KiB
+206.0 KiB
+/@vite/client(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+134.6 KiB
+117.1 KiB
+/@react-refresh(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+114.8 KiB
+104.6 KiB
+…components/inbox-list.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+134.9 KiB
+84.9 KiB
+…lib/translations.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+104.3 KiB
+75.4 KiB
+…components/email-generator.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+94.6 KiB
+61.4 KiB
+…pages/home.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+84.0 KiB
+53.4 KiB
+…deps/date-fns.js?v=900cbba2(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+177.0 KiB
+51.0 KiB
+…components/header.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+61.1 KiB
+40.1 KiB
+…deps/tailwind-merge.js?v=932ff0af(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+71.0 KiB
+39.4 KiB
+…deps/@tanstack_react-query.js?v=c03dc2d0(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+124.6 KiB
+32.7 KiB
+…components/footer.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+55.6 KiB
+32.3 KiB
+…deps/chunk-QCHXOAYK.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+76.0 KiB
+31.0 KiB
+…components/inline-email-reader.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+50.2 KiB
+30.9 KiB
+…components/trust-section.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+47.3 KiB
+26.9 KiB
+…deps/@radix-ui_react-tooltip.js?v=6278d013(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+96.0 KiB
+24.0 KiB
+…components/animated-demo.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+39.0 KiB
+21.8 KiB
+…components/unified-social-proof.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+33.0 KiB
+18.6 KiB
+…deps/chunk-KBTYAULA.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+36.5 KiB
+14.2 KiB
+…deps/react_jsx-dev-runtime.js?v=aa254d0c(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+36.2 KiB
+14.0 KiB
+/src/App.tsx?v=LtxB2MIEx…(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+26.4 KiB
+13.7 KiB
+…deps/chunk-GUUUQ5JT.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+55.3 KiB
+13.0 KiB
+…deps/react-qr-code.js?v=4196d17d(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+35.9 KiB
+12.9 KiB
+…ui/alert-dialog.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+20.9 KiB
+12.8 KiB
+…ui/toast.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+19.8 KiB
+12.3 KiB
+…lib/email-share.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+15.4 KiB
+11.4 KiB
+…ui/dialog.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+18.8 KiB
+11.2 KiB
+…lib/article-utils.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+14.1 KiB
+10.7 KiB
+…components/faq-accordion.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+18.1 KiB
+10.7 KiB
+…icons/social-icons.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+18.7 KiB
+10.3 KiB
+…deps/chunk-PJ25BUVZ.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+33.1 KiB
+10.1 KiB
+…hooks/use-toast.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+11.7 KiB
+9.5 KiB
+…deps/react-helmet.js?v=6c83a491(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+38.4 KiB
+9.0 KiB
+…lib/cache.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+8.4 KiB
+7.1 KiB
+…ui/card.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+11.7 KiB
+6.9 KiB
+…deps/@radix-ui_react-toast.js?v=7f97c49f(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+26.8 KiB
+6.7 KiB
+…contexts/notification-context.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+10.3 KiB
+6.6 KiB
+…components/error-boundary.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+10.8 KiB
+6.1 KiB
+…contexts/language-context.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+8.9 KiB
+5.5 KiB
+…ui/tabs.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+9.4 KiB
+5.4 KiB
+…lib/confetti.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+6.5 KiB
+5.2 KiB
+…ui/button.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+8.6 KiB
+5.0 KiB
+…lib/language-utils.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+5.8 KiB
+4.8 KiB
+…deps/wouter.js?v=f9793bfa(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+15.9 KiB
+4.6 KiB
+…deps/@radix-ui_react-tabs.js?v=69bbe817(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+15.8 KiB
+4.0 KiB
+…deps/chunk-6L3H5IN5.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+17.7 KiB
+4.0 KiB
+…lib/queryClient.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+4.8 KiB
+3.8 KiB
+…client/env.mjs(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+3.9 KiB
+3.5 KiB
+…ui/toaster.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+7.2 KiB
+3.5 KiB
+…ui/tooltip.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+6.5 KiB
+3.4 KiB
+…lib/request-dedup.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+3.6 KiB
+3.0 KiB
+…pages/not-found.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+6.4 KiB
+2.7 KiB
+…lib/fun-messages.ts(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+3.5 KiB
+2.6 KiB
+…ui/input.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+5.2 KiB
+2.5 KiB
+…components/how-it-works.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+5.8 KiB
+2.5 KiB
+…deps/chunk-Q2S3QF6K.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+11.2 KiB
+2.3 KiB
+…deps/@radix-ui_react-alert-dialog.js?v=8b5293d1(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+11.9 KiB
+2.1 KiB
+Reduce unused JavaScript Est savings of 795 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+React
+If you are not server-side rendering, split your JavaScript bundles with React.lazy(). Otherwise, code-split using a third-party library such as loadable-components.
+URL
+Transfer Size
+Est Savings
+replit.dev 1st party
+2,825.4 KiB	795.2 KiB
+…deps/chunk-RPCDYKBN.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+906.4 KiB
+304.1 KiB
+…react-dom/cjs/react-dom.development.js
+887.9 KiB
+300.4 KiB
+…scheduler/cjs/scheduler.development.js
+16.5 KiB
+3.7 KiB
+…deps/date-fns.js?v=900cbba2(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+177.0 KiB
+135.6 KiB
+…_lib/format/formatters.mjs
+16.6 KiB
+14.9 KiB
+…parseISO.mjs
+6.0 KiB
+5.6 KiB
+…parse.mjs
+5.0 KiB
+4.7 KiB
+…formatDistance.mjs
+3.3 KiB
+3.3 KiB
+…parse/_lib/utils.mjs
+3.1 KiB
+3.1 KiB
+…deps/@radix-ui_react-tooltip.js?v=6278d013(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+96.0 KiB
+87.0 KiB
+…floating-ui/core/dist/floating-ui.core.mjs
+22.8 KiB
+22.6 KiB
+…floating-ui/dom/dist/floating-ui.dom.mjs
+20.0 KiB
+19.4 KiB
+…radix-ui/react-tooltip/src/tooltip.tsx
+16.8 KiB
+14.4 KiB
+…radix-ui/react-popper/src/popper.tsx
+8.7 KiB
+7.8 KiB
+…floating-ui/react-dom/dist/floating-ui.react-dom.mjs
+7.4 KiB
+7.0 KiB
+…deps/@tanstack_react-query.js?v=c03dc2d0(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+124.6 KiB
+63.3 KiB
+…query-core/src/queriesObserver.ts
+7.3 KiB
+6.8 KiB
+…query-core/src/queryClient.ts
+9.3 KiB
+6.4 KiB
+…query-core/src/mutation.ts
+6.5 KiB
+6.1 KiB
+…query-core/src/hydration.ts
+4.9 KiB
+4.9 KiB
+…query-core/src/infiniteQueryBehavior.ts
+3.7 KiB
+3.7 KiB
+…deps/chunk-GUUUQ5JT.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+55.3 KiB
+43.6 KiB
+…@radix-ui/react-dialog/src/dialog.tsx
+10.8 KiB
+7.8 KiB
+…@radix-ui/react-focus-scope/src/focus-scope.tsx
+7.5 KiB
+7.0 KiB
+…react-remove-scroll/dist/es2015/SideEffect.js
+6.6 KiB
+6.5 KiB
+…aria-hidden/dist/es2015/index.js
+3.9 KiB
+3.7 KiB
+…react-remove-scroll/dist/es2015/handleScroll.js
+3.5 KiB
+3.2 KiB
+/en(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+42.9 KiB
+37.2 KiB
+…deps/chunk-QCHXOAYK.js?v=9635731a(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+76.0 KiB
+34.0 KiB
+…cjs/react.development.js
+75.2 KiB
+34.0 KiB
+…deps/lucide-react.js?v=fc627f6e(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+1,126.1 KiB
+23.8 KiB
+…lucide-react/dist/esm/icons/index.js
+47.7 KiB
+23.8 KiB
+…components/inline-email-reader.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+50.2 KiB
+23.0 KiB
+…
+24.1 KiB
+22.7 KiB
+…deps/react-qr-code.js?v=4196d17d(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+35.9 KiB
+22.6 KiB
+…qr.js/lib/QRCode.js
+10.8 KiB
+10.0 KiB
+…qr.js/lib/util.js
+7.6 KiB
+5.6 KiB
+…react-qr-code/lib/index.js
+3.2 KiB
+1.8 KiB
+…react-qr-code/lib/QRCodeSvg/index.js
+2.6 KiB
+1.4 KiB
+…qr.js/lib/Polynomial.js
+1.6 KiB
+1.3 KiB
+…components/inbox-list.tsx(6bf57e0e-d44f-470f-84e7-4c6fb8f8e1a9-00-3t94leylfj4wo.spock.replit.dev)
+134.9 KiB
+21.0 KiB
+…
+64.2 KiB
+20.7 KiB
+Minify CSS Est savings of 7 KiB
+Reduce unused CSS Est savings of 21 KiB
+Avoid enormous network payloads Total size was 4,568 KiB
+Avoid non-composited animations 18 animated elements found
+Avoid long main-thread tasks 2 long tasks found
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+Passed audits (12)
+Show
+93
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+ARIA
+Elements use prohibited ARIA attributes
+Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. Learn more about prohibited ARIA roles.
+Failing Elements
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+Rating: 5 out of 5 stars
+<div data-replit-metadata="client/src/components/unified-social-proof.tsx:137:14" data-component-name="div" class="flex gap-1 mb-4" aria-label="Rating: 5 out of 5 stars">
+These are opportunities to improve the usage of ARIA in your application which may enhance the experience for users of assistive technology, like a screen reader.
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast.
+Failing Elements
+Skip to main content
+<a data-replit-metadata="client/src/components/header.tsx:49:6" data-component-name="a" href="#main-content" class="skip-to-main">
+Copy
+<button data-replit-metadata="client/src/components/email-generator.tsx:340:12" data-component-name="Button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap transition…" data-testid="button-action-copy" aria-label="Copy email address to clipboard">
+user@barid.site
+<p data-replit-metadata="client/src/components/animated-demo.tsx:72:14" data-component-name="p" class="text-xs md:text-sm text-muted-foreground font-mono mt-1">
+body
+<body style="padding-top: 55px;">
+In your inbox
+<p data-replit-metadata="client/src/components/animated-demo.tsx:145:14" data-component-name="p" class="text-xs md:text-sm text-muted-foreground mt-1">
+body
+<body style="padding-top: 55px;">
+These are opportunities to improve the legibility of your content.

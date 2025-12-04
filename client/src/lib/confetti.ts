@@ -1,4 +1,3 @@
-// Simple confetti animation utility
 interface Confetti {
   x: number;
   y: number;
@@ -30,7 +29,6 @@ export function triggerConfetti() {
   const confettis: Confetti[] = [];
   const colors = ['#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b'];
 
-  // Create confetti pieces
   for (let i = 0; i < 50; i++) {
     confettis.push({
       x: window.innerWidth / 2,
@@ -48,13 +46,14 @@ export function triggerConfetti() {
   let animationId = 0;
 
   function animate() {
+    if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let idx = confettis.length - 1; idx >= 0; idx--) {
       const conf = confettis[idx];
       conf.x += conf.vx;
       conf.y += conf.vy;
-      conf.vy += 0.2; // Gravity
+      conf.vy += 0.2;
       conf.angle += conf.va;
       conf.alpha -= 0.015;
 

@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "@/lib/relative-time";
 import { Mail, Inbox, RefreshCw, Trash2, Paperclip, Search, X, AlertCircle, Zap, ChevronDown, Shield, AlertTriangle, Star, Trash, Ghost, Mailbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

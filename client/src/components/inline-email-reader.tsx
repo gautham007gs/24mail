@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "@/lib/relative-time";
 import { Trash2, Paperclip, ChevronUp, Copy, Share2, MessageCircle, Link as LinkIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

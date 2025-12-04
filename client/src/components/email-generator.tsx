@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, memo } from "react";
+import { useState, useEffect, useRef, useMemo, memo, lazy, Suspense } from "react";
 import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail } from "lucide-react";
 import { IconWhatsapp, IconTelegram, IconX } from "@/components/icons/social-icons";
 import { Button } from "@/components/ui/button";
@@ -6,14 +6,19 @@ import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import QRCode from "react-qr-code";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
-import { triggerConfetti } from "@/lib/confetti";
 import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
 import CacheManager from "@/lib/cache";
 import { type Domain } from "@shared/schema";
+
+const QRCode = lazy(() => import("react-qr-code"));
+
+const triggerConfetti = () => {
+  import("@/lib/confetti").then(m => m.triggerConfetti());
+};
 
 interface EmailGeneratorProps {
   currentEmail: string;
@@ -401,23 +406,25 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
-                  <div className="animate-in fade-in duration-300">
-                    <QRCode
-                      value={shareUrl}
-                      size={
-                        typeof window !== 'undefined'
-                          ? window.innerWidth < 360
-                            ? 200
-                            : window.innerWidth < 640
-                            ? 240
+                  <Suspense fallback={<Skeleton className="w-[240px] h-[240px] sm:w-[280px] sm:h-[280px]" />}>
+                    <div className="animate-in fade-in duration-300">
+                      <QRCode
+                        value={shareUrl}
+                        size={
+                          typeof window !== 'undefined'
+                            ? window.innerWidth < 360
+                              ? 200
+                              : window.innerWidth < 640
+                              ? 240
+                              : 280
                             : 280
-                          : 280
-                      }
-                      level="H"
-                      data-testid="qr-code-svg"
-                      className="drop-shadow-sm"
-                    />
-                  </div>
+                        }
+                        level="H"
+                        data-testid="qr-code-svg"
+                        className="drop-shadow-sm"
+                      />
+                    </div>
+                  </Suspense>
                 </div>
               </div>
 
