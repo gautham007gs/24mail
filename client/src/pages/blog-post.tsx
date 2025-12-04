@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowUp, Calendar, Clock, User, ChevronRight, Share2, Messag
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
-import { getPostBySlug, getRelatedPosts, faqItems } from "@/lib/blog-data";
+import { getPostMetaBySlug, getRelatedPostsMeta } from "@/lib/blog-metadata";
+import { loadBlogContent } from "@/lib/blog-content-loader";
 import { getBlogContentByLanguage, type LanguageCode } from "@/lib/blog-content-translations";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
@@ -13,6 +14,33 @@ import { useLanguage } from "@/contexts/language-context";
 import { useLocalizedLink } from "@/hooks/use-localized-link";
 import { generateHreflangs, getAllLanguageVersions } from "@/lib/seo-utils";
 
+const faqItems = [
+  {
+    question: "Is temporary email legal and safe to use?",
+    answer: "Yes, temporary email is completely legal and safe. It's used by millions worldwide—developers for testing, businesses for security research, and individuals for privacy protection. Your data is encrypted and automatically deleted, ensuring complete privacy and security."
+  },
+  {
+    question: "Can I use temporary email for important accounts like banking?",
+    answer: "No, temporary emails are not suitable for important accounts (banking, email providers, payment services). Use temporary email only for one-time signups, newsletters, and services you don't plan to use long-term. For critical accounts, use your primary, recovery-protected email address."
+  },
+  {
+    question: "Can you or anyone else see my emails?",
+    answer: "No. Your emails are completely private. Only you can access them during your session. We cannot see your emails, and they're encrypted in transit. Once your session expires, all emails are permanently deleted from our servers. No one—including us—can recover or view your data."
+  },
+  {
+    question: "How long does a temporary email address last?",
+    answer: "TempMail provides an active, usable inbox during your session. The temporary address remains active and receives emails while you're using the service. Emails are automatically purged after your session expires to protect your privacy. Unlike competitors, our session management is reliable."
+  },
+  {
+    question: "Why does TempMail have 99.9% uptime when competitors are always down?",
+    answer: "TempMail uses enterprise-grade distributed infrastructure with redundancy, automated failover, and multi-region servers. Competitors rely on outdated shared hosting, causing regular outages. We invest in infrastructure reliability, so you never miss emails. Our monitoring is 24/7."
+  },
+  {
+    question: "What makes TempMail's QR code feature unique?",
+    answer: "TempMail is the ONLY service offering QR code sharing for emails. Scan with another device to instantly access the same email on mobile or desktop. This exclusive feature enables seamless cross-device synchronization that no competitor offers. Share emails without typing addresses."
+  },
+];
+
 export default function BlogPost() {
   const [, params] = useRoute("/:lang/blog/:slug");
   const [location] = useLocation();
@@ -21,13 +49,15 @@ export default function BlogPost() {
   const slug = params?.slug as string;
   const { toast } = useToast();
   
-  const post = getPostBySlug(slug);
-  const relatedPosts = post ? getRelatedPosts(slug) : [];
+  const post = getPostMetaBySlug(slug);
+  const relatedPosts = post ? getRelatedPostsMeta(slug) : [];
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
   const [toc, setToc] = useState<ReturnType<typeof generateTableOfContents>>([]);
   const [isTocOpen, setIsTocOpen] = useState(false);
   const [contentBlocks, setContentBlocks] = useState<ReturnType<typeof parseContentBlocks>>([]);
   const [readProgress, setReadProgress] = useState(0);
+  const [fullContent, setFullContent] = useState<string | null>(null);
+  const [isLoadingContent, setIsLoadingContent] = useState(true);
   
   // Get language-specific content for this post
   const translatedContent = slug ? getBlogContentByLanguage(slug, language as LanguageCode) : null;
@@ -44,13 +74,25 @@ export default function BlogPost() {
   }, [slug]);
 
   useEffect(() => {
-    if (displayContent?.content) {
-      const tableOfContents = generateTableOfContents(displayContent.content);
+    if (slug) {
+      setIsLoadingContent(true);
+      loadBlogContent(slug).then((content) => {
+        setFullContent(content);
+        setIsLoadingContent(false);
+      });
+    }
+  }, [slug]);
+
+  const contentToUse = translatedContent?.content || fullContent || '';
+
+  useEffect(() => {
+    if (contentToUse) {
+      const tableOfContents = generateTableOfContents(contentToUse);
       setToc(tableOfContents);
-      const blocks = parseContentBlocks(displayContent.content);
+      const blocks = parseContentBlocks(contentToUse);
       setContentBlocks(blocks);
     }
-  }, [displayContent, language]);
+  }, [contentToUse, language]);
 
   // Track reading progress
   useEffect(() => {
@@ -93,7 +135,7 @@ export default function BlogPost() {
     },
     "datePublished": post?.date,
     "dateModified": post?.date,
-    "articleBody": displayContent?.content || post?.content,
+    "articleBody": contentToUse || '',
     "keywords": keywordString,
   };
 
@@ -281,6 +323,18 @@ export default function BlogPost() {
           </h1>
 
           <div className="prose prose-invert max-w-none mb-12">
+            {isLoadingContent && (
+              <div className="animate-pulse space-y-4">
+                <div className="h-4 bg-muted rounded w-3/4"></div>
+                <div className="h-4 bg-muted rounded w-full"></div>
+                <div className="h-4 bg-muted rounded w-5/6"></div>
+                <div className="h-4 bg-muted rounded w-full"></div>
+                <div className="h-4 bg-muted rounded w-2/3"></div>
+              </div>
+            )}
+            {!isLoadingContent && contentBlocks.length === 0 && (
+              <p className="text-muted-foreground">Content could not be loaded. Please try refreshing the page.</p>
+            )}
             {contentBlocks.map((block, idx) => {
               switch (block.type) {
                 case 'h2':

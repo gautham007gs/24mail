@@ -13,9 +13,7 @@ export interface BlogContentTranslation {
   content?: string;
 }
 
-export interface BlogContentByLanguage {
-  [key in LanguageCode]?: BlogContentTranslation;
-}
+export type BlogContentByLanguage = Partial<Record<LanguageCode, BlogContentTranslation>>;
 
 export const blogContentTranslations: Record<string, BlogContentByLanguage> = {
   'what-is-temporary-email-complete-guide': {

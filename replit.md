@@ -58,6 +58,16 @@ Key performance optimizations implemented for sub-second loading:
 - **API Preloading**: Preconnect to api.barid.site and preload /api/domains for faster data fetching
 - **Init Loader Cleanup**: Skeleton removed on React hydration in main.tsx
 
+#### Blog Content Optimization (Recent)
+- **Metadata Separation**: Split `blog-data.ts` (~3000 lines) into lightweight `blog-metadata.ts` for listing pages
+- **Lazy Content Loading**: `blog-content-loader.ts` loads full blog content on-demand only when viewing posts
+- **Content Preloading on Hover**: Blog post cards preload content when user hovers for instant loading
+- **Code Splitting**: Vite configured to split blog content into separate chunks (`blog-content`, `blog-translations`)
+
+#### Server-Side Optimizations
+- **API Response Caching**: Domains API cached for 1 hour with `Cache-Control` headers
+- **Build Optimization**: Terser compression with console.log removal, 2-pass compression
+
 ### Backend Architecture
 
 The backend uses Express.js with Node.js and TypeScript, serving as a RESTful API proxy to an external temp mail service. It provides endpoints for domains, inbox contents, and email details. Middleware handles logging, JSON parsing, error handling, and Zod schema validation. Security features include attack detection, progressive IP blocking, rate limiting, and enhanced security headers.

@@ -27,18 +27,17 @@ export async function apiRequest(
 type UnauthorizedBehavior = "returnNull" | "throw";
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
-}) => QueryFunction<T> =
+}) => QueryFunction<T | null> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     const url = queryKey.join("/") as string;
     
-    // Use request deduplication to prevent concurrent duplicate requests
     try {
-      return await RequestDeduplicator.dedupFetch<T>(url, {
+      return await RequestDeduplicator.dedupFetch(url, {
         credentials: "include",
       }, url);
-    } catch (err: any) {
-      if (unauthorizedBehavior === "returnNull" && err.message?.includes("401")) {
+    } catch (err: unknown) {
+      if (unauthorizedBehavior === "returnNull" && err instanceof Error && err.message?.includes("401")) {
         return null;
       }
       throw err;

@@ -1,11 +1,26 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import axios, { AxiosError } from "axios";
-import { emailSummarySchema, emailSchema, domainSchema, referralStatsSchema } from "@shared/schema";
+import axios from "axios";
+import { emailSummarySchema, emailSchema, domainSchema } from "@shared/schema";
 import { storage } from "./storage";
 import { z } from "zod";
 
 const TEMP_MAIL_API = "https://api.barid.site";
+
+const responseCache = new Map<string, { data: unknown; timestamp: number; ttl: number }>();
+
+function getCachedResponse<T>(key: string): T | null {
+  const cached = responseCache.get(key);
+  if (cached && Date.now() - cached.timestamp < cached.ttl) {
+    return cached.data as T;
+  }
+  responseCache.delete(key);
+  return null;
+}
+
+function setCachedResponse<T>(key: string, data: T, ttlMs: number): void {
+  responseCache.set(key, { data, timestamp: Date.now(), ttl: ttlMs });
+}
 
 // Validation schemas for request parameters
 const emailParamSchema = z.string().email();
@@ -89,13 +104,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get available domains
   app.get("/api/domains", async (req, res) => {
     try {
+      const cacheKey = "domains";
+      const cached = getCachedResponse<string[]>(cacheKey);
+      if (cached) {
+        res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+        res.set('X-Cache', 'HIT');
+        return res.json(cached);
+      }
+
       const response = await axios.get(`${TEMP_MAIL_API}/domains`);
       
       if (response.data.success && Array.isArray(response.data.result)) {
         const domains = z.array(domainSchema).parse(response.data.result);
+        setCachedResponse(cacheKey, domains, 60 * 60 * 1000);
+        res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+        res.set('X-Cache', 'MISS');
         res.json(domains);
       } else {
         res.status(500).json({ error: "Failed to fetch domains" });
@@ -287,10 +312,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Referral endpoints
   app.get("/api/referral/create", async (req, res) => {
     try {
-      const sessionId = req.sessionID || "anonymous";
+      const sessionId = (req.query.sid as string) || "anonymous";
       let referral = await storage.getReferral(sessionId);
       if (!referral) {
         referral = await storage.createReferral(sessionId);
@@ -308,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/referral/stats", async (req, res) => {
     try {
-      const sessionId = req.sessionID || "anonymous";
+      const sessionId = (req.query.sid as string) || "anonymous";
       let referral = await storage.getReferral(sessionId);
       if (!referral) {
         referral = await storage.createReferral(sessionId);

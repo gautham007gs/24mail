@@ -3,10 +3,11 @@ import { ArrowLeft, ArrowRight, Search, BookOpen, Sparkles, X, TrendingUp } from
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { blogPosts } from "@/lib/blog-data";
+import { blogPostsMeta } from "@/lib/blog-metadata";
+import { preloadBlogContent } from "@/lib/blog-content-loader";
 import { Footer } from "@/components/footer";
 import { BlogImageSkeleton } from "@/lib/loading-skeletons";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useLanguage } from "@/contexts/language-context";
 import { useTranslation } from "@/hooks/use-translation";
@@ -34,19 +35,22 @@ export default function Blog() {
     setLoadedImages(prev => [...prev, postId]);
   };
 
-  const categories = useMemo(() => Array.from(new Set(blogPosts.map(p => p.category))), []);
+  const handlePostHover = useCallback((slug: string) => {
+    preloadBlogContent(slug);
+  }, []);
 
-  // Count posts per category
+  const categories = useMemo(() => Array.from(new Set(blogPostsMeta.map(p => p.category))), []);
+
   const categoryCount = useMemo(() => {
     const counts: Record<string, number> = {};
-    blogPosts.forEach(post => {
+    blogPostsMeta.forEach(post => {
       counts[post.category] = (counts[post.category] || 0) + 1;
     });
     return counts;
   }, []);
 
   const filteredPosts = useMemo(() => {
-    let filtered = blogPosts;
+    let filtered = [...blogPostsMeta];
     
     // Filter by search query
     if (searchQuery.trim()) {
@@ -160,7 +164,7 @@ export default function Blog() {
                 data-testid="button-category-all"
               >
                 {t("blog.allArticles")}
-                <span className="ml-2 text-xs font-semibold opacity-70">({blogPosts.length})</span>
+                <span className="ml-2 text-xs font-semibold opacity-70">({blogPostsMeta.length})</span>
               </Button>
               {categories.map((category) => (
                 <Button
@@ -239,6 +243,7 @@ export default function Blog() {
                     href={getLocalizedLink(`/blog/${post.slug}`)}
                     className="group h-full no-underline block"
                     data-testid={`card-blog-post-${post.id}`}
+                    onMouseEnter={() => handlePostHover(post.slug)}
                   >
                     <Card className="h-full overflow-hidden hover-elevate active-elevate-2 transition-all flex flex-col relative">
                       {/* Featured Badge */}
