@@ -35,14 +35,12 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative flex items-center justify-center">
-                {/* Green glow behind logo */}
-                <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-lg" />
+              <div className="flex items-center justify-center">
                 <img 
                   srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
                   src="/logo-32.png?v=2" 
                   alt="Burner Email" 
-                  className="relative h-12 w-12 flex-shrink-0 object-contain logo-transparent" 
+                  className="h-12 w-12 flex-shrink-0 object-contain logo-transparent" 
                 />
               </div>
               <h3 className="font-bold text-lg md:text-xl leading-none">Burner Email</h3>

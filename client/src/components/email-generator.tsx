@@ -1,16 +1,5 @@
 import { useState, useEffect, useRef, useMemo, memo, lazy, Suspense } from "react";
-import { Copy } from "lucide-react/dist/esm/icons/copy";
-import { Check } from "lucide-react/dist/esm/icons/check";
-import { RefreshCw } from "lucide-react/dist/esm/icons/refresh-cw";
-import { RotateCw } from "lucide-react/dist/esm/icons/rotate-cw";
-import { Trash2 } from "lucide-react/dist/esm/icons/trash-2";
-import { QrCode } from "lucide-react/dist/esm/icons/qr-code";
-import { Bell } from "lucide-react/dist/esm/icons/bell";
-import { AtSign } from "lucide-react/dist/esm/icons/at-sign";
-import { Crown } from "lucide-react/dist/esm/icons/crown";
-import { Download } from "lucide-react/dist/esm/icons/download";
-import { Smartphone } from "lucide-react/dist/esm/icons/smartphone";
-import { Mail } from "lucide-react/dist/esm/icons/mail";
+import { Copy, Check, RefreshCw, RotateCw, Trash2, QrCode, Bell, AtSign, Crown, Download, Smartphone, Mail } from "@/lib/icons";
 import { IconWhatsapp, IconTelegram, IconX } from "@/components/icons/social-icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
