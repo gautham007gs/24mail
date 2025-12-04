@@ -1,7 +1,16 @@
 
-import React from 'react';
+// This file MUST be imported before any React imports
+// It ensures only one copy of React exists in the application
 
-// Ensure single React instance across the application
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// @ts-ignore - Force global React instance
 if (typeof window !== 'undefined') {
-  (window as any).React = React;
+  // @ts-ignore
+  window.React = React;
+  // @ts-ignore
+  window.ReactDOM = ReactDOM;
 }
+
+export default React;
