@@ -245,8 +245,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     <div className="space-y-8">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
-        <div 
-          className="flex items-start gap-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-6 md:p-7 shadow-[0_0_30px_rgba(16,185,129,0.2)]" 
+        <div
+          className="flex items-start gap-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-6 md:p-7 shadow-[0_0_30px_rgba(16,185,129,0.2)] min-h-[140px]"
           data-testid="notification-banner"
         >
           <Bell className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(16,185,129,0.6)]" aria-hidden="true" />
@@ -279,7 +279,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card - Increased Size 15% - Fixed minimum height to prevent CLS */}
-      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30 min-h-[280px] sm:min-h-[320px]" data-testid="email-generator-card">
+      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30 min-h-[380px] sm:min-h-[420px]" data-testid="email-generator-card">
         {/* Header */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-2">
           Your Temporary Email
