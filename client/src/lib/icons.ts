@@ -1,57 +1,56 @@
-export {
-  Copy,
-  Check,
-  RefreshCw,
-  RotateCw,
-  Trash2,
-  QrCode,
-  Bell,
-  AtSign,
-  Crown,
-  Download,
-  Smartphone,
-  Mail,
-  Menu,
-  X,
-  ChevronDown,
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-  Home,
-  BookOpen,
-  Award,
-  Inbox,
-  Paperclip,
-  Search,
-  AlertCircle,
-  AlertTriangle,
-  Zap,
-  Shield,
-  Star,
-  Trash,
-  Ghost,
-  Mailbox,
-  Share2,
-  MessageCircle,
-  Link as LinkIcon,
-  Lock,
-  Eye,
-  Database,
-  CheckCircle,
-  CheckCircle2,
-  Code2,
-  Globe,
-  Users,
-  Calendar,
-  Clock,
-  User,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUp,
-  Quote,
-  TrendingUp,
-  Sparkles,
-  Newspaper,
-  Microscope,
-  Gift
-} from "lucide-react";
+
+export { Copy } from "lucide-react/dist/esm/icons/copy";
+export { Check } from "lucide-react/dist/esm/icons/check";
+export { RefreshCw } from "lucide-react/dist/esm/icons/refresh-cw";
+export { RotateCw } from "lucide-react/dist/esm/icons/rotate-cw";
+export { Trash2 } from "lucide-react/dist/esm/icons/trash-2";
+export { QrCode } from "lucide-react/dist/esm/icons/qr-code";
+export { Bell } from "lucide-react/dist/esm/icons/bell";
+export { AtSign } from "lucide-react/dist/esm/icons/at-sign";
+export { Crown } from "lucide-react/dist/esm/icons/crown";
+export { Download } from "lucide-react/dist/esm/icons/download";
+export { Smartphone } from "lucide-react/dist/esm/icons/smartphone";
+export { Mail } from "lucide-react/dist/esm/icons/mail";
+export { Menu } from "lucide-react/dist/esm/icons/menu";
+export { X } from "lucide-react/dist/esm/icons/x";
+export { ChevronDown } from "lucide-react/dist/esm/icons/chevron-down";
+export { ChevronUp } from "lucide-react/dist/esm/icons/chevron-up";
+export { ChevronLeft } from "lucide-react/dist/esm/icons/chevron-left";
+export { ChevronRight } from "lucide-react/dist/esm/icons/chevron-right";
+export { Home } from "lucide-react/dist/esm/icons/home";
+export { BookOpen } from "lucide-react/dist/esm/icons/book-open";
+export { Award } from "lucide-react/dist/esm/icons/award";
+export { Inbox } from "lucide-react/dist/esm/icons/inbox";
+export { Paperclip } from "lucide-react/dist/esm/icons/paperclip";
+export { Search } from "lucide-react/dist/esm/icons/search";
+export { AlertCircle } from "lucide-react/dist/esm/icons/alert-circle";
+export { AlertTriangle } from "lucide-react/dist/esm/icons/alert-triangle";
+export { Zap } from "lucide-react/dist/esm/icons/zap";
+export { Shield } from "lucide-react/dist/esm/icons/shield";
+export { Star } from "lucide-react/dist/esm/icons/star";
+export { Trash } from "lucide-react/dist/esm/icons/trash";
+export { Ghost } from "lucide-react/dist/esm/icons/ghost";
+export { Mailbox } from "lucide-react/dist/esm/icons/mailbox";
+export { Share2 } from "lucide-react/dist/esm/icons/share-2";
+export { MessageCircle } from "lucide-react/dist/esm/icons/message-circle";
+export { Link as LinkIcon } from "lucide-react/dist/esm/icons/link";
+export { Lock } from "lucide-react/dist/esm/icons/lock";
+export { Eye } from "lucide-react/dist/esm/icons/eye";
+export { Database } from "lucide-react/dist/esm/icons/database";
+export { CheckCircle } from "lucide-react/dist/esm/icons/circle-check";
+export { CheckCircle2 } from "lucide-react/dist/esm/icons/circle-check-big";
+export { Code2 } from "lucide-react/dist/esm/icons/code-xml";
+export { Globe } from "lucide-react/dist/esm/icons/globe";
+export { Users } from "lucide-react/dist/esm/icons/users";
+export { Calendar } from "lucide-react/dist/esm/icons/calendar";
+export { Clock } from "lucide-react/dist/esm/icons/clock";
+export { User } from "lucide-react/dist/esm/icons/user";
+export { ArrowLeft } from "lucide-react/dist/esm/icons/arrow-left";
+export { ArrowRight } from "lucide-react/dist/esm/icons/arrow-right";
+export { ArrowUp } from "lucide-react/dist/esm/icons/arrow-up";
+export { Quote } from "lucide-react/dist/esm/icons/quote";
+export { TrendingUp } from "lucide-react/dist/esm/icons/trending-up";
+export { Sparkles } from "lucide-react/dist/esm/icons/sparkles";
+export { Newspaper } from "lucide-react/dist/esm/icons/newspaper";
+export { Microscope } from "lucide-react/dist/esm/icons/microscope";
+export { Gift } from "lucide-react/dist/esm/icons/gift";

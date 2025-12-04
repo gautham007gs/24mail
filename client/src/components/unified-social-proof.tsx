@@ -1,5 +1,10 @@
 import { useRef } from "react";
-import { Shield, Zap, Lock, Eye, Globe, Star } from "lucide-react";
+import { Shield } from "lucide-react/dist/esm/icons/shield";
+import { Zap } from "lucide-react/dist/esm/icons/zap";
+import { Lock } from "lucide-react/dist/esm/icons/lock";
+import { Eye } from "lucide-react/dist/esm/icons/eye";
+import { Globe } from "lucide-react/dist/esm/icons/globe";
+import { Star } from "lucide-react/dist/esm/icons/star";
 import { Card } from "@/components/ui/card";
 import { useTranslation } from "@/hooks/use-translation";
 

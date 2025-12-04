@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { Copy, Check, AtSign, ChevronRight, Mail, ArrowRight } from "lucide-react";
+import { Copy } from "lucide-react/dist/esm/icons/copy";
+import { Check } from "lucide-react/dist/esm/icons/check";
+import { AtSign } from "lucide-react/dist/esm/icons/at-sign";
+import { ChevronRight } from "lucide-react/dist/esm/icons/chevron-right";
+import { Mail } from "lucide-react/dist/esm/icons/mail";
+import { ArrowRight } from "lucide-react/dist/esm/icons/arrow-right";
 
 export function AnimatedDemo() {
   const [step, setStep] = useState<0 | 1 | 2>(0);

@@ -1,5 +1,12 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "lucide-react";
+import { Menu } from "lucide-react/dist/esm/icons/menu";
+import { X } from "lucide-react/dist/esm/icons/x";
+import { ChevronDown } from "lucide-react/dist/esm/icons/chevron-down";
+import { Home } from "lucide-react/dist/esm/icons/home";
+import { BookOpen } from "lucide-react/dist/esm/icons/book-open";
+import { Award } from "lucide-react/dist/esm/icons/award";
+import { AtSign } from "lucide-react/dist/esm/icons/at-sign";
+import { Crown } from "lucide-react/dist/esm/icons/crown";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
