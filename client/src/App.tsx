@@ -2,6 +2,7 @@ import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
 import { Suspense, lazy, useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { initPerformanceTracking, logPerformanceSummary } from "@/lib/web-vitals";
 // Removed unused imports: Toaster, TooltipProvider, LanguageProvider, NotificationProvider, ErrorBoundary
 // Removed unused imports: SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage
 // Removed unused imports: Home, Blog, BlogPost, TermsConditions, PrivacyPolicy, SuccessStories, NotFound
@@ -18,7 +19,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { NotificationProvider } from "@/contexts/notification-context";
 import { LanguageProvider } from "@/contexts/language-context";
-import HomePage from "@/pages/home";
+import HomeOptimized from "@/pages/home-optimized";
 
 // Lazy load secondary pages only
 const BlogPage = lazy(() => import("@/pages/blog"));
@@ -59,7 +60,7 @@ function AppRoutes() {
       <Route path={`/:lang(${supportedLangs})/`}>
         {() => (
           <ErrorBoundary>
-            <HomePage />
+            <HomeOptimized />
           </ErrorBoundary>
         )}
       </Route>
@@ -123,6 +124,10 @@ function AppRoutes() {
 function App() {
   useEffect(() => {
     document.documentElement.classList.add("dark");
+    // Initialize performance tracking
+    initPerformanceTracking();
+    // Log performance summary after 5 seconds
+    logPerformanceSummary();
   }, []);
 
   return (

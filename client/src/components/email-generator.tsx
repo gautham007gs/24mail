@@ -12,12 +12,16 @@ import { useNotifications } from "@/contexts/notification-context";
 import { getRandomMessage } from "@/lib/fun-messages";
 import { shareArticleOn, copyArticleLink } from "@/lib/article-utils";
 import CacheManager from "@/lib/cache";
+import { deferAnalytics } from "@/lib/performance";
 import { type Domain } from "@shared/schema";
 
 const QRCode = lazy(() => import("react-qr-code"));
 
 const triggerConfetti = () => {
-  import("@/lib/confetti").then(m => m.triggerConfetti());
+  // Defer confetti animation to avoid blocking main thread
+  deferAnalytics(() => {
+    import("@/lib/confetti").then(m => m.triggerConfetti());
+  });
 };
 
 interface EmailGeneratorProps {
