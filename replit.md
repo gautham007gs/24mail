@@ -68,6 +68,21 @@ Key performance optimizations implemented for sub-second loading:
 - **API Response Caching**: Domains API cached for 1 hour with `Cache-Control` headers
 - **Build Optimization**: Terser compression with console.log removal, 2-pass compression
 
+#### Lighthouse Audit Results (December 2024 - Development Mode)
+**Desktop:**
+- Performance: 47 | Accessibility: 92 | Best Practices: 100 | SEO: 100
+- FCP: 2.6s | LCP: 4.6s | TBT: 320ms | CLS: 0.011
+
+**Mobile:**
+- Performance: 27 | Accessibility: 92 | Best Practices: 100 | SEO: 100
+- FCP: 14.1s | LCP: 26.0s | TBT: 2,370ms | CLS: 0.008
+
+**Note:** Scores are from development mode. Production build with minification, compression, and CDN would significantly improve performance metrics.
+
+**Cleanup Performed:**
+- Removed unused `cache-utils.ts` (duplicate of `cache.ts`)
+- Removed unused `performance.ts` (no imports found)
+
 ### Backend Architecture
 
 The backend uses Express.js with Node.js and TypeScript, serving as a RESTful API proxy to an external temp mail service. It provides endpoints for domains, inbox contents, and email details. Middleware handles logging, JSON parsing, error handling, and Zod schema validation. Security features include attack detection, progressive IP blocking, rate limiting, and enhanced security headers.
