@@ -24,12 +24,15 @@ export default defineConfig(async (): Promise<UserConfig> => {
         "@": path.resolve(__dirname, "client/src"),
         "@shared": path.resolve(__dirname, "shared"),
         "@assets": path.resolve(__dirname, "attached_assets"),
+        "react": path.resolve(__dirname, "node_modules/react"),
+        "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
       },
-      dedupe: ["react", "react-dom"],
+      dedupe: ["react", "react-dom", "wouter", "@tanstack/react-query"],
     },
 
     optimizeDeps: {
-      include: ["react", "react-dom"],
+      include: ["react", "react-dom", "wouter", "@tanstack/react-query"],
+      force: true,
     },
 
     root: path.resolve(__dirname, "client"),
@@ -74,7 +77,6 @@ export default defineConfig(async (): Promise<UserConfig> => {
               if (id.includes("@radix-ui/react-select")) return "radix-select";
               if (id.includes("@radix-ui")) return "radix-ui";
               if (id.includes("@tanstack/react-query")) return "react-query";
-              if (id.includes("wouter")) return "router";
               if (id.includes("react-qr-code")) return "qr-code";
               if (id.includes("lucide-react")) return "icons";
               if (id.includes("canvas-confetti")) return "confetti";
