@@ -401,7 +401,7 @@ export default function Home() {
             <TrustSection />
 
             {/* How It Works Section */}
-            <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+            <div className="mt-16 md:mt-20 pt-12 md:pt-14 border-t border-border/30 fade-in">
               <HowItWorks />
             </div>
 
