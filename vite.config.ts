@@ -45,7 +45,7 @@ export default defineConfig(async () => {
       cssCodeSplit: true,
       cssMinify: true,
       assetsInlineLimit: 4096,
-      chunkSizeWarningLimit: 500,
+      chunkSizeWarningLimit: 400,
       modulePreload: {
         polyfill: true,
       },
@@ -55,14 +55,36 @@ export default defineConfig(async () => {
           format: "es",
           manualChunks(id) {
             if (id.includes("node_modules")) {
-              if (id.includes("react") || id.includes("react-dom")) {
-                return "vendor";
+              // Core React bundle
+              if (id.includes("react/") || id.includes("react-dom/")) {
+                return "react-core";
               }
-              if (id.includes("@radix-ui") || id.includes("lucide-react")) return "ui";
-              if (id.includes("date-fns") || id.includes("recharts")) return "data";
-              if (id.includes("react-hook-form") || id.includes("react-icons")) return "utils";
-              if (id.includes("react-qr-code") || id.includes("wouter")) return "features";
+              // Radix UI components
+              if (id.includes("@radix-ui/react-toast")) return "radix-toast";
+              if (id.includes("@radix-ui/react-tooltip")) return "radix-tooltip";
+              if (id.includes("@radix-ui/react-dialog")) return "radix-dialog";
+              if (id.includes("@radix-ui/react-select")) return "radix-select";
+              if (id.includes("@radix-ui")) return "radix-ui";
+              // TanStack Query
+              if (id.includes("@tanstack/react-query")) return "react-query";
+              // Router
+              if (id.includes("wouter")) return "router";
+              // QR Code (lazy loaded)
+              if (id.includes("react-qr-code")) return "qr-code";
+              // Icons (should be tree-shaken now)
+              if (id.includes("lucide-react")) return "icons";
+              // Other utilities
+              if (id.includes("date-fns")) return "date-utils";
+              if (id.includes("canvas-confetti")) return "confetti";
+              // Remaining vendor code
               return "vendor";
+            }
+            // Split UI components
+            if (id.includes("/components/ui/")) {
+              const match = id.match(/\/components\/ui\/([^/]+)\.tsx?/);
+              if (match) {
+                return `ui-${match[1]}`;
+              }
             }
           },
           entryFileNames: "assets/[name]-[hash].js",

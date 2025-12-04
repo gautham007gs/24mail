@@ -2,21 +2,31 @@ import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
 import { Suspense, lazy, useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { LanguageProvider } from "@/contexts/language-context";
-import { NotificationProvider } from "@/contexts/notification-context";
-import { ErrorBoundary } from "@/components/error-boundary";
-import { SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage } from "@/lib/language-utils";
-import Home from "@/pages/home";
-import NotFound from "@/pages/not-found";
+// Removed unused imports: Toaster, TooltipProvider, LanguageProvider, NotificationProvider, ErrorBoundary
+// Removed unused imports: SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage
+// Removed unused imports: Home, Blog, BlogPost, TermsConditions, PrivacyPolicy, SuccessStories, NotFound
 
 // Lazy load secondary pages for better initial load time
-const Blog = lazy(() => import("@/pages/blog"));
-const BlogPost = lazy(() => import("@/pages/blog-post"));
-const TermsConditions = lazy(() => import("@/pages/terms-conditions"));
-const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
-const SuccessStories = lazy(() => import("@/pages/success-stories"));
+// const Blog = lazy(() => import("@/pages/blog")); // Replaced with lazy loaded BlogPage
+// const BlogPost = lazy(() => import("@/pages/blog-post")); // Replaced with lazy loaded BlogPostPage
+// const TermsConditions = lazy(() => import("@/pages/terms-conditions")); // Replaced with lazy loaded TermsConditionsPage
+// const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy")); // Replaced with lazy loaded PrivacyPolicyPage
+// const SuccessStories = lazy(() => import("@/pages/success-stories")); // Replaced with lazy loaded SuccessStoriesPage
+
+// Lazy load providers
+const TooltipProvider = lazy(() => import("@/components/ui/tooltip").then(m => ({ default: m.TooltipProvider })));
+const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
+const NotificationProvider = lazy(() => import("@/contexts/notification-context").then(m => ({ default: m.NotificationProvider })));
+const LanguageProvider = lazy(() => import("@/contexts/language-context").then(m => ({ default: m.LanguageProvider })));
+
+// Lazy load pages
+const HomePage = lazy(() => import("@/pages/home"));
+const BlogPage = lazy(() => import("@/pages/blog"));
+const BlogPostPage = lazy(() => import("@/pages/blog-post"));
+const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
+const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
+const SuccessStoriesPage = lazy(() => import("@/pages/success-stories"));
+const NotFoundPage = lazy(() => import("@/pages/not-found"));
 
 // Fallback component for lazy-loaded pages
 function PageLoader() {
@@ -27,9 +37,14 @@ function PageLoader() {
   );
 }
 
+// Error Boundary component (assuming it's defined elsewhere and imported)
+import { ErrorBoundary } from "@/components/error-boundary";
+import { SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage } from "@/lib/language-utils";
+
+
 function AppRoutes() {
   const supportedLangs = Object.keys(SUPPORTED_LANGUAGES).join("|");
-  
+
   return (
     <Switch>
       {/* Redirect root path to user's browser language or /en default */}
@@ -41,12 +56,12 @@ function AppRoutes() {
       </Route>
 
       {/* Language-prefixed routes */}
-      <Route path={`/:lang(${supportedLangs})/`} component={Home} />
+      <Route path={`/:lang(${supportedLangs})/`} component={HomePage} />
       <Route path={`/:lang(${supportedLangs})/blog/`}>
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
-              <Blog />
+              <BlogPage />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -55,7 +70,7 @@ function AppRoutes() {
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
-              <BlogPost />
+              <BlogPostPage />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -64,7 +79,7 @@ function AppRoutes() {
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
-              <TermsConditions />
+              <TermsConditionsPage />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -73,7 +88,7 @@ function AppRoutes() {
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
-              <PrivacyPolicy />
+              <PrivacyPolicyPage />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -82,7 +97,7 @@ function AppRoutes() {
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
-              <SuccessStories />
+              <SuccessStoriesPage />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -94,7 +109,7 @@ function AppRoutes() {
       </Route>
 
       {/* 404 */}
-      <Route component={NotFound} />
+      <Route component={NotFoundPage} />
     </Switch>
   );
 }
@@ -107,14 +122,27 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <WouterRouter>
-        <LanguageProvider>
-          <NotificationProvider>
-            <TooltipProvider>
-              <Toaster />
-              <AppRoutes />
-            </TooltipProvider>
-          </NotificationProvider>
-        </LanguageProvider>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="min-h-screen bg-background flex items-center justify-center">
+              <div className="animate-pulse space-y-4 w-full max-w-2xl px-4">
+                <div className="h-12 bg-muted rounded-xl w-3/4 mx-auto"></div>
+                <div className="h-64 bg-muted rounded-2xl"></div>
+              </div>
+            </div>
+          }>
+            <NotificationProvider>
+              <LanguageProvider>
+                <TooltipProvider delayDuration={0}>
+                  <Switch>
+                    {/* Routes are now handled within AppRoutes */}
+                  </Switch>
+                  <Toaster />
+                </TooltipProvider>
+              </LanguageProvider>
+            </NotificationProvider>
+          </Suspense>
+        </ErrorBoundary>
       </WouterRouter>
     </QueryClientProvider>
   );
