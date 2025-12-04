@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
+import { defineConfig, type UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-export default defineConfig(async () => {
+export default defineConfig(async (): Promise<UserConfig> => {
   const plugins: any[] = [react()];
 
   if (process.env.NODE_ENV !== "production") {
@@ -77,7 +77,6 @@ export default defineConfig(async () => {
               if (id.includes("wouter")) return "router";
               if (id.includes("react-qr-code")) return "qr-code";
               if (id.includes("lucide-react")) return "icons";
-              if (id.includes("date-fns")) return "date-utils";
               if (id.includes("canvas-confetti")) return "confetti";
               return "vendor";
             }
