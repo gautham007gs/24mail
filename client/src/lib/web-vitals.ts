@@ -1,131 +1,64 @@
 /**
- * Performance monitoring and Web Vitals tracking
- * Logs critical performance metrics for debugging and optimization
+ * Web Vitals tracking utility
+ * Measures Core Web Vitals and other performance metrics
  */
 
-export interface PerformanceMetrics {
-  fcp: number | null;        // First Contentful Paint
-  lcp: number | null;        // Largest Contentful Paint
-  cls: number | null;        // Cumulative Layout Shift
-  fid: number | null;        // First Input Delay
-  ttfb: number | null;       // Time to First Byte
-  dcl: number | null;        // DOM Content Loaded
-  loadTime: number | null;   // Full page load time
-}
-
-let metrics: PerformanceMetrics = {
-  fcp: null,
-  lcp: null,
-  cls: null,
-  fid: null,
-  ttfb: null,
-  dcl: null,
-  loadTime: null,
-};
-
-/**
- * Initialize Web Vitals tracking
- */
-export function initPerformanceTracking() {
-  if (typeof window === 'undefined') return;
-
-  // Measure Time to First Byte (TTFB)
-  window.addEventListener('load', () => {
-    const navigationTiming = performance.getEntriesByType('navigation')[0] as any;
-    if (navigationTiming) {
-      metrics.ttfb = navigationTiming.responseStart - navigationTiming.requestStart;
-      metrics.dcl = navigationTiming.domContentLoadedEventEnd - navigationTiming.navigationStart;
-      metrics.loadTime = navigationTiming.loadEventEnd - navigationTiming.navigationStart;
-    }
-  });
-
-  // Measure First Contentful Paint (FCP)
-  if ('PerformanceObserver' in window) {
-    try {
-      const paintObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.name === 'first-contentful-paint') {
-            metrics.fcp = Math.round(entry.startTime);
+export function initPerformanceTracking(): void {
+  if (!('web' in window) || !('vitals' in (window as any).web)) {
+    // Initialize Core Web Vitals monitoring
+    if ('PerformanceObserver' in window) {
+      try {
+        // Monitor Largest Contentful Paint (LCP)
+        const lcpObserver = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          if (lastEntry) {
+            console.debug('[Web Vitals] LCP:', lastEntry.renderTime || lastEntry.loadTime);
           }
-        }
-      });
-      paintObserver.observe({ entryTypes: ['paint'] });
-    } catch (e) {
-      // Silently fail if API not available
-    }
+        });
+        lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
-    // Measure Largest Contentful Paint (LCP)
-    try {
-      const lcpObserver = new PerformanceObserver((list) => {
-        const entries = list.getEntries();
-        const lastEntry = entries[entries.length - 1] as any;
-        metrics.lcp = Math.round(lastEntry.renderTime || lastEntry.loadTime);
-      });
-      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-    } catch (e) {
-      // Silently fail if API not available
-    }
-
-    // Measure Cumulative Layout Shift (CLS)
-    try {
-      let clsValue = 0;
-      const clsObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (!(entry as any).hadRecentInput) {
-            clsValue += (entry as any).value;
+        // Monitor First Input Delay (FID) / Interaction to Next Paint (INP)
+        const fidObserver = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if ('processingDuration' in entry) {
+              console.debug('[Web Vitals] FID/INP:', (entry as any).processingDuration);
+            }
           }
-        }
-        metrics.cls = parseFloat(clsValue.toFixed(3));
-      });
-      clsObserver.observe({ entryTypes: ['layout-shift'] });
-    } catch (e) {
-      // Silently fail if API not available
-    }
+        });
+        fidObserver.observe({ entryTypes: ['first-input', 'event'] });
 
-    // Measure First Input Delay (FID) - deprecated in favor of INP but still useful
-    try {
-      const fidObserver = new PerformanceObserver((list) => {
-        const firstEntry = list.getEntries()[0] as any;
-        metrics.fid = Math.round(firstEntry.processingEnd - firstEntry.startTime);
-      });
-      fidObserver.observe({ entryTypes: ['first-input'] });
-    } catch (e) {
-      // Silently fail if API not available
+        // Monitor Cumulative Layout Shift (CLS)
+        let clsValue = 0;
+        const clsObserver = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (!(entry as any).hadRecentInput) {
+              clsValue += (entry as any).value;
+            }
+          }
+          console.debug('[Web Vitals] CLS:', clsValue);
+        });
+        clsObserver.observe({ entryTypes: ['layout-shift'] });
+      } catch (e) {
+        console.debug('[Web Vitals] PerformanceObserver not fully supported:', e);
+      }
     }
   }
+}
 
-  // Report metrics when user leaves the page
-  if ('sendBeacon' in navigator) {
-    window.addEventListener('beforeunload', () => {
-      const metricsData = JSON.stringify(metrics);
-      // Send to your analytics endpoint
-      // navigator.sendBeacon('/api/metrics', metricsData);
-      console.log('[Performance Metrics]', metrics);
+export function logPerformanceSummary(): void {
+  if ('PerformanceAPI' in window || 'performance' in window) {
+    const perfData = performance.timing;
+    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+    const connectTime = perfData.responseEnd - perfData.requestStart;
+    const renderTime = perfData.domComplete - perfData.domLoading;
+    const domContentLoaded = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+
+    console.debug('[Web Vitals] Performance Summary:', {
+      pageLoadTime: `${pageLoadTime}ms`,
+      connectTime: `${connectTime}ms`,
+      renderTime: `${renderTime}ms`,
+      domContentLoaded: `${domContentLoaded}ms`,
     });
   }
-}
-
-/**
- * Get current metrics
- */
-export function getMetrics(): PerformanceMetrics {
-  return { ...metrics };
-}
-
-/**
- * Log performance summary to console
- */
-export function logPerformanceSummary() {
-  if (typeof window === 'undefined') return;
-
-  setTimeout(() => {
-    console.log('%c⚡ Performance Summary', 'color: #00d4ff; font-weight: bold; font-size: 14px;');
-    console.log(`  FCP: ${metrics.fcp}ms`);
-    console.log(`  LCP: ${metrics.lcp}ms`);
-    console.log(`  CLS: ${metrics.cls}`);
-    console.log(`  FID: ${metrics.fid}ms`);
-    console.log(`  TTFB: ${metrics.ttfb}ms`);
-    console.log(`  DCL: ${metrics.dcl}ms`);
-    console.log(`  Load Time: ${metrics.loadTime}ms`);
-  }, 5000);
 }
