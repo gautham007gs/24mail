@@ -39,8 +39,8 @@ app.use((req, res, next) => {
   // CSP: Development mode allows inline scripts for React and Vite HMR
   const isDev = process.env.NODE_ENV === "development";
   if (!isDev) {
-    // Production CSP is strict
-    const prodCSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none';";
+    // Production CSP - allows Vite's module preloads and inline handlers
+    const prodCSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none';";
     res.set("Content-Security-Policy", prodCSP);
   }
   
