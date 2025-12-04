@@ -11,7 +11,7 @@ export function createLazyRoute<T extends React.ComponentType<any>>(
 ) {
   const Component = lazy(importFunc);
   
-  return (props: Parameters<T>[0]) => (
+  return (props: any) => (
     <Suspense fallback={fallback || <RouteSkeleton />}>
       <Component {...props} />
     </Suspense>

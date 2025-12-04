@@ -1,4 +1,6 @@
 // Service Worker for PWA functionality
+declare const self: any;
+
 const CACHE_NAME = "tempmail-v1";
 const URLS_TO_CACHE = [
   "/",
@@ -7,9 +9,9 @@ const URLS_TO_CACHE = [
 ];
 
 // Install event - cache essential files
-self.addEventListener("install", (event: ExtendableEvent) => {
+self.addEventListener("install", (event: any) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(CACHE_NAME).then((cache: any) => {
       return cache.addAll(URLS_TO_CACHE);
     })
   );
@@ -17,11 +19,11 @@ self.addEventListener("install", (event: ExtendableEvent) => {
 });
 
 // Activate event - clean up old caches
-self.addEventListener("activate", (event: ExtendableEvent) => {
+self.addEventListener("activate", (event: any) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((cacheNames: any) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
+        cacheNames.map((cacheName: any) => {
           if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
@@ -33,7 +35,7 @@ self.addEventListener("activate", (event: ExtendableEvent) => {
 });
 
 // Fetch event - cache-first strategy for static assets, network-first for API
-self.addEventListener("fetch", (event: FetchEvent) => {
+self.addEventListener("fetch", (event: any) => {
   const { request } = event;
   const url = new URL(request.url);
 

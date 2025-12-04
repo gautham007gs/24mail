@@ -101,7 +101,7 @@ export function serveStatic(app: Express) {
     } catch (err) {
       // ignore and let express static handle the file
       // eslint-disable-next-line no-console
-      console.warn('precompressed middleware error', err?.message || err);
+      console.warn('precompressed middleware error', (err as any)?.message || err);
     }
 
     return next();

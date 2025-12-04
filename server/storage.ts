@@ -1,5 +1,9 @@
-import { type User, type InsertUser, type Referral } from "@shared/schema";
+import { type Referral } from "@shared/schema";
 import { randomUUID } from "crypto";
+
+// User types (stub - not currently used)
+type User = any;
+type InsertUser = any;
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;

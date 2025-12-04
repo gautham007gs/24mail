@@ -31,7 +31,7 @@ export function initPerformanceTracking() {
 
   // Measure Time to First Byte (TTFB)
   window.addEventListener('load', () => {
-    const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    const navigationTiming = performance.getEntriesByType('navigation')[0] as any;
     if (navigationTiming) {
       metrics.ttfb = navigationTiming.responseStart - navigationTiming.requestStart;
       metrics.dcl = navigationTiming.domContentLoadedEventEnd - navigationTiming.navigationStart;
@@ -58,7 +58,7 @@ export function initPerformanceTracking() {
     try {
       const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        const lastEntry = entries[entries.length - 1];
+        const lastEntry = entries[entries.length - 1] as any;
         metrics.lcp = Math.round(lastEntry.renderTime || lastEntry.loadTime);
       });
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
@@ -85,7 +85,7 @@ export function initPerformanceTracking() {
     // Measure First Input Delay (FID) - deprecated in favor of INP but still useful
     try {
       const fidObserver = new PerformanceObserver((list) => {
-        const firstEntry = list.getEntries()[0];
+        const firstEntry = list.getEntries()[0] as any;
         metrics.fid = Math.round(firstEntry.processingEnd - firstEntry.startTime);
       });
       fidObserver.observe({ entryTypes: ['first-input'] });
