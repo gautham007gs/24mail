@@ -46,6 +46,18 @@ Design Philosophy: Extreme minimalism - Aggressive iterative simplification focu
 
 The frontend is built with React and TypeScript, utilizing Vite for development and `shadcn/ui` (Radix UI and Tailwind CSS) for components. Design principles adhere to Apple HIG, emphasizing accessibility, animations, smooth interactions, and a Gen-Z aesthetic. TanStack Query manages server state, and Wouter handles client-side routing, including URL-based language routing (e.g., `/:lang/`). Key features include an `EmailGenerator`, `InboxList`, and `InlineEmailReader`. The application employs aggressive bundle optimization (code splitting, lazy loading, tree-shaking) and comprehensive caching strategies. A hybrid homepage loads critical elements instantly. Full dark mode support with auto-switch based on system preference and a 3-state theme toggle. Email viewing defaults to HTML, with all links opening in new tabs. Mobile gestures include swipe actions and long-press for multi-select. Typography is managed by a premium system with defined classes for display, headings, body, and captions, with adaptive sizing for mobile.
 
+### Performance Optimizations
+
+Key performance optimizations implemented for sub-second loading:
+- **Inline Skeleton Loading**: Critical CSS and HTML skeleton in index.html for instant first paint before JavaScript loads
+- **Font Loading**: Preconnect, preload, and font-display swap for non-blocking font loading
+- **Layout Shift Prevention**: Fixed min-height on email-generator Card (280px mobile, 320px desktop) and action button containers
+- **Bundle Optimization**: Production build is ~145KB gzipped total JS with proper tree-shaking
+- **Lazy Loading**: QR code, confetti, and below-fold sections loaded on demand
+- **Relative Time Utility**: Custom `relative-time.ts` using native Intl.RelativeTimeFormat instead of date-fns (saves ~178KB)
+- **API Preloading**: Preconnect to api.barid.site and preload /api/domains for faster data fetching
+- **Init Loader Cleanup**: Skeleton removed on React hydration in main.tsx
+
 ### Backend Architecture
 
 The backend uses Express.js with Node.js and TypeScript, serving as a RESTful API proxy to an external temp mail service. It provides endpoints for domains, inbox contents, and email details. Middleware handles logging, JSON parsing, error handling, and Zod schema validation. Security features include attack detection, progressive IP blocking, rate limiting, and enhanced security headers.
