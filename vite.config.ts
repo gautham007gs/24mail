@@ -107,7 +107,7 @@ export default defineConfig(async ({ mode }) => {
           hoistTransitiveImports: false,
         },
         treeshake: {
-          moduleSideEffects: true,
+          moduleSideEffects: false,
           propertyReadSideEffects: false,
           tryCatchDeoptimization: false,
         },

@@ -36,6 +36,9 @@ app.use((req, res, next) => {
   res.set("Access-Control-Allow-Headers", "Content-Type");
   res.set("Access-Control-Max-Age", "3600");
   
+  // Performance: Enable compression for faster transfer
+  res.set("Vary", "Accept-Encoding");
+  
   // CSP: Development mode allows inline scripts for React and Vite HMR
   const isDev = process.env.NODE_ENV === "development";
     if (!isDev) {
