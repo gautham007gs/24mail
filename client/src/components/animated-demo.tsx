@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Copy, Check, AtSign, ChevronRight, Mail, ArrowRight } from "@/lib/icons";
 
 export function AnimatedDemo() {
