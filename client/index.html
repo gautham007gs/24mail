@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
@@ -67,6 +67,10 @@
       .container { max-width: 72rem; margin: 0 auto; }
       .text-center { text-align: center; }
       .mx-auto { margin-left: auto; margin-right: auto; }
+      .init-skeleton { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 1rem; }
+      .init-skeleton-text { height: 3rem; width: 80%; max-width: 500px; background: linear-gradient(90deg, hsl(var(--card)) 25%, hsl(var(--border)) 50%, hsl(var(--card)) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 0.5rem; }
+      .init-skeleton-card { height: 200px; width: 90%; max-width: 600px; background: linear-gradient(90deg, hsl(var(--card)) 25%, hsl(var(--border)) 50%, hsl(var(--card)) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 1rem; }
+      @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
     </style>
     
     <!-- Preload main script for faster execution -->
@@ -84,7 +88,12 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="init-skeleton" id="init-loader">
+        <div class="init-skeleton-text"></div>
+        <div class="init-skeleton-card"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

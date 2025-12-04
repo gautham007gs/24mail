@@ -278,8 +278,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card - Increased Size 15% */}
-      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
+      {/* Main Card - Increased Size 15% - Fixed minimum height to prevent CLS */}
+      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30 min-h-[280px] sm:min-h-[320px]" data-testid="email-generator-card">
         {/* Header */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-2">
           Your Temporary Email
@@ -338,8 +338,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
 
-        {/* Action Buttons Row - Larger Buttons & Icons */}
-        <div className="mt-8 sm:mt-10 mb-10">
+        {/* Action Buttons Row - Larger Buttons & Icons - Fixed height to prevent CLS */}
+        <div className="mt-8 sm:mt-10 mb-10 min-h-[60px]">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
           <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
