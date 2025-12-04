@@ -13,14 +13,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 // const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy")); // Replaced with lazy loaded PrivacyPolicyPage
 // const SuccessStories = lazy(() => import("@/pages/success-stories")); // Replaced with lazy loaded SuccessStoriesPage
 
-// Load critical providers eagerly to prevent blank screen
+// Load critical providers and HomePage eagerly to prevent blank screen
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { NotificationProvider } from "@/contexts/notification-context";
 import { LanguageProvider } from "@/contexts/language-context";
+import HomePage from "@/pages/home";
 
-// Lazy load pages
-const HomePage = lazy(() => import("@/pages/home"));
+// Lazy load secondary pages only
 const BlogPage = lazy(() => import("@/pages/blog"));
 const BlogPostPage = lazy(() => import("@/pages/blog-post"));
 const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
@@ -56,7 +56,13 @@ function AppRoutes() {
       </Route>
 
       {/* Language-prefixed routes */}
-      <Route path={`/:lang(${supportedLangs})/`} component={HomePage} />
+      <Route path={`/:lang(${supportedLangs})/`}>
+        {() => (
+          <ErrorBoundary>
+            <HomePage />
+          </ErrorBoundary>
+        )}
+      </Route>
       <Route path={`/:lang(${supportedLangs})/blog/`}>
         {() => (
           <ErrorBoundary>

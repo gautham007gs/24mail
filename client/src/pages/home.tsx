@@ -396,7 +396,7 @@ export default function Home() {
           </div>
 
           {/* Below-fold sections - lazy loaded for faster initial render */}
-          <Suspense fallback={<div className="h-32" />}>
+          <Suspense fallback={<div className="h-32 bg-transparent" />}>
             {/* Trust Section - Why You Can Trust Us */}
             <TrustSection />
 
@@ -415,14 +415,14 @@ export default function Home() {
       </main>
 
       {/* FAQ Section - Full Width */}
-      <Suspense fallback={<div className="h-32" />}>
+      <Suspense fallback={<div className="h-32 bg-transparent" />}>
         <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
           <FAQAccordion />
         </div>
       </Suspense>
 
       {/* Footer - Lazy loaded */}
-      <Suspense fallback={<div className="h-32 bg-background" />}>
+      <Suspense fallback={<div className="h-32 bg-transparent" />}>
         <Footer />
       </Suspense>
     </div>
