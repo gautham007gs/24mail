@@ -134,9 +134,17 @@ export function UnifiedSocialProof() {
               className="group relative p-6 border border-border/40 bg-gradient-to-br from-card/80 to-card/40 hover:border-emerald-500/30 transition-colors duration-300 overflow-visible"
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-4" aria-label={`Rating: ${testimonial.rating} out of 5 stars`}>
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-orange-400 fill-orange-400" aria-hidden="true" />
+              <div className="flex gap-1 mb-4" role="img" aria-label={`Rating: ${testimonial.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-4 w-4 ${
+                      i < testimonial.rating
+                        ? "fill-amber-400 text-amber-400"
+                        : "fill-muted text-muted"
+                    }`}
+                    aria-hidden="true"
+                  />
                 ))}
               </div>
 

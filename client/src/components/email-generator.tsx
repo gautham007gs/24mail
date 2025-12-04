@@ -346,7 +346,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-sm sm:text-base font-semibold py-3 px-5"
+              className="text-sm sm:text-base font-bold py-3 px-5"
               aria-label="Copy email address to clipboard"
             >
               <Copy className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />

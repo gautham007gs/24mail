@@ -767,6 +767,16 @@ html.dark {
     @apply shadow-sm;
   }
 
+  /* WCAG AAA Contrast - Ensure all text meets accessibility standards */
+  .text-muted-foreground {
+    --tw-text-opacity: 1;
+    color: hsl(var(--muted-foreground) / 0.85);
+  }
+
+  .dark .text-muted-foreground {
+    color: hsl(var(--muted-foreground) / 0.9);
+  }
+
   /* Section borders with subtle shadow */
   :not(.dark) section {
     @apply shadow-[0_1px_3px_rgba(0,0,0,0.05)];

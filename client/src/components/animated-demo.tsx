@@ -69,7 +69,7 @@ export function AnimatedDemo() {
               <p className={`text-base md:text-lg font-bold transition-colors ${step === 0 ? "text-emerald-400" : "text-foreground"}`}>
                 Generate
               </p>
-              <p className="text-xs md:text-sm text-muted-foreground font-mono mt-1">user@barid.site</p>
+              <p className="text-xs md:text-sm text-foreground/80 font-mono mt-1 font-semibold">user@barid.site</p>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export function AnimatedDemo() {
                 <Mail className="w-6 h-6 text-orange-400" />
               </div>
             )}
-            
+
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 2 
                 ? "bg-emerald-500/20 border-emerald-400" 
@@ -142,7 +142,9 @@ export function AnimatedDemo() {
               <p className={`text-base md:text-lg font-bold transition-colors ${step === 2 ? "text-emerald-400" : "text-foreground"}`}>
                 Receive
               </p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-1">In your inbox</p>
+              <p className="text-xs md:text-sm text-foreground/80 mt-1 font-semibold">
+                In your inbox
+              </p>
             </div>
           </div>
         </div>

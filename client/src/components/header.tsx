@@ -53,17 +53,17 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="flex items-center justify-between h-14">
             {/* Logo + Desktop Navigation */}
-            <Link 
-              href={getLocalizedLink("/")} 
-              className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md" 
+            <Link
+              href={getLocalizedLink("/")}
+              className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
               data-testid="link-home"
             >
               <div className="flex items-center justify-center flex-shrink-0">
-                <img 
-                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
-                  src="/logo-32.png?v=2" 
-                  alt="Burner Email" 
-                  className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent" 
+                <img
+                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x"
+                  src="/logo-32.png?v=2"
+                  alt="Burner Email"
+                  className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent"
                 />
               </div>
               <span className="text-base md:text-lg font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
@@ -170,8 +170,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
 
           {/* Mobile Navigation */}
           {isOpen && (
-            <nav 
-              className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe" 
+            <nav
+              className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-sm absolute left-0 right-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto z-50 animate-in slide-in-from-top duration-300 w-full pb-safe"
               id="mobile-nav"
             >
               <div className="py-2.5 px-3 space-y-1">
