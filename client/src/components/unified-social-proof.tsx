@@ -74,6 +74,7 @@ export function UnifiedSocialProof() {
             <Card
               key={idx}
               className="group relative p-6 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 transition-colors duration-300 overflow-visible"
+              style={{ minHeight: '200px' }}
             >
               <div className="space-y-4">
                 {/* Icon - Simplified without excessive glow */}

@@ -98,7 +98,7 @@ export function TrustSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
-            
+
             return (
               <div key={index} className="group relative">
                 {/* Step Number */}
@@ -112,7 +112,7 @@ export function TrustSection() {
 
                 {/* Card */}
                 <Card 
-                  className="relative group overflow-visible transition-all duration-300 h-full p-6 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80 hover:shadow-md hover:-translate-y-0.5"
+                  className="group relative overflow-visible transition-all duration-300 h-full p-6 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80 hover:shadow-md hover:-translate-y-0.5"
                 >
                   <div className="flex flex-col gap-5 h-full">
                     {/* Icon Container - Simplified */}
@@ -154,7 +154,7 @@ export function TrustSection() {
           </p>
           <p className="text-sm text-muted-foreground">{t("trust.standardsDesc")}</p>
         </div>
-        
+
         {/* Mobile: Horizontal Scroll with snap */}
         <div className="md:hidden overflow-x-auto scrollbar-hide scroll-snap-x scroll-peek -mx-4 px-4 pb-4">
           <div className="flex gap-4 min-w-max">
@@ -184,6 +184,7 @@ export function TrustSection() {
               <Card
                 key={index}
                 className="group relative p-7 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
+                style={{ minHeight: '280px' }}
               >
                 <div className="mb-4 p-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
                   <Icon className="h-8 w-8 text-emerald-400" aria-hidden="true" />

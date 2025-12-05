@@ -12,6 +12,7 @@ const Card = React.forwardRef<
       "shadcn-card rounded-xl border bg-card border-card-border text-card-foreground shadow-sm",
       className
     )}
+    style={{ contain: 'layout' }}
     {...props}
   />
 ));

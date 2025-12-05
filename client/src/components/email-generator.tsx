@@ -282,15 +282,15 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card - Increased Size 15% - Fixed minimum height to prevent CLS */}
-      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30 min-h-[380px] sm:min-h-[420px]" data-testid="email-generator-card">
+      {/* Main Card - Fixed dimensions to prevent CLS */}
+      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30" style={{ minHeight: '480px', maxHeight: '480px' }} data-testid="email-generator-card">
         {/* Header */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-2">
           Your Temporary Email
         </h2>
 
-        {/* Email Display Box */}
-        <div className="card-flame-edge p-5 sm:p-7 mt-5">
+        {/* Email Display Box - Fixed height to prevent CLS */}
+        <div className="card-flame-edge p-5 sm:p-7 mt-5" style={{ minHeight: '140px' }}>
           {/* Email with Inline Action Buttons */}
           <div className="flex items-start gap-3 sm:gap-4 mb-4">
             {/* Email Address - Larger */}
@@ -342,8 +342,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
 
-        {/* Action Buttons Row - Larger Buttons & Icons - Fixed height to prevent CLS */}
-        <div className="mt-8 sm:mt-10 mb-10 min-h-[60px]">
+        {/* Action Buttons Row - Fixed height to prevent CLS */}
+        <div className="mt-8 sm:mt-10 mb-10" style={{ height: '60px' }}>
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
           <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
             <Button

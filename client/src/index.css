@@ -140,15 +140,18 @@
   body {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     text-rendering: optimizeSpeed;
+    font-display: swap;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     font-weight: 600;
+    font-display: swap;
   }
   
   code, pre, .font-mono {
     font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", monospace;
+    font-display: swap;
   }
 }
 
