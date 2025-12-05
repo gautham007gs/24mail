@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { initPerformanceTracking, logPerformanceSummary } from "@/lib/web-vitals";
@@ -122,13 +122,35 @@ function AppRoutes() {
 }
 
 function App() {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    // Ensure page theme class is set early
     document.documentElement.classList.add("dark");
+
     // Initialize performance tracking
     initPerformanceTracking();
-    // Log performance summary after 5 seconds
+    // Log performance summary
     logPerformanceSummary();
+
+    // Mark that the app has mounted. React will update the UI and
+    // remove the static init loader as part of the normal render cycle.
+    setMounted(true);
   }, []);
+
+  const hasInitLoader = typeof document !== 'undefined' && !!document.getElementById('init-loader');
+
+  // If there's a static `#init-loader` present (the build-time skeleton),
+  // render the same markup on the first render so React can attach
+  // without replacing the DOM. After mount the real app UI is rendered.
+  if (!mounted && hasInitLoader) {
+    return (
+      <div className="init-skeleton" id="init-loader">
+        <div className="init-skeleton-text" />
+        <div className="init-skeleton-card" />
+      </div>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

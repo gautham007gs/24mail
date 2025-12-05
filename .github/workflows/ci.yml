@@ -1,0 +1,52 @@
+name: CI - Build & Headless Smoke Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build
+        run: npm run build
+
+      - name: Start server
+        run: |
+          PORT=5005 node dist/index.js &
+          echo $! > /tmp/prod.pid
+          # wait for the server to start
+          for i in {1..30}; do
+            if curl -sSf http://127.0.0.1:5005/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Run headless smoke test
+        run: node scripts/headless-test.mjs
+
+      - name: Upload screenshot
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: headless-screenshot
+          path: headless-screenshot.png
