@@ -11,12 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    
+
     <!-- SEO Meta Tags -->
     <title>Burner Email - Free Temporary Email & Disposable Mail | Secure Private Email Service</title>
     <meta name="description" content="Create free burner email, temp mail, and disposable email addresses instantly. Get secure private email without signup. Protect your privacy with Burner Email - the best temporary email service for anonymous, spam-free inbox." />
     <meta name="keywords" content="burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, email privacy, spam prevention, temporary mail, private mail, secure mail" />
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://burneremail.email/" />
@@ -27,46 +27,62 @@
     <meta property="og:image:height" content="256" />
     <meta property="og:site_name" content="Burner Email" />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://burneremail.email/" />
     <meta property="twitter:title" content="Burner Email - Free Temporary Email & Temp Mail" />
     <meta property="twitter:description" content="Get free burner email, temp mail, and disposable email instantly. No signup needed. Secure private email for spam prevention." />
     <meta property="twitter:image" content="/logo-256.png" />
-    
+
     <!-- Additional Meta Tags -->
     <meta name="author" content="Burner Email" />
     <meta name="copyright" content="2025 Burner Email" />
     <meta name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
     <meta name="distribution" content="global" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://burneremail.email/" />
     <link rel="preconnect" href="https://api.barid.site" crossorigin>
-    
+
     <!-- Preload critical API for faster data loading -->
     <link rel="preload" href="/api/domains" as="fetch" crossorigin="use-credentials">
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/logo-64.png" sizes="64x64" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="512x512" />
-    
+
     <!-- Preconnect to Google Fonts with font-display swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Critical inline styles for fastest first paint - covers above-fold content -->
     <style>
-      :root { --background: 120 100% 98%; --foreground: 210 7% 11%; --primary: 141 61% 52%; --card: 120 100% 97%; --muted-foreground: 210 5% 45%; --border: 210 10% 90%; --accent: 141 70% 45%; }
-      .dark { --background: 141 76% 5%; --foreground: 127 48% 86%; --primary: 141 100% 60%; --card: 141 45% 8%; --muted-foreground: 141 10% 60%; --border: 141 20% 15%; --accent: 141 80% 50%; }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
       body { font-family: system-ui, -apple-system, sans-serif; background-color: hsl(var(--background)); color: hsl(var(--foreground)); line-height: 1.6; }
       #root { display: flex; flex-direction: column; min-height: 100vh; }
-      .text-display { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-      .text-body-lg { font-size: 1.125rem; line-height: 1.75; }
+      .text-display {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        background: linear-gradient(to right, #ff6b35, #f7931e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .text-body-lg {
+        font-size: 1.125rem;
+        line-height: 1.75;
+      }
       header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid hsl(var(--border)); position: sticky; top: 0; z-index: 50; background: hsl(var(--background) / 0.95); backdrop-filter: blur(8px); }
       main { flex: 1; padding: 1.5rem 1rem; }
       .container { max-width: 72rem; margin: 0 auto; }
@@ -77,21 +93,21 @@
       .init-skeleton-card { height: 200px; width: 90%; max-width: 600px; background: linear-gradient(90deg, hsl(var(--card)) 25%, hsl(var(--border)) 50%, hsl(var(--card)) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 1rem; }
       @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
     </style>
-    
+
     <!-- Main script (Vite will handle modulepreload during build) -->
     <link rel="modulepreload" href="/assets/index-CH0GUWSo.css">
     <link rel="modulepreload" href="/assets/index-Byod93Q7.js">
     <!-- DNS prefetch for faster resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    
+
     <!-- Modern font pair: Inter (headings) + JetBrains Mono (email) - Non-blocking load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    
+
     <!-- Resource hints for faster third-party connections -->
     <link rel="dns-prefetch" href="https://api.barid.site">
     <link rel="preconnect" href="https://api.barid.site" crossorigin>

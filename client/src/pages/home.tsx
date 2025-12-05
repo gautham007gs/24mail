@@ -14,11 +14,25 @@ import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
 
 // Lazy load below-fold sections for faster initial render
-const HowItWorks = lazy(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
-const TrustSection = lazy(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
-const UnifiedSocialProof = lazy(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
-const FAQAccordion = lazy(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
-const Footer = lazy(() => import("@/components/footer").then(m => ({ default: m.Footer })));
+// Import functions return promises - delay import until after initial paint
+const lazyWithDelay = (importFunc: () => Promise<any>) => {
+  return lazy(() => {
+    return new Promise((resolve) => {
+      // Delay import until after browser is idle
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => resolve(importFunc()));
+      } else {
+        setTimeout(() => resolve(importFunc()), 100);
+      }
+    });
+  });
+};
+
+const HowItWorks = lazyWithDelay(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
+const TrustSection = lazyWithDelay(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
+const UnifiedSocialProof = lazyWithDelay(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
+const FAQAccordion = lazyWithDelay(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
+const Footer = lazyWithDelay(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 
 // Helper function to generate a random username
 function generateRandomUsername(): string {
@@ -337,16 +351,16 @@ export default function Home() {
           </div>
           {/* Hero Section - Above the Fold */}
           <div className="relative text-center mb-8 md:mb-12 space-y-5">
-            {/* Subtle gradient glow background */}
-            <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
-            </div>
             <h1 className="text-display text-foreground">
               {t("hero.title")}
             </h1>
             <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
               {t("hero.subtitle")}
             </p>
+            {/* Subtle gradient glow background - loaded after text */}
+            <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
+            </div>
             <div className="flex flex-col items-center gap-4 pt-3">
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
                 <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-free">
