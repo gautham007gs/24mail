@@ -556,7 +556,7 @@ html.dark {
   --secondary: 120 40% 90%;
   --secondary-foreground: 210 7% 11%;
   --muted: 120 30% 92%;
-  --muted-foreground: 210 10% 38%;
+  --muted-foreground: 210 12% 32%;
   --tertiary-foreground: 210 7% 55%;
   --accent: 18 100% 60%;
   --accent-foreground: 0 0% 100%;
@@ -644,7 +644,7 @@ html.dark {
   --secondary: 0 0% 22%;
   --secondary-foreground: 0 0% 93%;
   --muted: 0 0% 20%;
-  --muted-foreground: 0 0% 78%;
+  --muted-foreground: 0 0% 82%;
   --tertiary-foreground: 0 0% 68%;
   --accent: 15 85% 50%;
   --accent-foreground: 0 0% 100%;
@@ -1474,21 +1474,26 @@ html.dark {
     }
   }
 
-  /* Skip to main content link for keyboard users */
+  /* Skip to main content link for keyboard users - WCAG AAA compliant */
   .skip-to-main {
     position: absolute;
-    top: -40px;
+    top: -60px;
     left: 0;
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
-    padding: 8px;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    padding: 12px 16px;
     text-decoration: none;
-    z-index: 100;
-    border-radius: 0 0 4px 0;
+    z-index: 9999;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .skip-to-main:focus {
     top: 0;
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 2px;
   }
 
   /* Aria-live region for screen readers - announce new emails */

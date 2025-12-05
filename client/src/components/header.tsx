@@ -59,12 +59,20 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
               data-testid="link-home"
             >
               <div className="flex items-center justify-center flex-shrink-0">
-                <img
-                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x"
-                  src="/logo-32.png?v=2"
-                  alt="Burner Email"
-                  className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent"
-                />
+                <picture>
+                  <source 
+                    type="image/webp" 
+                    srcSet="/logo-32.webp 1x, /logo-64.webp 2x"
+                  />
+                  <img
+                    srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x"
+                    src="/logo-32.png?v=2"
+                    alt="Burner Email"
+                    className="h-10 md:h-11 w-10 md:w-11 flex-shrink-0 object-contain logo-transparent"
+                    width="40"
+                    height="40"
+                  />
+                </picture>
               </div>
               <span className="text-base md:text-lg font-black tracking-tight leading-none hidden sm:inline" data-testid="text-app-title">
                 BURNER EMAIL

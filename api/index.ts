@@ -148,6 +148,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const url = req.url || '';
   const method = req.method || 'GET';
 
+  // CORS headers for Vercel deployment
+  const origin = req.headers.origin || '';
+  const allowedOrigins = [
+    'https://24mail7.vercel.app',
+    'https://burneremail.io',
+    'http://localhost:5000',
+    'http://localhost:3000',
+  ];
+  
+  // Allow all vercel.app subdomains and replit domains
+  const isAllowedOrigin = allowedOrigins.includes(origin) || 
+    origin.endsWith('.vercel.app') || 
+    origin.endsWith('.replit.dev') ||
+    origin.endsWith('.replit.app') ||
+    origin.endsWith('.cloudworkstations.dev');
+  
+  if (isAllowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Max-Age', '86400');
+
+  // Handle preflight OPTIONS requests
+  if (method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   const queryString = JSON.stringify([req.query, req.body]);
   if (checkForAttack(queryString, ip)) {
     return res.status(403).json({ error: getRandomFunnyMessage() });

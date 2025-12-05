@@ -249,20 +249,22 @@ export function TestimonialsCarousel() {
             <ChevronLeft className="h-5 w-5" />
           </Button>
 
-          <div className="flex gap-2 justify-center" role="group" aria-label="Testimonial selector">
+          <div className="flex gap-1 justify-center" role="group" aria-label="Testimonial selector">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                className={`transition-all duration-300 rounded-full ${
-                  idx === current 
-                    ? 'bg-foreground/60 w-3 h-3' 
-                    : 'bg-foreground/20 w-2 h-2'
-                }`}
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 data-testid={`dot-${idx}`}
                 aria-label={`Go to testimonial ${idx + 1}`}
                 aria-current={idx === current ? "page" : "false"}
-              />
+              >
+                <span className={`block transition-all duration-300 rounded-full ${
+                  idx === current 
+                    ? 'bg-foreground w-3 h-3' 
+                    : 'bg-foreground/40 w-2 h-2'
+                }`} />
+              </button>
             ))}
           </div>
 

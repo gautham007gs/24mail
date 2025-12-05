@@ -36,12 +36,20 @@ export function Footer() {
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-5">
               <div className="flex items-center justify-center">
-                <img 
-                  srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
-                  src="/logo-32.png?v=2" 
-                  alt="Burner Email" 
-                  className="h-12 w-12 flex-shrink-0 object-contain logo-transparent" 
-                />
+                <picture>
+                  <source 
+                    type="image/webp" 
+                    srcSet="/logo-32.webp 1x, /logo-64.webp 2x"
+                  />
+                  <img 
+                    srcSet="/logo-32.png?v=2 1x, /logo-64.png?v=2 2x" 
+                    src="/logo-32.png?v=2" 
+                    alt="Burner Email" 
+                    className="h-12 w-12 flex-shrink-0 object-contain logo-transparent"
+                    width="48"
+                    height="48"
+                  />
+                </picture>
               </div>
               <h3 className="font-bold text-lg md:text-xl leading-none">Burner Email</h3>
             </div>
