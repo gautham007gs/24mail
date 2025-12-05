@@ -126,9 +126,7 @@ export function TrustSection() {
                         {item.title}
                       </h3>
 
-                      <p className="text-sm md:text-base leading-relaxed mb-4 text-muted-foreground">
-                        {item.subtitle}
-                      </p>
+                      <p className="text-xs md:text-sm text-foreground/90 mt-1">{item.subtitle}</p>
 
                       {/* Details */}
                       <div className="flex items-start gap-2 pt-3 border-t border-border/20">

@@ -190,12 +190,14 @@ export function AnimatedDemo() {
               key={i}
               onClick={() => setStep(i as 0 | 1 | 2)}
               aria-label={`Go to step ${i + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              className={`min-h-[44px] min-w-[44px] p-2 flex items-center justify-center focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`}
+            >
+              <span className={`h-3 rounded-full transition-all duration-300 ${
                 i === step
                   ? "w-10 bg-emerald-400"
-                  : "w-2.5 bg-emerald-500/30 hover:bg-emerald-500/50"
-              }`}
-            />
+                  : "w-3 bg-emerald-500/30 hover:bg-emerald-500/50"
+              }`} />
+            </button>
           ))}
         </div>
 
