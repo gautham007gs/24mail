@@ -351,7 +351,13 @@ export default function Home() {
           </div>
           {/* Hero Section - Above the Fold */}
           <div className="relative text-center mb-8 md:mb-12 space-y-5">
-            <h1 className="text-display font-black tracking-tight !text-foreground" style={{ color: 'hsl(var(--foreground))' }}>
+            <h1 className="font-black tracking-tight" style={{ 
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: 800,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: '#FFFFFF'
+            }}>
               {t("hero.title")}
             </h1>
             <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">

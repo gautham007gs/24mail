@@ -1044,7 +1044,6 @@ html.dark {
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: hsl(var(--foreground));
   }
 
   /* Heading Large - Major Section Titles */
