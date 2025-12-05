@@ -83,7 +83,6 @@ export default defineConfig(async ({ mode }) => {
               // dependency issues during module initialization.
               // if (id.includes("react-qr-code")) return "qr-code";
               if (id.includes("lucide-react")) return "icons";
-              if (id.includes("date-fns")) return "date-utils";
               if (id.includes("canvas-confetti")) return "confetti";
               return "vendor";
             }

@@ -72,49 +72,13 @@ export function serveStatic(app: Express) {
     );
   }
 
-  // Serve precompressed assets when available (Brotli or gzip) to reduce bytes over the wire.
-  app.use((req, res, next) => {
-    // Only attempt for static asset requests
-    if (!req.path.match(/\.(js|css|json|wasm|svg|png|jpg|jpeg|gif|webp|avif|woff2?|map)$/i)) return next();
-
-    const accept = (req.headers['accept-encoding'] || '') as string;
-    const filePath = path.join(distPath, req.path.replace(/^\//, ''));
-
-    try {
-      // prefer Brotli
-      if (accept.includes('br') && fs.existsSync(filePath + '.br')) {
-        res.set('Content-Encoding', 'br');
-        res.set('Vary', 'Accept-Encoding');
-        const ext = path.extname(filePath) || '';
-        if (ext) res.type(ext);
-        return res.sendFile(filePath + '.br');
-      }
-
-      // fallback to gzip
-      if (accept.includes('gzip') && fs.existsSync(filePath + '.gz')) {
-        res.set('Content-Encoding', 'gzip');
-        res.set('Vary', 'Accept-Encoding');
-        const ext = path.extname(filePath) || '';
-        if (ext) res.type(ext);
-        return res.sendFile(filePath + '.gz');
-      }
-    } catch (err) {
-      // ignore and let express static handle the file
-      // eslint-disable-next-line no-console
-      console.warn('precompressed middleware error', (err as any)?.message || err);
-    }
-
-    return next();
-  });
-
   app.use(express.static(distPath, {
-    maxAge: '1y',
+    maxAge: "1y",
     etag: true,
     lastModified: true,
   }));
 
-  // SPA fallback
-  app.use('*', (_req, res) => {
-    res.sendFile(path.resolve(distPath, 'index.html'));
+  app.use("*", (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
