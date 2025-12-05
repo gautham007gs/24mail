@@ -65,40 +65,9 @@ export default defineConfig(async ({ mode }) => {
       },
       rollupOptions: {
         output: {
+          // Let Rollup decide chunking automatically. Manual fine-grained
+          // chunking produced many empty / tiny chunks in production.
           format: "es",
-          manualChunks(id) {
-            if (id.includes("node_modules")) {
-              // Do not emit a separate `react-core` chunk — keep React
-              // inside the main vendor bundle to avoid cross-chunk
-              // initialization / export timing issues in production.
-              if (id.includes("@radix-ui/react-toast")) return "radix-toast";
-              if (id.includes("@radix-ui/react-tooltip")) return "radix-tooltip";
-              if (id.includes("@radix-ui/react-dialog")) return "radix-dialog";
-              if (id.includes("@radix-ui/react-select")) return "radix-select";
-              if (id.includes("@radix-ui")) return "radix-ui";
-              if (id.includes("@tanstack/react-query")) return "react-query";
-              if (id.includes("wouter")) return "router";
-              // Keep react-qr-code with other vendor code to avoid
-              // creating a separate chunk that can introduce circular
-              // dependency issues during module initialization.
-              // if (id.includes("react-qr-code")) return "qr-code";
-              if (id.includes("lucide-react")) return "icons";
-              if (id.includes("canvas-confetti")) return "confetti";
-              return "vendor";
-            }
-            if (id.includes("/lib/blog-data")) {
-              return "blog-content";
-            }
-            if (id.includes("/lib/blog-content-translations")) {
-              return "blog-translations";
-            }
-            if (id.includes("/components/ui/")) {
-              const match = id.match(/\/components\/ui\/([^/]+)\.tsx?/);
-              if (match) {
-                return `ui-${match[1]}`;
-              }
-            }
-          },
           entryFileNames: "assets/[name]-[hash].js",
           chunkFileNames: "assets/[name]-[hash].js",
           assetFileNames: "assets/[name]-[hash][extname]",
