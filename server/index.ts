@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   
   // CORS - Only allow same origin requests
   const origin = req.headers.origin;
-  if (origin && (origin.includes("localhost") || origin.includes("tempmail.org") || origin.includes("replit.dev"))) {
+  if (origin && (origin.includes("localhost") || origin.includes("tempmail.org") || origin.includes("replit.dev") || origin.includes("cloudworkstations.dev"))) {
     res.set("Access-Control-Allow-Origin", origin);
   }
   res.set("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -51,7 +51,7 @@ app.use((req, res, next) => {
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",
       "connect-src 'self' https://api.barid.site https://fonts.googleapis.com https://fonts.gstatic.com",
-      "frame-ancestors 'none'",
+      "frame-ancestors 'self' https://5000-firebase-24mailnew-1764922668854.cluster-nulpgqge5rgw6rwqiydysl6ocy.cloudworkstations.dev",
     ].join('; ');
 
     res.set('Content-Security-Policy', prodCSP);
