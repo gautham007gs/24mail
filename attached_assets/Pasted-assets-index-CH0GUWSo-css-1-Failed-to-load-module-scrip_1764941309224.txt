@@ -1,0 +1,126 @@
+assets/index-CH0GUWSo.css:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
+assets/index-Byod93Q7.js:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
+api/inbox/u0w3h9j8ox%40barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+api/inbox/u0w3h9j8ox%40barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+api/inbox/u0w3h9j8ox%40barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+api/inbox/u0w3h9j8ox%40barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+nkhped2hve@barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+nkhped2hve@barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+nkhped2hve@barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+nkhped2hve@barid.site:1  Failed to load resource: the server responded with a status of 400 ()
+index-DNKdVO_5.js:2  GET https://24mail24.vercel.app/api/inbox/nkhped2hve%40barid.site 400 (Bad Request)
+queryFn @ index-DNKdVO_5.js:2
+o @ vendor-B_d7DWRI.js:1
+f @ vendor-B_d7DWRI.js:1
+start @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+index-DNKdVO_5.js:2  GET https://24mail24.vercel.app/api/inbox/nkhped2hve%40barid.site 400 (Bad Request)
+queryFn @ index-DNKdVO_5.js:2
+o @ vendor-B_d7DWRI.js:1
+f @ vendor-B_d7DWRI.js:1
+start @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+index-DNKdVO_5.js:2  GET https://24mail24.vercel.app/api/inbox/nkhped2hve%40barid.site 400 (Bad Request)
+queryFn @ index-DNKdVO_5.js:2
+o @ vendor-B_d7DWRI.js:1
+f @ vendor-B_d7DWRI.js:1
+start @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+index-DNKdVO_5.js:2  GET https://24mail24.vercel.app/api/inbox/nkhped2hve%40barid.site 400 (Bad Request)
+queryFn @ index-DNKdVO_5.js:2
+o @ vendor-B_d7DWRI.js:1
+f @ vendor-B_d7DWRI.js:1
+start @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+setInterval
+setInterval @ vendor-B_d7DWRI.js:1
+setInterval @ vendor-B_d7DWRI.js:1
+W @ vendor-B_d7DWRI.js:1
+H @ vendor-B_d7DWRI.js:1
+onQueryUpdate @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1
+batch @ vendor-B_d7DWRI.js:1
+k @ vendor-B_d7DWRI.js:1
+fetch @ vendor-B_d7DWRI.js:1
+await in fetch
+j @ vendor-B_d7DWRI.js:1
+(anonymous) @ vendor-B_d7DWRI.js:1

@@ -86,6 +86,27 @@ function getRandomFunnyMessage(): string {
   return funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
 }
 
+// Safely decode email from URL, handling potential double-encoding
+// Only performs second decode if first decode doesn't contain '@'
+function safeDecodeEmail(rawEmail: string): string {
+  try {
+    let decoded = decodeURIComponent(rawEmail);
+    // Only attempt second decode if no '@' present (indicates still encoded)
+    // and if the decoded value contains '%40' or '%25'
+    if (!decoded.includes('@') && (decoded.includes('%40') || decoded.includes('%25'))) {
+      try {
+        decoded = decodeURIComponent(decoded);
+      } catch {
+        // Second decode failed, use first decode result
+      }
+    }
+    return decoded;
+  } catch {
+    // If decoding fails completely, return raw value
+    return rawEmail;
+  }
+}
+
 function checkRateLimit(ip: string): { blocked: boolean; message?: string } {
   const now = Date.now();
 
@@ -187,46 +208,51 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    if (url.startsWith('/api/domains') && method === 'GET') {
+    // Remove query strings from URL for matching
+    const urlPath = url.split('?')[0];
+    
+    if (urlPath.startsWith('/api/domains') && method === 'GET') {
       return handleDomains(req, res);
     }
 
-    if (url.match(/^\/api\/inbox\/[^\/]+$/) && method === 'GET') {
-      const email = url.split('/api/inbox/')[1];
-      return handleInbox(req, res, decodeURIComponent(email));
+    if (urlPath.match(/^\/api\/inbox\/[^\/]+$/) && method === 'GET') {
+      const rawEmail = urlPath.split('/api/inbox/')[1];
+      const email = safeDecodeEmail(rawEmail);
+      return handleInbox(req, res, email);
     }
 
-    if (url.match(/^\/api\/inbox\/[^\/]+$/) && method === 'DELETE') {
-      const email = url.split('/api/inbox/')[1];
-      return handleDeleteAllEmails(req, res, decodeURIComponent(email));
+    if (urlPath.match(/^\/api\/inbox\/[^\/]+$/) && method === 'DELETE') {
+      const rawEmail = urlPath.split('/api/inbox/')[1];
+      const email = safeDecodeEmail(rawEmail);
+      return handleDeleteAllEmails(req, res, email);
     }
 
-    if (url.match(/^\/api\/email\/[^\/]+$/) && method === 'GET') {
-      const id = url.split('/api/email/')[1];
-      return handleEmail(req, res, id);
+    if (urlPath.match(/^\/api\/email\/[^\/]+$/) && method === 'GET') {
+      const id = urlPath.split('/api/email/')[1];
+      return handleEmail(req, res, decodeURIComponent(id));
     }
 
-    if (url.match(/^\/api\/email\/[^\/]+$/) && method === 'DELETE') {
-      const id = url.split('/api/email/')[1];
-      return handleDeleteEmail(req, res, id);
+    if (urlPath.match(/^\/api\/email\/[^\/]+$/) && method === 'DELETE') {
+      const id = urlPath.split('/api/email/')[1];
+      return handleDeleteEmail(req, res, decodeURIComponent(id));
     }
 
-    if (url.match(/^\/api\/attachment\/[^\/]+\/[^\/]+$/)) {
-      const parts = url.split('/api/attachment/')[1].split('/');
-      return handleAttachment(req, res, parts[0], parts[1]);
+    if (urlPath.match(/^\/api\/attachment\/[^\/]+\/[^\/]+$/)) {
+      const parts = urlPath.split('/api/attachment/')[1].split('/');
+      return handleAttachment(req, res, decodeURIComponent(parts[0]), decodeURIComponent(parts[1]));
     }
 
-    if (url.startsWith('/api/referral/create') && method === 'GET') {
+    if (urlPath.startsWith('/api/referral/create') && method === 'GET') {
       return handleReferralCreate(req, res);
     }
 
-    if (url.startsWith('/api/referral/stats') && method === 'GET') {
+    if (urlPath.startsWith('/api/referral/stats') && method === 'GET') {
       return handleReferralStats(req, res);
     }
 
-    if (url.match(/^\/api\/referral\/claim\/[^\/]+$/) && method === 'POST') {
-      const code = url.split('/api/referral/claim/')[1];
-      return handleReferralClaim(req, res, code);
+    if (urlPath.match(/^\/api\/referral\/claim\/[^\/]+$/) && method === 'POST') {
+      const code = urlPath.split('/api/referral/claim/')[1];
+      return handleReferralClaim(req, res, decodeURIComponent(code));
     }
 
     return res.status(404).json({ error: 'Not found' });
