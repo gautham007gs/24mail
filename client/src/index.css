@@ -142,13 +142,13 @@
     text-rendering: optimizeSpeed;
     font-display: swap;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     font-weight: 600;
     font-display: swap;
   }
-  
+
   code, pre, .font-mono {
     font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", monospace;
     font-display: swap;
@@ -191,7 +191,7 @@ html.dark {
     border: 1px solid hsl(var(--card-border) / 0.5);
     box-shadow: 0 4px 16px hsl(0 0% 0% / 0.25), 0 1px 4px hsl(0 0% 0% / 0.15);
   }
-  
+
   /* Only apply blur on capable devices with explicit opt-in */
   @supports (backdrop-filter: blur(4px)) {
     @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
@@ -295,7 +295,7 @@ html.dark {
     background-image: none !important;
     background: none !important;
   }
-  
+
   /* Ensure parent containers don't add backgrounds */
   a:has(img[src*="logo"]),
   div:has(img[src*="logo"]) {
@@ -657,7 +657,7 @@ html.dark {
   --destructive-foreground: 0 0% 100%;
   --input: 0 0% 18%;
   --ring: 120 60% 45%;
-  
+
   /* Dark mode premium gradient background */
   color-scheme: dark;
   --chart-1: 141 100% 60%;
@@ -1018,7 +1018,7 @@ html.dark {
   }
 
   /* Premium Typography System - Consistent & Beautiful */
-  
+
   /* Text Hierarchy */
   .text-primary {
     @apply text-foreground font-semibold;
@@ -1040,10 +1040,11 @@ html.dark {
 
   /* Display - Hero/Main Title (Largest) */
   .text-display {
-    @apply text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tight;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
   }
 
   /* Heading Large - Major Section Titles */
@@ -1454,7 +1455,7 @@ html.dark {
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
-    
+
     .animate-float,
     .animate-bounce,
     .animate-pulse,
@@ -1469,7 +1470,7 @@ html.dark {
       animation: none !important;
       transform: none !important;
     }
-    
+
     .glassmorphic,
     .glassmorphism {
       backdrop-filter: none !important;
@@ -1553,12 +1554,12 @@ html.dark {
   .emerald-glow-lg {
     box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
   }
-  
+
   /* CTA-specific glow using pseudo-element for hardware acceleration */
   .cta-glow {
     position: relative;
   }
-  
+
   .cta-glow::before {
     content: "";
     position: absolute;
@@ -1571,12 +1572,12 @@ html.dark {
     pointer-events: none;
     will-change: opacity;
   }
-  
+
   .cta-glow:hover::before,
   .cta-glow:focus-visible::before {
     opacity: 1;
   }
-  
+
   .dark .cta-glow::before {
     background: radial-gradient(ellipse at center, rgba(0, 196, 107, 0.25) 0%, transparent 70%);
   }
@@ -1595,29 +1596,29 @@ html.dark {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Horizontal scroll with snap and partial peeking */
   .scroll-snap-x {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   .scroll-snap-center {
     scroll-snap-align: center;
   }
-  
+
   .scroll-snap-start {
     scroll-snap-align: start;
   }
-  
+
   /* Partial item peeking for mobile scrollers */
   .scroll-peek {
     padding-inline-start: 1rem;
     padding-inline-end: 2rem;
     margin-inline: -1rem;
   }
-  
+
   @media (min-width: 768px) {
     .scroll-peek {
       padding-inline-start: 0;
