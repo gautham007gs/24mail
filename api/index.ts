@@ -213,7 +213,7 @@ async function handleDomains(req: VercelRequest, res: VercelResponse) {
     const cacheKey = "domains";
     const cached = getCachedResponse<string[]>(cacheKey);
     if (cached) {
-      res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+      res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
       res.setHeader('X-Cache', 'HIT');
       return res.json(cached);
     }
@@ -222,8 +222,8 @@ async function handleDomains(req: VercelRequest, res: VercelResponse) {
 
     if (response.data.success && Array.isArray(response.data.result)) {
       const domains = z.array(domainSchema).parse(response.data.result);
-      setCachedResponse(cacheKey, domains, 60 * 60 * 1000);
-      res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+      setCachedResponse(cacheKey, domains, 24 * 60 * 60 * 1000);
+      res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
       res.setHeader('X-Cache', 'MISS');
       return res.json(domains);
     } else {
