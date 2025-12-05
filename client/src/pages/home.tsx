@@ -351,7 +351,7 @@ export default function Home() {
           </div>
           {/* Hero Section - Above the Fold */}
           <div className="relative text-center mb-8 md:mb-12 space-y-5">
-            <h1 className="text-display text-foreground font-black tracking-tight">
+            <h1 className="text-display font-black tracking-tight text-white dark:text-white">
               {t("hero.title")}
             </h1>
             <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
