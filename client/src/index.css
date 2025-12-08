@@ -1701,4 +1701,104 @@ html.dark {
   .swipe-row {
     transition: transform 0.15s ease-out;
   }
+
+  /* Email HTML Content Isolation - Prevent email CSS from overriding page theme */
+  .inline-email-html {
+    /* Force foreground text color */
+    color: hsl(var(--foreground)) !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    fill: currentColor;
+  }
+
+  /* Reset all child elements to inherit foreground colors */
+  .inline-email-html * {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: hsl(var(--foreground)) !important;
+    border-color: hsl(var(--border)) !important;
+  }
+  
+  /* Ensure dark backgrounds in email are removed */
+  .inline-email-html table,
+  .inline-email-html div,
+  .inline-email-html p,
+  .inline-email-html span,
+  .inline-email-html section {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  /* Links should be styled properly */
+  .inline-email-html a {
+    color: hsl(var(--accent)) !important;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .inline-email-html a:hover {
+    opacity: 0.8;
+  }
+
+  /* Tables in emails */
+  .inline-email-html table,
+  .inline-email-html td,
+  .inline-email-html tr,
+  .inline-email-html th {
+    background-color: transparent !important;
+    border-color: hsl(var(--border)) !important;
+    color: hsl(var(--foreground)) !important;
+  }
+
+  /* Code blocks */
+  .inline-email-html code,
+  .inline-email-html pre {
+    background-color: hsl(var(--muted)) !important;
+    color: hsl(var(--foreground)) !important;
+    border-color: hsl(var(--border)) !important;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  /* Headings */
+  .inline-email-html h1,
+  .inline-email-html h2,
+  .inline-email-html h3,
+  .inline-email-html h4,
+  .inline-email-html h5,
+  .inline-email-html h6 {
+    color: hsl(var(--foreground)) !important;
+    background-color: transparent !important;
+  }
+
+  /* Blockquotes */
+  .inline-email-html blockquote {
+    color: hsl(var(--foreground)) !important;
+    border-left-color: hsl(var(--accent)) !important;
+    background-color: transparent !important;
+  }
+
+  /* Images stay responsive */
+  .inline-email-html img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Preserve list styling */
+  .inline-email-html ul,
+  .inline-email-html ol,
+  .inline-email-html li {
+    color: hsl(var(--foreground)) !important;
+    background-color: transparent !important;
+  }
+
+  /* Buttons in emails */
+  .inline-email-html button {
+    background-color: hsl(var(--accent)) !important;
+    color: hsl(var(--accent-foreground)) !important;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 }
