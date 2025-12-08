@@ -94,7 +94,6 @@ export default function Home() {
     }
     return "";
   });
-  const [displayedEmails, setDisplayedEmails] = useState<EmailSummary[]>([]);
   const { toast } = useToast();
   const { showNotification } = useNotifications();
   const previousEmailCount = useRef<number>(-1); // -1 means uninitialized
@@ -148,24 +147,6 @@ export default function Home() {
   });
 
   // Progressive email loading
-  useEffect(() => {
-    if (emails.length > displayedEmails.length) {
-      const newEmails = emails.slice(displayedEmails.length);
-      let index = 0;
-      const interval = setInterval(() => {
-        if (index < newEmails.length) {
-          setDisplayedEmails(prev => [newEmails[index], ...prev]);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 100);
-      return () => clearInterval(interval);
-    } else if (emails.length < displayedEmails.length) {
-      setDisplayedEmails(emails);
-    }
-  }, [emails]);
-
   // Show error toast if inbox fetch fails
   useEffect(() => {
     if (inboxError) {
@@ -405,7 +386,7 @@ export default function Home() {
           {/* Inbox Section */}
           <div className="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 border-t border-border/30 fade-in">
             <InboxList
-              emails={displayedEmails}
+              emails={emails}
               isLoading={isLoadingInbox}
               currentEmail={currentEmail}
               onRefresh={handleRefresh}
