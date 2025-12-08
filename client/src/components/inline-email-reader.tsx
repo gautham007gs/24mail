@@ -16,10 +16,24 @@ interface InlineEmailReaderProps {
   isDeleting: boolean;
 }
 
-// Transform HTML to make all links open in new tabs and constrain images
+// Sanitize and transform HTML to prevent style injection and open links in new tabs
 function transformEmailHtml(html: string): string {
   const div = document.createElement('div');
   div.innerHTML = html;
+  
+  // Remove all style tags to prevent CSS injection
+  const styleTags = div.querySelectorAll('style');
+  styleTags.forEach(tag => tag.remove());
+  
+  // Remove script tags for security
+  const scriptTags = div.querySelectorAll('script');
+  scriptTags.forEach(tag => tag.remove());
+  
+  // Remove all inline style attributes to prevent style override
+  const allElements = div.querySelectorAll('*');
+  allElements.forEach(el => {
+    el.removeAttribute('style');
+  });
   
   // Find all anchor tags and add target="_blank" and rel="noopener noreferrer"
   const links = div.querySelectorAll('a');
@@ -39,6 +53,17 @@ function transformEmailHtml(html: string): string {
   return div.innerHTML;
 }
 
+// Convert timestamp to milliseconds (handle both seconds and milliseconds)
+function getTimestampInMs(timestamp: number): number {
+  // If timestamp is more than 10 billion, it's likely already in milliseconds
+  // (10 billion seconds is year 2286)
+  if (timestamp > 10000000000) {
+    return timestamp;
+  }
+  // Otherwise, convert from seconds to milliseconds
+  return timestamp * 1000;
+}
+
 export function InlineEmailReader({
   email,
   isLoading,
@@ -46,11 +71,11 @@ export function InlineEmailReader({
   onDelete,
   isDeleting,
 }: InlineEmailReaderProps) {
-  // Default to HTML view if available
-  const [tabValue, setTabValue] = useState("html");
+  // Default to Text view to prevent style injection issues
+  const [tabValue, setTabValue] = useState("text");
   const { toast } = useToast();
   
-  // Transform email HTML to open links in new tabs
+  // Transform email HTML to open links in new tabs and remove style tags
   const processedHtmlContent = email?.html_content ? transformEmailHtml(email.html_content) : null;
 
   const handleCopyEmail = async () => {
@@ -60,7 +85,7 @@ export function InlineEmailReader({
       to: email.to_address,
       subject: email.subject || "(No subject)",
       content: email.text_content || email.html_content || "No content",
-      receivedAt: email.received_at * 1000,
+      receivedAt: getTimestampInMs(email.received_at),
     });
     toast({ title: result?.success ? "Copied" : "Failed", description: result?.message });
   };
@@ -72,7 +97,7 @@ export function InlineEmailReader({
       to: email.to_address,
       subject: email.subject || "(No subject)",
       content: email.text_content || email.html_content || "No content",
-      receivedAt: email.received_at * 1000,
+      receivedAt: getTimestampInMs(email.received_at),
     });
   };
 
@@ -83,7 +108,7 @@ export function InlineEmailReader({
       to: email.to_address,
       subject: email.subject || "(No subject)",
       content: email.text_content || email.html_content || "No content",
-      receivedAt: email.received_at * 1000,
+      receivedAt: getTimestampInMs(email.received_at),
     });
   };
 
@@ -94,7 +119,7 @@ export function InlineEmailReader({
       to: email.to_address,
       subject: email.subject || "(No subject)",
       content: email.text_content || email.html_content || "No content",
-      receivedAt: email.received_at * 1000,
+      receivedAt: getTimestampInMs(email.received_at),
     });
   };
 
@@ -114,7 +139,7 @@ export function InlineEmailReader({
       to: email.to_address,
       subject: email.subject || "(No subject)",
       content: email.text_content || email.html_content || "No content",
-      receivedAt: email.received_at * 1000,
+      receivedAt: getTimestampInMs(email.received_at),
     });
     toast({ 
       title: result.success ? "Downloaded" : "Failed", 
@@ -136,6 +161,8 @@ export function InlineEmailReader({
     return null;
   }
 
+  const timestampMs = getTimestampInMs(email.received_at);
+
   return (
     <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30 flex flex-col max-h-[600px]">
       {/* Email header - Better layout */}
@@ -148,7 +175,7 @@ export function InlineEmailReader({
             <span className="font-medium text-foreground/70 break-all">From: {email.from_address}</span>
             <span className="flex-shrink-0">•</span>
             <span className="flex-shrink-0" data-testid="text-inline-email-date">
-              {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })} ago
+              {formatDistanceToNow(timestampMs, { addSuffix: false })} ago
             </span>
             {email.has_attachments && (
               <>
