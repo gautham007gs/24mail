@@ -368,7 +368,7 @@ export default function Home() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
             </div>
             <div className="flex flex-col items-center gap-2 md:gap-3 pt-2">
-              <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 px-2 overflow-x-auto sm:overflow-x-visible">
+              <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 px-2">
                 <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-free">
                   <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

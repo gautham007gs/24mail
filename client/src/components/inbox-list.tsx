@@ -123,9 +123,9 @@ function EmptyStateIllustration() {
         </div>
       </div>
 
-      <h3 className="text-xl font-bold text-foreground mb-2">Your inbox is empty</h3>
+      <h3 className="text-xl font-bold text-foreground mb-2">Waiting for new emails</h3>
       <p className="text-muted-foreground text-center max-w-sm mb-6">
-        Share your temporary email address and emails will appear here automatically.
+        No messages yet. Share your temporary email address and new emails will appear here.
       </p>
       
       {/* Static decorative dots - removed pulse animation */}
@@ -355,8 +355,9 @@ export function InboxList({
 
   return (
     <div className="space-y-6">
-      {/* Header with Actions */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+      {/* Header with Actions - Mobile responsive layout */}
+      <div className="flex flex-col gap-4">
+        {/* Title and Count */}
         <div className="flex items-center gap-3 flex-wrap">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">{t("inbox.title")}</h2>
           <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
@@ -368,52 +369,60 @@ export function InboxList({
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          {hasSelected && (
+
+        {/* Action Buttons - Right aligned on mobile */}
+        <div className="flex items-center gap-2 flex-wrap justify-start sm:justify-between">
+          <div className="flex items-center gap-2 flex-wrap">
+            {hasSelected && (
+              <Button
+                size="sm"
+                onClick={() => setShowBulkDialog(true)}
+                disabled={isDeleting}
+                data-testid="button-burn-selected"
+                className="btn-danger btn-hover-scale active-elevate-2"
+              >
+                <Trash2 className="h-4 w-4 mr-1.5" />
+                {t("inbox.burn")} {selectedIds.length}
+              </Button>
+            )}
+            {emails.length > 0 && (
+              <Button
+                size="sm"
+                onClick={() => setShowClearDialog(true)}
+                disabled={isDeleting}
+                data-testid="button-destroy-inbox"
+                className="btn-danger btn-hover-scale active-elevate-2"
+              >
+                <Trash2 className="h-4 w-4 mr-1.5" aria-hidden="true" />
+                <span className="hidden sm:inline">Destroy Inbox</span>
+              </Button>
+            )}
+          </div>
+
+          {/* Refresh and Timer - Right side on mobile */}
+          <div className="flex items-center gap-2 ml-auto">
+            {currentEmail && (
+              <div 
+                className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/70 px-3 py-1.5 rounded-full bg-muted/50" 
+                data-testid="refresh-countdown-indicator"
+                aria-label={`Auto-refresh in ${countdown} seconds`}
+              >
+                <RefreshCw className="h-3 w-3 opacity-50" />
+                <span data-testid="countdown-timer">{countdown}s</span>
+              </div>
+            )}
             <Button
-              size="sm"
-              onClick={() => setShowBulkDialog(true)}
-              disabled={isDeleting}
-              data-testid="button-burn-selected"
-              className="btn-danger btn-hover-scale active-elevate-2"
+              size="icon"
+              onClick={onRefresh}
+              disabled={isLoading}
+              data-testid="button-refresh"
+              aria-label="Refresh inbox"
+              title="Refresh inbox"
+              className={`min-h-[44px] min-w-[44px] ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
             >
-              <Trash2 className="h-4 w-4 mr-1.5" />
-              {t("inbox.burn")} {selectedIds.length}
+              <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
             </Button>
-          )}
-          {emails.length > 0 && (
-            <Button
-              size="sm"
-              onClick={() => setShowClearDialog(true)}
-              disabled={isDeleting}
-              data-testid="button-destroy-inbox"
-              className="btn-danger btn-hover-scale active-elevate-2"
-            >
-              <Trash2 className="h-4 w-4 mr-1.5" aria-hidden="true" />
-              <span className="hidden sm:inline">Destroy Inbox</span>
-            </Button>
-          )}
-          {currentEmail && (
-            <div 
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/70 px-3 py-1.5 rounded-full bg-muted/50" 
-              data-testid="refresh-countdown-indicator"
-              aria-label={`Auto-refresh in ${countdown} seconds`}
-            >
-              <RefreshCw className="h-3 w-3 opacity-50" />
-              <span data-testid="countdown-timer">{countdown}s</span>
-            </div>
-          )}
-          <Button
-            size="icon"
-            onClick={onRefresh}
-            disabled={isLoading}
-            data-testid="button-refresh"
-            aria-label="Refresh inbox"
-            title="Refresh inbox"
-            className={`min-h-[44px] min-w-[44px] ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
-          >
-            <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
-          </Button>
+          </div>
         </div>
       </div>
 

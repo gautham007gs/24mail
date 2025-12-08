@@ -144,7 +144,7 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Security Certifications - Horizontal Scroll on Mobile */}
+      {/* Security Certifications Grid */}
       <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
@@ -153,29 +153,8 @@ export function TrustSection() {
           <p className="text-sm text-muted-foreground">{t("trust.standardsDesc")}</p>
         </div>
 
-        {/* Mobile: Horizontal Scroll with snap */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide scroll-snap-x scroll-peek -mx-4 px-4 pb-4">
-          <div className="flex gap-4 min-w-max">
-            {certifications.map((cert, index) => {
-              const Icon = cert.icon;
-              return (
-                <Card
-                  key={index}
-                  className="group relative flex-shrink-0 w-48 p-5 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm transition-all duration-300 flex flex-col items-center text-center scroll-snap-start"
-                >
-                  <div className="mb-3 p-3 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
-                    <Icon className="h-7 w-7 text-emerald-400" aria-hidden="true" />
-                  </div>
-                  <h4 className="font-bold text-sm text-foreground mb-1">{cert.name}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{cert.description}</p>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Desktop: Grid */}
-        <div className="hidden md:grid grid-cols-4 gap-5">
+        {/* Responsive Grid - All devices */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {certifications.map((cert, index) => {
             const Icon = cert.icon;
             return (
