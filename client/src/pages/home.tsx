@@ -326,50 +326,6 @@ export default function Home() {
           >
             {/* Content here will be announced by screen readers */}
           </div>
-          {/* Hero Section - Above the Fold */}
-          <div className="relative text-center mb-4 md:mb-6 space-y-3 md:space-y-4">
-            <h1 className="font-black tracking-tight" style={{ 
-              fontSize: 'clamp(1.75rem, 4.5vw, 3rem)',
-              fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              color: '#FFFFFF'
-            }}>
-              Your Privacy, Protected
-            </h1>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
-              Anonymous temporary email addresses that protect your privacy. No signup, no ads, no tracking.
-            </p>
-            {/* Subtle gradient glow background - loaded after text */}
-            <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
-            </div>
-            <div className="flex flex-col items-center gap-2 md:gap-3 pt-2">
-              <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 px-2">
-                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-free">
-                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  100% Free
-                </span>
-                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-anonymous">
-                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Anonymous
-                </span>
-                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-instant">
-                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Instant
-                </span>
-              </div>
-              <div className="text-center">
-                <p className="text-xs sm:text-sm font-bold text-orange-400/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">Trusted by millions</p>
-              </div>
-            </div>
-          </div>
 
           {/* Email Generator Card */}
           <EmailGenerator
@@ -380,7 +336,7 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-24 md:mt-32 pt-16 md:pt-20 pb-12 border-t border-border/30 fade-in">
+          <div className="mt-8 md:mt-12 pt-6 md:pt-8 pb-12 border-t border-border/30 fade-in">
             <InboxList
               emails={emails}
               isLoading={isLoadingInbox}
