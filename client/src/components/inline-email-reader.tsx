@@ -16,7 +16,7 @@ interface InlineEmailReaderProps {
   isDeleting: boolean;
 }
 
-// Transform HTML to make all links open in new tabs
+// Transform HTML to make all links open in new tabs and constrain images
 function transformEmailHtml(html: string): string {
   const div = document.createElement('div');
   div.innerHTML = html;
@@ -26,6 +26,14 @@ function transformEmailHtml(html: string): string {
   links.forEach(link => {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
+  });
+  
+  // Constrain images to max-width 100% for responsiveness
+  const images = div.querySelectorAll('img');
+  images.forEach(img => {
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    img.style.display = 'block';
   });
   
   return div.innerHTML;
@@ -116,10 +124,10 @@ export function InlineEmailReader({
 
   if (isLoading) {
     return (
-      <div className="col-span-full bg-background border-t border-border/50 px-3 sm:px-4 py-1 space-y-1">
-        <Skeleton className="h-3 w-3/4" />
-        <Skeleton className="h-2.5 w-1/2" />
-        <Skeleton className="h-2.5 w-full" />
+      <div className="col-span-full bg-background border-t border-border/50 px-3 sm:px-4 py-3 space-y-2">
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-3 w-1/2" />
+        <Skeleton className="h-3 w-full" />
       </div>
     );
   }
@@ -129,15 +137,15 @@ export function InlineEmailReader({
   }
 
   return (
-    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30">
+    <div className="inline-email-reader-container col-span-full bg-background border-t border-border/30 flex flex-col max-h-[600px]">
       {/* Email header - Better layout */}
-      <div className="px-4 sm:px-5 py-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 border-b border-border/30">
+      <div className="px-3 sm:px-5 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 border-b border-border/30 flex-shrink-0">
         <div className="min-w-0 flex-1">
-          <h3 className="text-sm font-semibold text-foreground break-words line-clamp-2 mb-2" data-testid="text-inline-email-subject">
+          <h3 className="text-sm sm:text-base font-semibold text-foreground break-words line-clamp-2 mb-1.5" data-testid="text-inline-email-subject">
             {email.subject || "(No subject)"}
           </h3>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
-            <span className="font-medium text-foreground/70">From: {email.from_address}</span>
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
+            <span className="font-medium text-foreground/70 break-all">From: {email.from_address}</span>
             <span className="flex-shrink-0">•</span>
             <span className="flex-shrink-0" data-testid="text-inline-email-date">
               {formatDistanceToNow(email.received_at * 1000, { addSuffix: false })} ago
@@ -147,64 +155,64 @@ export function InlineEmailReader({
                 <span className="flex-shrink-0">•</span>
                 <span className="flex items-center gap-1 flex-shrink-0">
                   <Paperclip className="h-3 w-3" />
-                  {email.attachment_count} file{email.attachment_count !== 1 ? 's' : ''}
+                  {email.attachment_count}
                 </span>
               </>
             )}
           </div>
         </div>
         
-        {/* Action buttons - Clean row */}
+        {/* Action buttons - Responsive row */}
         <div className="flex gap-1 flex-shrink-0 flex-wrap justify-start sm:justify-end">
           <Button
             size="sm"
             variant="ghost"
             onClick={handleCopyEmail}
             data-testid="button-inline-copy"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="Copy email"
           >
-            <Copy className="h-4 w-4" />
+            <Copy className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareEmailLink}
             data-testid="button-inline-share-link"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="Share link"
           >
-            <LinkIcon className="h-4 w-4" />
+            <LinkIcon className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleDownloadPDF}
             data-testid="button-inline-download"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="Download"
           >
-            <Download className="h-4 w-4" />
+            <Download className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareWhatsApp}
             data-testid="button-inline-share-whatsapp"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="WhatsApp"
           >
-            <MessageCircle className="h-4 w-4" />
+            <MessageCircle className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={handleShareTwitter}
             data-testid="button-inline-share-twitter"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="Twitter"
           >
-            <Share2 className="h-4 w-4" />
+            <Share2 className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
@@ -212,34 +220,34 @@ export function InlineEmailReader({
             onClick={onDelete}
             disabled={isDeleting}
             data-testid="button-inline-burn"
-            className="text-destructive border-destructive/30 h-8 px-2"
+            className="text-destructive border-destructive/30 h-8 w-8 p-0"
             title="Delete"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-3.5 w-3.5" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={onClose}
             data-testid="button-inline-collapse"
-            className="h-8 px-2"
+            className="h-8 w-8 p-0"
             title="Collapse"
           >
-            <ChevronUp className="h-4 w-4" />
+            <ChevronUp className="h-3.5 w-3.5" />
           </Button>
         </div>
       </div>
 
-      {/* Content - Better spacing */}
-      <div className="overflow-visible">
-        <Tabs value={tabValue} onValueChange={setTabValue} className="inline-email-reader-tabs flex flex-col">
+      {/* Content - Scrollable with proper colors */}
+      <div className="flex-1 overflow-y-auto">
+        <Tabs value={tabValue} onValueChange={setTabValue} className="inline-email-reader-tabs flex flex-col h-full">
           {email.html_content && email.text_content && (
-            <div className="border-b border-border/30 px-4 sm:px-5 py-0 bg-background">
-              <TabsList className="h-10 bg-transparent gap-4 px-0">
-                <TabsTrigger value="html" data-testid="tab-inline-html" className="text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
+            <div className="border-b border-border/30 px-3 sm:px-5 py-0 bg-background flex-shrink-0">
+              <TabsList className="h-9 bg-transparent gap-4 px-0">
+                <TabsTrigger value="html" data-testid="tab-inline-html" className="text-xs sm:text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
                   HTML
                 </TabsTrigger>
-                <TabsTrigger value="text" data-testid="tab-inline-text" className="text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
+                <TabsTrigger value="text" data-testid="tab-inline-text" className="text-xs sm:text-sm px-0 py-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-accent rounded-none">
                   Text
                 </TabsTrigger>
               </TabsList>
@@ -247,9 +255,9 @@ export function InlineEmailReader({
           )}
 
           {email.html_content && (
-            <TabsContent value="html" className="m-0 bg-background px-4 sm:px-5 py-4 overflow-visible">
+            <TabsContent value="html" className="m-0 bg-background px-3 sm:px-5 py-3 sm:py-4 overflow-y-auto flex-1">
               <div
-                className="inline-email-html max-w-full text-sm leading-relaxed"
+                className="inline-email-html max-w-full text-xs sm:text-sm leading-relaxed text-foreground"
                 dangerouslySetInnerHTML={{ __html: processedHtmlContent || email.html_content }}
                 data-testid="content-inline-html"
                 style={{
@@ -262,9 +270,9 @@ export function InlineEmailReader({
           )}
 
           {email.text_content && (
-            <TabsContent value="text" className="m-0 bg-background px-4 sm:px-5 py-4 overflow-visible">
+            <TabsContent value="text" className="m-0 bg-background px-3 sm:px-5 py-3 sm:py-4 overflow-y-auto flex-1">
               <pre
-                className="inline-email-html font-mono text-sm leading-relaxed whitespace-pre-wrap break-words m-0"
+                className="inline-email-html font-mono text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words m-0 text-foreground"
                 data-testid="content-inline-text"
               >
                 {email.text_content || "No content"}
@@ -273,7 +281,7 @@ export function InlineEmailReader({
           )}
 
           {!email.html_content && !email.text_content && (
-            <div className="px-4 sm:px-5 py-4 bg-background">
+            <div className="px-3 sm:px-5 py-4 bg-background">
               <p className="text-muted-foreground text-sm">No email content available</p>
             </div>
           )}
