@@ -454,8 +454,8 @@ export function InboxList({
 
       {/* Table Layout */}
       <div className="rounded-xl overflow-hidden border border-border/50 bg-background shadow-lg">
-        {/* Table Header */}
-        {(filteredEmails.length > 0 || (searchQuery && !hasSearchResults)) && (
+        {/* Table Header - only show when there are emails */}
+        {filteredEmails.length > 0 && (
           <div className="bg-foreground/90 dark:bg-foreground/10 grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-3.5 border-b border-border/50">
             <div className="hidden sm:block col-span-1"></div>
             <div className="col-span-5 sm:col-span-3 text-xs font-bold text-foreground/70 dark:text-foreground/80 uppercase tracking-wider">Sender</div>
@@ -466,13 +466,15 @@ export function InboxList({
         )}
 
         {/* Table Body */}
-        <div className="divide-y divide-border/30">
+        <div className={filteredEmails.length === 0 && !isLoading ? "" : "divide-y divide-border/30"}>
           {isLoading ? (
             <LoadingState />
           ) : hasSearchResults ? (
             <NoSearchResults query={searchQuery} />
           ) : filteredEmails.length === 0 ? (
-            <EmptyStateIllustration />
+            <div className="min-h-[400px] flex items-center justify-center">
+              <EmptyStateIllustration />
+            </div>
           ) : (
             filteredEmails.map((email) => (
               <div key={email.id}>
