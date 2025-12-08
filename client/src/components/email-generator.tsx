@@ -283,9 +283,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card - Compact design */}
-      <Card className="p-4 sm:p-5 md:p-6 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
+      <Card className="p-5 sm:p-6 md:p-7 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
         {/* Header */}
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground text-center mb-3 sm:mb-4">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-4 sm:mb-5">
           Your Temporary Email
         </h2>
 
@@ -344,9 +344,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
 
         {/* Action Buttons Row - Compact */}
-        <div className="mt-4 sm:mt-5">
+        <div className="mt-5 sm:mt-6">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}

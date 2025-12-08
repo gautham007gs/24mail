@@ -89,39 +89,39 @@ let previousEmailCount = 0;
 function EmptyStateIllustration() {
   return (
     <div 
-      className="flex flex-col items-center justify-center py-16 px-4"
+      className="flex flex-col items-center justify-center py-20 px-4 min-h-[500px]"
       role="status"
       aria-live="polite"
       aria-label="Your inbox is empty. Share your temporary email address and emails will appear here automatically."
     >
       {/* Prominent Empty State Box */}
-      <div className="max-w-md w-full bg-muted/30 border-2 border-dashed border-border/50 rounded-2xl p-8 text-center space-y-6">
+      <div className="max-w-md w-full bg-gradient-to-br from-muted/40 to-muted/20 border-2 border-dashed border-border rounded-2xl p-10 text-center space-y-6 shadow-lg">
         {/* Icon */}
         <div className="flex justify-center">
           <div className="relative">
             {/* Subtle glow effect */}
-            <div className="absolute inset-0 bg-emerald-500/15 rounded-full blur-2xl" style={{ width: '120px', height: '120px', left: '-20px', top: '-20px' }} />
+            <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl" style={{ width: '140px', height: '140px', left: '-30px', top: '-30px' }} />
             
             {/* Mailbox Icon */}
-            <div className="relative w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl border-2 border-emerald-500/30 flex items-center justify-center">
-              <Inbox className="h-10 w-10 text-emerald-400/70" aria-hidden="true" />
+            <div className="relative w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl border-2 border-primary/30 flex items-center justify-center animate-pulse-soft">
+              <Mailbox className="h-12 w-12 text-primary" aria-hidden="true" />
             </div>
           </div>
         </div>
 
         {/* Message */}
-        <div className="space-y-3">
-          <h3 className="text-2xl font-bold text-foreground">No Emails Received</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Your inbox is empty. Share your temporary email address above and new messages will appear here automatically.
+        <div className="space-y-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground">No Emails Yet</h3>
+          <p className="text-muted-foreground text-base leading-relaxed max-w-sm mx-auto">
+            Your temporary email is ready! Share it and incoming messages will appear here instantly.
           </p>
         </div>
 
         {/* Visual indicator */}
-        <div className="flex items-center justify-center gap-2 pt-2" aria-hidden="true">
-          <div className="w-2 h-2 rounded-full bg-emerald-500/50" />
-          <div className="w-2 h-2 rounded-full bg-emerald-500/35" />
-          <div className="w-2 h-2 rounded-full bg-emerald-500/20" />
+        <div className="flex items-center justify-center gap-2 pt-4" aria-hidden="true">
+          <div className="w-2.5 h-2.5 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: '0ms' }} />
+          <div className="w-2.5 h-2.5 rounded-full bg-primary/40 animate-bounce" style={{ animationDelay: '150ms' }} />
+          <div className="w-2.5 h-2.5 rounded-full bg-primary/20 animate-bounce" style={{ animationDelay: '300ms' }} />
         </div>
       </div>
     </div>
@@ -343,12 +343,12 @@ export function InboxList({
   const newEmailCount = unreadIds.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Header with Actions - Mobile responsive layout */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         {/* Title and Count */}
         <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>
@@ -463,9 +463,7 @@ export function InboxList({
           ) : hasSearchResults ? (
             <NoSearchResults query={searchQuery} />
           ) : filteredEmails.length === 0 ? (
-            <div className="min-h-[400px] flex items-center justify-center">
-              <EmptyStateIllustration />
-            </div>
+            <EmptyStateIllustration />
           ) : (
             filteredEmails.map((email) => (
               <div key={email.id}>
