@@ -27,7 +27,6 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { useTranslation } from "@/hooks/use-translation";
 
 function getAvatarData(email: string): { initials: string; bgColor: string; textColor: string } {
   const name = email.split('@')[0];
@@ -200,7 +199,6 @@ export function InboxList({
   isDeleting,
   onDeleteSelected,
 }: InboxListProps) {
-  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [countdown, setCountdown] = useState(5);
   const [showClearDialog, setShowClearDialog] = useState(false);
@@ -359,13 +357,13 @@ export function InboxList({
       <div className="flex flex-col gap-4">
         {/* Title and Count */}
         <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">{t("inbox.title")}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>
           {hasSelected && (
             <span className="text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium min-h-8 flex items-center">
-              {selectedIds.length} {t("inbox.selected")}
+              {selectedIds.length} selected
             </span>
           )}
         </div>
@@ -382,7 +380,7 @@ export function InboxList({
                 className="btn-danger btn-hover-scale active-elevate-2"
               >
                 <Trash2 className="h-4 w-4 mr-1.5" />
-                {t("inbox.burn")} {selectedIds.length}
+                Burn {selectedIds.length}
               </Button>
             )}
             {emails.length > 0 && (

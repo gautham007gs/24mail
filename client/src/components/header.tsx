@@ -3,8 +3,6 @@ import { Menu, X, ChevronDown, Home, BookOpen, Award, AtSign, Crown } from "@/li
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { type Domain } from "@shared/schema";
-import { useTranslation } from "@/hooks/use-translation";
-import { useLocalizedLink } from "@/hooks/use-localized-link";
 
 interface HeaderProps {
   domains?: Domain[];
@@ -19,26 +17,17 @@ const isPremiumDomain = (domain: string): boolean => {
 };
 
 export function Header({ domains = [], selectedDomain = "", onDomainChange }: HeaderProps) {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [showDomainMenu, setShowDomainMenu] = useState(false);
   const [location] = useLocation();
-  const getLocalizedLink = useLocalizedLink();
 
-  const rawNavItems = [
-    { label: t("header.home"), href: "/", icon: Home },
-    { label: t("header.blog"), href: "/blog", icon: BookOpen },
-    { label: t("header.stories"), href: "/success-stories", icon: Award },
+  const navItems = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "Blog", href: "/blog", icon: BookOpen },
+    { label: "Stories", href: "/success-stories", icon: Award },
   ];
 
-  // Convert raw paths to localized paths
-  const navItems = rawNavItems.map(item => ({
-    ...item,
-    href: getLocalizedLink(item.href)
-  }));
-
   const isActive = (href: string) => {
-    // Normalize paths for comparison
     const normalizedLocation = location.replace(/\/$/, "") || "/";
     const normalizedHref = href.replace(/\/$/, "") || "/";
     return normalizedLocation === normalizedHref || normalizedLocation.startsWith(normalizedHref + "/");
@@ -54,7 +43,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
           <div className="flex items-center justify-between h-14">
             {/* Logo + Desktop Navigation */}
             <Link
-              href={getLocalizedLink("/")}
+              href="/"
               className="flex items-center gap-2.5 md:gap-3 hover:opacity-80 transition-opacity no-underline flex-shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
               data-testid="link-home"
             >
@@ -121,8 +110,8 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     aria-expanded={showDomainMenu}
                     aria-haspopup="listbox"
                   >
-                    <span>{t("header.domain")}:</span>
-                    <span className="font-semibold text-accent">{selectedDomain || t("header.choose")}</span>
+                    <span>Domain:</span>
+                    <span className="font-semibold text-accent">{selectedDomain || "Choose"}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
                   </button>
                   {showDomainMenu && (
@@ -271,7 +260,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <div className="h-px bg-border/30 my-3 mx-2" />
                 <div className="space-y-1 px-2">
                   <Link
-                    href={getLocalizedLink("/terms")}
+                    href="/terms"
                     onClick={() => setIsOpen(false)}
                     className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     data-testid="mobile-nav-link-terms"
@@ -279,7 +268,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     Terms & Conditions
                   </Link>
                   <Link
-                    href={getLocalizedLink("/privacy")}
+                    href="/privacy"
                     onClick={() => setIsOpen(false)}
                     className="block px-4 py-3.5 rounded-lg font-medium text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     data-testid="mobile-nav-link-privacy"

@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { Shield, Zap, Lock, Eye, Globe, Star } from "@/lib/icons";
 import { Card } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 
 interface FeatureItem {
   icon: React.ReactNode;
@@ -12,7 +11,6 @@ interface FeatureItem {
 }
 
 export function UnifiedSocialProof() {
-  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const features: FeatureItem[] = [
@@ -51,10 +49,10 @@ export function UnifiedSocialProof() {
       {/* Section Header - Merged stats removed to avoid duplication with TrustSection */}
       <div className="text-center max-w-2xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight">
-          {t("social.title")}
+          Proven at Scale
         </h2>
         <p className="text-base md:text-lg text-muted-foreground">
-          {t("social.subtitle")}
+          Trusted by developers globally
         </p>
       </div>
 

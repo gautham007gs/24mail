@@ -1,48 +1,45 @@
 import { Lock, Eye, Shield, CheckCircle2, Zap, Database, Check, Code2, Globe, Users, Mail } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 
 export function TrustSection() {
-  const { t } = useTranslation();
-
   const trustItems = [
     {
       icon: Eye,
-      title: t("trust.item1.title"),
-      subtitle: t("trust.item1.subtitle"),
-      details: t("trust.item1.details"),
+      title: "100% Free",
+      subtitle: "No payment needed",
+      details: "Forever free, no hidden charges",
       glowColor: "from-emerald-500/30 to-emerald-600/20",
       step: 1,
     },
     {
       icon: Lock,
-      title: t("trust.item2.title"),
-      subtitle: t("trust.item2.subtitle"),
-      details: t("trust.item2.details"),
+      title: "Anonymous",
+      subtitle: "Complete privacy",
+      details: "We don't store your data",
       glowColor: "from-blue-500/30 to-blue-600/20",
       step: 2,
     },
     {
       icon: Shield,
-      title: t("trust.item3.title"),
-      subtitle: t("trust.item3.subtitle"),
-      details: t("trust.item3.details"),
+      title: "Instant",
+      subtitle: "Ready in seconds",
+      details: "No signup required",
       glowColor: "from-purple-500/30 to-purple-600/20",
       step: 3,
     },
   ];
 
   const certifications = [
-    { name: t("trust.gdpr"), icon: Lock, description: t("trust.gdprDesc") },
-    { name: t("trust.ssl"), icon: Shield, description: t("trust.sslDesc") },
-    { name: t("trust.opensource"), icon: Code2, description: t("trust.opensourceDesc") },
-    { name: t("trust.nologs"), icon: Check, description: t("trust.nologsDesc") },
+    { name: "GDPR Compliant", icon: Lock, description: "EU data protection" },
+    { name: "SSL Encrypted", icon: Shield, description: "256-bit encryption" },
+    { name: "Open Source", icon: Code2, description: "Fully transparent" },
+    { name: "No Logs Policy", icon: Check, description: "Zero data retention" },
   ];
 
   const globalStats = [
-    { value: "1M+", label: t("trust.metric.emails"), icon: Mail },
-    { value: "150K+", label: t("trust.metric.users"), icon: Users },
-    { value: "99.9%", label: t("trust.metric.uptime"), icon: Zap },
+    { value: "1M+", label: "Emails Generated", icon: Mail },
+    { value: "150K+", label: "Active Users", icon: Users },
+    { value: "99.9%", label: "Uptime", icon: Zap },
   ];
 
   return (
@@ -55,13 +52,13 @@ export function TrustSection() {
       {/* Header */}
       <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
         <div className="inline-block mb-4 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-          <p className="text-sm font-bold text-emerald-400 uppercase tracking-wide">{t("trust.whyTrust")}</p>
+          <p className="text-sm font-bold text-emerald-400 uppercase tracking-wide">Why Trust Us</p>
         </div>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-          {t("trust.title")}
+          Why Trust Us
         </h2>
         <p className="text-muted-foreground text-base md:text-lg">
-          {t("trust.subtitle")}
+          Proven at Scale
         </p>
       </div>
 
@@ -148,9 +145,9 @@ export function TrustSection() {
       <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
-            {t("trust.security")}
+            Security & Compliance
           </p>
-          <p className="text-sm text-muted-foreground">{t("trust.standardsDesc")}</p>
+          <p className="text-sm text-muted-foreground">Industry-leading standards</p>
         </div>
 
         {/* Responsive Grid - All devices */}
