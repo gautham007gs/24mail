@@ -282,39 +282,40 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card - Fixed dimensions to prevent CLS */}
-      <Card className="p-6 sm:p-8 md:p-10 lg:p-12 glassmorphic animate-gradient-bg mx-auto w-full md:max-w-[65vw] shadow-xl shadow-black/10 dark:shadow-black/30" style={{ minHeight: '480px', maxHeight: '480px' }} data-testid="email-generator-card">
+      {/* Main Card - Compact design */}
+      <Card className="p-4 sm:p-5 md:p-6 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
         {/* Header */}
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-2">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground text-center mb-3 sm:mb-4">
           Your Temporary Email
         </h2>
 
-        {/* Email Display Box - Fixed height to prevent CLS */}
-        <div className="card-flame-edge p-5 sm:p-7 mt-5" style={{ minHeight: '140px' }}>
+        {/* Email Display Box - Compact */}
+        <div className="card-flame-edge p-3 sm:p-4 md:p-5">
           {/* Email with Inline Action Buttons */}
-          <div className="flex items-start gap-3 sm:gap-4 mb-4">
-            {/* Email Address - Larger */}
+          <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
+            {/* Email Address - Single line */}
             <span
-              className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-semibold text-foreground break-all flex-1"
-              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.4", wordBreak: "break-all" }}
+              className="text-sm sm:text-base md:text-lg font-semibold text-foreground truncate flex-1"
+              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.3" }}
               data-testid="text-current-email"
+              title={currentEmail}
             >
               {currentEmail || "Generating..."}
             </span>
 
-            {/* Inline Action Icons - QR & Copy - 44x44px minimum touch targets */}
-            <div className="flex gap-3 sm:gap-4 flex-shrink-0">
+            {/* Inline Action Icons - QR & Copy */}
+            <div className="flex gap-2 sm:gap-2 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="min-h-[44px] min-w-[44px] h-11 w-11 sm:h-12 sm:w-12 p-3"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2"
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
-                <QrCode className="h-5 w-5 sm:h-6 sm:w-6" />
+                <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 size="icon"
@@ -322,48 +323,48 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="min-h-[44px] min-w-[44px] h-11 w-11 sm:h-12 sm:w-12 p-3"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2"
                 title="Copy email"
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? (
-                  <Check className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
                 ) : (
-                  <Copy className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
               </Button>
             </div>
           </div>
 
           {/* Expiry Info */}
-          <span className="text-sm sm:text-base text-muted-foreground">
+          <span className="text-xs sm:text-sm text-muted-foreground">
             Expires in <span className="text-accent font-semibold">{expiryTime}</span>
           </span>
         </div>
 
 
-        {/* Action Buttons Row - Fixed height to prevent CLS */}
-        <div className="mt-8 sm:mt-10 mb-10" style={{ height: '60px' }}>
+        {/* Action Buttons Row - Compact */}
+        <div className="mt-4 sm:mt-5">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-sm sm:text-base font-bold py-3 px-5"
+              className="text-xs sm:text-sm font-bold py-2 px-3 sm:px-4"
               aria-label="Copy email address to clipboard"
             >
-              <Copy className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
+              <Copy className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
               Copy
             </Button>
             <Button
               onClick={handleRefresh}
               variant="outline"
               data-testid="button-action-refresh"
-              className="text-sm sm:text-base font-semibold py-3 px-5"
+              className="text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4"
               aria-label="Refresh inbox"
             >
-              <RefreshCw className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
+              <RefreshCw className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
               Refresh
             </Button>
             <Button
@@ -371,20 +372,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               disabled={domains.length === 0}
               variant="secondary"
               data-testid="button-action-new-email"
-              className="text-sm sm:text-base font-semibold py-3 px-5"
+              className="text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4"
               aria-label="Generate a new email address"
             >
-              <RotateCw className="h-5 w-5 sm:h-5 sm:w-5 mr-2" />
+              <RotateCw className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
               Change
             </Button>
             <Button
               onClick={handleBurn}
               variant="outline"
               data-testid="button-action-burn"
-              className={`text-sm sm:text-base font-semibold py-3 px-5 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 ${isBurning ? "burn-animation" : ""}`}
+              className={`text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
-              <Trash2 className={`h-5 w-5 sm:h-5 sm:w-5 mr-2 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-4 w-4 sm:h-4 sm:w-4 mr-1.5 ${isBurning ? "burn-icon" : ""}`} />
               Delete
             </Button>
           </div>

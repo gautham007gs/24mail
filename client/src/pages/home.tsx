@@ -350,9 +350,9 @@ export default function Home() {
             {/* Content here will be announced by screen readers */}
           </div>
           {/* Hero Section - Above the Fold */}
-          <div className="relative text-center mb-8 md:mb-12 space-y-5">
+          <div className="relative text-center mb-4 md:mb-6 space-y-3 md:space-y-4">
             <h1 className="font-black tracking-tight" style={{ 
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontSize: 'clamp(1.75rem, 4.5vw, 3rem)',
               fontWeight: 800,
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
@@ -360,36 +360,36 @@ export default function Home() {
             }}>
               {t("hero.title")}
             </h1>
-            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
               {t("hero.subtitle")}
             </p>
             {/* Subtle gradient glow background - loaded after text */}
             <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-r from-orange-500/10 via-red-500/8 to-purple-500/10 blur-3xl opacity-60" />
             </div>
-            <div className="flex flex-col items-center gap-4 pt-3">
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
-                <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-free">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex flex-col items-center gap-2 md:gap-3 pt-2">
+              <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 px-2 overflow-x-auto sm:overflow-x-visible">
+                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-free">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   {t("hero.badge.free")}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-anonymous">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-anonymous">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   {t("hero.badge.anonymous")}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-bold shadow-md hover-elevate" data-testid="badge-instant">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
+                <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-instant">
+                  <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   {t("hero.badge.instant")}
                 </span>
               </div>
               <div className="text-center">
-                <p className="text-sm font-bold text-orange-400/90 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">{t("hero.trusted")}</p>
+                <p className="text-xs sm:text-sm font-bold text-orange-400/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">{t("hero.trusted")}</p>
               </div>
             </div>
           </div>

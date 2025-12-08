@@ -16,10 +16,6 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 37541
-externalPort = 3003
-
-[[ports]]
 localPort = 38029
 externalPort = 5000
 
@@ -82,6 +78,19 @@ PORT = "5000"
 runButton = "Project"
 
 [[workflows.workflow]]
+name = "Production Build"
+author = 50585417
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run start"
+
+[[workflows.workflow]]
 name = "Project"
 mode = "parallel"
 author = "agent"
@@ -94,26 +103,13 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
-[workflows.workflow.metadata]
-outputType = "webview"
-
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
 
-[[workflows.workflow]]
-name = "Production Build"
-author = 50585417
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run start"
+[workflows.workflow.metadata]
+outputType = "webview"
 
 [agent]
 expertMode = true
