@@ -1,28 +1,9 @@
 import { Link } from "wouter";
-import { ChevronDown, AlertTriangle } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { IconGithub, IconX, IconInstagram } from "@/components/icons/social-icons";
-import { useLanguage, type Language } from "@/contexts/language-context";
-import { LANGUAGE_FLAGS } from "@/lib/language-utils";
-import { useLocalizedLink } from "@/hooks/use-localized-link";
-import { useTranslation } from "@/hooks/use-translation";
-import { useState } from "react";
-
-const LANGUAGES = [
-  { code: "en" as Language, name: "English" },
-  { code: "es" as Language, name: "Español" },
-  { code: "pt" as Language, name: "Português" },
-  { code: "fr" as Language, name: "Français" },
-  { code: "de" as Language, name: "Deutsch" },
-  { code: "hi" as Language, name: "हिन्दी" },
-];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const { language, setLanguage } = useLanguage();
-  const { t } = useTranslation();
-  const getLocalizedLink = useLocalizedLink();
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const currentLangFlag = LANGUAGE_FLAGS[language];
 
   return (
     <footer className="border-t border-border/50 bg-gradient-to-b from-background to-background/80 mt-8 md:mt-12 lg:mt-16 relative overflow-hidden">
@@ -54,7 +35,7 @@ export function Footer() {
               <h3 className="font-bold text-lg md:text-xl leading-none">Burner Email</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              {t("footer.desc")}
+              Anonymous temporary email addresses that protect your privacy. No signup, no ads, no tracking.
             </p>
             
             {/* Social Icons */}
@@ -94,21 +75,21 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-foreground mb-5 text-base">{t("footer.product")}</h4>
+            <h4 className="font-semibold text-foreground mb-5 text-base">Product</h4>
             <ul className="space-y-3">
               <li>
-                <Link href={getLocalizedLink("/")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-home">
-                  {t("footer.tempEmail")}
+                <Link href="/" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-home">
+                  Temporary Email
                 </Link>
               </li>
               <li>
-                <Link href={getLocalizedLink("/browser-extension")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-extension">
-                  {t("footer.browserExtension")}
+                <Link href="/browser-extension" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-extension">
+                  Browser Extension
                 </Link>
               </li>
               <li>
-                <Link href={getLocalizedLink("/blog")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-blog">
-                  {t("header.blog")}
+                <Link href="/blog" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-blog">
+                  Blog
                 </Link>
               </li>
             </ul>
@@ -116,21 +97,21 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-foreground mb-5 text-base">{t("footer.legal")}</h4>
+            <h4 className="font-semibold text-foreground mb-5 text-base">Legal</h4>
             <ul className="space-y-3">
               <li>
-                <Link href={getLocalizedLink("/success-stories")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-stories">
-                  {t("footer.successStories")}
+                <Link href="/success-stories" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-stories">
+                  Success Stories
                 </Link>
               </li>
               <li>
-                <Link href={getLocalizedLink("/terms")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-terms">
-                  {t("footer.terms")}
+                <Link href="/terms" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-terms">
+                  Terms
                 </Link>
               </li>
               <li>
-                <Link href={getLocalizedLink("/privacy")} className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-privacy">
-                  {t("footer.privacy")}
+                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-privacy">
+                  Privacy
                 </Link>
               </li>
               <li>
@@ -148,7 +129,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-5 text-base">{t("footer.contact")}</h4>
+            <h4 className="font-semibold text-foreground mb-5 text-base">Contact</h4>
             <ul className="space-y-3">
               <li>
                 <a href="mailto:support@burneremail.email" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block break-all" data-testid="footer-email-support">
@@ -173,44 +154,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-muted-foreground order-1 sm:order-2">
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">{t("footer.badge1")}</span>
+            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">100% Free</span>
             <span className="hidden sm:inline text-border/50">|</span>
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">{t("footer.badge2")}</span>
+            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">Anonymous</span>
             <span className="hidden sm:inline text-border/50">|</span>
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">{t("footer.badge3")}</span>
-            <span className="hidden sm:inline text-border/50">|</span>
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30 hover:bg-muted/50 transition-colors border border-border/30"
-                title="Select language"
-                data-testid="button-language-selector"
-              >
-                <span className="text-base">{currentLangFlag}</span>
-                <ChevronDown className="h-3.5 w-3.5" />
-              </button>
-              {showLanguageDropdown && (
-                <div className="absolute bottom-full right-0 mb-2 bg-background border border-border/50 rounded-lg shadow-xl overflow-hidden z-50 min-w-[140px]">
-                  {LANGUAGES.map(lang => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setShowLanguageDropdown(false);
-                      }}
-                      className={`w-full px-4 py-2.5 text-sm text-left hover:bg-muted/50 transition-colors flex items-center gap-2.5 ${
-                        language === lang.code ? "bg-emerald-500/10 text-emerald-400 font-semibold" : "text-foreground/80"
-                      }`}
-                      data-testid={`language-option-${lang.code}`}
-                    >
-                      <span className="text-base">{LANGUAGE_FLAGS[lang.code]}</span>
-                      <span>{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">Instant</span>
           </div>
         </div>
       </div>

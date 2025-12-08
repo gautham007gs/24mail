@@ -1,24 +1,13 @@
-import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { initPerformanceTracking, logPerformanceSummary } from "@/lib/web-vitals";
-// Removed unused imports: Toaster, TooltipProvider, LanguageProvider, NotificationProvider, ErrorBoundary
-// Removed unused imports: SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage
-// Removed unused imports: Home, Blog, BlogPost, TermsConditions, PrivacyPolicy, SuccessStories, NotFound
-
-// Lazy load secondary pages for better initial load time
-// const Blog = lazy(() => import("@/pages/blog")); // Replaced with lazy loaded BlogPage
-// const BlogPost = lazy(() => import("@/pages/blog-post")); // Replaced with lazy loaded BlogPostPage
-// const TermsConditions = lazy(() => import("@/pages/terms-conditions")); // Replaced with lazy loaded TermsConditionsPage
-// const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy")); // Replaced with lazy loaded PrivacyPolicyPage
-// const SuccessStories = lazy(() => import("@/pages/success-stories")); // Replaced with lazy loaded SuccessStoriesPage
 
 // Load critical providers and HomePage eagerly to prevent blank screen
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { NotificationProvider } from "@/contexts/notification-context";
-import { LanguageProvider } from "@/contexts/language-context";
 import HomeOptimized from "@/pages/home-optimized";
 
 // Lazy load secondary pages only
@@ -38,33 +27,23 @@ function PageLoader() {
   );
 }
 
-// Error Boundary component (assuming it's defined elsewhere and imported)
+// Error Boundary component
 import { ErrorBoundary } from "@/components/error-boundary";
-import { SUPPORTED_LANGUAGES, isValidLanguage, detectBrowserLanguage } from "@/lib/language-utils";
-
 
 function AppRoutes() {
-  const supportedLangs = Object.keys(SUPPORTED_LANGUAGES).join("|");
-
   return (
     <Switch>
-      {/* Redirect root path to user's browser language or /en default */}
+      {/* Home page */}
       <Route path="/">
-        {() => {
-          const browserLang = detectBrowserLanguage();
-          return <Redirect to={`/${browserLang}`} />;
-        }}
-      </Route>
-
-      {/* Language-prefixed routes */}
-      <Route path={`/:lang(${supportedLangs})/`}>
         {() => (
           <ErrorBoundary>
             <HomeOptimized />
           </ErrorBoundary>
         )}
       </Route>
-      <Route path={`/:lang(${supportedLangs})/blog/`}>
+
+      {/* Blog routes */}
+      <Route path="/blog/">
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -73,7 +52,7 @@ function AppRoutes() {
           </ErrorBoundary>
         )}
       </Route>
-      <Route path={`/:lang(${supportedLangs})/blog/:slug/`}>
+      <Route path="/blog/:slug/">
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -82,7 +61,9 @@ function AppRoutes() {
           </ErrorBoundary>
         )}
       </Route>
-      <Route path={`/:lang(${supportedLangs})/terms/`}>
+
+      {/* Legal pages */}
+      <Route path="/terms/">
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -91,7 +72,7 @@ function AppRoutes() {
           </ErrorBoundary>
         )}
       </Route>
-      <Route path={`/:lang(${supportedLangs})/privacy/`}>
+      <Route path="/privacy/">
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -100,7 +81,7 @@ function AppRoutes() {
           </ErrorBoundary>
         )}
       </Route>
-      <Route path={`/:lang(${supportedLangs})/success-stories/`}>
+      <Route path="/success-stories/">
         {() => (
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -108,11 +89,6 @@ function AppRoutes() {
             </Suspense>
           </ErrorBoundary>
         )}
-      </Route>
-
-      {/* Fallback for invalid language codes */}
-      <Route path={`/:lang/*`}>
-        {() => <Redirect to="/en" />}
       </Route>
 
       {/* 404 */}
