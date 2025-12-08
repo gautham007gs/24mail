@@ -157,12 +157,10 @@ function App() {
       <WouterRouter>
         <ErrorBoundary>
           <NotificationProvider>
-            <LanguageProvider>
-              <TooltipProvider delayDuration={0}>
-                <AppRoutes />
-                <Toaster />
-              </TooltipProvider>
-            </LanguageProvider>
+            <TooltipProvider delayDuration={0}>
+              <AppRoutes />
+              <Toaster />
+            </TooltipProvider>
           </NotificationProvider>
         </ErrorBoundary>
       </WouterRouter>

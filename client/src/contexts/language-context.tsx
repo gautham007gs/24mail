@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useLocation } from "wouter";
 import { extractLanguageFromPath, isValidLanguage, type Language } from "@/lib/language-utils";
 
 interface LanguageContextType {
@@ -10,32 +9,48 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [location, navigate] = useLocation();
-  
-  // Track language in state and update when location changes
+  // Initialize language from localStorage or path
   const [language, setLanguageState] = useState<Language>(() => {
-    return extractLanguageFromPath(location);
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("burner-email-language");
+      if (stored && isValidLanguage(stored)) {
+        return stored as Language;
+      }
+      const pathLang = window.location.pathname.match(/^\/([a-z]{2})/)?.[1];
+      if (pathLang && isValidLanguage(pathLang)) {
+        return pathLang as Language;
+      }
+    }
+    return "en";
   });
 
-  // Update language state whenever location changes
+  // Monitor URL changes using popstate event
   useEffect(() => {
-    const newLanguage = extractLanguageFromPath(location);
-    setLanguageState(newLanguage);
-  }, [location]);
+    const handlePopState = () => {
+      const pathLang = window.location.pathname.match(/^\/([a-z]{2})/)?.[1];
+      if (pathLang && isValidLanguage(pathLang)) {
+        setLanguageState(pathLang as Language);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const setLanguage = (lang: Language) => {
     if (lang === language) return;
-    
-    // Remove existing language prefix and add new one
-    const cleanPath = location.replace(/^\/[a-z]{2}(\/|$)/, "/");
-    // Always ensure trailing slash for proper route matching
-    const newPath = `/${lang}${cleanPath === "/" ? "/" : cleanPath}`;
-    navigate(newPath);
-    
-    // Scroll to top smoothly when language changes
+
+    setLanguageState(lang);
+
+    // Update URL and localStorage
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const currentPath = window.location.pathname;
+      const cleanPath = currentPath.replace(/^\/[a-z]{2}(\/|$)/, "/");
+      const newPath = `/${lang}${cleanPath === "/" ? "/" : cleanPath}`;
+      
+      window.history.pushState(null, "", newPath);
       localStorage.setItem("burner-email-language", lang);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
