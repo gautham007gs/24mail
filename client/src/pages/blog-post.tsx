@@ -5,14 +5,10 @@ import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
 import { getPostMetaBySlug, getRelatedPostsMeta } from "@/lib/blog-metadata";
 import { loadBlogContent } from "@/lib/blog-content-loader";
-import { getBlogContentByLanguage, type LanguageCode } from "@/lib/blog-content-translations";
 import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
 import { generateTableOfContents, shareArticleOn, copyArticleLink, authorBios, parseContentBlocks } from "@/lib/article-utils";
 import { useToast } from "@/hooks/use-toast";
-import { useLanguage } from "@/contexts/language-context";
-import { useLocalizedLink } from "@/hooks/use-localized-link";
-import { generateHreflangs, getAllLanguageVersions } from "@/lib/seo-utils";
 
 const faqItems = [
   {
@@ -42,10 +38,8 @@ const faqItems = [
 ];
 
 export default function BlogPost() {
-  const [, params] = useRoute("/:lang/blog/:slug");
+  const [, params] = useRoute("/blog/:slug");
   const [location] = useLocation();
-  const { language } = useLanguage();
-  const getLocalizedLink = useLocalizedLink();
   const slug = params?.slug as string;
   const { toast } = useToast();
   
@@ -59,15 +53,7 @@ export default function BlogPost() {
   const [fullContent, setFullContent] = useState<string | null>(null);
   const [isLoadingContent, setIsLoadingContent] = useState(true);
   
-  // Get language-specific content for this post
-  const translatedContent = slug ? getBlogContentByLanguage(slug, language as LanguageCode) : null;
-  const displayContent = {
-    ...post,
-    ...(translatedContent || {}),
-  };
-  
-  const hreflangs = generateHreflangs(location, language);
-  const languageVersions = getAllLanguageVersions(slug ? `/blog/${slug}` : `/blog`);
+  const displayContent = post;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,7 +69,7 @@ export default function BlogPost() {
     }
   }, [slug]);
 
-  const contentToUse = translatedContent?.content || fullContent || '';
+  const contentToUse = fullContent || '';
 
   useEffect(() => {
     if (contentToUse) {
@@ -92,7 +78,7 @@ export default function BlogPost() {
       const blocks = parseContentBlocks(contentToUse);
       setContentBlocks(blocks);
     }
-  }, [contentToUse, language]);
+  }, [contentToUse]);
 
   // Track reading progress
   useEffect(() => {
@@ -114,7 +100,7 @@ export default function BlogPost() {
         <div className="text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Article not found</h1>
           <p className="text-muted-foreground mb-4">The article you're looking for doesn't exist.</p>
-          <Link href={getLocalizedLink("/blog")}>
+          <Link href="/blog">
             <Button>Back to Blog</Button>
           </Link>
         </div>
@@ -147,13 +133,10 @@ export default function BlogPost() {
         <meta name="keywords" content={keywordString} />
         <meta name="author" content={post?.author} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <meta name="language" content={language} />
-        <link rel="canonical" href={`https://burneremail.email${languageVersions[language]}`} />
-        {hreflangs.map((link) => (
-          <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
-        ))}
+        <meta name="language" content="en" />
+        <link rel="canonical" href={`https://burneremail.email/blog/${slug}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://burneremail.email${languageVersions[language]}`} />
+        <meta property="og:url" content={`https://burneremail.email/blog/${slug}`} />
         <meta property="og:title" content={displayContent?.title || post?.title} />
         <meta property="og:description" content={displayContent?.description || post?.description} />
         <meta property="og:image" content={post?.image} />
@@ -260,18 +243,18 @@ export default function BlogPost() {
             <div className="mx-auto max-w-4xl px-4 md:px-6 py-6">
               {/* Breadcrumb Navigation */}
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                <Link href={getLocalizedLink("/")} className="hover:text-foreground transition-colors">
+                <Link href="/" className="hover:text-foreground transition-colors">
                   Home
                 </Link>
                 <ChevronRight className="h-3 w-3" />
-                <Link href={getLocalizedLink("/blog")} className="hover:text-foreground transition-colors">
+                <Link href="/blog" className="hover:text-foreground transition-colors">
                   Blog
                 </Link>
                 <ChevronRight className="h-3 w-3" />
                 <span className="text-foreground font-medium truncate">{displayContent?.title || post?.title}</span>
               </div>
 
-              <Link href={getLocalizedLink("/blog")} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Blog
               </Link>
@@ -286,7 +269,7 @@ export default function BlogPost() {
                 <p className="text-sm md:text-base font-semibold text-foreground">Try Burner Email Now</p>
                 <p className="text-xs md:text-sm text-muted-foreground">Get your free temporary email instantly</p>
               </div>
-              <Link href={getLocalizedLink("/")} className="flex-shrink-0 w-full sm:w-auto">
+              <Link href="/" className="flex-shrink-0 w-full sm:w-auto">
                 <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2.5 h-auto min-h-10" data-testid="button-email-banner-cta">
                   Generate Email
                 </Button>

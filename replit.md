@@ -14,37 +14,20 @@ Theme Support: Full dark mode support with consistent styling across all compone
 Email Viewing: Default to HTML view, all links open in new tabs for user retention
 Design Philosophy: Extreme minimalism - Aggressive iterative simplification focused on core user flow (arrive → copy email → leave)
 
-## Multilingual & SEO Implementation
+## Language Support
 
-### Language Routing (6 Languages)
-- **URL Structure**: `/:lang(en|es|pt|fr|de|hi)/*` - all pages language-prefixed
-- **Language Context**: React context with useState tracking current language from URL
-- **Navigation**: Footer language selector updates URL + auto-scrolls to top (smooth scroll behavior)
-- **Translations**: 760+ translation keys for full UI coverage (header, footer, hero, blog, etc.)
-- **Browser Language Detection**: When users land on root `/`, system detects browser language and redirects to matching language (e.g., Portuguese user → `/pt`, Spanish user → `/es`)
-- **Regional Language Mapping**: Maps regional language variants (Bengali, Tamil, Telugu) to Hindi for South Asian users
-- **Fallback**: Falls back to English if browser language not supported
-
-### International SEO Strategy
-- **hreflang Tags**: All pages (home, blog, blog posts) generate hreflang alternates + x-default for all 6 languages
-- **Canonical URLs**: Language-specific canonical URLs prevent duplicate content issues
-- **Meta Language Attribute**: `<meta name="language">` on all pages
-- **Blog Infrastructure**: 
-  - Full multilingual blog content support via `blog-content-translations.ts`
-  - Each blog post has translated content (title, description, body) for all 6 languages
-  - Automatic fallback to English if translation not available
-  - Blog content displayed in user's selected language with hreflang + canonical setup
-  - SEO utility (`seo-utils.ts`) generates proper alternate links for all language versions
-- **Blog Content System**: 
-  - `blog-content-translations.ts`: Centralized multilingual content storage
-  - `getBlogContentByLanguage(slug, language)`: Retrieves blog content in requested language
-  - `blog-post.tsx`: Uses language context to display translated content automatically
+The application is **English-only**. All multi-language features have been removed:
+- No language selector in header or footer
+- No translation hooks (useTranslation, useLanguage)
+- No language-prefixed URLs
+- All UI text is hardcoded in English directly in components
+- Simple URL routing: `/`, `/blog`, `/blog/:slug`, etc.
 
 ## System Architecture
 
 ### Frontend Architecture
 
-The frontend is built with React and TypeScript, utilizing Vite for development and `shadcn/ui` (Radix UI and Tailwind CSS) for components. Design principles adhere to Apple HIG, emphasizing accessibility, animations, smooth interactions, and a Gen-Z aesthetic. TanStack Query manages server state, and Wouter handles client-side routing, including URL-based language routing (e.g., `/:lang/`). Key features include an `EmailGenerator`, `InboxList`, and `InlineEmailReader`. The application employs aggressive bundle optimization (code splitting, lazy loading, tree-shaking) and comprehensive caching strategies. A hybrid homepage loads critical elements instantly. Full dark mode support with auto-switch based on system preference and a 3-state theme toggle. Email viewing defaults to HTML, with all links opening in new tabs. Mobile gestures include swipe actions and long-press for multi-select. Typography is managed by a premium system with defined classes for display, headings, body, and captions, with adaptive sizing for mobile.
+The frontend is built with React and TypeScript, utilizing Vite for development and `shadcn/ui` (Radix UI and Tailwind CSS) for components. Design principles adhere to Apple HIG, emphasizing accessibility, animations, smooth interactions, and a Gen-Z aesthetic. TanStack Query manages server state, and Wouter handles client-side routing. Key features include an `EmailGenerator`, `InboxList`, and `InlineEmailReader`. The application employs aggressive bundle optimization (code splitting, lazy loading, tree-shaking) and comprehensive caching strategies. A hybrid homepage loads critical elements instantly. Full dark mode support with auto-switch based on system preference and a 3-state theme toggle. Email viewing defaults to HTML, with all links opening in new tabs. Mobile gestures include swipe actions and long-press for multi-select. Typography is managed by a premium system with defined classes for display, headings, body, and captions, with adaptive sizing for mobile.
 
 ### Performance Optimizations
 

@@ -7,8 +7,6 @@ import { type EmailSummary, type Domain } from "@shared/schema";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
 import { useNotifications } from "@/contexts/notification-context";
-import { useTranslation } from "@/hooks/use-translation";
-import { useLanguage } from "@/contexts/language-context";
 import { Helmet } from "react-helmet";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
@@ -45,8 +43,6 @@ function generateRandomUsername(): string {
 }
 
 export default function Home() {
-  const { t } = useTranslation();
-  const { language } = useLanguage();
 
   // Structured data (JSON-LD) for SEO
   const jsonLd = {
@@ -59,7 +55,7 @@ export default function Home() {
     "applicationCategory": "UtilityApplication",
     "applicationSubCategory": "Privacy Tool, Email Service, Temporary Email",
     "keywords": "burner email, temp mail, temporary email, disposable email, private email, secure email, anonymous email, throwaway email, free email, spam prevention, email privacy",
-    "inLanguage": language.toUpperCase(),
+    "inLanguage": "EN",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -339,10 +335,10 @@ export default function Home() {
               letterSpacing: '-0.02em',
               color: '#FFFFFF'
             }}>
-              {t("hero.title")}
+              Your Privacy, Protected
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
-              {t("hero.subtitle")}
+              Anonymous temporary email addresses that protect your privacy. No signup, no ads, no tracking.
             </p>
             {/* Subtle gradient glow background - loaded after text */}
             <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -354,23 +350,23 @@ export default function Home() {
                   <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  {t("hero.badge.free")}
+                  100% Free
                 </span>
                 <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-anonymous">
                   <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  {t("hero.badge.anonymous")}
+                  Anonymous
                 </span>
                 <span className="inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-md hover-elevate whitespace-nowrap" data-testid="badge-instant">
                   <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  {t("hero.badge.instant")}
+                  Instant
                 </span>
               </div>
               <div className="text-center">
-                <p className="text-xs sm:text-sm font-bold text-orange-400/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">{t("hero.trusted")}</p>
+                <p className="text-xs sm:text-sm font-bold text-orange-400/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-orange-400/10 inline-block shadow-sm border border-orange-500/20" data-testid="text-user-count">Trusted by millions</p>
               </div>
             </div>
           </div>
