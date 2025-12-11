@@ -34,14 +34,14 @@ export function FAQAccordion() {
   return (
     <div className="w-full">
       {/* Full-width background with no max-width constraint */}
-      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-6 sm:py-8 md:py-10 lg:py-12">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-gradient-to-b from-muted/20 to-transparent py-12 sm:py-14 md:py-16 lg:py-20">
         {/* Inner container for centered content */}
         <div className="px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="w-full max-w-4xl mx-auto">
             {/* FAQ Heading */}
-            <div className="mb-6 md:mb-8 text-center max-w-2xl mx-auto px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Frequently Asked Questions</h2>
-              <p className="text-sm md:text-base text-muted-foreground">Everything you need to know about Burner Email</p>
+            <div className="mb-8 md:mb-12 text-center max-w-2xl mx-auto px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Frequently Asked Questions</h2>
+              <p className="text-base md:text-lg text-muted-foreground">Everything you need to know about Burner Email</p>
             </div>
             {/* FAQ Items - Single column */}
             <div className="space-y-3 sm:space-y-4 md:space-y-5">
@@ -67,7 +67,7 @@ export function FAQAccordion() {
                     aria-expanded={expanded === idx}
                     aria-controls={`faq-answer-${idx}`}
                   >
-                    <span className="font-semibold text-foreground text-sm sm:text-base break-words leading-tight">
+                    <span className="font-semibold text-foreground text-base sm:text-lg break-words leading-tight">
                       {item.question}
                     </span>
                     <ChevronDown
@@ -85,7 +85,7 @@ export function FAQAccordion() {
                       data-testid={`faq-answer-${idx}`}
                       role="region"
                     >
-                      <p className="text-sm leading-relaxed">{item.answer}</p>
+                      <p className="text-base leading-relaxed">{item.answer}</p>
                     </div>
                   )}
                 </div>

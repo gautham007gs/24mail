@@ -48,7 +48,7 @@ export function TestimonialsCarousel() {
       <div className="hidden lg:grid grid-cols-2 gap-6 px-0">
         {/* Current Testimonial */}
         <Card 
-          className="p-8 md:p-10 border border-border/20 bg-card/40 hover:bg-card/60 relative overflow-hidden transition-all"
+          className="p-8 md:p-10 border border-border/20 bg-card/40 hover:bg-card/60 relative overflow-hidden transition-all rounded-lg"
           role="region"
           aria-label="Current user testimonial"
           aria-live="polite"
@@ -64,7 +64,7 @@ export function TestimonialsCarousel() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="h-4 w-4 fill-foreground/50 text-foreground/50"
+                  className="h-3.5 w-3.5 fill-foreground/50 text-foreground/50"
                   data-testid={`star-current-${i}`}
                 />
               ))}
@@ -113,7 +113,7 @@ export function TestimonialsCarousel() {
 
         {/* Next Testimonial Preview */}
         <Card 
-          className="p-8 md:p-10 border border-border/20 bg-card/40 hover:bg-card/60 relative overflow-hidden opacity-60 hover:opacity-100 transition-all cursor-pointer group"
+          className="p-8 md:p-10 border border-border/20 bg-card/40 hover:bg-card/60 relative overflow-hidden opacity-60 hover:opacity-100 transition-all cursor-pointer group rounded-lg"
           onClick={next}
           role="button"
           aria-label={`Next testimonial from ${nextTestimonial.name}`}
@@ -130,7 +130,7 @@ export function TestimonialsCarousel() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="h-4 w-4 fill-foreground/50 text-foreground/50"
+                  className="h-3.5 w-3.5 fill-foreground/50 text-foreground/50"
                   data-testid={`star-next-${i}`}
                 />
               ))}
@@ -180,7 +180,7 @@ export function TestimonialsCarousel() {
 
       {/* Mobile/Tablet: Full-width single testimonial */}
       <Card 
-        className="lg:hidden p-6 sm:p-8 md:p-10 border border-border/20 bg-card/40 relative overflow-hidden"
+        className="lg:hidden p-6 sm:p-8 md:p-10 border border-border/20 bg-card/40 relative overflow-hidden rounded-lg"
         role="region"
         aria-label="User testimonials carousel"
         aria-live="polite"
@@ -196,7 +196,7 @@ export function TestimonialsCarousel() {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className="h-4 w-4 fill-foreground/50 text-foreground/50"
+                className="h-3.5 w-3.5 fill-foreground/50 text-foreground/50"
                 data-testid={`star-${i}`}
               />
             ))}

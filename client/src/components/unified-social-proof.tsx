@@ -67,31 +67,28 @@ export function UnifiedSocialProof() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 max-w-4xl mx-auto">
           {features.map((feature, idx) => (
-            <Card
-              key={idx}
-              className="group relative p-6 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 transition-colors duration-300 overflow-visible"
-              style={{ minHeight: '200px' }}
-            >
-              <div className="space-y-4">
-                {/* Icon - Simplified without excessive glow */}
-                <div className="w-fit p-4 rounded-xl bg-emerald-500/15 ring-1 ring-emerald-500/25 group-hover:bg-emerald-500/20 transition-colors duration-300">
+            <div key={idx} className="flex items-start gap-4">
+              {/* Icon */}
+              <div className="flex-shrink-0 mt-1">
+                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
                   <div className="text-emerald-400" aria-hidden="true">
                     {feature.icon}
                   </div>
                 </div>
-
-                <div>
-                  <h4 className="font-bold text-lg text-foreground group-hover:text-emerald-400 transition-colors">
-                    {feature.title}
-                  </h4>
-                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
               </div>
-            </Card>
+
+              {/* Text Content */}
+              <div className="flex-1 min-w-0">
+                <h4 className="font-bold text-base md:text-lg text-foreground">
+                  {feature.title}
+                </h4>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {feature.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
