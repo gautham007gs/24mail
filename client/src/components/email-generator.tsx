@@ -250,10 +250,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
         <div
-          className="flex items-start gap-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-6 md:p-7 shadow-[0_0_30px_rgba(16,185,129,0.2)] min-h-[140px]"
+          className="flex items-start gap-4 rounded-xl border border-accent/40 bg-accent/10 p-6 md:p-7 shadow-[0_0_30px_rgba(20,184,166,0.15)] min-h-[140px]"
           data-testid="notification-banner"
         >
-          <Bell className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(16,185,129,0.6)]" aria-hidden="true" />
+          <Bell className="h-6 w-6 text-accent shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(20,184,166,0.5)]" aria-hidden="true" />
           <div className="flex-1 space-y-2">
             <p className="text-base font-bold text-foreground">
               Get notified of new emails
@@ -283,13 +283,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Background Gradient */}
-      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 bg-gradient-to-b from-orange-500/8 via-background to-background dark:from-orange-500/12 dark:via-background dark:to-background">
-        {/* Subtle orange gradient glow */}
+      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 bg-gradient-to-b from-primary/5 via-background to-background dark:from-primary/8 dark:via-background dark:to-background">
+        {/* Dual-color gradient glow */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-orange-500/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/3 -translate-x-1/2 w-80 h-80 bg-gradient-to-br from-primary/12 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-10 right-1/4 w-64 h-64 bg-gradient-to-bl from-accent/10 to-transparent rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        <Card className="p-6 sm:p-10 md:p-12 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30 border border-orange-500/25" data-testid="email-generator-card">
+        <Card className="p-6 sm:p-10 md:p-12 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/5 dark:shadow-black/30 border border-primary/20 dark:border-primary/25" data-testid="email-generator-card">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
@@ -301,7 +302,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Email Display Box with Glow */}
-        <div className="card-flame-edge px-7 sm:px-8 py-6 sm:py-7 border border-orange-500/35 bg-gradient-to-r from-orange-500/8 to-orange-600/5 dark:from-orange-500/12 dark:to-orange-600/8 rounded-lg shadow-[0_0_20px_rgba(255,106,0,0.1)] dark:shadow-[0_0_30px_rgba(255,106,0,0.15)]">
+        <div className="card-flame-edge px-7 sm:px-8 py-6 sm:py-7 border border-accent/30 bg-gradient-to-r from-accent/5 to-primary/5 dark:from-accent/10 dark:to-primary/8 rounded-lg shadow-[0_0_20px_rgba(20,184,166,0.08)] dark:shadow-[0_0_30px_rgba(20,184,166,0.12)]">
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
             {/* Email Address - Single line */}
@@ -349,7 +350,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
           {/* Expiry Info */}
           <span className="text-xs sm:text-sm text-muted-foreground">
-            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+            Expires in <span className="text-primary font-semibold">{expiryTime}</span>
           </span>
         </div>
 
@@ -362,7 +363,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-sm sm:text-base font-bold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200"
+              className="text-sm sm:text-base font-bold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(249,115,22,0.25)] transition-all duration-200"
               aria-label="Copy email address to clipboard"
             >
               <Copy className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
@@ -372,10 +373,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleRefresh}
               variant="outline"
               data-testid="button-action-refresh"
-              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200"
+              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(20,184,166,0.2)] border-accent/40 hover:border-accent/60 transition-all duration-200"
               aria-label="Refresh inbox"
             >
-              <RefreshCw className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+              <RefreshCw className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-accent" />
               Refresh
             </Button>
             <Button
@@ -383,7 +384,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               disabled={domains.length === 0}
               variant="secondary"
               data-testid="button-action-new-email"
-              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.2)] transition-all duration-200"
+              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(139,92,246,0.15)] transition-all duration-200"
               aria-label="Generate a new email address"
             >
               <RotateCw className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
@@ -393,7 +394,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               onClick={handleBurn}
               variant="outline"
               data-testid="button-action-burn"
-              className={`text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200 ${isBurning ? "burn-animation" : ""}`}
+              className={`text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 border-destructive/40 text-destructive hover:bg-destructive/10 hover:border-destructive/60 hover:shadow-[0_0_18px_rgba(239,68,68,0.2)] transition-all duration-200 ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
               <Trash2 className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 ${isBurning ? "burn-icon" : ""}`} />
@@ -406,10 +407,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
-          <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30 flex-shrink-0">
+        <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-background dark:to-background/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
+          <div className="bg-gradient-to-r from-accent/10 to-primary/10 dark:from-accent/15 dark:to-primary/15 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-accent/20 dark:border-accent/30 flex-shrink-0">
             <DialogHeader className="space-y-1">
-              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
+              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-accent to-primary dark:from-accent dark:to-primary bg-clip-text text-transparent">
                 Share Your Email
               </DialogTitle>
               <DialogDescription className="text-xs sm:text-sm text-muted-foreground">
@@ -421,8 +422,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           <div className="px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
             <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
               <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-white dark:bg-card p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-accent/30 dark:border-accent/30 flex items-center justify-center">
                   <Suspense fallback={<Skeleton className="w-[240px] h-[240px] sm:w-[280px] sm:h-[280px]" />}>
                     <div className="animate-in fade-in duration-300">
                       <QRCode
@@ -454,8 +455,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Email Address</p>
               <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-emerald-50/50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/30 p-3 sm:p-4 rounded-xl border border-emerald-200/40 dark:border-emerald-800/40 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-primary/10 dark:from-accent/15 dark:to-primary/15 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-gradient-to-r from-accent/5 to-primary/5 dark:from-accent/10 dark:to-primary/10 p-3 sm:p-4 rounded-xl border border-accent/30 dark:border-accent/40 backdrop-blur-sm">
                   <p className="font-mono text-xs sm:text-sm md:text-base font-semibold text-foreground break-all leading-tight">{currentEmail}</p>
                 </div>
               </div>
@@ -537,7 +538,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </div>
           </div>
 
-          <div className="bg-muted/30 dark:bg-muted/10 px-4 sm:px-6 py-3 sm:py-4 border-t border-border/50 dark:border-border/30 text-center text-xs text-muted-foreground flex-shrink-0">
+          <div className="bg-accent/5 dark:bg-accent/10 px-4 sm:px-6 py-3 sm:py-4 border-t border-accent/20 dark:border-accent/30 text-center text-xs text-muted-foreground flex-shrink-0">
             Safe, private, and instant sharing
           </div>
         </DialogContent>
