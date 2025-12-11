@@ -345,20 +345,35 @@ export function InboxList({
   return (
     <div className="space-y-5">
       {/* Header with Actions - Mobile responsive layout */}
-      <div className="flex flex-col gap-3 mt-5 sm:mt-6">
-        {/* Count Badge */}
-        <div className="flex items-center gap-3 flex-wrap">
-          <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
-            {searchQuery ? filteredEmails.length : emails.length}
-          </span>
-          {hasSelected && (
-            <span className="text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium min-h-8 flex items-center">
-              {selectedIds.length} selected
+      <div className="flex flex-col gap-4 mt-5 sm:mt-6">
+        {/* Count Badge and Refresh Button */}
+        <div className="flex items-center gap-3 flex-wrap justify-between">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
+              {searchQuery ? filteredEmails.length : emails.length}
             </span>
-          )}
+            {hasSelected && (
+              <span className="text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium min-h-8 flex items-center">
+                {selectedIds.length} selected
+              </span>
+            )}
+          </div>
+          
+          {/* Refresh Button - Labeled */}
+          <Button
+            onClick={onRefresh}
+            disabled={isLoading}
+            data-testid="button-refresh"
+            aria-label="Refresh inbox"
+            className="text-sm font-semibold py-2 px-4 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200"
+          >
+            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+            <span className="hidden sm:inline">Refresh</span>
+            <span className="sm:hidden">Refresh</span>
+          </Button>
         </div>
 
-        {/* Action Buttons - Right aligned on mobile */}
+        {/* Action Buttons */}
         <div className="flex items-center gap-2 flex-wrap justify-start sm:justify-between">
           <div className="flex items-center gap-2 flex-wrap">
             {hasSelected && (
@@ -387,7 +402,7 @@ export function InboxList({
             )}
           </div>
 
-          {/* Refresh and Timer - Right side on mobile */}
+          {/* Timer - Right side on mobile */}
           <div className="flex items-center gap-2 ml-auto">
             {currentEmail && (
               <div 
@@ -399,17 +414,6 @@ export function InboxList({
                 <span data-testid="countdown-timer">{countdown}s</span>
               </div>
             )}
-            <Button
-              size="icon"
-              onClick={onRefresh}
-              disabled={isLoading}
-              data-testid="button-refresh"
-              aria-label="Refresh inbox"
-              title="Refresh inbox"
-              className={`min-h-[44px] min-w-[44px] ${isLoading ? "bg-blue-100 dark:bg-blue-900/30" : ""}`}
-            >
-              <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin text-blue-600 dark:text-blue-400" : ""}`} />
-            </Button>
           </div>
         </div>
       </div>
@@ -690,8 +694,8 @@ function EmailTableRow({
       )}
 
       <div
-        className={`grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-4 min-h-16 hover:bg-muted/20 cursor-pointer transition-all items-center border-l-4 swipe-row ${
-          isSelected ? "bg-accent/8 border-accent" : isExpanded ? "bg-muted/15 border-accent" : isUnread ? "border-accent bg-accent/6" : "border-transparent hover:border-border/30"
+        className={`grid grid-cols-12 gap-3 px-4 sm:px-5 py-3 sm:py-4 min-h-16 hover:shadow-[inset_0_0_20px_rgba(255,106,0,0.08)] dark:hover:shadow-[inset_0_0_20px_rgba(255,106,0,0.12)] cursor-pointer transition-all items-center border-l-4 border-b border-b-border/20 swipe-row ${
+          isSelected ? "bg-accent/8 border-accent" : isExpanded ? "bg-muted/15 border-accent" : isUnread ? "border-accent bg-accent/6" : "border-transparent hover:border-orange-400/30 dark:hover:border-orange-500/30"
         }`}
         onClick={handleRowClick}
         onTouchStart={handleTouchStart}
@@ -709,17 +713,15 @@ function EmailTableRow({
           </div>
         </div>
 
-        {/* Sender */}
-        <div className="col-span-5 sm:col-span-3 min-w-0">
-          <div className="flex items-center gap-2 mb-0.5">
-            {isStarred && <Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500 flex-shrink-0" />}
-            <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
-            {email.has_attachments && (
-              <Paperclip className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
-            )}
-          </div>
+        {/* Sender - Single line with icons */}
+        <div className="col-span-5 sm:col-span-3 min-w-0 flex items-center gap-2">
+          {isStarred && <Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500 flex-shrink-0" />}
+          <span className={`truncate ${isUnread ? "font-bold text-foreground" : "text-foreground/80"}`}>{email.from_address}</span>
+          {email.has_attachments && (
+            <Paperclip className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+          )}
           {emailInfo.label && (
-            <span className={`text-[10px] px-1.5 py-0.5 rounded ${emailInfo.color} font-medium`}>
+            <span className={`text-[10px] px-1.5 py-0.5 rounded whitespace-nowrap ${emailInfo.color} font-medium flex-shrink-0`}>
               {emailInfo.label}
             </span>
           )}
