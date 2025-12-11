@@ -106,7 +106,7 @@ export default defineConfig(async ({ mode }) => {
           hoistTransitiveImports: false,
         },
         treeshake: {
-          moduleSideEffects: false,
+          moduleSideEffects: true,
           propertyReadSideEffects: false,
           tryCatchDeoptimization: false,
         },
@@ -116,6 +116,9 @@ export default defineConfig(async ({ mode }) => {
     server: {
       fs: {
         strict: false,
+      },
+      hmr: {
+        overlay: false,
       },
     },
   };

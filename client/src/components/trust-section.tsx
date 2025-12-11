@@ -1,4 +1,4 @@
-import { Lock, Eye, Shield, CheckCircle2, Zap, Database, Check, Code2, Globe, Users, Mail } from "lucide-react";
+import { Lock, Eye, Shield, CheckCircle2, Zap, Check, Code2, Users, Mail } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export function TrustSection() {
@@ -8,7 +8,6 @@ export function TrustSection() {
       title: "100% Free",
       subtitle: "No payment needed",
       details: "Forever free, no hidden charges",
-      glowColor: "from-emerald-500/30 to-emerald-600/20",
       step: 1,
     },
     {
@@ -16,7 +15,6 @@ export function TrustSection() {
       title: "Anonymous",
       subtitle: "Complete privacy",
       details: "We don't store your data",
-      glowColor: "from-blue-500/30 to-blue-600/20",
       step: 2,
     },
     {
@@ -24,7 +22,6 @@ export function TrustSection() {
       title: "Instant",
       subtitle: "Ready in seconds",
       details: "No signup required",
-      glowColor: "from-purple-500/30 to-purple-600/20",
       step: 3,
     },
   ];
@@ -44,15 +41,13 @@ export function TrustSection() {
 
   return (
     <section className="mt-16 md:mt-24 pt-12 md:pt-16 pb-8 md:pb-12 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
-      {/* Subtle Background - Reduced for performance */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-2xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-2xl" />
       </div>
 
-      {/* Header */}
       <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
-        <div className="inline-block mb-4 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-          <p className="text-sm font-bold text-emerald-400 uppercase tracking-wide">Why Trust Us</p>
+        <div className="inline-block mb-4 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/30 shadow-[0_0_20px_rgba(234,88,12,0.15)]">
+          <p className="text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wide">Why Trust Us</p>
         </div>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
           Why Trust Us
@@ -62,9 +57,7 @@ export function TrustSection() {
         </p>
       </div>
 
-      {/* Global Stats - Clean Grid Layout */}
       <div className="relative max-w-4xl mx-auto px-4 mb-12 md:mb-16">
-        {/* Unified Stats Grid - Mobile & Desktop */}
         <div className="grid grid-cols-3 gap-3 sm:gap-6">
           {globalStats.map((stat, index) => {
             const Icon = stat.icon;
@@ -73,13 +66,13 @@ export function TrustSection() {
                 key={index}
                 className="relative group"
               >
-                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-emerald-500/25 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors duration-300">
+                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-colors duration-300">
                   <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-emerald-500/20">
-                      <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-emerald-400" aria-hidden="true" />
+                    <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-orange-500/20">
+                      <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                     </div>
                   </div>
-                  <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-emerald-400 mb-1 sm:mb-2">
+                  <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-orange-500 dark:text-orange-400 mb-1 sm:mb-2">
                     {stat.value}
                   </div>
                   <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
@@ -90,7 +83,6 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Trust Items - 2-Column Bullet List */}
       <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
@@ -98,14 +90,12 @@ export function TrustSection() {
 
             return (
               <div key={index} className="flex items-start gap-4">
-                {/* Icon + Checkmark */}
                 <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
-                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-orange-500/15 ring-1 ring-orange-500/25">
+                    <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                   </div>
                 </div>
 
-                {/* Text Content */}
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-base md:text-lg text-foreground">
                     {item.title}
@@ -120,16 +110,14 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Why Choose Us - 2-Column Bullet List */}
       <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
         <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
+          <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
             Why You'll Love Burner Email
           </p>
           <p className="text-sm text-muted-foreground">Everything you need for complete privacy</p>
         </div>
 
-        {/* 2-Column Bullet List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {[
             { icon: Check, text: "1M+ Emails Generated" },
@@ -143,8 +131,8 @@ export function TrustSection() {
             return (
               <div key={index} className="flex items-start gap-4">
                 <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
-                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-orange-500/15 ring-1 ring-orange-500/25">
+                    <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
@@ -158,27 +146,25 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Security & Compliance - Card Grid */}
       <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
         <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
+          <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
             Security & Compliance
           </p>
           <p className="text-sm text-muted-foreground">Industry-leading standards</p>
         </div>
 
-        {/* Responsive Grid - All devices */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {certifications.map((cert, index) => {
             const Icon = cert.icon;
             return (
               <Card
                 key={index}
-                className="group relative p-4 md:p-5 border border-border/70 bg-gradient-to-br from-muted/20 to-muted/5 hover:from-muted/40 hover:to-muted/15 hover:border-emerald-500/50 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-none"
+                className="group relative p-4 md:p-5 border border-border/70 bg-gradient-to-br from-muted/20 to-muted/5 hover:from-muted/40 hover:to-muted/15 hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-none"
                 style={{ minHeight: '200px' }}
               >
-                <div className="mb-3 p-3 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500/30 ring-1 ring-emerald-500/30 transition-all duration-300">
-                  <Icon className="h-7 w-7 text-emerald-300" aria-hidden="true" />
+                <div className="mb-3 p-3 rounded-lg bg-orange-500/20 group-hover:bg-orange-500/30 ring-1 ring-orange-500/30 transition-all duration-300">
+                  <Icon className="h-7 w-7 text-orange-500 dark:text-orange-300" aria-hidden="true" />
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center">
@@ -187,7 +173,7 @@ export function TrustSection() {
                 </div>
 
                 <div className="mt-3 pt-3 border-t border-border/20 w-full">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 mx-auto" aria-hidden="true" />
+                  <CheckCircle2 className="h-4 w-4 text-orange-500 dark:text-orange-400 mx-auto" aria-hidden="true" />
                 </div>
               </Card>
             );

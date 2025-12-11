@@ -28,7 +28,6 @@ const lazyWithDelay = (importFunc: () => Promise<any>) => {
 
 const HowItWorks = lazyWithDelay(() => import("@/components/how-it-works").then(m => ({ default: m.HowItWorks })));
 const TrustSection = lazyWithDelay(() => import("@/components/trust-section").then(m => ({ default: m.TrustSection })));
-const UnifiedSocialProof = lazyWithDelay(() => import("@/components/unified-social-proof").then(m => ({ default: m.UnifiedSocialProof })));
 const FAQAccordion = lazyWithDelay(() => import("@/components/faq-accordion").then(m => ({ default: m.FAQAccordion })));
 const Footer = lazyWithDelay(() => import("@/components/footer").then(m => ({ default: m.Footer })));
 
@@ -359,11 +358,6 @@ export default function Home() {
             {/* How It Works Section */}
             <div className="mt-16 md:mt-20 pt-12 md:pt-14 border-t border-border/30 fade-in">
               <HowItWorks />
-            </div>
-
-            {/* Social Proof Section */}
-            <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
-              <UnifiedSocialProof />
             </div>
           </Suspense>
 
