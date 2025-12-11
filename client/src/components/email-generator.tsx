@@ -282,14 +282,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card with Background Gradient */}
-      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 bg-gradient-to-b from-orange-500/8 via-background to-background dark:from-orange-500/12 dark:via-background dark:to-background">
-        {/* Subtle orange gradient glow */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-orange-500/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-        </div>
-
-        <Card className="p-6 sm:p-10 md:p-12 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30 border border-orange-500/25" data-testid="email-generator-card">
+      {/* Main Card - Clean black background */}
+      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16">
+        <Card className="p-6 sm:p-10 md:p-12 mx-auto w-full bg-card border-0 dark:border dark:border-[#1b1b1b]" data-testid="email-generator-card">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
@@ -300,14 +295,14 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </p>
         </div>
 
-        {/* Email Display Box with Glow */}
-        <div className="card-flame-edge px-7 sm:px-8 py-6 sm:py-7 border border-orange-500/35 bg-gradient-to-r from-orange-500/8 to-orange-600/5 dark:from-orange-500/12 dark:to-orange-600/8 rounded-lg shadow-[0_0_20px_rgba(255,106,0,0.1)] dark:shadow-[0_0_30px_rgba(255,106,0,0.15)]">
+        {/* Email Display Box - White background with dark text */}
+        <div className="px-7 sm:px-8 py-6 sm:py-7 rounded-xl bg-white dark:bg-white text-gray-900 dark:text-gray-900 shadow-lg">
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
-            {/* Email Address - Single line */}
+            {/* Email Address - Single line, bold */}
             <span
-              className="text-base sm:text-lg md:text-xl font-semibold text-foreground truncate flex-1"
-              style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.3" }}
+              className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 truncate flex-1"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", lineHeight: "1.3", letterSpacing: "-0.02em" }}
               data-testid="text-current-email"
               title={currentEmail}
             >
@@ -315,18 +310,18 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </span>
 
             {/* Inline Action Icons - QR & Copy */}
-            <div className="flex gap-3 sm:gap-3 flex-shrink-0">
+            <div className="flex gap-2 sm:gap-3 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="h-9 w-9 sm:h-10 sm:w-10 p-2"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
-                <QrCode className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <Button
                 size="icon"
@@ -334,22 +329,22 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="h-9 w-9 sm:h-10 sm:w-10 p-2"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 title="Copy email"
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? (
-                  <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
+                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
                 ) : (
-                  <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
               </Button>
             </div>
           </div>
 
           {/* Expiry Info */}
-          <span className="text-xs sm:text-sm text-muted-foreground">
-            Expires in <span className="text-accent font-semibold">{expiryTime}</span>
+          <span className="text-sm sm:text-base text-gray-600 font-medium">
+            Expires in <span className="text-[#FFA31A] font-bold">{expiryTime}</span>
           </span>
         </div>
 

@@ -624,53 +624,55 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - REFINED BURNER ORANGE PALETTE WITH IMPROVED CONTRAST
-   Uses dark grey (#121212 style) instead of pure black
-   Orange as accent with proper contrast
-   Off-white text (#E0E0E0) for reduced eye strain
+/* DARK MODE - PREMIUM BLACK & ORANGE STYLE
+   Pure black background for maximum contrast
+   Orange accent: #FFA31A (38 100% 55%)
+   White content areas for email display
 */
 .dark {
-  --button-outline: rgba(255, 140, 50, 0.15);
-  --badge-outline: rgba(255, 140, 50, 0.10);
+  --button-outline: rgba(255, 163, 26, 0.18);
+  --badge-outline: rgba(255, 163, 26, 0.12);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(255, 140, 50, 0.10);
-  --elevate-2: rgba(255, 140, 50, 0.18);
-  --background: 0 0% 7%;
-  --foreground: 0 0% 88%;
+  --elevate-1: rgba(255, 163, 26, 0.12);
+  --elevate-2: rgba(255, 163, 26, 0.22);
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
   --border: 0 0% 18%;
-  --card: 0 0% 11%;
-  --card-foreground: 0 0% 90%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 100%;
   --card-border: 0 0% 20%;
-  --sidebar: 0 0% 9%;
-  --sidebar-foreground: 0 0% 88%;
+  --sidebar: 0 0% 6%;
+  --sidebar-foreground: 0 0% 100%;
   --sidebar-border: 0 0% 18%;
-  --sidebar-primary: 25 100% 50%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 25 95% 55%;
-  --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 25 100% 50%;
-  --popover: 0 0% 12%;
-  --popover-foreground: 0 0% 90%;
+  --sidebar-primary: 38 100% 55%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 38 100% 55%;
+  --sidebar-accent-foreground: 0 0% 0%;
+  --sidebar-ring: 38 100% 55%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 100%;
   --popover-border: 0 0% 22%;
-  --primary: 25 100% 50%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 16%;
-  --secondary-foreground: 0 0% 88%;
-  --muted: 0 0% 14%;
+  --primary: 38 100% 55%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 12%;
   --muted-foreground: 0 0% 65%;
-  --tertiary-foreground: 0 0% 55%;
-  --accent: 25 95% 55%;
-  --accent-foreground: 0 0% 100%;
-  --timer: 25 100% 50%;
-  --timer-foreground: 0 0% 100%;
+  --tertiary-foreground: 0 0% 50%;
+  --accent: 38 100% 55%;
+  --accent-foreground: 0 0% 0%;
+  --timer: 38 100% 55%;
+  --timer-foreground: 0 0% 0%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 14%;
-  --ring: 25 100% 50%;
-  --section-alt: 0 0% 10%;
-  --section-alt-foreground: 0 0% 85%;
+  --input: 0 0% 12%;
+  --ring: 38 100% 55%;
+  --section-alt: 0 0% 8%;
+  --section-alt-foreground: 0 0% 95%;
+  --email-display: 0 0% 100%;
+  --email-display-foreground: 0 0% 8%;
 
-  /* Dark mode with proper dark grey background */
+  /* Dark mode with pure black background */
   color-scheme: dark;
   --chart-1: 25 100% 50%;
   --chart-2: 25 90% 60%;
