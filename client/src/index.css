@@ -89,25 +89,25 @@
   animation: timerGlowPulse 2s ease-in-out infinite;
 }
 
-/* Orange (50-100%) → Amber (0-50%) - Professional Orange Theme */
+/* Premium Burner Orange Theme - Timer Progress */
 .timer-progress-fill.green {
-  background: linear-gradient(90deg, #EA580C 0%, #EA580C 100%);
-  box-shadow: 0 0 4px rgba(234, 88, 12, 0.25);
-  color: #EA580C;
+  background: linear-gradient(90deg, #FF6A00 0%, #FF6A00 100%);
+  box-shadow: 0 0 4px rgba(255, 106, 0, 0.25);
+  color: #FF6A00;
 }
 
 .timer-progress-fill.orange {
-  background: linear-gradient(90deg, #F97316 0%, #F97316 100%);
-  box-shadow: 0 0 4px rgba(249, 115, 22, 0.25);
-  color: #F97316;
+  background: linear-gradient(90deg, #F77228 0%, #F77228 100%);
+  box-shadow: 0 0 4px rgba(247, 114, 40, 0.25);
+  color: #F77228;
 }
 
 .dark .timer-progress-fill.green {
-  box-shadow: 0 0 6px rgba(234, 88, 12, 0.35);
+  box-shadow: 0 0 6px rgba(255, 106, 0, 0.35);
 }
 
 .dark .timer-progress-fill.orange {
-  box-shadow: 0 0 6px rgba(249, 115, 22, 0.35);
+  box-shadow: 0 0 6px rgba(247, 114, 40, 0.35);
 }
 
 /* Burn Animation - 0.5s flame effect */
@@ -132,7 +132,7 @@
 
 .burn-icon {
   animation: burnFlame 0.5s ease-in-out;
-  color: #EA580C;
+  color: #FF6A00;
 }
 
 /* Font optimization */
@@ -529,14 +529,18 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - PROFESSIONAL ORANGE PALETTE for Burner Email */
+/* LIGHT MODE - PREMIUM BURNER ORANGE PALETTE
+   Primary Orange: #FF6A00 → 25 100% 50%
+   Accent Orange (icons/glow): #FF8C32 → 27 100% 60%
+   Highlight Orange (buttons): #F77228 → 22 93% 56%
+*/
 :root {
-  --button-outline: rgba(234, 88, 12, 0.12);
-  --badge-outline: rgba(234, 88, 12, 0.08);
+  --button-outline: rgba(255, 106, 0, 0.12);
+  --badge-outline: rgba(255, 106, 0, 0.08);
   --opaque-button-border-intensity: -5;
-  --elevate-1: rgba(234, 88, 12, 0.08);
-  --elevate-2: rgba(234, 88, 12, 0.15);
-  --mint-glow: 0 0 12px rgba(234, 88, 12, 0.3);
+  --elevate-1: rgba(255, 106, 0, 0.08);
+  --elevate-2: rgba(255, 106, 0, 0.15);
+  --mint-glow: 0 0 12px rgba(255, 106, 0, 0.3);
   --background: 30 50% 98%;
   --foreground: 20 14% 10%;
   --border: 30 30% 88%;
@@ -546,31 +550,31 @@ html.dark {
   --sidebar: 30 35% 96%;
   --sidebar-foreground: 20 14% 10%;
   --sidebar-border: 30 30% 88%;
-  --sidebar-primary: 24 95% 53%;
+  --sidebar-primary: 25 100% 50%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 17 88% 40%;
+  --sidebar-accent: 27 100% 60%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 24 95% 53%;
+  --sidebar-ring: 25 100% 50%;
   --popover: 30 40% 97%;
   --popover-foreground: 20 14% 10%;
   --popover-border: 30 35% 90%;
-  --primary: 24 95% 53%;
+  --primary: 25 100% 50%;
   --primary-foreground: 0 0% 100%;
   --secondary: 30 30% 92%;
   --secondary-foreground: 20 14% 10%;
   --muted: 30 20% 92%;
   --muted-foreground: 20 10% 35%;
   --tertiary-foreground: 20 10% 45%;
-  --accent: 17 88% 40%;
+  --accent: 27 100% 60%;
   --accent-foreground: 0 0% 100%;
-  --timer: 24 95% 53%;
+  --timer: 22 93% 56%;
   --timer-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 30 30% 94%;
-  --ring: 24 95% 53%;
-  --chart-1: 24 95% 53%;
-  --chart-2: 17 88% 40%;
+  --ring: 25 100% 50%;
+  --chart-1: 25 100% 50%;
+  --chart-2: 27 100% 60%;
   --chart-3: 30 40% 85%;
   --chart-4: 30 35% 80%;
   --chart-5: 30 30% 75%;
@@ -618,13 +622,17 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - PROFESSIONAL ORANGE PALETTE for Burner Email */
+/* DARK MODE - PREMIUM BURNER ORANGE PALETTE
+   Primary Orange: #FF6A00 → 25 100% 50%
+   Accent Orange (icons/glow): #FF8C32 → 27 100% 60%
+   Highlight Orange (buttons): #F77228 → 22 93% 56%
+*/
 .dark {
-  --button-outline: rgba(251, 146, 60, 0.12);
-  --badge-outline: rgba(251, 146, 60, 0.08);
+  --button-outline: rgba(255, 140, 50, 0.12);
+  --badge-outline: rgba(255, 140, 50, 0.08);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(251, 146, 60, 0.08);
-  --elevate-2: rgba(251, 146, 60, 0.15);
+  --elevate-1: rgba(255, 140, 50, 0.08);
+  --elevate-2: rgba(255, 140, 50, 0.15);
   --background: 20 14% 6%;
   --foreground: 30 25% 96%;
   --border: 20 10% 20%;
@@ -634,34 +642,34 @@ html.dark {
   --sidebar: 20 12% 8%;
   --sidebar-foreground: 30 25% 96%;
   --sidebar-border: 20 10% 18%;
-  --sidebar-primary: 24 95% 55%;
+  --sidebar-primary: 25 100% 50%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 30 90% 50%;
+  --sidebar-accent: 27 100% 60%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 24 95% 55%;
+  --sidebar-ring: 25 100% 50%;
   --popover: 20 12% 12%;
   --popover-foreground: 30 25% 96%;
   --popover-border: 20 10% 22%;
-  --primary: 24 95% 55%;
+  --primary: 25 100% 50%;
   --primary-foreground: 0 0% 100%;
   --secondary: 20 10% 18%;
   --secondary-foreground: 30 25% 96%;
   --muted: 20 10% 16%;
   --muted-foreground: 30 15% 75%;
   --tertiary-foreground: 30 10% 65%;
-  --accent: 30 90% 50%;
+  --accent: 27 100% 60%;
   --accent-foreground: 0 0% 100%;
-  --timer: 24 95% 55%;
+  --timer: 22 93% 56%;
   --timer-foreground: 0 0% 100%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   --input: 20 10% 14%;
-  --ring: 24 95% 55%;
+  --ring: 25 100% 50%;
 
   /* Dark mode premium gradient background */
   color-scheme: dark;
-  --chart-1: 24 95% 55%;
-  --chart-2: 30 90% 50%;
+  --chart-1: 25 100% 50%;
+  --chart-2: 27 100% 60%;
   --chart-3: 20 30% 25%;
   --chart-4: 20 25% 20%;
   --chart-5: 20 20% 15%;
