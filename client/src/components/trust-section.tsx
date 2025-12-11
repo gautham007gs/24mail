@@ -1,32 +1,17 @@
-import { Lock, Eye, Shield, CheckCircle2, Zap, Database, Check, Code2, Globe, Users, Mail } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Lock, Shield, Check, Code2, Mail, Users, Zap } from "lucide-react";
 
 export function TrustSection() {
-  const trustItems = [
-    {
-      icon: Eye,
-      title: "100% Free",
-      subtitle: "No payment needed",
-      details: "Forever free, no hidden charges",
-      glowColor: "from-emerald-500/30 to-emerald-600/20",
-      step: 1,
-    },
-    {
-      icon: Lock,
-      title: "Anonymous",
-      subtitle: "Complete privacy",
-      details: "We don't store your data",
-      glowColor: "from-blue-500/30 to-blue-600/20",
-      step: 2,
-    },
-    {
-      icon: Shield,
-      title: "Instant",
-      subtitle: "Ready in seconds",
-      details: "No signup required",
-      glowColor: "from-purple-500/30 to-purple-600/20",
-      step: 3,
-    },
+  const metrics = [
+    { value: "1M+", label: "Emails Generated", icon: Mail },
+    { value: "150K+", label: "Active Users", icon: Users },
+    { value: "99.9%", label: "Uptime", icon: Zap },
+  ];
+
+  const features = [
+    { icon: Mail, title: "1M+ Emails Generated", desc: "Trusted by thousands daily" },
+    { icon: Users, title: "150K+ Active Users", desc: "Active monthly" },
+    { icon: Zap, title: "99.9% Uptime", desc: "Reliable delivery" },
+    { icon: Check, title: "100% Free", desc: "No hidden fees, forever free" },
   ];
 
   const certifications = [
@@ -36,162 +21,63 @@ export function TrustSection() {
     { name: "No Logs Policy", icon: Check, description: "Zero data retention" },
   ];
 
-  const globalStats = [
-    { value: "1M+", label: "Emails Generated", icon: Mail },
-    { value: "150K+", label: "Active Users", icon: Users },
-    { value: "99.9%", label: "Uptime", icon: Zap },
-  ];
-
   return (
-    <section className="mt-16 md:mt-24 pt-12 md:pt-16 pb-8 md:pb-12 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
-      {/* Subtle Background - Reduced for performance */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-2xl" />
-      </div>
-
-      {/* Header */}
-      <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
-        <div className="inline-block mb-4 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-          <p className="text-sm font-bold text-emerald-400 uppercase tracking-wide">Why Trust Us</p>
-        </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-          Why Trust Us
-        </h2>
-        <p className="text-muted-foreground text-base md:text-lg">
-          Proven at Scale
-        </p>
-      </div>
-
-      {/* Global Stats - Clean Grid Layout */}
-      <div className="relative max-w-4xl mx-auto px-4 mb-12 md:mb-16">
-        {/* Unified Stats Grid - Mobile & Desktop */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-6">
-          {globalStats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div 
-                key={index}
-                className="relative group"
-              >
-                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-emerald-500/25 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors duration-300">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-emerald-500/20">
-                      <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-emerald-400" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-emerald-400 mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Trust Items - 2-Column Bullet List */}
-      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {trustItems.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <div key={index} className="flex items-start gap-4">
-                {/* Icon + Checkmark */}
-                <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
-                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-base md:text-lg text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {item.details}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Why Choose Us - 2-Column Bullet List */}
-      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
-        <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
-            Why You'll Love Burner Email
+    <section className="mt-16 md:mt-20 pt-12 md:pt-16 pb-8 md:pb-12 border-t border-border/30 relative">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-8 md:mb-10">
+          <span className="inline-block text-xs text-primary uppercase font-semibold tracking-wider rounded-full px-3 py-1.5 bg-primary/8 border border-primary/20 mb-4">
+            Why Trust Us
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            Proven at Scale
+          </h2>
+          <p className="text-muted-foreground text-sm md:text-base">
+            Everything you need for complete privacy
           </p>
-          <p className="text-sm text-muted-foreground">Everything you need for complete privacy</p>
         </div>
 
-        {/* 2-Column Bullet List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {[
-            { icon: Check, text: "1M+ Emails Generated" },
-            { icon: Check, text: "150K+ Active Users" },
-            { icon: Check, text: "99.9% Uptime" },
-            { icon: Check, text: "100% Free — No hidden fees" },
-            { icon: Check, text: "Full Privacy — Zero logs" },
-            { icon: Check, text: "Instant Setup — Ready in seconds" },
-          ].map((item, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 mb-12 md:mb-14">
+          {features.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
-                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
-                  </div>
+              <div key={index} className="flex gap-3 items-start">
+                <div className="flex-none w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center">
+                  <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-base md:text-lg text-foreground">
-                    {item.text}
-                  </p>
+                <div>
+                  <div className="font-semibold text-foreground">{item.title}</div>
+                  <div className="text-muted-foreground text-sm mt-0.5">{item.desc}</div>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
 
-      {/* Security & Compliance - Card Grid */}
-      <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
-        <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
-            Security & Compliance
-          </p>
-          <p className="text-sm text-muted-foreground">Industry-leading standards</p>
-        </div>
+        <div className="pt-8 md:pt-10 border-t border-border/30">
+          <div className="text-center mb-6 md:mb-8">
+            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-1">
+              Security & Compliance
+            </p>
+            <p className="text-sm text-muted-foreground">Industry-leading standards</p>
+          </div>
 
-        {/* Responsive Grid - All devices */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-          {certifications.map((cert, index) => {
-            const Icon = cert.icon;
-            return (
-              <Card
-                key={index}
-                className="group relative p-4 md:p-5 border border-border/70 bg-gradient-to-br from-muted/20 to-muted/5 hover:from-muted/40 hover:to-muted/15 hover:border-emerald-500/50 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-none"
-                style={{ minHeight: '200px' }}
-              >
-                <div className="mb-3 p-3 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500/30 ring-1 ring-emerald-500/30 transition-all duration-300">
-                  <Icon className="h-7 w-7 text-emerald-300" aria-hidden="true" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {certifications.map((cert, index) => {
+              const Icon = cert.icon;
+              return (
+                <div
+                  key={index}
+                  className="p-4 rounded-xl border border-border/60 bg-card/50 text-center transition-colors duration-200 hover:border-primary/30 hover:bg-primary/5"
+                >
+                  <div className="mb-2 inline-flex p-2.5 rounded-lg bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                  </div>
+                  <h4 className="font-semibold text-sm text-foreground mb-0.5">{cert.name}</h4>
+                  <p className="text-xs text-muted-foreground">{cert.description}</p>
                 </div>
-
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="font-bold text-sm md:text-base text-foreground mb-1">{cert.name}</h4>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
-                </div>
-
-                <div className="mt-3 pt-3 border-t border-border/20 w-full">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 mx-auto" aria-hidden="true" />
-                </div>
-              </Card>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/50 bg-gradient-to-b from-background to-background/80 mt-8 md:mt-12 lg:mt-16 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 py-10 md:py-14 lg:py-18 relative">
         {/* Main Grid */}
@@ -41,31 +41,31 @@ export function Footer() {
                 href="https://twitter.com/burneremail" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-emerald-400 transition-all duration-200 group"
+                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-primary transition-all duration-200 group"
                 data-testid="footer-social-twitter"
                 aria-label="Follow us on X (Twitter)"
               >
-                <IconX className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconX className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
               </a>
               <a 
                 href="https://github.com/burneremail" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-emerald-400 transition-all duration-200 group"
+                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-primary transition-all duration-200 group"
                 data-testid="footer-social-github"
                 aria-label="Visit our GitHub"
               >
-                <IconGithub className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconGithub className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
               </a>
               <a 
                 href="https://instagram.com/burneremail" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-emerald-400 transition-all duration-200 group"
+                className="p-2.5 rounded-lg bg-muted/30 hover:bg-muted/50 hover:text-primary transition-all duration-200 group"
                 data-testid="footer-social-instagram"
                 aria-label="Follow us on Instagram"
               >
-                <IconInstagram className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                <IconInstagram className="h-5 w-5 group-hover:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
               </a>
             </div>
           </div>
@@ -75,17 +75,17 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-5 text-base">Product</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-home">
+                <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-home">
                   Temporary Email
                 </Link>
               </li>
               <li>
-                <Link href="/browser-extension" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-extension">
+                <Link href="/browser-extension" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-extension">
                   Browser Extension
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-blog">
+                <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-blog">
                   Blog
                 </Link>
               </li>
@@ -97,17 +97,17 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-5 text-base">Legal</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/success-stories" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-stories">
+                <Link href="/success-stories" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-stories">
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-terms">
+                <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-terms">
                   Terms
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block" data-testid="footer-link-privacy">
+                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block" data-testid="footer-link-privacy">
                   Privacy
                 </Link>
               </li>
@@ -129,12 +129,12 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-5 text-base">Contact</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:support@burneremail.email" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block break-all" data-testid="footer-email-support">
+                <a href="mailto:support@burneremail.email" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block break-all" data-testid="footer-email-support">
                   support@burneremail.email
                 </a>
               </li>
               <li>
-                <a href="mailto:privacy@burneremail.email" className="text-sm text-muted-foreground hover:text-emerald-400 transition-colors inline-block break-all" data-testid="footer-email-privacy">
+                <a href="mailto:privacy@burneremail.email" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block break-all" data-testid="footer-email-privacy">
                   privacy@burneremail.email
                 </a>
               </li>
@@ -151,11 +151,11 @@ export function Footer() {
             &copy; {currentYear} Burner Email. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-muted-foreground order-1 sm:order-2">
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">100% Free</span>
+            <span className="px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap border border-primary/20">100% Free</span>
             <span className="hidden sm:inline text-border/50">|</span>
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">Anonymous</span>
+            <span className="px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap border border-primary/20">Anonymous</span>
             <span className="hidden sm:inline text-border/50">|</span>
-            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium whitespace-nowrap border border-emerald-500/20">Instant</span>
+            <span className="px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap border border-primary/20">Instant</span>
           </div>
         </div>
       </div>

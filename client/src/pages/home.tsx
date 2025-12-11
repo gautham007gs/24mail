@@ -357,12 +357,12 @@ export default function Home() {
             <TrustSection />
 
             {/* How It Works Section */}
-            <div className="mt-16 md:mt-20 pt-12 md:pt-14 border-t border-border/30 fade-in">
+            <div className="mt-14 md:mt-18 fade-in">
               <HowItWorks />
             </div>
 
             {/* Social Proof Section */}
-            <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+            <div className="mt-14 md:mt-18 pt-10 md:pt-14 border-t border-border/30 fade-in">
               <UnifiedSocialProof />
             </div>
           </Suspense>
@@ -372,7 +372,7 @@ export default function Home() {
 
       {/* FAQ Section - Full Width */}
       <Suspense fallback={<div className="h-32 bg-transparent" />}>
-        <div className="mt-24 md:mt-32 pt-16 md:pt-20 border-t border-border/30 fade-in">
+        <div className="mt-14 md:mt-18 pt-12 md:pt-16 border-t border-border/30 fade-in">
           <FAQAccordion />
         </div>
       </Suspense>

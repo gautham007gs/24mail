@@ -91,9 +91,9 @@
 
 /* Green (50-100%) → Orange (0-50%) - Strict Color Palette - Subtle glow */
 .timer-progress-fill.green {
-  background: linear-gradient(90deg, #00C46B 0%, #00C46B 100%);
-  box-shadow: 0 0 4px rgba(0, 196, 107, 0.25);
-  color: #00C46B;
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%);
+  box-shadow: 0 0 4px hsl(var(--primary) / 0.25);
+  color: hsl(var(--primary));
 }
 
 .timer-progress-fill.orange {
@@ -103,7 +103,7 @@
 }
 
 .dark .timer-progress-fill.green {
-  box-shadow: 0 0 6px rgba(0, 196, 107, 0.35);
+  box-shadow: 0 0 6px hsl(var(--primary) / 0.35);
 }
 
 .dark .timer-progress-fill.orange {
@@ -618,45 +618,45 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - IMPROVED PALETTE (Lighter gray + brighter green) */
+/* DARK MODE - Premium Burner Email Palette (#00E08A primary, #0f1111 background) */
 .dark {
-  --button-outline: rgba(0, 247, 165, 0.12);
-  --badge-outline: rgba(0, 247, 165, 0.08);
+  --button-outline: rgba(0, 224, 138, 0.12);
+  --badge-outline: rgba(0, 224, 138, 0.08);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(0, 247, 165, 0.08);
-  --elevate-2: rgba(0, 247, 165, 0.15);
-  --background: 0 0% 8%;
-  --foreground: 0 0% 98%;
-  --border: 0 0% 24%;
-  --card: 0 0% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 0 0% 20%;
-  --sidebar: 0 0% 10%;
-  --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 0 0% 20%;
-  --sidebar-primary: 150 100% 50%;
+  --elevate-1: rgba(0, 224, 138, 0.08);
+  --elevate-2: rgba(0, 224, 138, 0.15);
+  --background: 160 5% 7%;
+  --foreground: 140 20% 93%;
+  --border: 160 3% 18%;
+  --card: 160 4% 10%;
+  --card-foreground: 140 20% 93%;
+  --card-border: 160 3% 15%;
+  --sidebar: 160 4% 8%;
+  --sidebar-foreground: 140 20% 93%;
+  --sidebar-border: 160 3% 15%;
+  --sidebar-primary: 156 100% 44%;
   --sidebar-primary-foreground: 0 0% 0%;
-  --sidebar-accent: 18 100% 55%;
+  --sidebar-accent: 25 100% 55%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 150 100% 50%;
-  --popover: 0 0% 14%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 0 0% 26%;
-  --primary: 150 100% 50%;
+  --sidebar-ring: 156 100% 44%;
+  --popover: 160 4% 11%;
+  --popover-foreground: 140 20% 93%;
+  --popover-border: 160 3% 20%;
+  --primary: 156 100% 44%;
   --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 20%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 18%;
-  --muted-foreground: 0 0% 88%;
-  --tertiary-foreground: 0 0% 78%;
-  --accent: 153 100% 49%;
+  --secondary: 160 3% 16%;
+  --secondary-foreground: 140 20% 93%;
+  --muted: 160 3% 14%;
+  --muted-foreground: 150 8% 60%;
+  --tertiary-foreground: 150 6% 50%;
+  --accent: 156 100% 44%;
   --accent-foreground: 0 0% 0%;
-  --timer: 150 100% 50%;
+  --timer: 156 100% 44%;
   --timer-foreground: 0 0% 0%;
-  --destructive: 18 100% 55%;
+  --destructive: 0 85% 60%;
   --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 16%;
-  --ring: 150 100% 50%;
+  --input: 160 3% 12%;
+  --ring: 156 100% 44%;
 
   /* Dark mode premium gradient background */
   color-scheme: dark;

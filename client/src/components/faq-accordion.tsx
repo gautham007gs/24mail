@@ -50,7 +50,7 @@ export function FAQAccordion() {
                   key={idx}
                   className={`border rounded-xl overflow-hidden transition-all duration-300 ${
                     expanded === idx 
-                      ? "border-emerald-500/30 bg-card/60 shadow-sm" 
+                      ? "border-primary/30 bg-card/60 shadow-sm" 
                       : "border-border/30 hover:border-border/50 hover:shadow-sm"
                   }`}
                   data-testid={`faq-item-${idx}`}
@@ -60,7 +60,7 @@ export function FAQAccordion() {
                   <button
                     id={`faq-button-${idx}`}
                     onClick={() => setExpanded(expanded === idx ? null : idx)}
-                    className={`w-full px-4 sm:px-5 md:px-6 py-4 sm:py-4 md:py-5 flex items-center justify-between gap-4 text-left transition-colors focus-visible:outline-3 focus-visible:outline focus-visible:outline-[rgba(0,196,107,0.4)] focus-visible:outline-offset-[3px] min-h-12 ${
+                    className={`w-full px-4 sm:px-5 md:px-6 py-4 sm:py-4 md:py-5 flex items-center justify-between gap-4 text-left transition-colors focus-visible:outline-3 focus-visible:outline focus-visible:outline-primary/40 focus-visible:outline-offset-[3px] min-h-12 ${
                       expanded === idx ? "bg-card/80" : "bg-card/40 hover:bg-card/60"
                     }`}
                     data-testid={`button-faq-${idx}`}
@@ -72,7 +72,7 @@ export function FAQAccordion() {
                     </span>
                     <ChevronDown
                       className={`h-5 w-5 text-foreground/60 flex-shrink-0 transition-transform duration-300 ease-out ${
-                        expanded === idx ? "rotate-180 text-emerald-500" : ""
+                        expanded === idx ? "rotate-180 text-primary" : ""
                       }`}
                       data-testid={`chevron-faq-${idx}`}
                       aria-hidden="true"
