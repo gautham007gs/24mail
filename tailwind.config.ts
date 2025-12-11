@@ -83,6 +83,10 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        "section-alt": {
+          DEFAULT: "hsl(var(--section-alt) / <alpha-value>)",
+          foreground: "hsl(var(--section-alt-foreground) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
