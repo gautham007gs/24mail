@@ -111,9 +111,9 @@ function EmptyStateIllustration() {
 
         {/* Message */}
         <div className="space-y-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground">No Emails Yet</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground">Your Inbox is Empty</h3>
           <p className="text-muted-foreground text-base leading-relaxed max-w-sm mx-auto">
-            Your temporary email is ready! Share it and incoming messages will appear here instantly.
+            Waiting for new emails — Share your temporary email and they'll appear here instantly.
           </p>
         </div>
 
@@ -346,9 +346,8 @@ export function InboxList({
     <div className="space-y-5">
       {/* Header with Actions - Mobile responsive layout */}
       <div className="flex flex-col gap-3 mt-5 sm:mt-6">
-        {/* Title and Count */}
+        {/* Count Badge */}
         <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>
           <span className="text-sm font-semibold text-accent bg-accent/10 px-3 py-1.5 rounded-full min-h-8 flex items-center" data-testid="text-inbox-count">
             {searchQuery ? filteredEmails.length : emails.length}
           </span>

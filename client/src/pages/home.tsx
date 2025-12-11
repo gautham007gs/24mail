@@ -336,7 +336,10 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-6 md:mt-8 pt-4 md:pt-6 pb-12 fade-in">
+          <div className="mt-8 md:mt-10 pt-6 md:pt-8 pb-12 fade-in border-t border-border/40">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Inbox</h2>
+            </div>
             <InboxList
               emails={emails}
               isLoading={isLoadingInbox}

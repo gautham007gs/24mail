@@ -120,38 +120,39 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Security Certifications Grid */}
-      <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
+      {/* Why Choose Us - 2-Column Bullet List */}
+      <div className="max-w-4xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
-            Security & Compliance
+            Why You'll Love Burner Email
           </p>
-          <p className="text-sm text-muted-foreground">Industry-leading standards</p>
+          <p className="text-sm text-muted-foreground">Everything you need for complete privacy</p>
         </div>
 
-        {/* Responsive Grid - All devices */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-          {certifications.map((cert, index) => {
-            const Icon = cert.icon;
+        {/* 2-Column Bullet List */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {[
+            { icon: Check, text: "1M+ Emails Generated" },
+            { icon: Check, text: "150K+ Active Users" },
+            { icon: Check, text: "99.9% Uptime" },
+            { icon: Check, text: "100% Free — No hidden fees" },
+            { icon: Check, text: "Full Privacy — Zero logs" },
+            { icon: Check, text: "Instant Setup — Ready in seconds" },
+          ].map((item, index) => {
+            const Icon = item.icon;
             return (
-              <Card
-                key={index}
-                className="group relative p-6 md:p-7 border border-border/60 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/40 shadow-xs transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
-                style={{ minHeight: '260px' }}
-              >
-                <div className="mb-4 p-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
-                  <Icon className="h-8 w-8 text-emerald-400" aria-hidden="true" />
+              <div key={index} className="flex items-start gap-4">
+                <div className="flex-shrink-0 mt-1">
+                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
+                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+                  </div>
                 </div>
-
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="font-bold text-base text-foreground mb-2">{cert.name}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-base md:text-lg text-foreground">
+                    {item.text}
+                  </p>
                 </div>
-
-                <div className="mt-4 pt-4 border-t border-border/20 w-full">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500/70 mx-auto" aria-hidden="true" />
-                </div>
-              </Card>
+              </div>
             );
           })}
         </div>
