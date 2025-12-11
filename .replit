@@ -15,58 +15,6 @@ run = ["npm", "run", "start"]
 localPort = 5000
 externalPort = 80
 
-[[ports]]
-localPort = 32923
-externalPort = 3003
-
-[[ports]]
-localPort = 38531
-externalPort = 8000
-
-[[ports]]
-localPort = 39525
-externalPort = 5173
-
-[[ports]]
-localPort = 40113
-externalPort = 9000
-
-[[ports]]
-localPort = 40221
-externalPort = 8008
-
-[[ports]]
-localPort = 40611
-externalPort = 8081
-
-[[ports]]
-localPort = 41661
-externalPort = 3000
-
-[[ports]]
-localPort = 41949
-externalPort = 6000
-
-[[ports]]
-localPort = 42549
-externalPort = 6800
-
-[[ports]]
-localPort = 42689
-externalPort = 3002
-
-[[ports]]
-localPort = 42929
-externalPort = 8080
-
-[[ports]]
-localPort = 44217
-externalPort = 3001
-
-[[ports]]
-localPort = 45003
-externalPort = 8099
-
 [env]
 PORT = "5000"
 
@@ -99,13 +47,13 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
 
 [agent]
 expertMode = true
