@@ -283,20 +283,25 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card with Background Gradient */}
-      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 bg-gradient-to-b from-emerald-500/5 via-background to-background dark:from-emerald-500/8 dark:via-background dark:to-background">
-        {/* Subtle gradient glow */}
+      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 bg-gradient-to-b from-orange-500/8 via-background to-background dark:from-orange-500/12 dark:via-background dark:to-background">
+        {/* Subtle orange gradient glow */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-orange-500/15 to-transparent rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        <Card className="p-6 sm:p-8 md:p-10 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30 border border-emerald-500/30" data-testid="email-generator-card">
+        <Card className="p-6 sm:p-10 md:p-12 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30 border border-orange-500/25" data-testid="email-generator-card">
         {/* Header */}
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-6 sm:mb-7">
-          Your Temporary Email
-        </h2>
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
+            Your Temporary Email
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
+            Instant, secure, privacy-first burner emails.
+          </p>
+        </div>
 
         {/* Email Display Box with Glow */}
-        <div className="card-flame-edge px-6 py-5 border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 to-emerald-600/5 dark:from-emerald-500/8 dark:to-emerald-600/8">
+        <div className="card-flame-edge px-7 sm:px-8 py-6 sm:py-7 border border-orange-500/35 bg-gradient-to-r from-orange-500/8 to-orange-600/5 dark:from-orange-500/12 dark:to-orange-600/8 rounded-lg shadow-[0_0_20px_rgba(255,106,0,0.1)] dark:shadow-[0_0_30px_rgba(255,106,0,0.15)]">
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
             {/* Email Address - Single line */}
@@ -349,28 +354,28 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
 
-        {/* Action Buttons Row - Reduced Size */}
-        <div className="mt-8 sm:mt-10">
+        {/* Action Buttons Row - Increased Size */}
+        <div className="mt-10 sm:mt-12">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-4 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-xs sm:text-xs font-bold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.2)]"
+              className="text-sm sm:text-base font-bold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200"
               aria-label="Copy email address to clipboard"
             >
-              <Copy className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
+              <Copy className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               Copy
             </Button>
             <Button
               onClick={handleRefresh}
               variant="outline"
               data-testid="button-action-refresh"
-              className="text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.2)]"
+              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200"
               aria-label="Refresh inbox"
             >
-              <RefreshCw className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
+              <RefreshCw className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               Refresh
             </Button>
             <Button
@@ -378,20 +383,20 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               disabled={domains.length === 0}
               variant="secondary"
               data-testid="button-action-new-email"
-              className="text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.15)]"
+              className="text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 hover:shadow-[0_0_18px_rgba(255,106,0,0.2)] transition-all duration-200"
               aria-label="Generate a new email address"
             >
-              <RotateCw className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
+              <RotateCw className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               Change
             </Button>
             <Button
               onClick={handleBurn}
               variant="outline"
               data-testid="button-action-burn"
-              className={`text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 hover:shadow-[0_0_12px_rgba(255,122,48,0.2)] ${isBurning ? "burn-animation" : ""}`}
+              className={`text-sm sm:text-base font-semibold py-3 px-4 sm:px-5 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 hover:shadow-[0_0_18px_rgba(255,106,0,0.3)] transition-all duration-200 ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
-              <Trash2 className={`h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 ${isBurning ? "burn-icon" : ""}`} />
               Delete
             </Button>
           </div>
