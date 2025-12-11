@@ -89,25 +89,25 @@
   animation: timerGlowPulse 2s ease-in-out infinite;
 }
 
-/* Green (50-100%) → Orange (0-50%) - Strict Color Palette - Subtle glow */
+/* Orange (50-100%) → Amber (0-50%) - Professional Orange Theme */
 .timer-progress-fill.green {
-  background: linear-gradient(90deg, #00C46B 0%, #00C46B 100%);
-  box-shadow: 0 0 4px rgba(0, 196, 107, 0.25);
-  color: #00C46B;
+  background: linear-gradient(90deg, #EA580C 0%, #EA580C 100%);
+  box-shadow: 0 0 4px rgba(234, 88, 12, 0.25);
+  color: #EA580C;
 }
 
 .timer-progress-fill.orange {
-  background: linear-gradient(90deg, #FF7A30 0%, #FF7A30 100%);
-  box-shadow: 0 0 4px rgba(255, 122, 48, 0.25);
-  color: #FF7A30;
+  background: linear-gradient(90deg, #F97316 0%, #F97316 100%);
+  box-shadow: 0 0 4px rgba(249, 115, 22, 0.25);
+  color: #F97316;
 }
 
 .dark .timer-progress-fill.green {
-  box-shadow: 0 0 6px rgba(0, 196, 107, 0.35);
+  box-shadow: 0 0 6px rgba(234, 88, 12, 0.35);
 }
 
 .dark .timer-progress-fill.orange {
-  box-shadow: 0 0 6px rgba(255, 122, 48, 0.35);
+  box-shadow: 0 0 6px rgba(249, 115, 22, 0.35);
 }
 
 /* Burn Animation - 0.5s flame effect */
@@ -132,7 +132,7 @@
 
 .burn-icon {
   animation: burnFlame 0.5s ease-in-out;
-  color: #FF7A30;
+  color: #EA580C;
 }
 
 /* Font optimization */
@@ -155,9 +155,9 @@
   }
 }
 
-/* Dark theme gradient background - Classic dark */
+/* Dark theme gradient background - Warm dark */
 html.dark {
-  background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+  background: linear-gradient(135deg, #0F0D0B 0%, #1A1614 100%);
 }
 
 /* Animated Gradient Utility - Updated with Orange theme */
@@ -529,51 +529,51 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - FINAL PALETTE (#F9FFF9 bg, #F4FBF4 card, #32D583 primary, #FF8A3C accent) */
+/* LIGHT MODE - PROFESSIONAL ORANGE PALETTE for Burner Email */
 :root {
-  --button-outline: rgba(50, 213, 131, 0.12);
-  --badge-outline: rgba(50, 213, 131, 0.08);
+  --button-outline: rgba(234, 88, 12, 0.12);
+  --badge-outline: rgba(234, 88, 12, 0.08);
   --opaque-button-border-intensity: -5;
-  --elevate-1: rgba(50, 213, 131, 0.08);
-  --elevate-2: rgba(50, 213, 131, 0.15);
-  --mint-glow: 0 0 12px rgba(50, 213, 131, 0.3);
-  --background: 120 100% 98%;
-  --foreground: 210 7% 11%;
-  --border: 120 40% 90%;
-  --card: 120 100% 97%;
-  --card-foreground: 210 7% 11%;
-  --card-border: 120 50% 92%;
-  --sidebar: 120 60% 96%;
-  --sidebar-foreground: 210 7% 11%;
-  --sidebar-border: 120 50% 91%;
-  --sidebar-primary: 141 61% 52%;
+  --elevate-1: rgba(234, 88, 12, 0.08);
+  --elevate-2: rgba(234, 88, 12, 0.15);
+  --mint-glow: 0 0 12px rgba(234, 88, 12, 0.3);
+  --background: 30 50% 98%;
+  --foreground: 20 14% 10%;
+  --border: 30 30% 88%;
+  --card: 30 40% 97%;
+  --card-foreground: 20 14% 10%;
+  --card-border: 30 35% 90%;
+  --sidebar: 30 35% 96%;
+  --sidebar-foreground: 20 14% 10%;
+  --sidebar-border: 30 30% 88%;
+  --sidebar-primary: 24 95% 53%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 18 100% 60%;
+  --sidebar-accent: 17 88% 40%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 141 61% 52%;
-  --popover: 120 100% 97%;
-  --popover-foreground: 210 7% 11%;
-  --popover-border: 120 50% 92%;
-  --primary: 141 61% 52%;
+  --sidebar-ring: 24 95% 53%;
+  --popover: 30 40% 97%;
+  --popover-foreground: 20 14% 10%;
+  --popover-border: 30 35% 90%;
+  --primary: 24 95% 53%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 120 40% 90%;
-  --secondary-foreground: 210 7% 11%;
-  --muted: 120 30% 92%;
-  --muted-foreground: 210 12% 25%;
-  --tertiary-foreground: 210 7% 40%;
-  --accent: 18 100% 60%;
+  --secondary: 30 30% 92%;
+  --secondary-foreground: 20 14% 10%;
+  --muted: 30 20% 92%;
+  --muted-foreground: 20 10% 35%;
+  --tertiary-foreground: 20 10% 45%;
+  --accent: 17 88% 40%;
   --accent-foreground: 0 0% 100%;
-  --timer: 141 61% 52%;
+  --timer: 24 95% 53%;
   --timer-foreground: 0 0% 100%;
-  --destructive: 18 100% 60%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --input: 120 40% 94%;
-  --ring: 141 61% 52%;
-  --chart-1: 141 61% 52%;
-  --chart-2: 18 100% 60%;
-  --chart-3: 120 40% 90%;
-  --chart-4: 120 40% 85%;
-  --chart-5: 120 40% 80%;
+  --input: 30 30% 94%;
+  --ring: 24 95% 53%;
+  --chart-1: 24 95% 53%;
+  --chart-2: 17 88% 40%;
+  --chart-3: 30 40% 85%;
+  --chart-4: 30 35% 80%;
+  --chart-5: 30 30% 75%;
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: JetBrains Mono, SF Mono, Monaco, Menlo, monospace;
@@ -618,53 +618,53 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - IMPROVED PALETTE (Lighter gray + brighter green) */
+/* DARK MODE - PROFESSIONAL ORANGE PALETTE for Burner Email */
 .dark {
-  --button-outline: rgba(0, 247, 165, 0.12);
-  --badge-outline: rgba(0, 247, 165, 0.08);
+  --button-outline: rgba(251, 146, 60, 0.12);
+  --badge-outline: rgba(251, 146, 60, 0.08);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(0, 247, 165, 0.08);
-  --elevate-2: rgba(0, 247, 165, 0.15);
-  --background: 0 0% 8%;
-  --foreground: 0 0% 98%;
-  --border: 0 0% 24%;
-  --card: 0 0% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 0 0% 20%;
-  --sidebar: 0 0% 10%;
-  --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 0 0% 20%;
-  --sidebar-primary: 150 100% 50%;
-  --sidebar-primary-foreground: 0 0% 0%;
-  --sidebar-accent: 18 100% 55%;
+  --elevate-1: rgba(251, 146, 60, 0.08);
+  --elevate-2: rgba(251, 146, 60, 0.15);
+  --background: 20 14% 6%;
+  --foreground: 30 25% 96%;
+  --border: 20 10% 20%;
+  --card: 20 12% 10%;
+  --card-foreground: 30 25% 96%;
+  --card-border: 20 10% 18%;
+  --sidebar: 20 12% 8%;
+  --sidebar-foreground: 30 25% 96%;
+  --sidebar-border: 20 10% 18%;
+  --sidebar-primary: 24 95% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 30 90% 50%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 150 100% 50%;
-  --popover: 0 0% 14%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 0 0% 26%;
-  --primary: 150 100% 50%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 20%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 18%;
-  --muted-foreground: 0 0% 88%;
-  --tertiary-foreground: 0 0% 78%;
-  --accent: 153 100% 49%;
-  --accent-foreground: 0 0% 0%;
-  --timer: 150 100% 50%;
-  --timer-foreground: 0 0% 0%;
-  --destructive: 18 100% 55%;
+  --sidebar-ring: 24 95% 55%;
+  --popover: 20 12% 12%;
+  --popover-foreground: 30 25% 96%;
+  --popover-border: 20 10% 22%;
+  --primary: 24 95% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 20 10% 18%;
+  --secondary-foreground: 30 25% 96%;
+  --muted: 20 10% 16%;
+  --muted-foreground: 30 15% 75%;
+  --tertiary-foreground: 30 10% 65%;
+  --accent: 30 90% 50%;
+  --accent-foreground: 0 0% 100%;
+  --timer: 24 95% 55%;
+  --timer-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 16%;
-  --ring: 150 100% 50%;
+  --input: 20 10% 14%;
+  --ring: 24 95% 55%;
 
   /* Dark mode premium gradient background */
   color-scheme: dark;
-  --chart-1: 141 100% 60%;
-  --chart-2: 18 100% 57%;
-  --chart-3: 141 50% 18%;
-  --chart-4: 141 40% 14%;
-  --chart-5: 141 45% 10%;
+  --chart-1: 24 95% 55%;
+  --chart-2: 30 90% 50%;
+  --chart-3: 20 30% 25%;
+  --chart-4: 20 25% 20%;
+  --chart-5: 20 20% 15%;
   --shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.20);
   --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.20);
   --shadow-sm: 0px 2px 4px 0px hsl(0 0% 0% / 0.20), 0px 1px 2px -1px hsl(0 0% 0% / 0.15);
@@ -763,7 +763,7 @@ html.dark {
   /* Glassmorphism effect for email area */
   .glassmorphism {
     @apply bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-lg;
-    box-shadow: 0 8px 32px 0 rgba(31, 138, 112, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(234, 88, 12, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   /* Soft mint glow for primary button hover */
