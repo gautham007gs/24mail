@@ -282,16 +282,16 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card - Clean black background */}
-      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16">
-        <Card className="p-6 sm:p-10 md:p-12 mx-auto w-full bg-card border-0 dark:border dark:border-[#1b1b1b]" data-testid="email-generator-card">
+      {/* Main Card - Clean design */}
+      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+        <Card className="p-5 sm:p-8 md:p-10 mx-auto w-full bg-card border-0 dark:border dark:border-[#1b1b1b] shadow-lg" data-testid="email-generator-card">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
-            Your Temporary Email
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-3">
+            Your Private Inbox Awaits
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
-            Instant, secure, privacy-first burner emails.
+            Instant burner email. No signup. Maximum privacy.
           </p>
         </div>
 

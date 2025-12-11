@@ -38,9 +38,9 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>
-      <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm border-b border-border/30">
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-12">
             {/* Logo + Desktop Navigation */}
             <Link
               href="/"
@@ -76,18 +76,20 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-1 py-2 text-sm font-medium transition-all duration-200 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                    className={`relative px-1 py-2 text-sm font-medium transition-all duration-300 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 group ${
                       isActiveRoute
-                        ? "text-accent"
+                        ? "text-[#FF6A00]"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                     aria-current={isActiveRoute ? "page" : undefined}
                   >
                     {item.label}
-                    {isActiveRoute && (
-                      <span className="absolute bottom-0 left-0 right-0 h-1 bg-accent rounded-full shadow-[0_0_8px_rgba(0,247,165,0.4)]" />
-                    )}
+                    <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF6A00] rounded-full transition-all duration-300 ${
+                      isActiveRoute 
+                        ? "opacity-100 scale-x-100" 
+                        : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                    }`} />
                   </Link>
                 );
               })}
@@ -100,10 +102,10 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <div className="hidden lg:block relative">
                   <button
                     onClick={() => setShowDomainMenu(!showDomainMenu)}
-                    className={`flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border ${
+                    className={`flex items-center gap-2.5 px-5 py-2.5 rounded-lg font-bold text-base transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border ${
                       showDomainMenu
-                        ? "bg-accent text-accent-foreground border-accent shadow-[0_0_12px_rgba(0,247,165,0.3)]"
-                        : "text-accent border-accent/60 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_8px_rgba(0,247,165,0.2)]"
+                        ? "bg-[#FF6A00] text-white border-[#FF6A00] shadow-[0_0_12px_rgba(255,106,0,0.3)]"
+                        : "text-[#FF6A00] border-[#FF6A00]/60 hover:border-[#FF6A00] hover:bg-[#FF6A00]/10 hover:shadow-[0_0_8px_rgba(255,106,0,0.2)]"
                     }`}
                     data-testid="button-domain-selector-desktop"
                     aria-label="Select email domain"
@@ -111,7 +113,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                     aria-haspopup="listbox"
                   >
                     <span>Domain:</span>
-                    <span className="font-semibold text-accent">{selectedDomain || "Choose"}</span>
+                    <span className="font-semibold">{selectedDomain || "Choose"}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform flex-shrink-0 ${showDomainMenu ? "rotate-180" : ""}`} />
                   </button>
                   {showDomainMenu && (

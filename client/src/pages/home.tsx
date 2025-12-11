@@ -334,11 +334,12 @@ export default function Home() {
             emailCount={emails.length}
           />
 
-          {/* Inbox Section */}
-          <div className="mt-8 md:mt-10 pt-6 md:pt-8 pb-12 fade-in border-t border-border/40">
-            <div className="mb-6 md:mb-8">
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Inbox</h2>
-            </div>
+          {/* Inbox Section - Card Style */}
+          <div className="mt-6 md:mt-8 fade-in">
+            <div className="bg-card rounded-xl border border-border/50 shadow-md p-4 sm:p-6 md:p-8">
+              <div className="mb-4 md:mb-6 flex items-center justify-between gap-4">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground">Inbox</h2>
+              </div>
             <InboxList
               emails={emails}
               isLoading={isLoadingInbox}
@@ -348,6 +349,7 @@ export default function Home() {
               isDeleting={deleteAllEmailsMutation.isPending}
               onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
             />
+            </div>
           </div>
 
           {/* Below-fold sections - lazy loaded for faster initial render */}

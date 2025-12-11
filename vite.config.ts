@@ -24,12 +24,14 @@ export default defineConfig(async ({ mode }) => {
         "@": path.resolve(__dirname, "client/src"),
         "@shared": path.resolve(__dirname, "shared"),
         "@assets": path.resolve(__dirname, "attached_assets"),
+        "react": path.resolve(__dirname, "node_modules/react"),
+        "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
       },
       dedupe: ["react", "react-dom", "wouter", "@radix-ui/react-tooltip", "@tanstack/react-query"],
     },
 
     optimizeDeps: {
-      include: ["react", "react-dom", "wouter", "@radix-ui/react-tooltip", "@tanstack/react-query"],
+      include: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime"],
       force: true,
     },
 
