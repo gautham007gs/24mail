@@ -60,19 +60,19 @@ export function AnimatedDemo() {
   return (
     <div ref={sectionRef} className="w-full max-w-5xl mx-auto px-4 md:px-0">
       {/* Demo Container - Premium Design */}
-      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-4 md:p-8 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-orange-500/8 via-orange-500/4 to-transparent border border-orange-500/20 rounded-3xl p-4 md:p-8 overflow-hidden">
         {/* Background glow - subtle */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-emerald-600/3 rounded-full blur-2xl" />
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-orange-600/3 rounded-full blur-2xl" />
         </div>
 
         {/* Animated connecting line */}
         <div className="hidden sm:block absolute top-1/2 left-[15%] right-[15%] h-0.5 -translate-y-1/2 z-0">
-          <div className="h-full bg-gradient-to-r from-emerald-500/20 via-emerald-500/40 to-emerald-500/20 rounded-full" />
+          <div className="h-full bg-gradient-to-r from-orange-500/20 via-orange-500/40 to-orange-500/20 rounded-full" />
           {/* Animated dot traveling along the line */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full transition-all duration-1000"
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-orange-400 rounded-full transition-all duration-1000"
             style={{
               left: step === 0 ? '0%' : step === 1 ? '50%' : '100%',
               opacity: isVisible ? 1 : 0,
@@ -89,28 +89,28 @@ export function AnimatedDemo() {
           }`}>
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 0
-                ? "bg-emerald-500/20 border-emerald-400"
-                : "bg-emerald-500/10 border-emerald-500/40"
+                ? "bg-orange-500/20 border-orange-400"
+                : "bg-orange-500/10 border-orange-500/40"
             }`}>
               <AtSign className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                step === 0 ? "text-emerald-400" : "text-emerald-500/60"
+                step === 0 ? "text-orange-400" : "text-orange-500/60"
               }`} />
               {step === 0 && isVisible && (
-                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-orange-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
             <div className="text-center mt-3">
-              <p className={`text-base md:text-lg font-bold transition-colors ${step === 0 ? "text-emerald-400" : "text-foreground"}`}>
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 0 ? "text-orange-400" : "text-foreground"}`}>
                 Generate
               </p>
-              <p className="text-xs md:text-sm text-foreground/80 mt-2 font-semibold">user@barid.site</p>
+              <p className="text-xs md:text-sm text-foreground/70 mt-2">Get instant email</p>
             </div>
           </div>
 
           {/* Arrow 1 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
             <ArrowRight className={`w-5 h-5 transition-all duration-500 ${
-              step >= 1 ? "text-emerald-400" : "text-emerald-500/30"
+              step >= 1 ? "text-orange-400" : "text-orange-500/30"
             }`} />
           </div>
 
@@ -120,32 +120,32 @@ export function AnimatedDemo() {
           }`}>
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 1
-                ? "bg-emerald-500/20 border-emerald-400"
-                : "bg-emerald-500/10 border-emerald-500/40"
+                ? "bg-orange-500/20 border-orange-400"
+                : "bg-orange-500/10 border-orange-500/40"
             }`}>
               {showCopied ? (
-                <Check className="w-10 h-10 md:w-12 md:h-12 text-emerald-400 animate-bounce" />
+                <Check className="w-10 h-10 md:w-12 md:h-12 text-orange-400 animate-bounce" />
               ) : (
                 <Copy className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                  step === 1 ? "text-emerald-400" : "text-emerald-500/60"
+                  step === 1 ? "text-orange-400" : "text-orange-500/60"
                 }`} />
               )}
               {step === 1 && !showCopied && isVisible && (
-                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-orange-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
             <div className="text-center mt-3">
-              <p className={`text-base md:text-lg font-bold transition-colors ${step === 1 ? "text-emerald-400" : "text-foreground"}`}>
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 1 ? "text-orange-400" : "text-foreground"}`}>
                 Copy
               </p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-2">Paste anywhere</p>
+              <p className="text-xs md:text-sm text-foreground/70 mt-2">Paste anywhere</p>
             </div>
           </div>
 
           {/* Arrow 2 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
             <ArrowRight className={`w-5 h-5 transition-all duration-500 ${
-              step >= 2 ? "text-emerald-400" : "text-emerald-500/30"
+              step >= 2 ? "text-orange-400" : "text-orange-500/30"
             }`} />
           </div>
 
@@ -162,22 +162,22 @@ export function AnimatedDemo() {
 
             <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
               step === 2
-                ? "bg-emerald-500/20 border-emerald-400"
-                : "bg-emerald-500/10 border-emerald-500/40"
+                ? "bg-orange-500/20 border-orange-400"
+                : "bg-orange-500/10 border-orange-500/40"
             }`}>
               <Mail className={`w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${
-                step === 2 ? "text-emerald-400" : "text-emerald-500/60"
+                step === 2 ? "text-orange-400" : "text-orange-500/60"
               }`} />
               {step === 2 && isVisible && (
-                <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
+                <div className="absolute inset-0 rounded-2xl animate-ping bg-orange-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
             <div className="text-center">
-              <p className={`text-base md:text-lg font-bold transition-colors ${step === 2 ? "text-emerald-400" : "text-foreground"}`}>
+              <p className={`text-base md:text-lg font-bold transition-colors ${step === 2 ? "text-orange-400" : "text-foreground"}`}>
                 Receive
               </p>
-              <p className="text-xs md:text-sm text-foreground/80 mt-1 font-semibold">
-                In your inbox
+              <p className="text-xs md:text-sm text-foreground/70 mt-1">
+                Check your inbox
               </p>
             </div>
           </div>
@@ -194,8 +194,8 @@ export function AnimatedDemo() {
             >
               <span className={`h-3 rounded-full transition-all duration-300 ${
                 i === step
-                  ? "w-10 bg-emerald-400"
-                  : "w-3 bg-emerald-500/30 hover:bg-emerald-500/50"
+                  ? "w-10 bg-orange-400"
+                  : "w-3 bg-orange-500/30 hover:bg-orange-500/50"
               }`} />
             </button>
           ))}
@@ -203,9 +203,9 @@ export function AnimatedDemo() {
 
         {/* Labels under progress */}
         <div className="flex justify-center gap-16 mt-3 text-xs text-muted-foreground">
-          <span className={step === 0 ? "text-emerald-400 font-semibold" : ""}>Generate</span>
-          <span className={step === 1 ? "text-emerald-400 font-semibold" : ""}>Copy</span>
-          <span className={step === 2 ? "text-emerald-400 font-semibold" : ""}>Receive</span>
+          <span className={step === 0 ? "text-orange-400 font-semibold" : ""}>Generate</span>
+          <span className={step === 1 ? "text-orange-400 font-semibold" : ""}>Copy</span>
+          <span className={step === 2 ? "text-orange-400 font-semibold" : ""}>Receive</span>
         </div>
       </div>
     </div>
