@@ -58,9 +58,9 @@ export function AnimatedDemo() {
 
 
   return (
-    <div ref={sectionRef} className="w-full max-w-5xl mx-auto">
+    <div ref={sectionRef} className="w-full max-w-5xl mx-auto px-4 md:px-0">
       {/* Demo Container - Premium Design */}
-      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-8 md:p-14 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-6 md:p-12 overflow-hidden">
         {/* Background glow - subtle */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
@@ -109,7 +109,7 @@ export function AnimatedDemo() {
 
           {/* Arrow 1 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
-            <ArrowRight className={`w-8 h-8 transition-all duration-500 ${
+            <ArrowRight className={`w-6 h-6 transition-all duration-500 ${
               step >= 1 ? "text-emerald-400" : "text-emerald-500/30"
             }`} />
           </div>
@@ -144,7 +144,7 @@ export function AnimatedDemo() {
 
           {/* Arrow 2 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
-            <ArrowRight className={`w-8 h-8 transition-all duration-500 ${
+            <ArrowRight className={`w-6 h-6 transition-all duration-500 ${
               step >= 2 ? "text-emerald-400" : "text-emerald-500/30"
             }`} />
           </div>

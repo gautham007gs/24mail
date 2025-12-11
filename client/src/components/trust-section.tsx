@@ -90,51 +90,30 @@ export function TrustSection() {
         </div>
       </div>
 
-      {/* Trust Items Grid - Simplified */}
-      <div className="max-w-5xl mx-auto px-4 mb-12 md:mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {/* Trust Items - 2-Column Bullet List */}
+      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
 
             return (
-              <div key={index} className="group relative">
-                {/* Step Number */}
-                <div className="flex items-start mb-4">
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white font-bold text-lg shadow-md">
-                      {item.step}
-                    </div>
+              <div key={index} className="flex items-start gap-4">
+                {/* Icon + Checkmark */}
+                <div className="flex-shrink-0 mt-1">
+                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
+                    <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
                   </div>
                 </div>
 
-                {/* Card */}
-                <Card 
-                  className="group relative overflow-visible transition-all duration-300 h-full p-6 md:p-8 border border-border/40 hover:border-emerald-500/30 bg-card/50 hover:bg-card/80 hover:shadow-md hover:-translate-y-0.5"
-                >
-                  <div className="flex flex-col gap-5 h-full">
-                    {/* Icon Container - Simplified */}
-                    <div className="w-fit rounded-xl p-4 md:p-5 bg-emerald-500/15 ring-1 ring-emerald-500/25 group-hover:bg-emerald-500/20 transition-colors duration-300">
-                      <Icon className="h-9 w-9 md:h-10 md:w-10 text-emerald-400" aria-hidden="true" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg md:text-xl mb-2 text-foreground group-hover:text-emerald-400 transition-colors">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-xs md:text-sm text-foreground/90 mt-1">{item.subtitle}</p>
-
-                      {/* Details */}
-                      <div className="flex items-start gap-2 pt-3 border-t border-border/20">
-                        <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-500/70" aria-hidden="true" />
-                        <p className="text-sm leading-relaxed text-muted-foreground">
-                          {item.details}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
+                {/* Text Content */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-base md:text-lg text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {item.details}
+                  </p>
+                </div>
               </div>
             );
           })}
@@ -157,8 +136,8 @@ export function TrustSection() {
             return (
               <Card
                 key={index}
-                className="group relative p-7 border border-border/40 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/30 shadow-sm transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
-                style={{ minHeight: '280px' }}
+                className="group relative p-6 md:p-7 border border-border/60 bg-gradient-to-br from-muted/30 to-muted/10 hover:from-muted/50 hover:to-muted/25 hover:border-emerald-500/40 shadow-xs transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible"
+                style={{ minHeight: '260px' }}
               >
                 <div className="mb-4 p-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/20 ring-1 ring-emerald-500/20 transition-all duration-300">
                   <Icon className="h-8 w-8 text-emerald-400" aria-hidden="true" />
