@@ -246,24 +246,25 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
     : currentEmail;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Notification Permission Banner */}
       {isSupported && permission === "default" && showNotificationBanner && (
         <div
-          className="flex items-start gap-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-6 md:p-7 shadow-[0_0_30px_rgba(16,185,129,0.2)] min-h-[140px]"
+          className="flex items-start gap-4 rounded-xl border border-primary/30 bg-primary/5 p-5 md:p-6"
           data-testid="notification-banner"
         >
-          <Bell className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(16,185,129,0.6)]" aria-hidden="true" />
-          <div className="flex-1 space-y-2">
-            <p className="text-base font-bold text-foreground">
+          <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="flex-1 space-y-1">
+            <p className="text-sm font-semibold text-foreground">
               Get notified of new emails
             </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Enable desktop notifications to know instantly when emails arrive
+            <p className="text-xs text-muted-foreground">
+              Enable notifications to know instantly when emails arrive
             </p>
           </div>
-          <div className="flex gap-3 shrink-0">
+          <div className="flex gap-2 shrink-0">
             <Button
+              size="sm"
               onClick={handleEnableNotifications}
               data-testid="button-enable-notifications"
               aria-label="Enable notifications"
@@ -271,6 +272,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               Enable
             </Button>
             <Button
+              size="sm"
               variant="ghost"
               onClick={() => setShowNotificationBanner(false)}
               data-testid="button-dismiss-notifications"
@@ -282,95 +284,120 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Hero Generator Box */}
+      {/* Compact Hero Card - Professional & Clean */}
       <div className="relative">
-        <Card className="p-7 sm:p-8 md:p-10 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.35)] border border-primary/25 bg-gradient-to-br from-card via-card to-card/90" data-testid="email-generator-card">
-          <h2 className="text-xl sm:text-2xl font-semibold text-foreground text-center mb-5 sm:mb-6">
-            Your Temporary Email
-          </h2>
+        <Card className="p-5 sm:p-6 rounded-xl border border-border/60 bg-card" data-testid="email-generator-card">
+          {/* Header */}
+          <div className="text-center mb-4">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">
+              Your Burner Email
+            </h2>
+            <p className="text-xs text-muted-foreground mt-1">
+              Completely private. No signup required.
+            </p>
+          </div>
 
-          <div className="rounded-xl p-4 sm:p-5 border border-primary/20 bg-background/60">
-            <div className="flex items-center gap-3 mb-2">
-              <span
-                className="text-base sm:text-lg font-medium text-foreground truncate flex-1 font-mono"
-                data-testid="text-current-email"
-                title={currentEmail}
-              >
-                {currentEmail || "Generating..."}
-              </span>
+          {/* Email Display - Single Line */}
+          <div className="rounded-lg p-3 sm:p-4 border border-primary/20 bg-background/80">
+            <div className="flex items-center gap-3">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span
+                    className="text-sm sm:text-base font-mono font-medium text-foreground truncate flex-1 cursor-default"
+                    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    data-testid="text-current-email"
+                  >
+                    {currentEmail || "Generating..."}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="font-mono text-xs">{currentEmail}</p>
+                </TooltipContent>
+              </Tooltip>
 
-              <div className="flex gap-2 flex-shrink-0">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setShowQRCode(true)}
-                  disabled={!currentEmail}
-                  data-testid="button-email-qr"
-                  title="Share QR Code"
-                  aria-label="Show QR code for email"
-                >
-                  <QrCode className="h-4 w-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={handleCopy}
-                  disabled={!currentEmail}
-                  data-testid="button-email-copy"
-                  title="Copy email"
-                  aria-label="Copy email address to clipboard"
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4 text-primary" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </Button>
+              <div className="flex gap-1.5 flex-shrink-0">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => setShowQRCode(true)}
+                      disabled={!currentEmail}
+                      data-testid="button-email-qr"
+                      aria-label="Show QR code for email"
+                    >
+                      <QrCode className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Share QR Code</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={handleCopy}
+                      disabled={!currentEmail}
+                      data-testid="button-email-copy"
+                      aria-label="Copy email address to clipboard"
+                    >
+                      {copied ? (
+                        <Check className="h-4 w-4 text-primary" />
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{copied ? "Copied!" : "Copy email"}</TooltipContent>
+                </Tooltip>
               </div>
             </div>
 
-            <span className="text-xs sm:text-sm text-muted-foreground">
-              Expires in <span className="text-primary font-semibold">{expiryTime}</span>
-            </span>
+            {/* Expiry Timer Badge */}
+            <div className="flex items-center gap-2 mt-2">
+              <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Expires in {expiryTime}
+              </span>
+            </div>
           </div>
 
-          <div className="mt-6 sm:mt-7 flex flex-wrap gap-3 justify-center">
+          {/* Action Buttons - Primary CTA Prominent */}
+          <div className="mt-4 flex flex-wrap gap-2 justify-center">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="px-5 py-2.5 font-semibold"
+              className="px-6 font-semibold"
               aria-label="Copy email address to clipboard"
             >
               <Copy className="h-4 w-4 mr-2" />
-              Copy
-            </Button>
-            <Button
-              onClick={handleRefresh}
-              variant="outline"
-              data-testid="button-action-refresh"
-              className="px-4 py-2.5"
-              aria-label="Refresh inbox"
-            >
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh
+              Copy Email
             </Button>
             <Button
               onClick={handleGenerateWithDomain}
               disabled={domains.length === 0}
               variant="outline"
               data-testid="button-action-new-email"
-              className="px-4 py-2.5"
               aria-label="Generate a new email address"
             >
               <RotateCw className="h-4 w-4 mr-2" />
               Change
             </Button>
             <Button
-              onClick={handleBurn}
+              onClick={handleRefresh}
               variant="outline"
+              data-testid="button-action-refresh"
+              aria-label="Refresh inbox"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
+            <Button
+              onClick={handleBurn}
+              variant="ghost"
               data-testid="button-action-burn"
-              className={`px-4 py-2.5 border-destructive/50 text-destructive hover:bg-destructive/10 ${isBurning ? "burn-animation" : ""}`}
+              className={`text-destructive ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
               <Trash2 className={`h-4 w-4 mr-2 ${isBurning ? "burn-icon" : ""}`} />
@@ -382,10 +409,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
-        <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 dark:from-slate-950 dark:to-slate-900/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
-          <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-emerald-200/20 dark:border-emerald-800/30 flex-shrink-0">
+        <DialogContent className="w-[95vw] sm:w-11/12 max-w-md mx-auto p-0 gap-0 border-0 shadow-2xl bg-gradient-to-b from-background to-background/95 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
+          <div className="bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-primary/20 flex-shrink-0">
             <DialogHeader className="space-y-1">
-              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent">
+              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                 Share Your Email
               </DialogTitle>
               <DialogDescription className="text-xs sm:text-sm text-muted-foreground">
@@ -397,8 +424,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           <div className="px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
             <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
               <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-white dark:bg-slate-950 p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-emerald-200/30 dark:border-emerald-800/30 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-white dark:bg-card p-3 sm:p-4 md:p-6 rounded-2xl shadow-xl border border-primary/20 flex items-center justify-center">
                   <Suspense fallback={<Skeleton className="w-[240px] h-[240px] sm:w-[280px] sm:h-[280px]" />}>
                     <div className="animate-in fade-in duration-300">
                       <QRCode
@@ -421,7 +448,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-muted/40 dark:bg-muted/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl border border-border/50 dark:border-border/30 w-full justify-center">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-muted/40 px-3 sm:px-4 py-2 sm:py-3 rounded-xl border border-border/50 w-full justify-center">
                 <Smartphone className="h-4 w-4 text-primary flex-shrink-0" />
                 <span>Point your camera to scan</span>
               </div>
@@ -430,8 +457,8 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Email Address</p>
               <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-emerald-50/50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/30 p-3 sm:p-4 rounded-xl border border-emerald-200/40 dark:border-emerald-800/40 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-primary/5 p-3 sm:p-4 rounded-xl border border-primary/20 backdrop-blur-sm">
                   <p className="font-mono text-xs sm:text-sm md:text-base font-semibold text-foreground break-all leading-tight">{currentEmail}</p>
                 </div>
               </div>

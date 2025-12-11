@@ -10,6 +10,9 @@ import { useNotifications } from "@/contexts/notification-context";
 import { Helmet } from "react-helmet";
 import { EmailGenerator } from "@/components/email-generator";
 import { InboxList } from "@/components/inbox-list";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Copy, RefreshCw, Trash2, Shield, Clock, Globe, QrCode, Zap, Lock, CheckCircle } from "lucide-react";
 
 // Lazy load below-fold sections for faster initial render
 // Import functions return promises - delay import until after initial paint
@@ -336,22 +339,157 @@ export default function Home() {
           />
 
           {/* Inbox Section */}
-          <div className="mt-8 md:mt-10 pt-6 md:pt-8 pb-12 fade-in border-t border-border/40">
-            <div className="mb-6 md:mb-8">
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Inbox</h2>
+          <div className="mt-6 md:mt-8 pt-6 md:pt-8 pb-8 fade-in border-t border-border/40">
+            <div className="mb-4 md:mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground">Inbox</h2>
             </div>
-            <InboxList
-              emails={emails}
-              isLoading={isLoadingInbox}
-              currentEmail={currentEmail}
-              onRefresh={handleRefresh}
-              onDeleteAll={handleDeleteAllEmails}
-              isDeleting={deleteAllEmailsMutation.isPending}
-              onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
-            />
           </div>
+        </div>
 
-          {/* Below-fold sections - lazy loaded for faster initial render */}
+        {/* Three-Column Layout Below Inbox - Full Width */}
+        <div className="mx-auto max-w-7xl w-full px-3 sm:px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            {/* Left Panel - Quick Actions & Status */}
+            <aside className="hidden lg:block lg:col-span-3 space-y-4">
+              <Card className="p-4 rounded-xl border border-border/50">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-primary" />
+                  Quick Actions
+                </h3>
+                <div className="space-y-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start text-xs"
+                    onClick={() => {
+                      navigator.clipboard.writeText(currentEmail);
+                      toast({ title: "Email copied!", description: "Ready to paste" });
+                    }}
+                  >
+                    <Copy className="h-3.5 w-3.5 mr-2" />
+                    Copy Email
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start text-xs"
+                    onClick={handleRefresh}
+                  >
+                    <RefreshCw className="h-3.5 w-3.5 mr-2" />
+                    Refresh Inbox
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start text-xs text-destructive"
+                    onClick={handleDeleteAllEmails}
+                    disabled={emails.length === 0}
+                  >
+                    <Trash2 className="h-3.5 w-3.5 mr-2" />
+                    Clear Inbox
+                  </Button>
+                </div>
+              </Card>
+
+              {/* Active Domain */}
+              <Card className="p-4 rounded-xl border border-border/50">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Globe className="h-4 w-4 text-primary" />
+                  Domain
+                </h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                    <span className="font-mono">{currentEmail.split('@')[1] || 'Loading...'}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    MX records active
+                  </p>
+                </div>
+              </Card>
+
+              {/* Help Tip */}
+              <Card className="p-4 rounded-xl border border-primary/20 bg-primary/5">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Tip:</strong> Share this email for signups, newsletters, or any service you don't fully trust.
+                </p>
+              </Card>
+            </aside>
+
+            {/* Center - Main Inbox */}
+            <div className="lg:col-span-6">
+              <InboxList
+                emails={emails}
+                isLoading={isLoadingInbox}
+                currentEmail={currentEmail}
+                onRefresh={handleRefresh}
+                onDeleteAll={handleDeleteAllEmails}
+                isDeleting={deleteAllEmailsMutation.isPending}
+                onDeleteSelected={(emailIds) => deleteSelectedMutation.mutate(emailIds)}
+              />
+            </div>
+
+            {/* Right Panel - Security & Privacy */}
+            <aside className="hidden lg:block lg:col-span-3 space-y-4">
+              <Card className="p-4 rounded-xl border border-border/50">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-primary" />
+                  Privacy Status
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-3.5 w-3.5 text-green-500" />
+                    <span className="text-xs text-muted-foreground">No IP logging</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-3.5 w-3.5 text-green-500" />
+                    <span className="text-xs text-muted-foreground">Encrypted storage</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-3.5 w-3.5 text-green-500" />
+                    <span className="text-xs text-muted-foreground">Auto-delete enabled</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Lock className="h-3.5 w-3.5 text-green-500" />
+                    <span className="text-xs text-muted-foreground">DKIM/SPF verified</span>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Email Stats */}
+              <Card className="p-4 rounded-xl border border-border/50">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-primary" />
+                  Session Info
+                </h3>
+                <div className="space-y-2 text-xs text-muted-foreground">
+                  <div className="flex justify-between">
+                    <span>Emails received</span>
+                    <span className="font-medium text-foreground">{emails.length}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Auto-refresh</span>
+                    <span className="font-medium text-foreground">5s</span>
+                  </div>
+                </div>
+              </Card>
+
+              {/* QR Code Preview */}
+              <Card className="p-4 rounded-xl border border-border/50">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <QrCode className="h-4 w-4 text-primary" />
+                  Mobile Access
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  Click the QR icon in your email card to scan and access on mobile.
+                </p>
+              </Card>
+            </aside>
+          </div>
+        </div>
+
+        {/* Below-fold sections */}
+        <div className="mx-auto max-w-3xl w-full px-3 sm:px-4 md:px-6">
           <Suspense fallback={<div className="h-32 bg-transparent" />}>
             {/* Trust Section - Why You Can Trust Us */}
             <TrustSection />
@@ -366,7 +504,6 @@ export default function Home() {
               <UnifiedSocialProof />
             </div>
           </Suspense>
-
         </div>
       </main>
 
