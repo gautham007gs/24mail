@@ -1,0 +1,216 @@
+Prioritized action plan
+Must-fix (high impact, do first)
+
+Change primary accent color from green to a warm “burner” palette (see palette below). Current green conflicts with “Burner” brand and weakens visual hierarchy.
+
+Make the generated email single-line and copy-friendly (no wrapping, truncate with copy button + tooltip). Important usability fix.
+
+Improve CTA contrast & accessibility (buttons currently low contrast on dark background). Ensure primary CTA meets WCAG AA (4.5:1 for normal text or better).
+
+Use the side gutters after inbox — convert them to functional side panels (see layout ideas below). Right now they look like wasted whitespace.
+
+Fix responsive typography and spacing of hero/inbox card — reduce padding, remove heavy inner shadows so the card reads cleaner and loads faster.
+
+Should-fix (important, next)
+
+Consolidate trust section & compliance cards into a single concise row — avoid repeating similar microcopy and icons.
+
+Replace or simplify hero copy: short headline + 1-line USP + primary CTA. Too many paragraphs reduce scannability.
+
+Add keyboard actions & ARIA attributes for copy/refresh/delete (accessibility).
+
+Replace very small/low-contrast microcopy (expiry timer, small icons) with readable sizes and better color contrast.
+
+Add structured data (FAQ schema) for the FAQ block to help SEO.
+
+Nice-to-have (lower priority)
+
+Small motion: subtle micro-animations on emails arriving, button hover glow matching burner accent.
+
+Add domain picker UX improvement: show domain health/status tooltip.
+
+A/B test hero variations and CTA wording.
+
+Concrete visual & branding suggestions
+Color palette (burner-themed)
+
+Primary warm accents that map to “Burner Email” (dark mode first, then light tokens):
+
+Background dark (near-black): #07120D (use for page background)
+
+Surface / Card background (slightly lighter black/green tint): #0B1713
+
+Primary accent (burner orange): #FF6B2E — use for primary CTAs, highlights, icons
+
+Secondary accent (deep ember red): #FF3B30 — for destructive actions (delete) or error
+
+Accent highlight (amber): #FFB86B — subtle glows / borders
+
+Success (for toasts/ok): #2DD4BF (teal) — keep as reserved for success only
+
+Muted text: #9AA8A0
+
+Strong text: #E6F0EC
+
+Why: orange/amber/red evoke fire and contrast beautifully on a very dark background. Using green as the main accent currently creates cognitive dissonance for the brand name.
+
+Suggested CSS variables (example)
+:root{
+  --bg: #07120D;
+  --surface: #0B1713;
+  --text: #E6F0EC;
+  --muted: #9AA8A0;
+  --primary: #FF6B2E;
+  --primary-weak: #FFB86B;
+  --danger: #FF3B30;
+  --success: #2DD4BF;
+}
+
+Typography / sizes (desktop)
+
+Headline (H1): 34–40px, weight 700, letter-spacing -0.02em
+
+H2: 26–30px, weight 600
+
+Body: 15–16px, weight 400, line-height 1.6
+
+Buttons: 14–15px, uppercase optional, padding 12px 20px
+
+Microcopy (expiry timer): 12–13px, weight 500
+
+Use a neutral geometric typeface for headings (Inter, Poppins, or Montserrat) and a more readable text face for body (Inter is fine across). Avoid too many font weights to keep build size small.
+
+Inbox / Hero area — detailed suggestions
+Problems seen
+
+Large, heavy card with large padding which reduces scan speed.
+
+Email string wraps into multiple lines in both desktop and mobile (bad for copy & paste).
+
+CTA color is green and clashes with brand; there are too many similar actions (copy, refresh, change, delete) competing for attention.
+
+Left and right gutters below the inbox are unused.
+
+Fixes & layout
+
+Condensed hero card: reduce vertical padding by ~30%, keep subtle rounded border, but remove heavy glow. Use a single-line email row with overflow: hidden; text-overflow: ellipsis; white-space: nowrap; and a copy icon to the right. Show full address on hover/tooltip and a “copy” success toast.
+
+Primary CTA = “Copy” (prominent). Secondary actions small and ghost-styled. Example order: [Copy — primary] [Change] [Refresh] [Delete — danger]. Use --primary for Copy, and --danger for Delete.
+
+Expiry timer: place under the email in muted text; make it clearer with small clock icon and readable color.
+
+One-line inbox message listing: display email list items in a single-line row with subject, from, time — keep whitespace between left and right gutters for extra info panels (see below).
+
+Use side gutters after inbox (exact implementation)
+
+Convert left and right spaces (below inbox) into two small functional panels that flank the inbox list:
+
+Left panel (narrow, ~18–22% width): Quick actions & status
+
+Active domains list / switcher
+
+Quick shortcuts: “Generate new”, “Copy last”, “Clear inbox”
+
+Small tutorial/help microcopy
+
+Center (main) ~56%: Inbox list with messages (vertical), large email preview when tapped.
+
+Right panel (narrow, ~18–22% width): Context / utilities
+
+Small preview of last opened message (or QR code for mobile)
+
+Security & privacy summary for current address (expiry, IP logs: none, DKIM/SPF status)
+
+Domain health and TTL / MX status
+
+Behavior:
+
+On mobile, collapse left and right into toggles (drawer or bottom sheet). On desktop, keep visible as slim columns. This makes the page feel full but functional, unlike empty gutters.
+
+UI details & microcopy
+
+Hero headline: “Temporary email. Completely private.”
+Subhead: “Create a burner email in one click. No sign-up, no logs.”
+Primary CTA: “Copy email” (primary orange)
+Secondary link: “Change domain” (ghost outline)
+
+Replace “Your Temporary Email” label with a shorter label like “Your Burner Email” to strengthen brand.
+
+Use badges (rounded pill) for “Expires in 14m 10s” so it’s scannable.
+
+Accessibility & UX improvements
+
+Contrast: Ensure text meets WCAG AA. For primary CTA on dark background, --primary on --surface should meet 4.5:1 for normal text; if not, use a subtle light outline or slightly lighter orange for text.
+
+Keyboard: Tab order for copy, change, refresh, delete. Add aria-label attributes.
+
+Tooltips: For icons (copy, refresh, QR), add accessible tooltips via aria-describedby or simple title.
+
+Screen reader: Announce when an email is copied, deleted, or new mail arrives.
+
+Performance & engineering suggestions
+
+Reduce heavy shadows & big PNGs — use CSS rather than images for icons where possible (SVGs optimized).
+
+Font loading: Use font-display: swap and subset fonts. Prefer system stack for body if you need speed.
+
+Cache policies: Cache static assets with long TTL, invalidate on deploy.
+
+Lazy-load non-critical images / below-the-fold content (testimonials, footer).
+
+Bundle splitting: Ensure JS for inbox polling is small and tree-shaken; move analytics to async.
+
+Optimize polling: If inbox polls frequently (5s in screenshot), use an adaptive approach: increase interval when idle, use server push / websockets if available.
+
+Copy & trust signals
+
+Combine “Proven at Scale” + compliance badges into a single compact strip with 3–4 bullets. Right now it reads long and repeated.
+
+Add short trust microcopy near hero: “Trusted by 150k+ monthly users” + small user avatars (real-looking placeholders) for social proof.
+
+Add link to Privacy Policy and a clear “No logs” explainer in plain language (1 line) near the hero so privacy-conscious users are reassured immediately.
+
+FAQ & SEO
+
+Keep FAQ but add structured data (FAQ schema) for SEO.
+
+Make FAQ collapsibles keyboard-accessible.
+
+Add meta title + description optimized: e.g., “Burner Email — Instant Temporary Email for Signup & Privacy”.
+
+Example CSS snippets & layout skeleton (high-level)
+/* Email single-line */
+.email-string {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue";
+  font-size: 16px;
+}
+
+/* Primary CTA */
+.btn-primary {
+  background: linear-gradient(90deg,var(--primary), var(--primary-weak));
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(255,107,46,0.12);
+}
+
+/* Layout columns for inbox area */
+.inbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr; /* left narrow, center main, right narrow */
+  gap: 22px;
+}
+@media(max-width:900px){
+  .inbox-grid { grid-template-columns: 1fr; } /* collapse to single column */
+}
+
+What to remove or simplify
+
+Remove duplicate “Proven at Scale” copy that’s repeated across sections.
+
+Reduce large card padding and heavy inner shadows — they make the page feel “padded out” rather than authoritative.
+
+Consider removing the hero trust micro-icons that are repeated in the compliance section — combine them.
