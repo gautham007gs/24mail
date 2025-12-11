@@ -40,16 +40,16 @@ export function TrustSection() {
   ];
 
   return (
-    <section className="mt-16 md:mt-24 pt-12 md:pt-16 pb-8 md:pb-12 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
+    <section className="mt-16 md:mt-24 pt-10 md:pt-12 pb-6 md:pb-10 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-2xl" />
       </div>
 
-      <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
-        <div className="inline-block mb-4 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/30 shadow-[0_0_20px_rgba(234,88,12,0.15)]">
-          <p className="text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wide">Why Trust Us</p>
+      <div className="text-center mb-6 md:mb-10 max-w-2xl mx-auto">
+        <div className="flex justify-center mb-4">
+          <div className="h-1 w-12 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full" />
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
           Why Trust Us
         </h2>
         <p className="text-muted-foreground text-base md:text-lg">
@@ -57,7 +57,7 @@ export function TrustSection() {
         </p>
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 mb-12 md:mb-16">
+      <div className="relative max-w-4xl mx-auto px-4 mb-10 md:mb-12">
         <div className="grid grid-cols-3 gap-3 sm:gap-6">
           {globalStats.map((stat, index) => {
             const Icon = stat.icon;
@@ -66,10 +66,10 @@ export function TrustSection() {
                 key={index}
                 className="relative group"
               >
-                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-colors duration-300">
+                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-all duration-300 shadow-md dark:shadow-lg shadow-black/5 dark:shadow-black/20">
                   <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-orange-500/20">
-                      <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-orange-500 dark:text-orange-400" aria-hidden="true" />
+                      <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                     </div>
                   </div>
                   <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-orange-500 dark:text-orange-400 mb-1 sm:mb-2">
@@ -83,7 +83,7 @@ export function TrustSection() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
+      <div className="max-w-4xl mx-auto px-4 mb-10 md:mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
@@ -110,7 +110,7 @@ export function TrustSection() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
+      <div className="max-w-4xl mx-auto px-4 mb-10 md:mb-12">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
             Why You'll Love Burner Email
@@ -146,7 +146,7 @@ export function TrustSection() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
+      <div className="max-w-5xl mx-auto px-4 pt-6 md:pt-10 border-t border-border/30">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
             Security & Compliance
@@ -160,11 +160,11 @@ export function TrustSection() {
             return (
               <Card
                 key={index}
-                className="group relative p-4 md:p-5 border border-border/70 bg-gradient-to-br from-muted/20 to-muted/5 hover:from-muted/40 hover:to-muted/15 hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-none"
+                className="group relative p-4 md:p-5 border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-md dark:shadow-lg shadow-black/5 dark:shadow-black/20"
                 style={{ minHeight: '200px' }}
               >
                 <div className="mb-3 p-3 rounded-lg bg-orange-500/20 group-hover:bg-orange-500/30 ring-1 ring-orange-500/30 transition-all duration-300">
-                  <Icon className="h-7 w-7 text-orange-500 dark:text-orange-300" aria-hidden="true" />
+                  <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center">
