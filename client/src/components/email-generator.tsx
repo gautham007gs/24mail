@@ -282,15 +282,21 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
       )}
 
-      {/* Main Card - Compact design */}
-      <Card className="p-6 sm:p-8 md:p-10 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
+      {/* Main Card with Background Gradient */}
+      <div className="relative -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 bg-gradient-to-b from-emerald-500/5 via-background to-background dark:from-emerald-500/8 dark:via-background dark:to-background">
+        {/* Subtle gradient glow */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        </div>
+
+        <Card className="p-6 sm:p-8 md:p-10 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30 border border-emerald-500/30" data-testid="email-generator-card">
         {/* Header */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-6 sm:mb-7">
           Your Temporary Email
         </h2>
 
-        {/* Email Display Box - Compact */}
-        <div className="card-flame-edge p-5 sm:p-6 md:p-7">
+        {/* Email Display Box with Glow */}
+        <div className="card-flame-edge px-6 py-5 border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 to-emerald-600/5 dark:from-emerald-500/8 dark:to-emerald-600/8">
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
             {/* Email Address - Single line */}
@@ -343,28 +349,28 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
 
-        {/* Action Buttons Row - Compact */}
-        <div className="mt-6 sm:mt-8">
+        {/* Action Buttons Row - Reduced Size */}
+        <div className="mt-8 sm:mt-10">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-4 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
               data-testid="button-action-copy"
-              className="text-xs sm:text-sm font-bold py-2 px-3 sm:px-4"
+              className="text-xs sm:text-xs font-bold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.2)]"
               aria-label="Copy email address to clipboard"
             >
-              <Copy className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
+              <Copy className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
               Copy
             </Button>
             <Button
               onClick={handleRefresh}
               variant="outline"
               data-testid="button-action-refresh"
-              className="text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4"
+              className="text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.2)]"
               aria-label="Refresh inbox"
             >
-              <RefreshCw className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
+              <RefreshCw className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
               Refresh
             </Button>
             <Button
@@ -372,25 +378,26 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
               disabled={domains.length === 0}
               variant="secondary"
               data-testid="button-action-new-email"
-              className="text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4"
+              className="text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 hover:shadow-[0_0_12px_rgba(0,247,165,0.15)]"
               aria-label="Generate a new email address"
             >
-              <RotateCw className="h-4 w-4 sm:h-4 sm:w-4 mr-1.5" />
+              <RotateCw className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1" />
               Change
             </Button>
             <Button
               onClick={handleBurn}
               variant="outline"
               data-testid="button-action-burn"
-              className={`text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 ${isBurning ? "burn-animation" : ""}`}
+              className={`text-xs sm:text-xs font-semibold py-2 px-2.5 sm:px-3 border-orange-500/40 text-orange-400 hover:bg-orange-500/10 hover:shadow-[0_0_12px_rgba(255,122,48,0.2)] ${isBurning ? "burn-animation" : ""}`}
               aria-label="Delete current email address"
             >
-              <Trash2 className={`h-4 w-4 sm:h-4 sm:w-4 mr-1.5 ${isBurning ? "burn-icon" : ""}`} />
+              <Trash2 className={`h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 mr-1 ${isBurning ? "burn-icon" : ""}`} />
               Delete
             </Button>
           </div>
         </div>
-      </Card>
+        </Card>
+      </div>
 
       {/* QR Code Modal */}
       <Dialog open={showQRCode} onOpenChange={setShowQRCode}>

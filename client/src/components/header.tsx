@@ -69,16 +69,16 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6 ml-10">
+            <nav className="hidden md:flex items-center gap-8 lg:gap-10 ml-10">
               {navItems.map((item) => {
                 const isActiveRoute = isActive(item.href);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-1 py-2 text-xs font-medium transition-all duration-200 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                    className={`relative px-1 py-2 text-sm font-medium transition-all duration-200 no-underline block focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       isActiveRoute
-                        ? "text-foreground"
+                        ? "text-accent"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
@@ -86,7 +86,7 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                   >
                     {item.label}
                     {isActiveRoute && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full" />
+                      <span className="absolute bottom-0 left-0 right-0 h-1 bg-accent rounded-full shadow-[0_0_8px_rgba(0,247,165,0.4)]" />
                     )}
                   </Link>
                 );
@@ -100,10 +100,10 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
                 <div className="hidden lg:block relative">
                   <button
                     onClick={() => setShowDomainMenu(!showDomainMenu)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border ${
+                    className={`flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border ${
                       showDomainMenu
-                        ? "bg-accent text-accent-foreground border-accent"
-                        : "text-accent border-accent/60 hover:border-accent hover:bg-accent/10"
+                        ? "bg-accent text-accent-foreground border-accent shadow-[0_0_12px_rgba(0,247,165,0.3)]"
+                        : "text-accent border-accent/60 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_8px_rgba(0,247,165,0.2)]"
                     }`}
                     data-testid="button-domain-selector-desktop"
                     aria-label="Select email domain"
