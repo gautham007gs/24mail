@@ -27,10 +27,10 @@ export function TrustSection() {
   ];
 
   const certifications = [
-    { name: "GDPR Compliant", icon: Lock, description: "EU data protection" },
-    { name: "SSL Encrypted", icon: Shield, description: "256-bit encryption" },
-    { name: "Open Source", icon: Code2, description: "Fully transparent" },
-    { name: "No Logs Policy", icon: Check, description: "Zero data retention" },
+    { name: "GDPR", icon: Lock },
+    { name: "SSL", icon: Shield },
+    { name: "Open Source", icon: Code2 },
+    { name: "No Logs", icon: Check },
   ];
 
   const globalStats = [
@@ -154,26 +154,30 @@ export function TrustSection() {
           <p className="text-sm text-muted-foreground">Industry-leading standards</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {certifications.map((cert, index) => {
             const Icon = cert.icon;
             return (
               <Card
                 key={index}
-                className="group relative p-4 md:p-5 border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-md dark:shadow-lg shadow-black/5 dark:shadow-black/20"
-                style={{ minHeight: '200px' }}
+                className="group relative p-6 md:p-8 rounded-2xl border-2 bg-muted/30 hover:bg-muted/40 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-sm"
+                style={{
+                  minHeight: '160px',
+                  borderColor: '#2A2A2A',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.15)'
+                }}
               >
-                <div className="mb-3 p-3 rounded-lg bg-orange-500/20 group-hover:bg-orange-500/30 ring-1 ring-orange-500/30 transition-all duration-300">
-                  <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
+                <div className="mb-4 p-3 rounded-xl bg-orange-500/15 transition-all duration-300">
+                  <Icon className="h-6 w-6 text-orange-500 dark:text-orange-400" aria-hidden="true" />
                 </div>
 
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="font-bold text-sm md:text-base text-foreground mb-1">{cert.name}</h4>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
+                <div className="flex-1 flex flex-col justify-center mb-3">
+                  <h4 className="font-bold text-sm md:text-base text-foreground">{cert.name}</h4>
                 </div>
 
-                <div className="mt-3 pt-3 border-t border-border/20 w-full">
-                  <CheckCircle2 className="h-4 w-4 text-orange-500 dark:text-orange-400 mx-auto" aria-hidden="true" />
+                <div className="flex items-center justify-center gap-1.5 pt-3 border-t border-border/30 w-full">
+                  <div className="h-2 w-2 rounded-full bg-orange-500 dark:bg-orange-400" aria-hidden="true" />
+                  <span className="text-[10px] md:text-xs font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wider">Verified</span>
                 </div>
               </Card>
             );
