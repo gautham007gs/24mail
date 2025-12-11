@@ -618,45 +618,45 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - OLD PALETTE (Classic dark theme with muted tones) */
+/* DARK MODE - IMPROVED PALETTE (Lighter gray + brighter green) */
 .dark {
-  --button-outline: rgba(100, 200, 100, 0.12);
-  --badge-outline: rgba(100, 200, 100, 0.08);
+  --button-outline: rgba(0, 247, 165, 0.12);
+  --badge-outline: rgba(0, 247, 165, 0.08);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(100, 200, 100, 0.08);
-  --elevate-2: rgba(100, 200, 100, 0.15);
-  --background: 0 0% 9%;
+  --elevate-1: rgba(0, 247, 165, 0.08);
+  --elevate-2: rgba(0, 247, 165, 0.15);
+  --background: 0 0% 8%;
   --foreground: 0 0% 98%;
-  --border: 0 0% 25%;
-  --card: 0 0% 13%;
+  --border: 0 0% 24%;
+  --card: 0 0% 12%;
   --card-foreground: 0 0% 98%;
-  --card-border: 0 0% 22%;
-  --sidebar: 0 0% 11%;
+  --card-border: 0 0% 20%;
+  --sidebar: 0 0% 10%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 0 0% 22%;
-  --sidebar-primary: 120 60% 45%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 15 85% 50%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-primary: 150 100% 50%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 18 100% 55%;
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 120 60% 45%;
-  --popover: 0 0% 15%;
+  --sidebar-ring: 150 100% 50%;
+  --popover: 0 0% 14%;
   --popover-foreground: 0 0% 98%;
-  --popover-border: 0 0% 28%;
-  --primary: 120 60% 45%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 22%;
+  --popover-border: 0 0% 26%;
+  --primary: 150 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 20%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 20%;
+  --muted: 0 0% 18%;
   --muted-foreground: 0 0% 88%;
   --tertiary-foreground: 0 0% 78%;
-  --accent: 15 85% 50%;
-  --accent-foreground: 0 0% 100%;
-  --timer: 120 60% 45%;
-  --timer-foreground: 0 0% 100%;
-  --destructive: 15 85% 50%;
+  --accent: 153 100% 49%;
+  --accent-foreground: 0 0% 0%;
+  --timer: 150 100% 50%;
+  --timer-foreground: 0 0% 0%;
+  --destructive: 18 100% 55%;
   --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 18%;
-  --ring: 120 60% 45%;
+  --input: 0 0% 16%;
+  --ring: 150 100% 50%;
 
   /* Dark mode premium gradient background */
   color-scheme: dark;
@@ -718,6 +718,41 @@ html.dark {
   .dark body {
     background: hsl(var(--background));
     background-attachment: fixed;
+  }
+
+  /* Global spacing and layout utilities */
+  .section-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-8;
+  }
+
+  /* Section spacing: 70-90px between major sections */
+  .section-spacing {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  /* Text hierarchy */
+  .text-display {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  .text-h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .text-h2 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  .text-h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  .text-body {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  .text-body-sm {
+    @apply text-sm md:text-base;
   }
 
   /* Soft borders for depth and structure */

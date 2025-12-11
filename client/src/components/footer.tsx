@@ -12,10 +12,10 @@ export function Footer() {
       
       <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 py-10 md:py-14 lg:py-18 relative">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 mb-10">
           {/* Brand */}
           <div className="col-span-1">
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center">
                 <picture>
                   <source 
@@ -34,9 +34,6 @@ export function Footer() {
               </div>
               <h3 className="font-bold text-lg md:text-xl leading-none">Burner Email</h3>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              Anonymous temporary email addresses that protect your privacy. No signup, no ads, no tracking.
-            </p>
             
             {/* Social Icons */}
             <div className="flex items-center gap-3">
