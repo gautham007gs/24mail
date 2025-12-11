@@ -94,16 +94,16 @@ export function Header({ domains = [], selectedDomain = "", onDomainChange }: He
             </nav>
 
             {/* Right Side - Domain Selector + Utilities */}
-            <div className="flex items-center gap-2 md:gap-2.5 flex-shrink-0">
+            <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
               {/* Desktop Domain Selector */}
               {domains.length > 0 && (
                 <div className="hidden lg:block relative">
                   <button
                     onClick={() => setShowDomainMenu(!showDomainMenu)}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-sm transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm transition-all cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border ${
                       showDomainMenu
-                        ? "bg-accent/20 text-accent dark:bg-accent/20 dark:text-accent border border-accent/40"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                        ? "bg-accent text-accent-foreground border-accent"
+                        : "text-accent border-accent/60 hover:border-accent hover:bg-accent/10"
                     }`}
                     data-testid="button-domain-selector-desktop"
                     aria-label="Select email domain"

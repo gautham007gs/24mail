@@ -89,7 +89,7 @@ let previousEmailCount = 0;
 function EmptyStateIllustration() {
   return (
     <div 
-      className="flex flex-col items-center justify-center py-20 px-4 min-h-[500px]"
+      className="flex flex-col items-center justify-center py-16 px-4 min-h-[500px]"
       role="status"
       aria-live="polite"
       aria-label="Your inbox is empty. Share your temporary email address and emails will appear here automatically."
@@ -345,7 +345,7 @@ export function InboxList({
   return (
     <div className="space-y-5">
       {/* Header with Actions - Mobile responsive layout */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mt-5 sm:mt-6">
         {/* Title and Count */}
         <div className="flex items-center gap-3 flex-wrap">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground" data-testid="text-inbox-title">Inbox</h2>

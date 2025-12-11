@@ -283,19 +283,19 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
       )}
 
       {/* Main Card - Compact design */}
-      <Card className="p-5 sm:p-6 md:p-7 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
+      <Card className="p-6 sm:p-8 md:p-10 glassmorphic animate-gradient-bg mx-auto w-full shadow-xl shadow-black/10 dark:shadow-black/30" data-testid="email-generator-card">
         {/* Header */}
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-4 sm:mb-5">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center mb-6 sm:mb-7">
           Your Temporary Email
         </h2>
 
         {/* Email Display Box - Compact */}
-        <div className="card-flame-edge p-3 sm:p-4 md:p-5">
+        <div className="card-flame-edge p-5 sm:p-6 md:p-7">
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
             {/* Email Address - Single line */}
             <span
-              className="text-sm sm:text-base md:text-lg font-semibold text-foreground truncate flex-1"
+              className="text-base sm:text-lg md:text-xl font-semibold text-foreground truncate flex-1"
               style={{ fontFamily: "'JetBrains Mono', monospace", lineHeight: "1.3" }}
               data-testid="text-current-email"
               title={currentEmail}
@@ -304,7 +304,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             </span>
 
             {/* Inline Action Icons - QR & Copy */}
-            <div className="flex gap-2 sm:gap-2 flex-shrink-0">
+            <div className="flex gap-3 sm:gap-3 flex-shrink-0">
               <Button
                 size="icon"
                 variant="ghost"
@@ -315,7 +315,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
-                <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
+                <QrCode className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
               <Button
                 size="icon"
@@ -328,9 +328,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? (
-                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
                 ) : (
-                  <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 )}
               </Button>
             </div>
@@ -344,9 +344,9 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
 
         {/* Action Buttons Row - Compact */}
-        <div className="mt-5 sm:mt-6">
+        <div className="mt-6 sm:mt-8">
           {/* Mobile: 2x2 grid, Desktop: Horizontal flex */}
-          <div className="grid grid-cols-2 sm:flex gap-3 sm:gap-3 sm:justify-center sm:items-center sm:flex-wrap">
+          <div className="grid grid-cols-2 sm:flex gap-4 sm:gap-4 sm:justify-center sm:items-center sm:flex-wrap">
             <Button
               onClick={handleCopy}
               disabled={!currentEmail}
