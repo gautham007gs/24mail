@@ -1,29 +1,16 @@
-import { Lock, Eye, Shield, CheckCircle2, Zap, Check, Code2, Users, Mail } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Lock, Eye, Shield, Check, Code2, Users, Mail, Zap } from "lucide-react";
 
 export function TrustSection() {
-  const trustItems = [
-    {
-      icon: Eye,
-      title: "100% Free",
-      subtitle: "No payment needed",
-      details: "Forever free, no hidden charges",
-      step: 1,
-    },
-    {
-      icon: Lock,
-      title: "Anonymous",
-      subtitle: "Complete privacy",
-      details: "We don't store your data",
-      step: 2,
-    },
-    {
-      icon: Shield,
-      title: "Instant",
-      subtitle: "Ready in seconds",
-      details: "No signup required",
-      step: 3,
-    },
+  const globalStats = [
+    { value: "1M+", label: "Emails Generated", icon: Mail },
+    { value: "150K+", label: "Active Users", icon: Users },
+    { value: "99.9%", label: "Uptime", icon: Zap },
+  ];
+
+  const features = [
+    { icon: Eye, title: "100% Free", desc: "No payment, no hidden fees" },
+    { icon: Lock, title: "Anonymous", desc: "Zero logs, complete privacy" },
+    { icon: Shield, title: "Instant", desc: "Ready in seconds, no signup" },
   ];
 
   const certifications = [
@@ -33,155 +20,88 @@ export function TrustSection() {
     { name: "No Logs", icon: Check },
   ];
 
-  const globalStats = [
-    { value: "1M+", label: "Emails Generated", icon: Mail },
-    { value: "150K+", label: "Active Users", icon: Users },
-    { value: "99.9%", label: "Uptime", icon: Zap },
-  ];
-
   return (
-    <section className="mt-16 md:mt-24 pt-10 md:pt-12 pb-6 md:pb-10 -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0 border-t border-border/30 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-2xl" />
-      </div>
-
-      <div className="text-center mb-6 md:mb-10 max-w-2xl mx-auto">
-        <div className="flex justify-center mb-4">
-          <div className="h-1 w-12 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full" />
+    <section className="py-16 md:py-20 bg-[#1b1b1b]">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 tracking-tight">
+            Why Trust Us
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Proven at Scale
+          </p>
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
-          Why Trust Us
-        </h2>
-        <p className="text-muted-foreground text-base md:text-lg">
-          Proven at Scale
-        </p>
-      </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 mb-10 md:mb-12">
-        <div className="grid grid-cols-3 gap-3 sm:gap-6">
+        {/* Stats Row - Premium Style */}
+        <div className="grid grid-cols-3 gap-4 md:gap-6 mb-16">
           {globalStats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div 
                 key={index}
-                className="relative group"
+                className="text-center p-6 md:p-8 bg-black rounded-xl border border-[#2a2a2a]"
               >
-                <div className="relative p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/10 transition-all duration-300 shadow-md dark:shadow-lg shadow-black/5 dark:shadow-black/20">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-orange-500/20">
-                      <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-orange-500 dark:text-orange-400" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-orange-500 dark:text-orange-400 mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-[#FFA31A]/20">
+                  <Icon className="h-6 w-6 text-[#FFA31A]" aria-hidden="true" />
                 </div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black text-[#FFA31A] mb-1">
+                  {stat.value}
+                </div>
+                <p className="text-sm text-gray-400">{stat.label}</p>
               </div>
             );
           })}
         </div>
-      </div>
 
-      <div className="max-w-4xl mx-auto px-4 mb-10 md:mb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {trustItems.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-orange-500/15 ring-1 ring-orange-500/25">
-                    <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
-                  </div>
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-base md:text-lg text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {item.details}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 mb-10 md:mb-12">
-        <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
-            Why You'll Love Burner Email
-          </p>
-          <p className="text-sm text-muted-foreground">Everything you need for complete privacy</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {[
-            { icon: Check, text: "1M+ Emails Generated" },
-            { icon: Check, text: "150K+ Active Users" },
-            { icon: Check, text: "99.9% Uptime" },
-            { icon: Check, text: "100% Free — No hidden fees" },
-            { icon: Check, text: "Full Privacy — Zero logs" },
-            { icon: Check, text: "Instant Setup — Ready in seconds" },
-          ].map((item, index) => {
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {features.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-orange-500/15 ring-1 ring-orange-500/25">
-                    <Icon className="h-5 w-5 text-orange-500 dark:text-orange-400" aria-hidden="true" />
+              <div 
+                key={index}
+                className="flex items-start gap-4 p-6 bg-black rounded-xl border border-[#2a2a2a]"
+              >
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[#FFA31A]/20">
+                    <Icon className="h-6 w-6 text-[#FFA31A]" aria-hidden="true" />
                   </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-base md:text-lg text-foreground">
-                    {item.text}
-                  </p>
+                <div>
+                  <h3 className="font-bold text-lg text-white mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-400">{item.desc}</p>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
 
-      <div className="max-w-5xl mx-auto px-4 pt-6 md:pt-10 border-t border-border/30">
-        <div className="text-center mb-8">
-          <p className="text-center text-sm font-bold text-orange-500 dark:text-orange-400 uppercase tracking-wider mb-2">
+        {/* Certifications */}
+        <div className="border-t border-[#2a2a2a] pt-12">
+          <p className="text-center text-sm font-bold text-[#FFA31A] uppercase tracking-wider mb-8">
             Security & Compliance
           </p>
-          <p className="text-sm text-muted-foreground">Industry-leading standards</p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {certifications.map((cert, index) => {
-            const Icon = cert.icon;
-            return (
-              <Card
-                key={index}
-                className="group relative p-6 md:p-8 rounded-2xl border-2 bg-muted/30 hover:bg-muted/40 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-sm"
-                style={{
-                  minHeight: '160px',
-                  borderColor: '#2A2A2A',
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.15)'
-                }}
-              >
-                <div className="mb-4 p-3 rounded-xl bg-orange-500/15 transition-all duration-300">
-                  <Icon className="h-6 w-6 text-orange-500 dark:text-orange-400" aria-hidden="true" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {certifications.map((cert, index) => {
+              const Icon = cert.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col items-center p-6 bg-black rounded-xl border border-[#2a2a2a] text-center"
+                >
+                  <div className="mb-3 p-3 rounded-lg bg-[#FFA31A]/20">
+                    <Icon className="h-5 w-5 text-[#FFA31A]" aria-hidden="true" />
+                  </div>
+                  <h4 className="font-bold text-sm text-white mb-2">{cert.name}</h4>
+                  <div className="flex items-center gap-1.5">
+                    <div className="h-2 w-2 rounded-full bg-[#FFA31A]" />
+                    <span className="text-xs font-semibold text-[#FFA31A] uppercase">Verified</span>
+                  </div>
                 </div>
-
-                <div className="flex-1 flex flex-col justify-center mb-3">
-                  <h4 className="font-bold text-sm md:text-base text-foreground">{cert.name}</h4>
-                </div>
-
-                <div className="flex items-center justify-center gap-1.5 pt-3 border-t border-border/30 w-full">
-                  <div className="h-2 w-2 rounded-full bg-orange-500 dark:bg-orange-400" aria-hidden="true" />
-                  <span className="text-[10px] md:text-xs font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wider">Verified</span>
-                </div>
-              </Card>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

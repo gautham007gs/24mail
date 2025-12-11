@@ -296,13 +296,21 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
         </div>
 
         {/* Email Display Box - White background with dark text */}
-        <div className="px-7 sm:px-8 py-6 sm:py-7 rounded-xl bg-white dark:bg-white text-gray-900 dark:text-gray-900 shadow-lg">
+        <div 
+          className="px-7 sm:px-8 py-6 sm:py-7 rounded-xl shadow-lg"
+          style={{ backgroundColor: '#ffffff' }}
+        >
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
             {/* Email Address - Single line, bold */}
             <span
-              className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 truncate flex-1"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", lineHeight: "1.3", letterSpacing: "-0.02em" }}
+              className="text-lg sm:text-xl md:text-2xl font-bold truncate flex-1"
+              style={{ 
+                fontFamily: "'Inter', system-ui, sans-serif", 
+                lineHeight: "1.3", 
+                letterSpacing: "-0.02em",
+                color: '#1a1a1a'
+              }}
               data-testid="text-current-email"
               title={currentEmail}
             >
@@ -311,40 +319,41 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
 
             {/* Inline Action Icons - QR & Copy */}
             <div className="flex gap-2 sm:gap-3 flex-shrink-0">
-              <Button
-                size="icon"
-                variant="ghost"
+              <button
                 onClick={() => setShowQRCode(true)}
                 disabled={!currentEmail}
                 data-testid="button-email-qr"
-                className="h-9 w-9 sm:h-10 sm:w-10 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2 rounded-lg transition-colors"
+                style={{ color: '#666666' }}
                 title="Share QR Code"
                 aria-label="Show QR code for email"
               >
                 <QrCode className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
-              <Button
-                size="icon"
-                variant="ghost"
+              </button>
+              <button
                 onClick={handleCopy}
                 disabled={!currentEmail}
                 data-testid="button-email-copy"
-                className="h-9 w-9 sm:h-10 sm:w-10 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="h-9 w-9 sm:h-10 sm:w-10 p-2 rounded-lg transition-colors"
+                style={{ color: copied ? '#16a34a' : '#666666' }}
                 title="Copy email"
                 aria-label="Copy email address to clipboard"
               >
                 {copied ? (
-                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                  <Check className="h-4 w-4 sm:h-5 sm:w-5" />
                 ) : (
                   <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
-              </Button>
+              </button>
             </div>
           </div>
 
           {/* Expiry Info */}
-          <span className="text-sm sm:text-base text-gray-600 font-medium">
-            Expires in <span className="text-[#FFA31A] font-bold">{expiryTime}</span>
+          <span 
+            className="text-sm sm:text-base font-medium"
+            style={{ color: '#666666' }}
+          >
+            Expires in <span style={{ color: '#FFA31A', fontWeight: 700 }}>{expiryTime}</span>
           </span>
         </div>
 
