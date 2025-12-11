@@ -14,6 +14,24 @@ Theme Support: Full dark mode support with consistent styling across all compone
 Email Viewing: Default to HTML view, all links open in new tabs for user retention
 Design Philosophy: Extreme minimalism - Aggressive iterative simplification focused on core user flow (arrive → copy email → leave)
 
+## Color Palette Guidelines
+
+**Primary Brand Colors:**
+- **Burner Orange** (#FF6A00, #FF8C32, #F77228) - Main CTAs, highlights, icons, hover states
+- **Dark Grey** (#0E0E0E) - Background layers, elevated surfaces, dark mode backgrounds
+- **Light Grey** (#BABABA) - Secondary text, muted content, tertiary information
+
+**Accent Colors (Limited Use):**
+- **Teal/Green** - Success notifications ONLY, use sparingly
+- **NO Blue/Purple** - Design philosophy: Burner + dark = orange + greyscale only
+
+**Color Usage Rules:**
+- Orange: Primary actions, progress indicators, hover effects, glows, animations
+- Dark Grey (#0E0E0E): Background layers, card backgrounds, elevated surfaces
+- Light Grey (#BABABA): Secondary text (email addresses, timestamps, muted info)
+- Teal/Green: Success states only (✓ confirmations, success toasts)
+- Avoid blue/purple entirely - maintain premium dark + warm orange aesthetic
+
 ## Language Support
 
 The application is **English-only**. All multi-language features have been removed:
