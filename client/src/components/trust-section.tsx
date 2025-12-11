@@ -121,7 +121,7 @@ export function TrustSection() {
       </div>
 
       {/* Why Choose Us - 2-Column Bullet List */}
-      <div className="max-w-4xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
+      <div className="max-w-4xl mx-auto px-4 mb-12 md:mb-16">
         <div className="text-center mb-8">
           <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
             Why You'll Love Burner Email
@@ -153,6 +153,43 @@ export function TrustSection() {
                   </p>
                 </div>
               </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Security & Compliance - Card Grid */}
+      <div className="max-w-5xl mx-auto px-4 pt-8 md:pt-12 border-t border-border/30">
+        <div className="text-center mb-8">
+          <p className="text-center text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2">
+            Security & Compliance
+          </p>
+          <p className="text-sm text-muted-foreground">Industry-leading standards</p>
+        </div>
+
+        {/* Responsive Grid - All devices */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+          {certifications.map((cert, index) => {
+            const Icon = cert.icon;
+            return (
+              <Card
+                key={index}
+                className="group relative p-4 md:p-5 border border-border/70 bg-gradient-to-br from-muted/20 to-muted/5 hover:from-muted/40 hover:to-muted/15 hover:border-emerald-500/50 transition-all duration-300 flex flex-col items-center text-center h-full overflow-visible shadow-none"
+                style={{ minHeight: '200px' }}
+              >
+                <div className="mb-3 p-3 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500/30 ring-1 ring-emerald-500/30 transition-all duration-300">
+                  <Icon className="h-7 w-7 text-emerald-300" aria-hidden="true" />
+                </div>
+
+                <div className="flex-1 flex flex-col justify-center">
+                  <h4 className="font-bold text-sm md:text-base text-foreground mb-1">{cert.name}</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
+                </div>
+
+                <div className="mt-3 pt-3 border-t border-border/20 w-full">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 mx-auto" aria-hidden="true" />
+                </div>
+              </Card>
             );
           })}
         </div>

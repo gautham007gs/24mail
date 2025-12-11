@@ -56,40 +56,35 @@ export function UnifiedSocialProof() {
         </p>
       </div>
 
-      {/* Features Section - Simplified */}
+      {/* Features Section - Horizontal Bullet List */}
       <div className="pt-8">
-        <div className="text-center max-w-2xl mx-auto px-4 mb-10">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-            Why Choose Burner Email?
-          </h3>
-          <p className="text-muted-foreground">
-            Premium features designed for privacy-conscious users
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 max-w-4xl mx-auto">
-          {features.map((feature, idx) => (
-            <div key={idx} className="flex items-start gap-4">
-              {/* Icon */}
-              <div className="flex-shrink-0 mt-1">
-                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
-                  <div className="text-emerald-400" aria-hidden="true">
-                    {feature.icon}
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              { icon: <Shield className="h-6 w-6" />, title: "Privacy Shield", desc: "Military-grade safety" },
+              { icon: <Lock className="h-6 w-6" />, title: "Zero Tracking", desc: "No cookies, no logs" },
+              { icon: <Zap className="h-6 w-6" />, title: "Instant Setup", desc: "Get email instantly" },
+              { icon: <Globe className="h-6 w-6" />, title: "Open Source", desc: "Fully transparent code" },
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="flex-shrink-0 mt-0.5">
+                  <div className="flex items-center justify-center h-11 w-11 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-500/25">
+                    <div className="text-emerald-400" aria-hidden="true">
+                      {item.icon}
+                    </div>
                   </div>
                 </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold text-base md:text-lg text-foreground">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-
-              {/* Text Content */}
-              <div className="flex-1 min-w-0">
-                <h4 className="font-bold text-base md:text-lg text-foreground">
-                  {feature.title}
-                </h4>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

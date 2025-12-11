@@ -60,7 +60,7 @@ export function AnimatedDemo() {
   return (
     <div ref={sectionRef} className="w-full max-w-5xl mx-auto px-4 md:px-0">
       {/* Demo Container - Premium Design */}
-      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-6 md:p-12 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent border border-emerald-500/20 rounded-3xl p-4 md:p-8 overflow-hidden">
         {/* Background glow - subtle */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
@@ -99,17 +99,17 @@ export function AnimatedDemo() {
                 <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
-            <div className="text-center">
+            <div className="text-center mt-3">
               <p className={`text-base md:text-lg font-bold transition-colors ${step === 0 ? "text-emerald-400" : "text-foreground"}`}>
                 Generate
               </p>
-              <p className="text-xs md:text-sm text-foreground/80 mt-1 font-semibold">user@barid.site</p>
+              <p className="text-xs md:text-sm text-foreground/80 mt-2 font-semibold">user@barid.site</p>
             </div>
           </div>
 
           {/* Arrow 1 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
-            <ArrowRight className={`w-6 h-6 transition-all duration-500 ${
+            <ArrowRight className={`w-5 h-5 transition-all duration-500 ${
               step >= 1 ? "text-emerald-400" : "text-emerald-500/30"
             }`} />
           </div>
@@ -134,17 +134,17 @@ export function AnimatedDemo() {
                 <div className="absolute inset-0 rounded-2xl animate-ping bg-emerald-400/20" style={{ animationDuration: '1.5s' }} />
               )}
             </div>
-            <div className="text-center">
+            <div className="text-center mt-3">
               <p className={`text-base md:text-lg font-bold transition-colors ${step === 1 ? "text-emerald-400" : "text-foreground"}`}>
                 Copy
               </p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-1">Paste anywhere</p>
+              <p className="text-xs md:text-sm text-muted-foreground mt-2">Paste anywhere</p>
             </div>
           </div>
 
           {/* Arrow 2 - Mobile Hidden */}
           <div className="hidden sm:flex items-center justify-center flex-shrink-0 z-10">
-            <ArrowRight className={`w-6 h-6 transition-all duration-500 ${
+            <ArrowRight className={`w-5 h-5 transition-all duration-500 ${
               step >= 2 ? "text-emerald-400" : "text-emerald-500/30"
             }`} />
           </div>
