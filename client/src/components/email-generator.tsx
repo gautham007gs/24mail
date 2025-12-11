@@ -295,10 +295,10 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
           </p>
         </div>
 
-        {/* Email Display Box - White background with dark text */}
+        {/* Email Display Box - Light grey background with dark text */}
         <div 
           className="px-7 sm:px-8 py-6 sm:py-7 rounded-xl shadow-lg"
-          style={{ backgroundColor: '#ffffff' }}
+          style={{ backgroundColor: '#f5f5f5' }}
         >
           {/* Email with Inline Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 mb-2 overflow-hidden">
@@ -353,7 +353,7 @@ export function EmailGenerator({ currentEmail, domains, onGenerate, onDelete, em
             className="text-sm sm:text-base font-medium"
             style={{ color: '#666666' }}
           >
-            Expires in <span style={{ color: '#FFA31A', fontWeight: 700 }}>{expiryTime}</span>
+            Expires in <span style={{ color: '#FF6A00', fontWeight: 700 }}>{expiryTime}</span>
           </span>
         </div>
 
