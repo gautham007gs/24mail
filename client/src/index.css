@@ -530,11 +530,20 @@ html.dark {
 }
 
 /* LIGHT MODE - REFINED BURNER ORANGE PALETTE WITH IMPROVED CONTRAST
-   Primary Orange: #FF6A00 → 25 100% 50%
+   Primary Orange: #FF6A00 → 25 100% 50% (Bright - Primary CTAs)
+   Secondary Orange: #FF8C32 → 20 100% 55% (Medium - Hover states)
+   Tertiary Orange: #F77228 → 18 100% 52% (Warm - Secondary actions)
    Background uses clean whites and soft greys for contrast
-   Orange used as accent, not overwhelming
+   Orange used strategically with dark text for readability
 */
 :root {
+  /* Orange Palette - Multiple tones for harmony across different backgrounds */
+  --orange-primary: 25 100% 50%;    /* #FF6A00 - Bright, high contrast */
+  --orange-medium: 20 100% 55%;     /* #FF8C32 - Hover states, secondary actions */
+  --orange-warm: 18 100% 52%;       /* #F77228 - Tertiary, muted contexts */
+  --orange-light: 22 100% 68%;      /* Lighter orange for backgrounds */
+  --orange-dark: 22 95% 40%;        /* Darker orange for text on light backgrounds */
+  
   --button-outline: rgba(255, 106, 0, 0.12);
   --badge-outline: rgba(255, 106, 0, 0.08);
   --opaque-button-border-intensity: -5;
@@ -550,31 +559,31 @@ html.dark {
   --sidebar: 0 0% 97%;
   --sidebar-foreground: 0 0% 12%;
   --sidebar-border: 0 0% 88%;
-  --sidebar-primary: 25 100% 50%;
+  --sidebar-primary: var(--orange-primary);
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 25 95% 55%;
+  --sidebar-accent: var(--orange-medium);
   --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-ring: 25 100% 50%;
+  --sidebar-ring: var(--orange-primary);
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 12%;
   --popover-border: 0 0% 90%;
-  --primary: 25 100% 50%;
+  --primary: var(--orange-primary);
   --primary-foreground: 0 0% 100%;
   --secondary: 0 0% 94%;
   --secondary-foreground: 0 0% 18%;
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 40%;
   --tertiary-foreground: 0 0% 50%;
-  --accent: 25 95% 55%;
+  --accent: var(--orange-medium);
   --accent-foreground: 0 0% 100%;
-  --timer: 25 100% 50%;
+  --timer: var(--orange-primary);
   --timer-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 0 0% 96%;
-  --ring: 25 100% 50%;
-  --chart-1: 25 100% 50%;
-  --chart-2: 25 90% 60%;
+  --ring: var(--orange-primary);
+  --chart-1: var(--orange-primary);
+  --chart-2: var(--orange-medium);
   --chart-3: 0 0% 85%;
   --chart-4: 0 0% 75%;
   --chart-5: 0 0% 65%;
@@ -626,10 +635,17 @@ html.dark {
 
 /* DARK MODE - PREMIUM BLACK & ORANGE STYLE
    Pure black background for maximum contrast
-   Orange accent: #FFA31A (38 100% 55%)
+   Orange palette - brighter tones on dark: #FFA31A to #FFAA44
    White content areas for email display
 */
 .dark {
+  /* Orange Palette for Dark Mode - Brighter versions */
+  --orange-primary: 38 100% 55%;      /* #FFA31A - Bright on dark */
+  --orange-medium: 36 100% 58%;       /* Lighter orange for hover */
+  --orange-warm: 32 100% 52%;         /* Warm tone for secondary */
+  --orange-light: 38 100% 70%;        /* Very light for subtle backgrounds */
+  --orange-dark: 38 100% 48%;         /* Darker for emphasis */
+  
   --button-outline: rgba(255, 163, 26, 0.18);
   --badge-outline: rgba(255, 163, 26, 0.12);
   --opaque-button-border-intensity: 8;
@@ -644,29 +660,29 @@ html.dark {
   --sidebar: 0 0% 6%;
   --sidebar-foreground: 0 0% 100%;
   --sidebar-border: 0 0% 18%;
-  --sidebar-primary: 38 100% 55%;
+  --sidebar-primary: var(--orange-primary);
   --sidebar-primary-foreground: 0 0% 0%;
-  --sidebar-accent: 38 100% 55%;
+  --sidebar-accent: var(--orange-medium);
   --sidebar-accent-foreground: 0 0% 0%;
-  --sidebar-ring: 38 100% 55%;
+  --sidebar-ring: var(--orange-primary);
   --popover: 0 0% 10%;
   --popover-foreground: 0 0% 100%;
   --popover-border: 0 0% 22%;
-  --primary: 38 100% 55%;
+  --primary: var(--orange-primary);
   --primary-foreground: 0 0% 0%;
   --secondary: 0 0% 14%;
   --secondary-foreground: 0 0% 100%;
   --muted: 0 0% 12%;
   --muted-foreground: 0 0% 65%;
   --tertiary-foreground: 0 0% 50%;
-  --accent: 38 100% 55%;
+  --accent: var(--orange-medium);
   --accent-foreground: 0 0% 0%;
-  --timer: 38 100% 55%;
+  --timer: var(--orange-primary);
   --timer-foreground: 0 0% 0%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   --input: 0 0% 12%;
-  --ring: 38 100% 55%;
+  --ring: var(--orange-primary);
   --section-alt: 0 0% 8%;
   --section-alt-foreground: 0 0% 95%;
   --email-display: 0 0% 100%;
@@ -674,8 +690,8 @@ html.dark {
 
   /* Dark mode with pure black background */
   color-scheme: dark;
-  --chart-1: 25 100% 50%;
-  --chart-2: 25 90% 60%;
+  --chart-1: var(--orange-primary);
+  --chart-2: var(--orange-medium);
   --chart-3: 0 0% 30%;
   --chart-4: 0 0% 25%;
   --chart-5: 0 0% 20%;
@@ -1303,10 +1319,88 @@ html.dark {
     box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
   }
 
-  /* MOBILE-FIRST SPACING IMPROVEMENTS */
-  @media (max-width: 768px) {
-    .mobile-spacing-lg {
-      @apply py-6 px-4 space-y-6;
+  /* MOBILE-FIRST RESPONSIVE DESIGN SYSTEM */
+  /* Mobile (320px - 639px) */
+  @media (max-width: 639px) {
+    body {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    /* Ensure buttons have minimum touch size (44x44px) */
+    button, [role="button"], input[type="button"], input[type="submit"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Responsive padding for sections */
+    .section-container {
+      @apply px-3;
+    }
+    
+    /* Email generator - optimized for small screens */
+    .card {
+      border-radius: 12px;
+    }
+    
+    /* Responsive text */
+    h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+    h2 { font-size: clamp(1.25rem, 5vw, 2rem); }
+    h3 { font-size: clamp(1rem, 4vw, 1.5rem); }
+  }
+  
+  /* Tablet (640px - 1023px) */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    body {
+      font-size: 15px;
+    }
+    
+    .section-container {
+      @apply px-6;
+    }
+    
+    h1 { font-size: clamp(1.75rem, 5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+  }
+  
+  /* Desktop (1024px and above) */
+  @media (min-width: 1024px) {
+    body {
+      font-size: 16px;
+    }
+    
+    .section-container {
+      @apply px-8;
+    }
+  }
+
+  /* Mobile-first spacing improvements */
+  .mobile-spacing-lg {
+    @apply py-6 px-4 space-y-6;
+  }
+  
+  /* Responsive grid utilities */
+  @media (max-width: 640px) {
+    .grid-auto-fit-sm {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .grid-auto-fit-sm {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .grid-auto-fit-sm {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
   }
 
