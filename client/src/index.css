@@ -529,51 +529,51 @@ html.dark {
   }
 }
 
-/* LIGHT MODE - REFINED BURNER ORANGE PALETTE WITH IMPROVED CONTRAST
-   Primary Orange: #FF6A00 → 25 100% 50% (Bright - Primary CTAs)
-   Secondary Orange: #FF8C32 → 20 100% 55% (Medium - Hover states)
-   Tertiary Orange: #F77228 → 18 100% 52% (Warm - Secondary actions)
-   Background uses clean whites and soft greys for contrast
-   Orange used strategically with dark text for readability
+/* LIGHT MODE - VIBRANT BURNER ORANGE PALETTE WITH PERFECT COLOR HARMONY
+   Primary Orange: 15 100% 52% - Vibrant red-orange (neon-like but refined)
+   Medium Orange: 14 100% 57% - Lighter for hover states
+   Warm Orange: 13 100% 48% - Deeper for secondary actions
+   Text hierarchy: Foreground (dark), Muted-foreground (medium), Secondary (light gray)
+   Perfect contrast and color placement for readability
 */
 :root {
-  /* Orange Palette - Replit-Style (Red-Leaning, Vibrant) */
-  --orange-primary: 12 100% 51%;    /* #FF5722 - Bright, high contrast, red-orange */
-  --orange-medium: 10 100% 56%;     /* #FF7038 - Hover states, lighter red-orange */
-  --orange-warm: 8 100% 52%;        /* #FF6124 - Tertiary, warm red-orange */
-  --orange-light: 10 100% 70%;      /* Lighter orange for backgrounds */
-  --orange-dark: 10 95% 40%;        /* Darker orange for text on light backgrounds */
+  /* Orange Palette - Vibrant Red-Leaning, Neon-Feel but Refined */
+  --orange-primary: 15 100% 52%;    /* More vibrant red-orange for maximum impact */
+  --orange-medium: 14 100% 57%;     /* Lighter hover state */
+  --orange-warm: 13 100% 48%;       /* Deeper secondary accent */
+  --orange-light: 14 100% 72%;      /* Subtle background accent */
+  --orange-dark: 15 95% 38%;        /* Deep orange for emphasis */
   
-  --button-outline: rgba(255, 106, 0, 0.12);
-  --badge-outline: rgba(255, 106, 0, 0.08);
+  --button-outline: rgba(255, 108, 0, 0.14);
+  --badge-outline: rgba(255, 108, 0, 0.10);
   --opaque-button-border-intensity: -5;
-  --elevate-1: rgba(255, 106, 0, 0.08);
-  --elevate-2: rgba(255, 106, 0, 0.15);
-  --mint-glow: 0 0 12px rgba(255, 106, 0, 0.3);
+  --elevate-1: rgba(255, 108, 0, 0.10);
+  --elevate-2: rgba(255, 108, 0, 0.18);
+  --mint-glow: 0 0 12px rgba(255, 108, 0, 0.35);
   --background: 0 0% 100%;
-  --foreground: 0 0% 12%;
-  --border: 0 0% 88%;
+  --foreground: 0 0% 11%;            /* Darker text for better readability */
+  --border: 0 0% 86%;
   --card: 0 0% 98%;
-  --card-foreground: 0 0% 12%;
-  --card-border: 0 0% 90%;
+  --card-foreground: 0 0% 11%;       /* Match foreground for consistency */
+  --card-border: 0 0% 88%;
   --sidebar: 0 0% 97%;
-  --sidebar-foreground: 0 0% 12%;
-  --sidebar-border: 0 0% 88%;
+  --sidebar-foreground: 0 0% 11%;    /* Darker text in sidebar */
+  --sidebar-border: 0 0% 86%;
   --sidebar-primary: var(--orange-primary);
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: var(--orange-medium);
   --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-ring: var(--orange-primary);
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 12%;
-  --popover-border: 0 0% 90%;
+  --popover-foreground: 0 0% 11%;    /* Darker text */
+  --popover-border: 0 0% 88%;
   --primary: var(--orange-primary);
   --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 94%;
-  --secondary-foreground: 0 0% 18%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
-  --tertiary-foreground: 0 0% 50%;
+  --secondary: 0 0% 92%;             /* Slightly lighter secondary */
+  --secondary-foreground: 0 0% 16%;  /* Good contrast on secondary bg */
+  --muted: 0 0% 95%;                 /* Softer muted background */
+  --muted-foreground: 0 0% 45%;      /* Better readability for secondary text */
+  --tertiary-foreground: 0 0% 55%;   /* Tertiary text - least important */
   --accent: var(--orange-medium);
   --accent-foreground: 0 0% 100%;
   --timer: var(--orange-primary);
@@ -588,7 +588,7 @@ html.dark {
   --chart-4: 0 0% 75%;
   --chart-5: 0 0% 65%;
   --section-alt: 0 0% 97%;
-  --section-alt-foreground: 0 0% 15%;
+  --section-alt-foreground: 0 0% 13%;
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: JetBrains Mono, SF Mono, Monaco, Menlo, monospace;
@@ -633,55 +633,56 @@ html.dark {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* DARK MODE - PREMIUM BLACK & ORANGE STYLE
+/* DARK MODE - PREMIUM BLACK & VIBRANT ORANGE STYLE
    Pure black background for maximum contrast
-   Orange palette - brighter tones on dark: #FFA31A to #FFAA44
+   Orange palette - brighter tones on dark for vibrant effect
    White content areas for email display
+   Perfect text color hierarchy for dark mode
 */
 .dark {
-  /* Orange Palette for Dark Mode - Replit Style (Brighter red-orange) */
-  --orange-primary: 10 100% 59%;      /* #FF7548 - Bright red-orange on dark */
-  --orange-medium: 8 100% 63%;        /* #FF8A5C - Lighter for hover */
-  --orange-warm: 6 100% 55%;          /* #FF6E3A - Warm tone for secondary */
-  --orange-light: 10 100% 75%;        /* Very light for subtle backgrounds */
-  --orange-dark: 10 100% 48%;         /* Darker for emphasis */
+  /* Orange Palette for Dark Mode - Vibrant Bright Red-Orange */
+  --orange-primary: 14 100% 61%;      /* Brighter, more vibrant on dark */
+  --orange-medium: 13 100% 65%;       /* Very bright for hover */
+  --orange-warm: 12 100% 57%;         /* Warm tone for secondary */
+  --orange-light: 14 100% 75%;        /* Very light for subtle backgrounds */
+  --orange-dark: 14 100% 50%;         /* Deeper for emphasis */
   
-  --button-outline: rgba(255, 163, 26, 0.18);
-  --badge-outline: rgba(255, 163, 26, 0.12);
+  --button-outline: rgba(255, 122, 53, 0.20);
+  --badge-outline: rgba(255, 122, 53, 0.14);
   --opaque-button-border-intensity: 8;
-  --elevate-1: rgba(255, 163, 26, 0.12);
-  --elevate-2: rgba(255, 163, 26, 0.22);
+  --elevate-1: rgba(255, 122, 53, 0.14);
+  --elevate-2: rgba(255, 122, 53, 0.25);
   --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  --border: 0 0% 18%;
+  --foreground: 0 0% 98%;             /* Very bright white text on dark */
+  --border: 0 0% 20%;
   --card: 0 0% 8%;
-  --card-foreground: 0 0% 100%;
-  --card-border: 0 0% 20%;
+  --card-foreground: 0 0% 98%;        /* Bright white on dark cards */
+  --card-border: 0 0% 22%;
   --sidebar: 0 0% 6%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-border: 0 0% 18%;
+  --sidebar-foreground: 0 0% 98%;     /* Bright white text in sidebar */
+  --sidebar-border: 0 0% 20%;
   --sidebar-primary: var(--orange-primary);
   --sidebar-primary-foreground: 0 0% 0%;
   --sidebar-accent: var(--orange-medium);
   --sidebar-accent-foreground: 0 0% 0%;
   --sidebar-ring: var(--orange-primary);
   --popover: 0 0% 10%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 0 0% 22%;
+  --popover-foreground: 0 0% 98%;     /* Bright white text */
+  --popover-border: 0 0% 24%;
   --primary: var(--orange-primary);
   --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 14%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 12%;
-  --muted-foreground: 0 0% 65%;
-  --tertiary-foreground: 0 0% 50%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 96%;   /* Good contrast secondary text */
+  --muted: 0 0% 13%;
+  --muted-foreground: 0 0% 70%;       /* Brighter secondary text */
+  --tertiary-foreground: 0 0% 60%;    /* Tertiary text - slightly muted */
   --accent: var(--orange-medium);
   --accent-foreground: 0 0% 0%;
   --timer: var(--orange-primary);
   --timer-foreground: 0 0% 0%;
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 12%;
+  --destructive: 0 72% 60%;           /* Brighter red on dark */
+  --destructive-foreground: 0 0% 0%;
+  --input: 0 0% 14%;
   --ring: var(--orange-primary);
   --section-alt: 0 0% 8%;
   --section-alt-foreground: 0 0% 95%;
