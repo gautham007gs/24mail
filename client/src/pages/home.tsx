@@ -340,6 +340,15 @@ export default function Home() {
               <div className="mb-4 md:mb-6 flex items-center justify-between gap-4">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">Inbox</h2>
               </div>
+              
+              {/* Empty Inbox Message Box */}
+              {emails.length === 0 && !isLoadingInbox && (
+                <div className="mb-6 p-4 sm:p-5 bg-muted/50 border border-border/60 rounded-lg">
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    No messages yet. Share your temporary email address and incoming emails will appear here instantly.
+                  </p>
+                </div>
+              )}
             <InboxList
               emails={emails}
               isLoading={isLoadingInbox}

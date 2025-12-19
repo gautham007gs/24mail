@@ -537,12 +537,12 @@ html.dark {
    Orange used strategically with dark text for readability
 */
 :root {
-  /* Orange Palette - Multiple tones for harmony across different backgrounds */
-  --orange-primary: 25 100% 50%;    /* #FF6A00 - Bright, high contrast */
-  --orange-medium: 20 100% 55%;     /* #FF8C32 - Hover states, secondary actions */
-  --orange-warm: 18 100% 52%;       /* #F77228 - Tertiary, muted contexts */
-  --orange-light: 22 100% 68%;      /* Lighter orange for backgrounds */
-  --orange-dark: 22 95% 40%;        /* Darker orange for text on light backgrounds */
+  /* Orange Palette - Replit-Style (Red-Leaning, Vibrant) */
+  --orange-primary: 12 100% 51%;    /* #FF5722 - Bright, high contrast, red-orange */
+  --orange-medium: 10 100% 56%;     /* #FF7038 - Hover states, lighter red-orange */
+  --orange-warm: 8 100% 52%;        /* #FF6124 - Tertiary, warm red-orange */
+  --orange-light: 10 100% 70%;      /* Lighter orange for backgrounds */
+  --orange-dark: 10 95% 40%;        /* Darker orange for text on light backgrounds */
   
   --button-outline: rgba(255, 106, 0, 0.12);
   --badge-outline: rgba(255, 106, 0, 0.08);
@@ -639,12 +639,12 @@ html.dark {
    White content areas for email display
 */
 .dark {
-  /* Orange Palette for Dark Mode - Brighter versions */
-  --orange-primary: 38 100% 55%;      /* #FFA31A - Bright on dark */
-  --orange-medium: 36 100% 58%;       /* Lighter orange for hover */
-  --orange-warm: 32 100% 52%;         /* Warm tone for secondary */
-  --orange-light: 38 100% 70%;        /* Very light for subtle backgrounds */
-  --orange-dark: 38 100% 48%;         /* Darker for emphasis */
+  /* Orange Palette for Dark Mode - Replit Style (Brighter red-orange) */
+  --orange-primary: 10 100% 59%;      /* #FF7548 - Bright red-orange on dark */
+  --orange-medium: 8 100% 63%;        /* #FF8A5C - Lighter for hover */
+  --orange-warm: 6 100% 55%;          /* #FF6E3A - Warm tone for secondary */
+  --orange-light: 10 100% 75%;        /* Very light for subtle backgrounds */
+  --orange-dark: 10 100% 48%;         /* Darker for emphasis */
   
   --button-outline: rgba(255, 163, 26, 0.18);
   --badge-outline: rgba(255, 163, 26, 0.12);
