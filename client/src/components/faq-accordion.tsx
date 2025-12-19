@@ -32,14 +32,14 @@ export function FAQAccordion() {
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-20 bg-[#1b1b1b]">
+    <section className="py-16 md:py-20 bg-background">
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-3 tracking-tight">
             FAQ
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-muted-foreground text-lg">
             Everything you need to know
           </p>
         </div>
@@ -51,29 +51,29 @@ export function FAQAccordion() {
               key={idx}
               className={`rounded-xl overflow-hidden border transition-all ${
                 expanded === idx 
-                  ? "border-[#FFA31A]/50 bg-black" 
-                  : "border-[#2a2a2a] bg-black hover:border-[#3a3a3a]"
+                  ? "border-primary/50 bg-card" 
+                  : "border-border bg-card hover:border-border/70"
               }`}
               data-testid={`faq-item-${idx}`}
             >
               <button
                 onClick={() => setExpanded(expanded === idx ? null : idx)}
-                className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
+                className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left hover-elevate"
                 data-testid={`button-faq-${idx}`}
                 aria-expanded={expanded === idx}
               >
-                <span className="font-bold text-white text-base md:text-lg">
+                <span className="font-bold text-foreground text-base md:text-lg">
                   {item.question}
                 </span>
                 <ChevronDown
                   className={`h-5 w-5 flex-shrink-0 transition-transform duration-300 ${
-                    expanded === idx ? "rotate-180 text-[#FFA31A]" : "text-gray-500"
+                    expanded === idx ? "rotate-180 text-primary" : "text-muted-foreground"
                   }`}
                   aria-hidden="true"
                 />
               </button>
               {expanded === idx && (
-                <div className="px-6 pb-5 text-gray-400 leading-relaxed">
+                <div className="px-6 pb-5 text-muted-foreground leading-relaxed">
                   {item.answer}
                 </div>
               )}
